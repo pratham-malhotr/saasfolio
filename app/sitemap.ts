@@ -5,7 +5,7 @@ import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { DETAILED_THREADS } from "@/lib/data/community-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://saasfolio.tech";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech";
 
   // Core static routes
   const staticRoutes: MetadataRoute.Sitemap = [

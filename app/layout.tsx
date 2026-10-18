@@ -29,8 +29,10 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://saasfolio.tech"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "SaaSFolio — Discover, Save & Scale | Premium SaaS Deals & Reviews",
     template: "%s | SaaSFolio",
