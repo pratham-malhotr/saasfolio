@@ -18,6 +18,8 @@ import {
   Copy,
   ExternalLink,
 } from "lucide-react";
+import { checkRateLimit } from "@/lib/rate-limiter";
+import { SafeStorage } from "@/lib/storage";
 
 type SubmissionType = "deal" | "tool" | "review";
 
@@ -60,6 +62,13 @@ export function SubmitWizardClient() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const rateCheck = checkRateLimit("vendor_submission", 5, 120);
+    if (!rateCheck.success) {
+      alert(rateCheck.message || "Submission rate limit exceeded. Please wait a moment.");
+      return;
+    }
+
     const newId = `SUB-${Math.floor(100000 + Math.random() * 900000)}`;
     setTrackingId(newId);
 
@@ -83,13 +92,8 @@ export function SubmitWizardClient() {
       views: 0,
     };
 
-    try {
-      const stored = localStorage.getItem("saasfolio_submissions");
-      const list = stored ? JSON.parse(stored) : [];
-      localStorage.setItem("saasfolio_submissions", JSON.stringify([submissionPayload, ...list]));
-    } catch (e) {
-      console.error(e);
-    }
+    const list = SafeStorage.get<any[]>("saasfolio_submissions", []);
+    SafeStorage.set("saasfolio_submissions", [submissionPayload, ...list]);
 
     setIsSubmitted(true);
   };

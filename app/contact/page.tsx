@@ -13,6 +13,8 @@ import {
   Sparkles,
   ArrowRight
 } from "lucide-react";
+import { checkRateLimit } from "@/lib/rate-limiter";
+import { SafeStorage } from "@/lib/storage";
 
 const CHANNELS = [
   {
@@ -75,22 +77,29 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const rateCheck = checkRateLimit("contact_dispatch", 4, 120);
+    if (!rateCheck.success) {
+      alert(rateCheck.message || "Contact form submission limit reached. Please wait a moment.");
+      return;
+    }
+
     if (!formData.name || !formData.email || !formData.message) return;
 
     const id = `TKT-${Math.floor(100000 + Math.random() * 900000)}`;
     setTicketId(id);
     setSubmitted(true);
 
-    try {
-      const existing = JSON.parse(localStorage.getItem("saasfolio_support_tickets") || "[]");
-      existing.unshift({
+    const existing = SafeStorage.get<any[]>("saasfolio_support_tickets", []);
+    SafeStorage.set("saasfolio_support_tickets", [
+      {
         ticketId: id,
         ...formData,
         date: new Date().toISOString(),
         status: "OPEN_ASSIGNED",
-      });
-      localStorage.setItem("saasfolio_support_tickets", JSON.stringify(existing));
-    } catch (e) {}
+      },
+      ...existing,
+    ]);
   };
 
   return (

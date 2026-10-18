@@ -5,6 +5,9 @@ import { Mail, Check, Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 
+import { checkRateLimit } from "@/lib/rate-limiter";
+import { SafeStorage } from "@/lib/storage";
+
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -12,6 +15,14 @@ export function NewsletterSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check sliding window rate limit (max 3 subscribe attempts per minute)
+    const rateCheck = checkRateLimit("newsletter_subscribe", 3, 60);
+    if (!rateCheck.success) {
+      setStatus("error");
+      setErrorMessage(rateCheck.message || "Too many attempts. Please wait.");
+      return;
+    }
 
     if (!email || !email.includes("@") || !email.includes(".")) {
       setStatus("error");
@@ -24,6 +35,7 @@ export function NewsletterSection() {
     // Simulate clean serverless submission
     setTimeout(() => {
       setStatus("success");
+      SafeStorage.set("saasfolio_newsletter_subscriber", { email, subscribedAt: new Date().toISOString() });
       confetti({
         particleCount: 60,
         spread: 60,

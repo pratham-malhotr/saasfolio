@@ -16,6 +16,8 @@ import {
   Award,
   Check
 } from "lucide-react";
+import { checkRateLimit } from "@/lib/rate-limiter";
+import { SafeStorage } from "@/lib/storage";
 
 const PACKAGES = [
   {
@@ -95,22 +97,29 @@ export default function AdvertisePage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const rateCheck = checkRateLimit("advertise_inquiry", 4, 120);
+    if (!rateCheck.success) {
+      alert(rateCheck.message || "Too many inquiries submitted. Please wait a moment.");
+      return;
+    }
+
     if (!formData.companyName || !formData.contactEmail) return;
 
     const id = `ADV-${Math.floor(100000 + Math.random() * 900000)}`;
     setTicketId(id);
     setSubmitted(true);
 
-    try {
-      const existing = JSON.parse(localStorage.getItem("saasfolio_ad_inquiries") || "[]");
-      existing.unshift({
+    const existing = SafeStorage.get<any[]>("saasfolio_ad_inquiries", []);
+    SafeStorage.set("saasfolio_ad_inquiries", [
+      {
         ticketId: id,
         ...formData,
         date: new Date().toISOString(),
         status: "PENDING_SALES_REVIEW",
-      });
-      localStorage.setItem("saasfolio_ad_inquiries", JSON.stringify(existing));
-    } catch (e) {}
+      },
+      ...existing,
+    ]);
   };
 
   return (
