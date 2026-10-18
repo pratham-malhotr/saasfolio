@@ -5,11 +5,14 @@ import { Sparkles, ShieldCheck, ExternalLink } from "lucide-react";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { getDealBySlug, DEALS_DATA } from "@/lib/data/deals-data";
 
+import { SafeStorage } from "@/lib/storage";
+
 export function RedirectClient({ id }: { id: string }) {
   const [countdown, setCountdown] = useState(2);
   const [targetUrl, setTargetUrl] = useState("https://saasfolio.tech/deals");
   const [toolName, setToolName] = useState("Partner Tool");
   const [discount, setDiscount] = useState("Exclusive Discount");
+  const [toolSlug, setToolSlug] = useState("");
 
   useEffect(() => {
     if (!id) return;
@@ -18,26 +21,25 @@ export function RedirectClient({ id }: { id: string }) {
     const tool = getToolBySlug(id);
 
     const name = tool?.name || deal?.toolName || id.replace(/-/g, " ").toUpperCase();
-    const dest = tool?.website || "https://saasfolio.tech/deals";
+    const dest = tool?.website || (deal?.toolSlug ? `/tools/${deal.toolSlug}` : "https://saasfolio.tech/deals");
     const disc = deal ? `${deal.discountPercentage}% OFF` : "Verified Deal";
 
     setToolName(name);
     setTargetUrl(dest);
     setDiscount(disc);
+    if (tool?.slug) setToolSlug(tool.slug);
 
-    // Click telemetry
-    try {
-      const existingLogs = JSON.parse(localStorage.getItem("saasfolio_clicks") || "[]");
-      existingLogs.push({
+    // Click telemetry with SafeStorage circuit breaker
+    const existingLogs = SafeStorage.get<any[]>("saasfolio_clicks", []);
+    SafeStorage.set("saasfolio_clicks", [
+      {
         id,
         toolName: name,
         timestamp: new Date().toISOString(),
-        referrer: document.referrer || "direct",
-      });
-      localStorage.setItem("saasfolio_clicks", JSON.stringify(existingLogs.slice(-100)));
-    } catch {
-      // Ignore
-    }
+        referrer: typeof document !== "undefined" ? document.referrer || "direct" : "direct",
+      },
+      ...existingLogs.slice(0, 99),
+    ]);
 
     const timer = setInterval(() => {
       setCountdown((prev) => {
@@ -77,20 +79,31 @@ export function RedirectClient({ id }: { id: string }) {
           {discount} AUTO-TAGGED
         </div>
 
-        <p className="text-xs text-zinc-400 leading-relaxed mb-8">
+        <p className="text-xs text-zinc-400 leading-relaxed mb-6">
           We are securing your exclusive partner rate and transferring you directly to the official vendor checkout in{" "}
           <span className="font-mono text-white font-bold">{countdown}s</span>...
         </p>
 
-        <a
-          href={targetUrl}
-          className="w-full py-3.5 px-6 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(198,255,61,0.3)]"
-        >
-          <span>Continue Immediately</span>
-          <ExternalLink className="w-4 h-4 stroke-[2.5]" />
-        </a>
+        <div className="space-y-3 mb-6">
+          <a
+            href={targetUrl}
+            className="w-full py-3.5 px-6 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(198,255,61,0.3)]"
+          >
+            <span>Continue Immediately</span>
+            <ExternalLink className="w-4 h-4 stroke-[2.5]" />
+          </a>
 
-        <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-1.5 font-mono text-[10px] text-zinc-500 uppercase">
+          {toolSlug && (
+            <a
+              href={`/tools/${toolSlug}`}
+              className="w-full py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 font-mono text-xs uppercase tracking-wider transition-all block"
+            >
+              View Full Profile on SaaSFolio
+            </a>
+          )}
+        </div>
+
+        <div className="pt-4 border-t border-white/10 flex items-center justify-center gap-1.5 font-mono text-[10px] text-zinc-500 uppercase">
           <ShieldCheck className="w-3.5 h-3.5 text-[#C6FF3D]" />
           <span>Verified Safe Outbound Redirect</span>
         </div>
