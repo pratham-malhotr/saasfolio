@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Menu, X, ArrowUpRight, Sparkles, Tag, Layers, FileText, Users, User, LogOut, ShieldCheck } from "lucide-react";
+import { Search, Menu, X, ArrowUpRight, Sparkles, Tag, Layers, FileText, Users, User, LogOut, ShieldCheck, Scale } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { CommandPalette } from "@/components/modals/CommandPalette";
@@ -69,8 +69,9 @@ export function Navbar() {
 
   const navLinks = [
     { label: "Deals", href: "/deals", icon: Tag, badge: "HOT" },
-    { label: "Tools Directory", href: "/tools", icon: Layers },
-    { label: "Reviews & Guides", href: "/articles", icon: FileText },
+    { label: "Tools", href: "/tools", icon: Layers },
+    { label: "Compare", href: "/compare", icon: Scale },
+    { label: "Reviews", href: "/articles", icon: FileText },
     { label: "Community", href: "/community", icon: Users },
   ];
 

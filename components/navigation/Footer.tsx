@@ -88,12 +88,22 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/about" className="hover:text-[#C6FF3D] transition-colors">
-                  Methodology & Testing
+                  About & Testing Methodology
+                </Link>
+              </li>
+              <li>
+                <Link href="/compare" className="hover:text-[#C6FF3D] transition-colors">
+                  Compare Tools Side-by-Side
                 </Link>
               </li>
               <li>
                 <Link href="/advertise" className="hover:text-[#C6FF3D] transition-colors">
                   Partner / Advertise
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-[#C6FF3D] transition-colors">
+                  Contact & Support
                 </Link>
               </li>
             </ul>
@@ -136,6 +146,9 @@ export function Footer() {
             </Link>
             <Link href="/affiliate-disclosure" className="hover:text-zinc-300 transition-colors">
               Affiliate Disclosure
+            </Link>
+            <Link href="/contact" className="hover:text-zinc-300 transition-colors">
+              Contact Desk
             </Link>
           </div>
 
