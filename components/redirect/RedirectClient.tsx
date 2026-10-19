@@ -18,7 +18,7 @@ export function RedirectClient({ id }: { id: string }) {
     if (!id) return;
 
     const deal = getDealBySlug(id) || DEALS_DATA.find((d) => d.toolSlug === id);
-    const tool = getToolBySlug(id);
+    const tool = getToolBySlug(id) || (deal?.toolSlug ? getToolBySlug(deal.toolSlug) : undefined);
 
     const name = tool?.name || deal?.toolName || id.replace(/-/g, " ").toUpperCase();
     const dest = tool?.website || (deal?.toolSlug ? `/tools/${deal.toolSlug}` : "https://saasfolio.tech/deals");
