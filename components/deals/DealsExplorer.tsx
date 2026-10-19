@@ -14,7 +14,8 @@ import {
   SlidersHorizontal,
   Flame,
   ArrowRight,
-  RotateCcw
+  RotateCcw,
+  ExternalLink
 } from "lucide-react";
 import { SaaSDeal } from "@/lib/types";
 import { CATEGORIES } from "@/lib/mock-data";
@@ -412,10 +413,21 @@ export function DealsExplorer({
                         <span>Reveal Code</span>
                       </button>
 
+                      <a
+                        href={`/go/${deal.toolSlug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-3 px-3.5 rounded-xl bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 text-[#C6FF3D] hover:bg-[#C6FF3D] hover:text-black transition-all font-mono text-xs font-bold flex items-center justify-center gap-1"
+                        title={`Go directly to ${deal.toolName} discount checkout`}
+                      >
+                        <span>Claim</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+
                       <Link
                         href={`/deals/${deal.slug}`}
                         className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-zinc-400 hover:text-white transition-colors"
-                        title="View Full Offer Details"
+                        title="View Full Offer Details & Terms"
                       >
                         <ArrowRight className="w-4 h-4" />
                       </Link>

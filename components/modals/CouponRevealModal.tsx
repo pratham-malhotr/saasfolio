@@ -34,9 +34,18 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
     triggerConfetti();
 
     if (deal.code) {
-      navigator.clipboard.writeText(deal.code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 3000);
+      try {
+        navigator.clipboard.writeText(deal.code);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 3000);
+      } catch {
+        // Fallback for non-secure contexts
+      }
+    }
+
+    // Seamlessly open the official vendor checkout in a new window with discount activated
+    if (deal.affiliateUrl && typeof window !== "undefined") {
+      window.open(deal.affiliateUrl, "_blank", "noopener,noreferrer");
     }
   };
 

@@ -83,9 +83,18 @@ export function DealDetailClient({ deal, tool, relatedDeals }: DealDetailClientP
     triggerConfetti();
 
     if (deal.code) {
-      navigator.clipboard.writeText(deal.code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 3000);
+      try {
+        navigator.clipboard.writeText(deal.code);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 3000);
+      } catch {
+        // Fallback
+      }
+    }
+
+    // Automatically navigate to official checkout in new tab
+    if (typeof window !== "undefined") {
+      window.open(`/go/${deal.toolSlug}`, "_blank", "noopener,noreferrer");
     }
   };
 
