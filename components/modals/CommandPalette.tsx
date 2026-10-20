@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useEffect, useState, useMemo } from "react";
-import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight, Layers } from "lucide-react";
+import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight, Layers, Check, Copy } from "lucide-react";
+import confetti from "canvas-confetti";
 import { FEATURED_ARTICLES, TRENDING_DISCUSSIONS, CATEGORIES } from "@/lib/mock-data";
 import { TOOLS_DATA } from "@/lib/data/tools-data";
 import { DEALS_DATA } from "@/lib/data/deals-data";
+import type { SaaSDeal } from "@/lib/types";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -16,6 +18,11 @@ interface CommandPaletteProps {
 export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<"all" | "tools" | "deals" | "articles" | "community">("all");
+  const [revealedNotice, setRevealedNotice] = useState<{
+    code: string;
+    toolName: string;
+    url: string;
+  } | null>(null);
 
   // Handle Escape key
   useEffect(() => {
@@ -27,8 +34,6 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
         e.preventDefault();
         if (isOpen) {
           onClose();
-        } else {
-          // handled by parent or window listener
         }
       }
     };
@@ -37,29 +42,110 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Filtered tools
+  // Tokenized tools matching
   const filteredTools = useMemo(() => {
     if (!query) return TOOLS_DATA.slice(0, 4);
-    const q = query.toLowerCase();
-    return TOOLS_DATA.filter(
-      (t) =>
-        t.name.toLowerCase().includes(q) ||
-        t.tagline.toLowerCase().includes(q) ||
-        t.category.toLowerCase().includes(q)
-    ).slice(0, 5);
+    const q = query.toLowerCase().trim();
+    const tokens = q.split(/\s+/).filter(Boolean);
+    const intentWords = ["reveal", "coupon", "code", "voucher", "promo", "discount", "deal"];
+    const coreTokens = tokens.filter((t) => !intentWords.includes(t));
+
+    return TOOLS_DATA.filter((t) => {
+      const target = `${t.name} ${t.slug} ${t.tagline} ${t.category} ${t.bestFor}`.toLowerCase();
+      if (coreTokens.length > 0) {
+        return coreTokens.every((tok) => target.includes(tok));
+      }
+      return target.includes(q);
+    }).slice(0, 5);
   }, [query]);
 
-  // Filtered deals
+  // Tokenized deals matching with intent recognition
   const filteredDeals = useMemo(() => {
     if (!query) return DEALS_DATA.filter((d) => d.featured).slice(0, 4);
-    const q = query.toLowerCase();
-    return DEALS_DATA.filter(
-      (d) =>
-        d.title.toLowerCase().includes(q) ||
-        d.toolName.toLowerCase().includes(q) ||
-        d.category.toLowerCase().includes(q)
-    ).slice(0, 5);
+    const q = query.toLowerCase().trim();
+    const tokens = q.split(/\s+/).filter(Boolean);
+    const intentWords = ["reveal", "coupon", "code", "voucher", "promo", "discount", "deal"];
+    const hasIntent = tokens.some((t) => intentWords.includes(t));
+    const coreTokens = tokens.filter((t) => !intentWords.includes(t));
+
+    return DEALS_DATA.filter((d) => {
+      const target = `${d.toolName} ${d.toolSlug} ${d.title} ${d.description} ${d.code || ""} ${d.category}`.toLowerCase();
+      if (coreTokens.length > 0) {
+        return coreTokens.every((tok) => target.includes(tok));
+      }
+      if (hasIntent) {
+        return d.dealType === "coupon" || Boolean(d.code);
+      }
+      return target.includes(q);
+    }).sort((a, b) => {
+      if (hasIntent || q.includes("beehiiv")) {
+        const aHasCode = Boolean(a.code);
+        const bHasCode = Boolean(b.code);
+        if (aHasCode && !bHasCode) return -1;
+        if (!aHasCode && bHasCode) return 1;
+      }
+      return (b.revealsCount || 0) - (a.revealsCount || 0);
+    }).slice(0, 6);
   }, [query]);
+
+  // Top coupon deal for high-intent instant reveal
+  const topCouponDeal = useMemo(() => {
+    if (!query.trim()) return null;
+    const q = query.toLowerCase();
+    const hasIntent = q.includes("reveal") || q.includes("coupon") || q.includes("code") || q.includes("beehiiv");
+    const dealWithCode = filteredDeals.find((d) => Boolean(d.code));
+    if (dealWithCode && (hasIntent || filteredDeals.length > 0)) {
+      return dealWithCode;
+    }
+    return null;
+  }, [query, filteredDeals]);
+
+  // Instant coupon reveal & direct site redirect handler
+  const handleRevealAndRedirect = (deal: SaaSDeal) => {
+    const tool = TOOLS_DATA.find((t) => t.slug === deal.toolSlug);
+    const targetUrl = tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
+
+    // 1. Copy code to clipboard
+    if (deal.code && typeof navigator !== "undefined" && navigator.clipboard) {
+      try {
+        navigator.clipboard.writeText(deal.code);
+      } catch {
+        // Fallback for non-secure contexts
+      }
+    }
+
+    // 2. Trigger celebration confetti
+    try {
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ["#C6FF3D", "#FFFFFF", "#7C5CFF", "#111111"],
+        disableForReducedMotion: true,
+      });
+    } catch {
+      // Confetti fallback
+    }
+
+    // 3. Set visual notice banner
+    setRevealedNotice({
+      code: deal.code || "AUTOMATIC",
+      toolName: deal.toolName,
+      url: targetUrl,
+    });
+
+    // 4. Immediately open destination website
+    if (typeof window !== "undefined") {
+      window.open(targetUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && topCouponDeal) {
+      e.preventDefault();
+      handleRevealAndRedirect(topCouponDeal);
+    }
+  };
 
   const filteredArticles = useMemo(() => {
     if (!query) return FEATURED_ARTICLES.slice(0, 2);
@@ -104,14 +190,21 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
             <input
               type="text"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search 170+ software tools, budget gems & active discount coupons..."
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setRevealedNotice(null);
+              }}
+              onKeyDown={handleInputKeyDown}
+              placeholder="Search tools, type 'beehiiv reveal coupon' or press ↵ to open site..."
               className="flex-1 bg-transparent text-white placeholder-zinc-500 font-sans text-sm sm:text-base outline-none"
               autoFocus
             />
             {query && (
               <button
-                onClick={() => setQuery("")}
+                onClick={() => {
+                  setQuery("");
+                  setRevealedNotice(null);
+                }}
                 className="text-zinc-400 hover:text-white p-1 rounded transition-colors"
               >
                 <X className="w-4 h-4" />
@@ -121,6 +214,26 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
               ESC
             </kbd>
           </div>
+
+          {/* Instant Coupon Reveal Notification Banner */}
+          {revealedNotice && (
+            <div className="mx-4 mt-3 p-3 rounded-xl bg-[#C6FF3D]/10 border border-[#C6FF3D]/40 flex items-center justify-between text-xs font-mono text-[#C6FF3D] animate-in fade-in duration-200">
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 stroke-[3]" />
+                <span>
+                  Code <strong className="text-white bg-black px-1.5 py-0.5 rounded border border-[#C6FF3D]/40">{revealedNotice.code}</strong> copied! Redirecting to {revealedNotice.toolName}...
+                </span>
+              </div>
+              <a
+                href={revealedNotice.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-white ml-2 shrink-0 font-bold"
+              >
+                Open Site ↗
+              </a>
+            </div>
+          )}
 
           {/* Filter Pills */}
           <div className="flex items-center gap-2 px-5 py-2.5 border-b border-white/5 bg-[#0A0A0C] text-xs overflow-x-auto">
@@ -142,6 +255,42 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
 
           {/* Search Results Scroll Area */}
           <div className="max-h-[60vh] overflow-y-auto p-4 space-y-6">
+            {/* Top Direct Coupon Reveal & Instant Site Redirection Action */}
+            {topCouponDeal && (
+              <div className="p-4 rounded-xl bg-gradient-to-r from-[#C6FF3D]/15 via-[#0F0F14] to-black border border-[#C6FF3D]/40 shadow-[0_0_25px_rgba(198,255,61,0.15)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-11 h-11 rounded-xl bg-black border border-[#C6FF3D]/60 flex flex-col items-center justify-center font-bold text-xs text-[#C6FF3D] shadow-[0_0_15px_rgba(198,255,61,0.25)] shrink-0">
+                    <Sparkles className="w-4 h-4 text-[#C6FF3D] mb-0.5" />
+                    <span className="text-[10px] leading-none">{topCouponDeal.discountPercentage}%</span>
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#C6FF3D] px-2 py-0.5 rounded bg-[#C6FF3D]/15 border border-[#C6FF3D]/30">
+                        COUPON: {topCouponDeal.code || "AUTOMATIC"}
+                      </span>
+                      <span className="font-mono text-[10px] text-zinc-400">
+                        {topCouponDeal.successRate}% Success
+                      </span>
+                    </div>
+                    <div className="text-sm font-bold text-white mt-1">
+                      Reveal {topCouponDeal.toolName} Coupon & Go To Official Site
+                    </div>
+                    <div className="text-xs text-zinc-400 line-clamp-1 mt-0.5">
+                      {topCouponDeal.title}
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleRevealAndRedirect(topCouponDeal)}
+                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(198,255,61,0.35)] cursor-pointer shrink-0"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Reveal & Open Site ↗</span>
+                </button>
+              </div>
+            )}
+
             {/* Tools Section */}
             {(filter === "all" || filter === "tools") && filteredTools.length > 0 && (
               <div>
@@ -217,34 +366,61 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                 </div>
                 <div className="space-y-1.5">
                   {filteredDeals.map((deal) => (
-                    <Link
+                    <div
                       key={deal.id}
-                      href={`/deals/${deal.slug}`}
-                      onClick={onClose}
                       className="group flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.07] hover:border-[#C6FF3D]/40 transition-all"
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-black border border-white/10 flex items-center justify-center font-bold text-xs text-[#C6FF3D] group-hover:border-[#C6FF3D]/50">
+                      <Link
+                        href={`/deals/${deal.slug}`}
+                        onClick={onClose}
+                        className="flex items-center gap-3 flex-1 min-w-0"
+                      >
+                        <div className="w-9 h-9 rounded-lg bg-black border border-white/10 flex items-center justify-center font-bold text-xs text-[#C6FF3D] group-hover:border-[#C6FF3D]/50 shrink-0">
                           {deal.discountPercentage}%
                         </div>
-                        <div>
-                          <div className="text-sm font-semibold text-white group-hover:text-[#C6FF3D] transition-colors">
+                        <div className="min-w-0">
+                          <div className="text-sm font-semibold text-white group-hover:text-[#C6FF3D] transition-colors truncate">
                             {deal.toolName} — {deal.title}
                           </div>
                           <div className="text-xs text-zinc-400 flex items-center gap-2 mt-0.5">
                             <span className="font-mono text-[10px] text-zinc-500">{deal.category}</span>
                             <span>✦</span>
-                            <span className="text-[#C6FF3D]">{deal.successRate}% Success Rate</span>
+                            <span className="text-[#C6FF3D]">{deal.successRate}% Success</span>
+                            {deal.code && (
+                              <>
+                                <span>✦</span>
+                                <span className="font-mono text-[10px] text-[#C6FF3D] bg-black/60 px-1 rounded border border-[#C6FF3D]/30">
+                                  {deal.code}
+                                </span>
+                              </>
+                            )}
                           </div>
                         </div>
+                      </Link>
+                      <div className="flex items-center gap-2 shrink-0 ml-3">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleRevealAndRedirect(deal);
+                          }}
+                          className="px-2.5 py-1.5 rounded-lg bg-[#C6FF3D] text-black font-mono font-bold text-[11px] hover:bg-[#D6FF66] transition-all flex items-center gap-1 shadow-[0_0_12px_rgba(198,255,61,0.25)] cursor-pointer"
+                          title={`Reveal ${deal.code || 'code'} and open official site`}
+                        >
+                          <Sparkles className="w-3 h-3" />
+                          <span>Reveal & Visit ↗</span>
+                        </button>
+                        <Link
+                          href={`/deals/${deal.slug}`}
+                          onClick={onClose}
+                          className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white transition-colors"
+                          title="View Details"
+                        >
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs px-2 py-0.5 rounded bg-[#C6FF3D]/10 text-[#C6FF3D] border border-[#C6FF3D]/20">
-                          {deal.dealType.toUpperCase()}
-                        </span>
-                        <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
-                      </div>
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </div>

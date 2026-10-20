@@ -41,18 +41,14 @@ export function RedirectClient({ id }: { id: string }) {
       ...existingLogs.slice(0, 99),
     ]);
 
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          window.location.href = dest;
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    // Instant seamless redirect to official tool website
+    const redirectTimer = setTimeout(() => {
+      if (typeof window !== "undefined" && dest) {
+        window.location.replace(dest);
+      }
+    }, 120);
 
-    return () => clearInterval(timer);
+    return () => clearTimeout(redirectTimer);
   }, [id]);
 
   return (
@@ -80,8 +76,7 @@ export function RedirectClient({ id }: { id: string }) {
         </div>
 
         <p className="text-xs text-zinc-400 leading-relaxed mb-6">
-          We are securing your exclusive partner rate and transferring you directly to the official vendor checkout in{" "}
-          <span className="font-mono text-white font-bold">{countdown}s</span>...
+          Securing your verified discount code and transferring you directly to {toolName}&apos;s official checkout now...
         </p>
 
         <div className="space-y-3 mb-6">

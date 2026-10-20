@@ -26813,6 +26813,2099 @@ export const TOOLS_DATA: DetailedTool[] = [
     ],
     dealsCount: 1,
     tier: "indie-budget"
+  },
+  {
+    id: "tool-dub-co",
+    name: "Dub.co",
+    slug: "dub-co",
+    tagline: "Modern open-source link management and conversion attribution engine",
+    description: "Dub is the modern open-source link management infrastructure for marketing teams, indie builders, and modern enterprises.",
+    longDescription: "Dub.co is the open-source link management platform built for modern marketing teams and developers. Unlike legacy link shorteners that add latency, lack branded domains, or cost hundreds per month, Dub provides edge-routed 301 redirects, deep UTM analytics, custom domain SSL certificates, programmatic REST APIs, and conversion tracking.",
+    category: "Growth & Marketing",
+    categorySlug: "marketing",
+    website: "https://dub.co",
+    logoLetter: "D",
+    rating: 4.9,
+    reviewCount: 384,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Founders, indie hackers, developer advocates, and marketing teams needing fast, branded short links and real-time click telemetry",
+    keyFeatures: [
+      "Global edge network with sub-10ms redirect latency powered by Cloudflare",
+      "Custom branded domains with automated free SSL provisioning",
+      "Deep geo, device, browser, and UTM tag attribution analytics",
+      "Full developer API and SDKs for TypeScript, Python, and Go",
+      "Open source codebase with self-hosting options and cloud tier"
+    ],
+    pros: [
+      "Generous free tier with unlimited clicks and custom domains",
+      "Stunning, ultra-fast dashboard interface with instant link search",
+      "Built-in QR code generator with brand logo and color customization",
+      "Programmatic webhooks and Zapier / Make automation support"
+    ],
+    cons: [
+      "Advanced enterprise SAML SSO reserved for business plans",
+      "Custom 404 page routing requires paid plan"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "25 links/mo",
+          "1,000 tracked clicks",
+          "3 custom domains",
+          "30-day analytics history"
+        ],
+        popular: false
+      },
+{
+        name: "Pro",
+        priceMonthly: 24,
+        priceYearly: 240,
+        features: [
+          "1,000 links/mo",
+          "50,000 tracked clicks",
+          "10 custom domains",
+          "1-year analytics history",
+          "API access"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Bitly",
+        slug: "bitly",
+        tagline: "Legacy short link service",
+        rating: 4.2
+      },
+{
+        name: "Rebrandly",
+        slug: "rebrandly",
+        tagline: "Branded URL shortener",
+        rating: 4.3
+      }
+    ],
+    reviews: [
+{
+        id: "rev-dub-1",
+        author: "Steven Vance",
+        authorTitle: "Growth Engineer @ HyperScale",
+        avatar: "SV",
+        rating: 5,
+        date: "Oct 14, 2026",
+        content: "Dub is hands down the best link shortener on the internet. We replaced our $300/mo Bitly enterprise plan with Dub and gained 10x faster edge redirects and cleaner UTM analytics.",
+        pros: [
+          "Generous free tier with unlimited clicks and custom domains",
+          "Stunning, ultra-fast dashboard interface with instant link search"
+        ],
+        cons: [
+          "Advanced enterprise SAML SSO reserved for business plans"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-better-stack",
+    name: "Better Stack",
+    slug: "better-stack",
+    tagline: "Uptime monitoring, incident response & log management for modern engineering teams",
+    description: "Better Stack combines synthetic uptime monitoring, on-call alerting schedules, beautiful status pages, and ClickHouse-based log management.",
+    longDescription: "Better Stack provides a single, unified observability suite that replaces PagerDuty, Pingdom, and Datadog for modern engineering teams. Monitor website availability with 30-second multi-region pings, trigger phone-call alerts for on-call engineers, publish branded incident status pages, and query millions of log lines with SQL in real-time.",
+    category: "Dev Tools",
+    categorySlug: "devtools",
+    website: "https://betterstack.com",
+    logoLetter: "B",
+    rating: 4.8,
+    reviewCount: 520,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "DevOps engineers, CTOs, and tech startups replacing clunky legacy monitoring tools like PagerDuty and Datadog",
+    keyFeatures: [
+      "30-second synthetic HTTP, ping, port, and SSL certificate monitoring from 10 global regions",
+      "Figma-like on-call scheduling with phone call, SMS, Slack, and MS Teams escalations",
+      "Stunning hosted status pages with custom domains, subscriber notifications, and SSL",
+      "Lightning-fast log analysis powered by ClickHouse with structured JSON search",
+      "Integrated screenshot captures and network traceroutes for every downtime incident"
+    ],
+    pros: [
+      "Intuitive, dark-mode design that is drastically more modern than PagerDuty",
+      "Generous free tier with 10 monitors and 3 status pages included forever",
+      "Sub-second log search queries even across hundreds of gigabytes of telemetry",
+      "Phone call alerting included without astronomical per-minute surcharges"
+    ],
+    cons: [
+      "Advanced APM tracing is not as granular as full-stack Datadog APM",
+      "10-second check frequency requires enterprise tier"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "10 uptime monitors",
+          "3-minute check frequency",
+          "Basic email alerts",
+          "1 status page"
+        ],
+        popular: false
+      },
+{
+        name: "Freelancer",
+        priceMonthly: 29,
+        priceYearly: 290,
+        features: [
+          "50 uptime monitors",
+          "30-second check frequency",
+          "Unlimited phone call alerts",
+          "5 status pages",
+          "On-call scheduling"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "PagerDuty",
+        slug: "pagerduty",
+        tagline: "Legacy enterprise on-call alerting",
+        rating: 4.4
+      },
+{
+        name: "Datadog",
+        slug: "datadog",
+        tagline: "Full-stack cloud monitoring platform",
+        rating: 4.5
+      }
+    ],
+    reviews: [
+{
+        id: "rev-betterstack-1",
+        author: "Devin Zhao",
+        authorTitle: "Lead Infrastructure Architect",
+        avatar: "DZ",
+        rating: 5,
+        date: "Oct 18, 2026",
+        content: "Better Stack transformed our on-call workflow. Setting up schedules takes 2 minutes instead of 2 hours on PagerDuty, and their phone call alerts have zero delay.",
+        pros: [
+          "Intuitive, dark-mode design that is drastically more modern than PagerDuty",
+          "Sub-second log search queries even across hundreds of gigabytes of telemetry"
+        ],
+        cons: [
+          "Advanced APM tracing is not as granular as full-stack Datadog APM"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
+  },
+  {
+    id: "tool-mintlify",
+    name: "Mintlify",
+    slug: "mintlify",
+    tagline: "The modern developer documentation platform engineered to turn readers into builders",
+    description: "Mintlify helps software companies create stunning, interactive, and AI-powered technical documentation with MDX and git-sync.",
+    longDescription: "Mintlify is the documentation engine used by leading developer tools including Anthropic, Cursor, Resend, and Pinecone. Built around Git-based workflows and MDX, Mintlify offers interactive API playgrounds, copy-paste code blocks in 12 languages, instant AI search that cites sources, and zero configuration styling.",
+    category: "Dev Tools",
+    categorySlug: "devtools",
+    website: "https://mintlify.com",
+    logoLetter: "M",
+    rating: 4.9,
+    reviewCount: 412,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "SaaS startups and developer tools needing interactive API documentation, MDX components, and AI search",
+    keyFeatures: [
+      "Native Git synchronization: write docs in Markdown/MDX inside your GitHub repository",
+      "Interactive OpenAPI / Swagger API playgrounds where users run live curl requests",
+      "Integrated AI Assistant that answers user technical queries with sourced citations",
+      "Pre-built MDX UI components: Callouts, Accordions, Tabs, Frames, and CodeGroups",
+      "Ultra-fast static generation with sub-100ms client-side page transitions"
+    ],
+    pros: [
+      "Looks 10x more polished out-of-the-box than GitBook or Docusaurus",
+      "Documentation lives directly in your codebase alongside your pull requests",
+      "Interactive API playground allows immediate testing with custom API keys",
+      "Exceptional automated lighthouse scores and SEO schema out-of-the-box"
+    ],
+    cons: [
+      "AI search query quotas on the startup plan",
+      "Advanced custom CSS theme customization requires Pro plan"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "Unlimited public readers",
+          "GitHub sync",
+          "Custom domain",
+          "Core MDX components"
+        ],
+        popular: false
+      },
+{
+        name: "Startup",
+        priceMonthly: 150,
+        priceYearly: 1440,
+        features: [
+          "API playground",
+          "AI Assistant search",
+          "Versioned docs",
+          "Remove Mintlify branding",
+          "5 editor seats"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "GitBook",
+        slug: "gitbook",
+        tagline: "Collaborative team knowledge base",
+        rating: 4.3
+      },
+{
+        name: "ReadMe",
+        slug: "readme",
+        tagline: "Interactive developer hub",
+        rating: 4.4
+      }
+    ],
+    reviews: [
+{
+        id: "rev-mintlify-1",
+        author: "Clara Oswald",
+        authorTitle: "Head of Developer Relations",
+        avatar: "CO",
+        rating: 5,
+        date: "Oct 12, 2026",
+        content: "Moving our developer documentation to Mintlify increased our API integration success rate by 45%. Developers constantly compliment how easy it is to test endpoints directly in the docs.",
+        pros: [
+          "Looks 10x more polished out-of-the-box than GitBook or Docusaurus",
+          "Interactive API playground allows immediate testing with custom API keys"
+        ],
+        cons: [
+          "AI search query quotas on the startup plan"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
+  },
+  {
+    id: "tool-senja",
+    name: "Senja",
+    slug: "senja",
+    tagline: "Collect, manage, and showcase video and text testimonials in minutes",
+    description: "Senja is the social proof platform that makes collecting, organizing, and embedding customer testimonials effortless.",
+    longDescription: "Senja helps founders, marketers, and course creators turn happy customer feedback into high-converting social proof. Collect video and text testimonials via customized collection forms, import praise from Twitter, LinkedIn, Product Hunt, and Trustpilot, and embed responsive Walls of Love onto any landing page.",
+    category: "Growth & Marketing",
+    categorySlug: "marketing",
+    website: "https://senja.io",
+    logoLetter: "S",
+    rating: 4.9,
+    reviewCount: 610,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Bootstrapped founders, course creators, and agency owners seeking social proof that boosts landing page conversions",
+    keyFeatures: [
+      "Frictionless collection forms supporting both HD video recordings and text reviews",
+      "Automated testimonial import from X/Twitter, LinkedIn, Google Reviews, and G2",
+      "35+ customizable widget templates including Wall of Love, carousel, and badges",
+      "Automated image generation that turns text reviews into high-resolution social cards",
+      "Tagging, filtering, and conversion tracking to see which reviews drive purchases"
+    ],
+    pros: [
+      "Extremely generous free plan with up to 15 testimonials",
+      "Widgets load asynchronously with zero impact on Core Web Vitals",
+      "Video collection requires no app downloads or account logins for customers",
+      "Clean UI designed specifically for indie hackers and bootstrapped creators"
+    ],
+    cons: [
+      "Video duration capped at 2 minutes on lower tiers",
+      "White-label custom domains require the Pro plan"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "15 testimonials",
+          "Basic collection forms",
+          "Wall of Love widget",
+          "Standard embeds"
+        ],
+        popular: false
+      },
+{
+        name: "Starter",
+        priceMonthly: 19,
+        priceYearly: 190,
+        features: [
+          "Unlimited testimonials",
+          "Video recording up to 3 mins",
+          "Custom branding",
+          "No Senja watermark",
+          "Social sharing cards"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Testimonial.to",
+        slug: "testimonial-to",
+        tagline: "Pioneer video testimonial platform",
+        rating: 4.8
+      },
+{
+        name: "Trustpilot",
+        slug: "trustpilot",
+        tagline: "Enterprise consumer review directory",
+        rating: 4.2
+      }
+    ],
+    reviews: [
+{
+        id: "rev-senja-1",
+        author: "Arvid Kahl",
+        authorTitle: "Bootstrapped SaaS Founder",
+        avatar: "AK",
+        rating: 5,
+        date: "Oct 16, 2026",
+        content: "Senja is the cleanest testimonial tool I have ever used. Within 48 hours of embedding their Wall of Love on our sales page, our checkout conversion rate jumped 22%.",
+        pros: [
+          "Extremely generous free plan with up to 15 testimonials",
+          "Video collection requires no app downloads or account logins for customers"
+        ],
+        cons: [
+          "White-label custom domains require the Pro plan"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-testimonial-to",
+    name: "Testimonial.to",
+    slug: "testimonial-to",
+    tagline: "Collect video and text testimonials without coding or video editing skills",
+    description: "Testimonial.to provides dedicated landing pages and embeddable widgets to capture high-definition video testimonials from customers.",
+    longDescription: "Testimonial.to was created by indie maker Damon Chen to solve the headache of requesting, recording, and hosting video reviews. Customers simply tap a link on their smartphone or browser, record their testimonial in 60 seconds, and it is instantly formatted, transcribed, and ready to embed onto your website.",
+    category: "Growth & Marketing",
+    categorySlug: "marketing",
+    website: "https://testimonial.to",
+    logoLetter: "T",
+    rating: 4.8,
+    reviewCount: 470,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Solo founders, creators, and indie hackers wanting effortless Wall of Love social proof",
+    keyFeatures: [
+      "Custom branded testimonial collection page with your logo and tailored questions",
+      "In-browser video recorder supporting webcam and smartphone selfie cameras",
+      "Automated video transcription and subtitle generation",
+      "Dynamic Wall of Love widgets with customizable dark and light themes",
+      "Direct integration with Webflow, WordPress, Shopify, and Next.js"
+    ],
+    pros: [
+      "No technical setup or video editing software required",
+      "High reliability and fast global video CDN streaming",
+      "Includes text testimonials and social media tweet embeds",
+      "Great viral referral and affiliate revenue sharing program"
+    ],
+    cons: [
+      "Free plan limits video collection to 2 videos",
+      "UI feels more functional than decorative compared to Senja"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "2 video testimonials",
+          "10 text testimonials",
+          "Basic Wall of Love"
+        ],
+        popular: false
+      },
+{
+        name: "Starter",
+        priceMonthly: 25,
+        priceYearly: 240,
+        features: [
+          "Unlimited text testimonials",
+          "20 video testimonials",
+          "Custom domain",
+          "HD video downloads"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Senja",
+        slug: "senja",
+        tagline: "Modern social proof studio",
+        rating: 4.9
+      },
+{
+        name: "Boast",
+        slug: "boast",
+        tagline: "Enterprise customer feedback video platform",
+        rating: 4.3
+      }
+    ],
+    reviews: [
+{
+        id: "rev-testimonial-1",
+        author: "Damon Chen",
+        authorTitle: "Founder & Maker",
+        avatar: "DC",
+        rating: 5,
+        date: "Oct 05, 2026",
+        content: "Social proof is the number one lever to sell software online. Testimonial makes collecting video reviews as easy as sending a WhatsApp message.",
+        pros: [
+          "No technical setup or video editing software required",
+          "High reliability and fast global video CDN streaming"
+        ],
+        cons: [
+          "Free plan limits video collection to 2 videos"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-bannerbear",
+    name: "Bannerbear",
+    slug: "bannerbear",
+    tagline: "Automate marketing graphics, eCommerce banners, and video generation with a simple REST API",
+    description: "Bannerbear auto-generates social media images, Open Graph previews, banner ads, and dynamic videos using dynamic templates and a REST API.",
+    longDescription: "Bannerbear automates visual content creation at scale. Using an intuitive drag-and-drop template designer, teams create graphic layouts with dynamic text, image, and color placeholders. With simple JSON API requests, Bannerbear renders thousands of customized social graphics, personalized email banners, and promo clips in seconds.",
+    category: "Design & Media",
+    categorySlug: "design",
+    website: "https://www.bannerbear.com",
+    logoLetter: "B",
+    rating: 4.8,
+    reviewCount: 310,
+    pricingStart: 49,
+    pricingModel: "Paid",
+    verified: true,
+    bestFor: "Developers and growth hackers automating social graphics, Open Graph preview cards, and certificate generation",
+    keyFeatures: [
+      "Visual template designer with custom fonts, auto-resizing text boxes, and SVG support",
+      "REST API and webhooks for real-time image and multi-frame MP4 video rendering",
+      "Native integrations with Zapier, Make, Airtable, and WordPress",
+      "Automated Open Graph (OG) image generation for blog posts and SaaS profiles",
+      "Multi-format rendering: produce square, story, landscape, and portrait variants simultaneously"
+    ],
+    pros: [
+      "Saves marketing and design teams dozens of hours of repetitive Photoshop work",
+      "Rock-solid rendering reliability with sub-2 second API response times",
+      "Excellent documentation and ready-made code snippets in cURL, Node, and Python",
+      "Generates both static images (PNG/JPEG) and dynamic MP4 videos"
+    ],
+    cons: [
+      "Starting price ($49/mo) can be steep for hobby projects",
+      "Monthly credit caps require monitoring during big marketing campaigns"
+    ],
+    pricingPlans: [
+{
+        name: "Automate",
+        priceMonthly: 49,
+        priceYearly: 490,
+        features: [
+          "1,000 API credits/mo",
+          "Unlimited templates",
+          "REST API & webhooks",
+          "Email support"
+        ],
+        popular: true
+      },
+{
+        name: "Scale",
+        priceMonthly: 149,
+        priceYearly: 1490,
+        features: [
+          "5,000 API credits/mo",
+          "Priority rendering queue",
+          "Video generation",
+          "Multi-user access"
+        ],
+        popular: false
+      }
+    ],
+    alternatives: [
+{
+        name: "Placid",
+        slug: "placid",
+        tagline: "Creative automation toolkit",
+        rating: 4.5
+      },
+{
+        name: "Canva",
+        slug: "canva",
+        tagline: "Manual visual design platform",
+        rating: 4.7
+      }
+    ],
+    reviews: [
+{
+        id: "rev-bannerbear-1",
+        author: "Jon Yongfook",
+        authorTitle: "Founder @ Bannerbear",
+        avatar: "JY",
+        rating: 5,
+        date: "Oct 11, 2026",
+        content: "We use Bannerbear internally to generate every social preview and newsletter graphic dynamically. It eliminates repetitive manual design work completely.",
+        pros: [
+          "Rock-solid rendering reliability with sub-2 second API response times",
+          "Generates both static images and dynamic MP4 videos"
+        ],
+        cons: [
+          "Starting price ($49/mo) can be steep for hobby projects"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
+  },
+  {
+    id: "tool-polar-sh",
+    name: "Polar",
+    slug: "polar-sh",
+    tagline: "Developer-first merchant of record and monetization platform for open-source and SaaS",
+    description: "Polar is the merchant of record built specifically for developers, open-source maintainers, and digital creators to monetize software globally.",
+    longDescription: "Polar handles global sales tax, VAT, billing compliance, license key distribution, and GitHub issue funding in a developer-friendly platform. Instead of wrestling with complex Stripe Tax setups and Merchant of Record hurdles, developers can launch subscriptions, digital product sales, and usage-based tiers with a few lines of code.",
+    category: "Finance & Accounting",
+    categorySlug: "finance",
+    website: "https://polar.sh",
+    logoLetter: "P",
+    rating: 4.9,
+    reviewCount: 290,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Open source maintainers, developers, and indie creators selling SaaS subscriptions and digital downloads with automated global sales tax",
+    keyFeatures: [
+      "Merchant of Record (MoR) model: Polar handles global sales tax, VAT, and invoices",
+      "Seamless integration with GitHub organizations, repositories, and issue funding",
+      "Built-in license key management and software entitlement validation API",
+      "Modern hosted checkout pages and embeddable pricing tables",
+      "Zero monthly fixed fees: pay only a small percentage when you make sales"
+    ],
+    pros: [
+      "No fixed monthly subscription fee makes it zero risk for launching new products",
+      "Completely automates EU VAT, US sales tax, and international invoicing compliance",
+      "Developer-first TypeScript SDK and webhook architecture",
+      "Deeply supportive of open-source creators and developer tools"
+    ],
+    cons: [
+      "Transaction fee percentage applies on all processed volume (4% + 40¢)",
+      "Newer platform with fewer enterprise ERP integrations than Stripe directly"
+    ],
+    pricingPlans: [
+{
+        name: "Developer",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "4% + 40¢ per transaction",
+          "Global VAT & Tax handling",
+          "Unlimited products & tiers",
+          "License key API",
+          "GitHub integration"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Lemon Squeezy",
+        slug: "lemon-squeezy",
+        tagline: "E-commerce platform for digital products",
+        rating: 4.6
+      },
+{
+        name: "Paddle",
+        slug: "paddle",
+        tagline: "Merchant of record for SaaS",
+        rating: 4.5
+      }
+    ],
+    reviews: [
+{
+        id: "rev-polar-1",
+        author: "Birk Jernström",
+        authorTitle: "Open Source Creator",
+        avatar: "BJ",
+        rating: 5,
+        date: "Oct 15, 2026",
+        content: "Polar made it possible to start charging for our developer tool in 30 minutes without having to register for sales tax across 40 different jurisdictions.",
+        pros: [
+          "No fixed monthly subscription fee makes it zero risk for launching new products",
+          "Completely automates EU VAT and international invoicing"
+        ],
+        cons: [
+          "Transaction fee percentage applies on all processed volume"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-unkey",
+    name: "Unkey",
+    slug: "unkey",
+    tagline: "Open-source API key management with sub-millisecond edge latency and rate limiting",
+    description: "Unkey provides secure, global API key infrastructure, rate limiting, and access verification for modern developer applications.",
+    longDescription: "Unkey solves API key security and management so developers don't have to roll their own hashing, validation caches, and rate-limiting logic. With verification nodes running at the edge across 200+ global locations, Unkey verifies incoming API requests in under 1 millisecond while preventing DDoS abuse and quota exhaustion.",
+    category: "Security & Compliance",
+    categorySlug: "security",
+    website: "https://www.unkey.com",
+    logoLetter: "U",
+    rating: 4.9,
+    reviewCount: 340,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "API-first startups and backend engineers needing instant API key generation, revocation, and rate limiting",
+    keyFeatures: [
+      "Sub-millisecond API key verification at the edge via Cloudflare Workers",
+      "Configurable rate limiting with sliding window and token bucket algorithms",
+      "Granular permission scopes and metadata attached to every generated key",
+      "Instant revocation and automated expiration schedules",
+      "Fully open-source core with self-hosting options and cloud service"
+    ],
+    pros: [
+      "Replaces custom Redis rate-limiters with zero server maintenance",
+      "Generous free tier with 25,000 monthly key verifications included",
+      "Clean TypeScript, Python, and Go client SDKs",
+      "Built-in audit logging and real-time usage telemetry"
+    ],
+    cons: [
+      "High volume API businesses will need custom enterprise rate agreements",
+      "Requires internet connectivity to verify keys when using Cloud edition"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "25,000 verifications/mo",
+          "Unlimited keys",
+          "Basic rate limiting",
+          "Community support"
+        ],
+        popular: false
+      },
+{
+        name: "Pro",
+        priceMonthly: 20,
+        priceYearly: 200,
+        features: [
+          "100,000 verifications/mo",
+          "Advanced rate limiting",
+          "Audit logs",
+          "Priority edge routing",
+          "Slack support"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Kong",
+        slug: "kong",
+        tagline: "Enterprise API gateway",
+        rating: 4.4
+      },
+{
+        name: "Tyk",
+        slug: "tyk",
+        tagline: "Open source API management",
+        rating: 4.3
+      }
+    ],
+    reviews: [
+{
+        id: "rev-unkey-1",
+        author: "James Perkins",
+        authorTitle: "Head of Engineering",
+        avatar: "JP",
+        rating: 5,
+        date: "Oct 17, 2026",
+        content: "Unkey allowed us to launch our public developer API in an afternoon. Edge verification takes literally 0.8ms, and rate limiting just works.",
+        pros: [
+          "Replaces custom Redis rate-limiters with zero server maintenance",
+          "Generous free tier with 25,000 monthly key verifications included"
+        ],
+        cons: [
+          "Requires internet connectivity to verify keys when using Cloud edition"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-inngest",
+    name: "Inngest",
+    slug: "inngest",
+    tagline: "Event-driven background jobs, serverless queues, and durable workflows without infrastructure management",
+    description: "Inngest is the event-driven workflow engine that enables developers to write resilient background functions with zero message queues to configure.",
+    longDescription: "Inngest provides a modern alternative to traditional message queues like SQS, RabbitMQ, and Celery. With Inngest, developers write standard TypeScript functions that handle step-by-step execution, automatic retries with exponential backoff, delays, event triggers, and fan-out workflows without managing Redis instances or worker pools.",
+    category: "Dev Tools",
+    categorySlug: "devtools",
+    website: "https://www.inngest.com",
+    logoLetter: "I",
+    rating: 4.8,
+    reviewCount: 380,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Serverless and Next.js developers building background jobs, fan-outs, and scheduling",
+    keyFeatures: [
+      "Zero-infrastructure background tasks that run seamlessly on Vercel, AWS, or Docker",
+      "Durable step functions: pause execution for days or await user events effortlessly",
+      "Automatic retries, concurrency controls, and idempotency guarantees",
+      "Local development server with visual workflow timeline and step debugger",
+      "Full TypeScript type safety across event schemas and function outputs"
+    ],
+    pros: [
+      "No Redis, BullMQ, or SQS infrastructure to deploy, scale, or maintain",
+      "Eliminates serverless function timeout limits by breaking jobs into durable steps",
+      "Exceptional local testing experience with the Inngest Dev Server",
+      "Generous free tier for hobbyists and early-stage startups"
+    ],
+    cons: [
+      "Pricing scales with executed steps which requires monitoring for massive event streams",
+      "Requires structuring logic around the Inngest step SDK"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "50,000 steps/mo",
+          "Unlimited functions",
+          "7-day log retention",
+          "Local dev server"
+        ],
+        popular: false
+      },
+{
+        name: "Pro",
+        priceMonthly: 35,
+        priceYearly: 350,
+        features: [
+          "250,000 steps/mo",
+          "Concurrency limits control",
+          "30-day log retention",
+          "Priority support"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Temporal",
+        slug: "temporal",
+        tagline: "Enterprise durable execution platform",
+        rating: 4.6
+      },
+{
+        name: "Trigger.dev",
+        slug: "trigger-dev",
+        tagline: "TypeScript-first background jobs",
+        rating: 4.9
+      }
+    ],
+    reviews: [
+{
+        id: "rev-inngest-1",
+        author: "Tony Dinh",
+        authorTitle: "Indie SaaS Architect",
+        avatar: "TD",
+        rating: 5,
+        date: "Oct 08, 2026",
+        content: "Inngest completely solved background jobs for my Next.js apps. I can run multi-step AI video processing without worrying about Vercel 15-second timeouts.",
+        pros: [
+          "No Redis or SQS infrastructure to deploy or maintain",
+          "Eliminates serverless function timeout limits"
+        ],
+        cons: [
+          "Pricing scales with executed steps"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
+  },
+  {
+    id: "tool-knock",
+    name: "Knock",
+    slug: "knock",
+    tagline: "Flexible notification infrastructure: cross-channel routing, batching, and in-app feeds",
+    description: "Knock provides full-stack notification infrastructure, combining in-app notification centers with email, SMS, push, and Slack delivery.",
+    longDescription: "Knock eliminates the need for product teams to build and maintain bespoke notification microservices. With Knock, engineers design cross-channel notification workflows with visual batching, digest windows, user preference centers, and pre-built React/Flutter UI components for in-app notification bells.",
+    category: "Dev Tools",
+    categorySlug: "devtools",
+    website: "https://knock.app",
+    logoLetter: "K",
+    rating: 4.8,
+    reviewCount: 320,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Engineering teams building in-app notification centers, transactional emails, SMS, and Slack routing",
+    keyFeatures: [
+      "Cross-channel workflow engine: route to in-app bell, email (Resend/SendGrid), SMS (Twilio), and push",
+      "Ready-to-use in-app notification feed components for React, React Native, and iOS",
+      "Smart batching and digest windows to prevent alert fatigue",
+      "Granular user notification preferences system built-in out of the box",
+      "Comprehensive delivery logs and debugging timeline for every triggered notification"
+    ],
+    pros: [
+      "Drop-in React notification bell component saves weeks of custom UI coding",
+      "Centralizes user notification preferences across all communication channels",
+      "Visual workflow builder lets product managers modify email copy without code deploys",
+      "Generous free tier with 10,000 monthly notifications included"
+    ],
+    cons: [
+      "Enterprise compliance features (HIPAA, SOC 2 Type II reports) require enterprise plan",
+      "Requires configuring your own provider API keys (Twilio, Resend, etc.)"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "10,000 notifications/mo",
+          "In-app feed",
+          "Cross-channel routing",
+          "Basic preferences"
+        ],
+        popular: false
+      },
+{
+        name: "Growth",
+        priceMonthly: 250,
+        priceYearly: 2400,
+        features: [
+          "50,000 notifications/mo",
+          "Advanced batching",
+          "Custom translations",
+          "90-day log history",
+          "Priority support"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Courier",
+        slug: "courier",
+        tagline: "Multi-channel notifications API",
+        rating: 4.4
+      },
+{
+        name: "Novu",
+        slug: "novu",
+        tagline: "Open-source notification center",
+        rating: 4.6
+      }
+    ],
+    reviews: [
+{
+        id: "rev-knock-1",
+        author: "Sam Altman",
+        authorTitle: "Product Engineering Lead",
+        avatar: "SA",
+        rating: 5,
+        date: "Oct 13, 2026",
+        content: "Knock gave us a gorgeous, real-time in-app notification center in less than a day. Their batching logic ensures our users never get spammed by rapid updates.",
+        pros: [
+          "Drop-in React notification bell component saves weeks of UI coding",
+          "Centralizes user notification preferences across all channels"
+        ],
+        cons: [
+          "Requires configuring your own provider API keys"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
+  },
+  {
+    id: "tool-trigger-dev",
+    name: "Trigger.dev",
+    slug: "trigger-dev",
+    tagline: "Open-source background jobs framework with zero timeouts for TypeScript developers",
+    description: "Trigger.dev is the TypeScript-first open source background jobs framework built for long-running AI tasks, scheduling, and resilient queues.",
+    longDescription: "Trigger.dev gives developers the power to run background tasks without worrying about serverless timeouts or infrastructure management. Built from the ground up for TypeScript, Trigger.dev features zero-timeout execution, real-time progress streaming, automatic checkpointing, and native integrations with OpenAI, Replicate, and Supabase.",
+    category: "Dev Tools",
+    categorySlug: "devtools",
+    website: "https://trigger.dev",
+    logoLetter: "T",
+    rating: 4.9,
+    reviewCount: 360,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "TypeScript developers executing multi-hour AI workflows, PDF generation, and web scrapers",
+    keyFeatures: [
+      "Zero serverless timeouts: run tasks for seconds, minutes, or hours without interruption",
+      "Native TypeScript developer experience with instant autocomplete and end-to-end type safety",
+      "Real-time task streaming to display live progress bars and step status in client apps",
+      "Self-hostable via Docker or managed with Trigger.dev Cloud",
+      "Granular concurrency control, rate limiting, and priority queuing"
+    ],
+    pros: [
+      "Open-source core that can be audited and hosted on your own cloud infrastructure",
+      "Purpose-built for long-running AI agent and LLM chain executions",
+      "Exceptional dashboard with full execution logs, inputs, and output inspection",
+      "Generous cloud tier with generous monthly run credits"
+    ],
+    cons: [
+      "Primarily focused on the TypeScript/JavaScript ecosystem (no native Python worker yet)",
+      "V3 architecture is rapidly evolving with breaking improvements"
+    ],
+    pricingPlans: [
+{
+        name: "Hobby",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "50,000 runs/mo",
+          "Unlimited tasks",
+          "1-day log retention",
+          "Community Discord support"
+        ],
+        popular: false
+      },
+{
+        name: "Pro",
+        priceMonthly: 20,
+        priceYearly: 200,
+        features: [
+          "250,000 runs/mo",
+          "Zero timeouts",
+          "30-day log retention",
+          "Priority queues",
+          "Email support"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Inngest",
+        slug: "inngest",
+        tagline: "Event-driven durable workflows",
+        rating: 4.8
+      },
+{
+        name: "BullMQ",
+        slug: "bullmq",
+        tagline: "Node.js message queue on Redis",
+        rating: 4.5
+      }
+    ],
+    reviews: [
+{
+        id: "rev-trigger-1",
+        author: "Matt Biilmann",
+        authorTitle: "Fullstack Creator",
+        avatar: "MB",
+        rating: 5,
+        date: "Oct 18, 2026",
+        content: "Trigger.dev v3 is incredible. We run multi-hour video rendering jobs directly from our Next.js frontend without managing single EC2 worker instance.",
+        pros: [
+          "Zero serverless timeouts",
+          "Purpose-built for long-running AI agent executions"
+        ],
+        cons: [
+          "Primarily focused on TypeScript/JavaScript"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-papermark",
+    name: "Papermark",
+    slug: "papermark",
+    tagline: "Open-source DocSend alternative with page-by-page pitch deck analytics and custom domains",
+    description: "Papermark is the open-source document sharing platform that tracks viewer engagement, time spent per page, and access permissions.",
+    longDescription: "Papermark is the modern, privacy-respecting alternative to DocSend. Built for founders raising venture capital, sales teams sharing proposals, and executives sharing sensitive PDFs, Papermark provides page-by-page viewing telemetry, password protection, custom branded domains, and data rooms without DocSend's exorbitant monthly fees.",
+    category: "Sales & CRM",
+    categorySlug: "sales",
+    website: "https://www.papermark.io",
+    logoLetter: "P",
+    rating: 4.8,
+    reviewCount: 420,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Founders fundraising, sales teams sharing confidential collateral, and creators tracking document engagement",
+    keyFeatures: [
+      "Page-by-page document analytics showing exact seconds spent on each pitch deck slide",
+      "Custom branded domains with your logo, colors, and SSL certificate",
+      "Virtual Data Rooms for organized due diligence and investor collateral",
+      "Granular access security: password protection, email verification, and link expiration",
+      "100% open-source codebase with self-hosting support and cloud hosted tier"
+    ],
+    pros: [
+      "Fraction of the cost of DocSend while providing equivalent pitch deck analytics",
+      "Clean, modern user interface without clunky legacy enterprise bloat",
+      "Custom domain support allows pitch decks to live on your own company URL",
+      "Generous free tier for early-stage founders raising pre-seed capital"
+    ],
+    cons: [
+      "E-signature workflows are basic compared to DocuSign or PandaDoc",
+      "Advanced watermarking features require the Pro plan"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "5 documents",
+          "Basic page analytics",
+          "Password protection",
+          "Community support"
+        ],
+        popular: false
+      },
+{
+        name: "Pro",
+        priceMonthly: 19,
+        priceYearly: 190,
+        features: [
+          "Unlimited documents",
+          "Detailed per-page time telemetry",
+          "Custom domain",
+          "Virtual Data Rooms",
+          "Dynamic watermarking"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "DocSend",
+        slug: "docsend",
+        tagline: "Legacy document tracking by Dropbox",
+        rating: 4.3
+      },
+{
+        name: "Pitch",
+        slug: "pitch",
+        tagline: "Collaborative presentation software",
+        rating: 4.6
+      }
+    ],
+    reviews: [
+{
+        id: "rev-papermark-1",
+        author: "Marc Köhlbrugge",
+        authorTitle: "Serial Tech Entrepreneur",
+        avatar: "MK",
+        rating: 5,
+        date: "Oct 12, 2026",
+        content: "We raised our seed round using Papermark. Seeing exactly which slides investors lingered on and which partners opened our deck gave us an unfair advantage during diligence.",
+        pros: [
+          "Fraction of the cost of DocSend while providing equivalent analytics",
+          "Custom domain support allows decks to live on your company URL"
+        ],
+        cons: [
+          "E-signature workflows are basic"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-twenty-crm",
+    name: "Twenty CRM",
+    slug: "twenty-crm",
+    tagline: "Modern open-source CRM designed to replace Salesforce and HubSpot for fast-growing companies",
+    description: "Twenty is the open-source CRM that gives fast-growing companies full ownership of their customer data with a modern, lightning-fast UI.",
+    longDescription: "Twenty CRM is reimagining the CRM for the modern era. Unlike bloated, slow enterprise incumbents that require specialized consultants, Twenty offers a gorgeous Notion-like interface, keyboard-first navigation, full API accessibility, and automated sync with Google Workspace and Microsoft 365.",
+    category: "Sales & CRM",
+    categorySlug: "sales",
+    website: "https://twenty.com",
+    logoLetter: "T",
+    rating: 4.8,
+    reviewCount: 390,
+    pricingStart: 0,
+    pricingModel: "Open Source",
+    verified: true,
+    bestFor: "Developer-led teams, B2B startups, and agencies wanting complete customization and zero vendor lock-in",
+    keyFeatures: [
+      "Notion-like visual table and kanban views with customizable custom fields and relation links",
+      "Two-way email and calendar synchronization with Gmail and Outlook",
+      "Full GraphQL and REST APIs with webhooks for seamless custom integrations",
+      "Keyboard shortcuts for lightning-fast lead updating and task management",
+      "Self-hostable open source core backed by PostgreSQL"
+    ],
+    pros: [
+      "Vastly faster and cleaner interface than Salesforce or legacy HubSpot",
+      "Zero per-seat extortion fees when self-hosted on your own infrastructure",
+      "Modern tech stack (TypeScript, React, NestJS, PostgreSQL) easy to extend",
+      "Active, transparent open-source community roadmap"
+    ],
+    cons: [
+      "Marketing automation workflows are younger than HubSpot Marketing Hub",
+      "Third-party marketplace ecosystem is still growing"
+    ],
+    pricingPlans: [
+{
+        name: "Self-Hosted",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "Free forever",
+          "Full source code",
+          "PostgreSQL database",
+          "Unlimited seats"
+        ],
+        popular: false
+      },
+{
+        name: "Cloud",
+        priceMonthly: 9,
+        priceYearly: 90,
+        features: [
+          "Per seat / month",
+          "Managed hosting & backups",
+          "Automated updates",
+          "Priority email support"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "HubSpot",
+        slug: "hubspot",
+        tagline: "Inbound CRM and marketing hub",
+        rating: 4.4
+      },
+{
+        name: "Attio",
+        slug: "attio",
+        tagline: "Data-driven modern CRM",
+        rating: 4.7
+      }
+    ],
+    reviews: [
+{
+        id: "rev-twenty-1",
+        author: "Felix Krause",
+        authorTitle: "Founder & Developer",
+        avatar: "FK",
+        rating: 5,
+        date: "Oct 17, 2026",
+        content: "Twenty is what CRM should feel like in 2026. Fast, responsive, keyboard-driven, and you own every single byte of your customer data.",
+        pros: [
+          "Vastly faster and cleaner interface than Salesforce",
+          "Zero per-seat extortion fees when self-hosted"
+        ],
+        cons: [
+          "Marketing automation workflows are younger than HubSpot"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-jitter-video",
+    name: "Jitter",
+    slug: "jitter-video",
+    tagline: "Figma for motion design: create UI animations and video content right in your browser",
+    description: "Jitter makes motion design accessible to everyone, allowing designers and marketers to animate UI interactions, logos, and video clips in seconds.",
+    longDescription: "Jitter is the fast, browser-based motion design tool built for modern product teams. Instead of struggling with the steep learning curve of Adobe After Effects, designers can import designs directly from Figma, apply pre-made motion presets, fine-tune timing curves, and export 60fps MP4 videos, GIFs, and Lottie animations.",
+    category: "Design & Media",
+    categorySlug: "design",
+    website: "https://jitter.video",
+    logoLetter: "J",
+    rating: 4.9,
+    reviewCount: 450,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Product designers, marketers, and indie hackers creating silky micro-interactions and product demos",
+    keyFeatures: [
+      "Direct Figma plugin integration: import artboards and vector layers with 1 click",
+      "Dozens of handcrafted motion animation presets for text, buttons, and mockups",
+      "Advanced timeline editor with custom cubic-bezier easing curves",
+      "Multi-format export: 4K 60fps MP4, transparent WebM, high-res GIF, and Lottie JSON",
+      "Real-time browser preview with zero rendering lag"
+    ],
+    pros: [
+      "10x easier to learn and faster to animate than Adobe After Effects",
+      "Exports lightweight Lottie JSON files for direct embedding in web and mobile apps",
+      "Seamless Figma sync preserves layer groups and vector typography",
+      "Generous free plan with HD exports and full animation tools"
+    ],
+    cons: [
+      "Free plan exports include a small Jitter watermark",
+      "Advanced 3D camera controls are limited compared to Cinema 4D"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "Unlimited projects",
+          "720p export",
+          "Figma plugin",
+          "Jitter watermark"
+        ],
+        popular: false
+      },
+{
+        name: "Pro",
+        priceMonthly: 12,
+        priceYearly: 120,
+        features: [
+          "No watermarks",
+          "4K 60fps MP4 export",
+          "Transparent background video",
+          "Lottie export",
+          "Commercial license"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Adobe After Effects",
+        slug: "after-effects",
+        tagline: "Industry standard motion graphics",
+        rating: 4.5
+      },
+{
+        name: "LottieFiles",
+        slug: "lottiefiles",
+        tagline: "Interactive motion graphics platform",
+        rating: 4.6
+      }
+    ],
+    reviews: [
+{
+        id: "rev-jitter-1",
+        author: "Pablo Stanley",
+        authorTitle: "Design Lead & Illustrator",
+        avatar: "PS",
+        rating: 5,
+        date: "Oct 10, 2026",
+        content: "Jitter completely replaced After Effects for our product marketing workflow. Creating animated feature reveals for X and our landing page takes literally 15 minutes.",
+        pros: [
+          "10x easier to learn and faster to animate than After Effects",
+          "Exports lightweight Lottie JSON for apps"
+        ],
+        cons: [
+          "Free plan exports include a small Jitter watermark"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-tinybird",
+    name: "Tinybird",
+    slug: "tinybird",
+    tagline: "Serverless real-time data analytics backend: turn streaming data into low-latency SQL APIs",
+    description: "Tinybird is the real-time data platform that lets data engineers and developers ingest millions of events per second and publish low-latency SQL APIs.",
+    longDescription: "Tinybird combines the raw analytical speed of ClickHouse with a developer-friendly serverless API layer. Ingest events from Kafka, webhooks, or files, write transformation pipes using familiar SQL, and publish ultra-fast HTTP endpoints that serve real-time dashboard analytics with sub-50ms latency.",
+    category: "Cloud & Infrastructure",
+    categorySlug: "infrastructure",
+    website: "https://www.tinybird.co",
+    logoLetter: "T",
+    rating: 4.8,
+    reviewCount: 290,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Data engineers and full-stack builders powering customer-facing analytics dashboards on ClickHouse",
+    keyFeatures: [
+      "Serverless ClickHouse core: instant ingestion of millions of events with zero clusters to manage",
+      "Dynamic SQL pipes with parameterized query filters and conditional logic",
+      "Instantly publish SQL queries as authenticated, rate-limited REST API endpoints",
+      "Native Kafka, Snowflake, BigQuery, S3, and browser event ingestion connectors",
+      "Sub-50ms p99 query latency even over billions of rows of event data"
+    ],
+    pros: [
+      "Eliminates the complexity of self-hosting and tuning distributed ClickHouse clusters",
+      "Instant transformation of raw event logs into production-ready JSON APIs",
+      "Generous free tier with 1,000 requests/day and 10GB storage",
+      "Git-integrated CI/CD workflow for deploying analytical pipes"
+    ],
+    cons: [
+      "Requires familiarity with SQL for writing transformation queries",
+      "High data ingestion volumes can scale pricing on pay-as-you-go tiers"
+    ],
+    pricingPlans: [
+{
+        name: "Build",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "10 GB storage",
+          "1,000 API requests/day",
+          "Unlimited pipes",
+          "Community support"
+        ],
+        popular: false
+      },
+{
+        name: "Pro",
+        priceMonthly: 29,
+        priceYearly: 290,
+        features: [
+          "Pay-as-you-go storage",
+          "Unlimited API requests",
+          "Team collaboration",
+          "99.9% uptime SLA",
+          "Email support"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "ClickHouse Cloud",
+        slug: "clickhouse-cloud",
+        tagline: "Managed ClickHouse database",
+        rating: 4.7
+      },
+{
+        name: "Rockset",
+        slug: "rockset",
+        tagline: "Real-time search and analytics",
+        rating: 4.5
+      }
+    ],
+    reviews: [
+{
+        id: "rev-tinybird-1",
+        author: "Guillermo Rauch",
+        authorTitle: "Frontend Architect",
+        avatar: "GR",
+        rating: 5,
+        date: "Oct 14, 2026",
+        content: "Tinybird is the best way to power user-facing analytics dashboards. Writing a SQL query and having an instantly cacheable, authenticated API is magic.",
+        pros: [
+          "Eliminates the complexity of self-hosting ClickHouse",
+          "Instant transformation of event logs into production-ready JSON APIs"
+        ],
+        cons: [
+          "Requires familiarity with SQL"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
+  },
+  {
+    id: "tool-convex",
+    name: "Convex",
+    slug: "convex",
+    tagline: "Reactive backend-as-a-service for TypeScript full-stack applications with automatic UI sync",
+    description: "Convex is the reactive database that replaces traditional databases, ORMs, and API boilerplate with end-to-end type safety and live queries.",
+    longDescription: "Convex redefines full-stack app development. Instead of writing custom SQL migrations, ORM schemas, and manual WebSocket state synchronization, developers write pure TypeScript backend functions. Convex handles automatic database indexing, transactions, real-time live queries, and scheduled cron jobs with zero DevOps.",
+    category: "Dev Tools",
+    categorySlug: "devtools",
+    website: "https://www.convex.dev",
+    logoLetter: "C",
+    rating: 4.9,
+    reviewCount: 490,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "React and Next.js developers building collaborative, real-time web applications without backend boilerplate",
+    keyFeatures: [
+      "100% reactive live queries: UI updates instantly whenever underlying data changes",
+      "Full TypeScript end-to-end type safety: types flow automatically from backend to frontend",
+      "ACID transactions on all mutations with automatic retry guarantees",
+      "Integrated file storage, scheduled background cron tasks, and vector search for AI",
+      "Zero server configuration: instant local development and global cloud deployment"
+    ],
+    pros: [
+      "Eliminates React state sync libraries, SWR, and manual WebSocket code",
+      "Database schema and query validations written in plain TypeScript",
+      "Generous free tier with generous function invocations and bandwidth",
+      "Built-in vector search makes building AI-native apps trivial"
+    ],
+    cons: [
+      "Requires embracing the Convex reactive mental model",
+      "Self-hosting is less mature than Supabase or Firebase"
+    ],
+    pricingPlans: [
+{
+        name: "Hobby",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "1M function calls/mo",
+          "1 GB storage",
+          "Unlimited projects",
+          "Community Discord"
+        ],
+        popular: false
+      },
+{
+        name: "Professional",
+        priceMonthly: 25,
+        priceYearly: 250,
+        features: [
+          "5M function calls/mo",
+          "50 GB storage",
+          "Automated backups",
+          "Priority support",
+          "Team seats"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Supabase",
+        slug: "supabase",
+        tagline: "Open-source Firebase alternative on Postgres",
+        rating: 4.8
+      },
+{
+        name: "Firebase",
+        slug: "firebase",
+        tagline: "Google app development platform",
+        rating: 4.3
+      }
+    ],
+    reviews: [
+{
+        id: "rev-convex-1",
+        author: "Lee Robinson",
+        authorTitle: "VP of Developer Experience",
+        avatar: "LR",
+        rating: 5,
+        date: "Oct 19, 2026",
+        content: "Convex is the most enjoyable backend experience I have ever used with Next.js. You write a query in TypeScript, call useQuery() in your component, and your UI is instantly real-time.",
+        pros: [
+          "Eliminates React state sync libraries and manual WebSockets",
+          "Full TypeScript end-to-end type safety"
+        ],
+        cons: [
+          "Requires embracing the Convex reactive mental model"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-mailersend",
+    name: "MailerSend",
+    slug: "mailersend",
+    tagline: "Developer-first transactional email, SMS, and inbound routing built for high deliverability",
+    description: "MailerSend provides fast, reliable transactional email delivery, SMS APIs, and email verification engineered by the creators of MailerLite.",
+    longDescription: "MailerSend is designed specifically for software builders who need high deliverability for invoices, password resets, onboarding emails, and SMS alerts. With dedicated IP pools, a visual drag-and-drop template designer, HTML code editors, and robust SDKs, MailerSend delivers critical product emails without Deliverability failures.",
+    category: "Growth & Marketing",
+    categorySlug: "marketing",
+    website: "https://www.mailersend.com",
+    logoLetter: "M",
+    rating: 4.8,
+    reviewCount: 340,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "SaaS startups needing reliable password reset, OTP verification, and invoice delivery",
+    keyFeatures: [
+      "Global transactional email API and SMTP relay with 99.8% inbox deliverability",
+      "Transactional SMS messaging across 200+ countries with shortcode support",
+      "Visual drag-and-drop template builder plus raw HTML/CSS code editor",
+      "Real-time email tracking: opens, clicks, unsubscribes, and spam complaints",
+      "Inbound email routing to parse and forward incoming customer replies"
+    ],
+    pros: [
+      "Created by the veteran team behind MailerLite with proven infrastructure",
+      "Generous free tier with 3,000 free emails per month included",
+      "Very affordable pay-as-you-go pricing for scaling apps ($1 per 1,000 emails)",
+      "Intuitive dashboard with step-by-step SPF, DKIM, and DMARC verification"
+    ],
+    cons: [
+      "Account domain verification requires rigorous sender compliance review",
+      "Dedicated IPs require high monthly volume thresholds"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "3,000 emails/mo",
+          "SMTP & API access",
+          "Email support",
+          "7-day log retention"
+        ],
+        popular: false
+      },
+{
+        name: "Premium",
+        priceMonthly: 24,
+        priceYearly: 240,
+        features: [
+          "25,000 emails/mo",
+          "SMS API",
+          "Custom tracking domain",
+          "30-day log retention",
+          "Priority support"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Resend",
+        slug: "resend",
+        tagline: "Modern email API for React developers",
+        rating: 4.9
+      },
+{
+        name: "Postmark",
+        slug: "postmark",
+        tagline: "Fast transactional email delivery",
+        rating: 4.8
+      }
+    ],
+    reviews: [
+{
+        id: "rev-mailersend-1",
+        author: "Alex MacCaw",
+        authorTitle: "Technical Co-Founder",
+        avatar: "AM",
+        rating: 5,
+        date: "Oct 16, 2026",
+        content: "MailerSend provides incredible deliverability. We switched our app notifications from SendGrid and saw immediate drops in spam folder placement.",
+        pros: [
+          "Generous free tier with 3,000 free emails per month",
+          "Intuitive dashboard with clear SPF/DKIM setup"
+        ],
+        cons: [
+          "Account domain verification requires rigorous sender compliance review"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-tolt",
+    name: "Tolt",
+    slug: "tolt",
+    tagline: "Affiliate marketing software built specifically for SaaS startups and indie hackers",
+    description: "Tolt is the modern affiliate program management tool that integrates seamlessly with Stripe, Paddle, and Chargebee in 10 minutes.",
+    longDescription: "Tolt was created to give bootstrapped and early-stage SaaS founders a lightweight, modern way to run affiliate programs without paying hefty percentage cuts or monthly fees. With Tolt, SaaS companies can set up recurring commission tiers, branded partner portals, automatic payout calculation via PayPal, and deep conversion tracking.",
+    category: "Growth & Marketing",
+    categorySlug: "marketing",
+    website: "https://www.tolt.io",
+    logoLetter: "T",
+    rating: 4.9,
+    reviewCount: 280,
+    pricingStart: 29,
+    pricingModel: "Paid",
+    verified: true,
+    bestFor: "Bootstrapped SaaS founders on Stripe, Paddle, or Chargebee launching high-converting affiliate programs",
+    keyFeatures: [
+      "Zero commission cut on sales: keep 100% of your customer revenue",
+      "Direct integration with Stripe, Paddle, and Chargebee via webhooks",
+      "Branded affiliate portal where partners view their clicks, referrals, and earnings",
+      "Automated PayPal MassPay and Wise payout generation",
+      "Multi-currency support and automated recurring subscription commission tracking"
+    ],
+    pros: [
+      "Far more affordable for indie startups than legacy enterprise affiliate networks",
+      "Zero transaction fees charged on partner revenue",
+      "Setup takes under 15 minutes with simple script tag insertion",
+      "Beautiful, clean partner dashboard that makes affiliates proud to promote"
+    ],
+    cons: [
+      "No marketplace of pre-registered affiliates (you invite your own partners)",
+      "Custom domain for affiliate portal requires Growth plan"
+    ],
+    pricingPlans: [
+{
+        name: "Starter",
+        priceMonthly: 29,
+        priceYearly: 290,
+        features: [
+          "Up to $3,000 affiliate revenue/mo",
+          "Unlimited affiliates",
+          "Stripe & Paddle sync",
+          "Email support"
+        ],
+        popular: true
+      },
+{
+        name: "Growth",
+        priceMonthly: 49,
+        priceYearly: 490,
+        features: [
+          "Up to $10,000 affiliate revenue/mo",
+          "Custom domain",
+          "Priority support",
+          "Automated payouts"
+        ],
+        popular: false
+      }
+    ],
+    alternatives: [
+{
+        name: "Rewardful",
+        slug: "rewardful",
+        tagline: "Affiliate software for Stripe",
+        rating: 4.8
+      },
+{
+        name: "FirstPromoter",
+        slug: "firstpromoter",
+        tagline: "All-in-one affiliate platform",
+        rating: 4.7
+      }
+    ],
+    reviews: [
+{
+        id: "rev-tolt-1",
+        author: "Jakub Chmielarz",
+        authorTitle: "Indie Hacker & Founder",
+        avatar: "JC",
+        rating: 5,
+        date: "Oct 15, 2026",
+        content: "Tolt is the exact affiliate software bootstrapped founders need. It took me 10 minutes to hook into Stripe, and it runs autonomously in the background.",
+        pros: [
+          "Zero transaction fees charged on partner revenue",
+          "Setup takes under 15 minutes with simple script tag"
+        ],
+        cons: [
+          "No marketplace of pre-registered affiliates"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-rewardful",
+    name: "Rewardful",
+    slug: "rewardful",
+    tagline: "Setup affiliate and referral programs for Stripe and Paddle in minutes",
+    description: "Rewardful connects directly to Stripe and Paddle to automate affiliate tracking, recurring commissions, and partner payouts.",
+    longDescription: "Rewardful is a top-tier affiliate and referral platform tailored for SaaS businesses. By integrating with Stripe Checkout and Customer Portals, Rewardful automatically handles cancellations, plan upgrades, downgrades, and refunds so SaaS teams never overpay affiliate commissions.",
+    category: "Growth & Marketing",
+    categorySlug: "marketing",
+    website: "https://www.rewardful.com",
+    logoLetter: "R",
+    rating: 4.8,
+    reviewCount: 510,
+    pricingStart: 29,
+    pricingModel: "Paid",
+    verified: true,
+    bestFor: "SaaS businesses seeking automated affiliate commission tracking, zero transaction cut, and 2-way Stripe sync",
+    keyFeatures: [
+      "Certified Stripe Partner with direct two-way webhook reconciliation",
+      "Automatic handling of customer refunds, chargebacks, and prorated plan upgrades",
+      "Private and public affiliate campaign types with customized cookie duration",
+      "White-labeled affiliate portal matching your company branding and domain",
+      "One-click mass payouts via PayPal and Wise integration"
+    ],
+    pros: [
+      "Zero commission fees taken from your sales revenue",
+      "Deeply tested Stripe reconciliation handles all edge-case subscription lifecycles",
+      "Exceptional uptime and reliable cookie attribution tracking",
+      "Supports both affiliate marketing and customer-to-customer referral loops"
+    ],
+    cons: [
+      "Starter plan has revenue volume caps ($5k/mo affiliate revenue)",
+      "Custom domain requires the Growth plan"
+    ],
+    pricingPlans: [
+{
+        name: "Starter",
+        priceMonthly: 29,
+        priceYearly: 290,
+        features: [
+          "Up to $5,000/mo affiliate revenue",
+          "Unlimited affiliates",
+          "Stripe integration",
+          "Email support"
+        ],
+        popular: true
+      },
+{
+        name: "Growth",
+        priceMonthly: 49,
+        priceYearly: 490,
+        features: [
+          "Up to $15,000/mo affiliate revenue",
+          "Custom domain",
+          "Unlimited campaigns",
+          "Priority support"
+        ],
+        popular: false
+      }
+    ],
+    alternatives: [
+{
+        name: "Tolt",
+        slug: "tolt",
+        tagline: "Affiliate software for indie SaaS",
+        rating: 4.9
+      },
+{
+        name: "FirstPromoter",
+        slug: "firstpromoter",
+        tagline: "SaaS affiliate tracking platform",
+        rating: 4.7
+      }
+    ],
+    reviews: [
+{
+        id: "rev-rewardful-1",
+        author: "Brian Casel",
+        authorTitle: "SaaS Founder",
+        avatar: "BC",
+        rating: 5,
+        date: "Oct 11, 2026",
+        content: "Rewardful handles every edge case in Stripe subscription billing seamlessly. Upgrades, cancellations, and refunds are adjusted automatically without manual math.",
+        pros: [
+          "Zero commission fees taken from sales revenue",
+          "Deeply tested Stripe reconciliation"
+        ],
+        cons: [
+          "Starter plan has revenue volume caps"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
+  },
+  {
+    id: "tool-firstpromoter",
+    name: "FirstPromoter",
+    slug: "firstpromoter",
+    tagline: "All-in-one platform to launch, track, and scale affiliate and influencer marketing for SaaS",
+    description: "FirstPromoter is the enterprise-grade affiliate tracking platform built specifically for recurring subscription businesses and digital platforms.",
+    longDescription: "FirstPromoter is trusted by over 5,000 SaaS companies to manage affiliate, referral, and influencer programs. Supporting Stripe, Braintree, Recurly, and Chargebee, FirstPromoter provides multi-tier commissions, personalized promo codes (no tracking link required), and automated tax form collection (W-9 / W-8BEN).",
+    category: "Growth & Marketing",
+    categorySlug: "marketing",
+    website: "https://firstpromoter.com",
+    logoLetter: "F",
+    rating: 4.7,
+    reviewCount: 380,
+    pricingStart: 49,
+    pricingModel: "Paid",
+    verified: true,
+    bestFor: "Subscription businesses wanting tiered commissions, multi-currency PayPal MassPay, and personalized promoter dashboards",
+    keyFeatures: [
+      "Coupon code tracking: assign custom discount codes to influencers without affiliate URLs",
+      "Multi-tier MLM commissions (parent/child promoters) for agency partnerships",
+      "Automatic compliance tax form collection (W-9 and W-8BEN) for US affiliates",
+      "Direct integrations with Stripe, Recurly, Chargebee, Braintree, and custom webhooks",
+      "White-labeled partner dashboards with custom domains and translation into 8 languages"
+    ],
+    pros: [
+      "Coupon code attribution allows tracking podcast and YouTube sponsorships accurately",
+      "Built-in compliance tax form collection saves massive accounting headaches",
+      "No transaction fees or percentage cuts on tracked revenue",
+      "Supports multi-level affiliate hierarchies for agency resellers"
+    ],
+    cons: [
+      "User interface looks slightly dated compared to newer tools like Tolt",
+      "Starting price ($49/mo) is higher than entry-level competitors"
+    ],
+    pricingPlans: [
+{
+        name: "Starter",
+        priceMonthly: 49,
+        priceYearly: 490,
+        features: [
+          "Up to $5,000/mo affiliate revenue",
+          "Unlimited promoters",
+          "Stripe & Chargebee sync",
+          "Coupon code tracking"
+        ],
+        popular: true
+      },
+{
+        name: "Expert",
+        priceMonthly: 99,
+        priceYearly: 990,
+        features: [
+          "Up to $15,000/mo affiliate revenue",
+          "Multi-tier rewards",
+          "W-9 tax forms",
+          "Custom domain",
+          "Priority support"
+        ],
+        popular: false
+      }
+    ],
+    alternatives: [
+{
+        name: "Rewardful",
+        slug: "rewardful",
+        tagline: "Affiliate software for Stripe",
+        rating: 4.8
+      },
+{
+        name: "Tolt",
+        slug: "tolt",
+        tagline: "Affiliate software for indie SaaS",
+        rating: 4.9
+      }
+    ],
+    reviews: [
+{
+        id: "rev-firstpromoter-1",
+        author: "Alex Lieberman",
+        authorTitle: "Growth Director",
+        avatar: "AL",
+        rating: 5,
+        date: "Oct 09, 2026",
+        content: "FirstPromoter coupon tracking allowed us to run 40+ podcast influencer partnerships without messy affiliate links. The tax form collection saved our finance team weeks.",
+        pros: [
+          "Coupon code attribution allows tracking podcast sponsorships accurately",
+          "Built-in compliance tax form collection"
+        ],
+        cons: [
+          "User interface looks slightly dated compared to newer tools"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
+  },
+  {
+    id: "tool-chatwoot",
+    name: "Chatwoot",
+    slug: "chatwoot",
+    tagline: "Open-source customer engagement suite: live chat, omnichannel ticketing, and shared inboxes",
+    description: "Chatwoot is the open-source alternative to Intercom and Zendesk that unifies customer conversations across live chat, email, WhatsApp, and social media.",
+    longDescription: "Chatwoot provides an open-source customer communication platform that helps businesses provide exceptional support without paying exorbitant per-agent monthly fees. Deploy Chatwoot on your own servers or use Chatwoot Cloud to manage live website chat, email inboxes, WhatsApp Business, Telegram, Facebook, and Twitter conversations in a single shared inbox.",
+    category: "Customer Support",
+    categorySlug: "support",
+    website: "https://www.chatwoot.com",
+    logoLetter: "C",
+    rating: 4.8,
+    reviewCount: 460,
+    pricingStart: 0,
+    pricingModel: "Open Source",
+    verified: true,
+    bestFor: "Privacy-conscious teams, bootstrapped startups, and agencies replacing high-cost Intercom seats",
+    keyFeatures: [
+      "Omnichannel shared inbox: live chat, email, WhatsApp, Instagram, and SMS in one place",
+      "Self-hostable via Docker, Kubernetes, or CapRover with 100% data residency ownership",
+      "Customizable live chat widget with greeting bots, pre-chat forms, and FAQs",
+      "Interactive bot integrations with Dialogflow and Rasa for automated 24/7 answers",
+      "Mobile apps for iOS and Android so support agents can respond anywhere"
+    ],
+    pros: [
+      "Completely free and open-source for unlimited agents when self-hosted",
+      "Drastically reduces support costs compared to Intercom ($100s/agent/mo)",
+      "Complete GDPR and privacy compliance because customer data stays on your database",
+      "Clean, modern UI that support agents learn in minutes"
+    ],
+    cons: [
+      "Self-hosting requires maintaining PostgreSQL and Redis instances",
+      "Cloud tier has limits on monthly customer conversations on entry plans"
+    ],
+    pricingPlans: [
+{
+        name: "Community",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "Free forever",
+          "Self-hosted",
+          "Unlimited agents",
+          "All omnichannel channels",
+          "Full source code"
+        ],
+        popular: false
+      },
+{
+        name: "Hacker",
+        priceMonthly: 19,
+        priceYearly: 190,
+        features: [
+          "2 agents included",
+          "Managed cloud",
+          "1,000 conversations/mo",
+          "Live chat widget",
+          "Email support"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Intercom",
+        slug: "intercom",
+        tagline: "Enterprise customer service AI platform",
+        rating: 4.4
+      },
+{
+        name: "Crisp",
+        slug: "crisp",
+        tagline: "All-in-one business messaging platform",
+        rating: 4.6
+      }
+    ],
+    reviews: [
+{
+        id: "rev-chatwoot-1",
+        author: "Pratik Patel",
+        authorTitle: "CTO @ OpenScale",
+        avatar: "PP",
+        rating: 5,
+        date: "Oct 17, 2026",
+        content: "We replaced Intercom with Chatwoot on Docker. We saved over $1,200 every month while gaining full ownership over our customer support conversations.",
+        pros: [
+          "Completely free and open-source for unlimited agents when self-hosted",
+          "Drastically reduces support costs compared to Intercom"
+        ],
+        cons: [
+          "Self-hosting requires maintaining PostgreSQL and Redis"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-formbricks",
+    name: "Formbricks",
+    slug: "formbricks",
+    tagline: "Open-source experience management & micro-surveys: in-app feedback, NPS, and user research",
+    description: "Formbricks is the privacy-friendly, open-source survey tool that lets product teams collect user feedback directly inside web and mobile apps.",
+    longDescription: "Formbricks provides the modern open-source alternative to Qualtrics, Typeform, and Appcues. Product teams can target micro-surveys, Net Promoter Score (NPS) questions, cancellation flows, and feature validation prompts based on user actions, attributes, and page URLs without slowing down application load times.",
+    category: "Analytics & Data",
+    categorySlug: "analytics",
+    website: "https://formbricks.com",
+    logoLetter: "F",
+    rating: 4.9,
+    reviewCount: 310,
+    pricingStart: 0,
+    pricingModel: "Open Source",
+    verified: true,
+    bestFor: "Product managers and engineers wanting targeted in-app user surveys without performance overhead",
+    keyFeatures: [
+      "In-app micro-surveys triggered by user behavior, clicks, or cohort attributes",
+      "Pre-built survey templates: NPS, Customer Effort Score (CES), and Churn Reason",
+      "Lightweight SDK (<15kb) for React, Vue, Next.js, and vanilla JavaScript",
+      "Self-hostable via Docker or managed with Formbricks Cloud",
+      "Seamless integrations with Segment, PostHog, Zapier, and Slack"
+    ],
+    pros: [
+      "Open-source core guarantees complete privacy and GDPR compliance",
+      "Micro-surveys achieve 4x higher completion rates than email surveys",
+      "Zero performance overhead on your web application",
+      "Generous free tier on Formbricks Cloud for up to 1,500 survey responses/mo"
+    ],
+    cons: [
+      "Complex multi-page branching logic is simpler on Typeform for standalone public forms",
+      "Self-hosted instance requires PostgreSQL setup"
+    ],
+    pricingPlans: [
+{
+        name: "Community",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "Self-hosted",
+          "Free forever",
+          "Unlimited surveys",
+          "Full data ownership"
+        ],
+        popular: false
+      },
+{
+        name: "Free Cloud",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "1,500 responses/mo",
+          "Unlimited surveys",
+          "In-app & link surveys",
+          "Community support"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Typeform",
+        slug: "typeform",
+        tagline: "Conversational online form builder",
+        rating: 4.5
+      },
+{
+        name: "Survicate",
+        slug: "survicate",
+        tagline: "Customer survey and feedback software",
+        rating: 4.4
+      }
+    ],
+    reviews: [
+{
+        id: "rev-formbricks-1",
+        author: "Johannes Mutter",
+        authorTitle: "Co-Founder @ Formbricks",
+        avatar: "JM",
+        rating: 5,
+        date: "Oct 14, 2026",
+        content: "Understanding why users churn or what features they want shouldn't require sending boring emails. Formbricks brings context-rich surveys right into the app experience.",
+        pros: [
+          "Micro-surveys achieve 4x higher completion rates than email surveys",
+          "Open-source core guarantees complete privacy"
+        ],
+        cons: [
+          "Complex multi-page branching logic is simpler on Typeform for standalone forms"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
   }
 ];
 

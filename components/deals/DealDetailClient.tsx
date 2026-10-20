@@ -95,7 +95,8 @@ export function DealDetailClient({ deal, tool, relatedDeals, comparisonHref }: D
 
     // Automatically navigate to official checkout in new tab
     if (typeof window !== "undefined") {
-      window.open(`/go/${deal.toolSlug}`, "_blank", "noopener,noreferrer");
+      const destinationUrl = tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
+      window.open(destinationUrl, "_blank", "noopener,noreferrer");
     }
   };
 

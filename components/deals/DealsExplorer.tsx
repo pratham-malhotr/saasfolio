@@ -51,11 +51,20 @@ export function DealsExplorer({
       .filter((deal) => {
         // Search filter
         if (searchQuery) {
-          const q = searchQuery.toLowerCase();
-          const matchTitle = deal.title.toLowerCase().includes(q);
-          const matchTool = deal.toolName.toLowerCase().includes(q);
-          const matchDesc = deal.description.toLowerCase().includes(q);
-          if (!matchTitle && !matchTool && !matchDesc) return false;
+          const q = searchQuery.toLowerCase().trim();
+          const tokens = q.split(/\s+/).filter(Boolean);
+          const intentWords = ["reveal", "coupon", "code", "voucher", "promo", "discount", "deal"];
+          const hasIntent = tokens.some((t) => intentWords.includes(t));
+          const coreTokens = tokens.filter((t) => !intentWords.includes(t));
+
+          const searchTarget = `${deal.toolName} ${deal.toolSlug} ${deal.title} ${deal.description} ${deal.code || ""} ${deal.category}`.toLowerCase();
+
+          if (coreTokens.length > 0) {
+            const matchesCore = coreTokens.every((t) => searchTarget.includes(t));
+            if (!matchesCore) return false;
+          } else if (hasIntent) {
+            if (deal.dealType !== "coupon" && !deal.code) return false;
+          }
         }
 
         // Category filter
@@ -79,6 +88,15 @@ export function DealsExplorer({
         return true;
       })
       .sort((a, b) => {
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          if (q.includes("coupon") || q.includes("reveal") || q.includes("code")) {
+            const aIsCoupon = a.dealType === "coupon" || Boolean(a.code);
+            const bIsCoupon = b.dealType === "coupon" || Boolean(b.code);
+            if (aIsCoupon && !bIsCoupon) return -1;
+            if (!aIsCoupon && bIsCoupon) return 1;
+          }
+        }
         if (sortBy === "trending") return (b.revealsCount || 0) - (a.revealsCount || 0);
         if (sortBy === "discount") return b.discountPercentage - a.discountPercentage;
         if (sortBy === "expiring") {

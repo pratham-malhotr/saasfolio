@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import confetti from "canvas-confetti";
 import { Copy, Check, ExternalLink, ThumbsUp, ThumbsDown, X, ShieldCheck, Sparkles, Clock } from "lucide-react";
 import { SaaSDeal } from "@/lib/mock-data";
+import { getToolBySlug } from "@/lib/data/tools-data";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface CouponRevealModalProps {
@@ -18,6 +19,9 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
   const [voted, setVoted] = useState<"up" | "down" | null>(null);
 
   if (!isOpen || !deal) return null;
+
+  const tool = getToolBySlug(deal.toolSlug);
+  const destinationUrl = tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
 
   const triggerConfetti = () => {
     confetti({
@@ -44,8 +48,8 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
     }
 
     // Seamlessly open the official vendor checkout in a new window with discount activated
-    if (deal.affiliateUrl && typeof window !== "undefined") {
-      window.open(deal.affiliateUrl, "_blank", "noopener,noreferrer");
+    if (destinationUrl && typeof window !== "undefined") {
+      window.open(destinationUrl, "_blank", "noopener,noreferrer");
     }
   };
 
@@ -188,7 +192,7 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
 
           {/* Action Button: Direct to Deal Partner */}
           <a
-            href={deal.affiliateUrl}
+            href={destinationUrl}
             target="_blank"
             rel="sponsored nofollow noopener noreferrer"
             className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 text-white font-semibold text-sm hover:bg-white/15 border border-white/15 transition-all group"
