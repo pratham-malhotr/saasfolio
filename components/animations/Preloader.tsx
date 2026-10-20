@@ -5,70 +5,62 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function Preloader() {
   const [mounted, setMounted] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    setMounted(true);
-
-    // Check if user has already seen the preloader this session
+    // If user has already visited in this session, never show the overlay
     try {
       const hasSeen = sessionStorage.getItem("saasfolio_preloader_seen");
       if (hasSeen === "true") {
-        setLoading(false);
         return;
       }
     } catch {
-      // Ignore storage errors in restricted contexts
+      // In restricted contexts, skip preloader
+      return;
     }
 
-    // Failsafe safety timeout: ensure preloader unmounts within 1.2s regardless of animation state
-    const safetyTimer = setTimeout(() => {
+    // First visit: activate preloader and mounted state
+    setMounted(true);
+    setLoading(true);
+
+    const markSeenAndDismiss = () => {
       setLoading(false);
       try {
         sessionStorage.setItem("saasfolio_preloader_seen", "true");
       } catch {}
-    }, 1200);
+    };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setLoading(false);
-        try {
-          sessionStorage.setItem("saasfolio_preloader_seen", "true");
-        } catch {}
-      }
+    // Fast failsafe timeout: dismiss within 700ms maximum
+    const safetyTimer = setTimeout(markSeenAndDismiss, 700);
+
+    const handleKeyDown = () => {
+      markSeenAndDismiss();
     };
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("pointerdown", handleKeyDown);
 
-    // Smooth counter to 100%
+    // Fast, responsive counter to 100%
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => {
-            setLoading(false);
-            try {
-              sessionStorage.setItem("saasfolio_preloader_seen", "true");
-            } catch {
-              // Ignore
-            }
-          }, 250);
+          setTimeout(markSeenAndDismiss, 120);
           return 100;
         }
-        // Accelerate smoothly
-        const step = prev < 50 ? 8 : prev < 85 ? 10 : 6;
-        return Math.min(100, prev + step);
+        return Math.min(100, prev + 18);
       });
-    }, 35);
+    }, 25);
 
     return () => {
       clearInterval(interval);
       clearTimeout(safetyTimer);
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("pointerdown", handleKeyDown);
     };
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted || !loading) return null;
 
   const dismiss = () => {
     setLoading(false);
