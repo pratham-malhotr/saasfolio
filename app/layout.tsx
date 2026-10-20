@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   applicationName: "SaaSFolio",
   creator: "SaaSFolio",
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    google: process.env.GOOGLE_SITE_VERIFICATION || "gbheBtdeCps6aaCGBaVDKgoU7zAlh8Z7z8I364jKWM0",
     other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
   },
 };
