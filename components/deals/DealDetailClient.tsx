@@ -28,7 +28,7 @@ import {
   Zap
 } from "lucide-react";
 import { SaaSDeal, DetailedTool } from "@/lib/types";
-import { CUSTOM_AFFILIATE_LINKS } from "@/lib/data/affiliate-links";
+import { CUSTOM_AFFILIATE_LINKS, getCustomAffiliateUrl } from "@/lib/data/affiliate-links";
 
 interface DealDetailClientProps {
   deal: SaaSDeal;
@@ -114,7 +114,12 @@ export function DealDetailClient({
 
     // Automatically navigate to official checkout in new tab
     if (typeof window !== "undefined") {
-      const customAffiliate = CUSTOM_AFFILIATE_LINKS[deal.toolSlug] || CUSTOM_AFFILIATE_LINKS[deal.slug];
+      const customAffiliate =
+        getCustomAffiliateUrl(deal.toolSlug) ||
+        getCustomAffiliateUrl(deal.slug) ||
+        getCustomAffiliateUrl(deal.id) ||
+        CUSTOM_AFFILIATE_LINKS[deal.toolSlug] ||
+        CUSTOM_AFFILIATE_LINKS[deal.slug];
       const destinationUrl = customAffiliate || tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
       window.open(destinationUrl, "_blank", "noopener,noreferrer");
     }

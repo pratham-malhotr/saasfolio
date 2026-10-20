@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, Sparkles, Clock, ShieldCheck, Tag, Zap, ExternalLink } from "lucide-react";
 import { HOT_DEALS, SaaSDeal } from "@/lib/mock-data";
+import { getCustomAffiliateUrl } from "@/lib/data/affiliate-links";
 import { TiltCard } from "@/components/animations/TiltCard";
 import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
 import { Reveal } from "@/components/animations/Reveal";
@@ -159,7 +160,7 @@ export function HotDealsSection() {
                     </button>
 
                     <a
-                      href={deal.affiliateUrl}
+                      href={getCustomAffiliateUrl(deal.toolSlug) || deal.affiliateUrl}
                       target="_blank"
                       rel="sponsored nofollow noopener noreferrer"
                       className="py-3 px-3.5 rounded-xl bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 text-[#C6FF3D] hover:bg-[#C6FF3D] hover:text-black transition-all font-mono text-xs font-bold flex items-center justify-center gap-1"

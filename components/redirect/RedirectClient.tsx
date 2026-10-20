@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Sparkles, ShieldCheck, ExternalLink } from "lucide-react";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { getDealBySlug, DEALS_DATA } from "@/lib/data/deals-data";
-import { CUSTOM_AFFILIATE_LINKS } from "@/lib/data/affiliate-links";
+import { CUSTOM_AFFILIATE_LINKS, getCustomAffiliateUrl } from "@/lib/data/affiliate-links";
 
 import { SafeStorage } from "@/lib/storage";
 
@@ -22,7 +22,14 @@ export function RedirectClient({ id }: { id: string }) {
     const tool = getToolBySlug(id) || (deal?.toolSlug ? getToolBySlug(deal.toolSlug) : undefined);
 
     const name = tool?.name || deal?.toolName || id.replace(/-/g, " ").toUpperCase();
-    const customAffiliate = CUSTOM_AFFILIATE_LINKS[id] || (deal?.toolSlug && CUSTOM_AFFILIATE_LINKS[deal.toolSlug]) || (tool?.slug && CUSTOM_AFFILIATE_LINKS[tool.slug]);
+    const customAffiliate =
+      getCustomAffiliateUrl(id) ||
+      (deal?.toolSlug && getCustomAffiliateUrl(deal.toolSlug)) ||
+      (deal?.slug && getCustomAffiliateUrl(deal.slug)) ||
+      (deal?.id && getCustomAffiliateUrl(deal.id)) ||
+      (tool?.slug && getCustomAffiliateUrl(tool.slug)) ||
+      (name && getCustomAffiliateUrl(name)) ||
+      CUSTOM_AFFILIATE_LINKS[id];
     const dest = customAffiliate || tool?.website || (deal?.toolSlug ? `/tools/${deal.toolSlug}` : "https://saasfolio.tech/deals");
     const disc = deal ? `${deal.discountPercentage}% OFF` : "Verified Deal";
 

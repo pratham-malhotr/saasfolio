@@ -5,7 +5,7 @@ import confetti from "canvas-confetti";
 import { Copy, Check, ExternalLink, ThumbsUp, ThumbsDown, X, ShieldCheck, Sparkles, Clock } from "lucide-react";
 import { SaaSDeal } from "@/lib/mock-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
-import { CUSTOM_AFFILIATE_LINKS } from "@/lib/data/affiliate-links";
+import { CUSTOM_AFFILIATE_LINKS, getCustomAffiliateUrl } from "@/lib/data/affiliate-links";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface CouponRevealModalProps {
@@ -22,7 +22,12 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
   if (!isOpen || !deal) return null;
 
   const tool = getToolBySlug(deal.toolSlug);
-  const customAffiliate = CUSTOM_AFFILIATE_LINKS[deal.toolSlug] || CUSTOM_AFFILIATE_LINKS[deal.slug];
+  const customAffiliate =
+    getCustomAffiliateUrl(deal.toolSlug) ||
+    getCustomAffiliateUrl(deal.slug) ||
+    getCustomAffiliateUrl(deal.id) ||
+    CUSTOM_AFFILIATE_LINKS[deal.toolSlug] ||
+    CUSTOM_AFFILIATE_LINKS[deal.slug];
   const destinationUrl = customAffiliate || tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
 
   const triggerConfetti = () => {

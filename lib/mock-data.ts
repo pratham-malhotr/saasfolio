@@ -330,7 +330,7 @@ export const HOT_DEALS: SaaSDeal[] = [
     successRate: 98,
     verifiedAt: "30 mins ago",
     revealsCount: 3670,
-    affiliateUrl: "/go/beehiiv",
+    affiliateUrl: "https://www.beehiiv.com/?via=quickreads",
     featured: true,
   },
   {
