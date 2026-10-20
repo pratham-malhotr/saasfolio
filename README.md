@@ -85,7 +85,7 @@ Edit `app/globals.css`:
   - [x] Multi-device verification across desktop (1440px) and mobile (375px)
 
 - [x] **Phase 2: Data Architecture, Seed Engine, Deals Hub & Directory**
-  - [x] Universal TypeScript schema with 32 tools & 42 verified deals (`lib/data/tools-data.ts`, `lib/data/deals-data.ts`)
+  - [x] Universal TypeScript schema with 249 tools & 290 verified deals across popular, mid-tier, and indie/budget tiers (`lib/data/tools-data.ts`, `lib/data/deals-data.ts`)
   - [x] Multi-facet Deals Hub (`/deals`) with category filters, discount % slider, pricing types, and sort engine
   - [x] Deal detail page (`/deals/[slug]`) with blur-to-reveal coupon modal, confetti animation, and crowdsourced feedback
   - [x] Tools Directory (`/tools`) & Tool Profiles (`/tools/[slug]`) with feature matrices, pricing plans, and alternatives
@@ -113,3 +113,22 @@ Edit `app/globals.css`:
 
 ## 📄 License & Attribution
 Operated by SaaSFolio (saasfolio.tech). Released under the MIT License.
+
+## Source-backed catalog update (October 2026)
+
+The public site now uses `lib/data/verified-catalog.json` through `lib/catalog.ts`.
+The older mock datasets and demo components are retained for reference and are not
+connected to the public catalog. See [the launch audit](docs/LAUNCH-AUDIT.md) for
+findings, implemented changes, validation, and remaining deployment requirements.
+
+```sh
+npm run validate:catalog
+npm run build
+npm run start
+```
+
+Set the variables documented in `docs/DEPLOYMENT.env.example` in the deployment
+provider. Submission delivery needs an HTTPS intake webhook; the form is disabled
+until configured. No public customer review backend, account system, hosting, or
+DNS setup is claimed by this update. All listed offers are vendor-published,
+not checkout-tested.

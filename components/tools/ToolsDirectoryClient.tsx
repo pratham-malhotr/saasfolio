@@ -15,6 +15,7 @@ export function ToolsDirectoryClient({ initialTools }: ToolsDirectoryClientProps
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [pricingModel, setPricingModel] = useState("all");
+  const [selectedTier, setSelectedTier] = useState("all");
 
   const filteredTools = useMemo(() => {
     return initialTools.filter((tool) => {
@@ -34,9 +35,14 @@ export function ToolsDirectoryClient({ initialTools }: ToolsDirectoryClientProps
         if (tool.pricingModel !== pricingModel) return false;
       }
 
+      if (selectedTier !== "all") {
+        const toolTier = tool.tier || "popular";
+        if (toolTier !== selectedTier) return false;
+      }
+
       return true;
     });
-  }, [initialTools, searchQuery, selectedCategory, pricingModel]);
+  }, [initialTools, searchQuery, selectedCategory, pricingModel, selectedTier]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
@@ -52,7 +58,7 @@ export function ToolsDirectoryClient({ initialTools }: ToolsDirectoryClientProps
           SAAS DIRECTORY
         </h1>
         <p className="text-zinc-400 max-w-2xl text-base leading-relaxed">
-          Browse vetted software tools categorized by architecture, pricing model, and user reviews. Compare specs and uncover active discounts.
+          Browse vetted software tools categorized by architecture, pricing model, tier, and user reviews. Compare specs, discover budget indie gems, and uncover active discounts.
         </p>
       </div>
 
@@ -76,6 +82,17 @@ export function ToolsDirectoryClient({ initialTools }: ToolsDirectoryClientProps
 
         <div className="flex flex-wrap items-center gap-2 pt-2 md:pt-0 border-t md:border-t-0 border-white/5 text-xs font-mono">
           <select
+            value={selectedTier}
+            onChange={(e) => setSelectedTier(e.target.value)}
+            className="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white outline-none cursor-pointer"
+          >
+            <option value="all" className="bg-[#0A0A0C]">All Brand Tiers</option>
+            <option value="popular" className="bg-[#0A0A0C]">⭐ Popular Leaders</option>
+            <option value="mid-tier" className="bg-[#0A0A0C]">⚡ Mid-Tier Powerhouses</option>
+            <option value="indie-budget" className="bg-[#0A0A0C]">🌱 Indie & Budget Gems</option>
+          </select>
+
+          <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white outline-none cursor-pointer"
@@ -94,6 +111,7 @@ export function ToolsDirectoryClient({ initialTools }: ToolsDirectoryClientProps
             className="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white outline-none cursor-pointer"
           >
             <option value="all" className="bg-[#0A0A0C]">All Pricing Models</option>
+            <option value="Open Source" className="bg-[#0A0A0C]">Open Source</option>
             <option value="Freemium" className="bg-[#0A0A0C]">Freemium</option>
             <option value="Free Trial" className="bg-[#0A0A0C]">Free Trial</option>
             <option value="Paid" className="bg-[#0A0A0C]">Paid Only</option>
@@ -116,6 +134,15 @@ export function ToolsDirectoryClient({ initialTools }: ToolsDirectoryClientProps
                   {tool.logoLetter}
                 </div>
                 <div className="flex items-center gap-2">
+                  {tool.tier === "indie-budget" ? (
+                    <span className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold">
+                      🌱 INDIE GEM
+                    </span>
+                  ) : tool.tier === "mid-tier" ? (
+                    <span className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold">
+                      ⚡ MID-TIER
+                    </span>
+                  ) : null}
                   <span className="font-mono text-xs px-2 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-300">
                     {tool.pricingModel}
                   </span>

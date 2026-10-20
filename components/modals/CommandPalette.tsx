@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useEffect, useState, useMemo } from "react";
-import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight } from "lucide-react";
-import { HOT_DEALS, FEATURED_ARTICLES, TRENDING_DISCUSSIONS, CATEGORIES } from "@/lib/mock-data";
+import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight, Layers } from "lucide-react";
+import { FEATURED_ARTICLES, TRENDING_DISCUSSIONS, CATEGORIES } from "@/lib/mock-data";
+import { TOOLS_DATA } from "@/lib/data/tools-data";
+import { DEALS_DATA } from "@/lib/data/deals-data";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -13,7 +15,7 @@ interface CommandPaletteProps {
 
 export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState<"all" | "deals" | "articles" | "community">("all");
+  const [filter, setFilter] = useState<"all" | "tools" | "deals" | "articles" | "community">("all");
 
   // Handle Escape key
   useEffect(() => {
@@ -35,16 +37,28 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Filtered results
-  const filteredDeals = useMemo(() => {
-    if (!query) return HOT_DEALS.slice(0, 3);
+  // Filtered tools
+  const filteredTools = useMemo(() => {
+    if (!query) return TOOLS_DATA.slice(0, 4);
     const q = query.toLowerCase();
-    return HOT_DEALS.filter(
+    return TOOLS_DATA.filter(
+      (t) =>
+        t.name.toLowerCase().includes(q) ||
+        t.tagline.toLowerCase().includes(q) ||
+        t.category.toLowerCase().includes(q)
+    ).slice(0, 5);
+  }, [query]);
+
+  // Filtered deals
+  const filteredDeals = useMemo(() => {
+    if (!query) return DEALS_DATA.filter((d) => d.featured).slice(0, 4);
+    const q = query.toLowerCase();
+    return DEALS_DATA.filter(
       (d) =>
         d.title.toLowerCase().includes(q) ||
         d.toolName.toLowerCase().includes(q) ||
         d.category.toLowerCase().includes(q)
-    );
+    ).slice(0, 5);
   }, [query]);
 
   const filteredArticles = useMemo(() => {
@@ -91,7 +105,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search 1,200+ SaaS deals, software tools, reviews & discussions..."
+              placeholder="Search 170+ software tools, budget gems & active discount coupons..."
               className="flex-1 bg-transparent text-white placeholder-zinc-500 font-sans text-sm sm:text-base outline-none"
               autoFocus
             />
@@ -111,7 +125,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
           {/* Filter Pills */}
           <div className="flex items-center gap-2 px-5 py-2.5 border-b border-white/5 bg-[#0A0A0C] text-xs overflow-x-auto">
             <span className="text-zinc-500 font-mono text-[11px] uppercase mr-1">FILTER:</span>
-            {(["all", "deals", "articles", "community"] as const).map((tab) => (
+            {(["all", "tools", "deals", "articles", "community"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setFilter(tab)}
@@ -128,6 +142,63 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
 
           {/* Search Results Scroll Area */}
           <div className="max-h-[60vh] overflow-y-auto p-4 space-y-6">
+            {/* Tools Section */}
+            {(filter === "all" || filter === "tools") && filteredTools.length > 0 && (
+              <div>
+                <div className="flex items-center justify-between text-xs font-mono uppercase text-zinc-500 mb-2 px-2">
+                  <span className="flex items-center gap-1.5 text-white">
+                    <Layers className="w-3.5 h-3.5 text-[#C6FF3D]" />
+                    Software Tools ({filteredTools.length})
+                  </span>
+                  <Link
+                    href="/tools"
+                    onClick={onClose}
+                    className="hover:text-white transition-colors flex items-center gap-1 text-[11px]"
+                  >
+                    View All Directory <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+                <div className="space-y-1.5">
+                  {filteredTools.map((tool) => (
+                    <Link
+                      key={tool.id}
+                      href={`/tools/${tool.slug}`}
+                      onClick={onClose}
+                      className="group flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.07] hover:border-[#C6FF3D]/40 transition-all"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-black border border-white/10 flex items-center justify-center font-bold text-xs text-[#C6FF3D] group-hover:border-[#C6FF3D]/50">
+                          {tool.logoLetter}
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-white group-hover:text-[#C6FF3D] transition-colors flex items-center gap-2">
+                            <span>{tool.name}</span>
+                            {tool.tier === "indie-budget" ? (
+                              <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">
+                                INDIE GEM
+                              </span>
+                            ) : tool.tier === "mid-tier" ? (
+                              <span className="text-[9px] px-1.5 py-0.2 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-mono">
+                                MID-TIER
+                              </span>
+                            ) : null}
+                          </div>
+                          <div className="text-xs text-zinc-400 line-clamp-1 mt-0.5">
+                            {tool.tagline}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs px-2 py-0.5 rounded bg-white/5 text-zinc-300 border border-white/10">
+                          ${tool.pricingStart}/mo
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
             {/* Deals Section */}
             {(filter === "all" || filter === "deals") && filteredDeals.length > 0 && (
               <div>

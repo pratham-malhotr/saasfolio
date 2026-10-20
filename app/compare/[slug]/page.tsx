@@ -13,6 +13,18 @@ export async function generateStaticParams() {
     { slug: "vaultguard-security-vs-armorid" },
     { slug: "vectorcraft-vs-framegen" },
     { slug: "metricpulse-vs-insightstream" },
+    { slug: "coolify-vs-vercel" },
+    { slug: "aider-vs-cursor-ai" },
+    { slug: "carrd-vs-framer" },
+    { slug: "obsidian-vs-notion" },
+    { slug: "pocketbase-vs-supabase" },
+    { slug: "umami-vs-plausible" },
+    { slug: "surrealdb-vs-supabase" },
+    { slug: "langflow-vs-flowise" },
+    { slug: "logseq-vs-obsidian" },
+    { slug: "saleshandy-vs-smartlead" },
+    { slug: "vaultwarden-vs-bitwarden" },
+    { slug: "moosend-vs-mailerlite" },
   ];
 }
 

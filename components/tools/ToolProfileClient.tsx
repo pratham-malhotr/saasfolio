@@ -58,6 +58,16 @@ export function ToolProfileClient({ tool, deals, competitorTools }: ToolProfileC
                 <span className="font-mono text-xs px-2 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-300">
                   {tool.pricingModel}
                 </span>
+                {tool.tier === "indie-budget" && (
+                  <span className="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold">
+                    🌱 INDIE GEM
+                  </span>
+                )}
+                {tool.tier === "mid-tier" && (
+                  <span className="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold">
+                    ⚡ MID-TIER
+                  </span>
+                )}
                 {tool.verified && (
                   <span className="flex items-center gap-1 font-mono text-[11px] text-[#C6FF3D] bg-[#C6FF3D]/10 px-2 py-0.5 rounded border border-[#C6FF3D]/30">
                     <ShieldCheck className="w-3.5 h-3.5" /> VERIFIED
