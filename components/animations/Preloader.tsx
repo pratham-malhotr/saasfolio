@@ -22,6 +22,24 @@ export function Preloader() {
       // Ignore storage errors in restricted contexts
     }
 
+    // Failsafe safety timeout: ensure preloader unmounts within 1.2s regardless of animation state
+    const safetyTimer = setTimeout(() => {
+      setLoading(false);
+      try {
+        sessionStorage.setItem("saasfolio_preloader_seen", "true");
+      } catch {}
+    }, 1200);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setLoading(false);
+        try {
+          sessionStorage.setItem("saasfolio_preloader_seen", "true");
+        } catch {}
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
     // Smooth counter to 100%
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -34,30 +52,42 @@ export function Preloader() {
             } catch {
               // Ignore
             }
-          }, 350);
+          }, 250);
           return 100;
         }
         // Accelerate smoothly
-        const step = prev < 50 ? 5 : prev < 85 ? 7 : 4;
+        const step = prev < 50 ? 8 : prev < 85 ? 10 : 6;
         return Math.min(100, prev + step);
       });
-    }, 45);
+    }, 35);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(safetyTimer);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   if (!mounted) return null;
+
+  const dismiss = () => {
+    setLoading(false);
+    try {
+      sessionStorage.setItem("saasfolio_preloader_seen", "true");
+    } catch {}
+  };
 
   return (
     <AnimatePresence mode="wait">
       {loading && (
         <motion.div
           key="preloader"
-          className="fixed inset-0 z-[100000] flex flex-col items-center justify-center bg-[#000000] text-white select-none overflow-hidden"
+          onClick={dismiss}
+          className="fixed inset-0 z-[100000] flex flex-col items-center justify-center bg-[#000000] text-white select-none overflow-hidden cursor-pointer"
           initial={{ opacity: 1 }}
           exit={{
             y: "-100%",
-            transition: { duration: 0.85, ease: [0.76, 0, 0.24, 1] },
+            transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] },
           }}
         >
           {/* Subtle background glow */}
@@ -69,10 +99,11 @@ export function Preloader() {
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="w-16 h-16 rounded-xl bg-black border border-white/20 p-3 mb-6 flex items-center justify-center shadow-[0_0_30px_rgba(198,255,61,0.2)]"
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="w-16 h-16 rounded-xl bg-black border border-white/20 p-3 mb-6 flex items-center justify-center shadow-[0_0_30px_rgba(198,255,61,0.2)] shrink-0"
+              style={{ width: 64, height: 64 }}
             >
-              <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
+              <svg viewBox="0 0 32 32" fill="none" width={40} height={40} className="w-full h-full block">
                 <path
                   d="M9 7L5 11V21L9 25"
                   stroke="#EDEDED"
@@ -128,6 +159,11 @@ export function Preloader() {
             {/* Percentage Display */}
             <div className="font-mono text-sm tracking-wider text-[#C6FF3D] font-bold">
               {progress.toString().padStart(3, "0")}%
+            </div>
+
+            {/* Skip hint */}
+            <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mt-4 hover:text-[#C6FF3D] transition-colors">
+              Click anywhere or press Esc to enter ↗
             </div>
           </div>
 

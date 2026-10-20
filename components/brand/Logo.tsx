@@ -37,15 +37,21 @@ export function Logo({ className, size = "md", withTagline = false }: LogoProps)
       {/* Dynamic Monogram Bracket Motif */}
       <div
         className={cn(
-          "relative flex items-center justify-center rounded-lg bg-black border border-white/10 p-1.5 transition-all duration-300 group-hover:border-[#C6FF3D]/60 group-hover:shadow-[0_0_20px_rgba(198,255,61,0.25)]",
+          "relative flex items-center justify-center rounded-lg bg-black border border-white/10 p-1.5 transition-all duration-300 group-hover:border-[#C6FF3D]/60 group-hover:shadow-[0_0_20px_rgba(198,255,61,0.25)] shrink-0",
           iconSizes[size]
         )}
+        style={{
+          width: size === "sm" ? 24 : size === "md" ? 32 : size === "lg" ? 44 : 56,
+          height: size === "sm" ? 24 : size === "md" ? 32 : size === "lg" ? 44 : 56,
+        }}
       >
         <svg
           viewBox="0 0 32 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full"
+          width="100%"
+          height="100%"
+          className="w-full h-full block"
         >
           {/* Left bracket */}
           <path
