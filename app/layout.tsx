@@ -7,7 +7,6 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/animations/SmoothScroll";
 import { CustomCursor } from "@/components/animations/CustomCursor";
-import { Preloader } from "@/components/animations/Preloader";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
 
@@ -61,9 +60,6 @@ export default function RootLayout({
         <JsonLd data={siteSchema()} />
         {/* Global Custom Follower Cursor */}
         <CustomCursor />
-
-        {/* Brand Session Preloader */}
-        <Preloader />
 
         {/* Lenis Smooth Scroll Engine */}
         <SmoothScroll>
