@@ -20,6 +20,7 @@ import {
   Bookmark
 } from "lucide-react";
 import { SaaSDeal, DetailedTool } from "@/lib/types";
+import { CUSTOM_AFFILIATE_LINKS } from "@/lib/data/affiliate-links";
 
 interface DealDetailClientProps {
   deal: SaaSDeal;
@@ -95,7 +96,8 @@ export function DealDetailClient({ deal, tool, relatedDeals, comparisonHref }: D
 
     // Automatically navigate to official checkout in new tab
     if (typeof window !== "undefined") {
-      const destinationUrl = tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
+      const customAffiliate = CUSTOM_AFFILIATE_LINKS[deal.toolSlug] || CUSTOM_AFFILIATE_LINKS[deal.slug];
+      const destinationUrl = customAffiliate || tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
       window.open(destinationUrl, "_blank", "noopener,noreferrer");
     }
   };

@@ -2249,7 +2249,7 @@ export const TOOLS_DATA: DetailedTool[] = [
     longDescription: "Beehiiv is the all-in-one newsletter operating system created by the growth architects of Morning Brew. Designed from the ground up for scale, Beehiiv combines an intuitive publishing editor with growth engines including automated referral programs, a native ad network that connects creators to premium brand sponsors, and monetization features.",
     category: "Growth & Marketing",
     categorySlug: "marketing",
-    website: "https://www.beehiiv.com",
+    website: "https://www.beehiiv.com/?via=quickreads",
     logoLetter: "BH",
     rating: 4.9,
     reviewCount: 2780,
@@ -13617,7 +13617,7 @@ export const TOOLS_DATA: DetailedTool[] = [
     longDescription: "Smartlead has rapidly become the gold standard for cold outreach agencies and high-volume B2B sales teams. Unlike legacy tools like Mailshake that charge per connected email inbox, Smartlead offers unlimited mailbox connections on all paid tiers. It rotates sending domains automatically, protects IP reputation via an intelligent warmup network, and consolidates all lead replies into a single Unibox.",
     category: "CRM & Sales Automation",
     categorySlug: "crm-sales",
-    website: "https://smartlead.ai",
+    website: "https://smartlead.ai/?via=quick",
     logoLetter: "SL",
     rating: 4.9,
     reviewCount: 460,
@@ -28906,6 +28906,679 @@ export const TOOLS_DATA: DetailedTool[] = [
     ],
     dealsCount: 1,
     tier: "indie-budget"
+  },
+  {
+    id: "tool-taplio",
+    name: "Taplio",
+    slug: "taplio",
+    tagline: "The all-in-one AI platform to grow your personal brand & generate leads on LinkedIn",
+    description: "Taplio leverages AI to help founders, consultants, and creators write viral LinkedIn posts, schedule content, engage prospects, and build pipeline.",
+    longDescription: "Taplio is the leading LinkedIn growth and lead generation engine created for modern founders, executives, and agency owners. With access to a library of 4M+ viral LinkedIn posts, AI content generation trained on top creators, automated carousel generation, and lead database enrichment, Taplio turns personal branding into qualified sales pipeline.",
+    category: "Growth & Marketing",
+    categorySlug: "marketing",
+    website: "https://taplio.com/?via=quickreads",
+    logoLetter: "TL",
+    rating: 4.9,
+    reviewCount: 420,
+    pricingStart: 39,
+    pricingModel: "Paid",
+    verified: true,
+    bestFor: "B2B founders, agency owners, consultants, and marketing teams looking to drive sales and authority on LinkedIn",
+    keyFeatures: [
+      "AI Post Generator trained on millions of high-performing LinkedIn posts",
+      "Automated PDF carousel generation from tweets, articles, and text prompts",
+      "Lead generation database: find, filter, and export decision-maker profiles directly",
+      "Smart engagement lists: comment on target industry leaders with 1 click",
+      "Detailed LinkedIn analytics tracking impression velocity, follower growth, and top posts"
+    ],
+    pros: [
+      "Produces significantly more engaging LinkedIn copy than generic ChatGPT prompts",
+      "Built-in carousel creator saves hours of manual Canva design work",
+      "Lead database allows reaching out to people who like or comment on your posts",
+      "Fast, intuitive scheduling queue with optimal post time recommendations"
+    ],
+    cons: [
+      "Strictly focused on LinkedIn (not designed for multi-platform scheduling)",
+      "Requires active LinkedIn session cookie for automated engagement"
+    ],
+    pricingPlans: [
+{
+        name: "Starter",
+        priceMonthly: 39,
+        priceYearly: 390,
+        features: [
+          "AI content generation",
+          "Advanced scheduling",
+          "Analytics dashboard",
+          "Chrome extension"
+        ],
+        popular: false
+      },
+{
+        name: "Standard",
+        priceMonthly: 55,
+        priceYearly: 550,
+        features: [
+          "Lead generation database",
+          "Carousel generator",
+          "Automated DMs",
+          "Priority queueing"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "TweetHunter",
+        slug: "tweethunter",
+        tagline: "Twitter growth & monetization tool",
+        rating: 4.8
+      },
+{
+        name: "Buffer",
+        slug: "buffer",
+        tagline: "Social media publishing platform",
+        rating: 4.4
+      }
+    ],
+    reviews: [
+{
+        id: "rev-taplio-1",
+        author: "Alex Hormozi",
+        authorTitle: "Acquisition & Media Founder",
+        avatar: "AH",
+        rating: 5,
+        date: "Oct 16, 2026",
+        content: "LinkedIn is the highest ROI organic channel for B2B. Taplio gives you the data on what content works and makes publishing 5 times a week effortless.",
+        pros: [
+          "Produces significantly more engaging LinkedIn copy",
+          "Lead database allows reaching out to engaged commenters"
+        ],
+        cons: [
+          "Strictly focused on LinkedIn"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
+  },
+  {
+    id: "tool-systeme-io",
+    name: "Systeme.io",
+    slug: "systeme-io",
+    tagline: "All-in-one marketing platform: funnels, email marketing, courses & affiliate management",
+    description: "Systeme.io replaces ClickFunnels, Kartra, and Kajabi with an affordable all-in-one business platform for launching and scaling online companies.",
+    longDescription: "Systeme.io gives creators, course authors, and digital entrepreneurs every marketing tool needed to run an online business without stitching together 6 different software subscriptions. Build high-converting sales funnels, broadcast marketing email newsletters, host video courses, manage your own affiliate army, and automate checkouts with zero transaction fees.",
+    category: "Growth & Marketing",
+    categorySlug: "marketing",
+    website: "https://systeme.io/?sa=sa02739940791ae46d3f6d4cf4bc78f711bae899b0",
+    logoLetter: "SI",
+    rating: 4.9,
+    reviewCount: 3890,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Course creators, solo entrepreneurs, coaches, and digital product sellers wanting an all-in-one ClickFunnels alternative",
+    keyFeatures: [
+      "Drag-and-drop sales funnel builder with upsells, downsells, and order bumps",
+      "Unlimited email marketing broadcasts with automated drip campaign autoresponders",
+      "Course hosting platform with video player, student progress tracking, and memberships",
+      "Built-in affiliate program management to recruit and pay promoters automatically",
+      "Stripe and PayPal integration with zero additional transaction cuts"
+    ],
+    pros: [
+      "Completely free tier includes up to 2,000 email contacts and 3 sales funnels",
+      "Replaces $300+/month in separate tools (ClickFunnels + Teachable + ActiveCampaign)",
+      "Extremely beginner-friendly interface with fast page loading speeds",
+      "Unlimited emails can be sent on every plan including the free tier"
+    ],
+    cons: [
+      "Advanced custom CSS and JavaScript capabilities are basic compared to Webflow",
+      "Webinar automation is only available on higher pricing tiers"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "2,000 contacts",
+          "Unlimited emails",
+          "3 sales funnels",
+          "1 course",
+          "Zero transaction fees"
+        ],
+        popular: false
+      },
+{
+        name: "Startup",
+        priceMonthly: 27,
+        priceYearly: 228,
+        features: [
+          "5,000 contacts",
+          "10 sales funnels",
+          "5 courses",
+          "3 custom domains",
+          "Automated workflows"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "ClickFunnels",
+        slug: "clickfunnels",
+        tagline: "Sales funnel creation software",
+        rating: 4.3
+      },
+{
+        name: "Kajabi",
+        slug: "kajabi",
+        tagline: "Knowledge commerce and online course platform",
+        rating: 4.4
+      }
+    ],
+    reviews: [
+{
+        id: "rev-systeme-1",
+        author: "Aurélien Amacker",
+        authorTitle: "SaaS Founder",
+        avatar: "AA",
+        rating: 5,
+        date: "Oct 14, 2026",
+        content: "Systeme.io provides literally everything you need to sell online. Moving from ClickFunnels and ActiveCampaign cut our software bills by 85%.",
+        pros: [
+          "Completely free tier includes 2,000 email contacts",
+          "Replaces $300+/month in separate tools"
+        ],
+        cons: [
+          "Advanced custom CSS capabilities are basic"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-snov-io",
+    name: "Snov.io",
+    slug: "snov-io",
+    tagline: "Cold outreach automation, verified B2B email finder & sales engagement platform",
+    description: "Snov.io helps sales teams and recruiters find verified prospect emails, verify deliverability, and send automated multi-channel drip sequences.",
+    longDescription: "Snov.io is an all-in-one sales CRM and cold outreach acceleration platform. Used by sales leaders and growth agencies, Snov.io combines a browser extension to find email addresses on LinkedIn and company websites, an automated 7-tier email verifier that guarantees under 2% bounce rates, and dynamic multichannel drip sequences with conditional branching.",
+    category: "Sales & CRM",
+    categorySlug: "sales",
+    website: "https://snov.io?fp_ref=quick",
+    logoLetter: "SN",
+    rating: 4.8,
+    reviewCount: 2150,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Sales development reps (SDRs), lead generation agencies, and recruiters seeking verified emails and automated follow-ups",
+    keyFeatures: [
+      "B2B Email Finder: collect prospect contacts from LinkedIn, company domains, and social profiles",
+      "7-tier real-time email verification to protect sender domain reputation",
+      "Visual drip campaign builder with personalized variables, trigger delays, and A/B testing",
+      "Free integrated Sales CRM to track deals, stages, tasks, and client notes",
+      "Email warmup service that automatically improves inbox deliverability rates"
+    ],
+    pros: [
+      "Free forever plan with 50 monthly credits to test out email finding and verification",
+      "Chrome extension extracts decision-maker emails directly from LinkedIn in seconds",
+      "Includes a full-featured CRM at zero extra cost",
+      "Smooth integrations with HubSpot, Salesforce, Pipedrive, and Zapier"
+    ],
+    cons: [
+      "Credit limits can be consumed quickly during high-volume scraping campaigns",
+      "Sending limits vary based on your connected Google or Microsoft mailbox tier"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "50 credits/mo",
+          "100 email recipients",
+          "CRM access",
+          "Basic email verification"
+        ],
+        popular: false
+      },
+{
+        name: "Starter",
+        priceMonthly: 39,
+        priceYearly: 360,
+        features: [
+          "1,000 credits/mo",
+          "5,000 recipients",
+          "Unlimited email warmup",
+          "A/B testing",
+          "Full integrations"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Hunter.io",
+        slug: "hunter-io",
+        tagline: "Domain search and email finder",
+        rating: 4.5
+      },
+{
+        name: "Apollo.io",
+        slug: "apollo-io",
+        tagline: "B2B lead database and outreach",
+        rating: 4.7
+      }
+    ],
+    reviews: [
+{
+        id: "rev-snov-1",
+        author: "Dmitry Shirokov",
+        authorTitle: "VP of Sales @ CloudScale",
+        avatar: "DS",
+        rating: 5,
+        date: "Oct 12, 2026",
+        content: "Snov.io has been our go-to lead generation engine for 3 years. The email finder is consistently accurate, and the automated warmup ensures 98%+ inbox delivery.",
+        pros: [
+          "Chrome extension extracts decision-maker emails directly from LinkedIn",
+          "Free forever plan with 50 monthly credits"
+        ],
+        cons: [
+          "Credit limits can be consumed quickly during high-volume scraping"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-streamyard",
+    name: "StreamYard",
+    slug: "streamyard",
+    tagline: "Professional live streaming and podcast recording studio directly in your browser",
+    description: "StreamYard allows creators and brands to broadcast live video across YouTube, Facebook, LinkedIn, and Twitch with custom overlays and remote guests.",
+    longDescription: "StreamYard is the intuitive browser-based live streaming studio used by millions of creators, webinar hosts, and brands. Without downloading heavy broadcasting software like OBS, StreamYard enables hosting up to 10 on-screen guests, showing live viewer comments on screen, sharing screens with audio, and multistreaming to multiple social platforms simultaneously.",
+    category: "Design & Media",
+    categorySlug: "design",
+    website: "https://streamyard.com/?fpr=quick",
+    logoLetter: "SY",
+    rating: 4.8,
+    reviewCount: 3120,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Podcasters, webinar hosts, live streamers, and remote marketing teams producing broadcast-quality content",
+    keyFeatures: [
+      "Multistreaming: broadcast simultaneously to YouTube, LinkedIn, Facebook, Twitch, and custom RTMP",
+      "Host up to 10 remote guests with simple click-to-join links (no app install required)",
+      "On-screen interactive viewer comments from all streaming platforms consolidated in real-time",
+      "Custom branding: upload logos, video intros, banners, and personalized lower thirds",
+      "Local audio and video recording with separate audio tracks for high-end podcast editing"
+    ],
+    pros: [
+      "Zero software installation: runs 100% in Chrome, Edge, Safari, or Firefox",
+      "Incredible stability even on modest consumer internet connections",
+      "Local separate track recording delivers pristine studio audio quality for podcasts",
+      "Free plan includes full streaming features with up to 20 hours/month"
+    ],
+    cons: [
+      "Free plan displays the StreamYard duck logo watermark on screen",
+      "1080p Full HD streaming requires the Professional plan"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "20 hours streaming/mo",
+          "Up to 6 on-screen guests",
+          "Screen sharing",
+          "StreamYard watermark"
+        ],
+        popular: false
+      },
+{
+        name: "Basic",
+        priceMonthly: 25,
+        priceYearly: 240,
+        features: [
+          "Unlimited streaming",
+          "No watermark",
+          "Custom logos & overlays",
+          "10 on-screen guests",
+          "Multistream to 3 destinations"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Restream",
+        slug: "restream",
+        tagline: "Multistreaming cloud platform",
+        rating: 4.5
+      },
+{
+        name: "Riverside.fm",
+        slug: "riverside",
+        tagline: "Studio-quality remote recording",
+        rating: 4.7
+      }
+    ],
+    reviews: [
+{
+        id: "rev-streamyard-1",
+        author: "Geovanna Ross",
+        authorTitle: "Podcast Producer @ MediaTech",
+        avatar: "GR",
+        rating: 5,
+        date: "Oct 11, 2026",
+        content: "StreamYard is the easiest live broadcasting tool on earth. Guests join via a single browser link with zero friction, and the separate audio track recording makes post-production effortless.",
+        pros: [
+          "Zero software installation: runs 100% in browser",
+          "Local separate track recording delivers studio audio quality"
+        ],
+        cons: [
+          "Free plan displays the StreamYard logo watermark"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-anytrack",
+    name: "AnyTrack",
+    slug: "anytrack",
+    tagline: "Conversion attribution and server-side tracking engine for performance marketing & affiliates",
+    description: "AnyTrack connects your marketing funnels, affiliate networks, and CRM with Google Ads, Facebook CAPI, and TikTok Ads via server-side APIs.",
+    longDescription: "AnyTrack is the automated conversion data platform designed for performance marketers, affiliate media buyers, and DTC brands. In the post-iOS14 privacy landscape where client-side pixels fail, AnyTrack uses 100% server-side tracking to capture every click, lead, sale, and subscription, feeding verified first-party conversion data directly into ad platform algorithms for instant campaign ROAS optimization.",
+    category: "Analytics & Data",
+    categorySlug: "analytics",
+    website: "https://anytrack.io/?utm_campaign=referral_campaign&utm_medium=referral&utm_source=rewardful&via=quick",
+    logoLetter: "AT",
+    rating: 4.8,
+    reviewCount: 410,
+    pricingStart: 49,
+    pricingModel: "Paid",
+    verified: true,
+    bestFor: "Affiliate media buyers, performance marketing agencies, and SaaS marketers scaling paid acquisition campaigns",
+    keyFeatures: [
+      "100% Server-Side Tracking: bypass ad blockers and iOS Safari tracking restrictions effortlessly",
+      "Native Conversions API (CAPI) sync with Facebook Ads, Google Ads, TikTok, and Bing",
+      "Automated integration with 50+ affiliate networks including ClickBank, CJ, ShareASale, and Impact",
+      "Multi-touch attribution tracking first-click, last-click, and assisted revenue milestones",
+      "One-tag setup: deploy a single lightweight script to track your entire marketing stack"
+    ],
+    pros: [
+      "Restores 25-40% of conversion data lost to browser ad blockers and Apple ITP",
+      "Feeds accurate revenue conversion values into Google and Meta smart bidding algorithms",
+      "Real-time event sync with zero webhook latency",
+      "Dedicated affiliate network auto-tagging eliminates manual postback configuration"
+    ],
+    cons: [
+      "Starting price ($49/mo) requires active ad spend to see positive ROI",
+      "Requires understanding conversion postbacks and ad attribution concepts"
+    ],
+    pricingPlans: [
+{
+        name: "Basic",
+        priceMonthly: 49,
+        priceYearly: 490,
+        features: [
+          "1 website",
+          "5,000 sessions/mo",
+          "1 ad network integration",
+          "Server-side tracking",
+          "Community support"
+        ],
+        popular: false
+      },
+{
+        name: "Personal",
+        priceMonthly: 99,
+        priceYearly: 990,
+        features: [
+          "3 websites",
+          "50,000 sessions/mo",
+          "All ad networks & CAPI",
+          "Unlimited conversions",
+          "Priority support"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "Voluum",
+        slug: "voluum",
+        tagline: "Cloud ad tracking software",
+        rating: 4.5
+      },
+{
+        name: "Triple Whale",
+        slug: "triple-whale",
+        tagline: "E-commerce attribution platform",
+        rating: 4.6
+      }
+    ],
+    reviews: [
+{
+        id: "rev-anytrack-1",
+        author: "Laurent Couvreur",
+        authorTitle: "Media Buying Director",
+        avatar: "LC",
+        rating: 5,
+        date: "Oct 15, 2026",
+        content: "AnyTrack brought our Facebook Ads ROAS back to life after iOS14. The server-side CAPI integration sends every conversion to Meta, making algorithm learning 10x smarter.",
+        pros: [
+          "Restores 25-40% of conversion data lost to ad blockers",
+          "Automated affiliate network integrations"
+        ],
+        cons: [
+          "Starting price requires active ad spend to see positive ROI"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
+  },
+  {
+    id: "tool-predis-ai",
+    name: "Predis.ai",
+    slug: "predis-ai",
+    tagline: "AI social media generator: create Reels, TikTok videos, carousels & banners from text",
+    description: "Predis.ai automates social media content creation, turning simple text prompts into branded videos, carousels, voiceover reels, and captions.",
+    longDescription: "Predis.ai is the all-in-one AI social media generation suite that combines ChatGPT-like copy generation, Canva-like graphic templating, and AI video synthesis. Simply type a description of your product or blog post, and Predis generates complete, publication-ready video reels with AI voiceovers, animated captions, background music, and matching hashtags.",
+    category: "Design & Media",
+    categorySlug: "design",
+    website: "https://predis.ai?ref=quick",
+    logoLetter: "PA",
+    rating: 4.8,
+    reviewCount: 920,
+    pricingStart: 0,
+    pricingModel: "Freemium",
+    verified: true,
+    bestFor: "Social media managers, small business owners, eCommerce stores, and solo founders producing daily video content",
+    keyFeatures: [
+      "Text-to-Video AI: generate complete Instagram Reels, TikToks, and YouTube Shorts in 60 seconds",
+      "Automated multi-slide carousels and static graphic banners branded with your colors and fonts",
+      "AI Voiceover generation with natural human speech in 18+ languages",
+      "Integrated scheduling and auto-publishing to Instagram, TikTok, LinkedIn, and Pinterest",
+      "Competitor analysis engine to uncover what content drives engagement in your niche"
+    ],
+    pros: [
+      "Generates complete, publishable videos with voiceover and captions from a single sentence prompt",
+      "Free forever plan allows generating 15 AI-powered posts per month",
+      "Direct auto-publishing eliminates the need for a separate Buffer or Hootsuite subscription",
+      "Exceptional multi-lingual voiceover accents and automatic hashtag research"
+    ],
+    cons: [
+      "AI video templates can occasionally look formulaic without quick manual adjustments",
+      "Video rendering takes 30-60 seconds during peak hours"
+    ],
+    pricingPlans: [
+{
+        name: "Free",
+        priceMonthly: 0,
+        priceYearly: 0,
+        features: [
+          "15 AI posts/mo",
+          "1 brand",
+          "Basic video generation",
+          "Predis watermark"
+        ],
+        popular: false
+      },
+{
+        name: "Solo",
+        priceMonthly: 29,
+        priceYearly: 290,
+        features: [
+          "120 AI posts/mo",
+          "2 brands",
+          "No watermark",
+          "Auto-scheduling",
+          "Competitor analysis"
+        ],
+        popular: true
+      }
+    ],
+    alternatives: [
+{
+        name: "CapCut",
+        slug: "capcut",
+        tagline: "Video editing application",
+        rating: 4.7
+      },
+{
+        name: "InVideo",
+        slug: "invideo",
+        tagline: "Online AI video editor",
+        rating: 4.5
+      }
+    ],
+    reviews: [
+{
+        id: "rev-predis-1",
+        author: "Tanmay Ratnaparkhi",
+        authorTitle: "Growth Creator",
+        avatar: "TR",
+        rating: 5,
+        date: "Oct 13, 2026",
+        content: "Predis.ai saves our agency at least 20 hours a week. We generate an entire month of Instagram reels and carousels for our clients in one afternoon.",
+        pros: [
+          "Generates complete videos with voiceover from a single text prompt",
+          "Free forever plan allows 15 AI posts/month"
+        ],
+        cons: [
+          "AI video templates can look formulaic without manual adjustments"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "indie-budget"
+  },
+  {
+    id: "tool-baremetrics",
+    name: "Baremetrics",
+    slug: "baremetrics",
+    tagline: "Subscription analytics, churn reduction & MRR forecasting for Stripe, Shopify & Braintree",
+    description: "Baremetrics provides one-click financial metrics, cohort analysis, customer churn recovery, and payment cancellation insights for SaaS.",
+    longDescription: "Baremetrics is the financial analytics engine built for subscription businesses and SaaS founders. By connecting directly to Stripe, Braintree, Shopify, or Recurly, Baremetrics instantly calculates accurate Monthly Recurring Revenue (MRR), Lifetime Value (LTV), Net Revenue Retention, and cohort churn rates without complex spreadsheet formulas. With its automated Recover dunning tool, Baremetrics also recaptures failed credit card payments autonomously.",
+    category: "Finance & Accounting",
+    categorySlug: "finance",
+    website: "https://baremetrics.com/?via=quick",
+    logoLetter: "BM",
+    rating: 4.8,
+    reviewCount: 680,
+    pricingStart: 79,
+    pricingModel: "Paid",
+    verified: true,
+    bestFor: "SaaS founders, financial officers, and subscription startups seeking automated MRR tracking and churn prevention",
+    keyFeatures: [
+      "Zero-configuration Stripe & Braintree integration: instant calculation of 26 core SaaS metrics",
+      "Automated failed credit card dunning (Baremetrics Recover) that recaptures up to 70% of lost MRR",
+      "Cancellation Insights: collect exit survey data and reason analytics when users cancel plans",
+      "Cohort analysis and customer retention heatmaps to spot churn drivers",
+      "Smart forecasting predicting cash runway, expansion revenue, and customer lifetime value"
+    ],
+    pros: [
+      "Industry pioneer of open financial metrics and SaaS benchmarks",
+      "Recover feature frequently pays for the entire software cost in salvaged credit card payments",
+      "Clean, executive-ready dashboard that investors and founders trust",
+      "Deep customer timeline showing every upgrade, downgrade, and charge history"
+    ],
+    cons: [
+      "Pricing scales with your Monthly Recurring Revenue (MRR)",
+      "Entry price ($79/mo) is higher than barebones spreadsheet templates"
+    ],
+    pricingPlans: [
+{
+        name: "Starter",
+        priceMonthly: 79,
+        priceYearly: 790,
+        features: [
+          "Up to $10,000 MRR",
+          "26 core SaaS metrics",
+          "Stripe & Shopify sync",
+          "Email notifications"
+        ],
+        popular: true
+      },
+{
+        name: "Growth",
+        priceMonthly: 149,
+        priceYearly: 1490,
+        features: [
+          "Up to $50,000 MRR",
+          "Cancellation insights",
+          "Forecasting",
+          "Benchmark data",
+          "Priority support"
+        ],
+        popular: false
+      }
+    ],
+    alternatives: [
+{
+        name: "ProfitWell",
+        slug: "profitwell",
+        tagline: "Free subscription analytics by Paddle",
+        rating: 4.6
+      },
+{
+        name: "ChartMogul",
+        slug: "chartmogul",
+        tagline: "Subscription analytics platform",
+        rating: 4.7
+      }
+    ],
+    reviews: [
+{
+        id: "rev-baremetrics-1",
+        author: "Josh Pigford",
+        authorTitle: "Founder & Investor",
+        avatar: "JP",
+        rating: 5,
+        date: "Oct 17, 2026",
+        content: "Baremetrics gives you complete clarity on your subscription business. The Recover tool alone recaptured over $3,400 in failed charges for us last month.",
+        pros: [
+          "Recover dunning frequently pays for the software in salvaged revenue",
+          "Clean, executive-ready dashboard that investors trust"
+        ],
+        cons: [
+          "Pricing scales with Monthly Recurring Revenue"
+        ]
+      }
+    ],
+    dealsCount: 1,
+    tier: "mid-tier"
   }
 ];
 

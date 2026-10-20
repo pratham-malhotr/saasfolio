@@ -6,6 +6,7 @@ import confetti from "canvas-confetti";
 import { FEATURED_ARTICLES, TRENDING_DISCUSSIONS, CATEGORIES } from "@/lib/mock-data";
 import { TOOLS_DATA } from "@/lib/data/tools-data";
 import { DEALS_DATA } from "@/lib/data/deals-data";
+import { CUSTOM_AFFILIATE_LINKS } from "@/lib/data/affiliate-links";
 import type { SaaSDeal } from "@/lib/types";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -103,7 +104,8 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   // Instant coupon reveal & direct site redirect handler
   const handleRevealAndRedirect = (deal: SaaSDeal) => {
     const tool = TOOLS_DATA.find((t) => t.slug === deal.toolSlug);
-    const targetUrl = tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
+    const customAffiliate = CUSTOM_AFFILIATE_LINKS[deal.toolSlug] || CUSTOM_AFFILIATE_LINKS[deal.slug];
+    const targetUrl = customAffiliate || tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
 
     // 1. Copy code to clipboard
     if (deal.code && typeof navigator !== "undefined" && navigator.clipboard) {
