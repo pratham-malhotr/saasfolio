@@ -7590,7 +7590,7 @@ export const DEALS_DATA: SaaSDeal[] = [
     title: "20% Off Better Stack Uptime Monitoring & Incident Alerting",
     slug: "better-stack-freelancer-20-off",
     toolName: "Better Stack",
-    toolSlug: "better-stack",
+    toolSlug: "betterstack",
     category: "Dev Tools",
     categorySlug: "devtools",
     discountPercentage: 20,
@@ -7608,7 +7608,7 @@ export const DEALS_DATA: SaaSDeal[] = [
     votesDown: 4,
     verifiedAt: "12 mins ago",
     revealsCount: 1950,
-    affiliateUrl: "/go/better-stack",
+    affiliateUrl: "/go/betterstack",
     featured: true
   },
   {

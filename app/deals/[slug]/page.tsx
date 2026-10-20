@@ -4,9 +4,16 @@ import { getAllDeals, getDealBySlug } from "@/lib/data/deals-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { DealDetailClient } from "@/components/deals/DealDetailClient";
 import type { Metadata } from "next";
-import { pageMetadata, dealSearchTitle } from "@/lib/seo";
+import { pageMetadata, dealSearchTitle, dealMetaDescription } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema, webPageSchema, softwareSchema } from "@/lib/structured-data";
+import {
+  breadcrumbSchema,
+  webPageSchema,
+  softwareSchema,
+  faqSchema,
+  howToRedeemSchema,
+  getDealFaqs,
+} from "@/lib/structured-data";
 import { getComparisonHref } from "@/lib/catalog-links";
 
 export async function generateStaticParams() {
@@ -28,7 +35,7 @@ export async function generateMetadata({
 
   return pageMetadata({
     title: dealSearchTitle(deal),
-    description: deal.description,
+    description: dealMetaDescription(deal),
     path: `/deals/${deal.slug}`,
   });
 }
@@ -50,24 +57,44 @@ export default async function DealDetailPage({
   const relatedDeals = allDeals.filter(
     (d) => d.categorySlug === deal.categorySlug && d.id !== deal.id
   );
+  const siblingDeals = allDeals.filter(
+    (d) => d.toolSlug === deal.toolSlug && d.id !== deal.id
+  );
+  const faqs = getDealFaqs(deal, tool);
 
   return (
     <div className="min-h-screen bg-[#050505]">
-      <JsonLd data={{
-        "@context": "https://schema.org",
-        "@graph": [
-          { ...webPageSchema(dealSearchTitle(deal), deal.description, `/deals/${deal.slug}`),
-            ...(tool ? { about: { "@id": softwareSchema(tool)["@id"] } } : {}),
-          },
-          ...(tool ? [softwareSchema(tool)] : []),
-          breadcrumbSchema([{ name: "SaaS Deals", path: "/deals" }, { name: `${deal.toolName} Deal`, path: `/deals/${deal.slug}` }]),
-        ],
-      }} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              ...webPageSchema(
+                dealSearchTitle(deal),
+                dealMetaDescription(deal),
+                `/deals/${deal.slug}`
+              ),
+              ...(tool ? { about: { "@id": softwareSchema(tool)["@id"] } } : {}),
+            },
+            ...(tool ? [softwareSchema(tool)] : []),
+            breadcrumbSchema([
+              { name: "SaaS Deals", path: "/deals" },
+              { name: `${deal.toolName} Discount`, path: `/deals/${deal.slug}` },
+            ]),
+            howToRedeemSchema(deal.toolName, deal.code),
+            faqSchema(faqs),
+          ],
+        }}
+      />
       <DealDetailClient
         deal={deal}
         tool={tool}
+        faqs={faqs}
+        siblingDeals={siblingDeals}
         relatedDeals={relatedDeals}
-        comparisonHref={tool ? getComparisonHref(tool.slug, tool.alternatives[0]?.slug) : "/compare"}
+        comparisonHref={
+          tool ? getComparisonHref(tool.slug, tool.alternatives[0]?.slug) : "/compare"
+        }
       />
     </div>
   );
