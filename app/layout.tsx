@@ -1,5 +1,8 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteSchema } from "@/lib/structured-data";
+import { pageMetadata, SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/animations/SmoothScroll";
@@ -29,55 +32,17 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: "SaaSFolio — Discover, Save & Scale | Premium SaaS Deals & Reviews",
-    template: "%s | SaaSFolio",
-  },
-  description:
-    "The award-level discovery hub for SaaS software. Hand-verified coupons, lifetime software deals, unbiased architectural reviews, and an active founder community.",
-  keywords: [
-    "SaaS deals",
-    "SaaS discounts",
-    "lifetime software deals",
-    "verified coupons",
-    "software reviews",
-    "SaaS comparisons",
-    "tech stack architecture",
-    "saasfolio",
-  ],
-  authors: [{ name: "SaaSFolio Editorial Team" }],
+  ...pageMetadata({ title: SITE_TITLE, description: SITE_DESCRIPTION, path: "/" }),
+  metadataBase: new URL(SITE_URL),
+  // Each public page supplies its own canonical; do not inherit the home URL.
+  alternates: undefined,
+  title: { default: SITE_TITLE, template: "%s | SaaSFolio" },
+  applicationName: "SaaSFolio",
   creator: "SaaSFolio",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://saasfolio.tech",
-    siteName: "SaaSFolio",
-    title: "SaaSFolio — Discover, Save & Scale | Premium SaaS Deals & Reviews",
-    description:
-      "Hand-verified coupons, lifetime software deals, and transparent architectural reviews for founders, developers, and marketers.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "SaaSFolio — Where SaaS Deals Win",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "SaaSFolio — Discover, Save & Scale",
-    description:
-      "The premier discovery platform for verified SaaS coupons, lifetime software deals, and tech reviews.",
-    creator: "@saasfolio",
-  },
-  robots: {
-    index: true,
-    follow: true,
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
   },
 };
 
@@ -93,6 +58,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} dark`}
     >
       <body className="min-h-screen bg-[#050505] text-[#EDEDED] antialiased selection:bg-[#C6FF3D] selection:text-black font-body overflow-x-hidden">
+        <JsonLd data={siteSchema()} />
         {/* Global Custom Follower Cursor */}
         <CustomCursor />
 
