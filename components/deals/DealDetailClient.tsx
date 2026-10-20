@@ -25,9 +25,10 @@ interface DealDetailClientProps {
   deal: SaaSDeal;
   tool?: DetailedTool;
   relatedDeals: SaaSDeal[];
+  comparisonHref: string;
 }
 
-export function DealDetailClient({ deal, tool, relatedDeals }: DealDetailClientProps) {
+export function DealDetailClient({ deal, tool, relatedDeals, comparisonHref }: DealDetailClientProps) {
   const [revealed, setRevealed] = useState(false);
   const [copied, setCopied] = useState(false);
   const [voted, setVoted] = useState<"up" | "down" | null>(null);
@@ -177,7 +178,7 @@ export function DealDetailClient({ deal, tool, relatedDeals }: DealDetailClientP
             {/* Title & Tool Link */}
             <div className="mb-4">
               <Link
-                href={`/tools/${deal.toolSlug}`}
+                href={tool ? `/tools/${deal.toolSlug}` : "/tools"}
                 className="font-mono text-xs text-[#C6FF3D] hover:underline uppercase tracking-wider inline-flex items-center gap-1 mb-2"
               >
                 <span>{deal.toolName}</span>
@@ -245,6 +246,7 @@ export function DealDetailClient({ deal, tool, relatedDeals }: DealDetailClientP
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <Link
                 href={`/go/${deal.toolSlug}`}
+                rel="sponsored nofollow noopener noreferrer"
                 className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-[#C6FF3D] text-black font-bold text-sm uppercase tracking-wider hover:bg-[#D6FF66] transition-all shadow-[0_0_25px_rgba(198,255,61,0.3)]"
               >
                 <span>Visit {deal.toolName} Official Checkout</span>
@@ -432,7 +434,7 @@ export function DealDetailClient({ deal, tool, relatedDeals }: DealDetailClientP
                   View Full Profile →
                 </Link>
                 <Link
-                  href={`/compare/${tool.slug}-vs-${tool.alternatives[0]?.slug || "syntaxai"}`}
+                  href={comparisonHref}
                   className="text-zinc-400 hover:text-white"
                 >
                   Compare Specs

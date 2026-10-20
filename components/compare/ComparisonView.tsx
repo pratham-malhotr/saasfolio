@@ -139,6 +139,7 @@ export function ComparisonView({
           </div>
           <Link
             href={`/go/${toolA.slug}`}
+            rel="sponsored nofollow noopener noreferrer"
             className="w-full py-3.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5"
           >
             <span>Visit {toolA.name}</span>
@@ -169,6 +170,7 @@ export function ComparisonView({
           </div>
           <Link
             href={`/go/${toolB.slug}`}
+            rel="sponsored nofollow noopener noreferrer"
             className="w-full py-3.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5"
           >
             <span>Visit {toolB.name}</span>

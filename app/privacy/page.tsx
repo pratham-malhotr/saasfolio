@@ -1,11 +1,13 @@
+import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import Link from "next/link";
 import { ShieldCheck, Lock, FileText, ArrowLeft, Mail } from "lucide-react";
 
-export const metadata = {
-  title: "Privacy Policy — SaaSFolio",
-  description: "Learn how SaaSFolio protects your privacy, manages cookies, and securely handles member and affiliate data.",
-};
+export const metadata = pageMetadata({
+  title: 'Privacy Policy',
+  description: 'Read the SaaSFolio privacy policy to learn how information is collected, used and stored when you browse software deals, reviews and community pages.',
+  path: "/privacy",
+});
 
 export default function PrivacyPolicyPage() {
   return (

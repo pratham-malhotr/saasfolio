@@ -1,11 +1,13 @@
+import { pageMetadata } from "@/lib/seo";
 import React, { Suspense } from "react";
-import { Metadata } from "next";
 import { AuthClient } from "@/components/auth/AuthClient";
 
-export const metadata: Metadata = {
-  title: "Create Pro Account — SaaSFolio | Free Membership",
-  description: "Join 10,000+ founders and engineers finding verified software deals, coupons, and benchmarks on SaaSFolio.",
-};
+export const metadata = pageMetadata({
+  title: 'Create an Account',
+  description: 'Create a SaaSFolio account to save software deals and take part in SaaS discussions.',
+  path: "/signup",
+  noIndex: true,
+});
 
 export default function SignupPage() {
   return (

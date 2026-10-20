@@ -1,11 +1,13 @@
+import { pageMetadata } from "@/lib/seo";
 import React, { Suspense } from "react";
-import { Metadata } from "next";
 import { AuthClient } from "@/components/auth/AuthClient";
 
-export const metadata: Metadata = {
-  title: "Sign In — SaaSFolio | Access Deals, Bookmarks & Discussions",
-  description: "Sign in to SaaSFolio to reveal exclusive SaaS promo codes, save architectural guides, and engage with the community.",
-};
+export const metadata = pageMetadata({
+  title: 'Sign In',
+  description: 'Sign in to SaaSFolio to access saved software deals, bookmarks and community discussions.',
+  path: "/login",
+  noIndex: true,
+});
 
 export default function LoginPage() {
   return (

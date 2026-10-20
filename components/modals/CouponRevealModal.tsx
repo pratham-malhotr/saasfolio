@@ -190,7 +190,7 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
           <a
             href={deal.affiliateUrl}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="sponsored nofollow noopener noreferrer"
             className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 text-white font-semibold text-sm hover:bg-white/15 border border-white/15 transition-all group"
           >
             <span>Visit {deal.toolName} Checkout</span>

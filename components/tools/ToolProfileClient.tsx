@@ -22,9 +22,10 @@ interface ToolProfileClientProps {
   tool: DetailedTool;
   deals: SaaSDeal[];
   competitorTools: DetailedTool[];
+  comparisonLinks: Record<string, string>;
 }
 
-export function ToolProfileClient({ tool, deals, competitorTools }: ToolProfileClientProps) {
+export function ToolProfileClient({ tool, deals, competitorTools, comparisonLinks }: ToolProfileClientProps) {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("yearly");
   const [selectedDeal, setSelectedDeal] = useState<SaaSDeal | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -84,6 +85,7 @@ export function ToolProfileClient({ tool, deals, competitorTools }: ToolProfileC
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <Link
               href={`/go/${tool.slug}`}
+              rel="sponsored nofollow noopener noreferrer"
               className="px-6 py-3.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(198,255,61,0.3)]"
             >
               <span>Visit Official Website</span>
@@ -92,7 +94,7 @@ export function ToolProfileClient({ tool, deals, competitorTools }: ToolProfileC
 
             {tool.alternatives[0] && (
               <Link
-                href={`/compare/${tool.slug}-vs-${tool.alternatives[0].slug}`}
+                href={comparisonLinks[tool.alternatives[0].slug] || "/compare"}
                 className="px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-white/25 text-white font-mono text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5"
               >
                 <GitCompare className="w-3.5 h-3.5 text-[#C6FF3D]" />
@@ -304,6 +306,7 @@ export function ToolProfileClient({ tool, deals, competitorTools }: ToolProfileC
 
                     <Link
                       href={`/go/${tool.slug}`}
+                      rel="sponsored nofollow noopener noreferrer"
                       className={`w-full py-2.5 rounded-xl text-center text-xs font-mono font-bold uppercase transition-all mt-4 ${
                         plan.popular
                           ? "bg-[#C6FF3D] text-black hover:bg-[#D6FF66]"
@@ -335,7 +338,7 @@ export function ToolProfileClient({ tool, deals, competitorTools }: ToolProfileC
               {tool.alternatives.map((alt) => (
                 <Link
                   key={alt.slug}
-                  href={`/compare/${tool.slug}-vs-${alt.slug}`}
+                  href={comparisonLinks[alt.slug] || "/compare"}
                   className="group flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#C6FF3D]/40 hover:bg-white/[0.06] transition-all"
                 >
                   <div>

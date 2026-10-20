@@ -30,7 +30,7 @@ const CATEGORIES = [
   "Growth & Marketing",
 ];
 
-export function CommunityHubClient() {
+export function CommunityHubClient({ toolLinks }: { toolLinks: Record<string, string> }) {
   const [threads, setThreads] = useState<DetailedCommunityThread[]>(DETAILED_THREADS);
   const [sortTab, setSortTab] = useState<"hot" | "top" | "new">("hot");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -265,7 +265,7 @@ export function CommunityHubClient() {
                     {thread.toolTags.map((tag) => (
                       <Link
                         key={tag.slug}
-                        href={`/tools/${tag.slug}`}
+                        href={toolLinks[tag.slug] || "/tools"}
                         onClick={(e) => e.stopPropagation()}
                         className="px-2 py-0.5 rounded bg-white/5 hover:bg-[#C6FF3D]/10 text-zinc-400 hover:text-[#C6FF3D] border border-white/5 hover:border-[#C6FF3D]/30 transition-all text-[11px]"
                       >

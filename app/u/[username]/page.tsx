@@ -1,5 +1,6 @@
 import React from "react";
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ProfileDashboardClient } from "@/components/profile/ProfileDashboardClient";
 
 interface PageProps {
@@ -10,10 +11,12 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { username } = await params;
-  return {
-    title: `@${username} — SaaSFolio Member Profile`,
-    description: `View public profile, submitted software, and curated SaaS recommendations by @${username} on SaaSFolio.`,
-  };
+  return pageMetadata({
+    title: `@${username} — Member Profile`,
+    description: `SaaSFolio member profile for @${username}.`,
+    path: `/u/${encodeURIComponent(username)}`,
+    noIndex: true,
+  });
 }
 
 export default async function UserProfilePage({ params }: PageProps) {

@@ -4,28 +4,13 @@ import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
 import { getDealsByTool } from "@/lib/data/deals-data";
 import { ComparisonView } from "@/components/compare/ComparisonView";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { COMPARISON_SLUGS, comparisonCanonicalSlug } from "@/lib/data/comparisons-data";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema, webPageSchema, softwareSchema } from "@/lib/structured-data";
 
 export async function generateStaticParams() {
-  return [
-    { slug: "cogniflow-ai-vs-syntaxai" },
-    { slug: "edgebase-cloud-vs-deployjet" },
-    { slug: "pulsemail-pro-vs-viralpeak" },
-    { slug: "vaultguard-security-vs-armorid" },
-    { slug: "vectorcraft-vs-framegen" },
-    { slug: "metricpulse-vs-insightstream" },
-    { slug: "coolify-vs-vercel" },
-    { slug: "aider-vs-cursor-ai" },
-    { slug: "carrd-vs-framer" },
-    { slug: "obsidian-vs-notion" },
-    { slug: "pocketbase-vs-supabase" },
-    { slug: "umami-vs-plausible" },
-    { slug: "surrealdb-vs-supabase" },
-    { slug: "langflow-vs-flowise" },
-    { slug: "logseq-vs-obsidian" },
-    { slug: "saleshandy-vs-smartlead" },
-    { slug: "vaultwarden-vs-bitwarden" },
-    { slug: "moosend-vs-mailerlite" },
-  ];
+  return COMPARISON_SLUGS.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -36,25 +21,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const parts = slug.split("-vs-");
 
-  if (parts.length !== 2) {
-    return { title: "Comparison Not Found" };
-  }
-
+  if (parts.length !== 2 || parts[0] === parts[1]) notFound();
   const toolA = getToolBySlug(parts[0]);
   const toolB = getToolBySlug(parts[1]);
+  if (!toolA || !toolB) notFound();
 
-  if (!toolA || !toolB) {
-    return { title: "Tools Comparison | SaaSFolio" };
-  }
-
-  return {
-    title: `${toolA.name} vs. ${toolB.name} (2026 Comparison) — Which SaaS Tool Wins?`,
-    description: `Compare ${toolA.name} vs ${toolB.name} side-by-side. Uncover latency benchmarks, pricing plans, pros/cons, and verified coupon deals.`,
-    openGraph: {
-      title: `${toolA.name} vs. ${toolB.name} — Full Spec Comparison | SaaSFolio`,
-      description: `Unbiased head-to-head comparison of ${toolA.name} and ${toolB.name}.`,
-    },
-  };
+  return pageMetadata({
+    title: `${toolA.name} vs ${toolB.name}: Pricing, Features & Deals`,
+    description: `Compare ${toolA.name} and ${toolB.name}: features, pricing plans, pros and cons, and related software deals. Find the right tool for your needs.`,
+    path: `/compare/${comparisonCanonicalSlug(slug)}`,
+  });
 }
 
 export default async function ComparePage({
@@ -65,7 +41,7 @@ export default async function ComparePage({
   const { slug } = await params;
   const parts = slug.split("-vs-");
 
-  if (parts.length !== 2) {
+  if (parts.length !== 2 || parts[0] === parts[1]) {
     notFound();
   }
 
@@ -82,6 +58,13 @@ export default async function ComparePage({
 
   return (
     <div className="min-h-screen bg-[#050505]">
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          { ...webPageSchema(`${toolA.name} vs ${toolB.name}`, `Compare ${toolA.name} and ${toolB.name} pricing, features, pros and cons.`, `/compare/${comparisonCanonicalSlug(slug)}`), about: [softwareSchema(toolA), softwareSchema(toolB)] },
+          breadcrumbSchema([{ name: "Compare SaaS Tools", path: "/compare" }, { name: `${toolA.name} vs ${toolB.name}`, path: `/compare/${comparisonCanonicalSlug(slug)}` }]),
+        ],
+      }} />
       <ComparisonView
         toolA={toolA}
         toolB={toolB}

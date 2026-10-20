@@ -25,9 +25,10 @@ import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
 
 interface CommunityThreadClientProps {
   thread: DetailedCommunityThread;
+  toolLinks?: Record<string, string>;
 }
 
-export function CommunityThreadClient({ thread }: CommunityThreadClientProps) {
+export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClientProps) {
   const [upvotes, setUpvotes] = useState(thread.upvotes);
   const [hasUpvoted, setHasUpvoted] = useState(false);
   const [comments, setComments] = useState<ThreadComment[]>(thread.comments);
@@ -266,7 +267,7 @@ export function CommunityThreadClient({ thread }: CommunityThreadClientProps) {
                 {thread.toolTags.map((tag) => (
                   <Link
                     key={tag.slug}
-                    href={`/tools/${tag.slug}`}
+                    href={toolLinks?.[tag.slug] || "/tools"}
                     className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[#C6FF3D]/10 text-zinc-300 hover:text-[#C6FF3D] border border-white/10 hover:border-[#C6FF3D]/40 font-mono text-xs transition-colors flex items-center gap-1"
                   >
                     <span>#{tag.name}</span>

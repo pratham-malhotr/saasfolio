@@ -68,6 +68,7 @@ export function DealCallout({ dealSlug }: DealCalloutProps) {
             ) : (
               <Link
                 href={deal.affiliateUrl}
+                rel="sponsored nofollow noopener noreferrer"
                 target="_blank"
                 className="px-5 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-display font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2"
               >

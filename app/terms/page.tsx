@@ -1,11 +1,13 @@
+import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import Link from "next/link";
 import { Scale, FileText, CheckCircle2, Mail } from "lucide-react";
 
-export const metadata = {
-  title: "Terms of Service — SaaSFolio",
-  description: "Read the SaaSFolio Terms of Service regarding coupon verifications, software reviews, affiliate disclosures, and community rules.",
-};
+export const metadata = pageMetadata({
+  title: 'Terms of Service',
+  description: 'Read the SaaSFolio terms of service for software deal listings, third-party offers, reviews, account access and community participation.',
+  path: "/terms",
+});
 
 export default function TermsOfServicePage() {
   return (

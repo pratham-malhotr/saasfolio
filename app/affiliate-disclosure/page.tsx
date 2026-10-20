@@ -1,11 +1,13 @@
+import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import Link from "next/link";
 import { ArrowLeft, ShieldCheck, Heart } from "lucide-react";
 
-export const metadata = {
-  title: "Affiliate & Editorial Disclosure — SaaSFolio",
-  description: "Our commitment to 100% transparent pricing and honest software evaluations.",
-};
+export const metadata = pageMetadata({
+  title: 'Affiliate Disclosure',
+  description: 'Learn how SaaSFolio affiliate links and partnerships work when you explore SaaS discounts, software deals, reviews and comparisons.',
+  path: "/affiliate-disclosure",
+});
 
 export default function AffiliateDisclosurePage() {
   return (

@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import Link from "next/link";
 import { 
@@ -16,10 +17,11 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/animations/Reveal";
 
-export const metadata = {
-  title: "About SaaSFolio — Our Mission, Ethics & Verification Standards",
-  description: "Learn why SaaSFolio was built: to eliminate expired coupon clickbait, provide transparent architectural reviews, and help founders discover vetted SaaS software.",
-};
+export const metadata = pageMetadata({
+  title: 'About SaaSFolio: SaaS Discounts & Software Reviews',
+  description: 'Learn about SaaSFolio, our software discovery platform, editorial approach, SaaS discount listings and affiliate disclosure standards.',
+  path: "/about",
+});
 
 const PILLARS = [
   {

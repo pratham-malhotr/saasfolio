@@ -9,9 +9,10 @@ import { TiltCard } from "@/components/animations/TiltCard";
 
 interface ToolsDirectoryClientProps {
   initialTools: DetailedTool[];
+  comparisonLinks: Record<string, string>;
 }
 
-export function ToolsDirectoryClient({ initialTools }: ToolsDirectoryClientProps) {
+export function ToolsDirectoryClient({ initialTools, comparisonLinks }: ToolsDirectoryClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [pricingModel, setPricingModel] = useState("all");
@@ -186,7 +187,7 @@ export function ToolsDirectoryClient({ initialTools }: ToolsDirectoryClientProps
               <div className="flex items-center gap-2">
                 {tool.alternatives[0] && (
                   <Link
-                    href={`/compare/${tool.slug}-vs-${tool.alternatives[0].slug}`}
+                    href={comparisonLinks[tool.slug] || "/compare"}
                     className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white transition-colors"
                     title={`Compare ${tool.name} vs ${tool.alternatives[0].name}`}
                   >

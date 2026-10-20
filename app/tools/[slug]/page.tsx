@@ -4,6 +4,10 @@ import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
 import { getDealsByTool } from "@/lib/data/deals-data";
 import { ToolProfileClient } from "@/components/tools/ToolProfileClient";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema, webPageSchema, softwareSchema } from "@/lib/structured-data";
+import { getComparisonHref } from "@/lib/catalog-links";
 
 export async function generateStaticParams() {
   const tools = getAllTools();
@@ -20,18 +24,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const tool = getToolBySlug(slug);
 
-  if (!tool) {
-    return { title: "Tool Not Found" };
-  }
+  if (!tool) notFound();
 
-  return {
-    title: `${tool.name} Review, Pricing Plans & Active Coupons`,
-    description: tool.description,
-    openGraph: {
-      title: `${tool.name} — Reviews, Specs & Deals | SaaSFolio`,
-      description: tool.description,
-    },
-  };
+  return pageMetadata({
+    title: `${tool.name} Review, Pricing & Alternatives`,
+    description: `${tool.name}: ${tool.description} Explore features, pricing, pros and cons, alternatives and related deals.`,
+    path: `/tools/${tool.slug}`,
+  });
 }
 
 export default async function ToolDetailPage({
@@ -54,10 +53,19 @@ export default async function ToolDetailPage({
 
   return (
     <div className="min-h-screen bg-[#050505]">
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          { ...webPageSchema(`${tool.name} Review, Pricing & Alternatives`, tool.description, `/tools/${tool.slug}`), mainEntity: { "@id": softwareSchema(tool)["@id"] } },
+          softwareSchema(tool),
+          breadcrumbSchema([{ name: "SaaS Tools", path: "/tools" }, { name: tool.name, path: `/tools/${tool.slug}` }]),
+        ],
+      }} />
       <ToolProfileClient
         tool={tool}
         deals={deals}
         competitorTools={competitorTools}
+        comparisonLinks={Object.fromEntries(tool.alternatives.map((alternative) => [alternative.slug, getComparisonHref(tool.slug, alternative.slug)]))}
       />
     </div>
   );

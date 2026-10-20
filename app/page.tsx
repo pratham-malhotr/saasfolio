@@ -10,6 +10,10 @@ import { LogoMarqueeSection } from "@/components/sections/LogoMarqueeSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { NewsletterSection } from "@/components/sections/NewsletterSection";
 
+import { pageMetadata, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
+
+export const metadata = pageMetadata({ title: SITE_TITLE, description: SITE_DESCRIPTION, path: "/" });
+
 export default function HomePage() {
   return (
     <div className="relative bg-[#050505] text-[#EDEDED] min-h-screen">
