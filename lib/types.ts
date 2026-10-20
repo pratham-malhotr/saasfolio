@@ -76,4 +76,5 @@ export interface DetailedTool {
   alternatives: ToolAlternative[];
   reviews: ToolReview[];
   dealsCount: number;
+  tier?: "popular" | "mid-tier" | "indie-budget";
 }
