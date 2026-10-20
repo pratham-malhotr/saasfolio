@@ -132,3 +132,7 @@ provider. Submission delivery needs an HTTPS intake webhook; the form is disable
 until configured. No public customer review backend, account system, hosting, or
 DNS setup is claimed by this update. All listed offers are vendor-published,
 not checkout-tested.
+
+## SEO configuration and validation
+
+See [the SEO implementation and launch checklist](docs/SEO.md) for canonical URLs, indexing rules, structured data, Search Console setup, content verification requirements, and the production-response audit (`npm run seo:audit`).

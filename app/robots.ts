@@ -1,13 +1,14 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+import { absoluteUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech";
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/admin", "/go/"],
+      // Allow crawling of utility pages so bots can read their noindex directives.
+      disallow: ["/api/"],
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: absoluteUrl("/sitemap.xml"),
   };
 }
