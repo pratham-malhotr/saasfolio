@@ -12,6 +12,8 @@ export const metadata = pageMetadata({
   path: "/tools",
 });
 
+export const revalidate = 3600;
+
 export default function ToolsPage() {
   const allTools = getAllTools();
 

@@ -1,6 +1,8 @@
 import { DetailedTool } from "@/lib/types";
+import expandedTools from "./expanded-tools.json";
+import sourceSnapshot from "./offer-snapshot.json";
 
-export const TOOLS_DATA: DetailedTool[] = [
+const LEGACY_TOOLS_DATA: DetailedTool[] = [
   {
     id: "tool-cogniflow",
     name: "CogniFlow AI",
@@ -49911,8 +49913,32 @@ export const TOOLS_DATA: DetailedTool[] = [
   }
 ];
 
+// The previous generator assigned fabricated ratings, reviews and prices. Keep
+// the existing profiles and routes, but do not publish unsupported social proof.
+const categoryAliases: Record<string, string> = { ai: "ai-tools", dev: "dev-tools", crm: "crm-sales", pm: "project-management", devtools: "dev-tools", infrastructure: "hosting", sales: "crm-sales", support: "crm-sales" };
+const COMBINED_TOOLS_DATA: DetailedTool[] = [...LEGACY_TOOLS_DATA, ...(expandedTools as DetailedTool[])]
+  .filter((tool, index, all) => all.findIndex(other => other.slug === tool.slug) === index)
+  .map(tool => ({ ...tool, categorySlug: categoryAliases[tool.categorySlug] || tool.categorySlug,
+    ...(/^Save \d+%/.test(tool.description) ? {
+      tagline: `${tool.name}: ${tool.bestFor}`,
+      description: `${tool.name}: ${tool.bestFor}.`,
+      longDescription: `${tool.name} is listed for ${tool.bestFor.charAt(0).toLowerCase() + tool.bestFor.slice(1)}. Visit the official provider for current features, pricing, integrations, and eligibility.`,
+      keyFeatures: [], pros: [], cons: [],
+    } : {}),
+    rating: 0, reviewCount: 0, reviews: [], verified: false, pricingVerified: false,
+    pricingPlans: [], sourceUrl: tool.sourceUrl || tool.website,
+    pricingUrl: ((sourceSnapshot.sources as Record<string, { status: string; url: string }>)[`vendor:${tool.slug}`]?.status === "ok"
+      ? (sourceSnapshot.sources as Record<string, { status: string; url: string }>)[`vendor:${tool.slug}`].url
+      : tool.website),
+  }));
+
+const brandKey = (tool: DetailedTool) => tool.name.toLowerCase().replace(/[^a-z0-9]/g, "");
+export const TOOLS_DATA: DetailedTool[] = COMBINED_TOOLS_DATA.filter((tool, index, all) =>
+  all.findIndex(other => brandKey(other) === brandKey(tool)) === index);
+
 export function getToolBySlug(slug: string): DetailedTool | undefined {
-  return TOOLS_DATA.find((t) => t.slug === slug);
+  const requested = COMBINED_TOOLS_DATA.find(tool => tool.slug === slug);
+  return requested ? TOOLS_DATA.find(tool => brandKey(tool) === brandKey(requested)) : undefined;
 }
 
 export function getAllTools(): DetailedTool[] {

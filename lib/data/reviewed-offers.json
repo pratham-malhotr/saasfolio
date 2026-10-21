@@ -1,0 +1,177 @@
+[
+  {
+    "slug": "notion-startup-program",
+    "toolSlug": "notion",
+    "title": "Up to 6 months of Notion Business for eligible startups",
+    "dealType": "free_trial",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.notion.com/startups",
+    "destinationUrl": "https://www.notion.com/startups",
+    "evidence": [
+      "6 months",
+      "Business",
+      "startup"
+    ],
+    "terms": "Startup application and eligibility requirements apply. The duration depends on the startup program and partner status. Apply through Notion; this is not a general public coupon. Checkout has not been tested."
+  },
+  {
+    "slug": "hubspot-startup-program",
+    "toolSlug": "hubspot",
+    "title": "Explore HubSpot's startup discounts",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.hubspot.com/startups",
+    "destinationUrl": "https://www.hubspot.com/startups",
+    "evidence": [
+      "startup",
+      "discount"
+    ],
+    "terms": "Application, funding, and partner eligibility determine the discount and its duration. Review the program's current terms directly with HubSpot."
+  },
+  {
+    "slug": "digitalocean-hatch-startup-program",
+    "toolSlug": "digitalocean",
+    "title": "Explore DigitalOcean Hatch startup credits",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.digitalocean.com/hatch",
+    "destinationUrl": "https://www.digitalocean.com/hatch",
+    "evidence": [
+      "startup",
+      "credit"
+    ],
+    "terms": "Startup credits require application and approval. Credit amount, eligible infrastructure, and validity depend on the vendor's current program."
+  },
+  {
+    "slug": "github-student-developer-pack",
+    "toolSlug": "github",
+    "title": "GitHub Student Developer Pack benefits",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://education.github.com/pack",
+    "destinationUrl": "https://education.github.com/pack",
+    "evidence": [
+      "Student Developer Pack",
+      "student"
+    ],
+    "terms": "Verified student status is required. Partner benefits, limits, and availability differ by provider and may change."
+  },
+  {
+    "slug": "hostinger-official-coupon",
+    "toolSlug": "hostinger",
+    "title": "Hostinger's official hosting coupon offers",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.hostinger.com/coupons",
+    "destinationUrl": "https://www.hostinger.com/coupons",
+    "evidence": [
+      "coupon",
+      "hosting"
+    ],
+    "terms": "Discounts depend on the selected product, country, and subscription term. Review initial charges and renewal rates on Hostinger before paying."
+  },
+  {
+    "slug": "namecheap-monthly-coupons",
+    "toolSlug": "namecheap",
+    "title": "Namecheap's current monthly coupon codes",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.namecheap.com/promos/coupons/",
+    "destinationUrl": "https://www.namecheap.com/promos/coupons/",
+    "evidence": [
+      "coupon",
+      "domain"
+    ],
+    "terms": "Copy the currently published code from Namecheap's official coupon page. Product restrictions, registration terms, renewal prices, and additional fees apply."
+  },
+  {
+    "slug": "hostinger-techradar-reported-code",
+    "toolSlug": "hostinger",
+    "title": "TechRadar's reported Hostinger discount code",
+    "dealType": "coupon",
+    "code": "TECHRADAR",
+    "discountPercentage": 0,
+    "sourceKind": "coupon-site",
+    "sourceUrl": "https://www.techradar.com/pro/website-building/building-a-business-in-2026-launch-your-website-for-less-with-this-huge-hostinger-discount-exclusive-to-techradar",
+    "destinationUrl": "https://www.hostinger.com/pricing",
+    "evidence": [
+      "TECHRADAR",
+      "10%"
+    ],
+    "terms": "TechRadar reports this code; SaaSFolio has not tested it at checkout. Product, term, and regional restrictions may apply. Confirm the discount at the vendor before purchasing."
+  },
+  {
+    "slug": "hostinger-couponspage-code",
+    "toolSlug": "hostinger",
+    "title": "Hostinger official COUPONSPAGE hosting code",
+    "dealType": "coupon",
+    "code": "COUPONSPAGE",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.hostinger.com/coupons",
+    "destinationUrl": "https://www.hostinger.com/coupons",
+    "evidence": [
+      "COUPONSPAGE",
+      "coupon applied"
+    ],
+    "terms": "Vendor-published code for selected hosting plans. Displayed monthly prices may require a 48-month upfront payment. Eligibility, regional prices, and renewal rates differ by plan. Not checkout tested."
+  },
+  {
+    "slug": "namecheap-october-email-code",
+    "toolSlug": "namecheap",
+    "title": "Up to 40% off Namecheap Professional Business Email",
+    "dealType": "coupon",
+    "code": "GHOSTPE",
+    "discountPercentage": 40,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.namecheap.com/promos/coupons/",
+    "destinationUrl": "https://www.namecheap.com/promos/coupons/",
+    "evidence": [
+      "GHOSTPE",
+      "40%",
+      "October 31, 2026"
+    ],
+    "expiryDate": "2026-10-31T23:59:59.000Z",
+    "terms": "Published for October 1\u201331, 2026. Up to 40% applies to the two-year Scale Business Email plan; other plans and billing terms have lower savings. Confirm renewal prices and final charges with Namecheap. Not checkout tested."
+  },
+  {
+    "slug": "namecheap-october-domain-code",
+    "toolSlug": "namecheap",
+    "title": "Namecheap October domain registration and transfer code",
+    "dealType": "coupon",
+    "code": "GHOSTDOT",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.namecheap.com/promos/coupons/",
+    "destinationUrl": "https://www.namecheap.com/promos/coupons/",
+    "evidence": [
+      "GHOSTDOT",
+      "October 31, 2026"
+    ],
+    "expiryDate": "2026-10-31T23:59:59.000Z",
+    "terms": "Published for October 1\u201331, 2026. First-year registration and transfer offers apply to eligible extensions; premium and aftermarket domains are excluded. ICANN fees may apply. Not checkout tested."
+  },
+  {
+    "slug": "namecheap-october-ssl-code",
+    "toolSlug": "namecheap",
+    "title": "Namecheap Standard Wildcard SSL coupon",
+    "dealType": "coupon",
+    "code": "GHOSTSSL",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.namecheap.com/promos/coupons/",
+    "destinationUrl": "https://www.namecheap.com/promos/coupons/",
+    "evidence": [
+      "GHOSTSSL",
+      "October 31, 2026"
+    ],
+    "expiryDate": "2026-10-31T23:59:59.000Z",
+    "terms": "Published for October 1\u201331, 2026. Applies to eligible Standard Wildcard SSL purchases with prices depending on certificate duration. Check the official terms before purchase. Not checkout tested."
+  }
+]

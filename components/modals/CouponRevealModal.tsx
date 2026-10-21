@@ -4,8 +4,7 @@ import React, { useState } from "react";
 import confetti from "canvas-confetti";
 import { Copy, Check, ExternalLink, ThumbsUp, ThumbsDown, X, ShieldCheck, Sparkles, Clock } from "lucide-react";
 import { SaaSDeal } from "@/lib/mock-data";
-import { getToolBySlug } from "@/lib/data/tools-data";
-import { CUSTOM_AFFILIATE_LINKS, getCustomAffiliateUrl } from "@/lib/data/affiliate-links";
+import { getOfferDestination, offerLabel, offerStatus } from "@/lib/offer-links";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface CouponRevealModalProps {
@@ -21,14 +20,7 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
 
   if (!isOpen || !deal) return null;
 
-  const tool = getToolBySlug(deal.toolSlug);
-  const customAffiliate =
-    getCustomAffiliateUrl(deal.toolSlug) ||
-    getCustomAffiliateUrl(deal.slug) ||
-    getCustomAffiliateUrl(deal.id) ||
-    CUSTOM_AFFILIATE_LINKS[deal.toolSlug] ||
-    CUSTOM_AFFILIATE_LINKS[deal.slug];
-  const destinationUrl = customAffiliate || tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
+  const destinationUrl = getOfferDestination(deal);
 
   const triggerConfetti = () => {
     confetti({
@@ -46,9 +38,10 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
 
     if (deal.code) {
       try {
-        navigator.clipboard.writeText(deal.code);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 3000);
+        navigator.clipboard.writeText(deal.code).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 3000);
+        }).catch(() => setCopied(false));
       } catch {
         // Fallback for non-secure contexts
       }
@@ -90,7 +83,7 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
           {/* Header */}
           <div className="flex items-center gap-3 mb-4">
             <div className="w-12 h-12 rounded-xl bg-black border border-white/15 flex items-center justify-center font-bold text-base text-[#C6FF3D] shadow-[0_0_15px_rgba(198,255,61,0.2)]">
-              {deal.discountPercentage}%
+              {offerLabel(deal)}
             </div>
             <div>
               <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400">
@@ -107,13 +100,13 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
           {/* Reveal Code Box */}
           <div className="relative mb-6 rounded-xl border border-dashed border-[#C6FF3D]/40 bg-black/60 p-4 text-center">
             <div className="font-mono text-xs uppercase tracking-widest text-zinc-400 mb-2">
-              EXCLUSIVE DISCOUNT COUPON CODE
+              {deal.code ? "REPORTED COUPON CODE" : "PROVIDER OFFER"}
             </div>
 
             {revealed ? (
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <div className="w-full sm:w-auto px-6 py-3 rounded-lg bg-[#141416] border border-[#C6FF3D] font-mono text-xl font-black tracking-widest text-[#C6FF3D] shadow-[0_0_20px_rgba(198,255,61,0.25)] select-all">
-                  {deal.code || "AUTOMATIC_DISCOUNT"}
+                  {deal.code || "NO CODE NEEDED"}
                 </div>
                 <button
                   onClick={handleRevealAndCopy}
@@ -125,7 +118,7 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
                     </>
                   ) : (
                     <>
-                      <Copy className="w-4 h-4" /> Copy Code
+                      <Copy className="w-4 h-4" /> {deal.code ? "Copy Code" : "Open Provider"}
                     </>
                   )}
                 </button>
@@ -140,7 +133,7 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
                   className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-base hover:bg-[#D6FF66] transition-all shadow-[0_0_25px_rgba(198,255,61,0.4)] cursor-pointer"
                 >
                   <Sparkles className="w-5 h-5" />
-                  Reveal Code & Copy to Clipboard
+                  {deal.code ? "Reveal Code & Open Provider" : "Open Provider Offer"}
                 </button>
               </div>
             )}
@@ -160,11 +153,11 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
           <div className="flex items-center justify-between text-xs text-zinc-400 mb-6 px-1">
             <span className="flex items-center gap-1.5 text-zinc-300">
               <ShieldCheck className="w-4 h-4 text-[#C6FF3D]" />
-              {deal.successRate}% Success Rate ({deal.revealsCount} reveals)
+              {offerStatus(deal)}
             </span>
             <span className="flex items-center gap-1 font-mono text-[11px] text-zinc-400">
               <Clock className="w-3.5 h-3.5" />
-              Verified {deal.verifiedAt}
+              Source: {deal.verifiedAt}
             </span>
           </div>
 
@@ -181,7 +174,7 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
                 }`}
               >
                 <ThumbsUp className="w-3.5 h-3.5" />
-                <span>Yes ({deal.successRate}%)</span>
+                <span>Yes (this session)</span>
               </button>
               <button
                 onClick={() => handleVote("down")}
@@ -204,7 +197,7 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
             rel="sponsored nofollow noopener noreferrer"
             className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 text-white font-semibold text-sm hover:bg-white/15 border border-white/15 transition-all group"
           >
-            <span>Visit {deal.toolName} Checkout</span>
+            <span>Visit {deal.toolName}</span>
             <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
 

@@ -149,7 +149,7 @@ export function ToolsDirectoryClient({ initialTools, comparisonLinks }: ToolsDir
                   </span>
                   <div className="flex items-center gap-1 font-mono text-xs text-[#C6FF3D] font-bold">
                     <Star className="w-3.5 h-3.5 fill-[#C6FF3D]" />
-                    <span>{tool.rating}</span>
+                    <span>{tool.reviewCount ? tool.rating : "Unrated"}</span>
                   </div>
                 </div>
               </div>
@@ -181,7 +181,7 @@ export function ToolsDirectoryClient({ initialTools, comparisonLinks }: ToolsDir
             {/* Bottom Actions */}
             <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
               <span className="text-zinc-400">
-                Starts at <strong className="text-white">${tool.pricingStart}</strong>/mo
+                {tool.pricingVerified ? <>Starts at <strong className="text-white">${tool.pricingStart}</strong>/mo</> : "See official pricing"}
               </span>
 
               <div className="flex items-center gap-2">

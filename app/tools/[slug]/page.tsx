@@ -1,5 +1,5 @@
 import React from "react";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
 import { getDealsByTool } from "@/lib/data/deals-data";
 import { ToolProfileClient } from "@/components/tools/ToolProfileClient";
@@ -10,8 +10,6 @@ import {
   breadcrumbSchema,
   webPageSchema,
   softwareSchema,
-  faqSchema,
-  getDealFaqs,
 } from "@/lib/structured-data";
 import { getComparisonHref } from "@/lib/catalog-links";
 
@@ -40,10 +38,12 @@ export async function generateMetadata({
 
   return pageMetadata({
     title: toolSearchTitle(tool.name, topDiscount),
-    description: toolMetaDescription(tool.name, topDiscount),
+    description: toolMetaDescription(tool.name, topDiscount, tool.description),
     path: `/tools/${tool.slug}`,
   });
 }
+
+export const revalidate = 3600;
 
 export default async function ToolDetailPage({
   params,
@@ -56,14 +56,13 @@ export default async function ToolDetailPage({
   if (!tool) {
     notFound();
   }
+  if (slug !== tool.slug) permanentRedirect(`/tools/${tool.slug}`);
 
   const deals = getDealsByTool(tool.slug);
   const topDiscount = deals.reduce(
     (max, d) => (d.discountPercentage > max ? d.discountPercentage : max),
     0
   );
-  const topDeal = deals[0];
-  const faqs = topDeal ? getDealFaqs(topDeal, tool) : [];
 
   const allTools = getAllTools();
   const competitorTools = allTools.filter(
@@ -79,7 +78,7 @@ export default async function ToolDetailPage({
             {
               ...webPageSchema(
                 toolSearchTitle(tool.name, topDiscount),
-                toolMetaDescription(tool.name, topDiscount),
+                toolMetaDescription(tool.name, topDiscount, tool.description),
                 `/tools/${tool.slug}`
               ),
               mainEntity: { "@id": softwareSchema(tool)["@id"] },
@@ -89,7 +88,6 @@ export default async function ToolDetailPage({
               { name: "SaaS Tools", path: "/tools" },
               { name: tool.name, path: `/tools/${tool.slug}` },
             ]),
-            ...(faqs.length > 0 ? [faqSchema(faqs)] : []),
           ],
         }}
       />

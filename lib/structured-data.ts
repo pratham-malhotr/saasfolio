@@ -47,7 +47,9 @@ export function collectionSchema(name: string, description: string, path: string
 
 export function softwareSchema(tool: DetailedTool) {
   return {
-    "@type": "Thing", "@id": absoluteUrl(`/tools/${tool.slug}#software`),
+    "@type": "SoftwareApplication", "@id": absoluteUrl(`/tools/${tool.slug}#software`),
+    applicationCategory: tool.category, operatingSystem: "See provider for platform availability",
+    featureList: tool.keyFeatures, sameAs: tool.website,
     name: tool.name, description: tool.description, url: absoluteUrl(`/tools/${tool.slug}`),
   };
 }
@@ -68,63 +70,21 @@ export function faqSchema(faqs: { question: string; answer: string }[]) {
 
 export function howToRedeemSchema(toolName: string, code?: string) {
   return {
-    "@type": "HowTo",
-    name: `How to Apply Your ${toolName} Discount Coupon`,
-    description: `Step-by-step instructions to redeem verified promo codes and claim active discounts on ${toolName}.`,
+    "@type": "HowTo", name: `How to check and claim the ${toolName} offer`,
     step: [
-      {
-        "@type": "HowToStep",
-        position: 1,
-        name: "Reveal Promo Code",
-        text: `Click the 'Reveal Code' button on SaaSFolio to reveal and automatically copy your ${toolName} discount code${code ? ` (${code})` : ""}.`,
-      },
-      {
-        "@type": "HowToStep",
-        position: 2,
-        name: `Open ${toolName} Official Checkout`,
-        text: `Navigate to the official ${toolName} checkout page with your discount link pre-activated.`,
-      },
-      {
-        "@type": "HowToStep",
-        position: 3,
-        name: "Apply Coupon Code",
-        text: `Paste your coupon code into the 'Promo Code' or 'Discount Voucher' input field at checkout.`,
-      },
-      {
-        "@type": "HowToStep",
-        position: 4,
-        name: "Confirm Discounted Total",
-        text: `Verify that your final price reflects the discount before completing payment.`,
-      },
+      { "@type": "HowToStep", position: 1, name: "Review eligibility", text: "Read the offer source and current provider terms, including eligible plans and renewal prices." },
+      { "@type": "HowToStep", position: 2, name: "Visit the provider", text: `Open the recorded ${toolName} offer link.` },
+      { "@type": "HowToStep", position: 3, name: code ? "Try the reported code" : "Choose an eligible plan", text: code ? `Enter ${code} at checkout. Its acceptance is determined by the provider.` : "Follow the provider's signup or application process. No coupon is recorded for this offer." },
+      { "@type": "HowToStep", position: 4, name: "Confirm the total", text: "Check the final price, billing period, eligibility and renewal terms before paying." },
     ],
   };
 }
 
 export function getDealFaqs(deal: SaaSDeal, tool?: DetailedTool) {
-  const toolName = deal.toolName;
-  const discount = `${deal.discountPercentage}%`;
-  const code = deal.code ? `"${deal.code}"` : "the verified partner rate";
-
   return [
-    {
-      question: `How do I get a discount on ${toolName}?`,
-      answer: `You can get ${discount} off ${toolName} by using promo code ${code} at checkout. SaaSFolio hand-tests and verifies working discount rates directly with software vendors so you never run into expired codes.`,
-    },
-    {
-      question: `Does ${toolName} have an active coupon code in 2026?`,
-      answer: `Yes, the current verified coupon code for ${toolName} is ${code}, which provides ${discount} off eligible ${toolName} plans. This coupon was verified working today with a ${deal.successRate}% verified success rate.`,
-    },
-    {
-      question: `Can I use this ${toolName} discount on annual billing?`,
-      answer: `Yes, in most cases ${toolName} allows stacking coupon codes with annual billing cycles, which typically provides an extra 15% to 20% discount (or 2 full months free) compared to monthly billing.`,
-    },
-    {
-      question: `Does ${toolName} offer a free trial or free tier?`,
-      answer: `${toolName} provides ${tool?.pricingModel === "Freemium" ? "a free forever plan alongside its premium tiers" : "a free trial for new users"} so you can test features before paying.`,
-    },
-    {
-      question: `What should I do if the ${toolName} promo code does not apply?`,
-      answer: `Make sure the promo code is pasted without leading or trailing spaces. Some coupons apply exclusively to specific plans (such as Growth or Scale tiers) or to first-time customer accounts. You can also click our direct partner checkout button to activate the discount automatically.`,
-    },
+    { question: `How do I claim this ${deal.toolName} offer?`, answer: deal.code ? `The recorded code is ${deal.code}. Open the offer link, select an eligible plan, and try the code at checkout. ${deal.terms}` : `Open the provider link and follow its signup or application process. ${deal.terms}` },
+    { question: `Has this ${deal.toolName} offer been checkout tested?`, answer: `No. ${deal.checkedAt ? `The source page was checked on ${deal.checkedAt.slice(0, 10)}.` : "No current source verification is recorded."} ${deal.sourceKind === "coupon-site" ? "This is a third party reported offer." : "The provider determines availability and eligibility."} Always confirm the price before paying.` },
+    { question: `Can I combine this offer with other ${deal.toolName} discounts?`, answer: "Stacking is not assumed. Check the provider's current promotion terms for billing restrictions, eligibility, and whether another code can be used." },
+    { question: `Where can I check ${deal.toolName} pricing and alternatives?`, answer: `Use the official provider link for current prices and plan limits.${tool ? ` The ${tool.name} profile also lists product features and related software.` : ""} Prices can differ by region, billing period, and usage.` },
   ];
 }

@@ -6,7 +6,7 @@ import confetti from "canvas-confetti";
 import { FEATURED_ARTICLES, TRENDING_DISCUSSIONS, CATEGORIES } from "@/lib/mock-data";
 import { TOOLS_DATA } from "@/lib/data/tools-data";
 import { DEALS_DATA } from "@/lib/data/deals-data";
-import { CUSTOM_AFFILIATE_LINKS, getCustomAffiliateUrl } from "@/lib/data/affiliate-links";
+import { getOfferDestination, offerLabel } from "@/lib/offer-links";
 import type { SaaSDeal } from "@/lib/types";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -103,19 +103,12 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
 
   // Instant coupon reveal & direct site redirect handler
   const handleRevealAndRedirect = (deal: SaaSDeal) => {
-    const tool = TOOLS_DATA.find((t) => t.slug === deal.toolSlug);
-    const customAffiliate =
-      getCustomAffiliateUrl(deal.toolSlug) ||
-      getCustomAffiliateUrl(deal.slug) ||
-      getCustomAffiliateUrl(deal.id) ||
-      CUSTOM_AFFILIATE_LINKS[deal.toolSlug] ||
-      CUSTOM_AFFILIATE_LINKS[deal.slug];
-    const targetUrl = customAffiliate || tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
+    const targetUrl = getOfferDestination(deal);
 
     // 1. Copy code to clipboard
     if (deal.code && typeof navigator !== "undefined" && navigator.clipboard) {
       try {
-        navigator.clipboard.writeText(deal.code);
+        void navigator.clipboard.writeText(deal.code).catch(() => undefined);
       } catch {
         // Fallback for non-secure contexts
       }
@@ -136,7 +129,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
 
     // 3. Set visual notice banner
     setRevealedNotice({
-      code: deal.code || "AUTOMATIC",
+      code: deal.code || "NO CODE NEEDED",
       toolName: deal.toolName,
       url: targetUrl,
     });
@@ -268,15 +261,15 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="w-11 h-11 rounded-xl bg-black border border-[#C6FF3D]/60 flex flex-col items-center justify-center font-bold text-xs text-[#C6FF3D] shadow-[0_0_15px_rgba(198,255,61,0.25)] shrink-0">
                     <Sparkles className="w-4 h-4 text-[#C6FF3D] mb-0.5" />
-                    <span className="text-[10px] leading-none">{topCouponDeal.discountPercentage}%</span>
+                    <span className="text-[10px] leading-none">{offerLabel(topCouponDeal)}</span>
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#C6FF3D] px-2 py-0.5 rounded bg-[#C6FF3D]/15 border border-[#C6FF3D]/30">
-                        COUPON: {topCouponDeal.code || "AUTOMATIC"}
+                        COUPON: {topCouponDeal.code || "NO CODE NEEDED"}
                       </span>
                       <span className="font-mono text-[10px] text-zinc-400">
-                        {topCouponDeal.successRate}% Success
+                        Source checked; not checkout tested
                       </span>
                     </div>
                     <div className="text-sm font-bold text-white mt-1">
@@ -383,7 +376,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                         className="flex items-center gap-3 flex-1 min-w-0"
                       >
                         <div className="w-9 h-9 rounded-lg bg-black border border-white/10 flex items-center justify-center font-bold text-xs text-[#C6FF3D] group-hover:border-[#C6FF3D]/50 shrink-0">
-                          {deal.discountPercentage}%
+                          {offerLabel(deal)}
                         </div>
                         <div className="min-w-0">
                           <div className="text-sm font-semibold text-white group-hover:text-[#C6FF3D] transition-colors truncate">

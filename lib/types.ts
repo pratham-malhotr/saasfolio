@@ -34,7 +34,7 @@ export interface SaaSDeal {
   category: string;
   categorySlug: string;
   discountPercentage: number;
-  dealType: "coupon" | "lifetime" | "free_trial" | "free_plan";
+  dealType: "coupon" | "lifetime" | "free_trial" | "free_plan" | "offer" | "pricing";
   code?: string;
   originalPrice?: number;
   dealPrice?: number;
@@ -50,6 +50,13 @@ export interface SaaSDeal {
   revealsCount: number;
   affiliateUrl: string;
   featured?: boolean;
+  sourceUrl?: string;
+  sourceKind?: "vendor" | "coupon-site";
+  checkedAt?: string;
+  updatedAt?: string;
+  evidence?: string;
+  destinationUrl?: string;
+  checkoutTested?: boolean;
 }
 
 export interface DetailedTool {
@@ -77,4 +84,8 @@ export interface DetailedTool {
   reviews: ToolReview[];
   dealsCount: number;
   tier?: "popular" | "mid-tier" | "indie-budget";
+  sourceUrl?: string;
+  pricingUrl?: string;
+  pricingVerified?: boolean;
+  updatedAt?: string;
 }

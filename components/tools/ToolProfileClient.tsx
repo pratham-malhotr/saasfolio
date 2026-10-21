@@ -15,8 +15,10 @@ import {
   ThumbsUp,
   MessageSquare
 } from "lucide-react";
+import { offerLabel } from "@/lib/offer-links";
 import { DetailedTool, SaaSDeal } from "@/lib/types";
 import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
+import { DISCOUNT_SOURCES } from "@/lib/discount-sources";
 
 interface ToolProfileClientProps {
   tool: DetailedTool;
@@ -109,16 +111,17 @@ export function ToolProfileClient({ tool, deals, competitorTools, comparisonLink
           <p className="text-zinc-300 text-base sm:text-lg max-w-3xl leading-relaxed">
             {tool.tagline}
           </p>
+          {DISCOUNT_SOURCES[tool.slug] && <p className="text-xs text-zinc-400">Research reported coupons: {DISCOUNT_SOURCES[tool.slug].map(source => <a key={source.url} href={source.url} target="_blank" rel="nofollow noopener noreferrer" className="text-[#C6FF3D] hover:underline mr-3">{source.name} ↗</a>)}</p>}
 
           <div className="flex items-center gap-6 font-mono text-xs text-zinc-400 shrink-0">
             <div className="flex items-center gap-1.5 text-white">
               <Star className="w-4 h-4 fill-[#C6FF3D] text-[#C6FF3D]" />
-              <span className="font-bold text-sm">{tool.rating}</span>
+              <span className="font-bold text-sm">{tool.reviewCount ? tool.rating : "Unrated"}</span>
               <span className="text-zinc-500">({tool.reviewCount} reviews)</span>
             </div>
             <span>✦</span>
             <div>
-              Starts at <strong className="text-[#C6FF3D]">${tool.pricingStart}</strong>/mo
+              {tool.pricingVerified ? <>Starts at <strong className="text-[#C6FF3D]">${tool.pricingStart}</strong>/mo</> : "See official pricing"}
             </div>
           </div>
         </div>
@@ -134,7 +137,7 @@ export function ToolProfileClient({ tool, deals, competitorTools, comparisonLink
                 Active Deals & Discounts for {tool.name} ({deals.length})
               </h3>
             </div>
-            <span className="font-mono text-xs text-[#C6FF3D] font-bold">100% VERIFIED</span>
+            <span className="font-mono text-xs text-[#C6FF3D] font-bold">PROVIDER TERMS APPLY</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -146,7 +149,7 @@ export function ToolProfileClient({ tool, deals, competitorTools, comparisonLink
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-mono text-xs px-2 py-0.5 rounded bg-[#C6FF3D] text-black font-black">
-                      {deal.discountPercentage}% OFF
+                      {offerLabel(deal)}
                     </span>
                     <span className="font-mono text-[11px] text-zinc-400">{deal.dealType.toUpperCase()}</span>
                   </div>
@@ -159,7 +162,7 @@ export function ToolProfileClient({ tool, deals, competitorTools, comparisonLink
                   }}
                   className="px-4 py-2 rounded-lg bg-[#C6FF3D] text-black font-mono text-xs font-bold uppercase hover:bg-[#D6FF66] transition-all ml-4 shrink-0"
                 >
-                  Reveal Code
+                  {deal.code ? "Reveal Code" : "View Offer"}
                 </button>
               </div>
             ))}
@@ -262,12 +265,13 @@ export function ToolProfileClient({ tool, deals, competitorTools, comparisonLink
                   }`}
                 >
                   <span>Yearly</span>
-                  <span className="text-[10px] bg-black/20 px-1 py-0.2 rounded font-mono">SAVE ~20%</span>
+                  <span className="text-[10px] bg-black/20 px-1 py-0.2 rounded font-mono">CHECK PROVIDER</span>
                 </button>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {!tool.pricingPlans.length && <a href={tool.pricingUrl || tool.website} target="_blank" rel="noopener noreferrer" className="text-sm text-[#C6FF3D] hover:underline">View current {tool.name} plans and billing terms on the official website ↗</a>}
               {tool.pricingPlans.map((plan) => {
                 const price = billingCycle === "yearly" ? plan.priceYearly : plan.priceMonthly;
                 return (

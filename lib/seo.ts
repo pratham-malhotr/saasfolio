@@ -73,30 +73,20 @@ export function isoDate(value?: string): string | undefined {
 }
 
 export function dealSearchTitle(deal: SaaSDeal): string {
-  const label = deal.dealType === "coupon" && deal.code ? "Discount & Coupon Code" :
-    deal.dealType === "lifetime" ? "Lifetime Deal & Discount" :
-    deal.dealType === "free_trial" ? "Discount & Free Trial" : "Verified Discount";
-  return `${deal.toolName} ${label}: ${deal.title}`;
+  if (deal.dealType === "pricing") return `${deal.toolName} Pricing & Current Offers`;
+  if (deal.code) return `${deal.toolName} Coupon Code: ${deal.code}`;
+  return `${deal.toolName}: ${deal.title}`;
 }
 
 export function dealMetaDescription(deal: SaaSDeal): string {
-  const codePart = deal.code ? ` Use promo code ${deal.code}.` : "";
-  const base = `Get verified ${deal.toolName} discount codes for 2026. Save ${deal.discountPercentage}% with exclusive offers.${codePart} Tested today with ${deal.successRate}% verified success rate.`;
-  return summarize(base, 155);
+  const code = deal.code ? ` Reported code: ${deal.code}.` : "";
+  return summarize(`${deal.title}.${code} ${deal.terms}`, 155);
 }
 
 export function toolSearchTitle(toolName: string, topDiscount = 0): string {
-  if (topDiscount > 0) {
-    return `${toolName} Pricing, Reviews & Verified ${topDiscount}% Discount Codes (2026)`;
-  }
-  return `${toolName} Reviews, Pricing Plans & Top Alternatives (2026)`;
+  return topDiscount > 0 ? `${toolName} Pricing, Features & Up to ${topDiscount}% Off` : `${toolName} Pricing, Features & Software Alternatives`;
 }
 
-export function toolMetaDescription(toolName: string, topDiscount = 0): string {
-  if (topDiscount > 0) {
-    const base = `Save up to ${topDiscount}% on ${toolName} with verified promo coupons and discounts for 2026. Compare ${toolName} pricing plans, read authentic reviews, and find alternatives.`;
-    return summarize(base, 155);
-  }
-  const base = `Explore ${toolName} pricing plans, key features, verified reviews, pros and cons, and top software alternatives for your business on SaaSFolio.`;
-  return summarize(base, 155);
+export function toolMetaDescription(toolName: string, topDiscount = 0, description?: string): string {
+  return summarize(`${description || `Explore ${toolName} features and software alternatives.`} ${topDiscount > 0 ? `Find sourced offers up to ${topDiscount}% off.` : "Check official pricing and current offers."}`, 155);
 }

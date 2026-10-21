@@ -28,7 +28,7 @@ import {
   Zap
 } from "lucide-react";
 import { SaaSDeal, DetailedTool } from "@/lib/types";
-import { CUSTOM_AFFILIATE_LINKS, getCustomAffiliateUrl } from "@/lib/data/affiliate-links";
+import { getOfferDestination, offerLabel, offerStatus } from "@/lib/offer-links";
 
 interface DealDetailClientProps {
   deal: SaaSDeal;
@@ -50,43 +50,26 @@ export function DealDetailClient({
   const [revealed, setRevealed] = useState(false);
   const [copied, setCopied] = useState(false);
   const [voted, setVoted] = useState<"up" | "down" | null>(null);
-  const [votesUp, setVotesUp] = useState(deal.votesUp || 120);
-  const [votesDown, setVotesDown] = useState(deal.votesDown || 4);
+  const [votesUp, setVotesUp] = useState(deal.votesUp || 0);
+  const [votesDown, setVotesDown] = useState(deal.votesDown || 0);
   const [saved, setSaved] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   // Comments state
-  const [comments, setComments] = useState<{ id: string; user: string; text: string; time: string }[]>([
-    {
-      id: "c-1",
-      user: "dev_alex",
-      text: "Code worked instantly on annual checkout! Saved over $290 for our team.",
-      time: "2 hours ago",
-    },
-    {
-      id: "c-2",
-      user: "marcus_scale",
-      text: "Confirmed working on both EU and US billing locations. Great find SaaSFolio team.",
-      time: "5 hours ago",
-    },
-  ]);
+  const [comments, setComments] = useState<{ id: string; user: string; text: string; time: string }[]>([]);
   const [commentInput, setCommentInput] = useState("");
 
-  // Countdown timer state
-  const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 14, minutes: 22, seconds: 45 });
-
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
-        if (prev.minutes > 0) return { ...prev, minutes: 59, seconds: 59 };
-        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        if (prev.days > 0) return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
-        return prev;
-      });
-    }, 1000);
+    if (!deal.expiryDate) return;
+    const update = () => {
+      const seconds = Math.max(0, Math.floor((Date.parse(deal.expiryDate) - Date.now()) / 1000));
+      setTimeLeft({ days: Math.floor(seconds / 86400), hours: Math.floor(seconds / 3600) % 24, minutes: Math.floor(seconds / 60) % 60, seconds: seconds % 60 });
+    };
+    update();
+    const timer = setInterval(update, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [deal.expiryDate]);
 
   const triggerConfetti = () => {
     confetti({
@@ -104,9 +87,10 @@ export function DealDetailClient({
 
     if (deal.code) {
       try {
-        navigator.clipboard.writeText(deal.code);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 3000);
+        navigator.clipboard.writeText(deal.code).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 3000);
+        }).catch(() => setCopied(false));
       } catch {
         // Fallback
       }
@@ -114,13 +98,7 @@ export function DealDetailClient({
 
     // Automatically navigate to official checkout in new tab
     if (typeof window !== "undefined") {
-      const customAffiliate =
-        getCustomAffiliateUrl(deal.toolSlug) ||
-        getCustomAffiliateUrl(deal.slug) ||
-        getCustomAffiliateUrl(deal.id) ||
-        CUSTOM_AFFILIATE_LINKS[deal.toolSlug] ||
-        CUSTOM_AFFILIATE_LINKS[deal.slug];
-      const destinationUrl = customAffiliate || tool?.website || (deal.affiliateUrl?.startsWith("http") ? deal.affiliateUrl : `/go/${deal.toolSlug}`);
+      const destinationUrl = getOfferDestination(deal);
       window.open(destinationUrl, "_blank", "noopener,noreferrer");
     }
   };
@@ -190,14 +168,14 @@ export function DealDetailClient({
             <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
               <div className="flex items-center gap-2">
                 <span className="px-3.5 py-1 rounded-full bg-[#C6FF3D] text-black font-mono font-black text-xs uppercase tracking-wider">
-                  {deal.discountPercentage}% OFF
+                  {offerLabel(deal)}
                 </span>
                 <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-300 font-mono text-xs uppercase">
                   {deal.dealType.replace("_", " ")}
                 </span>
                 <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  VERIFIED WORKING TODAY
+                  {offerStatus(deal)}
                 </span>
               </div>
 
@@ -240,7 +218,7 @@ export function DealDetailClient({
                 <ExternalLink className="w-3 h-3" />
               </Link>
               <h1 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight leading-tight">
-                {deal.toolName} Discount & Coupon Code: {deal.title}
+                {deal.title}
               </h1>
             </div>
 
@@ -252,13 +230,13 @@ export function DealDetailClient({
             {/* Interactive Reveal Coupon Code Box */}
             <div className="relative p-6 sm:p-8 rounded-2xl border-2 border-dashed border-[#C6FF3D]/40 bg-black/70 text-center mb-8">
               <div className="font-mono text-xs uppercase tracking-widest text-zinc-400 mb-3">
-                VERIFIED EXCLUSIVE COUPON CODE
+                {deal.code ? "REPORTED COUPON CODE" : "PROVIDER OFFER"}
               </div>
 
               {revealed ? (
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                   <div className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#121215] border-2 border-[#C6FF3D] font-mono text-2xl sm:text-3xl font-black tracking-widest text-[#C6FF3D] shadow-[0_0_30px_rgba(198,255,61,0.3)] select-all">
-                    {deal.code || "AUTOMATIC_OFFER"}
+                    {deal.code || "NO CODE NEEDED"}
                   </div>
                   <button
                     onClick={handleRevealAndCopy}
@@ -270,7 +248,7 @@ export function DealDetailClient({
                       </>
                     ) : (
                       <>
-                        <Copy className="w-4 h-4" /> Copy Promo Code
+                        <Copy className="w-4 h-4" /> {deal.code ? "Copy Promo Code" : "Open Provider"}
                       </>
                     )}
                   </button>
@@ -285,7 +263,7 @@ export function DealDetailClient({
                     className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#C6FF3D] text-black font-bold text-sm uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-2 mx-auto shadow-[0_0_30px_rgba(198,255,61,0.4)] cursor-pointer"
                   >
                     <Sparkles className="w-5 h-5 fill-black" />
-                    <span>Reveal Coupon & Copy to Clipboard</span>
+                    <span>{deal.code ? "Reveal Code & Open Provider" : "Open Provider Offer"}</span>
                   </button>
                 </div>
               )}
@@ -300,11 +278,11 @@ export function DealDetailClient({
             {/* Outbound Link CTA */}
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <Link
-                href={`/go/${deal.toolSlug}`}
+                href={`/go/${deal.slug}`}
                 rel="sponsored nofollow noopener noreferrer"
                 className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-[#C6FF3D] text-black font-bold text-sm uppercase tracking-wider hover:bg-[#D6FF66] transition-all shadow-[0_0_25px_rgba(198,255,61,0.3)]"
               >
-                <span>Visit {deal.toolName} Official Checkout</span>
+                <span>Visit {deal.toolName} Offer</span>
                 <ExternalLink className="w-4 h-4 stroke-[2.5]" />
               </Link>
             </div>
@@ -322,10 +300,10 @@ export function DealDetailClient({
               <div className="p-4 rounded-2xl bg-black border border-white/5 space-y-2">
                 <div className="flex items-center gap-2">
                   <span className="w-6 h-6 rounded-full bg-[#C6FF3D] text-black font-black text-xs flex items-center justify-center font-mono">1</span>
-                  <span className="font-display font-bold text-sm text-white">Reveal Promo Code</span>
+                  <span className="font-display font-bold text-sm text-white">Review Offer</span>
                 </div>
                 <p className="text-xs text-zinc-400 leading-relaxed">
-                  Click <strong className="text-white">Reveal Coupon</strong> above to instantly copy code <code className="text-[#C6FF3D] font-mono">{deal.code || "AUTOMATIC"}</code> to your clipboard.
+                  Read the offer terms and source below. {deal.code ? `The reported code is ${deal.code}.` : "No coupon code is recorded for this offer."}
                 </p>
               </div>
               <div className="p-4 rounded-2xl bg-black border border-white/5 space-y-2">
@@ -334,7 +312,7 @@ export function DealDetailClient({
                   <span className="font-display font-bold text-sm text-white">Open Official Site</span>
                 </div>
                 <p className="text-xs text-zinc-400 leading-relaxed">
-                  Click the checkout button to visit {deal.toolName}&apos;s official portal with your partner rate activated.
+                  Open the offer link to visit {deal.toolName}. A referral link does not guarantee a discount.
                 </p>
               </div>
               <div className="p-4 rounded-2xl bg-black border border-white/5 space-y-2">
@@ -343,7 +321,7 @@ export function DealDetailClient({
                   <span className="font-display font-bold text-sm text-white">Select Eligible Plan</span>
                 </div>
                 <p className="text-xs text-zinc-400 leading-relaxed">
-                  Choose your subscription tier. Annual billing usually unlocks an extra 15%–20% in cumulative savings!
+                  Check plan eligibility, billing period, usage limits, and renewal prices directly with the provider.
                 </p>
               </div>
               <div className="p-4 rounded-2xl bg-black border border-white/5 space-y-2">
@@ -352,7 +330,7 @@ export function DealDetailClient({
                   <span className="font-display font-bold text-sm text-white">Apply & Save</span>
                 </div>
                 <p className="text-xs text-zinc-400 leading-relaxed">
-                  Paste code <code className="text-[#C6FF3D] font-mono">{deal.code || "AUTOMATIC"}</code> into the promo code input at checkout to claim your {deal.discountPercentage}% discount.
+                  {deal.code ? `Try ${deal.code} in the promo field.` : "Follow the provider’s signup or application process."} Confirm the final total before paying.
                 </p>
               </div>
             </div>
@@ -367,7 +345,7 @@ export function DealDetailClient({
                   {deal.toolName} Discount & Savings Matrix
                 </h2>
               </div>
-              <span className="font-mono text-xs text-[#C6FF3D] font-bold">VERIFIED 2026</span>
+              <span className="font-mono text-xs text-[#C6FF3D] font-bold">SOURCE DETAILS</span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs font-mono">
@@ -375,36 +353,36 @@ export function DealDetailClient({
                   <tr className="border-b border-white/10 text-zinc-400 uppercase">
                     <th className="pb-3 font-semibold">Offer Attribute</th>
                     <th className="pb-3 font-semibold">Standard Rate</th>
-                    <th className="pb-3 font-semibold text-[#C6FF3D]">With SaaSFolio Discount</th>
+                    <th className="pb-3 font-semibold text-[#C6FF3D]">Provider Offer</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5 text-zinc-300">
                   <tr>
                     <td className="py-3 text-white font-medium">Discount Rate</td>
                     <td className="py-3 text-zinc-500">0% (Full Price)</td>
-                    <td className="py-3 text-[#C6FF3D] font-bold">{deal.discountPercentage}% OFF</td>
+                    <td className="py-3 text-[#C6FF3D] font-bold">{offerLabel(deal)}</td>
                   </tr>
                   <tr>
                     <td className="py-3 text-white font-medium">Coupon Code</td>
                     <td className="py-3 text-zinc-500">None required</td>
-                    <td className="py-3 font-mono text-[#C6FF3D] font-bold">{deal.code || "AUTO-APPLIED"}</td>
+                    <td className="py-3 font-mono text-[#C6FF3D] font-bold">{deal.code || "See provider terms"}</td>
                   </tr>
                   <tr>
                     <td className="py-3 text-white font-medium">Applicable Plans</td>
                     <td className="py-3 text-zinc-500">All Tiers</td>
-                    <td className="py-3 text-white">Annual & Growth Tiers</td>
+                    <td className="py-3 text-white">See offer terms</td>
                   </tr>
                   <tr>
                     <td className="py-3 text-white font-medium">Verification Status</td>
                     <td className="py-3 text-zinc-500">—</td>
                     <td className="py-3 text-emerald-400 font-bold flex items-center gap-1">
-                      <Check className="w-3.5 h-3.5" /> Hand-Tested ({deal.successRate}% Success)
+                      <Check className="w-3.5 h-3.5" /> {offerStatus(deal)}
                     </td>
                   </tr>
                   <tr>
                     <td className="py-3 text-white font-medium">Customer Eligibility</td>
                     <td className="py-3 text-zinc-500">All</td>
-                    <td className="py-3 text-white">New & Upgrading Accounts</td>
+                    <td className="py-3 text-white">See provider eligibility</td>
                   </tr>
                 </tbody>
               </table>
@@ -429,7 +407,7 @@ export function DealDetailClient({
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-mono text-xs px-2 py-0.5 rounded bg-[#C6FF3D] text-black font-black">
-                          {sib.discountPercentage}% OFF
+                          {offerLabel(sib)}
                         </span>
                         <span className="font-mono text-xs text-zinc-400 uppercase">
                           {sib.dealType.replace("_", " ")}
@@ -462,9 +440,10 @@ export function DealDetailClient({
             <p className="text-sm text-zinc-400 leading-relaxed">
               {deal.terms}
             </p>
+            {deal.sourceUrl && <p className="text-xs text-zinc-400">Source: <a href={deal.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] hover:underline">{deal.sourceKind === "coupon-site" ? "Coupon publisher" : "Official provider"} ↗</a>. {offerStatus(deal)}.</p>}
             <div className="pt-4 border-t border-white/5 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono text-zinc-400">
               <div>
-                <span className="text-zinc-500 block uppercase text-[10px]">VERIFIED AT</span>
+                <span className="text-zinc-500 block uppercase text-[10px]">SOURCE CHECKED</span>
                 <span className="text-white font-medium">{deal.verifiedAt}</span>
               </div>
               <div>
@@ -575,12 +554,12 @@ export function DealDetailClient({
           <div className="p-6 rounded-2xl bg-[#08080A] border border-white/10 space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
               <span className="flex items-center gap-1.5 text-[#C6FF3D] font-bold">
-                <Clock className="w-4 h-4" /> TIME REMAINING
+                <Clock className="w-4 h-4" /> {deal.expiryDate ? "TIME REMAINING" : "OFFER AVAILABILITY"}
               </span>
-              <span>LIMITED OFFER</span>
+              <span>{deal.expiryDate ? "PUBLISHED EXPIRY" : "NO PUBLISHED EXPIRY"}</span>
             </div>
 
-            <div className="grid grid-cols-4 gap-2 text-center">
+            {deal.expiryDate ? <div className="grid grid-cols-4 gap-2 text-center">
               {[
                 { label: "DAYS", val: timeLeft.days },
                 { label: "HOURS", val: timeLeft.hours },
@@ -596,17 +575,17 @@ export function DealDetailClient({
                   </div>
                 </div>
               ))}
-            </div>
+            </div> : <p className="text-xs text-zinc-400">Check current availability with the provider.</p>}
           </div>
 
           {/* Did it work crowd voting */}
           <div className="p-6 rounded-2xl bg-[#08080A] border border-white/10 space-y-4">
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs uppercase tracking-wider text-white font-bold">
-                CROWD VERIFICATION
+                THIS SESSION FEEDBACK
               </span>
               <span className="font-mono text-xs text-[#C6FF3D] font-bold">
-                {liveSuccessRate}% SUCCESS
+                {votesUp + votesDown ? `${liveSuccessRate}% THIS SESSION` : "NO CHECKOUT DATA"}
               </span>
             </div>
 
@@ -660,7 +639,7 @@ export function DealDetailClient({
                     {tool.name}
                   </h4>
                   <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">
-                    <span>★ {tool.rating}</span>
+                    <span>★ {tool.reviewCount ? tool.rating : "Unrated"}</span>
                     <span>✦</span>
                     <span>{tool.reviewCount} reviews</span>
                   </div>
@@ -707,7 +686,7 @@ export function DealDetailClient({
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-3.5 h-3.5 text-[#C6FF3D] shrink-0 mt-0.5" />
-                <span><strong>Zero Clickbait:</strong> No fake 90% claims or expired codes.</span>
+                <span><strong>Zero Clickbait:</strong> Source links and provider eligibility are shown with each offer.</span>
               </li>
             </ul>
           </div>
@@ -744,7 +723,7 @@ export function DealDetailClient({
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="font-mono text-xs px-2.5 py-0.5 rounded bg-[#C6FF3D] text-black font-black">
-                      {rel.discountPercentage}% OFF
+                      {offerLabel(rel)}
                     </span>
                     <span className="font-mono text-[10px] text-zinc-400">{rel.dealType.toUpperCase()}</span>
                   </div>

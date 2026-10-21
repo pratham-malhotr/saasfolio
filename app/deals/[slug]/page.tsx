@@ -1,5 +1,5 @@
 import React from "react";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { getAllDeals, getDealBySlug } from "@/lib/data/deals-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { DealDetailClient } from "@/components/deals/DealDetailClient";
@@ -37,8 +37,11 @@ export async function generateMetadata({
     title: dealSearchTitle(deal),
     description: dealMetaDescription(deal),
     path: `/deals/${deal.slug}`,
+    noIndex: deal.dealType === "pricing",
   });
 }
+
+export const revalidate = 3600;
 
 export default async function DealDetailPage({
   params,
@@ -51,6 +54,8 @@ export default async function DealDetailPage({
   if (!deal) {
     notFound();
   }
+
+  if (slug !== deal.slug) permanentRedirect(`/deals/${deal.slug}`);
 
   const tool = getToolBySlug(deal.toolSlug);
   const allDeals = getAllDeals();

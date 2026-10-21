@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Tag, Sparkles, Copy, Check, ArrowRight, ShieldCheck } from "lucide-react";
-import { DEALS_DATA } from "@/lib/data/deals-data";
+import { getDealBySlug } from "@/lib/data/deals-data";
+import { offerStatus } from "@/lib/offer-links";
 import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
 
 interface DealCalloutProps {
@@ -11,7 +12,7 @@ interface DealCalloutProps {
 }
 
 export function DealCallout({ dealSlug }: DealCalloutProps) {
-  const deal = DEALS_DATA.find((d) => d.slug === dealSlug);
+  const deal = getDealBySlug(dealSlug);
   const [modalOpen, setModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -20,9 +21,10 @@ export function DealCallout({ dealSlug }: DealCalloutProps) {
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (deal.code) {
-      navigator.clipboard.writeText(deal.code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      navigator.clipboard.writeText(deal.code).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }).catch(() => setCopied(false));
     }
   };
 
@@ -38,13 +40,13 @@ export function DealCallout({ dealSlug }: DealCalloutProps) {
               <Sparkles className="w-4 h-4" />
             </span>
             <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-              VERIFIED SAASFOLIO EXCLUSIVE DEAL
+              CURRENT PROVIDER OFFER
             </span>
           </div>
 
           <div className="flex items-center gap-2 font-mono text-[11px] text-zinc-400">
             <ShieldCheck className="w-3.5 h-3.5 text-[#C6FF3D]" />
-            <span>{deal.successRate}% Success Rate</span>
+            <span>{offerStatus(deal)}</span>
           </div>
         </div>
 
@@ -67,12 +69,12 @@ export function DealCallout({ dealSlug }: DealCalloutProps) {
               </button>
             ) : (
               <Link
-                href={deal.affiliateUrl}
+                href={`/go/${deal.slug}`}
                 rel="sponsored nofollow noopener noreferrer"
                 target="_blank"
                 className="px-5 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-display font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2"
               >
-                Claim Deal Now <ArrowRight className="w-3.5 h-3.5" />
+                View Provider Offer <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             )}
 

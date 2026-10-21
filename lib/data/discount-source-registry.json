@@ -1,0 +1,8 @@
+[
+  { "provider": "simplycodes", "toolSlug": "quillbot-premium", "name": "SimplyCodes", "url": "https://simplycodes.com/store/quillbot.com" },
+  { "provider": "simplycodes", "toolSlug": "writesonic", "name": "SimplyCodes", "url": "https://simplycodes.com/store/writesonic.com" },
+  { "provider": "simplycodes", "toolSlug": "hostinger", "name": "SimplyCodes", "url": "https://simplycodes.com/store/hostinger.com" },
+  { "provider": "simplycodes", "toolSlug": "canva", "name": "SimplyCodes", "url": "https://simplycodes.com/store/canva.com" },
+  { "provider": "simplycodes", "toolSlug": "unbounce", "name": "SimplyCodes", "url": "https://simplycodes.com/store/unbounce.com" },
+  { "provider": "techradar", "toolSlug": "hostinger", "name": "TechRadar", "url": "https://www.techradar.com/coupons/hostinger" }
+]

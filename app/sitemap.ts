@@ -1,96 +1,85 @@
 import type { MetadataRoute } from "next";
-import { DEALS_DATA } from "@/lib/data/deals-data";
+import { getAllDeals } from "@/lib/data/deals-data";
 import { TOOLS_DATA } from "@/lib/data/tools-data";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { DETAILED_THREADS } from "@/lib/data/community-data";
 import { COMPARISON_SLUGS } from "@/lib/data/comparisons-data";
+import { getCatalogCategories } from "@/lib/categories";
 import { absoluteUrl, isoDate } from "@/lib/seo";
+
+export const revalidate = 3600;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Use stable ISO timestamps so Google Search Console identifies accurate modification milestones.
-  const baselineDate = "2026-10-20T00:00:00.000Z";
-  const staticPageDate = "2026-10-15T00:00:00.000Z";
 
   // Core navigation pages
   const coreRoutes: MetadataRoute.Sitemap = [
     {
       url: absoluteUrl("/"),
-      lastModified: baselineDate,
       changeFrequency: "daily",
       priority: 1.0,
     },
     {
       url: absoluteUrl("/deals"),
-      lastModified: baselineDate,
       changeFrequency: "daily",
       priority: 0.9,
     },
     {
       url: absoluteUrl("/tools"),
-      lastModified: baselineDate,
       changeFrequency: "daily",
       priority: 0.9,
     },
     {
       url: absoluteUrl("/compare"),
-      lastModified: baselineDate,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: absoluteUrl("/articles"),
-      lastModified: baselineDate,
       changeFrequency: "daily",
       priority: 0.8,
     },
     {
       url: absoluteUrl("/community"),
-      lastModified: baselineDate,
       changeFrequency: "daily",
       priority: 0.8,
     },
     {
       url: absoluteUrl("/about"),
-      lastModified: staticPageDate,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: absoluteUrl("/contact"),
-      lastModified: staticPageDate,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: absoluteUrl("/advertise"),
-      lastModified: staticPageDate,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: absoluteUrl("/affiliate-disclosure"),
-      lastModified: staticPageDate,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: absoluteUrl("/privacy"),
-      lastModified: staticPageDate,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: absoluteUrl("/terms"),
-      lastModified: staticPageDate,
       changeFrequency: "monthly",
       priority: 0.5,
     },
   ];
 
   // Verified SaaS Deals
-  const dealsRoutes: MetadataRoute.Sitemap = DEALS_DATA.map((deal) => ({
+  const dealsRoutes: MetadataRoute.Sitemap = getAllDeals().filter(deal => deal.dealType !== "pricing").map((deal) => ({
     url: absoluteUrl(`/deals/${deal.slug}`),
-    lastModified: baselineDate,
+    lastModified: deal.updatedAt || deal.checkedAt,
     changeFrequency: "daily",
     priority: 0.8,
   }));
@@ -98,7 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Software Catalog Tools
   const toolsRoutes: MetadataRoute.Sitemap = TOOLS_DATA.map((tool) => ({
     url: absoluteUrl(`/tools/${tool.slug}`),
-    lastModified: baselineDate,
+    lastModified: tool.updatedAt,
     changeFrequency: "weekly",
     priority: 0.8,
   }));
@@ -106,7 +95,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Comparison Matrix Pages
   const comparisonRoutes: MetadataRoute.Sitemap = COMPARISON_SLUGS.map((slug) => ({
     url: absoluteUrl(`/compare/${slug}`),
-    lastModified: baselineDate,
     changeFrequency: "weekly",
     priority: 0.7,
   }));
@@ -114,7 +102,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Editorial Articles & Reviews with verified publication timestamps
   const articlesRoutes: MetadataRoute.Sitemap = DETAILED_ARTICLES.map((article) => ({
     url: absoluteUrl(`/articles/${article.slug}`),
-    lastModified: isoDate(article.updatedAt || article.publishedAt) || baselineDate,
+    lastModified: isoDate(article.updatedAt || article.publishedAt),
     changeFrequency: "monthly",
     priority: 0.7,
   }));
@@ -122,7 +110,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Community Discussion Threads
   const communityRoutes: MetadataRoute.Sitemap = DETAILED_THREADS.map((thread) => ({
     url: absoluteUrl(`/community/${thread.slug}`),
-    lastModified: baselineDate,
     changeFrequency: "weekly",
     priority: 0.6,
   }));
@@ -131,6 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const seen = new Set<string>();
   const combined = [
     ...coreRoutes,
+    ...getCatalogCategories().map(category => ({ url: absoluteUrl(`/deals/category/${category.slug}`), changeFrequency: "daily" as const, priority: 0.8 })),
     ...dealsRoutes,
     ...toolsRoutes,
     ...comparisonRoutes,

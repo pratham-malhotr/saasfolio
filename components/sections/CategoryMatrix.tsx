@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles, TrendingUp, Users, Code2, Palette, BarChart3, Server, CreditCard, CheckSquare, ShieldCheck, ShoppingBag, Layers } from "lucide-react";
-import { CATEGORIES, Category } from "@/lib/mock-data";
+import type { Category } from "@/lib/mock-data";
 import { Reveal } from "@/components/animations/Reveal";
 
 // Helper icon resolver
@@ -24,7 +24,7 @@ function getCategoryIcon(name: string) {
   }
 }
 
-export function CategoryMatrix() {
+export function CategoryMatrix({ categories }: { categories: Category[] }) {
   return (
     <section className="py-24 bg-[#050505] border-b border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,16 +42,16 @@ export function CategoryMatrix() {
           </div>
 
           <p className="max-w-md text-sm text-zinc-400 font-sans leading-relaxed">
-            Curated catalogues with verified coupon codes, independent architectural benchmarks, and real-world stack reviews.
+            Explore software brands, sourced offers, free trials, and official pricing links by category.
           </p>
         </div>
 
         {/* 12 Category Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {CATEGORIES.map((cat, idx) => (
+          {categories.map((cat, idx) => (
             <Reveal key={cat.id} delay={idx * 0.05} direction="up">
               <Link
-                href={`/deals?category=${cat.slug}`}
+                href={`/deals/category/${cat.slug}`}
                 className="group relative flex flex-col justify-between p-6 rounded-2xl bg-[#09090C] border border-white/10 hover:border-[#C6FF3D]/50 hover:bg-[#0E0E12] transition-all duration-300 h-full"
               >
                 <div>

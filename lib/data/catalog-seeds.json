@@ -1,0 +1,3495 @@
+[
+  {
+    "slug": "cogniflow-ai",
+    "name": "CogniFlow AI",
+    "url": "https://cogniflow.ai",
+    "categorySlug": "ai-tools",
+    "description": "Autonomous multi-agent LLM orchestrator for software teams"
+  },
+  {
+    "slug": "edgebase-cloud",
+    "name": "EdgeBase Cloud",
+    "url": "https://edgebase.dev",
+    "categorySlug": "dev-tools",
+    "description": "Serverless global SQLite database with sub-10ms edge replication"
+  },
+  {
+    "slug": "pulsemail-pro",
+    "name": "PulseMail Pro",
+    "url": "https://pulsemail.io",
+    "categorySlug": "marketing",
+    "description": "High-deliverability newsletter and automated email engine for builders"
+  },
+  {
+    "slug": "vaultguard-security",
+    "name": "VaultGuard Security",
+    "url": "https://vaultguard.com",
+    "categorySlug": "security",
+    "description": "Automated continuous SOC2, ISO27001, and secrets vulnerability defense"
+  },
+  {
+    "slug": "vectorcraft",
+    "name": "VectorCraft",
+    "url": "https://vectorcraft.design",
+    "categorySlug": "design",
+    "description": "Next-generation browser canvas with instant SVG export and design tokens"
+  },
+  {
+    "slug": "metricpulse",
+    "name": "MetricPulse Analytics",
+    "url": "https://metricpulse.io",
+    "categorySlug": "analytics",
+    "description": "Lightweight, privacy-first web telemetry without cookies or consent banners"
+  },
+  {
+    "slug": "syntaxai",
+    "name": "SyntaxAI",
+    "url": "https://syntaxai.dev",
+    "categorySlug": "ai-tools",
+    "description": "AI architecture reviewer that catches race conditions and logic flaws"
+  },
+  {
+    "slug": "deployjet",
+    "name": "DeployJet",
+    "url": "https://deployjet.com",
+    "categorySlug": "dev-tools",
+    "description": "Instant global edge deployment platform for Docker and Node microservices"
+  },
+  {
+    "slug": "ledgerzen",
+    "name": "LedgerZen",
+    "url": "https://ledgerzen.com",
+    "categorySlug": "finance",
+    "description": "Automated multi-currency invoicing, VAT compliance, and revenue recognition"
+  },
+  {
+    "slug": "sprintforge",
+    "name": "SprintForge",
+    "url": "https://sprintforge.io",
+    "categorySlug": "project-management",
+    "description": "High-velocity issue tracker and sprint planner built for linear engineering"
+  },
+  {
+    "slug": "closerhq",
+    "name": "CloserHQ",
+    "url": "https://closerhq.com",
+    "categorySlug": "crm-sales",
+    "description": "AI sales pipeline intelligence and meeting note transcription for B2B"
+  },
+  {
+    "slug": "nexusnotes",
+    "name": "NexusNotes",
+    "url": "https://nexusnotes.app",
+    "categorySlug": "productivity",
+    "description": "High-speed second-brain knowledge base with bi-directional graph linking"
+  },
+  {
+    "slug": "supabase",
+    "name": "Supabase",
+    "url": "https://supabase.com",
+    "categorySlug": "dev-tools",
+    "description": "The open source Firebase alternative with Postgres, Auth, and Edge Functions"
+  },
+  {
+    "slug": "vercel",
+    "name": "Vercel",
+    "url": "https://vercel.com",
+    "categorySlug": "hosting",
+    "description": "Develop, preview, and ship the fastest web experiences on the Edge"
+  },
+  {
+    "slug": "railway",
+    "name": "Railway",
+    "url": "https://railway.app",
+    "categorySlug": "dev-tools",
+    "description": "Instant infrastructure platform for containers, microservices, and databases"
+  },
+  {
+    "slug": "neon",
+    "name": "Neon Database",
+    "url": "https://neon.tech",
+    "categorySlug": "dev-tools",
+    "description": "Serverless Postgres with instant branching, autoscaling, and bottomless storage"
+  },
+  {
+    "slug": "postman",
+    "name": "Postman",
+    "url": "https://www.postman.com",
+    "categorySlug": "dev-tools",
+    "description": "The world's leading API collaboration, design, and testing platform"
+  },
+  {
+    "slug": "sentry",
+    "name": "Sentry",
+    "url": "https://sentry.io",
+    "categorySlug": "dev-tools",
+    "description": "Application performance monitoring, session replay, and code-level error tracking"
+  },
+  {
+    "slug": "resend",
+    "name": "Resend",
+    "url": "https://resend.com",
+    "categorySlug": "dev-tools",
+    "description": "The email platform built specifically for developers using React components"
+  },
+  {
+    "slug": "clerk",
+    "name": "Clerk",
+    "url": "https://clerk.com",
+    "categorySlug": "dev-tools",
+    "description": "Complete authentication and user management suite for Next.js and modern web"
+  },
+  {
+    "slug": "cursor-ai",
+    "name": "Cursor AI",
+    "url": "https://cursor.com",
+    "categorySlug": "ai-tools",
+    "description": "The AI-first code editor engineered for hyper-productive software engineers"
+  },
+  {
+    "slug": "perplexity-ai",
+    "name": "Perplexity Pro",
+    "url": "https://www.perplexity.ai",
+    "categorySlug": "ai-tools",
+    "description": "Where knowledge begins: conversational AI search with live web citations"
+  },
+  {
+    "slug": "elevenlabs",
+    "name": "ElevenLabs",
+    "url": "https://elevenlabs.io",
+    "categorySlug": "ai-tools",
+    "description": "State-of-the-art AI voice generator, speech synthesis, and voice cloning"
+  },
+  {
+    "slug": "jasper-ai",
+    "name": "Jasper AI",
+    "url": "https://www.jasper.ai",
+    "categorySlug": "ai-tools",
+    "description": "Enterprise AI marketing platform with automated brand voice governance"
+  },
+  {
+    "slug": "writesonic",
+    "name": "Writesonic",
+    "url": "https://writesonic.com",
+    "categorySlug": "ai-tools",
+    "description": "AI content creation, fact-checked SEO article writer, and Chatsonic assistant"
+  },
+  {
+    "slug": "copy-ai",
+    "name": "Copy.ai",
+    "url": "https://www.copy.ai",
+    "categorySlug": "ai-tools",
+    "description": "AI-powered GTM automation platform for revenue and sales teams"
+  },
+  {
+    "slug": "beehiiv",
+    "name": "Beehiiv",
+    "url": "https://www.beehiiv.com/?via=quickreads",
+    "categorySlug": "marketing",
+    "description": "The newsletter platform built for hyper-growth creators and media publishers"
+  },
+  {
+    "slug": "semrush",
+    "name": "Semrush",
+    "url": "https://www.semrush.com",
+    "categorySlug": "marketing",
+    "description": "The premier all-in-one SEO, keyword research, and competitor intelligence platform"
+  },
+  {
+    "slug": "surfer-seo",
+    "name": "Surfer SEO",
+    "url": "https://surferseo.com",
+    "categorySlug": "marketing",
+    "description": "AI content intelligence and NLP keyword optimization for Google rankings"
+  },
+  {
+    "slug": "brevo",
+    "name": "Brevo",
+    "url": "https://www.brevo.com",
+    "categorySlug": "marketing",
+    "description": "Unified CRM, email sequences, SMS, WhatsApp, and marketing automation"
+  },
+  {
+    "slug": "hunter-io",
+    "name": "Hunter.io",
+    "url": "https://hunter.io",
+    "categorySlug": "crm-sales",
+    "description": "Find and verify professional email addresses behind any company domain"
+  },
+  {
+    "slug": "lemlist",
+    "name": "Lemlist",
+    "url": "https://www.lemlist.com",
+    "categorySlug": "crm-sales",
+    "description": "Multichannel cold outreach platform with automated warm-up and deliverability"
+  },
+  {
+    "slug": "apollo-io",
+    "name": "Apollo.io",
+    "url": "https://www.apollo.io",
+    "categorySlug": "crm-sales",
+    "description": "B2B sales intelligence platform with 275M+ verified buyer contacts and automated sequences"
+  },
+  {
+    "slug": "notion",
+    "name": "Notion",
+    "url": "https://www.notion.so",
+    "categorySlug": "productivity",
+    "description": "The connected workspace where better, faster work happens"
+  },
+  {
+    "slug": "linear",
+    "name": "Linear",
+    "url": "https://linear.app",
+    "categorySlug": "project-management",
+    "description": "The issue tracking tool built for high-performance software engineering teams"
+  },
+  {
+    "slug": "clickup",
+    "name": "ClickUp",
+    "url": "https://clickup.com",
+    "categorySlug": "productivity",
+    "description": "The all-in-one productivity platform replacing tasks, docs, chat, and goals"
+  },
+  {
+    "slug": "raycast",
+    "name": "Raycast",
+    "url": "https://www.raycast.com",
+    "categorySlug": "productivity",
+    "description": "Blazingly fast, extensible desktop launcher and productivity assistant for macOS"
+  },
+  {
+    "slug": "loom",
+    "name": "Loom",
+    "url": "https://www.loom.com",
+    "categorySlug": "productivity",
+    "description": "Instant video messaging for work that replaces unproductive meetings"
+  },
+  {
+    "slug": "typeform",
+    "name": "Typeform",
+    "url": "https://www.typeform.com",
+    "categorySlug": "marketing",
+    "description": "People-friendly conversational forms, surveys, and quiz engines"
+  },
+  {
+    "slug": "framer",
+    "name": "Framer",
+    "url": "https://framer.com",
+    "categorySlug": "design",
+    "description": "The interactive design tool for shipping production-ready websites"
+  },
+  {
+    "slug": "cleanshot-x",
+    "name": "CleanShot X",
+    "url": "https://cleanshot.com",
+    "categorySlug": "design",
+    "description": "The ultimate screen capture, annotation, and recording utility for macOS"
+  },
+  {
+    "slug": "screen-studio",
+    "name": "Screen Studio",
+    "url": "https://screen.studio",
+    "categorySlug": "design",
+    "description": "Studio-quality screen recordings with automatic zoom and motion blur"
+  },
+  {
+    "slug": "webflow",
+    "name": "Webflow",
+    "url": "https://webflow.com",
+    "categorySlug": "design",
+    "description": "Build production websites visually with clean, semantic HTML/CSS code export"
+  },
+  {
+    "slug": "canva",
+    "name": "Canva",
+    "url": "https://www.canva.com",
+    "categorySlug": "design",
+    "description": "Empowering the world to design anything and publish anywhere"
+  },
+  {
+    "slug": "hostinger",
+    "name": "Hostinger",
+    "url": "https://hostinger.com",
+    "categorySlug": "hosting",
+    "description": "High-performance web hosting, cloud VPS, NVMe storage, and LiteSpeed caching"
+  },
+  {
+    "slug": "digitalocean",
+    "name": "DigitalOcean",
+    "url": "https://www.digitalocean.com",
+    "categorySlug": "hosting",
+    "description": "The developer cloud: Linux Droplets, Managed Databases, and Kubernetes"
+  },
+  {
+    "slug": "cloudflare",
+    "name": "Cloudflare",
+    "url": "https://www.cloudflare.com",
+    "categorySlug": "hosting",
+    "description": "Making the Internet faster, safer, and more reliable for everyone"
+  },
+  {
+    "slug": "nordpass",
+    "name": "NordPass",
+    "url": "https://nordpass.com",
+    "categorySlug": "security",
+    "description": "Zero-knowledge password manager and passkey vault by Nord Security"
+  },
+  {
+    "slug": "onepassword",
+    "name": "1Password",
+    "url": "https://1password.com",
+    "categorySlug": "security",
+    "description": "Enterprise password management, developer secrets, and passkey vault"
+  },
+  {
+    "slug": "surfshark",
+    "name": "Surfshark VPN",
+    "url": "https://surfshark.com",
+    "categorySlug": "security",
+    "description": "Fast, secure VPN with unlimited simultaneous device connections"
+  },
+  {
+    "slug": "plausible",
+    "name": "Plausible Analytics",
+    "url": "https://plausible.io",
+    "categorySlug": "analytics",
+    "description": "Lightweight, open source, cookieless Google Analytics alternative under 1KB"
+  },
+  {
+    "slug": "fathom-analytics",
+    "name": "Fathom Analytics",
+    "url": "https://usefathom.com",
+    "categorySlug": "analytics",
+    "description": "Simple, privacy-first website analytics without cookies or tracking"
+  },
+  {
+    "slug": "viralpeak",
+    "name": "ViralPeak",
+    "url": "https://viralpeak.io",
+    "categorySlug": "marketing",
+    "description": "Referral loops, gamified waitlists, and viral affiliate launch engine"
+  },
+  {
+    "slug": "queryforge",
+    "name": "QueryForge",
+    "url": "https://queryforge.dev",
+    "categorySlug": "dev-tools",
+    "description": "AI SQL generator, slow query analyzer, and database query optimizer"
+  },
+  {
+    "slug": "armorid",
+    "name": "ArmorID",
+    "url": "https://armorid.dev",
+    "categorySlug": "security",
+    "description": "Zero-trust authentication, passkey vault, and continuous session verification"
+  },
+  {
+    "slug": "figma",
+    "name": "Figma",
+    "url": "https://www.figma.com",
+    "categorySlug": "design",
+    "description": "The industry standard collaborative interface design and prototyping platform"
+  },
+  {
+    "slug": "slack",
+    "name": "Slack",
+    "url": "https://slack.com",
+    "categorySlug": "productivity",
+    "description": "The AI-powered productivity platform and team communication hub"
+  },
+  {
+    "slug": "hubspot",
+    "name": "HubSpot",
+    "url": "https://www.hubspot.com",
+    "categorySlug": "crm-sales",
+    "description": "The complete CRM, inbound marketing, sales pipeline, and customer service suite"
+  },
+  {
+    "slug": "runwayml",
+    "name": "Runway",
+    "url": "https://runwayml.com",
+    "categorySlug": "ai-tools",
+    "description": "Next-generation generative AI video and creative media production suite"
+  },
+  {
+    "slug": "synthesia",
+    "name": "Synthesia",
+    "url": "https://www.synthesia.io",
+    "categorySlug": "ai-tools",
+    "description": "The world's #1 AI video communications and human avatar platform"
+  },
+  {
+    "slug": "descript",
+    "name": "Descript",
+    "url": "https://www.descript.com",
+    "categorySlug": "design",
+    "description": "All-in-one video and podcast editing that feels as simple as editing a text doc"
+  },
+  {
+    "slug": "midjourney",
+    "name": "Midjourney",
+    "url": "https://www.midjourney.com",
+    "categorySlug": "ai-tools",
+    "description": "The world's most artistic and photorealistic generative AI image engine"
+  },
+  {
+    "slug": "otter-ai",
+    "name": "Otter.ai",
+    "url": "https://otter.ai",
+    "categorySlug": "productivity",
+    "description": "AI meeting assistant that writes automated notes, summaries, and action items"
+  },
+  {
+    "slug": "prisma",
+    "name": "Prisma",
+    "url": "https://www.prisma.io",
+    "categorySlug": "dev-tools",
+    "description": "Next-generation ORM and database platform for Node.js and TypeScript"
+  },
+  {
+    "slug": "auth0",
+    "name": "Auth0",
+    "url": "https://auth0.com",
+    "categorySlug": "security",
+    "description": "Enterprise customer identity, access management, and universal login gateway"
+  },
+  {
+    "slug": "tailscale",
+    "name": "Tailscale",
+    "url": "https://tailscale.com",
+    "categorySlug": "security",
+    "description": "Zero-config WireGuard mesh VPN that makes private networking effortless"
+  },
+  {
+    "slug": "render",
+    "name": "Render",
+    "url": "https://render.com",
+    "categorySlug": "hosting",
+    "description": "The modern cloud provider that builds and scales web apps, APIs, and databases"
+  },
+  {
+    "slug": "fly-io",
+    "name": "Fly.io",
+    "url": "https://fly.io",
+    "categorySlug": "hosting",
+    "description": "Deploy app servers and databases close to your users in 35+ global regions"
+  },
+  {
+    "slug": "instantly-ai",
+    "name": "Instantly.ai",
+    "url": "https://instantly.ai",
+    "categorySlug": "crm-sales",
+    "description": "Scale cold email outreach with unlimited accounts and automated inbox warmup"
+  },
+  {
+    "slug": "clay-run",
+    "name": "Clay",
+    "url": "https://www.clay.com",
+    "categorySlug": "crm-sales",
+    "description": "The AI data enrichment and automated outbound growth engine"
+  },
+  {
+    "slug": "asana",
+    "name": "Asana",
+    "url": "https://asana.com",
+    "categorySlug": "project-management",
+    "description": "Enterprise work management, cross-functional team coordination, and goal tracking"
+  },
+  {
+    "slug": "monday",
+    "name": "Monday.com",
+    "url": "https://monday.com",
+    "categorySlug": "project-management",
+    "description": "The cloud Work OS where teams create workflow apps and manage everything"
+  },
+  {
+    "slug": "coda",
+    "name": "Coda",
+    "url": "https://coda.io",
+    "categorySlug": "productivity",
+    "description": "The all-in-one collaborative doc that brings words, data, and teams together"
+  },
+  {
+    "slug": "superhuman",
+    "name": "Superhuman",
+    "url": "https://superhuman.com",
+    "categorySlug": "productivity",
+    "description": "The fastest email experience ever made with integrated AI"
+  },
+  {
+    "slug": "miro",
+    "name": "Miro",
+    "url": "https://miro.com",
+    "categorySlug": "productivity",
+    "description": "The visual workspace for innovation, architecture diagramming, and team brainstorming"
+  },
+  {
+    "slug": "spline",
+    "name": "Spline 3D",
+    "url": "https://spline.design",
+    "categorySlug": "design",
+    "description": "Design and collaborate in 3D directly in the browser with interactive web export"
+  },
+  {
+    "slug": "tailwindui",
+    "name": "Tailwind UI",
+    "url": "https://tailwindui.com",
+    "categorySlug": "dev-tools",
+    "description": "Production-ready Tailwind CSS UI component libraries by Adam Wathan and team"
+  },
+  {
+    "slug": "lemonsqueezy",
+    "name": "Lemon Squeezy",
+    "url": "https://www.lemonsqueezy.com",
+    "categorySlug": "finance",
+    "description": "The all-in-one merchant of record for software payments, subscriptions, and global tax"
+  },
+  {
+    "slug": "paddle",
+    "name": "Paddle",
+    "url": "https://www.paddle.com",
+    "categorySlug": "finance",
+    "description": "The complete payments, subscription billing, and tax compliance engine for SaaS"
+  },
+  {
+    "slug": "stripe",
+    "name": "Stripe",
+    "url": "https://stripe.com",
+    "categorySlug": "finance",
+    "description": "The financial infrastructure platform for the internet"
+  },
+  {
+    "slug": "wise",
+    "name": "Wise Business",
+    "url": "https://wise.com",
+    "categorySlug": "finance",
+    "description": "The international banking account for sending, spending, and receiving money globally"
+  },
+  {
+    "slug": "quickbooks",
+    "name": "QuickBooks",
+    "url": "https://quickbooks.intuit.com",
+    "categorySlug": "finance",
+    "description": "The world's leading small business accounting, invoicing, and tax bookkeeping platform"
+  },
+  {
+    "slug": "porkbun",
+    "name": "Porkbun",
+    "url": "https://porkbun.com",
+    "categorySlug": "hosting",
+    "description": "The refreshingly transparent domain registrar with free WHOIS and SSL forever"
+  },
+  {
+    "slug": "namecheap",
+    "name": "Namecheap",
+    "url": "https://www.namecheap.com",
+    "categorySlug": "hosting",
+    "description": "Affordable domain registration, SSL certificates, and managed WordPress hosting"
+  },
+  {
+    "slug": "hetzner",
+    "name": "Hetzner Cloud",
+    "url": "https://www.hetzner.com",
+    "categorySlug": "hosting",
+    "description": "High-performance European cloud compute and dedicated servers at unbeatable prices"
+  },
+  {
+    "slug": "vultr",
+    "name": "Vultr",
+    "url": "https://www.vultr.com",
+    "categorySlug": "hosting",
+    "description": "High-performance cloud compute, bare metal, and NVIDIA GPUs in 32 global locations"
+  },
+  {
+    "slug": "bitwarden",
+    "name": "Bitwarden",
+    "url": "https://bitwarden.com",
+    "categorySlug": "security",
+    "description": "The open source, zero-knowledge password manager and secrets vault for teams"
+  },
+  {
+    "slug": "shopify",
+    "name": "Shopify",
+    "url": "https://www.shopify.com",
+    "categorySlug": "ecommerce",
+    "description": "The all-in-one global commerce platform powering millions of businesses"
+  },
+  {
+    "slug": "posthog",
+    "name": "PostHog",
+    "url": "https://posthog.com",
+    "categorySlug": "analytics",
+    "description": "The open source all-in-one product analytics, session replay, and feature flag suite"
+  },
+  {
+    "slug": "zapier",
+    "name": "Zapier",
+    "url": "https://zapier.com",
+    "categorySlug": "dev-tools",
+    "description": "The global leader in no-code workflow automation across 6,000+ business apps"
+  },
+  {
+    "slug": "make",
+    "name": "Make.com",
+    "url": "https://www.make.com",
+    "categorySlug": "dev-tools",
+    "description": "Visual workflow automation platform that designs, builds, and automates anything"
+  },
+  {
+    "slug": "airtable",
+    "name": "Airtable",
+    "url": "https://airtable.com",
+    "categorySlug": "productivity",
+    "description": "The low-code relational database platform for building custom team applications"
+  },
+  {
+    "slug": "cal-com",
+    "name": "Cal.com",
+    "url": "https://cal.com",
+    "categorySlug": "productivity",
+    "description": "The open source scheduling infrastructure that connects everyone effortlessly"
+  },
+  {
+    "slug": "intercom",
+    "name": "Intercom",
+    "url": "https://www.intercom.com",
+    "categorySlug": "crm-sales",
+    "description": "The AI-first customer service platform powered by Fin AI Copilot and Messenger"
+  },
+  {
+    "slug": "ghost",
+    "name": "Ghost",
+    "url": "https://ghost.org",
+    "categorySlug": "marketing",
+    "description": "The independent publishing, newsletter, and paid membership platform"
+  },
+  {
+    "slug": "convertkit",
+    "name": "ConvertKit (Kit)",
+    "url": "https://convertkit.com",
+    "categorySlug": "marketing",
+    "description": "The creator marketing platform for newsletters, automations, and digital commerce"
+  },
+  {
+    "slug": "turso",
+    "name": "Turso",
+    "url": "https://turso.tech",
+    "categorySlug": "dev-tools",
+    "description": "SQLite for the Edge: sub-10ms global database replication powered by libSQL"
+  },
+  {
+    "slug": "upstash",
+    "name": "Upstash",
+    "url": "https://upstash.com",
+    "categorySlug": "dev-tools",
+    "description": "Serverless data platform for Redis, Kafka, Vector Search, and QStash"
+  },
+  {
+    "slug": "attio",
+    "name": "Attio",
+    "url": "https://attio.com",
+    "categorySlug": "crm-sales",
+    "description": "The modern, AI-first CRM for tech startups and hyper-growth companies"
+  },
+  {
+    "slug": "github",
+    "name": "GitHub",
+    "url": "https://github.com",
+    "categorySlug": "dev-tools",
+    "description": "The world's largest developer platform for code collaboration, CI/CD, and Copilot AI"
+  },
+  {
+    "slug": "openai",
+    "name": "OpenAI",
+    "url": "https://openai.com",
+    "categorySlug": "ai-tools",
+    "description": "Frontier artificial intelligence models: ChatGPT Plus, GPT-4o, and reasoning models"
+  },
+  {
+    "slug": "anthropic",
+    "name": "Anthropic Claude",
+    "url": "https://www.anthropic.com",
+    "categorySlug": "ai-tools",
+    "description": "Safety-first frontier AI: Claude 3.5 Sonnet, 200k token context, and Artifacts"
+  },
+  {
+    "slug": "loops",
+    "name": "Loops.so",
+    "url": "https://loops.so",
+    "categorySlug": "marketing",
+    "description": "The modern email platform built specifically for software, SaaS, and AI startups"
+  },
+  {
+    "slug": "betterstack",
+    "name": "Better Stack",
+    "url": "https://betterstack.com",
+    "categorySlug": "dev-tools",
+    "description": "Spot downtime and fix bugs faster: uptime monitoring, incident response & log management"
+  },
+  {
+    "slug": "retool",
+    "name": "Retool",
+    "url": "https://retool.com",
+    "categorySlug": "dev-tools",
+    "description": "The fastest way to build custom internal tools, admin panels, and operational apps"
+  },
+  {
+    "slug": "pinecone",
+    "name": "Pinecone",
+    "url": "https://www.pinecone.io",
+    "categorySlug": "ai-tools",
+    "description": "The purpose-built serverless vector database for production AI search and RAG"
+  },
+  {
+    "slug": "lovable",
+    "name": "Lovable.dev",
+    "url": "https://lovable.dev",
+    "categorySlug": "ai-tools",
+    "description": "The fullstack AI engineer that turns natural language prompts into production web apps"
+  },
+  {
+    "slug": "deno",
+    "name": "Deno & Deno Deploy",
+    "url": "https://deno.com",
+    "categorySlug": "hosting",
+    "description": "The modern, secure JavaScript and TypeScript runtime with global edge hosting"
+  },
+  {
+    "slug": "coolify",
+    "name": "Coolify",
+    "url": "https://coolify.io",
+    "categorySlug": "dev-tools",
+    "description": "Self-hosted all-in-one PaaS & open-source Vercel/Heroku alternative"
+  },
+  {
+    "slug": "pocketbase",
+    "name": "PocketBase",
+    "url": "https://pocketbase.io",
+    "categorySlug": "dev-tools",
+    "description": "Open-source single-file backend in 1 executable with embedded SQLite & real-time API"
+  },
+  {
+    "slug": "appwrite",
+    "name": "Appwrite",
+    "url": "https://appwrite.io",
+    "categorySlug": "dev-tools",
+    "description": "Open-source backend server for Flutter, Web, Android, iOS, and serverless apps"
+  },
+  {
+    "slug": "hoppscotch",
+    "name": "Hoppscotch",
+    "url": "https://hoppscotch.io",
+    "categorySlug": "dev-tools",
+    "description": "Open-source, web-first API development ecosystem & lightweight Postman alternative"
+  },
+  {
+    "slug": "bruno",
+    "name": "Bruno",
+    "url": "https://usebruno.com",
+    "categorySlug": "dev-tools",
+    "description": "Fast, offline-first open-source API client that stores collections in your Git repo"
+  },
+  {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "url": "https://koyeb.com",
+    "categorySlug": "dev-tools",
+    "description": "Developer-friendly serverless compute platform for container deployments with sub-second scaling"
+  },
+  {
+    "slug": "zeabur",
+    "name": "Zeabur",
+    "url": "https://zeabur.com",
+    "categorySlug": "dev-tools",
+    "description": "Deploy web apps, full-stack frameworks & databases in 1 click with zero devops"
+  },
+  {
+    "slug": "highlight-io",
+    "name": "Highlight.io",
+    "url": "https://highlight.io",
+    "categorySlug": "dev-tools",
+    "description": "Open-source full-stack monitoring, session replay & error tracking for modern web apps"
+  },
+  {
+    "slug": "kinde",
+    "name": "Kinde",
+    "url": "https://kinde.com",
+    "categorySlug": "dev-tools",
+    "description": "Developer-first authentication, user management & feature flags built for modern SaaS"
+  },
+  {
+    "slug": "supertokens",
+    "name": "SuperTokens",
+    "url": "https://supertokens.com",
+    "categorySlug": "dev-tools",
+    "description": "Open-source, highly customizable alternative to Auth0 and AWS Cognito"
+  },
+  {
+    "slug": "aider",
+    "name": "Aider",
+    "url": "https://aider.chat",
+    "categorySlug": "ai-tools",
+    "description": "Terminal AI pair programming that edits code across your local git repo with benchmark-leading accuracy"
+  },
+  {
+    "slug": "windsurf",
+    "name": "Windsurf",
+    "url": "https://codeium.com/windsurf",
+    "categorySlug": "ai-tools",
+    "description": "Agentic AI code editor with Cascade contextual reasoning engine by Codeium"
+  },
+  {
+    "slug": "chatbase",
+    "name": "Chatbase",
+    "url": "https://chatbase.co",
+    "categorySlug": "ai-tools",
+    "description": "Custom AI chatbot builder trained on your website, PDFs, and documentation in minutes"
+  },
+  {
+    "slug": "dify-ai",
+    "name": "Dify.ai",
+    "url": "https://dify.ai",
+    "categorySlug": "ai-tools",
+    "description": "Open-source LLM app development platform combining prompt DAGs, RAG & autonomous agents"
+  },
+  {
+    "slug": "rytr",
+    "name": "Rytr",
+    "url": "https://rytr.me",
+    "categorySlug": "ai-tools",
+    "description": "Budget-friendly AI writing assistant & content generator for solo founders and marketers"
+  },
+  {
+    "slug": "leonardo-ai",
+    "name": "Leonardo.ai",
+    "url": "https://leonardo.ai",
+    "categorySlug": "ai-tools",
+    "description": "Production-grade visual generative AI platform for game assets, marketing & concept art"
+  },
+  {
+    "slug": "murf-ai",
+    "name": "Murf.ai",
+    "url": "https://murf.ai",
+    "categorySlug": "ai-tools",
+    "description": "Studio-quality AI voiceover generator with 120+ natural voices for videos and presentations"
+  },
+  {
+    "slug": "speechify",
+    "name": "Speechify",
+    "url": "https://speechify.com",
+    "categorySlug": "ai-tools",
+    "description": "Leading AI text-to-speech audio reader turning articles, docs & PDFs into natural audiobooks"
+  },
+  {
+    "slug": "opus-clip",
+    "name": "Opus Clip",
+    "url": "https://opus.pro",
+    "categorySlug": "ai-tools",
+    "description": "Generative AI video repurposing tool that turns long videos into viral short clips with 1 click"
+  },
+  {
+    "slug": "frase-io",
+    "name": "Frase.io",
+    "url": "https://frase.io",
+    "categorySlug": "ai-tools",
+    "description": "AI SEO content optimization & research assistant for ranking on Google SERPs"
+  },
+  {
+    "slug": "mailerlite",
+    "name": "MailerLite",
+    "url": "https://mailerlite.com",
+    "categorySlug": "marketing",
+    "description": "Affordable, intuitive email marketing with drag-and-drop automations & high deliverability"
+  },
+  {
+    "slug": "emailoctopus",
+    "name": "EmailOctopus",
+    "url": "https://emailoctopus.com",
+    "categorySlug": "marketing",
+    "description": "Ultra-affordable email marketing platform designed for creators, indie hackers & bootstrappers"
+  },
+  {
+    "slug": "sendy",
+    "name": "Sendy",
+    "url": "https://sendy.co",
+    "categorySlug": "marketing",
+    "description": "Self-hosted email newsletter app that sends bulk emails 100x cheaper via Amazon SES"
+  },
+  {
+    "slug": "se-ranking",
+    "name": "SE Ranking",
+    "url": "https://seranking.com",
+    "categorySlug": "marketing",
+    "description": "All-in-one SEO platform with keyword tracking, backlink audits & competitor analysis at mid-tier pricing"
+  },
+  {
+    "slug": "lowfruits",
+    "name": "LowFruits",
+    "url": "https://lowfruits.io",
+    "categorySlug": "marketing",
+    "description": "Keyword discovery tool that uncovers low-competition search queries dominated by forums & UGC"
+  },
+  {
+    "slug": "mangools",
+    "name": "Mangools",
+    "url": "https://mangools.com",
+    "categorySlug": "marketing",
+    "description": "Juicy SEO suite featuring KWFinder and SERPChecker with friendly UI & budget-friendly plans"
+  },
+  {
+    "slug": "metricool",
+    "name": "Metricool",
+    "url": "https://metricool.com",
+    "categorySlug": "marketing",
+    "description": "All-in-one social media scheduler, digital ad manager & analytics hub for solo founders"
+  },
+  {
+    "slug": "typefully",
+    "name": "Typefully",
+    "url": "https://typefully.com",
+    "categorySlug": "marketing",
+    "description": "Distraction-free writing, scheduling & analytics platform for X/Twitter and LinkedIn creators"
+  },
+  {
+    "slug": "publer",
+    "name": "Publer",
+    "url": "https://publer.io",
+    "categorySlug": "marketing",
+    "description": "Social media superhero for scheduling, collaborating & recycling posts on a bootstrap budget"
+  },
+  {
+    "slug": "smartlead",
+    "name": "Smartlead.ai",
+    "url": "https://smartlead.ai/?via=quick",
+    "categorySlug": "crm-sales",
+    "description": "Cold email software with unlimited mailbox warmups & AI multi-channel infrastructure"
+  },
+  {
+    "slug": "woodpecker",
+    "name": "Woodpecker",
+    "url": "https://woodpecker.co",
+    "categorySlug": "crm-sales",
+    "description": "Intuitive cold outreach & follow-up engine designed specifically for B2B lead generation agencies"
+  },
+  {
+    "slug": "folk-crm",
+    "name": "Folk CRM",
+    "url": "https://folk.app",
+    "categorySlug": "crm-sales",
+    "description": "Next-generation collaborative CRM for contacts, deal pipelines & hyper-personalized outreach"
+  },
+  {
+    "slug": "close-crm",
+    "name": "Close CRM",
+    "url": "https://close.com",
+    "categorySlug": "crm-sales",
+    "description": "High-velocity inside sales CRM with built-in calling, SMS & automated email sequences"
+  },
+  {
+    "slug": "findymail",
+    "name": "Findymail",
+    "url": "https://findymail.com",
+    "categorySlug": "crm-sales",
+    "description": "Verified B2B email scraper & verification API with zero bounce guarantee"
+  },
+  {
+    "slug": "capsule-crm",
+    "name": "Capsule CRM",
+    "url": "https://capsulecrm.com",
+    "categorySlug": "crm-sales",
+    "description": "Simple, clutter-free CRM for small businesses to track sales pipelines & client relations"
+  },
+  {
+    "slug": "carrd",
+    "name": "Carrd",
+    "url": "https://carrd.co",
+    "categorySlug": "design",
+    "description": "Simple, fully responsive one-page site builder starting at just $19/year"
+  },
+  {
+    "slug": "tella",
+    "name": "Tella",
+    "url": "https://tella.tv",
+    "categorySlug": "design",
+    "description": "Creator-first screen recorder with custom layouts, zoom effects & instant web sharing"
+  },
+  {
+    "slug": "penpot",
+    "name": "Penpot",
+    "url": "https://penpot.app",
+    "categorySlug": "design",
+    "description": "Web-standard, open-source Figma alternative using native SVG & CSS flexbox/grid"
+  },
+  {
+    "slug": "dorik",
+    "name": "Dorik",
+    "url": "https://dorik.com",
+    "categorySlug": "design",
+    "description": "No-code AI website builder with clean code exports, CMS & white-label agency portal"
+  },
+  {
+    "slug": "shots-so",
+    "name": "Shots.so",
+    "url": "https://shots.so",
+    "categorySlug": "design",
+    "description": "Fast, delightful browser mockup & screenshot beautifier for product showcases"
+  },
+  {
+    "slug": "rotato",
+    "name": "Rotato",
+    "url": "https://rotato.app",
+    "categorySlug": "design",
+    "description": "3D mockup animation studio for macOS creating photorealistic device videos for landing pages"
+  },
+  {
+    "slug": "umami",
+    "name": "Umami",
+    "url": "https://umami.is",
+    "categorySlug": "analytics",
+    "description": "Privacy-focused, cookieless open-source alternative to Google Analytics"
+  },
+  {
+    "slug": "pirsch",
+    "name": "Pirsch.io",
+    "url": "https://pirsch.io",
+    "categorySlug": "analytics",
+    "description": "Privacy-first open-core analytics with server-side SDKs & zero cookies"
+  },
+  {
+    "slug": "simple-analytics",
+    "name": "Simple Analytics",
+    "url": "https://simpleanalytics.com",
+    "categorySlug": "analytics",
+    "description": "Clean, privacy-first website analytics without cookies or IP tracking"
+  },
+  {
+    "slug": "aptabase",
+    "name": "Aptabase",
+    "url": "https://aptabase.com",
+    "categorySlug": "analytics",
+    "description": "Lightweight, privacy-first analytics SDK for mobile, desktop & web apps with zero tracking"
+  },
+  {
+    "slug": "invoiceninja",
+    "name": "Invoice Ninja",
+    "url": "https://invoiceninja.com",
+    "categorySlug": "finance",
+    "description": "Open-source invoicing, recurring billing & time-tracking for freelancers and small businesses"
+  },
+  {
+    "slug": "bonsai",
+    "name": "Bonsai",
+    "url": "https://hellobonsai.com",
+    "categorySlug": "finance",
+    "description": "All-in-one business management suite with contracts, proposals, time-tracking & invoicing"
+  },
+  {
+    "slug": "chargebee",
+    "name": "Chargebee",
+    "url": "https://chargebee.com",
+    "categorySlug": "finance",
+    "description": "Scalable subscription billing, churn reduction & revenue recognition for recurring SaaS"
+  },
+  {
+    "slug": "mullvad",
+    "name": "Mullvad VPN",
+    "url": "https://mullvad.net",
+    "categorySlug": "security",
+    "description": "Zero-log, accountless privacy VPN with flat €5/month pricing & no email required"
+  },
+  {
+    "slug": "proton-pass",
+    "name": "Proton Pass",
+    "url": "https://proton.me/pass",
+    "categorySlug": "security",
+    "description": "Swiss end-to-end encrypted password & identity manager with integrated email aliases"
+  },
+  {
+    "slug": "uptime-kuma",
+    "name": "Uptime Kuma",
+    "url": "https://uptime.kuma.pet",
+    "categorySlug": "security",
+    "description": "Self-hosted monitoring tool with status pages, certificate checks & alerts across 90+ channels"
+  },
+  {
+    "slug": "obsidian",
+    "name": "Obsidian",
+    "url": "https://obsidian.md",
+    "categorySlug": "productivity",
+    "description": "Local-first Markdown second brain & knowledge base with graph view & canvas"
+  },
+  {
+    "slug": "ticktick",
+    "name": "TickTick",
+    "url": "https://ticktick.com",
+    "categorySlug": "productivity",
+    "description": "Power-user task manager with built-in Pomodoro timer, habit tracker & calendar view"
+  },
+  {
+    "slug": "raindrop",
+    "name": "Raindrop.io",
+    "url": "https://raindrop.io",
+    "categorySlug": "productivity",
+    "description": "All-in-one cloud bookmark manager with full-text search, web highlights & permanent copies"
+  },
+  {
+    "slug": "craft-docs",
+    "name": "Craft Docs",
+    "url": "https://craft.do",
+    "categorySlug": "productivity",
+    "description": "Elegant, block-based collaborative workspace built with native Apple speed & aesthetics"
+  },
+  {
+    "slug": "capacities",
+    "name": "Capacities",
+    "url": "https://capacities.io",
+    "categorySlug": "productivity",
+    "description": "Object-based note-taking & personal knowledge studio designed for interconnected thoughts"
+  },
+  {
+    "slug": "gumroad",
+    "name": "Gumroad",
+    "url": "https://gumroad.com",
+    "categorySlug": "ecommerce",
+    "description": "Dead-simple checkout & digital storefront for creators to sell code, books, SaaS & assets"
+  },
+  {
+    "slug": "payhip",
+    "name": "Payhip",
+    "url": "https://payhip.com",
+    "categorySlug": "ecommerce",
+    "description": "Creator e-commerce platform with 5% transaction tier, coupon engine & digital downloads"
+  },
+  {
+    "slug": "medusa",
+    "name": "Medusa.js",
+    "url": "https://medusajs.com",
+    "categorySlug": "ecommerce",
+    "description": "The open-source headless commerce engine built with Node.js & TypeScript"
+  },
+  {
+    "slug": "thrivecart",
+    "name": "ThriveCart",
+    "url": "https://thrivecart.com",
+    "categorySlug": "ecommerce",
+    "description": "High-converting shopping cart & checkout funnel platform offering a legendary lifetime license"
+  },
+  {
+    "slug": "plane",
+    "name": "Plane.so",
+    "url": "https://plane.so",
+    "categorySlug": "project-management",
+    "description": "Open-source project management platform & issue tracker with cycle planning & self-hosting"
+  },
+  {
+    "slug": "basecamp",
+    "name": "Basecamp",
+    "url": "https://basecamp.com",
+    "categorySlug": "project-management",
+    "description": "Calm, all-in-one team collaboration & project system with flat, no-per-seat pricing"
+  },
+  {
+    "slug": "taiga",
+    "name": "Taiga",
+    "url": "https://taiga.io",
+    "categorySlug": "project-management",
+    "description": "Open-source agile project tool for startups with Scrum, Kanban & issue tracking"
+  },
+  {
+    "slug": "contabo",
+    "name": "Contabo",
+    "url": "https://contabo.com",
+    "categorySlug": "hosting",
+    "description": "High-performance, ultra-low-cost German NVMe Cloud VPS hosting"
+  },
+  {
+    "slug": "scaleway",
+    "name": "Scaleway",
+    "url": "https://scaleway.com",
+    "categorySlug": "hosting",
+    "description": "European cloud platform with bare-metal, ARM instances, S3 storage & low egress costs"
+  },
+  {
+    "slug": "linode",
+    "name": "Linode (Akamai)",
+    "url": "https://linode.com",
+    "categorySlug": "hosting",
+    "description": "Predictable, developer-friendly Linux cloud compute, managed DBs & Kubernetes by Akamai"
+  },
+  {
+    "slug": "surrealdb",
+    "name": "SurrealDB",
+    "url": "https://surrealdb.com",
+    "categorySlug": "dev-tools",
+    "description": "Multi-model cloud & embedded database (SQL, Document, Graph, Vector) in Rust"
+  },
+  {
+    "slug": "nhost",
+    "name": "Nhost",
+    "url": "https://nhost.io",
+    "categorySlug": "dev-tools",
+    "description": "Open-source GraphQL backend-as-a-service with Postgres, Hasura & Auth"
+  },
+  {
+    "slug": "logto",
+    "name": "Logto",
+    "url": "https://logto.io",
+    "categorySlug": "dev-tools",
+    "description": "Open-source, developer-friendly customer identity & access management (CIAM) platform"
+  },
+  {
+    "slug": "signoz",
+    "name": "SigNoz",
+    "url": "https://signoz.io",
+    "categorySlug": "dev-tools",
+    "description": "Open-source APM, distributed tracing & metrics alternative to Datadog"
+  },
+  {
+    "slug": "hyperdx",
+    "name": "HyperDX",
+    "url": "https://hyperdx.io",
+    "categorySlug": "dev-tools",
+    "description": "Open-source unified developer observability: logs, traces & session replay in ClickHouse"
+  },
+  {
+    "slug": "glitchtip",
+    "name": "GlitchTip",
+    "url": "https://glitchtip.com",
+    "categorySlug": "dev-tools",
+    "description": "Simple, open-source error tracking software compatible with Sentry SDKs at 10% the cost"
+  },
+  {
+    "slug": "apidog",
+    "name": "Apidog",
+    "url": "https://apidog.com",
+    "categorySlug": "dev-tools",
+    "description": "Integrated API design, debugging, automated testing & mock servers in 1 workspace"
+  },
+  {
+    "slug": "northflank",
+    "name": "Northflank",
+    "url": "https://northflank.com",
+    "categorySlug": "dev-tools",
+    "description": "Developer cloud platform to build, deploy & scale microservices & databases on any cloud"
+  },
+  {
+    "slug": "porter",
+    "name": "Porter",
+    "url": "https://porter.run",
+    "categorySlug": "dev-tools",
+    "description": "Run a private PaaS (Heroku experience) on your own AWS/GCP/Azure Kubernetes cluster"
+  },
+  {
+    "slug": "directus",
+    "name": "Directus",
+    "url": "https://directus.io",
+    "categorySlug": "dev-tools",
+    "description": "Open-source data platform wrapping any SQL database in instant REST & GraphQL APIs"
+  },
+  {
+    "slug": "continue-dev",
+    "name": "Continue.dev",
+    "url": "https://continue.dev",
+    "categorySlug": "ai-tools",
+    "description": "Leading open-source AI code copilot extension for VS Code & JetBrains"
+  },
+  {
+    "slug": "langflow",
+    "name": "Langflow",
+    "url": "https://langflow.org",
+    "categorySlug": "ai-tools",
+    "description": "Visual framework & drag-and-drop canvas for building multi-agent AI & RAG"
+  },
+  {
+    "slug": "flowise",
+    "name": "Flowise",
+    "url": "https://flowiseai.com",
+    "categorySlug": "ai-tools",
+    "description": "Open-source low-code UI to build customized LLM orchestration flows"
+  },
+  {
+    "slug": "fastgpt",
+    "name": "FastGPT",
+    "url": "https://fastgpt.in",
+    "categorySlug": "ai-tools",
+    "description": "Knowledge-base QA platform with advanced RAG search & multi-turn workflows"
+  },
+  {
+    "slug": "sitegpt",
+    "name": "SiteGPT",
+    "url": "https://sitegpt.ai",
+    "categorySlug": "ai-tools",
+    "description": "AI customer support chatbot personalized to your website with zero hallucination guardrails"
+  },
+  {
+    "slug": "krea-ai",
+    "name": "Krea.ai",
+    "url": "https://krea.ai",
+    "categorySlug": "ai-tools",
+    "description": "Real-time AI image generation, creative video enhancements & upscale canvas"
+  },
+  {
+    "slug": "ideogram",
+    "name": "Ideogram",
+    "url": "https://ideogram.ai",
+    "categorySlug": "ai-tools",
+    "description": "AI image generator famous for reliable, crisp text typography and logo lettering"
+  },
+  {
+    "slug": "voicemaker",
+    "name": "Voicemaker",
+    "url": "https://voicemaker.in",
+    "categorySlug": "ai-tools",
+    "description": "Budget AI voiceover platform with 1,000+ neural voices across 130 languages"
+  },
+  {
+    "slug": "krisp",
+    "name": "Krisp.ai",
+    "url": "https://krisp.ai",
+    "categorySlug": "ai-tools",
+    "description": "AI background noise cancellation, meeting transcription & accent softening for microphone calls"
+  },
+  {
+    "slug": "textcortex",
+    "name": "TextCortex",
+    "url": "https://textcortex.com",
+    "categorySlug": "ai-tools",
+    "description": "Customizable AI co-pilot with personalized knowledge personas for writing & workflows"
+  },
+  {
+    "slug": "moosend",
+    "name": "Moosend",
+    "url": "https://moosend.com",
+    "categorySlug": "marketing",
+    "description": "Affordable email marketing automation and landing page builder for growing teams"
+  },
+  {
+    "slug": "sender",
+    "name": "Sender.net",
+    "url": "https://sender.net",
+    "categorySlug": "marketing",
+    "description": "High-deliverability budget email & SMS marketing automation platform"
+  },
+  {
+    "slug": "mailcoach",
+    "name": "Mailcoach",
+    "url": "https://mailcoach.app",
+    "categorySlug": "marketing",
+    "description": "Self-hosted & hosted privacy-first email marketing by Spatie with flat pricing"
+  },
+  {
+    "slug": "flodesk",
+    "name": "Flodesk",
+    "url": "https://flodesk.com",
+    "categorySlug": "marketing",
+    "description": "Aesthetic email marketing and checkout platform with flat-rate pricing"
+  },
+  {
+    "slug": "nightwatch",
+    "name": "Nightwatch",
+    "url": "https://nightwatch.io",
+    "categorySlug": "marketing",
+    "description": "Hyper-accurate local & global SERP rank tracking across 100k+ zip codes"
+  },
+  {
+    "slug": "ranktracker",
+    "name": "Ranktracker",
+    "url": "https://ranktracker.com",
+    "categorySlug": "marketing",
+    "description": "All-in-one affordable SEO suite: rank tracking, keyword finder & backlink monitor"
+  },
+  {
+    "slug": "tweethunter",
+    "name": "TweetHunter",
+    "url": "https://tweethunter.io",
+    "categorySlug": "marketing",
+    "description": "AI-driven X/Twitter audience growth, content ideation, and auto-DM platform"
+  },
+  {
+    "slug": "socialbee",
+    "name": "SocialBee",
+    "url": "https://socialbee.com",
+    "categorySlug": "marketing",
+    "description": "AI-powered social media management and category-based content scheduling"
+  },
+  {
+    "slug": "postoplan",
+    "name": "Postoplan",
+    "url": "https://postoplan.app",
+    "categorySlug": "marketing",
+    "description": "Budget-friendly automated social media marketing with WhatsApp & Telegram support"
+  },
+  {
+    "slug": "saleshandy",
+    "name": "Saleshandy",
+    "url": "https://saleshandy.com",
+    "categorySlug": "crm",
+    "description": "Cold email automation with unlimited email accounts and sender warmup"
+  },
+  {
+    "slug": "quickmail",
+    "name": "QuickMail",
+    "url": "https://quickmail.com",
+    "categorySlug": "crm",
+    "description": "Deliverability-first cold email automation for agencies & enterprise outbound"
+  },
+  {
+    "slug": "reply-io",
+    "name": "Reply.io",
+    "url": "https://reply.io",
+    "categorySlug": "crm",
+    "description": "AI-driven sales engagement and multi-channel outbound automation platform"
+  },
+  {
+    "slug": "anymail-finder",
+    "name": "Anymail Finder",
+    "url": "https://anymailfinder.com",
+    "categorySlug": "crm",
+    "description": "Pay-only-for-verified B2B email finder with live mail-server validation"
+  },
+  {
+    "slug": "kaspr",
+    "name": "Kaspr",
+    "url": "https://kaspr.io",
+    "categorySlug": "crm",
+    "description": "LinkedIn Chrome extension providing instant B2B phone numbers & verified emails"
+  },
+  {
+    "slug": "onepagecrm",
+    "name": "OnePageCRM",
+    "url": "https://onepagecrm.com",
+    "categorySlug": "crm",
+    "description": "Action-focused CRM based on Getting Things Done (GTD) principles for small business"
+  },
+  {
+    "slug": "salesflare",
+    "name": "Salesflare",
+    "url": "https://salesflare.com",
+    "categorySlug": "crm",
+    "description": "Intelligent zero-data-entry B2B CRM that auto-logs emails, meetings & contacts"
+  },
+  {
+    "slug": "lunacy",
+    "name": "Lunacy",
+    "url": "https://icons8.com/lunacy",
+    "categorySlug": "design",
+    "description": "Free offline-first vector UI design software with built-in AI graphics tools"
+  },
+  {
+    "slug": "screely",
+    "name": "Screely",
+    "url": "https://screely.com",
+    "categorySlug": "design",
+    "description": "Instant browser mockup & aesthetic screenshot beautifier for product launches"
+  },
+  {
+    "slug": "cleanmock",
+    "name": "Cleanmock",
+    "url": "https://cleanmock.com",
+    "categorySlug": "design",
+    "description": "Minimalist mobile & web UI mockup generator with clean modern aesthetics"
+  },
+  {
+    "slug": "previewed",
+    "name": "Previewed",
+    "url": "https://previewed.app",
+    "categorySlug": "design",
+    "description": "3D device mockups and animated promotional video generator for apps"
+  },
+  {
+    "slug": "veed-io",
+    "name": "Veed.io",
+    "url": "https://veed.io",
+    "categorySlug": "design",
+    "description": "Browser-based AI video editor with auto-subtitles, voice translation & clipping"
+  },
+  {
+    "slug": "kap",
+    "name": "Kap",
+    "url": "https://getkap.co",
+    "categorySlug": "design",
+    "description": "Free open-source lightweight screen recorder built with web technology for macOS"
+  },
+  {
+    "slug": "typedream",
+    "name": "Typedream",
+    "url": "https://typedream.com",
+    "categorySlug": "design",
+    "description": "Notion-like no-code website and landing page builder for creators & startups"
+  },
+  {
+    "slug": "versoly",
+    "name": "Versoly",
+    "url": "https://versoly.com",
+    "categorySlug": "design",
+    "description": "Developer-friendly SaaS landing page builder with clean Tailwind CSS & code export"
+  },
+  {
+    "slug": "counter-dev",
+    "name": "Counter.dev",
+    "url": "https://counter.dev",
+    "categorySlug": "analytics",
+    "description": "Ultra-simple privacy-friendly open-source web analytics for indie developers"
+  },
+  {
+    "slug": "swetrix",
+    "name": "Swetrix",
+    "url": "https://swetrix.com",
+    "categorySlug": "analytics",
+    "description": "Open-source, cookieless, GDPR-compliant web and mobile analytics platform"
+  },
+  {
+    "slug": "telemetrydeck",
+    "name": "TelemetryDeck",
+    "url": "https://telemetrydeck.com",
+    "categorySlug": "analytics",
+    "description": "Privacy-respecting lightweight app analytics for iOS, macOS, Android & web"
+  },
+  {
+    "slug": "june-so",
+    "name": "June.so",
+    "url": "https://june.so",
+    "categorySlug": "analytics",
+    "description": "Out-of-the-box product analytics and activation reporting for B2B SaaS teams"
+  },
+  {
+    "slug": "wave-invoicing",
+    "name": "Wave Invoicing",
+    "url": "https://waveapps.com",
+    "categorySlug": "finance",
+    "description": "Free professional invoicing and accounting software for small businesses & freelancers"
+  },
+  {
+    "slug": "ruul",
+    "name": "Ruul",
+    "url": "https://ruul.io",
+    "categorySlug": "finance",
+    "description": "Global invoicing, cross-border payment collection & compliance for contractors"
+  },
+  {
+    "slug": "bill4time",
+    "name": "Bill4Time",
+    "url": "https://bill4time.com",
+    "categorySlug": "finance",
+    "description": "Time tracking, billing & trust accounting platform for legal & professional firms"
+  },
+  {
+    "slug": "cryptio",
+    "name": "Cryptio",
+    "url": "https://cryptio.co",
+    "categorySlug": "finance",
+    "description": "Institutional crypto accounting, audit, and tax reporting platform"
+  },
+  {
+    "slug": "logseq",
+    "name": "Logseq",
+    "url": "https://logseq.com",
+    "categorySlug": "productivity",
+    "description": "Open-source privacy-first local-first outliner & knowledge graph"
+  },
+  {
+    "slug": "anytype",
+    "name": "Anytype",
+    "url": "https://anytype.io",
+    "categorySlug": "productivity",
+    "description": "Local-first, encrypted, open-source Notion alternative with peer-to-peer sync"
+  },
+  {
+    "slug": "standard-notes",
+    "name": "Standard Notes",
+    "url": "https://standardnotes.com",
+    "categorySlug": "productivity",
+    "description": "End-to-end encrypted notes and secure document workspace designed for longevity"
+  },
+  {
+    "slug": "todoist",
+    "name": "Todoist",
+    "url": "https://todoist.com",
+    "categorySlug": "productivity",
+    "description": "The gold-standard intuitive task manager with natural language parsing"
+  },
+  {
+    "slug": "routine",
+    "name": "Routine",
+    "url": "https://routine.co",
+    "categorySlug": "productivity",
+    "description": "Unified calendar, task manager & daily planner with keyboard-first speed"
+  },
+  {
+    "slug": "akiflow",
+    "name": "Akiflow",
+    "url": "https://akiflow.com",
+    "categorySlug": "productivity",
+    "description": "Ultimate time blocking and task consolidation hub for heavy calendar users"
+  },
+  {
+    "slug": "vaultwarden",
+    "name": "Vaultwarden",
+    "url": "https://github.com/dani-garcia/vaultwarden",
+    "categorySlug": "security",
+    "description": "Lightweight open-source Bitwarden-compatible password manager written in Rust"
+  },
+  {
+    "slug": "keepassxc",
+    "name": "KeePassXC",
+    "url": "https://keepassxc.org",
+    "categorySlug": "security",
+    "description": "Cross-platform offline-first open-source password manager with hardware key support"
+  },
+  {
+    "slug": "ivpn",
+    "name": "IVPN",
+    "url": "https://ivpn.net",
+    "categorySlug": "security",
+    "description": "Strictly audited privacy-first VPN with WireGuard, Multi-hop & zero personal data"
+  },
+  {
+    "slug": "windscribe",
+    "name": "Windscribe",
+    "url": "https://windscribe.com",
+    "categorySlug": "security",
+    "description": "Feature-packed budget-friendly VPN with flexible Build-A-Plan pricing & R.O.B.E.R.T. ad block"
+  },
+  {
+    "slug": "sprinto",
+    "name": "Sprinto",
+    "url": "https://sprinto.com",
+    "categorySlug": "security",
+    "description": "Automated SOC 2, ISO 27001 & HIPAA compliance platform for high-growth tech startups"
+  },
+  {
+    "slug": "sellfy",
+    "name": "Sellfy",
+    "url": "https://sellfy.com",
+    "categorySlug": "ecommerce",
+    "description": "Effortless e-commerce storefront for creators selling digital products & merch"
+  },
+  {
+    "slug": "ecwid",
+    "name": "Ecwid by Lightspeed",
+    "url": "https://ecwid.com",
+    "categorySlug": "ecommerce",
+    "description": "Embeddable e-commerce shopping cart that adds a store to any existing website"
+  },
+  {
+    "slug": "fourthwall",
+    "name": "Fourthwall",
+    "url": "https://fourthwall.com",
+    "categorySlug": "ecommerce",
+    "description": "All-in-one creator commerce platform: high-quality merch, memberships & digital goods"
+  },
+  {
+    "slug": "cartflows",
+    "name": "CartFlows",
+    "url": "https://cartflows.com",
+    "categorySlug": "ecommerce",
+    "description": "High-converting sales funnel builder and checkout optimizer for WooCommerce"
+  },
+  {
+    "slug": "saleor",
+    "name": "Saleor",
+    "url": "https://saleor.io",
+    "categorySlug": "ecommerce",
+    "description": "High-performance headless GraphQL e-commerce engine for modern developers"
+  },
+  {
+    "slug": "height",
+    "name": "Height",
+    "url": "https://height.app",
+    "categorySlug": "project-management",
+    "description": "Autonomous AI project management tool that automates backlog hygiene & triage"
+  },
+  {
+    "slug": "kanboard",
+    "name": "Kanboard",
+    "url": "https://kanboard.org",
+    "categorySlug": "project-management",
+    "description": "Minimalist open-source self-hosted Kanban board software with zero bloat"
+  },
+  {
+    "slug": "meistertask",
+    "name": "MeisterTask",
+    "url": "https://meistertask.com",
+    "categorySlug": "project-management",
+    "description": "Intuitive visual task management and agile Kanban with GDPR European compliance"
+  },
+  {
+    "slug": "breeze",
+    "name": "Breeze",
+    "url": "https://breeze.pm",
+    "categorySlug": "project-management",
+    "description": "Simplified, distraction-free project management tool for small business teams"
+  },
+  {
+    "slug": "ovhcloud",
+    "name": "OVHcloud",
+    "url": "https://ovhcloud.com",
+    "categorySlug": "hosting",
+    "description": "Leading European cloud provider: bare-metal servers, VPS & private cloud infrastructure"
+  },
+  {
+    "slug": "upcloud",
+    "name": "UpCloud",
+    "url": "https://upcloud.com",
+    "categorySlug": "hosting",
+    "description": "High-performance European cloud hosting with MaxIOPS storage & 100% uptime SLA"
+  },
+  {
+    "slug": "time4vps",
+    "name": "Time4VPS",
+    "url": "https://time4vps.com",
+    "categorySlug": "hosting",
+    "description": "Ultra-affordable European Linux, Windows & storage VPS hosting starting under €4/mo"
+  },
+  {
+    "slug": "dub-co",
+    "name": "Dub.co",
+    "url": "https://dub.co",
+    "categorySlug": "marketing",
+    "description": "Modern open-source link management and conversion attribution engine"
+  },
+  {
+    "slug": "mintlify",
+    "name": "Mintlify",
+    "url": "https://mintlify.com",
+    "categorySlug": "devtools",
+    "description": "The modern developer documentation platform engineered to turn readers into builders"
+  },
+  {
+    "slug": "senja",
+    "name": "Senja",
+    "url": "https://senja.io",
+    "categorySlug": "marketing",
+    "description": "Collect, manage, and showcase video and text testimonials in minutes"
+  },
+  {
+    "slug": "testimonial-to",
+    "name": "Testimonial.to",
+    "url": "https://testimonial.to",
+    "categorySlug": "marketing",
+    "description": "Collect video and text testimonials without coding or video editing skills"
+  },
+  {
+    "slug": "bannerbear",
+    "name": "Bannerbear",
+    "url": "https://www.bannerbear.com",
+    "categorySlug": "design",
+    "description": "Automate marketing graphics, eCommerce banners, and video generation with a simple REST API"
+  },
+  {
+    "slug": "polar-sh",
+    "name": "Polar",
+    "url": "https://polar.sh",
+    "categorySlug": "finance",
+    "description": "Developer-first merchant of record and monetization platform for open-source and SaaS"
+  },
+  {
+    "slug": "unkey",
+    "name": "Unkey",
+    "url": "https://www.unkey.com",
+    "categorySlug": "security",
+    "description": "Open-source API key management with sub-millisecond edge latency and rate limiting"
+  },
+  {
+    "slug": "inngest",
+    "name": "Inngest",
+    "url": "https://www.inngest.com",
+    "categorySlug": "devtools",
+    "description": "Event-driven background jobs, serverless queues, and durable workflows without infrastructure management"
+  },
+  {
+    "slug": "knock",
+    "name": "Knock",
+    "url": "https://knock.app",
+    "categorySlug": "devtools",
+    "description": "Flexible notification infrastructure: cross-channel routing, batching, and in-app feeds"
+  },
+  {
+    "slug": "trigger-dev",
+    "name": "Trigger.dev",
+    "url": "https://trigger.dev",
+    "categorySlug": "devtools",
+    "description": "Open-source background jobs framework with zero timeouts for TypeScript developers"
+  },
+  {
+    "slug": "papermark",
+    "name": "Papermark",
+    "url": "https://www.papermark.io",
+    "categorySlug": "sales",
+    "description": "Open-source DocSend alternative with page-by-page pitch deck analytics and custom domains"
+  },
+  {
+    "slug": "twenty-crm",
+    "name": "Twenty CRM",
+    "url": "https://twenty.com",
+    "categorySlug": "sales",
+    "description": "Modern open-source CRM designed to replace Salesforce and HubSpot for fast-growing companies"
+  },
+  {
+    "slug": "jitter-video",
+    "name": "Jitter",
+    "url": "https://jitter.video",
+    "categorySlug": "design",
+    "description": "Figma for motion design: create UI animations and video content right in your browser"
+  },
+  {
+    "slug": "tinybird",
+    "name": "Tinybird",
+    "url": "https://www.tinybird.co",
+    "categorySlug": "infrastructure",
+    "description": "Serverless real-time data analytics backend: turn streaming data into low-latency SQL APIs"
+  },
+  {
+    "slug": "convex",
+    "name": "Convex",
+    "url": "https://www.convex.dev",
+    "categorySlug": "devtools",
+    "description": "Reactive backend-as-a-service for TypeScript full-stack applications with automatic UI sync"
+  },
+  {
+    "slug": "mailersend",
+    "name": "MailerSend",
+    "url": "https://www.mailersend.com",
+    "categorySlug": "marketing",
+    "description": "Developer-first transactional email, SMS, and inbound routing built for high deliverability"
+  },
+  {
+    "slug": "tolt",
+    "name": "Tolt",
+    "url": "https://www.tolt.io",
+    "categorySlug": "marketing",
+    "description": "Affiliate marketing software built specifically for SaaS startups and indie hackers"
+  },
+  {
+    "slug": "rewardful",
+    "name": "Rewardful",
+    "url": "https://www.rewardful.com",
+    "categorySlug": "marketing",
+    "description": "Setup affiliate and referral programs for Stripe and Paddle in minutes"
+  },
+  {
+    "slug": "firstpromoter",
+    "name": "FirstPromoter",
+    "url": "https://firstpromoter.com",
+    "categorySlug": "marketing",
+    "description": "All-in-one platform to launch, track, and scale affiliate and influencer marketing for SaaS"
+  },
+  {
+    "slug": "chatwoot",
+    "name": "Chatwoot",
+    "url": "https://www.chatwoot.com",
+    "categorySlug": "support",
+    "description": "Open-source customer engagement suite: live chat, omnichannel ticketing, and shared inboxes"
+  },
+  {
+    "slug": "formbricks",
+    "name": "Formbricks",
+    "url": "https://formbricks.com",
+    "categorySlug": "analytics",
+    "description": "Open-source experience management & micro-surveys: in-app feedback, NPS, and user research"
+  },
+  {
+    "slug": "taplio",
+    "name": "Taplio",
+    "url": "https://taplio.com/?via=quickreads",
+    "categorySlug": "marketing",
+    "description": "The all-in-one AI platform to grow your personal brand & generate leads on LinkedIn"
+  },
+  {
+    "slug": "systeme-io",
+    "name": "Systeme.io",
+    "url": "https://systeme.io/?sa=sa02739940791ae46d3f6d4cf4bc78f711bae899b0",
+    "categorySlug": "marketing",
+    "description": "All-in-one marketing platform: funnels, email marketing, courses & affiliate management"
+  },
+  {
+    "slug": "snov-io",
+    "name": "Snov.io",
+    "url": "https://snov.io?fp_ref=quick",
+    "categorySlug": "sales",
+    "description": "Cold outreach automation, verified B2B email finder & sales engagement platform"
+  },
+  {
+    "slug": "streamyard",
+    "name": "StreamYard",
+    "url": "https://streamyard.com/?fpr=quick",
+    "categorySlug": "design",
+    "description": "Professional live streaming and podcast recording studio directly in your browser"
+  },
+  {
+    "slug": "anytrack",
+    "name": "AnyTrack",
+    "url": "https://anytrack.io/?utm_campaign=referral_campaign&utm_medium=referral&utm_source=rewardful&via=quick",
+    "categorySlug": "analytics",
+    "description": "Conversion attribution and server-side tracking engine for performance marketing & affiliates"
+  },
+  {
+    "slug": "predis-ai",
+    "name": "Predis.ai",
+    "url": "https://predis.ai?ref=quick",
+    "categorySlug": "design",
+    "description": "AI social media generator: create Reels, TikTok videos, carousels & banners from text"
+  },
+  {
+    "slug": "baremetrics",
+    "name": "Baremetrics",
+    "url": "https://baremetrics.com/?via=quick",
+    "categorySlug": "finance",
+    "description": "Subscription analytics, churn reduction & MRR forecasting for Stripe, Shopify & Braintree"
+  },
+  {
+    "slug": "claude-ai",
+    "name": "Claude AI",
+    "url": "https://anthropic.com/claude",
+    "categorySlug": "ai",
+    "description": "Claude AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "phind",
+    "name": "Phind",
+    "url": "https://phind.com",
+    "categorySlug": "ai",
+    "description": "Phind: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "poe",
+    "name": "Poe",
+    "url": "https://poe.com",
+    "categorySlug": "ai",
+    "description": "Poe: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "runway-ml",
+    "name": "Runway ML",
+    "url": "https://runwayml.com",
+    "categorySlug": "ai",
+    "description": "Runway ML: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "heygen",
+    "name": "HeyGen",
+    "url": "https://heygen.com",
+    "categorySlug": "ai",
+    "description": "HeyGen: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "fireflies-ai",
+    "name": "Fireflies AI",
+    "url": "https://fireflies.ai",
+    "categorySlug": "ai",
+    "description": "Fireflies AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "magnific-ai",
+    "name": "Magnific AI",
+    "url": "https://magnific.ai",
+    "categorySlug": "ai",
+    "description": "Magnific AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "replicate",
+    "name": "Replicate",
+    "url": "https://replicate.com",
+    "categorySlug": "ai",
+    "description": "Replicate: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "together-ai",
+    "name": "Together AI",
+    "url": "https://together.ai",
+    "categorySlug": "ai",
+    "description": "Together AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "groq",
+    "name": "Groq",
+    "url": "https://groq.com",
+    "categorySlug": "ai",
+    "description": "Groq: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "codeium",
+    "name": "Codeium",
+    "url": "https://codeium.com",
+    "categorySlug": "ai",
+    "description": "Codeium: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "tabnine",
+    "name": "Tabnine",
+    "url": "https://tabnine.com",
+    "categorySlug": "ai",
+    "description": "Tabnine: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "github-copilot",
+    "name": "GitHub Copilot",
+    "url": "https://github.com/features/copilot",
+    "categorySlug": "ai",
+    "description": "GitHub Copilot: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "deepl-pro",
+    "name": "DeepL Pro",
+    "url": "https://deepl.com",
+    "categorySlug": "ai",
+    "description": "DeepL Pro: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "rewind-ai",
+    "name": "Rewind AI",
+    "url": "https://rewind.ai",
+    "categorySlug": "ai",
+    "description": "Rewind AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "tome-app",
+    "name": "Tome App",
+    "url": "https://tome.app",
+    "categorySlug": "ai",
+    "description": "Tome App: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "gamma-app",
+    "name": "Gamma App",
+    "url": "https://gamma.app",
+    "categorySlug": "ai",
+    "description": "Gamma App: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "planetscale",
+    "name": "PlanetScale",
+    "url": "https://planetscale.com",
+    "categorySlug": "dev-tools",
+    "description": "PlanetScale: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "render-cloud",
+    "name": "Render Cloud",
+    "url": "https://render.com",
+    "categorySlug": "dev-tools",
+    "description": "Render Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "qovery",
+    "name": "Qovery",
+    "url": "https://qovery.com",
+    "categorySlug": "dev-tools",
+    "description": "Qovery: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "doppler",
+    "name": "Doppler",
+    "url": "https://doppler.com",
+    "categorySlug": "dev-tools",
+    "description": "Doppler: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "infisical",
+    "name": "Infisical",
+    "url": "https://infisical.com",
+    "categorySlug": "dev-tools",
+    "description": "Infisical: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "pulumi",
+    "name": "Pulumi",
+    "url": "https://pulumi.com",
+    "categorySlug": "dev-tools",
+    "description": "Pulumi: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "spacelift",
+    "name": "Spacelift",
+    "url": "https://spacelift.io",
+    "categorySlug": "dev-tools",
+    "description": "Spacelift: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "grafana-cloud",
+    "name": "Grafana Cloud",
+    "url": "https://grafana.com",
+    "categorySlug": "dev-tools",
+    "description": "Grafana Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "axiom",
+    "name": "Axiom",
+    "url": "https://axiom.co",
+    "categorySlug": "dev-tools",
+    "description": "Axiom: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "mezmo",
+    "name": "Mezmo",
+    "url": "https://mezmo.com",
+    "categorySlug": "dev-tools",
+    "description": "Mezmo: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "honeycomb-io",
+    "name": "Honeycomb io",
+    "url": "https://honeycomb.io",
+    "categorySlug": "dev-tools",
+    "description": "Honeycomb io: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "posthog-cloud",
+    "name": "PostHog Cloud",
+    "url": "https://posthog.com",
+    "categorySlug": "dev-tools",
+    "description": "PostHog Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "amplitude-analytics",
+    "name": "Amplitude Analytics",
+    "url": "https://amplitude.com",
+    "categorySlug": "dev-tools",
+    "description": "Amplitude Analytics: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "rudderstack",
+    "name": "RudderStack",
+    "url": "https://rudderstack.com",
+    "categorySlug": "dev-tools",
+    "description": "RudderStack: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "temporal-cloud",
+    "name": "Temporal Cloud",
+    "url": "https://temporal.io",
+    "categorySlug": "dev-tools",
+    "description": "Temporal Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "knock-app",
+    "name": "Knock App",
+    "url": "https://knock.app",
+    "categorySlug": "dev-tools",
+    "description": "Knock App: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "magic-link",
+    "name": "Magic Link",
+    "url": "https://magic.link",
+    "categorySlug": "dev-tools",
+    "description": "Magic Link: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "workos",
+    "name": "WorkOS",
+    "url": "https://workos.com",
+    "categorySlug": "dev-tools",
+    "description": "WorkOS: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "stytch",
+    "name": "Stytch",
+    "url": "https://stytch.com",
+    "categorySlug": "dev-tools",
+    "description": "Stytch: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "ory-network",
+    "name": "Ory Network",
+    "url": "https://ory.sh",
+    "categorySlug": "dev-tools",
+    "description": "Ory Network: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "svix",
+    "name": "Svix",
+    "url": "https://svix.com",
+    "categorySlug": "dev-tools",
+    "description": "Svix: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "hookdeck",
+    "name": "Hookdeck",
+    "url": "https://hookdeck.com",
+    "categorySlug": "dev-tools",
+    "description": "Hookdeck: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "daily-co",
+    "name": "Daily co",
+    "url": "https://daily.co",
+    "categorySlug": "dev-tools",
+    "description": "Daily co: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "livekit-cloud",
+    "name": "LiveKit Cloud",
+    "url": "https://livekit.io",
+    "categorySlug": "dev-tools",
+    "description": "LiveKit Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "stream-chat",
+    "name": "Stream Chat",
+    "url": "https://getstream.io",
+    "categorySlug": "dev-tools",
+    "description": "Stream Chat: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "ably",
+    "name": "Ably",
+    "url": "https://ably.com",
+    "categorySlug": "dev-tools",
+    "description": "Ably: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "pusher",
+    "name": "Pusher",
+    "url": "https://pusher.com",
+    "categorySlug": "dev-tools",
+    "description": "Pusher: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "uploadthing",
+    "name": "UploadThing",
+    "url": "https://uploadthing.com",
+    "categorySlug": "dev-tools",
+    "description": "UploadThing: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "obsidian-sync",
+    "name": "Obsidian Sync",
+    "url": "https://obsidian.md",
+    "categorySlug": "productivity",
+    "description": "Obsidian Sync: Productivity software built for modern teams"
+  },
+  {
+    "slug": "bear-notes",
+    "name": "Bear Notes",
+    "url": "https://bear.app",
+    "categorySlug": "productivity",
+    "description": "Bear Notes: Productivity software built for modern teams"
+  },
+  {
+    "slug": "coda-app",
+    "name": "Coda",
+    "url": "https://coda.io",
+    "categorySlug": "productivity",
+    "description": "Coda: Productivity software built for modern teams"
+  },
+  {
+    "slug": "slite",
+    "name": "Slite",
+    "url": "https://slite.com",
+    "categorySlug": "productivity",
+    "description": "Slite: Productivity software built for modern teams"
+  },
+  {
+    "slug": "readme-io",
+    "name": "ReadMe",
+    "url": "https://readme.com",
+    "categorySlug": "productivity",
+    "description": "ReadMe: Productivity software built for modern teams"
+  },
+  {
+    "slug": "archbee",
+    "name": "Archbee",
+    "url": "https://archbee.com",
+    "categorySlug": "productivity",
+    "description": "Archbee: Productivity software built for modern teams"
+  },
+  {
+    "slug": "nuclino",
+    "name": "Nuclino",
+    "url": "https://nuclino.com",
+    "categorySlug": "productivity",
+    "description": "Nuclino: Productivity software built for modern teams"
+  },
+  {
+    "slug": "super-so",
+    "name": "Super so",
+    "url": "https://super.so",
+    "categorySlug": "productivity",
+    "description": "Super so: Productivity software built for modern teams"
+  },
+  {
+    "slug": "potion-so",
+    "name": "Potion so",
+    "url": "https://potion.so",
+    "categorySlug": "productivity",
+    "description": "Potion so: Productivity software built for modern teams"
+  },
+  {
+    "slug": "feather-so",
+    "name": "Feather so",
+    "url": "https://feather.so",
+    "categorySlug": "productivity",
+    "description": "Feather so: Productivity software built for modern teams"
+  },
+  {
+    "slug": "bullet-so",
+    "name": "Bullet so",
+    "url": "https://bullet.so",
+    "categorySlug": "productivity",
+    "description": "Bullet so: Productivity software built for modern teams"
+  },
+  {
+    "slug": "motion-calendar",
+    "name": "Motion Calendar",
+    "url": "https://usemotion.com",
+    "categorySlug": "productivity",
+    "description": "Motion Calendar: Productivity software built for modern teams"
+  },
+  {
+    "slug": "morgen-calendar",
+    "name": "Morgen Calendar",
+    "url": "https://morgen.so",
+    "categorySlug": "productivity",
+    "description": "Morgen Calendar: Productivity software built for modern teams"
+  },
+  {
+    "slug": "routine-app",
+    "name": "Routine App",
+    "url": "https://routine.co",
+    "categorySlug": "productivity",
+    "description": "Routine App: Productivity software built for modern teams"
+  },
+  {
+    "slug": "amplenote",
+    "name": "AmpleNote",
+    "url": "https://amplenote.com",
+    "categorySlug": "productivity",
+    "description": "AmpleNote: Productivity software built for modern teams"
+  },
+  {
+    "slug": "taskade",
+    "name": "Taskade",
+    "url": "https://taskade.com",
+    "categorySlug": "productivity",
+    "description": "Taskade: Productivity software built for modern teams"
+  },
+  {
+    "slug": "todoist-pro",
+    "name": "Todoist Pro",
+    "url": "https://todoist.com",
+    "categorySlug": "productivity",
+    "description": "Todoist Pro: Productivity software built for modern teams"
+  },
+  {
+    "slug": "spark-mail",
+    "name": "Spark Mail",
+    "url": "https://sparkmailapp.com",
+    "categorySlug": "productivity",
+    "description": "Spark Mail: Productivity software built for modern teams"
+  },
+  {
+    "slug": "shortwave",
+    "name": "Shortwave",
+    "url": "https://shortwave.com",
+    "categorySlug": "productivity",
+    "description": "Shortwave: Productivity software built for modern teams"
+  },
+  {
+    "slug": "missive",
+    "name": "Missive",
+    "url": "https://missiveapp.com",
+    "categorySlug": "productivity",
+    "description": "Missive: Productivity software built for modern teams"
+  },
+  {
+    "slug": "clean-email",
+    "name": "Clean Email",
+    "url": "https://clean.email",
+    "categorySlug": "productivity",
+    "description": "Clean Email: Productivity software built for modern teams"
+  },
+  {
+    "slug": "mailspring-pro",
+    "name": "Mailspring Pro",
+    "url": "https://getmailspring.com",
+    "categorySlug": "productivity",
+    "description": "Mailspring Pro: Productivity software built for modern teams"
+  },
+  {
+    "slug": "hey-email",
+    "name": "Hey Email",
+    "url": "https://hey.com",
+    "categorySlug": "productivity",
+    "description": "Hey Email: Productivity software built for modern teams"
+  },
+  {
+    "slug": "fastmail",
+    "name": "Fastmail",
+    "url": "https://fastmail.com",
+    "categorySlug": "productivity",
+    "description": "Fastmail: Productivity software built for modern teams"
+  },
+  {
+    "slug": "mailmeteor",
+    "name": "Mailmeteor",
+    "url": "https://mailmeteor.com",
+    "categorySlug": "marketing",
+    "description": "Mailmeteor: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "gmass",
+    "name": "GMass",
+    "url": "https://gmass.co",
+    "categorySlug": "marketing",
+    "description": "GMass: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "mixmax",
+    "name": "Mixmax",
+    "url": "https://mixmax.com",
+    "categorySlug": "marketing",
+    "description": "Mixmax: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "mailgun",
+    "name": "Mailgun",
+    "url": "https://mailgun.com",
+    "categorySlug": "dev-tools",
+    "description": "Mailgun: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "sendgrid",
+    "name": "SendGrid",
+    "url": "https://sendgrid.com",
+    "categorySlug": "dev-tools",
+    "description": "SendGrid: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "protopie",
+    "name": "ProtoPie",
+    "url": "https://protopie.io",
+    "categorySlug": "design",
+    "description": "ProtoPie: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "spline-3d",
+    "name": "Spline 3D",
+    "url": "https://spline.design",
+    "categorySlug": "design",
+    "description": "Spline 3D: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "rive-app",
+    "name": "Rive App",
+    "url": "https://rive.app",
+    "categorySlug": "design",
+    "description": "Rive App: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "lottielab",
+    "name": "LottieLab",
+    "url": "https://lottielab.com",
+    "categorySlug": "design",
+    "description": "LottieLab: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "rotato-3d",
+    "name": "Rotato 3D",
+    "url": "https://rotato.app",
+    "categorySlug": "design",
+    "description": "Rotato 3D: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "shottr-pro",
+    "name": "Shottr Pro",
+    "url": "https://shottr.cc",
+    "categorySlug": "design",
+    "description": "Shottr Pro: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "xnapper",
+    "name": "Xnapper",
+    "url": "https://xnapper.com",
+    "categorySlug": "design",
+    "description": "Xnapper: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "pixelmator-pro",
+    "name": "Pixelmator Pro",
+    "url": "https://pixelmator.com",
+    "categorySlug": "design",
+    "description": "Pixelmator Pro: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "photomator",
+    "name": "Photomator",
+    "url": "https://photomator.com",
+    "categorySlug": "design",
+    "description": "Photomator: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "affinity-designer",
+    "name": "Affinity Designer",
+    "url": "https://affinity.serif.com/designer",
+    "categorySlug": "design",
+    "description": "Affinity Designer: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "affinity-photo",
+    "name": "Affinity Photo",
+    "url": "https://affinity.serif.com/photo",
+    "categorySlug": "design",
+    "description": "Affinity Photo: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "sketch-app",
+    "name": "Sketch App",
+    "url": "https://sketch.com",
+    "categorySlug": "design",
+    "description": "Sketch App: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "zeplin",
+    "name": "Zeplin",
+    "url": "https://zeplin.io",
+    "categorySlug": "design",
+    "description": "Zeplin: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "zeroheight",
+    "name": "Zeroheight",
+    "url": "https://zeroheight.com",
+    "categorySlug": "design",
+    "description": "Zeroheight: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "iconfinder-pro",
+    "name": "Iconfinder Pro",
+    "url": "https://iconfinder.com",
+    "categorySlug": "design",
+    "description": "Iconfinder Pro: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "moz-pro",
+    "name": "Moz Pro",
+    "url": "https://moz.com",
+    "categorySlug": "marketing",
+    "description": "Moz Pro: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "spyfu",
+    "name": "SpyFu",
+    "url": "https://spyfu.com",
+    "categorySlug": "marketing",
+    "description": "SpyFu: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "ubersuggest",
+    "name": "Ubersuggest",
+    "url": "https://neilpatel.com/ubersuggest",
+    "categorySlug": "marketing",
+    "description": "Ubersuggest: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "clearscope",
+    "name": "Clearscope",
+    "url": "https://clearscope.io",
+    "categorySlug": "marketing",
+    "description": "Clearscope: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "marketmuse",
+    "name": "MarketMuse",
+    "url": "https://marketmuse.com",
+    "categorySlug": "marketing",
+    "description": "MarketMuse: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "anyword",
+    "name": "Anyword",
+    "url": "https://anyword.com",
+    "categorySlug": "marketing",
+    "description": "Anyword: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "scalenut",
+    "name": "Scalenut",
+    "url": "https://scalenut.com",
+    "categorySlug": "marketing",
+    "description": "Scalenut: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "originality-ai",
+    "name": "Originality AI",
+    "url": "https://originality.ai",
+    "categorySlug": "marketing",
+    "description": "Originality AI: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "attio-crm",
+    "name": "Attio CRM",
+    "url": "https://attio.com",
+    "categorySlug": "marketing",
+    "description": "Attio CRM: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "hubspot-starter",
+    "name": "HubSpot Starter",
+    "url": "https://hubspot.com",
+    "categorySlug": "marketing",
+    "description": "HubSpot Starter: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "copper-crm",
+    "name": "Copper CRM",
+    "url": "https://copper.com",
+    "categorySlug": "marketing",
+    "description": "Copper CRM: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "warmup-inbox",
+    "name": "Warmup Inbox",
+    "url": "https://warmupinbox.com",
+    "categorySlug": "marketing",
+    "description": "Warmup Inbox: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "mailreach",
+    "name": "Mailreach",
+    "url": "https://mailreach.co",
+    "categorySlug": "marketing",
+    "description": "Mailreach: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "buffer-pro",
+    "name": "Buffer Pro",
+    "url": "https://buffer.com",
+    "categorySlug": "marketing",
+    "description": "Buffer Pro: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "sprout-social",
+    "name": "Sprout Social",
+    "url": "https://sproutsocial.com",
+    "categorySlug": "marketing",
+    "description": "Sprout Social: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "later-app",
+    "name": "Later",
+    "url": "https://later.com",
+    "categorySlug": "marketing",
+    "description": "Later: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "planoly",
+    "name": "Planoly",
+    "url": "https://planoly.com",
+    "categorySlug": "marketing",
+    "description": "Planoly: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "feedhive",
+    "name": "FeedHive",
+    "url": "https://feedhive.com",
+    "categorySlug": "marketing",
+    "description": "FeedHive: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "postwise",
+    "name": "Postwise",
+    "url": "https://postwise.ai",
+    "categorySlug": "marketing",
+    "description": "Postwise: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "brand24",
+    "name": "Brand24",
+    "url": "https://brand24.com",
+    "categorySlug": "marketing",
+    "description": "Brand24: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "circle-so",
+    "name": "Circle so",
+    "url": "https://circle.so",
+    "categorySlug": "support",
+    "description": "Circle so: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "mighty-networks",
+    "name": "Mighty Networks",
+    "url": "https://mightynetworks.com",
+    "categorySlug": "support",
+    "description": "Mighty Networks: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "bettermode",
+    "name": "Bettermode",
+    "url": "https://bettermode.com",
+    "categorySlug": "support",
+    "description": "Bettermode: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "discourse-hosting",
+    "name": "Discourse Hosting",
+    "url": "https://discourse.org",
+    "categorySlug": "support",
+    "description": "Discourse Hosting: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "skool-community",
+    "name": "Skool Community",
+    "url": "https://skool.com",
+    "categorySlug": "support",
+    "description": "Skool Community: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "heartbeat-chat",
+    "name": "Heartbeat Chat",
+    "url": "https://heartbeat.chat",
+    "categorySlug": "support",
+    "description": "Heartbeat Chat: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "recurly",
+    "name": "Recurly",
+    "url": "https://recurly.com",
+    "categorySlug": "finance",
+    "description": "Recurly: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "firstbase",
+    "name": "Firstbase",
+    "url": "https://firstbase.io",
+    "categorySlug": "finance",
+    "description": "Firstbase: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "doola",
+    "name": "Doola",
+    "url": "https://doola.com",
+    "categorySlug": "finance",
+    "description": "Doola: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "mercury-bank",
+    "name": "Mercury Bank",
+    "url": "https://mercury.com",
+    "categorySlug": "finance",
+    "description": "Mercury Bank: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "brex",
+    "name": "Brex",
+    "url": "https://brex.com",
+    "categorySlug": "finance",
+    "description": "Brex: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "ramp",
+    "name": "Ramp",
+    "url": "https://ramp.com",
+    "categorySlug": "finance",
+    "description": "Ramp: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "rippling",
+    "name": "Rippling",
+    "url": "https://rippling.com",
+    "categorySlug": "finance",
+    "description": "Rippling: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "gusto",
+    "name": "Gusto",
+    "url": "https://gusto.com",
+    "categorySlug": "finance",
+    "description": "Gusto: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "wise-business",
+    "name": "Wise Business",
+    "url": "https://wise.com",
+    "categorySlug": "finance",
+    "description": "Wise Business: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "quickbooks-online",
+    "name": "QuickBooks Online",
+    "url": "https://quickbooks.intuit.com",
+    "categorySlug": "finance",
+    "description": "QuickBooks Online: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "expensify",
+    "name": "Expensify",
+    "url": "https://expensify.com",
+    "categorySlug": "finance",
+    "description": "Expensify: Finance & Operations software built for modern teams"
+  },
+  {
+    "slug": "zendesk-suite",
+    "name": "Zendesk Suite",
+    "url": "https://zendesk.com",
+    "categorySlug": "support",
+    "description": "Zendesk Suite: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "crisp-chat",
+    "name": "Crisp Chat",
+    "url": "https://crisp.chat",
+    "categorySlug": "support",
+    "description": "Crisp Chat: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "help-scout",
+    "name": "Help Scout",
+    "url": "https://helpscout.com",
+    "categorySlug": "support",
+    "description": "Help Scout: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "front-app",
+    "name": "Front App",
+    "url": "https://front.com",
+    "categorySlug": "support",
+    "description": "Front App: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "gorgias",
+    "name": "Gorgias",
+    "url": "https://gorgias.com",
+    "categorySlug": "support",
+    "description": "Gorgias: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "livechat-inc",
+    "name": "LiveChat",
+    "url": "https://livechat.com",
+    "categorySlug": "support",
+    "description": "LiveChat: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "tidio",
+    "name": "Tidio",
+    "url": "https://tidio.com",
+    "categorySlug": "support",
+    "description": "Tidio: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "plain-com",
+    "name": "Plain com",
+    "url": "https://plain.com",
+    "categorySlug": "support",
+    "description": "Plain com: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "devrev",
+    "name": "DevRev",
+    "url": "https://devrev.ai",
+    "categorySlug": "support",
+    "description": "DevRev: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "churnzero",
+    "name": "ChurnZero",
+    "url": "https://churnzero.com",
+    "categorySlug": "support",
+    "description": "ChurnZero: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "vitally",
+    "name": "Vitally",
+    "url": "https://vitally.io",
+    "categorySlug": "support",
+    "description": "Vitally: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "planhat",
+    "name": "Planhat",
+    "url": "https://planhat.com",
+    "categorySlug": "support",
+    "description": "Planhat: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "gainsight",
+    "name": "Gainsight",
+    "url": "https://gainsight.com",
+    "categorySlug": "support",
+    "description": "Gainsight: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "productboard",
+    "name": "Productboard",
+    "url": "https://productboard.com",
+    "categorySlug": "support",
+    "description": "Productboard: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "canny-io",
+    "name": "Canny io",
+    "url": "https://canny.io",
+    "categorySlug": "support",
+    "description": "Canny io: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "upvoty",
+    "name": "Upvoty",
+    "url": "https://upvoty.com",
+    "categorySlug": "support",
+    "description": "Upvoty: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "featurebase",
+    "name": "Featurebase",
+    "url": "https://featurebase.app",
+    "categorySlug": "support",
+    "description": "Featurebase: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "frill-co",
+    "name": "Frill co",
+    "url": "https://frill.co",
+    "categorySlug": "support",
+    "description": "Frill co: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "sleekplan",
+    "name": "Sleekplan",
+    "url": "https://sleekplan.com",
+    "categorySlug": "support",
+    "description": "Sleekplan: Community & Support software built for modern teams"
+  },
+  {
+    "slug": "swell-commerce",
+    "name": "Swell Commerce",
+    "url": "https://swell.is",
+    "categorySlug": "dev-tools",
+    "description": "Swell Commerce: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "stan-store",
+    "name": "Stan Store",
+    "url": "https://stan.store",
+    "categorySlug": "marketing",
+    "description": "Stan Store: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "kit-convertkit",
+    "name": "Kit ConvertKit",
+    "url": "https://kit.com",
+    "categorySlug": "marketing",
+    "description": "Kit ConvertKit: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "drip-ecommerce",
+    "name": "Drip",
+    "url": "https://drip.com",
+    "categorySlug": "marketing",
+    "description": "Drip: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "klaviyo",
+    "name": "Klaviyo",
+    "url": "https://klaviyo.com",
+    "categorySlug": "marketing",
+    "description": "Klaviyo: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "omnisend",
+    "name": "Omnisend",
+    "url": "https://omnisend.com",
+    "categorySlug": "marketing",
+    "description": "Omnisend: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "tally-so",
+    "name": "Tally so",
+    "url": "https://tally.so",
+    "categorySlug": "productivity",
+    "description": "Tally so: Productivity software built for modern teams"
+  },
+  {
+    "slug": "fillout",
+    "name": "Fillout",
+    "url": "https://fillout.com",
+    "categorySlug": "productivity",
+    "description": "Fillout: Productivity software built for modern teams"
+  },
+  {
+    "slug": "jotform",
+    "name": "Jotform",
+    "url": "https://jotform.com",
+    "categorySlug": "productivity",
+    "description": "Jotform: Productivity software built for modern teams"
+  },
+  {
+    "slug": "paperform",
+    "name": "Paperform",
+    "url": "https://paperform.co",
+    "categorySlug": "productivity",
+    "description": "Paperform: Productivity software built for modern teams"
+  },
+  {
+    "slug": "reform-forms",
+    "name": "Reform Forms",
+    "url": "https://reform.app",
+    "categorySlug": "productivity",
+    "description": "Reform Forms: Productivity software built for modern teams"
+  },
+  {
+    "slug": "dashlane",
+    "name": "Dashlane",
+    "url": "https://dashlane.com",
+    "categorySlug": "security",
+    "description": "Dashlane: Security & DevSecOps software built for modern teams"
+  },
+  {
+    "slug": "proton-mail",
+    "name": "Proton Mail",
+    "url": "https://proton.me/mail",
+    "categorySlug": "security",
+    "description": "Proton Mail: Security & DevSecOps software built for modern teams"
+  },
+  {
+    "slug": "tuta-mail",
+    "name": "Tuta Mail",
+    "url": "https://tuta.com",
+    "categorySlug": "security",
+    "description": "Tuta Mail: Security & DevSecOps software built for modern teams"
+  },
+  {
+    "slug": "simplelogin",
+    "name": "SimpleLogin",
+    "url": "https://simplelogin.io",
+    "categorySlug": "security",
+    "description": "SimpleLogin: Security & DevSecOps software built for modern teams"
+  },
+  {
+    "slug": "anonaddy",
+    "name": "AnonAddy",
+    "url": "https://addy.io",
+    "categorySlug": "security",
+    "description": "AnonAddy: Security & DevSecOps software built for modern teams"
+  },
+  {
+    "slug": "plausible-analytics",
+    "name": "Plausible Analytics",
+    "url": "https://plausible.io",
+    "categorySlug": "marketing",
+    "description": "Plausible Analytics: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "pirsch-analytics",
+    "name": "Pirsch Analytics",
+    "url": "https://pirsch.io",
+    "categorySlug": "marketing",
+    "description": "Pirsch Analytics: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "umami-cloud",
+    "name": "Umami Cloud",
+    "url": "https://umami.is",
+    "categorySlug": "marketing",
+    "description": "Umami Cloud: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "cloudflare-zero-trust",
+    "name": "Cloudflare Zero Trust",
+    "url": "https://cloudflare.com/zero-trust",
+    "categorySlug": "security",
+    "description": "Cloudflare Zero Trust: Security & DevSecOps software built for modern teams"
+  },
+  {
+    "slug": "mullvad-vpn",
+    "name": "Mullvad VPN",
+    "url": "https://mullvad.net",
+    "categorySlug": "security",
+    "description": "Mullvad VPN: Security & DevSecOps software built for modern teams"
+  },
+  {
+    "slug": "vapi-ai",
+    "name": "Vapi AI",
+    "url": "https://vapi.ai",
+    "categorySlug": "ai",
+    "description": "Vapi AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "bland-ai",
+    "name": "Bland AI",
+    "url": "https://bland.ai",
+    "categorySlug": "ai",
+    "description": "Bland AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "retell-ai",
+    "name": "Retell AI",
+    "url": "https://retellai.com",
+    "categorySlug": "ai",
+    "description": "Retell AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "cartesia-ai",
+    "name": "Cartesia AI",
+    "url": "https://cartesia.ai",
+    "categorySlug": "ai",
+    "description": "Cartesia AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "deepgram-speech",
+    "name": "Deepgram",
+    "url": "https://deepgram.com",
+    "categorySlug": "ai",
+    "description": "Deepgram: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "assembly-ai",
+    "name": "AssemblyAI",
+    "url": "https://assemblyai.com",
+    "categorySlug": "ai",
+    "description": "AssemblyAI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "speechify-pro",
+    "name": "Speechify Pro",
+    "url": "https://speechify.com",
+    "categorySlug": "ai",
+    "description": "Speechify Pro: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "lovo-ai",
+    "name": "Lovo AI",
+    "url": "https://lovo.ai",
+    "categorySlug": "ai",
+    "description": "Lovo AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "play-ht",
+    "name": "Play ht",
+    "url": "https://play.ht",
+    "categorySlug": "ai",
+    "description": "Play ht: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "podcastle-ai",
+    "name": "Podcastle AI",
+    "url": "https://podcastle.ai",
+    "categorySlug": "design",
+    "description": "Podcastle AI: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "riverside-fm",
+    "name": "Riverside fm",
+    "url": "https://riverside.fm",
+    "categorySlug": "design",
+    "description": "Riverside fm: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "castos-hosting",
+    "name": "Castos Hosting",
+    "url": "https://castos.com",
+    "categorySlug": "marketing",
+    "description": "Castos Hosting: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "transistor-fm",
+    "name": "Transistor fm",
+    "url": "https://transistor.fm",
+    "categorySlug": "marketing",
+    "description": "Transistor fm: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "buzzsprout-podcast",
+    "name": "Buzzsprout",
+    "url": "https://buzzsprout.com",
+    "categorySlug": "marketing",
+    "description": "Buzzsprout: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "ghost-cms",
+    "name": "Ghost CMS",
+    "url": "https://ghost.org",
+    "categorySlug": "marketing",
+    "description": "Ghost CMS: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "sanity-io",
+    "name": "Sanity io",
+    "url": "https://sanity.io",
+    "categorySlug": "dev-tools",
+    "description": "Sanity io: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "strapi-cloud",
+    "name": "Strapi Cloud",
+    "url": "https://strapi.io",
+    "categorySlug": "dev-tools",
+    "description": "Strapi Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "contentful",
+    "name": "Contentful",
+    "url": "https://contentful.com",
+    "categorySlug": "dev-tools",
+    "description": "Contentful: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "prismic-io",
+    "name": "Prismic",
+    "url": "https://prismic.io",
+    "categorySlug": "dev-tools",
+    "description": "Prismic: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "storyblok",
+    "name": "Storyblok",
+    "url": "https://storyblok.com",
+    "categorySlug": "dev-tools",
+    "description": "Storyblok: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "hygraph",
+    "name": "Hygraph",
+    "url": "https://hygraph.com",
+    "categorySlug": "dev-tools",
+    "description": "Hygraph: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "payload-cms",
+    "name": "Payload CMS",
+    "url": "https://payloadcms.com",
+    "categorySlug": "dev-tools",
+    "description": "Payload CMS: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "directus-cloud",
+    "name": "Directus Cloud",
+    "url": "https://directus.io",
+    "categorySlug": "dev-tools",
+    "description": "Directus Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "cockroachdb-cloud",
+    "name": "CockroachDB Cloud",
+    "url": "https://cockroachlabs.com",
+    "categorySlug": "dev-tools",
+    "description": "CockroachDB Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "tidb-cloud",
+    "name": "TiDB Cloud",
+    "url": "https://pingcap.com/tidb-cloud",
+    "categorySlug": "dev-tools",
+    "description": "TiDB Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "singlestore-db",
+    "name": "SingleStore",
+    "url": "https://singlestore.com",
+    "categorySlug": "dev-tools",
+    "description": "SingleStore: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "timescale-cloud",
+    "name": "Timescale Cloud",
+    "url": "https://timescale.com",
+    "categorySlug": "dev-tools",
+    "description": "Timescale Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "influxdb-cloud",
+    "name": "InfluxDB Cloud",
+    "url": "https://influxdata.com",
+    "categorySlug": "dev-tools",
+    "description": "InfluxDB Cloud: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "pinecone-db",
+    "name": "Pinecone DB",
+    "url": "https://pinecone.io",
+    "categorySlug": "ai",
+    "description": "Pinecone DB: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "weaviate-cloud",
+    "name": "Weaviate Cloud",
+    "url": "https://weaviate.io",
+    "categorySlug": "ai",
+    "description": "Weaviate Cloud: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "qdrant-cloud",
+    "name": "Qdrant Cloud",
+    "url": "https://qdrant.tech",
+    "categorySlug": "ai",
+    "description": "Qdrant Cloud: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "chroma-db",
+    "name": "Chroma DB",
+    "url": "https://trychroma.com",
+    "categorySlug": "ai",
+    "description": "Chroma DB: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "notion-ai-pro",
+    "name": "Notion AI Pro",
+    "url": "https://notion.so/product/ai",
+    "categorySlug": "productivity",
+    "description": "Notion AI Pro: Productivity software built for modern teams"
+  },
+  {
+    "slug": "asana-starter",
+    "name": "Asana Starter",
+    "url": "https://asana.com",
+    "categorySlug": "productivity",
+    "description": "Asana Starter: Productivity software built for modern teams"
+  },
+  {
+    "slug": "monday-work-os",
+    "name": "Monday com",
+    "url": "https://monday.com",
+    "categorySlug": "productivity",
+    "description": "Monday com: Productivity software built for modern teams"
+  },
+  {
+    "slug": "smartsheet",
+    "name": "Smartsheet",
+    "url": "https://smartsheet.com",
+    "categorySlug": "productivity",
+    "description": "Smartsheet: Productivity software built for modern teams"
+  },
+  {
+    "slug": "basecamp-four",
+    "name": "Basecamp",
+    "url": "https://basecamp.com",
+    "categorySlug": "productivity",
+    "description": "Basecamp: Productivity software built for modern teams"
+  },
+  {
+    "slug": "wrike-project",
+    "name": "Wrike",
+    "url": "https://wrike.com",
+    "categorySlug": "productivity",
+    "description": "Wrike: Productivity software built for modern teams"
+  },
+  {
+    "slug": "teamwork-pm",
+    "name": "Teamwork PM",
+    "url": "https://teamwork.com",
+    "categorySlug": "productivity",
+    "description": "Teamwork PM: Productivity software built for modern teams"
+  },
+  {
+    "slug": "hive-workspace",
+    "name": "Hive Workspace",
+    "url": "https://hive.com",
+    "categorySlug": "productivity",
+    "description": "Hive Workspace: Productivity software built for modern teams"
+  },
+  {
+    "slug": "rytr-me",
+    "name": "Rytr",
+    "url": "https://rytr.me",
+    "categorySlug": "ai",
+    "description": "Rytr: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "simplified-app",
+    "name": "Simplified",
+    "url": "https://simplified.com",
+    "categorySlug": "design",
+    "description": "Simplified: Design & Creative software built for modern teams"
+  },
+  {
+    "slug": "hypotenuse-ai",
+    "name": "Hypotenuse AI",
+    "url": "https://hypotenuse.ai",
+    "categorySlug": "ai",
+    "description": "Hypotenuse AI: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "quillbot-premium",
+    "name": "QuillBot Premium",
+    "url": "https://quillbot.com",
+    "categorySlug": "ai",
+    "description": "QuillBot Premium: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "wordtune-pro",
+    "name": "Wordtune",
+    "url": "https://wordtune.com",
+    "categorySlug": "ai",
+    "description": "Wordtune: AI & Machine Learning software built for modern teams"
+  },
+  {
+    "slug": "grammarly-premium",
+    "name": "Grammarly Premium",
+    "url": "https://grammarly.com",
+    "categorySlug": "productivity",
+    "description": "Grammarly Premium: Productivity software built for modern teams"
+  },
+  {
+    "slug": "prowritingaid",
+    "name": "ProWritingAid",
+    "url": "https://prowritingaid.com",
+    "categorySlug": "productivity",
+    "description": "ProWritingAid: Productivity software built for modern teams"
+  },
+  {
+    "slug": "languagetool",
+    "name": "LanguageTool",
+    "url": "https://languagetool.org",
+    "categorySlug": "productivity",
+    "description": "LanguageTool: Productivity software built for modern teams"
+  },
+  {
+    "slug": "segment-cdp",
+    "name": "Segment CDP",
+    "url": "https://segment.com",
+    "categorySlug": "dev-tools",
+    "description": "Segment CDP: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "fullstory",
+    "name": "FullStory",
+    "url": "https://fullstory.com",
+    "categorySlug": "dev-tools",
+    "description": "FullStory: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "logrocket",
+    "name": "LogRocket",
+    "url": "https://logrocket.com",
+    "categorySlug": "dev-tools",
+    "description": "LogRocket: Developer Tools software built for modern teams"
+  },
+  {
+    "slug": "hotjar-heatmaps",
+    "name": "Hotjar",
+    "url": "https://hotjar.com",
+    "categorySlug": "marketing",
+    "description": "Hotjar: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "crazy-egg",
+    "name": "Crazy Egg",
+    "url": "https://crazyegg.com",
+    "categorySlug": "marketing",
+    "description": "Crazy Egg: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "mouseflow",
+    "name": "Mouseflow",
+    "url": "https://mouseflow.com",
+    "categorySlug": "marketing",
+    "description": "Mouseflow: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "lucky-orange",
+    "name": "Lucky Orange",
+    "url": "https://luckyorange.com",
+    "categorySlug": "marketing",
+    "description": "Lucky Orange: Marketing & Sales software built for modern teams"
+  },
+  {
+    "slug": "vwo-testing",
+    "name": "VWO Testing",
+    "url": "https://vwo.com",
+    "categorySlug": "marketing",
+    "description": "VWO Testing: Marketing & Sales software built for modern teams"
+  }
+]

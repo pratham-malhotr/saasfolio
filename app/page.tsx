@@ -1,4 +1,6 @@
 import React from "react";
+import { getCatalogCategories } from "@/lib/categories";
+import { getAllDeals } from "@/lib/data/deals-data";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { MarqueeTickerBand } from "@/components/sections/MarqueeTickerBand";
 import { StatsCounters } from "@/components/sections/StatsCounters";
@@ -14,7 +16,10 @@ import { pageMetadata, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
 
 export const metadata = pageMetadata({ title: SITE_TITLE, description: SITE_DESCRIPTION, path: "/" });
 
+export const revalidate = 3600;
+
 export default function HomePage() {
+  const deals = getAllDeals();
   return (
     <div className="relative bg-[#050505] text-[#EDEDED] min-h-screen">
       {/* 1. Hero Section */}
@@ -27,10 +32,10 @@ export default function HomePage() {
       <StatsCounters />
 
       {/* 4. Hot Deals This Week (Horizontal Shelf + Countdown + Instant Coupon Reveal) */}
-      <HotDealsSection />
+      <HotDealsSection deals={deals.filter(d => d.dealType !== "pricing").slice(0, 10)} totalDeals={deals.length} />
 
       {/* 5. Minimalist 12-Category Grid */}
-      <CategoryMatrix />
+      <CategoryMatrix categories={getCatalogCategories()} />
 
       {/* 6. Featured In-Depth Editorial Articles & Reviews */}
       <FeaturedArticlesSection />

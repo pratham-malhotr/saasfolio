@@ -17,6 +17,7 @@ import {
   RotateCcw,
   ExternalLink
 } from "lucide-react";
+import { offerLabel } from "@/lib/offer-links";
 import { SaaSDeal } from "@/lib/types";
 import { CATEGORIES } from "@/lib/mock-data";
 import { TiltCard } from "@/components/animations/TiltCard";
@@ -26,12 +27,16 @@ interface DealsExplorerProps {
   initialDeals: SaaSDeal[];
   initialCategory?: string;
   initialType?: string;
+  heading?: string;
+  description?: string;
 }
 
 export function DealsExplorer({
   initialDeals,
   initialCategory,
   initialType,
+  heading = "EXPLORE SAAS DEALS",
+  description = "Browse sourced offers, reported coupon codes, free plans, trials, and official pricing across 12 software categories.",
 }: DealsExplorerProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory || "all");
@@ -129,14 +134,14 @@ export function DealsExplorer({
         <div className="flex items-center gap-2 mb-3">
           <span className="w-2 h-2 rounded-full bg-[#C6FF3D] animate-ping" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-            VERIFIED DISCOUNT REPOSITORY // {filteredDeals.length} MATCHES
+            SOFTWARE OFFERS & PRICING // {filteredDeals.length} MATCHES
           </span>
         </div>
         <h1 className="font-display font-black tracking-tighter uppercase text-4xl sm:text-6xl text-white mb-4">
-          EXPLORE SAAS DEALS
+          {heading}
         </h1>
         <p className="text-zinc-400 max-w-2xl text-base leading-relaxed">
-          Filter verified coupon codes, lifetime deals (LTDs), and exclusive extended trials across 12 software verticals.
+          {description}
         </p>
       </div>
 
@@ -181,7 +186,7 @@ export function DealsExplorer({
             <span className="text-zinc-500 hidden sm:inline">SORT:</span>
             <select
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
+              onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
               className="bg-transparent text-white outline-none cursor-pointer"
             >
               <option value="trending" className="bg-[#0A0A0C]">Trending / Popular</option>
@@ -361,7 +366,7 @@ export function DealsExplorer({
                     {/* Top Badges & Countdown */}
                     <div className="flex items-center justify-between gap-2 mb-4">
                       <span className="font-mono text-xs px-2.5 py-1 rounded bg-[#C6FF3D] text-black font-black uppercase tracking-wider">
-                        {deal.discountPercentage}% OFF
+                        {offerLabel(deal)}
                       </span>
 
                       <span className="font-mono text-[10px] uppercase text-zinc-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">
@@ -414,7 +419,7 @@ export function DealsExplorer({
                     <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
                       <span className="flex items-center gap-1 text-[#C6FF3D]">
                         <ShieldCheck className="w-3.5 h-3.5" />
-                        {deal.successRate}% Success
+                        {deal.checkedAt ? "Source checked" : "View provider"}
                       </span>
                       <span>{deal.revealsCount} used</span>
                     </div>
@@ -428,11 +433,11 @@ export function DealsExplorer({
                         className="flex-1 py-3 px-3 rounded-xl bg-white/5 border border-white/15 text-white font-bold text-xs uppercase tracking-wider hover:bg-[#C6FF3D] hover:text-black hover:border-[#C6FF3D] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                       >
                         <Sparkles className="w-3.5 h-3.5" />
-                        <span>Reveal Code</span>
+                        <span>{deal.code ? "Reveal Code" : "View Offer"}</span>
                       </button>
 
                       <a
-                        href={`/go/${deal.toolSlug}`}
+                        href={`/go/${deal.slug}`}
                         target="_blank"
                         rel="sponsored nofollow noopener noreferrer"
                         className="py-3 px-3.5 rounded-xl bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 text-[#C6FF3D] hover:bg-[#C6FF3D] hover:text-black transition-all font-mono text-xs font-bold flex items-center justify-center gap-1"

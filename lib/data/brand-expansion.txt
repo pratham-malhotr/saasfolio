@@ -1,0 +1,221 @@
+# name | slug | category | official pricing URL | product description | specific features (semicolon separated)
+ChatGPT|chatgpt|ai-tools|https://chatgpt.com/pricing|An AI assistant for writing, research, coding, and working with documents.|Conversational assistance;File analysis;Image generation
+Google Gemini|google-gemini|ai-tools|https://gemini.google/subscriptions/|Google's AI assistant for research, writing, and multimodal tasks.|Multimodal chat;Google integrations;Research assistance
+Microsoft Copilot|microsoft-copilot|ai-tools|https://www.microsoft.com/en-us/microsoft-copilot/for-individuals|An AI assistant connected to Microsoft's productivity ecosystem.|Web assistance;Document drafting;Microsoft integrations
+Grok|grok|ai-tools|https://grok.com/|An AI assistant from xAI for questions, research, and content creation.|Conversational AI;Web research;Image creation
+You.com|you-com|ai-tools|https://you.com/plans|An AI search and research workspace with access to multiple models.|AI search;Research agents;Model selection
+Kagi|kagi|ai-tools|https://kagi.com/pricing|A subscription search engine with customizable results and AI assistance.|Private search;Result customization;AI assistant
+Elicit|elicit|ai-tools|https://elicit.com/pricing|An AI research assistant for finding and comparing academic papers.|Literature search;Paper summaries;Evidence extraction
+Consensus|consensus|ai-tools|https://consensus.app/pricing/|An academic search engine that answers questions using research papers.|Research search;Study summaries;Citation links
+Scite|scite|ai-tools|https://scite.ai/pricing|A research tool that adds citation context to scientific literature.|Smart citations;Research assistant;Reference checking
+Jenni AI|jenni-ai|ai-tools|https://jenni.ai/pricing|An AI writing workspace for academic and research documents.|Writing assistance;Citation management;Document editing
+Suno|suno|ai-tools|https://suno.com/pricing|An AI music creation service for generating songs from prompts.|Song generation;Audio creation;Creative prompts
+Udio|udio|ai-tools|https://www.udio.com/pricing|A music generation platform for turning text ideas into audio.|Music generation;Song extension;Audio editing
+Pika|pika|ai-tools|https://pika.art/pricing|An AI video platform for animating images and creating short clips.|Text to video;Image animation;Video effects
+Luma AI|luma-ai|ai-tools|https://lumalabs.ai/dream-machine/pricing|A generative video workspace for turning prompts and images into motion.|Video generation;Image to video;Creative workflows
+Kling AI|kling-ai|ai-tools|https://klingai.com/|A generative media platform for creating AI video and images.|Video generation;Image generation;Motion controls
+Recraft|recraft|ai-tools|https://www.recraft.ai/pricing|An AI design platform for generating and editing graphics.|Vector generation;Image editing;Brand assets
+Freepik|freepik|design|https://www.freepik.com/pricing|A creative asset library with AI image and design tools.|Stock assets;AI image tools;Design resources
+Kittl|kittl|design|https://www.kittl.com/pricing|A browser design editor for typography, merchandise, and branded graphics.|Typography tools;Design templates;AI graphics
+Visme|visme|design|https://www.visme.co/pricing/|A visual content platform for presentations, charts, and branded documents.|Presentation editor;Data visualization;Brand templates
+Venngage|venngage|design|https://venngage.com/pricing|An infographic and visual communication editor for business teams.|Infographics;Report templates;Brand kits
+Piktochart|piktochart|design|https://piktochart.com/pricing/|A visual storytelling tool for infographics, presentations, and reports.|Infographic design;Presentation templates;Visual reports
+Beautiful.ai|beautiful-ai|design|https://www.beautiful.ai/pricing|A presentation builder with smart slide layouts for business storytelling.|Smart slides;Presentation themes;Team collaboration
+Pitch|pitch|design|https://pitch.com/pricing|A collaborative presentation workspace for teams and client-facing decks.|Slide editing;Deck sharing;Presentation analytics
+Prezi|prezi|design|https://prezi.com/pricing/|A presentation platform for interactive visual storytelling and video presentations.|Zooming presentations;Video presentations;Reusable templates
+Adobe Express|adobe-express|design|https://www.adobe.com/express/pricing|A browser creative suite for quick social graphics, videos, and documents.|Social graphics;Video editing;Brand templates
+VistaCreate|vistacreate|design|https://create.vista.com/pro/|A design editor for marketing visuals and social media content.|Graphic templates;Animation tools;Brand assets
+Envato Elements|envato-elements|design|https://elements.envato.com/pricing|A subscription library of creative assets for design and video projects.|Video templates;Stock audio;Graphic assets
+Artlist|artlist|design|https://artlist.io/page/pricing|A creative subscription service for music, footage, and video production assets.|Music licensing;Sound effects;Stock footage
+Epidemic Sound|epidemic-sound|design|https://www.epidemicsound.com/pricing/|A music and sound effects licensing service for content creators.|Music library;Sound effects;Creator licensing
+Soundstripe|soundstripe|design|https://www.soundstripe.com/pricing|A licensing platform for music and sound effects in video production.|Royalty free music;Sound effects;Video licensing
+Kapwing|kapwing|design|https://www.kapwing.com/pricing|An online collaborative video editor for repurposing and publishing content.|Video editing;Subtitles;Team workspaces
+InVideo|invideo|ai-tools|https://invideo.io/pricing/|An AI video creation platform for turning scripts and prompts into videos.|AI video creation;Stock media;Voiceovers
+Fliki|fliki|ai-tools|https://fliki.ai/pricing|A text-to-video service combining AI voices with visual content.|Text to video;AI voices;Media library
+FlexClip|flexclip|design|https://www.flexclip.com/pricing.html|A browser video editor with templates for marketing and social clips.|Video templates;Screen recording;AI editing tools
+Animoto|animoto|design|https://animoto.com/pricing|A video maker for marketing teams and small businesses.|Video templates;Media uploads;Brand customization
+Captions|captions-ai|ai-tools|https://www.captions.ai/plans|An AI video editing platform for creating and localizing talking videos.|AI editing;Video captions;Video translation
+Vizard|vizard|ai-tools|https://vizard.ai/pricing|A video repurposing service for turning long recordings into social clips.|Clip generation;Subtitles;Video reframing
+Wisecut|wisecut|ai-tools|https://www.wisecut.ai/pricing|An AI video editor focused on removing pauses and adding captions.|Silence removal;Auto subtitles;Video editing
+Submagic|submagic|ai-tools|https://www.submagic.co/pricing|A short video editor for captions, cuts, and social content enhancement.|Animated captions;Video clipping;Social video editing
+n8n|n8n|dev-tools|https://n8n.io/pricing/|A workflow automation platform for connecting APIs, services, and AI tools.|Visual workflows;API integrations;Self hosting
+Activepieces|activepieces|dev-tools|https://www.activepieces.com/pricing|An automation platform for building integrations and AI workflows.|Workflow builder;App connectors;Open source automation
+Pipedream|pipedream|dev-tools|https://pipedream.com/pricing|A developer automation service for connecting APIs with code and workflows.|API workflows;Code steps;Event triggers
+Bardeen|bardeen|productivity|https://www.bardeen.ai/pricing|A browser automation tool for repetitive research and sales workflows.|Browser automation;Data extraction;App integrations
+IFTTT|ifttt|productivity|https://ifttt.com/plans|An automation service for connecting apps, devices, and everyday workflows.|Applets;Connected devices;Cross app automation
+Albato|albato|dev-tools|https://albato.com/pricing|A no-code integration platform for syncing business applications.|App integrations;Automation builder;Data mapping
+Integrately|integrately|dev-tools|https://integrately.com/pricing|A workflow automation platform offering ready-made application integrations.|Ready made automations;App connectors;Workflow builder
+Pabbly Connect|pabbly-connect|dev-tools|https://www.pabbly.com/connect/|An integration service for moving data between business applications.|Workflow automation;Webhooks;App connections
+Roboflow|roboflow|ai-tools|https://roboflow.com/pricing|A computer vision development platform for managing datasets and deploying models.|Image datasets;Model training;Vision deployment
+Hugging Face|hugging-face|ai-tools|https://huggingface.co/pricing|A platform for sharing machine learning models, datasets, and hosted applications.|Model hub;Datasets;Inference services
+Modal|modal|hosting|https://modal.com/pricing|A serverless cloud for running Python workloads and GPU applications.|GPU compute;Python deployment;Serverless jobs
+Baseten|baseten|hosting|https://www.baseten.co/pricing/|An infrastructure platform for deploying and serving machine learning models.|Model serving;GPU infrastructure;Inference scaling
+Fireworks AI|fireworks-ai|ai-tools|https://fireworks.ai/pricing|An inference platform for building applications with open AI models.|Model inference;Fine tuning;AI APIs
+OpenRouter|openrouter|ai-tools|https://openrouter.ai/models|A unified API for accessing and comparing language models.|Model routing;Unified API;Provider selection
+Helicone|helicone|dev-tools|https://www.helicone.ai/pricing|An observability platform for monitoring language model applications.|LLM logging;Cost tracking;Request analytics
+LangSmith|langsmith|dev-tools|https://www.langchain.com/pricing|A platform for tracing, evaluating, and improving AI applications.|AI tracing;Evaluation datasets;Application monitoring
+Langfuse|langfuse|dev-tools|https://langfuse.com/pricing|An open source platform for observing and evaluating LLM applications.|LLM traces;Prompt management;Evaluations
+Braintrust|braintrust|dev-tools|https://www.braintrust.dev/pricing|An evaluation and observability platform for AI product development.|AI evaluations;Experiment tracking;Production logging
+Humanloop|humanloop|dev-tools|https://humanloop.com/pricing|A platform for collaborating on prompts, evaluations, and AI workflows.|Prompt management;AI evaluations;Workflow collaboration
+Portkey|portkey|dev-tools|https://portkey.ai/pricing|An AI gateway for routing and monitoring language model requests.|AI gateway;Request routing;Usage observability
+LiteLLM|litellm|dev-tools|https://www.litellm.ai/|An open source gateway that connects applications to multiple LLM providers.|Unified LLM API;Model routing;Usage budgets
+Vellum|vellum|ai-tools|https://www.vellum.ai/pricing|An AI development workspace for creating and evaluating production workflows.|AI workflows;Prompt testing;Evaluations
+Gumloop|gumloop|ai-tools|https://www.gumloop.com/pricing|A visual automation platform for combining AI tasks and business workflows.|AI automations;Visual workflows;App integrations
+Lindy|lindy|ai-tools|https://www.lindy.ai/pricing|An AI agent platform for automating administrative and customer workflows.|AI agents;Email workflows;Meeting assistance
+Relevance AI|relevance-ai|ai-tools|https://relevanceai.com/pricing|A platform for building AI agents and coordinating automated tasks.|Agent builder;AI tools;Workflow automation
+Dust|dust|ai-tools|https://dust.tt/pricing|An AI assistant platform connected to a team's internal knowledge and tools.|Team assistants;Knowledge connections;AI workflows
+Glean|glean|ai-tools|https://www.glean.com/|An enterprise search and AI assistant platform for workplace knowledge.|Enterprise search;Knowledge connectors;AI assistance
+Replit|replit|dev-tools|https://replit.com/pricing|A browser development platform for building and deploying applications with AI.|Cloud IDE;AI development;App deployment
+Bolt|bolt-new|dev-tools|https://bolt.new/pricing|An AI application builder for creating web projects from natural language.|AI app building;Browser development;Deployment workflows
+v0|v0|dev-tools|https://v0.dev/pricing|An AI development tool for generating interfaces and applications.|UI generation;App development;Vercel integration
+CodeSandbox|codesandbox|dev-tools|https://codesandbox.io/pricing|A cloud development platform for coding environments and shareable projects.|Cloud environments;Code previews;Development collaboration
+StackBlitz|stackblitz|dev-tools|https://stackblitz.com/pricing|A browser development environment powered by WebContainers.|Browser IDE;WebContainers;Project sharing
+Gitpod|gitpod|dev-tools|https://www.gitpod.io/pricing|A cloud development environment platform for reproducible workspaces.|Development environments;Workspace automation;Repository integration
+Coder|coder|dev-tools|https://coder.com/pricing|A platform for provisioning remote development environments on your infrastructure.|Remote workspaces;Infrastructure templates;Developer access
+GitLab|gitlab|dev-tools|https://about.gitlab.com/pricing/|A DevSecOps platform combining source control, CI/CD, and project planning.|Git repositories;CI/CD pipelines;Security scanning
+Bitbucket|bitbucket|dev-tools|https://www.atlassian.com/software/bitbucket/pricing|Atlassian's Git hosting and collaboration platform for development teams.|Git hosting;Pull requests;Build pipelines
+CircleCI|circleci|dev-tools|https://circleci.com/pricing/|A continuous integration platform for testing and delivering software.|CI pipelines;Build workflows;Deployment automation
+Buildkite|buildkite|dev-tools|https://buildkite.com/pricing|A CI/CD platform supporting build agents on your own infrastructure.|Build pipelines;Agent orchestration;Test analytics
+Semaphore|semaphore|dev-tools|https://semaphoreci.com/pricing|A continuous integration service for automated testing and deployment.|CI workflows;Parallel tests;Deployment pipelines
+LaunchDarkly|launchdarkly|dev-tools|https://launchdarkly.com/pricing/|A feature management platform for releasing and experimenting with software.|Feature flags;Progressive delivery;Experimentation
+Statsig|statsig|analytics|https://www.statsig.com/pricing|A product experimentation platform with feature flags and analytics.|A/B testing;Feature gates;Product analytics
+GrowthBook|growthbook|analytics|https://www.growthbook.io/pricing|An open source platform for feature flags and product experiments.|Feature flags;Experiment analysis;Warehouse integrations
+Flagsmith|flagsmith|dev-tools|https://www.flagsmith.com/pricing|A feature flag and remote configuration platform.|Feature flags;Remote configuration;Environment management
+Unleash|unleash|dev-tools|https://www.getunleash.io/pricing|An open source feature management service for controlled software releases.|Feature toggles;Release strategies;Environment controls
+Split|split|dev-tools|https://www.split.io/|A feature delivery and experimentation platform now part of Harness.|Feature management;Release controls;Experimentation
+Datadog|datadog|analytics|https://www.datadoghq.com/pricing/|An observability platform for cloud infrastructure, applications, and logs.|Infrastructure monitoring;Application traces;Log management
+New Relic|new-relic|analytics|https://newrelic.com/pricing|An observability platform for monitoring application performance and infrastructure.|APM;Log monitoring;Infrastructure metrics
+Dynatrace|dynatrace|analytics|https://www.dynatrace.com/pricing/|An observability service for analyzing application performance and cloud environments.|Application monitoring;Distributed traces;Cloud observability
+Elastic Cloud|elastic-cloud|analytics|https://www.elastic.co/pricing/|A managed platform for search, observability, and security workloads.|Search infrastructure;Log analytics;Security analytics
+Snyk|snyk|security|https://snyk.io/plans/|A developer security platform for detecting vulnerabilities in code and dependencies.|Dependency scanning;Code analysis;Container security
+SonarCloud|sonarcloud|security|https://www.sonarsource.com/plans-and-pricing/|A code quality and security analysis service for development teams.|Static analysis;Quality gates;Security findings
+Semgrep|semgrep|security|https://semgrep.dev/pricing|A code security platform for finding vulnerabilities and enforcing rules.|Static analysis;Dependency scanning;Custom security rules
+Socket|socket|security|https://socket.dev/pricing|A software supply chain security tool focused on open source dependencies.|Dependency analysis;Malware detection;Repository integrations
+Aikido Security|aikido-security|security|https://www.aikido.dev/pricing|An application security platform combining code and cloud risk detection.|Code scanning;Cloud security;Dependency vulnerabilities
+Vanta|vanta|security|https://www.vanta.com/products/pricing|A trust management platform for security compliance and audit preparation.|Compliance workflows;Evidence collection;Trust centers
+Drata|drata|security|https://drata.com/|A compliance automation platform for managing security controls and audits.|Compliance automation;Control monitoring;Audit evidence
+Secureframe|secureframe|security|https://secureframe.com/|A compliance platform for organizing security controls and certification work.|Compliance monitoring;Evidence collection;Risk management
+Scrut Automation|scrut-automation|security|https://www.scrut.io/|A risk and compliance platform for managing information security programs.|Risk assessment;Compliance controls;Audit workflows
+NordVPN|nordvpn|security|https://nordvpn.com/pricing/|A VPN service for encrypting connections and managing online privacy.|VPN connections;Threat protection;Device apps
+ExpressVPN|expressvpn|security|https://www.expressvpn.com/order|A VPN service for encrypted internet connections across devices.|VPN encryption;Device applications;Server locations
+CyberGhost|cyberghost|security|https://www.cyberghostvpn.com/|A VPN subscription for protecting connections on computers and mobile devices.|VPN apps;Encrypted browsing;Server selection
+Proton VPN|proton-vpn|security|https://protonvpn.com/pricing|A privacy-focused VPN service from Proton.|Encrypted connections;Cross platform apps;Privacy controls
+Keeper|keeper|security|https://www.keepersecurity.com/pricing.html|A password and secrets management service for individuals and organizations.|Password vaults;Secure sharing;Access management
+Passbolt|passbolt|security|https://www.passbolt.com/pricing|An open source password manager for teams sharing credentials.|Shared vaults;Team permissions;Self hosting
+Zoho One|zoho-one|productivity|https://www.zoho.com/one/pricing/|A suite of business applications spanning sales, finance, and operations.|Business app suite;Team administration;Cross app workflows
+Zoho CRM|zoho-crm|crm-sales|https://www.zoho.com/crm/zohocrm-pricing.html|A CRM platform for managing sales pipelines and customer relationships.|Sales pipelines;Contact management;Sales automation
+Pipedrive|pipedrive|crm-sales|https://www.pipedrive.com/en/pricing|A sales CRM centered on visual pipelines and activity tracking.|Deal pipelines;Sales activities;Email integration
+Freshsales|freshsales|crm-sales|https://www.freshworks.com/crm/sales/pricing/|A sales CRM for tracking leads, deals, and customer conversations.|Lead management;Sales pipelines;Contact insights
+Freshdesk|freshdesk|crm-sales|https://www.freshworks.com/freshdesk/pricing/|A customer support platform for tickets and self-service help centers.|Support tickets;Knowledge base;Support automation
+Freshservice|freshservice|productivity|https://www.freshworks.com/freshservice/pricing/|An IT service management platform for internal support and service operations.|IT tickets;Asset management;Service catalog
+Salesforce|salesforce|crm-sales|https://www.salesforce.com/sales/pricing/|A CRM platform for sales processes, customer data, and business automation.|CRM records;Sales automation;Reporting
+Keap|keap|crm-sales|https://keap.com/pricing|A CRM and automation platform for small business sales and marketing.|Contact management;Marketing automation;Sales pipelines
+Nutshell|nutshell|crm-sales|https://www.nutshell.com/pricing|A CRM for managing contacts, sales pipelines, and outreach.|Sales pipelines;Contact records;Email marketing
+Streak|streak|crm-sales|https://www.streak.com/pricing|A CRM integrated into Gmail for tracking deals and shared processes.|Gmail CRM;Pipeline tracking;Email tools
+Nimble|nimble|crm-sales|https://www.nimble.com/pricing/|A relationship CRM for contact management and outreach.|Contact enrichment;Relationship tracking;Sales workflows
+NetHunt|nethunt|crm-sales|https://nethunt.com/pricing|A Gmail-connected CRM for sales workflows and contact records.|Gmail integration;Sales pipelines;Workflow automation
+Agile CRM|agile-crm|crm-sales|https://www.agilecrm.com/pricing|A CRM combining sales, marketing, and customer service functions.|Contact management;Marketing automation;Helpdesk tools
+ActiveCampaign|activecampaign|marketing|https://www.activecampaign.com/pricing|An email marketing and automation platform for customer journeys.|Email campaigns;Marketing automation;Audience segmentation
+Mailchimp|mailchimp|marketing|https://mailchimp.com/pricing/marketing/|An email marketing service for campaigns, automations, and audience management.|Email campaigns;Audience segmentation;Marketing automation
+GetResponse|getresponse|marketing|https://www.getresponse.com/pricing|An email marketing platform with landing pages and automated campaigns.|Email marketing;Landing pages;Marketing workflows
+AWeber|aweber|marketing|https://www.aweber.com/pricing.htm|An email marketing service for newsletters and subscriber automation.|Newsletters;Email automation;Landing pages
+Constant Contact|constant-contact|marketing|https://www.constantcontact.com/pricing|A marketing platform for email campaigns and small business outreach.|Email templates;Audience management;Campaign reporting
+Campaign Monitor|campaign-monitor|marketing|https://www.campaignmonitor.com/pricing/|An email marketing platform for branded campaigns and customer journeys.|Email builder;Audience segments;Automated journeys
+Campaigner|campaigner|marketing|https://www.campaigner.com/pricing/|An email automation platform for multi-step marketing campaigns.|Email workflows;Segmentation;Campaign analytics
+Benchmark Email|benchmark-email|marketing|https://www.benchmarkemail.com/pricing/|An email marketing platform with newsletters and automated customer communication.|Email editor;Contact lists;Marketing automation
+SendPulse|sendpulse|marketing|https://sendpulse.com/prices|A marketing platform for email, messaging, and chatbot automation.|Email campaigns;Chatbots;Marketing workflows
+Sendlane|sendlane|marketing|https://www.sendlane.com/pricing|An email and SMS marketing platform for ecommerce brands.|Email campaigns;SMS marketing;Customer segmentation
+Mailmodo|mailmodo|marketing|https://www.mailmodo.com/pricing/|An email marketing platform supporting interactive email campaigns.|Interactive emails;Campaign automation;Email analytics
+Customer.io|customer-io|marketing|https://customer.io/pricing|A customer engagement platform for messaging based on product behavior.|Behavioral messaging;Audience segments;Campaign workflows
+Ortto|ortto|marketing|https://ortto.com/pricing/|A marketing automation platform combining customer data and messaging.|Customer data;Marketing journeys;Email messaging
+Encharge|encharge|marketing|https://encharge.io/pricing/|A marketing automation service for behavior-based email campaigns.|Email automation;User segmentation;App integrations
+Userlist|userlist|marketing|https://userlist.com/pricing/|An email automation platform designed for SaaS onboarding and lifecycle messages.|Lifecycle emails;Customer segments;Company accounts
+EngageBay|engagebay|crm-sales|https://www.engagebay.com/pricing|A CRM and marketing suite for small business customer engagement.|CRM;Email marketing;Customer support
+Unbounce|unbounce|marketing|https://unbounce.com/pricing/|A landing page platform for building and testing conversion-focused campaigns.|Landing pages;A/B testing;Conversion tools
+Instapage|instapage|marketing|https://instapage.com/plans|A landing page platform for advertising campaigns and conversion optimization.|Landing page builder;Experimentation;Ad personalization
+Leadpages|leadpages|marketing|https://www.leadpages.com/pricing|A landing page and lead capture tool for small businesses.|Landing pages;Lead forms;Conversion tools
+Landingi|landingi|marketing|https://landingi.com/pricing/|A landing page platform for building and managing marketing campaigns.|Page builder;Lead collection;A/B testing
+Wishpond|wishpond|marketing|https://www.wishpond.com/|A marketing platform combining landing pages, campaigns, and lead management.|Landing pages;Marketing campaigns;Lead management
+OptinMonster|optinmonster|marketing|https://optinmonster.com/pricing/|A lead generation tool for forms, popups, and website conversion campaigns.|Popup campaigns;Lead forms;Audience targeting
+OptiMonk|optimonk|marketing|https://www.optimonk.com/pricing/|A website personalization platform for targeted messages and offers.|Website popups;Personalization;Campaign testing
+ConvertFlow|convertflow|marketing|https://www.convertflow.com/pricing|A conversion platform for building forms, quizzes, and personalized funnels.|Lead forms;Interactive quizzes;Personalized funnels
+Proof|useproof|marketing|https://useproof.com/pricing|A website marketing service for social proof notifications and personalization.|Social proof;Website personalization;Conversion tools
+Wistia|wistia|marketing|https://wistia.com/pricing|A video marketing platform for hosting business videos and measuring engagement.|Video hosting;Video analytics;Lead capture
+Vimeo|vimeo|design|https://vimeo.com/upgrade|A video hosting and collaboration platform for creators and businesses.|Video hosting;Review workflows;Video sharing
+Vidyard|vidyard|crm-sales|https://www.vidyard.com/pricing/|A video messaging platform for sales outreach and customer communication.|Sales videos;Video hosting;Engagement analytics
+BombBomb|bombbomb|crm-sales|https://bombbomb.com/pricing/|A video messaging service for personal sales and customer communication.|Video messaging;Email integration;Video tracking
+Dubb|dubb|crm-sales|https://dubb.com/pricing|A video communication platform for sales messages and follow-up workflows.|Video recording;Video landing pages;Sales automation
+Calendly|calendly|productivity|https://calendly.com/pricing|A scheduling service for booking meetings and coordinating availability.|Booking links;Calendar integrations;Team scheduling
+SavvyCal|savvycal|productivity|https://savvycal.com/pricing|A scheduling tool that overlays calendars to find convenient meeting times.|Calendar overlays;Booking links;Availability controls
+TidyCal|tidycal|productivity|https://tidycal.com/|A meeting scheduling service for booking pages and calendar coordination.|Booking pages;Calendar integrations;Paid bookings
+YouCanBookMe|youcanbookme|productivity|https://youcanbook.me/pricing|An online booking platform connected to your existing calendars.|Booking pages;Calendar sync;Appointment notifications
+OnceHub|oncehub|productivity|https://www.oncehub.com/pricing|A scheduling and customer engagement platform for booking meetings.|Meeting scheduling;Routing forms;Customer engagement
+Acuity Scheduling|acuity-scheduling|productivity|https://acuityscheduling.com/signup.php|An appointment scheduling service for client bookings and service businesses.|Appointment booking;Client intake;Payment integrations
+Setmore|setmore|productivity|https://www.setmore.com/pricing|An appointment scheduling platform for businesses managing customer bookings.|Booking pages;Staff calendars;Appointment reminders
+SimplyBook.me|simplybook-me|productivity|https://simplybook.me/en/pricing|An online booking system for service-based businesses.|Online bookings;Staff scheduling;Client notifications
+Clockify|clockify|project-management|https://clockify.me/upgrade|A time tracking service for projects, timesheets, and team reporting.|Time tracking;Timesheets;Project reports
+Toggl Track|toggl-track|project-management|https://toggl.com/track/pricing/|A time tracking tool for measuring project work and billable activity.|Time entries;Project reporting;Team tracking
+Harvest|harvest|finance|https://www.getharvest.com/pricing|A time tracking and invoicing platform for service teams.|Time tracking;Client invoicing;Project budgets
+Everhour|everhour|project-management|https://everhour.com/pricing|A time tracking and project budgeting tool that connects to task platforms.|Time tracking;Project budgets;Task integrations
+Timely|timely|project-management|https://timely.com/pricing|A time tracking platform for capturing work activity and preparing timesheets.|Automatic time tracking;Timesheets;Team reporting
+RescueTime|rescuetime|productivity|https://www.rescuetime.com/pricing|A productivity tool for tracking digital activity and focused work.|Activity tracking;Focus sessions;Productivity reports
+Rize|rize|productivity|https://rize.io/|A time tracking app that helps analyze focus and work habits.|Automatic tracking;Focus analysis;Work reports
+Sunsama|sunsama|productivity|https://www.sunsama.com/pricing|A daily planning workspace that combines tasks and calendar scheduling.|Daily planning;Calendar integration;Task consolidation
+Ellie Planner|ellie-planner|productivity|https://ellieplanner.com/pricing|A personal planning app for organizing tasks and blocking time.|Time blocking;Task planning;Calendar views
+Amazing Marvin|amazing-marvin|productivity|https://amazingmarvin.com/pricing/|A customizable task manager for experimenting with productivity workflows.|Task management;Planning strategies;Workflow customization
+Heptabase|heptabase|productivity|https://heptabase.com/pricing|A visual knowledge management app for organizing research and ideas.|Visual whiteboards;Knowledge cards;Research organization
+Reflect|reflect-notes|productivity|https://reflect.app/|A note-taking app for connecting thoughts, meetings, and personal knowledge.|Linked notes;Daily notes;Calendar connections
+Mem|mem-ai|productivity|https://mem.ai/pricing|An AI notes workspace for capturing and retrieving personal knowledge.|AI note search;Knowledge capture;Note organization
+Tana|tana|productivity|https://tana.inc/pricing|A structured notes and knowledge workspace for connected information.|Structured notes;Supertags;Knowledge organization
+Napkin|napkin-ai|ai-tools|https://www.napkin.ai/pricing|An AI visual tool for turning text into diagrams and explanatory graphics.|Text to visuals;Diagram creation;Presentation graphics
+Milanote|milanote|design|https://milanote.com/plans|A visual planning workspace for creative projects and research.|Creative boards;Moodboards;Project planning
+Mural|mural|productivity|https://www.mural.co/pricing|A collaborative visual workspace for workshops and team planning.|Digital whiteboards;Workshop templates;Visual collaboration
+Whimsical|whimsical|design|https://whimsical.com/pricing|A visual workspace for flowcharts, wireframes, and collaborative planning.|Flowcharts;Wireframes;Mind maps
+Lucidchart|lucidchart|design|https://www.lucidchart.com/pages/pricing|A diagramming platform for visualizing systems, processes, and organizations.|Flowcharts;System diagrams;Team collaboration
+Creately|creately|design|https://creately.com/plans/|A visual collaboration platform for diagrams and connected workspaces.|Visual diagrams;Project boards;Team collaboration
+Eraser|eraser|dev-tools|https://www.eraser.io/pricing|A documentation and diagramming workspace for engineering teams.|Technical diagrams;Engineering docs;Team collaboration
+GitBook|gitbook|dev-tools|https://www.gitbook.com/pricing|A documentation platform for publishing product guides and technical knowledge.|Documentation hosting;Content editing;Knowledge search
+Document360|document360|dev-tools|https://document360.com/pricing/|A knowledge base platform for product documentation and support content.|Knowledge bases;Documentation editor;Content search
+Slab|slab|productivity|https://slab.com/pricing/|A team knowledge base for organizing internal documentation and shared information.|Team wiki;Knowledge search;Document organization
+Tettra|tettra|productivity|https://tettra.com/pricing/|An internal knowledge platform for team documentation and common questions.|Internal wiki;Knowledge answers;Team integrations
+Guru|getguru|productivity|https://www.getguru.com/pricing|A knowledge management platform for finding and maintaining trusted team information.|Knowledge search;Content verification;Workplace integrations
+Trainual|trainual|productivity|https://trainual.com/pricing|A training and process documentation platform for employee onboarding.|Process documentation;Employee training;Onboarding workflows
+Scribe|scribe|productivity|https://scribehow.com/pricing|A tool for turning workflows into step-by-step process guides.|Process capture;Step by step guides;Documentation sharing
+Tango|tango|productivity|https://www.tango.us/pricing|A workflow documentation tool for capturing procedures and in-app guidance.|Workflow capture;Process guides;In app guidance
+Guidde|guidde|ai-tools|https://www.guidde.com/pricing|A video documentation platform for explaining software workflows.|Video guides;Workflow capture;AI voiceovers
+Supademo|supademo|marketing|https://supademo.com/pricing|An interactive product demo platform for onboarding and sales enablement.|Interactive demos;Product walkthroughs;Demo analytics
+Arcade|arcade|marketing|https://www.arcade.software/pricing|A platform for creating interactive product demonstrations.|Interactive demos;Demo recording;Engagement analytics
+Storylane|storylane|marketing|https://www.storylane.io/plans|A product demo platform for building guided sales experiences.|Interactive demos;Product tours;Lead capture
+Navattic|navattic|marketing|https://www.navattic.com/pricing|An interactive demo platform for showing software before signup.|Product demos;Guided tours;Demo analytics
+Walnut|walnut|crm-sales|https://www.walnut.io/|A sales demo platform for creating personalized software experiences.|Personalized demos;Demo management;Sales enablement
+Userflow|userflow|marketing|https://www.userflow.com/pricing|A no-code onboarding platform for product tours and in-app announcements.|Product tours;Onboarding checklists;In app surveys
+Appcues|appcues|marketing|https://www.appcues.com/pricing|A product adoption platform for onboarding users and guiding in-app behavior.|User onboarding;Product tours;In app messaging
+Userpilot|userpilot|marketing|https://userpilot.com/pricing/|A product growth platform for onboarding, engagement, and user feedback.|Onboarding flows;Product analytics;User surveys
+Chameleon|chameleon|marketing|https://www.chameleon.io/pricing|An in-app product adoption platform for tours, tooltips, and surveys.|Product tours;Tooltips;Microsurveys
+Pendo|pendo|analytics|https://www.pendo.io/pricing/|A product experience platform combining usage analytics and in-app guidance.|Product analytics;In app guides;User feedback
+WalkMe|walkme|productivity|https://www.walkme.com/|A digital adoption platform for guiding users through business software.|In app guidance;Workflow assistance;Adoption analytics
+Whatfix|whatfix|productivity|https://whatfix.com/|A digital adoption service for guided workflows and employee software training.|Interactive guidance;Software training;Usage analytics
+Dovetail|dovetail|analytics|https://dovetail.com/pricing/|A customer research repository for organizing interviews and research insights.|Research repository;Interview analysis;Insight sharing
+Maze|maze|analytics|https://maze.co/pricing/|A user research platform for testing prototypes and gathering product feedback.|Usability testing;Research surveys;Prototype testing
+Lyssna|lyssna|analytics|https://www.lyssna.com/pricing/|A user research platform for design tests, surveys, and interviews.|Design testing;User interviews;Research surveys
+Useberry|useberry|analytics|https://www.useberry.com/pricing/|A usability testing platform for evaluating digital product designs.|Prototype testing;User flows;Research analytics
+Optimal Workshop|optimal-workshop|analytics|https://www.optimalworkshop.com/pricing|A user research suite for improving navigation and information architecture.|Card sorting;Tree testing;User research
+Lookback|lookback|analytics|https://www.lookback.com/pricing|A research platform for conducting and reviewing user interviews and usability sessions.|User interviews;Session recordings;Research collaboration
+UserTesting|usertesting|analytics|https://www.usertesting.com/|A customer feedback platform for collecting video-based product research.|User testing;Video feedback;Research panels
+Sprig|sprig|analytics|https://sprig.com/pricing|A product research platform for surveys, session analysis, and user insights.|In product surveys;Session research;User feedback
+Typebot|typebot|marketing|https://typebot.io/pricing|An open source conversational form builder for interactive customer flows.|Chat forms;Visual builder;App integrations
+Landbot|landbot|marketing|https://landbot.io/pricing|A no-code chatbot platform for lead generation and customer conversations.|Chatbot builder;Lead qualification;Messaging integrations
+Tars|tars|marketing|https://hellotars.com/pricing|A conversational automation platform for customer service and lead capture.|Conversational bots;Lead capture;Workflow automation
+Manychat|manychat|marketing|https://manychat.com/pricing|A messaging automation platform for social media marketing conversations.|Social messaging;Chat automation;Lead capture
+Chatfuel|chatfuel|marketing|https://chatfuel.com/pricing|A chatbot platform for automating business conversations on messaging channels.|Chatbots;Message automation;Customer conversations
+Botpress|botpress|ai-tools|https://botpress.com/pricing|An AI agent platform for building conversational assistants and support bots.|AI agents;Conversation flows;Knowledge sources
+Voiceflow|voiceflow|ai-tools|https://www.voiceflow.com/pricing|A collaborative platform for building AI customer support agents.|Agent builder;Knowledge base;Conversation design
+Stack AI|stack-ai|ai-tools|https://www.stack-ai.com/pricing|A visual platform for building AI applications and internal workflows.|AI workflows;Data connectors;Internal assistants
+Browse AI|browse-ai|ai-tools|https://www.browse.ai/pricing|A no-code tool for monitoring websites and extracting structured web data.|Web monitoring;Data extraction;Scheduled tasks
+Apify|apify|dev-tools|https://apify.com/pricing|A platform for running web scraping and browser automation tasks.|Automation actors;Web data extraction;Scheduled runs
+Firecrawl|firecrawl|dev-tools|https://www.firecrawl.dev/pricing|A web data API for turning accessible websites into structured content.|Web crawling;Markdown extraction;Structured data
+Browserless|browserless|dev-tools|https://www.browserless.io/pricing|A hosted browser automation service for rendering and testing web pages.|Hosted browsers;Automation API;Browser sessions
+Browserbase|browserbase|dev-tools|https://www.browserbase.com/pricing|A browser infrastructure platform for automation and AI applications.|Cloud browsers;Session management;Automation tooling
+ScrapingBee|scrapingbee|dev-tools|https://www.scrapingbee.com/pricing/|A web scraping API for fetching and rendering website content.|Scraping API;JavaScript rendering;Data extraction
+ScreenshotOne|screenshotone|dev-tools|https://screenshotone.com/pricing/|A screenshot API for capturing websites and generating image previews.|Website screenshots;Image rendering;Capture API
+ScreenshotAPI|screenshotapi|dev-tools|https://www.screenshotapi.net/|An API service for capturing screenshots of web pages.|Screenshot API;Page rendering;Automated captures
