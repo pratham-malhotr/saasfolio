@@ -4,6 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import { DealsExplorer } from "@/components/deals/DealsExplorer";
 import { getAllDeals } from "@/lib/data/deals-data";
+import Link from "next/link";
 
 export const metadata = pageMetadata({
   title: 'SaaS Discounts, Coupon Codes & Lifetime Deals',
@@ -31,6 +32,7 @@ export default async function DealsPage({
         initialCategory={params.category}
         initialType={params.type}
       />
+      <p className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-zinc-400 text-sm">Looking for a particular provider? <Link href="/discounts" className="text-[#C6FF3D] underline">Compare discounts and coupon availability by brand</Link>.</p>
     </div>
   );
 }

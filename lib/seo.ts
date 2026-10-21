@@ -75,18 +75,20 @@ export function isoDate(value?: string): string | undefined {
 export function dealSearchTitle(deal: SaaSDeal): string {
   if (deal.dealType === "pricing") return `${deal.toolName} Pricing & Current Offers`;
   if (deal.code) return `${deal.toolName} Coupon Code: ${deal.code}`;
-  return `${deal.toolName}: ${deal.title}`;
+  if (deal.dealType === "free_plan") return `${deal.toolName} Free Plan: Limits & Eligibility`;
+  if (deal.dealType === "free_trial") return `${deal.toolName} Free Trial: Terms & How to Start`;
+  return deal.title.toLowerCase().includes(deal.toolName.toLowerCase()) ? deal.title : `${deal.toolName}: ${deal.title}`;
 }
 
 export function dealMetaDescription(deal: SaaSDeal): string {
-  const code = deal.code ? ` Reported code: ${deal.code}.` : "";
-  return summarize(`${deal.title}.${code} ${deal.terms}`, 155);
+  const type = deal.code ? `Reported ${deal.toolName} coupon code ${deal.code}.` : `${deal.title}.`;
+  return summarize(`${type} Check eligibility, redemption steps and source details. ${deal.terms}`, 155);
 }
 
-export function toolSearchTitle(toolName: string, topDiscount = 0): string {
-  return topDiscount > 0 ? `${toolName} Pricing, Features & Up to ${topDiscount}% Off` : `${toolName} Pricing, Features & Software Alternatives`;
+export function toolSearchTitle(toolName: string): string {
+  return `${toolName} Pricing, Features & Alternatives`;
 }
 
-export function toolMetaDescription(toolName: string, topDiscount = 0, description?: string): string {
-  return summarize(`${description || `Explore ${toolName} features and software alternatives.`} ${topDiscount > 0 ? `Find sourced offers up to ${topDiscount}% off.` : "Check official pricing and current offers."}`, 155);
+export function toolMetaDescription(toolName: string, description?: string): string {
+  return summarize(`${toolName} pricing, features, alternatives and discount availability. ${description || "Compare software options and check current provider plans."}`, 155);
 }

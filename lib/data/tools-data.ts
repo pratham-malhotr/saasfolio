@@ -1,6 +1,7 @@
 import { DetailedTool } from "@/lib/types";
 import expandedTools from "./expanded-tools.json";
 import sourceSnapshot from "./offer-snapshot.json";
+import { REVIEWED_BRAND_TOOLS, REVIEWED_BRAND_COPY } from "./reviewed-brand-tools";
 
 const LEGACY_TOOLS_DATA: DetailedTool[] = [
   {
@@ -49916,7 +49917,7 @@ const LEGACY_TOOLS_DATA: DetailedTool[] = [
 // The previous generator assigned fabricated ratings, reviews and prices. Keep
 // the existing profiles and routes, but do not publish unsupported social proof.
 const categoryAliases: Record<string, string> = { ai: "ai-tools", dev: "dev-tools", crm: "crm-sales", pm: "project-management", devtools: "dev-tools", infrastructure: "hosting", sales: "crm-sales", support: "crm-sales" };
-const COMBINED_TOOLS_DATA: DetailedTool[] = [...LEGACY_TOOLS_DATA, ...(expandedTools as DetailedTool[])]
+const COMBINED_TOOLS_DATA: DetailedTool[] = [...REVIEWED_BRAND_TOOLS, ...LEGACY_TOOLS_DATA, ...(expandedTools as DetailedTool[])]
   .filter((tool, index, all) => all.findIndex(other => other.slug === tool.slug) === index)
   .map(tool => ({ ...tool, categorySlug: categoryAliases[tool.categorySlug] || tool.categorySlug,
     ...(/^Save \d+%/.test(tool.description) ? {
@@ -49926,8 +49927,14 @@ const COMBINED_TOOLS_DATA: DetailedTool[] = [...LEGACY_TOOLS_DATA, ...(expandedT
       keyFeatures: [], pros: [], cons: [],
     } : {}),
     rating: 0, reviewCount: 0, reviews: [], verified: false, pricingVerified: false,
+    // The current provider advertises a trial, not the legacy free-forever plan.
+    ...(tool.slug === "predis-ai" ? {
+      pricingModel: "Free Trial" as const,
+      pros: tool.pros.filter(pro => !/free forever/i.test(pro)),
+    } : {}),
+    ...REVIEWED_BRAND_COPY[tool.slug],
     pricingPlans: [], sourceUrl: tool.sourceUrl || tool.website,
-    pricingUrl: ((sourceSnapshot.sources as Record<string, { status: string; url: string }>)[`vendor:${tool.slug}`]?.status === "ok"
+    pricingUrl: tool.pricingUrl || ((sourceSnapshot.sources as Record<string, { status: string; url: string }>)[`vendor:${tool.slug}`]?.status === "ok"
       ? (sourceSnapshot.sources as Record<string, { status: string; url: string }>)[`vendor:${tool.slug}`].url
       : tool.website),
   }));

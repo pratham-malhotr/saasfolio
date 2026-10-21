@@ -12,6 +12,7 @@ import {
   softwareSchema,
 } from "@/lib/structured-data";
 import { getComparisonHref } from "@/lib/catalog-links";
+import { BrandDiscountSummary } from "@/components/seo/BrandDiscountSummary";
 
 export async function generateStaticParams() {
   const tools = getAllTools();
@@ -30,15 +31,9 @@ export async function generateMetadata({
 
   if (!tool) notFound();
 
-  const deals = getDealsByTool(tool.slug);
-  const topDiscount = deals.reduce(
-    (max, d) => (d.discountPercentage > max ? d.discountPercentage : max),
-    0
-  );
-
   return pageMetadata({
-    title: toolSearchTitle(tool.name, topDiscount),
-    description: toolMetaDescription(tool.name, topDiscount, tool.description),
+    title: toolSearchTitle(tool.name),
+    description: toolMetaDescription(tool.name, tool.description),
     path: `/tools/${tool.slug}`,
   });
 }
@@ -59,15 +54,6 @@ export default async function ToolDetailPage({
   if (slug !== tool.slug) permanentRedirect(`/tools/${tool.slug}`);
 
   const deals = getDealsByTool(tool.slug);
-  const topDiscount = deals.reduce(
-    (max, d) => (d.discountPercentage > max ? d.discountPercentage : max),
-    0
-  );
-
-  const allTools = getAllTools();
-  const competitorTools = allTools.filter(
-    (t) => t.categorySlug === tool.categorySlug && t.id !== tool.id
-  );
 
   return (
     <div className="min-h-screen bg-[#050505]">
@@ -77,8 +63,8 @@ export default async function ToolDetailPage({
           "@graph": [
             {
               ...webPageSchema(
-                toolSearchTitle(tool.name, topDiscount),
-                toolMetaDescription(tool.name, topDiscount, tool.description),
+                toolSearchTitle(tool.name),
+                toolMetaDescription(tool.name, tool.description),
                 `/tools/${tool.slug}`
               ),
               mainEntity: { "@id": softwareSchema(tool)["@id"] },
@@ -94,7 +80,7 @@ export default async function ToolDetailPage({
       <ToolProfileClient
         tool={tool}
         deals={deals}
-        competitorTools={competitorTools}
+        discountSummary={<BrandDiscountSummary tool={tool} deals={deals} />}
         comparisonLinks={Object.fromEntries(
           tool.alternatives.map((alternative) => [
             alternative.slug,

@@ -15,6 +15,7 @@ import {
   getDealFaqs,
 } from "@/lib/structured-data";
 import { getComparisonHref } from "@/lib/catalog-links";
+import { hasBrandDiscountPage } from "@/lib/brand-discounts";
 
 export async function generateStaticParams() {
   const deals = getAllDeals();
@@ -93,6 +94,7 @@ export default async function DealDetailPage({
       />
       <DealDetailClient
         deal={deal}
+        discountHref={hasBrandDiscountPage(deal.toolSlug) ? `/discounts/${deal.toolSlug}` : undefined}
         tool={tool}
         faqs={faqs}
         siblingDeals={siblingDeals}

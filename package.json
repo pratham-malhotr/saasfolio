@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seo:audit": "node scripts/audit-seo.mjs",
+    "seo:audit:brands": "node scripts/audit-brand-seo.mjs",
     "catalog:expand": "node scripts/build-brand-expansion.mjs",
     "catalog:refresh": "node scripts/refresh-offers.mjs",
     "validate:catalog": "node scripts/validate-catalog.mjs",

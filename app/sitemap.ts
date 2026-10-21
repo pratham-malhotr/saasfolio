@@ -6,6 +6,7 @@ import { DETAILED_THREADS } from "@/lib/data/community-data";
 import { COMPARISON_SLUGS } from "@/lib/data/comparisons-data";
 import { getCatalogCategories } from "@/lib/categories";
 import { absoluteUrl, isoDate } from "@/lib/seo";
+import { getIndexableDiscountBrands, getBrandDiscountData } from "@/lib/brand-discounts";
 
 export const revalidate = 3600;
 
@@ -118,6 +119,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const seen = new Set<string>();
   const combined = [
     ...coreRoutes,
+    { url: absoluteUrl("/discounts"), changeFrequency: "weekly" as const, priority: 0.9 },
+    ...getIndexableDiscountBrands().map(tool => ({
+      url: absoluteUrl(`/discounts/${tool.slug}`),
+      lastModified: getBrandDiscountData(tool).modifiedAt,
+      changeFrequency: "daily" as const,
+      priority: 0.9,
+    })),
     ...getCatalogCategories().map(category => ({ url: absoluteUrl(`/deals/category/${category.slug}`), changeFrequency: "daily" as const, priority: 0.8 })),
     ...dealsRoutes,
     ...toolsRoutes,

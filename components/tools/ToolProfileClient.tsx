@@ -10,10 +10,7 @@ import {
   X, 
   Sparkles, 
   GitCompare, 
-  ArrowRight, 
-  Tag, 
-  ThumbsUp,
-  MessageSquare
+  ArrowRight
 } from "lucide-react";
 import { offerLabel } from "@/lib/offer-links";
 import { DetailedTool, SaaSDeal } from "@/lib/types";
@@ -23,11 +20,11 @@ import { DISCOUNT_SOURCES } from "@/lib/discount-sources";
 interface ToolProfileClientProps {
   tool: DetailedTool;
   deals: SaaSDeal[];
-  competitorTools: DetailedTool[];
   comparisonLinks: Record<string, string>;
+  discountSummary: React.ReactNode;
 }
 
-export function ToolProfileClient({ tool, deals, competitorTools, comparisonLinks }: ToolProfileClientProps) {
+export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummary }: ToolProfileClientProps) {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("yearly");
   const [selectedDeal, setSelectedDeal] = useState<SaaSDeal | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -127,6 +124,8 @@ export function ToolProfileClient({ tool, deals, competitorTools, comparisonLink
         </div>
       </div>
 
+      {discountSummary}
+
       {/* Active Deals Banner (if tool has live coupons) */}
       {deals.length > 0 && (
         <div className="mb-12 p-6 rounded-2xl bg-gradient-to-r from-[#C6FF3D]/10 to-transparent border border-[#C6FF3D]/40">
@@ -134,7 +133,7 @@ export function ToolProfileClient({ tool, deals, competitorTools, comparisonLink
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-[#C6FF3D]" />
               <h3 className="font-display font-bold text-xl text-white">
-                Active Deals & Discounts for {tool.name} ({deals.length})
+                {tool.name} offers & pricing options ({deals.length})
               </h3>
             </div>
             <span className="font-mono text-xs text-[#C6FF3D] font-bold">PROVIDER TERMS APPLY</span>
