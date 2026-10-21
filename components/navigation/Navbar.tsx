@@ -2,39 +2,37 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Search, Menu, X, ArrowUpRight, Sparkles, Tag, Layers, FileText, Users, User, LogOut, ShieldCheck, Scale } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Search, Menu, X, ArrowUpRight, Tag, Layers, FileText, Users, User, LogOut, ShieldCheck, Scale } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { CommandPalette } from "@/components/modals/CommandPalette";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { apiRequest } from "@/lib/api-client";
 
 export function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<{ name: string; email: string; avatarLetter: string; isAdmin: boolean } | null>(null);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   useEffect(() => {
+    let active = true;
     const loadUser = () => {
-      try {
-        const stored = localStorage.getItem("saasfolio_current_user");
-        if (stored) {
-          setCurrentUser(JSON.parse(stored));
-        } else {
-          setCurrentUser(null);
-        }
-      } catch (e) {}
+      apiRequest<{ user: { name: string; email: string; avatarLetter: string; isAdmin: boolean } | null }>("/api/auth/session", undefined, "GET")
+        .then(result => { if (active) setCurrentUser(result.user); })
+        .catch(() => { if (active) setCurrentUser(null); });
     };
 
     loadUser();
     window.addEventListener("saasfolio_auth_changed", loadUser);
-    return () => window.removeEventListener("saasfolio_auth_changed", loadUser);
+    return () => { active = false; window.removeEventListener("saasfolio_auth_changed", loadUser); };
   }, []);
 
   useEffect(() => {
@@ -64,7 +62,8 @@ export function Navbar() {
 
   // Close mobile menu on route change
   useEffect(() => {
-    setMobileMenuOpen(false);
+    const frame = requestAnimationFrame(() => setMobileMenuOpen(false));
+    return () => cancelAnimationFrame(frame);
   }, [pathname]);
 
   const navLinks = [
@@ -144,7 +143,8 @@ export function Navbar() {
                 <button
                   onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                   className="w-8 h-8 rounded-full bg-gradient-to-br from-[#C6FF3D] to-[#80B814] text-black font-display font-black text-xs flex items-center justify-center border border-[#C6FF3D] shadow-[0_0_12px_rgba(198,255,61,0.3)] transition-transform hover:scale-105"
-                  title={`Signed in as @${currentUser.username}`}
+                  title={`Signed in as ${currentUser.name}`}
+                  aria-label="Open account menu" aria-expanded={profileDropdownOpen}
                 >
                   {currentUser.avatarLetter || "U"}
                 </button>
@@ -156,7 +156,7 @@ export function Navbar() {
                         {currentUser.name}
                       </div>
                       <div className="text-zinc-500 text-[11px]">
-                        @{currentUser.username}
+                        {currentUser.email}
                       </div>
                     </div>
 
@@ -178,21 +178,22 @@ export function Navbar() {
                       <span>Submit Tool / Deal</span>
                     </Link>
 
-                    <Link
+                    {currentUser.isAdmin && <Link
                       href="/admin"
                       onClick={() => setProfileDropdownOpen(false)}
                       className="flex items-center gap-2 px-3 py-2 rounded-xl text-zinc-300 hover:text-[#C6FF3D] hover:bg-white/5 transition-colors"
                     >
                       <ShieldCheck className="w-3.5 h-3.5" />
                       <span>Admin Control</span>
-                    </Link>
+                    </Link>}
 
                     <button
-                      onClick={() => {
-                        localStorage.removeItem("saasfolio_current_user");
-                        setCurrentUser(null);
-                        setProfileDropdownOpen(false);
-                        window.dispatchEvent(new Event("saasfolio_auth_changed"));
+                      onClick={async () => {
+                        try {
+                          await apiRequest("/api/auth/logout", {});
+                          setCurrentUser(null); setProfileDropdownOpen(false);
+                          window.dispatchEvent(new Event("saasfolio_auth_changed"));
+                        } catch { router.push("/profile"); }
                       }}
                       className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-rose-400 hover:bg-rose-500/10 transition-colors text-left"
                     >
@@ -285,7 +286,7 @@ export function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center justify-between py-2 text-sm text-[#C6FF3D]"
                   >
-                    <span>Member Passport (@{currentUser.username})</span>
+                    <span>Member Passport ({currentUser.email})</span>
                     <span className="font-mono text-xs">VIEW →</span>
                   </Link>
                 ) : (

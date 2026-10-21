@@ -12,9 +12,12 @@
     "catalog:refresh": "node scripts/refresh-offers.mjs",
     "validate:catalog": "node scripts/validate-catalog.mjs",
     "test:offers": "node --test scripts/offer-sources.test.mjs scripts/simplycodes.test.mjs",
+    "test:platform": "node --test scripts/platform.test.mjs",
     "coupons:inspect": "node scripts/inspect-simplycodes.mjs"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/turbopack": "^4",
     "canvas-confetti": "^1.9.4",

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { authConfigured } from "@/lib/server/supabase";
 
 /**
  * Enterprise Health & Liveness Probe
@@ -13,15 +14,15 @@ export async function GET() {
   const healthPayload = {
     status: "operational",
     service: "saasfolio-core",
-    version: "2.4.0",
+    version: "0.1.0",
     timestamp: new Date().toISOString(),
     uptimeSeconds: Math.floor(process.uptime()),
     environment: process.env.NODE_ENV || "production",
     checks: {
-      dnsRouting: "healthy",
-      staticEdgeCache: "operational",
-      dataLayer: "operational",
-      rateLimiter: "active",
+      catalog: "available",
+      accountsConfigured: authConfigured(),
+      formsConfigured: authConfigured() && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
+      newsletterConfigured: authConfigured() && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.RESEND_API_KEY && process.env.NEWSLETTER_FROM_EMAIL),
       responseTimeMs: Math.max(1, Date.now() - startTime),
     },
     systemSpecs: {

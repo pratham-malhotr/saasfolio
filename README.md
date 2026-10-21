@@ -138,3 +138,9 @@ tests. Existing editorial and community demo content still needs factual review.
 ## SEO configuration and validation
 
 See [the SEO implementation and launch checklist](docs/SEO.md) for canonical URLs, indexing rules, structured data, Search Console setup, content verification requirements, and the production-response audit (`npm run seo:audit`).
+
+## Account, form, and newsletter setup
+
+Sign-in, saved items, contact forms, and the administrator inbox now use Supabase instead of simulated browser identities and local form receipts. Newsletter signup uses Resend confirmation emails. These services require the migration and credentials described in [production readiness](docs/PRODUCTION-READINESS.md); without configuration, the APIs return an unavailable response. That document also identifies the community and editorial features that still need production work.
+
+Run `npm run test:platform` to check the server flows with mocked providers. No production accounts or emails are created by those tests.

@@ -14,24 +14,23 @@ import {
   Sparkles, 
   MessageSquare, 
   Send,
-  ArrowRight,
   ArrowLeft,
   Share2,
-  Bookmark,
   ChevronDown,
   ChevronUp,
   CheckCircle2,
   DollarSign,
   HelpCircle,
   Tag,
-  Award,
-  Zap
+  Award
 } from "lucide-react";
+import { SaveItemButton } from "@/components/profile/SaveItemButton";
 import { SaaSDeal, DetailedTool } from "@/lib/types";
 import { getOfferDestination, offerLabel, offerStatus } from "@/lib/offer-links";
 
 interface DealDetailClientProps {
   deal: SaaSDeal;
+  discountHref?: string;
   tool?: DetailedTool;
   faqs?: { question: string; answer: string }[];
   siblingDeals?: SaaSDeal[];
@@ -41,6 +40,7 @@ interface DealDetailClientProps {
 
 export function DealDetailClient({
   deal,
+  discountHref,
   tool,
   faqs,
   siblingDeals = [],
@@ -52,7 +52,6 @@ export function DealDetailClient({
   const [voted, setVoted] = useState<"up" | "down" | null>(null);
   const [votesUp, setVotesUp] = useState(deal.votesUp || 0);
   const [votesDown, setVotesDown] = useState(deal.votesDown || 0);
-  const [saved, setSaved] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   // Comments state
@@ -194,17 +193,7 @@ export function DealDetailClient({
                 >
                   <Share2 className="w-4 h-4" />
                 </button>
-                <button
-                  onClick={() => setSaved(!saved)}
-                  className={`p-2 rounded-xl border transition-all ${
-                    saved
-                      ? "bg-[#C6FF3D] text-black border-[#C6FF3D]"
-                      : "bg-white/5 border-white/10 text-zinc-400 hover:text-white"
-                  }`}
-                  title="Bookmark this deal"
-                >
-                  <Bookmark className="w-4 h-4" />
-                </button>
+                <SaveItemButton kind="deal" slug={deal.slug} />
               </div>
             </div>
 
@@ -226,6 +215,7 @@ export function DealDetailClient({
             <p className="text-zinc-300 text-sm sm:text-base leading-relaxed mb-8">
               {deal.description}
             </p>
+            {discountHref && <p className="mb-6 text-sm"><Link href={discountHref} className="text-[#C6FF3D] underline">Compare all {deal.toolName} discounts, coupon codes & ways to save →</Link></p>}
 
             {/* Interactive Reveal Coupon Code Box */}
             <div className="relative p-6 sm:p-8 rounded-2xl border-2 border-dashed border-[#C6FF3D]/40 bg-black/70 text-center mb-8">
@@ -395,7 +385,7 @@ export function DealDetailClient({
               <div className="flex items-center gap-2">
                 <Tag className="w-5 h-5 text-[#C6FF3D]" />
                 <h2 className="font-display font-bold text-xl text-white">
-                  Other Verified {deal.toolName} Discounts & Promo Codes
+                  More {deal.toolName} Offers & Promo Codes
                 </h2>
               </div>
               <div className="space-y-3">
@@ -467,7 +457,7 @@ export function DealDetailClient({
                     Frequently Asked Questions About {deal.toolName} Discounts
                   </h2>
                 </div>
-                <span className="font-mono text-xs text-zinc-500">VERIFIED ANSWERS</span>
+                <span className="font-mono text-xs text-zinc-500">OFFER GUIDANCE</span>
               </div>
 
               <div className="space-y-3">
@@ -491,11 +481,9 @@ export function DealDetailClient({
                           <ChevronDown className="w-4 h-4 text-zinc-400 shrink-0" />
                         )}
                       </button>
-                      {isOpen && (
-                        <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-zinc-300 leading-relaxed border-t border-white/5">
+                        <div hidden={!isOpen} className="px-5 pb-5 pt-1 text-xs sm:text-sm text-zinc-300 leading-relaxed border-t border-white/5">
                           {faq.answer}
                         </div>
-                      )}
                     </div>
                   );
                 })}
@@ -509,10 +497,10 @@ export function DealDetailClient({
               <div className="flex items-center gap-2">
                 <MessageSquare className="w-5 h-5 text-[#C6FF3D]" />
                 <h3 className="font-display font-bold text-xl text-white">
-                  Community Feedback ({comments.length})
+                  Session Notes ({comments.length})
                 </h3>
               </div>
-              <span className="font-mono text-xs text-zinc-500">REALTIME CROWD INTEL</span>
+              <span className="font-mono text-xs text-zinc-500">THIS BROWSER SESSION</span>
             </div>
 
             {/* Comment Form */}
@@ -521,7 +509,7 @@ export function DealDetailClient({
                 type="text"
                 value={commentInput}
                 onChange={(e) => setCommentInput(e.target.value)}
-                placeholder="Did the discount apply? Share terms or billing notes..."
+                placeholder="Add a note for this session…"
                 className="flex-1 px-4 py-3 rounded-xl bg-black border border-white/15 text-sm text-white placeholder-zinc-500 outline-none focus:border-[#C6FF3D]"
               />
               <button
@@ -678,11 +666,11 @@ export function DealDetailClient({
             <ul className="space-y-3 text-xs text-zinc-300">
               <li className="flex items-start gap-2">
                 <Check className="w-3.5 h-3.5 text-[#C6FF3D] shrink-0 mt-0.5" />
-                <span><strong>Hand-Tested Codes:</strong> Every coupon is checked in real checkouts weekly.</span>
+                <span><strong>Source Transparency:</strong> We show recorded sources and check dates. Coupon acceptance has not been tested at checkout.</span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-3.5 h-3.5 text-[#C6FF3D] shrink-0 mt-0.5" />
-                <span><strong>Direct Vendor Rates:</strong> We partner with founders to bring exclusive discounts.</span>
+                <span><strong>Clear Attribution:</strong> Vendor offers and third party coupon reports are labeled separately.</span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-3.5 h-3.5 text-[#C6FF3D] shrink-0 mt-0.5" />

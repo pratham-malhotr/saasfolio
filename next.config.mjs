@@ -12,7 +12,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/:path(admin|profile|login|signup|submit|u|go)/:rest*",
+        source: "/:path(admin|profile|login|signup|submit|u|go|auth|newsletter|reset-password)/:rest*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }],
       },
       {

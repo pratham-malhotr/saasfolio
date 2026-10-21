@@ -2,10 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
-  Sparkles,
   Send,
   ShieldCheck,
   Check,
@@ -13,18 +11,14 @@ import {
   Layers,
   FileText,
   ArrowRight,
-  Eye,
   CheckCircle2,
   Copy,
-  ExternalLink,
 } from "lucide-react";
-import { checkRateLimit } from "@/lib/rate-limiter";
-import { SafeStorage } from "@/lib/storage";
+import { apiRequest } from "@/lib/api-client";
 
 type SubmissionType = "deal" | "tool" | "review";
 
 export function SubmitWizardClient() {
-  const router = useRouter();
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
   const [submissionType, setSubmissionType] = useState<SubmissionType>("deal");
 
@@ -35,12 +29,12 @@ export function SubmitWizardClient() {
     websiteUrl: "",
     category: "Dev Tools",
     dealType: "Verified Coupon Code",
-    discountPercentage: "50",
-    couponCode: "SAAS50",
-    expirationDate: "2026-12-31",
+    discountPercentage: "0",
+    couponCode: "",
+    expirationDate: "",
     verificationProof: "",
-    techStack: "Next.js, EdgeBase, Cloudflare Workers",
-    differentiator: "Sub-15ms worldwide latency, 80% lower cost than AWS Aurora, zero connection pool timeouts.",
+    techStack: "",
+    differentiator: "",
     founderEmail: "",
   });
 
@@ -49,53 +43,38 @@ export function SubmitWizardClient() {
   const [copiedId, setCopiedId] = useState(false);
 
   const handleNext = () => {
+    const form = document.querySelector<HTMLFormElement>("form");
+    if (form && !form.reportValidity()) return;
+    if (currentStep === 2 && (!formData.websiteUrl.startsWith("https://") || formData.tagline.trim().length < 5 || (submissionType === "deal" && !formData.verificationProof.startsWith("https://")))) {
+      setError("Enter an HTTPS website URL, a tagline of at least 5 characters, and an HTTPS source link for a deal."); return;
+    }
+    if (currentStep === 3 && formData.differentiator.trim().length < 10) {
+      setError("Describe your product in at least 10 characters."); return;
+    }
+    setError("");
     if (currentStep < 4) {
-      setCurrentStep((prev) => (prev + 1) as any);
+      setCurrentStep((prev) => (prev + 1) as 1 | 2 | 3 | 4);
     }
   };
 
   const handleBack = () => {
     if (currentStep > 1) {
-      setCurrentStep((prev) => (prev - 1) as any);
+      setCurrentStep((prev) => (prev - 1) as 1 | 2 | 3 | 4);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const rateCheck = checkRateLimit("vendor_submission", 5, 120);
-    if (!rateCheck.success) {
-      alert(rateCheck.message || "Submission rate limit exceeded. Please wait a moment.");
-      return;
-    }
-
-    const newId = `SUB-${Math.floor(100000 + Math.random() * 900000)}`;
-    setTrackingId(newId);
-
-    const submissionPayload = {
-      id: newId,
-      submissionType,
-      toolName: formData.toolName || "Custom SaaS Tool",
-      tagline: formData.tagline || "High-performance developer platform",
-      websiteUrl: formData.websiteUrl || "https://example.com",
-      category: formData.category,
-      dealType: formData.dealType,
-      discountPercentage: Number(formData.discountPercentage) || 40,
-      couponCode: formData.couponCode || "EXCLUSIVE",
-      expirationDate: formData.expirationDate,
-      verificationProof: formData.verificationProof,
-      techStack: formData.techStack,
-      differentiator: formData.differentiator,
-      founderEmail: formData.founderEmail || "founder@startup.io",
-      status: "PENDING VERIFICATION",
-      submittedAt: "Just now",
-      views: 0,
-    };
-
-    const list = SafeStorage.get<any[]>("saasfolio_submissions", []);
-    SafeStorage.set("saasfolio_submissions", [submissionPayload, ...list]);
-
-    setIsSubmitted(true);
+    if (busy) return;
+    const honeypot = new FormData(e.currentTarget).get("companyWebsite");
+    setBusy(true); setError("");
+    try {
+      const result = await apiRequest<{ id: string }>("/api/inquiries", { kind: "submission", submissionType, ...formData, companyWebsite: honeypot });
+      setTrackingId(result.id); setIsSubmitted(true);
+    } catch (error) { setError(error instanceof Error ? error.message : "Your submission could not be sent."); }
+    finally { setBusy(false); }
   };
 
   const handleCopyTrackingId = () => {
@@ -123,7 +102,7 @@ export function SubmitWizardClient() {
         SUBMIT A TOOL OR EXCLUSIVE DEAL
       </h1>
       <p className="text-zinc-400 text-sm leading-relaxed mb-8 max-w-2xl">
-        Connect directly with 10,000+ founders, tech leads, and software buyers. Every listing is reviewed by our engineering staff within 24 hours.
+        Submit your software or a sourced offer for editorial review. Include accurate product details, eligibility, and a public source for any discount claim.
       </p>
 
       {/* Progress Steps Indicator */}
@@ -213,7 +192,9 @@ export function SubmitWizardClient() {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="p-8 sm:p-10 rounded-3xl bg-[#09090C] border border-white/10 shadow-2xl">
+        <form onSubmit={handleSubmit} className="p-8 sm:p-10 rounded-3xl bg-[#09090C] border border-white/10 shadow-2xl" aria-busy={busy}>
+          {error && <p role="alert" className="text-sm text-rose-400 mb-5">{error}</p>}
+          <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
           {/* STEP 1: Submission Intent */}
           {currentStep === 1 && (
             <div className="space-y-6 animate-in fade-in">
@@ -250,7 +231,7 @@ export function SubmitWizardClient() {
                   <button
                     key={item.type}
                     type="button"
-                    onClick={() => setSubmissionType(item.type as any)}
+                    onClick={() => setSubmissionType(item.type as SubmissionType)}
                     className={`p-6 rounded-2xl border text-left transition-all flex flex-col justify-between ${
                       submissionType === item.type
                         ? "bg-[#C6FF3D]/10 border-[#C6FF3D] shadow-[0_0_20px_rgba(198,255,61,0.15)]"
@@ -277,10 +258,10 @@ export function SubmitWizardClient() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                <label htmlFor="form-category" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                   Target Product Category
                 </label>
-                <select
+                <select id="form-category"
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#C6FF3D]"
@@ -310,10 +291,10 @@ export function SubmitWizardClient() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  <label htmlFor="form-toolName" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                     SaaS Tool Name *
                   </label>
-                  <input
+                  <input id="form-toolName"
                     type="text"
                     required
                     value={formData.toolName}
@@ -324,10 +305,10 @@ export function SubmitWizardClient() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  <label htmlFor="form-websiteUrl" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                     Official Website URL *
                   </label>
-                  <input
+                  <input id="form-websiteUrl"
                     type="url"
                     required
                     value={formData.websiteUrl}
@@ -339,10 +320,10 @@ export function SubmitWizardClient() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                <label htmlFor="form-tagline" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                   One-Line Tagline *
                 </label>
-                <input
+                <input id="form-tagline"
                   type="text"
                   required
                   value={formData.tagline}
@@ -354,10 +335,10 @@ export function SubmitWizardClient() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  <label htmlFor="form-dealType" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                     Deal Type
                   </label>
-                  <select
+                  <select id="form-dealType"
                     value={formData.dealType}
                     onChange={(e) => setFormData({ ...formData, dealType: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#C6FF3D]"
@@ -370,12 +351,12 @@ export function SubmitWizardClient() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  <label htmlFor="form-discountPercentage" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                     Discount Percentage (%)
                   </label>
-                  <input
+                  <input id="form-discountPercentage"
                     type="number"
-                    min="5"
+                    min="0"
                     max="100"
                     value={formData.discountPercentage}
                     onChange={(e) => setFormData({ ...formData, discountPercentage: e.target.value })}
@@ -385,10 +366,10 @@ export function SubmitWizardClient() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  <label htmlFor="form-couponCode" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                     Coupon Promo Code
                   </label>
-                  <input
+                  <input id="form-couponCode"
                     type="text"
                     value={formData.couponCode}
                     onChange={(e) => setFormData({ ...formData, couponCode: e.target.value.toUpperCase() })}
@@ -399,10 +380,10 @@ export function SubmitWizardClient() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                <label htmlFor="form-verificationProof" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                   Verification Proof Link / Documentation
                 </label>
-                <input
+                <input id="form-verificationProof"
                   type="text"
                   value={formData.verificationProof}
                   onChange={(e) => setFormData({ ...formData, verificationProof: e.target.value })}
@@ -426,10 +407,10 @@ export function SubmitWizardClient() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                <label htmlFor="form-techStack" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                   Core Tech Stack / Cloud Infrastructure
                 </label>
-                <input
+                <input id="form-techStack"
                   type="text"
                   value={formData.techStack}
                   onChange={(e) => setFormData({ ...formData, techStack: e.target.value })}
@@ -439,10 +420,10 @@ export function SubmitWizardClient() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                <label htmlFor="form-differentiator" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                   Why is this product better than legacy alternatives? *
                 </label>
-                <textarea
+                <textarea id="form-differentiator"
                   rows={4}
                   required
                   value={formData.differentiator}
@@ -453,10 +434,10 @@ export function SubmitWizardClient() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                <label htmlFor="form-founderEmail" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
                   Founder / Submitter Work Email *
                 </label>
-                <input
+                <input id="form-founderEmail"
                   type="email"
                   required
                   value={formData.founderEmail}
@@ -511,7 +492,7 @@ export function SubmitWizardClient() {
 
                 <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-500">
                   <span className="flex items-center gap-1 text-emerald-400">
-                    <ShieldCheck className="w-3.5 h-3.5" /> Staff Verified
+                    <ShieldCheck className="w-3.5 h-3.5" /> Preview · Not yet reviewed
                   </span>
                   <span className="text-[#C6FF3D] font-bold">Reveal Coupon →</span>
                 </div>
@@ -520,7 +501,7 @@ export function SubmitWizardClient() {
               <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-mono flex items-start gap-2.5">
                 <ShieldCheck className="w-4 h-4 shrink-0 text-amber-400 mt-0.5" />
                 <span>
-                  By submitting, you confirm that this offer is active and you have rights to represent the product or coupon. Listing approvals take ~24 hours.
+                  By submitting, you confirm that this offer is active and you have rights to represent the product or coupon. Submissions require review before publication.
                 </span>
               </div>
             </div>
@@ -550,7 +531,7 @@ export function SubmitWizardClient() {
               </button>
             ) : (
               <button
-                type="submit"
+                type="submit" disabled={busy}
                 className="px-8 py-3 rounded-xl bg-[#C6FF3D] text-black font-display font-black text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(198,255,61,0.3)]"
               >
                 <Send className="w-4 h-4" /> Submit to Moderation Queue

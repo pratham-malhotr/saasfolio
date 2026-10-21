@@ -1,19 +1,16 @@
 "use client";
 
+import { SaveItemButton } from "@/components/profile/SaveItemButton";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft,
   Clock,
   Calendar,
-  Share2,
   Copy,
   Check,
   MessageSquare,
-  Sparkles,
   ArrowRight,
-  Bookmark,
-  BookmarkCheck,
   Play,
   Pause,
   Volume2,
@@ -44,39 +41,18 @@ interface ArticleComment {
 
 export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
   const [copiedLink, setCopiedLink] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
   const [isReadingMode, setIsReadingMode] = useState(false);
   const [commentAuthor, setCommentAuthor] = useState("");
   const [commentText, setCommentText] = useState("");
   const [commentUpvotes, setCommentUpvotes] = useState<Record<string, boolean>>({});
-  const [comments, setComments] = useState<ArticleComment[]>([
-    {
-      id: "ac-1",
-      name: "Marcus Vance",
-      role: "Lead Systems Architect",
-      avatarLetter: "M",
-      time: "1 day ago",
-      text: "The breakdown of connection pool timeouts vs Raft consensus matches exactly what we saw in staging during our 10k concurrent test.",
-      upvotes: 14,
-    },
-    {
-      id: "ac-2",
-      name: "Elena Rostova",
-      role: "Fintech Lead",
-      avatarLetter: "E",
-      time: "2 days ago",
-      text: "The LIFETIME-FOUNDER discount alone saved our seed-stage startup thousands. Thank you for including the verified codes!",
-      upvotes: 9,
-    },
-  ]);
+  const [comments, setComments] = useState<ArticleComment[]>([]);
 
   // Load bookmark, persisted comments, and comment upvotes on mount
   React.useEffect(() => {
+    const timer = requestAnimationFrame(() => {
     try {
-      const savedBookmark = localStorage.getItem(`saasfolio_bookmark_${article.slug}`);
-      if (savedBookmark) setIsBookmarked(true);
 
       const savedComments = localStorage.getItem(`saasfolio_article_comments_${article.slug}`);
       if (savedComments) {
@@ -92,7 +68,8 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
       if (savedUpvotes) {
         setCommentUpvotes(JSON.parse(savedUpvotes));
       }
-    } catch (e) {}
+    } catch {}    });
+    return () => cancelAnimationFrame(timer);
   }, [article.slug]);
 
   // Cleanup speech synthesis on unmount
@@ -132,17 +109,6 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
     }
   };
 
-  const toggleBookmark = () => {
-    const next = !isBookmarked;
-    setIsBookmarked(next);
-    try {
-      if (next) {
-        localStorage.setItem(`saasfolio_bookmark_${article.slug}`, "true");
-      } else {
-        localStorage.removeItem(`saasfolio_bookmark_${article.slug}`);
-      }
-    } catch (e) {}
-  };
 
   const toggleCommentUpvote = (commentId: string) => {
     const isUpvoted = !!commentUpvotes[commentId];
@@ -150,7 +116,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
     setCommentUpvotes(newMap);
     try {
       localStorage.setItem(`saasfolio_art_comment_upvotes_${article.slug}`, JSON.stringify(newMap));
-    } catch (e) {}
+    } catch {}
 
     setComments((prev) =>
       prev.map((c) =>
@@ -199,7 +165,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
       const stored = localStorage.getItem(`saasfolio_article_comments_${article.slug}`);
       const list = stored ? JSON.parse(stored) : [];
       localStorage.setItem(`saasfolio_article_comments_${article.slug}`, JSON.stringify([newComment, ...list]));
-    } catch (e) {}
+    } catch {}
   };
 
   // Find related articles
@@ -268,27 +234,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
 
           {/* Social share & utilities */}
           <div className="flex flex-wrap items-center gap-2">
-            <button
-              onClick={toggleBookmark}
-              className={`p-2.5 rounded-xl border font-mono text-xs transition-all flex items-center gap-1.5 ${
-                isBookmarked
-                  ? "bg-[#C6FF3D]/10 border-[#C6FF3D] text-[#C6FF3D] font-bold"
-                  : "bg-[#0F0F12] border-white/10 text-zinc-300 hover:border-white/20 hover:text-white"
-              }`}
-              title="Bookmark article"
-            >
-              {isBookmarked ? (
-                <>
-                  <BookmarkCheck className="w-3.5 h-3.5 text-[#C6FF3D]" />
-                  <span>Saved</span>
-                </>
-              ) : (
-                <>
-                  <Bookmark className="w-3.5 h-3.5" />
-                  <span>Save</span>
-                </>
-              )}
-            </button>
+            <SaveItemButton kind="article" slug={article.slug} />
 
             <button
               onClick={() => setIsReadingMode(!isReadingMode)}
@@ -574,7 +520,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
                   <textarea
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
-                    placeholder="Share your experience, latency benchmarks, or questions..."
+                    placeholder="Add a comment saved in this browser…"
                     rows={3}
                     className="w-full p-4 rounded-xl bg-black/60 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-sans text-sm resize-none"
                   />

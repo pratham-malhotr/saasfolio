@@ -3,21 +3,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { 
-  Sparkles, 
   TrendingUp, 
-  Users, 
-  Target, 
   CheckCircle2, 
   Send, 
-  ArrowRight, 
-  Zap, 
-  Eye, 
-  Flame, 
-  Award,
   Check
 } from "lucide-react";
-import { checkRateLimit } from "@/lib/rate-limiter";
-import { SafeStorage } from "@/lib/storage";
+import { apiRequest } from "@/lib/api-client";
 
 const PACKAGES = [
   {
@@ -31,7 +22,7 @@ const PACKAGES = [
       "Top sticky placement on /tools directory",
       "Homepage 'Featured SaaS' card inclusion",
       "Direct verified outbound /go/[id] tracking link",
-      "Official 'VERIFIED MERCHANT' badge on profile",
+      "Clearly labeled sponsored placement",
       "Social mention on Twitter & LinkedIn channels",
     ],
   },
@@ -45,9 +36,9 @@ const PACKAGES = [
     features: [
       "Top slot in /deals hub filter grid",
       "Interactive coupon reveal modal + clipboard copy",
-      "Live crowd verification badge ('99% Worked')",
+      "Offer terms and source attribution",
       "Pinned on trending deals ticker for 14 days",
-      "Dedicated affiliate conversion tracking logs",
+      "Campaign links with agreed tracking parameters",
     ],
   },
   {
@@ -61,7 +52,7 @@ const PACKAGES = [
       "Permanent longform article on /articles/[slug]",
       "AI audio voice narration embedded in review",
       "Feature comparison matrix vs top 2 competitors",
-      "High-authority backlink and evergreen SEO traffic",
+      "Sponsored links disclosed and qualified appropriately",
       "Full Table of Contents and in-article deal callout",
     ],
   },
@@ -71,12 +62,12 @@ const PACKAGES = [
     price: "$599",
     period: "per edition",
     badge: "DIRECT INBOX",
-    description: "Dedicated primary sponsor block in our Tuesday weekly brief sent to 14,500+ founders, CTOs, and tech leads.",
+    description: "Discuss newsletter sponsorship availability and the audience details for a proposed edition.",
     features: [
       "Sole primary sponsor header banner (no competition)",
       "150-word founder problem-solution paragraph",
       "Trackable CTA button with custom UTM tags",
-      "Average 46.2% open rate and 9.4% click-through rate",
+      "Request current campaign reporting details",
       "Permanent mention in our newsletter web archive",
     ],
   },
@@ -95,31 +86,18 @@ export default function AdvertisePage() {
   const [submitted, setSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const rateCheck = checkRateLimit("advertise_inquiry", 4, 120);
-    if (!rateCheck.success) {
-      alert(rateCheck.message || "Too many inquiries submitted. Please wait a moment.");
-      return;
-    }
-
-    if (!formData.companyName || !formData.contactEmail) return;
-
-    const id = `ADV-${Math.floor(100000 + Math.random() * 900000)}`;
-    setTicketId(id);
-    setSubmitted(true);
-
-    const existing = SafeStorage.get<any[]>("saasfolio_ad_inquiries", []);
-    SafeStorage.set("saasfolio_ad_inquiries", [
-      {
-        ticketId: id,
-        ...formData,
-        date: new Date().toISOString(),
-        status: "PENDING_SALES_REVIEW",
-      },
-      ...existing,
-    ]);
+    if (busy) return;
+    const honeypot = new FormData(e.currentTarget).get("companyWebsite");
+    setBusy(true); setError("");
+    try {
+      const result = await apiRequest<{ id: string }>("/api/inquiries", { kind: "advertise", ...formData, companyWebsite: honeypot });
+      setTicketId(result.id); setSubmitted(true);
+    } catch (error) { setError(error instanceof Error ? error.message : "Your inquiry could not be sent."); }
+    finally { setBusy(false); }
   };
 
   return (
@@ -153,41 +131,7 @@ export default function AdvertisePage() {
           </p>
         </div>
 
-        {/* Audience Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-8 rounded-3xl bg-[#09090C] border border-white/10 mb-24">
-          <div className="flex flex-col items-center text-center p-4">
-            <span className="font-display font-black text-3xl sm:text-5xl text-[#C6FF3D] tracking-tighter mb-2">
-              120K+
-            </span>
-            <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">
-              Monthly Active Buyers
-            </span>
-          </div>
-          <div className="flex flex-col items-center text-center p-4">
-            <span className="font-display font-black text-3xl sm:text-5xl text-white tracking-tighter mb-2">
-              46.2%
-            </span>
-            <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">
-              Newsletter Open Rate
-            </span>
-          </div>
-          <div className="flex flex-col items-center text-center p-4">
-            <span className="font-display font-black text-3xl sm:text-5xl text-[#C6FF3D] tracking-tighter mb-2">
-              65%
-            </span>
-            <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">
-              Founders, CTOs & Leads
-            </span>
-          </div>
-          <div className="flex flex-col items-center text-center p-4">
-            <span className="font-display font-black text-3xl sm:text-5xl text-white tracking-tighter mb-2">
-              $42K+
-            </span>
-            <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">
-              Monthly Software Pipeline
-            </span>
-          </div>
-        </div>
+        <p className="mb-12 text-sm text-zinc-400">Placements are subject to availability and editorial review. Request current audience information and a written scope before booking. No traffic, conversion, or search ranking is guaranteed.</p>
 
         {/* Sponsorship Packages Grid */}
         <div className="mb-24">
@@ -262,7 +206,7 @@ export default function AdvertisePage() {
               RESERVE YOUR SPONSORSHIP SLOT
             </h2>
             <p className="text-sm text-zinc-400 mt-2 font-sans">
-              Fill out your company details below. Our vendor partnership desk reviews submissions within 6 business hours.
+              Fill out your company details below. Our team reviews inquiries before confirming availability, scope, and pricing.
             </p>
           </div>
 
@@ -275,7 +219,7 @@ export default function AdvertisePage() {
                 INQUIRY DISPATCHED SUCCESSFULLY
               </h3>
               <p className="text-sm text-zinc-400 max-w-md mx-auto mb-6 font-sans">
-                Your partnership ticket <span className="font-mono text-[#C6FF3D] font-bold">{ticketId}</span> has been logged. Our partnership director will contact you directly at <span className="text-white font-medium">{formData.contactEmail}</span>.
+                Your partnership ticket <span className="font-mono text-[#C6FF3D] font-bold">{ticketId}</span> has been logged. Our team can reply to <span className="text-white font-medium">{formData.contactEmail}</span>.
               </p>
               <button
                 type="button"
@@ -286,13 +230,15 @@ export default function AdvertisePage() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" aria-busy={busy}>
+              {error && <p role="alert" className="text-sm text-rose-400">{error}</p>}
+              <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                  <label htmlFor="form-companyName" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
                     Company / Product Name *
                   </label>
-                  <input
+                  <input id="form-companyName"
                     type="text"
                     required
                     placeholder="e.g. NextPulse AI"
@@ -302,10 +248,10 @@ export default function AdvertisePage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                  <label htmlFor="form-toolUrl" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
                     Product Website URL *
                   </label>
-                  <input
+                  <input id="form-toolUrl"
                     type="url"
                     required
                     placeholder="https://yourproduct.com"
@@ -318,10 +264,10 @@ export default function AdvertisePage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div>
-                  <label className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                  <label htmlFor="form-contactEmail" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
                     Founder / Marketing Email *
                   </label>
-                  <input
+                  <input id="form-contactEmail"
                     type="email"
                     required
                     placeholder="founder@company.com"
@@ -331,10 +277,10 @@ export default function AdvertisePage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                  <label htmlFor="form-packageSelected" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
                     Preferred Package
                   </label>
-                  <select
+                  <select id="form-packageSelected"
                     value={formData.packageSelected}
                     onChange={(e) => setFormData({ ...formData, packageSelected: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
@@ -346,10 +292,10 @@ export default function AdvertisePage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                  <label htmlFor="form-budget" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
                     Estimated Monthly Budget
                   </label>
-                  <select
+                  <select id="form-budget"
                     value={formData.budget}
                     onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
@@ -363,10 +309,10 @@ export default function AdvertisePage() {
               </div>
 
               <div>
-                <label className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                <label htmlFor="form-message" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
                   Campaign Goals & Special Requests (Optional)
                 </label>
-                <textarea
+                <textarea id="form-message"
                   rows={4}
                   placeholder="Tell us about your target audience, current promo codes, or desired launch dates..."
                   value={formData.message}
@@ -376,7 +322,7 @@ export default function AdvertisePage() {
               </div>
 
               <button
-                type="submit"
+                type="submit" disabled={busy}
                 className="px-8 py-4 rounded-xl bg-[#C6FF3D] text-black font-bold font-mono text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(198,255,61,0.25)]"
               >
                 <Send className="w-4 h-4" />

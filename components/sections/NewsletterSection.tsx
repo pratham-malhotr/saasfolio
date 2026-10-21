@@ -2,51 +2,32 @@
 
 import React, { useState } from "react";
 import { Mail, Check, Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 
-import { checkRateLimit } from "@/lib/rate-limiter";
-import { SafeStorage } from "@/lib/storage";
+import { apiRequest } from "@/lib/api-client";
+import Link from "next/link";
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [consent, setConsent] = useState(false);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Check sliding window rate limit (max 3 subscribe attempts per minute)
-    const rateCheck = checkRateLimit("newsletter_subscribe", 3, 60);
-    if (!rateCheck.success) {
-      setStatus("error");
-      setErrorMessage(rateCheck.message || "Too many attempts. Please wait.");
-      return;
-    }
-
-    if (!email || !email.includes("@") || !email.includes(".")) {
-      setStatus("error");
-      setErrorMessage("Please enter a valid email address.");
-      return;
-    }
-
-    setStatus("loading");
-
-    // Simulate clean serverless submission
-    setTimeout(() => {
+    if (status === "loading") return;
+    const honeypot = new FormData(e.currentTarget).get("companyWebsite");
+    setStatus("loading"); setErrorMessage("");
+    try {
+      await apiRequest("/api/newsletter", { email, consent, companyWebsite: honeypot });
       setStatus("success");
-      SafeStorage.set("saasfolio_newsletter_subscriber", { email, subscribedAt: new Date().toISOString() });
-      confetti({
-        particleCount: 60,
-        spread: 60,
-        origin: { y: 0.8 },
-        colors: ["#C6FF3D", "#FFFFFF", "#7C5CFF"],
-      });
-    }, 700);
+      confetti({ particleCount: 40, spread: 50, origin: { y: 0.8 }, colors: ["#C6FF3D", "#FFFFFF"], disableForReducedMotion: true });
+    } catch (error) { setStatus("error"); setErrorMessage(error instanceof Error ? error.message : "Please try again later."); }
   };
 
   return (
-    <section className="py-24 bg-[#050505] relative overflow-hidden">
+    <section id="newsletter" className="py-24 bg-[#050505] relative overflow-hidden">
       {/* Glow highlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-[#C6FF3D]/10 blur-[150px] rounded-full pointer-events-none" />
 
@@ -66,7 +47,7 @@ export function NewsletterSection() {
           </h2>
 
           <p className="max-w-xl mx-auto text-sm sm:text-base text-zinc-400 font-sans leading-relaxed mb-8">
-            Every Tuesday, we deliver verified lifetime deals, newly dropped discount codes, and hands-on stack reviews straight to 10,400+ software founders.
+            Get software offers, brand savings guides, and new articles. Confirm your email to join; unsubscribe using the link in your signup email or any future edition.
           </p>
 
           {/* Subscription Form */}
@@ -79,19 +60,20 @@ export function NewsletterSection() {
               >
                 <div className="flex items-center justify-center gap-2 font-bold mb-1">
                   <Check className="w-5 h-5 stroke-[3]" />
-                  <span>YOU&apos;RE ON THE VIP LIST!</span>
+                  <span>CHECK YOUR INBOX</span>
                 </div>
                 <p className="text-xs text-zinc-300 font-sans">
-                  Check your inbox for this week&apos;s curated SaaS discount digest.
+                  If your address needs confirmation, a signup email has been requested. Check your inbox and spam folder to confirm.
                 </p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-3">
+              <form onSubmit={handleSubmit} className="space-y-3" aria-busy={status === "loading"}>
+                <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
                 <div className="flex flex-col sm:flex-row items-center gap-2 p-1.5 rounded-2xl bg-black/80 border border-white/20 focus-within:border-[#C6FF3D] transition-colors">
                   <div className="flex items-center gap-2 pl-3 w-full sm:w-auto flex-1">
                     <Mail className="w-4 h-4 text-zinc-500" />
                     <input
-                      type="email"
+                      type="email" aria-label="Email address" autoComplete="email" required maxLength={254}
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
@@ -111,8 +93,9 @@ export function NewsletterSection() {
                   </button>
                 </div>
 
+                <label className="flex items-start gap-2 text-left text-xs text-zinc-400"><input type="checkbox" checked={consent} onChange={event => setConsent(event.target.checked)} required className="mt-0.5" /><span>I agree to receive the SaaSFolio newsletter. See the <Link href="/privacy" className="underline">Privacy Policy</Link>.</span></label>
                 {status === "error" && (
-                  <p className="text-xs text-red-400 font-mono">{errorMessage}</p>
+                  <p role="alert" className="text-xs text-red-400 font-mono">{errorMessage}</p>
                 )}
               </form>
             )}
