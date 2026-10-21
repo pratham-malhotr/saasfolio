@@ -1,7 +1,8 @@
 "use client";
+import { useDialog } from "@/components/modals/useDialog";
 
 import React, { useEffect, useState, useMemo } from "react";
-import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight, Layers, Check, Copy } from "lucide-react";
+import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight, Layers, Check } from "lucide-react";
 import confetti from "canvas-confetti";
 import { FEATURED_ARTICLES, TRENDING_DISCUSSIONS, CATEGORIES } from "@/lib/mock-data";
 import { TOOLS_DATA } from "@/lib/data/tools-data";
@@ -168,6 +169,8 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
     );
   }, [query]);
 
+  const dialogRef = useDialog(isOpen, onClose);
+
   if (!isOpen) return null;
 
   return (
@@ -177,7 +180,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
         <div className="fixed inset-0" onClick={onClose} />
 
         {/* Modal Window */}
-        <motion.div
+        <motion.div ref={dialogRef} role="dialog" aria-modal="true" aria-label="Search SaaSFolio" tabIndex={-1}
           initial={{ opacity: 0, scale: 0.96, y: -15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: -15 }}

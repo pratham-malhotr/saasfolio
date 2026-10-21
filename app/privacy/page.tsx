@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
             SAASFOLIO PRIVACY POLICY
           </h1>
           <p className="font-mono text-xs text-zinc-500">
-            EFFECTIVE DATE: OCTOBER 18, 2026 // VERSION 2.4 (GDPR & CCPA COMPLIANT)
+            UPDATED: OCTOBER 21, 2026
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul className="list-disc pl-5 space-y-2 text-zinc-400">
               <li>
-                <strong className="text-zinc-200">Account Credentials:</strong> When creating a Member Passport or authenticating via OAuth (GitHub or Google), we receive your display name, email address, and avatar image URL.
+                <strong className="text-zinc-200">Account Credentials:</strong> Account signup uses Supabase Auth to process your email address and password. Profile settings contain your display name and optional biography. Passwords are handled by the authentication provider.
               </li>
               <li>
                 <strong className="text-zinc-200">User-Generated Content:</strong> Thread submissions, community comments, coupon success voting (&quot;Worked / Didn&apos;t Work&quot;), and tool submission tickets.
@@ -68,7 +68,7 @@ export default function PrivacyPolicyPage() {
                 <strong className="text-zinc-200">Newsletter Subscription:</strong> If you opt-in to the Tuesday SaaS Brief, we securely store your email address for newsletter dispatch.
               </li>
               <li>
-                <strong className="text-zinc-200">Technical Device Logs:</strong> Minimal server telemetry including IP addresses (anonymized after 24 hours), browser user-agent, operating system, and HTTP referrers to prevent DDOS and coupon scraping abuse.
+                <strong className="text-zinc-200">Technical Device Logs:</strong> Our hosting and authentication providers may process request logs for operation and abuse prevention. Server form limits use a keyed hash derived from the client address supplied by the hosting proxy. We do not claim that provider logs are automatically anonymized after a fixed period.
               </li>
             </ul>
           </section>
@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul className="list-disc pl-5 space-y-2 text-zinc-400">
               <li>
-                <strong className="text-zinc-200">Strictly Necessary Storage:</strong> LocalStorage keys (such as <code className="text-[#C6FF3D] bg-black/40 px-1.5 py-0.5 rounded">saasfolio_current_user</code> and <code className="text-[#C6FF3D] bg-black/40 px-1.5 py-0.5 rounded">saasfolio_preloader_seen</code>) to preserve your dark theme, authentication state, and session preferences without sending cookies to third parties.
+                <strong className="text-zinc-200">Session and Preference Storage:</strong> Account sessions use HttpOnly cookies. Saved articles and offers are stored in Supabase under the signed-in account. Browser-only community previews and preferences can use local storage; these are separate from the account session.
               </li>
               <li>
                 <strong className="text-zinc-200">Affiliate Referral Parameters:</strong> When clicking outward affiliate links (via our <code className="text-zinc-300">/go/[id]</code> redirect gateway), destination partner platforms may set an affiliate tracking cookie to attribute software purchases and commission splits.
@@ -97,30 +97,30 @@ export default function PrivacyPolicyPage() {
               <span>How We Protect and Retain Data</span>
             </h2>
             <p>
-              All traffic between your browser and SaaSFolio is strictly encrypted using TLS 1.3 cryptographic protocols with HSTS preloading enabled. We follow the principle of data minimization: database snapshots are encrypted at rest with AES-256 standards, and internal staff access requires multi-factor authentication (MFA).
+              The production site uses HTTPS. Account session cookies are configured as HttpOnly, SameSite=Lax, and Secure in production. Database access policies restrict saved items to their account owner, and the inquiry inbox requires administrator authorization. Supabase processes account and database information; Resend processes newsletter confirmation delivery. Contact and vendor submissions remain stored for operational review. Hosting and service providers also have their own data handling and retention policies.
             </p>
           </section>
 
           <section>
             <h2 className="font-display font-bold text-xl text-white uppercase mb-3 flex items-center gap-2">
               <span className="font-mono text-xs text-[#C6FF3D]">05.</span>
-              <span>Your Rights (GDPR & CCPA)</span>
+              <span>Privacy Requests</span>
             </h2>
             <p className="mb-3">
-              Regardless of your geographic jurisdiction, SaaSFolio grants all users the following fundamental privacy rights:
+              Contact us with the email address associated with your account or inquiry to request help with the following. We may need to verify ownership before acting:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-zinc-400">
-              <li>The right to access, inspect, and export a copy of all personal data tied to your account.</li>
-              <li>The right to immediately delete your account, comments, and member passport from our systems (&quot;Right to be Forgotten&quot;).</li>
-              <li>The right to unsubscribe from any editorial marketing communications with a single 1-click header link.</li>
-              <li>The right not to be discriminated against for exercising any privacy or data rights.</li>
+              <li>Access to or a copy of personal information associated with your account.</li>
+              <li>Review or deletion of your account and associated personal information. Self-service account deletion is not currently available.</li>
+              <li>Newsletter cancellation using the unsubscribe link in your signup email or a support request. Newsletter signup is inactive until you confirm your email.</li>
+              <li>Corrections to inaccurate contact, profile, or submission information.</li>
             </ul>
           </section>
 
           <section>
             <h2 className="font-display font-bold text-xl text-white uppercase mb-3 flex items-center gap-2">
               <span className="font-mono text-xs text-[#C6FF3D]">06.</span>
-              <span>Contact Our Data Protection Officer</span>
+              <span>Contact Us About Privacy</span>
             </h2>
             <p className="mb-4">
               If you have any questions regarding this policy, wish to execute a deletion request, or report a security concern, contact our data privacy desk:

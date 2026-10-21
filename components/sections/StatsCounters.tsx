@@ -1,43 +1,14 @@
 "use client";
 
 import React from "react";
-import { CountUp } from "@/components/animations/CountUp";
 import { Reveal } from "@/components/animations/Reveal";
 
-export function StatsCounters() {
+export function StatsCounters({ toolCount, offerCount, couponCount, categoryCount }: { toolCount: number; offerCount: number; couponCount: number; categoryCount: number }) {
   const stats = [
-    {
-      value: 2.4,
-      decimals: 1,
-      prefix: "$",
-      suffix: "M+",
-      label: "TOTAL COMMUNITY SAVINGS",
-      detail: "Tracked across coupon checkouts & lifetime licenses",
-    },
-    {
-      value: 500,
-      decimals: 0,
-      prefix: "",
-      suffix: "+",
-      label: "CURATED SAAS TOOLS",
-      detail: "Screened for uptime, pricing transparency & reviews",
-    },
-    {
-      value: 1200,
-      decimals: 0,
-      prefix: "",
-      suffix: "+",
-      label: "VERIFIED ACTIVE COUPONS",
-      detail: "Tested by automated crawlers and crowdsourced votes",
-    },
-    {
-      value: 10,
-      decimals: 0,
-      prefix: "",
-      suffix: "K+",
-      label: "PRO COMMUNITY MEMBERS",
-      detail: "Founders, marketers & devs sharing real feedback",
-    },
+    { value: toolCount, decimals: 0, prefix: "", suffix: "", label: "SOFTWARE PROFILES", detail: "Products available in the software directory" },
+    { value: offerCount, decimals: 0, prefix: "", suffix: "", label: "SOURCED OFFERS", detail: "Includes free plans, trials, and recorded promotions" },
+    { value: couponCount, decimals: 0, prefix: "", suffix: "", label: "RECORDED COUPON CODES", detail: "Source checked; acceptance is not checkout tested" },
+    { value: categoryCount, decimals: 0, prefix: "", suffix: "", label: "SOFTWARE CATEGORIES", detail: "Browse tools by the work you need to do" },
   ];
 
   return (
@@ -60,13 +31,7 @@ export function StatsCounters() {
 
                 {/* Animated Count */}
                 <div className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-white tracking-tighter mb-2 group-hover:text-[#C6FF3D] transition-colors">
-                  <CountUp
-                    end={stat.value}
-                    decimals={stat.decimals}
-                    prefix={stat.prefix}
-                    suffix={stat.suffix}
-                    duration={2.2}
-                  />
+                  {stat.value.toLocaleString("en-US")}
                 </div>
 
                 {/* Metric Title */}

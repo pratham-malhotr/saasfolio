@@ -196,6 +196,24 @@ body {
 }
 
 /* Reduced motion support */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100001;
+  transform: translateY(-160%);
+  background: #c6ff3d;
+  color: #050505;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+.skip-link:focus { transform: translateY(0); }
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid #c6ff3d;
+  outline-offset: 4px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;

@@ -11,27 +11,27 @@ export function HowItWorksSection() {
       title: "DISCOVER",
       tagline: "Uncover hidden deals",
       description:
-        "Search through 1,200+ hand-verified coupon codes, lifetime deals, and extended free trials across 12 distinct software verticals.",
+        "Browse software profiles, sourced promotions, free plans, and trials by category.",
       icon: Search,
-      highlight: "100% Crawled & Tested Hourly",
+      highlight: "Sources & Check Dates Included",
     },
     {
       step: "02",
       title: "COMPARE",
       tagline: "Unbiased technical vetting",
       description:
-        "Review real-world latency benchmarks, developer telemetry, transparent pros/cons, and crowdsourced community sentiment before subscribing.",
+        "Compare product features, official pricing, eligibility, and alternatives before subscribing.",
       icon: GitCompare,
-      highlight: "Zero Paid Placement Bias",
+      highlight: "Compare Provider Terms",
     },
     {
       step: "03",
       title: "SAVE & SCALE",
       tagline: "Instant checkout discounts",
       description:
-        "Reveal validated promo codes with one click, copy instantly, and reduce your annual software stack overhead by up to 80%.",
+        "Review the offer conditions, copy a recorded code when one is available, and confirm the final total and renewal cost with the provider.",
       icon: Sparkles,
-      highlight: "Over $2.4M Saved So Far",
+      highlight: "Confirm The Price Before Paying",
     },
   ];
 
@@ -49,7 +49,7 @@ export function HowItWorksSection() {
             HOW SAASFOLIO WORKS
           </h2>
           <p className="text-sm sm:text-base text-zinc-400 font-sans leading-relaxed">
-            From initial research to verified discount redemption, we remove the friction and expense of discovering modern software.
+            Research software, compare available options, and understand the terms before you choose.
           </p>
         </div>
 

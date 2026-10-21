@@ -1,5 +1,6 @@
 import React from "react";
 import { getCatalogCategories } from "@/lib/categories";
+import { getAllTools } from "@/lib/data/tools-data";
 import { getAllDeals } from "@/lib/data/deals-data";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { MarqueeTickerBand } from "@/components/sections/MarqueeTickerBand";
@@ -29,10 +30,10 @@ export default function HomePage() {
       <MarqueeTickerBand />
 
       {/* 3. Animated Viewport Stats Counters */}
-      <StatsCounters />
+      <StatsCounters toolCount={getAllTools().length} offerCount={deals.filter(deal => deal.dealType !== "pricing").length} couponCount={deals.filter(deal => deal.code).length} categoryCount={getCatalogCategories().length} />
 
       {/* 4. Hot Deals This Week (Horizontal Shelf + Countdown + Instant Coupon Reveal) */}
-      <HotDealsSection deals={deals.filter(d => d.dealType !== "pricing").slice(0, 10)} totalDeals={deals.length} />
+      <HotDealsSection deals={deals.filter(d => d.dealType !== "pricing").slice(0, 10)} totalDeals={deals.filter(deal => deal.dealType !== "pricing").length} />
 
       {/* 5. Minimalist 12-Category Grid */}
       <CategoryMatrix categories={getCatalogCategories()} />

@@ -57,6 +57,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} dark`}
     >
       <body className="min-h-screen bg-[#050505] text-[#EDEDED] antialiased selection:bg-[#C6FF3D] selection:text-black font-body overflow-x-hidden">
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <JsonLd data={siteSchema()} />
         {/* Global Custom Follower Cursor */}
         <CustomCursor />
@@ -70,7 +71,7 @@ export default function RootLayout({
             </Suspense>
 
             {/* Main Content Area */}
-            <main id="main-content" className="flex-1">
+            <main id="main-content" tabIndex={-1} className="flex-1">
               {children}
             </main>
 

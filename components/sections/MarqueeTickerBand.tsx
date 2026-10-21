@@ -11,7 +11,7 @@ export function MarqueeTickerBand() {
     "SAAS COMPARISONS",
     "COMMUNITY FORUM",
     "FOUNDER TECH STACKS",
-    "100% WORKING CODES",
+    "SOURCED SOFTWARE OFFERS",
     "ZERO CLICKBAIT",
   ];
 

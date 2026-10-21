@@ -18,38 +18,16 @@ export function Reveal({
   className,
   delay = 0,
   duration = 0.7,
-  direction = "up",
-  blur = true,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
 
-  const getOffset = () => {
-    switch (direction) {
-      case "up":
-        return { y: 35, x: 0 };
-      case "down":
-        return { y: -35, x: 0 };
-      case "left":
-        return { x: 35, y: 0 };
-      case "right":
-        return { x: -35, y: 0 };
-      case "none":
-        return { x: 0, y: 0 };
-    }
-  };
 
-  const offset = getOffset();
 
   return (
     <div ref={ref} className={cn("overflow-visible", className)}>
       <motion.div
-        initial={{
-          opacity: 0,
-          x: offset.x,
-          y: offset.y,
-          filter: blur ? "blur(8px)" : "none",
-        }}
+        initial={false}
         animate={
           isInView
             ? {
@@ -96,7 +74,9 @@ export function SplitReveal({
 
   return (
     <Component
-      ref={ref as any}
+      ref={(node: HTMLElement | null) => {
+        ref.current = node as HTMLHeadingElement | null;
+      }}
       className={cn("overflow-hidden leading-tight", className)}
     >
       <span className="sr-only">{text}</span>
@@ -113,7 +93,7 @@ export function SplitReveal({
                   "inline-block will-change-transform",
                   isHighlight && highlightClassName
                 )}
-                initial={{ y: "115%", rotate: 2 }}
+                initial={false}
                 animate={isInView ? { y: "0%", rotate: 0 } : {}}
                 transition={{
                   duration: 0.85,

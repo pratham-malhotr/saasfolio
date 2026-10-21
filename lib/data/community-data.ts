@@ -22,7 +22,7 @@ export interface DetailedCommunityThread {
     username: string;
     name: string;
     avatarLetter: string;
-    badge: "PRO FOUNDER" | "DEAL HUNTER" | "STAFF ARCHITECT" | "VERIFIED MKTG";
+    badge: "PRO FOUNDER" | "DEAL HUNTER" | "STAFF ARCHITECT" | "VERIFIED MKTG" | "LOCAL DRAFT";
     reputation: number;
   };
   upvotes: number;

@@ -1,4 +1,5 @@
 "use client";
+import { useDialog } from "@/components/modals/useDialog";
 
 import React, { useState } from "react";
 import confetti from "canvas-confetti";
@@ -14,6 +15,7 @@ interface CouponRevealModalProps {
 }
 
 export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalProps) {
+  const dialogRef = useDialog(isOpen && Boolean(deal), onClose);
   const [copied, setCopied] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const [voted, setVoted] = useState<"up" | "down" | null>(null);
@@ -65,7 +67,7 @@ export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalPr
         <div className="fixed inset-0" onClick={onClose} />
 
         {/* Modal Card */}
-        <motion.div
+        <motion.div ref={dialogRef} role="dialog" aria-modal="true" aria-label="Software offer details" tabIndex={-1}
           initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}

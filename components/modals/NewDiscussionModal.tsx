@@ -1,7 +1,8 @@
 "use client";
+import { useDialog } from "@/components/modals/useDialog";
 
 import React, { useState } from "react";
-import { X, Sparkles, MessageSquare, Tag } from "lucide-react";
+import { X, MessageSquare } from "lucide-react";
 import { DetailedCommunityThread } from "@/lib/data/community-data";
 
 interface NewDiscussionModalProps {
@@ -15,6 +16,7 @@ export function NewDiscussionModal({
   onClose,
   onSubmit,
 }: NewDiscussionModalProps) {
+  const dialogRef = useDialog(isOpen, onClose);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState<
     "Dev Tools" | "SaaS Economics" | "Analytics" | "AI Tools" | "Growth & Marketing"
@@ -52,10 +54,10 @@ export function NewDiscussionModal({
       content: content.trim(),
       author: {
         username: "current_user",
-        name: "You (Pro Member)",
+        name: "You (local draft)",
         avatarLetter: "Y",
-        badge: "PRO FOUNDER",
-        reputation: 500,
+        badge: "LOCAL DRAFT",
+        reputation: 0,
       },
       upvotes: 1,
       commentCount: 0,
@@ -72,22 +74,23 @@ export function NewDiscussionModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
-      <div className="relative w-full max-w-xl rounded-3xl bg-[#0B0B0E] border border-white/10 p-6 sm:p-8 shadow-2xl">
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-label="Create a local discussion draft" tabIndex={-1} className="relative w-full max-w-xl rounded-3xl bg-[#0B0B0E] border border-white/10 p-6 sm:p-8 shadow-2xl">
         <button
           onClick={onClose}
+          aria-label="Close discussion draft"
           className="absolute top-6 right-6 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
 
         <div className="flex items-center gap-2 mb-2 font-mono text-xs text-[#C6FF3D] uppercase font-bold">
-          <MessageSquare className="w-3.5 h-3.5" /> Start a Community Discussion
+          <MessageSquare className="w-3.5 h-3.5" /> Create a discussion draft
         </div>
         <h3 className="font-display font-bold text-2xl text-white mb-2">
           Ask Founders & Engineers
         </h3>
         <p className="text-zinc-400 text-xs sm:text-sm mb-6">
-          Share tool questions, architecture benchmarks, or debate pricing models.
+          Draft a discussion on this device. It will not be published to other visitors.
         </p>
 
         {error && (
@@ -117,7 +120,7 @@ export function NewDiscussionModal({
               </label>
               <select
                 value={category}
-                onChange={(e) => setCategory(e.target.value as any)}
+                onChange={(e) => setCategory(e.target.value as DetailedCommunityThread["category"])}
                 className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
               >
                 <option value="Dev Tools">Dev Tools</option>

@@ -106,7 +106,7 @@ export function HeroSection() {
               className="w-full sm:w-auto font-bold tracking-tight text-sm px-8 py-4 flex items-center gap-2"
             >
               <Zap className="w-4 h-4 fill-black" />
-              <span>Explore 1,200+ Verified Deals</span>
+              <span>Explore Software Offers</span>
             </MagneticButton>
           </Link>
 
@@ -126,17 +126,17 @@ export function HeroSection() {
         <Reveal delay={0.75} direction="up" className="mt-14 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-500 font-mono">
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-[#C6FF3D]" />
-            <span>100% Hand-Verified Codes</span>
+            <span>Offer Sources Included</span>
           </div>
           <span>✦</span>
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-[#C6FF3D]" />
-            <span>No Expired Clickbait</span>
+            <span>Provider Terms Apply</span>
           </div>
           <span>✦</span>
           <div className="flex items-center gap-1.5">
             <Flame className="w-4 h-4 text-[#C6FF3D]" />
-            <span>Updated Hourly</span>
+            <span>Check Dates Shown</span>
           </div>
         </Reveal>
       </div>

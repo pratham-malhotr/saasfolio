@@ -109,6 +109,7 @@ export function CommunityHubClient({ toolLinks }: { toolLinks: Record<string, st
 
   return (
     <div className="min-h-screen bg-[#050505] pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <p className="mb-6 text-xs text-zinc-400">Community preview: new discussions and votes are stored in this browser. They are not published for other visitors.</p>
       {/* Header */}
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12">
         <div>
