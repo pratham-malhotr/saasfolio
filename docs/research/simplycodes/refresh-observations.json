@@ -1,0 +1,7 @@
+{
+  "scope": "Six configured public coupon sources: five SimplyCodes stores and one TechRadar page",
+  "measurement": "Collector-reported source-page request counts; additional robots requests are not included",
+  "firstRun": { "scheduledJobs": 6, "sourceRequests": 2, "skippedJobs": 4, "candidates": 0 },
+  "secondRunWithPersistedBackoff": { "scheduledJobs": 6, "sourceRequests": 1, "skippedJobs": 5, "candidates": 0 },
+  "interpretation": "After one SimplyCodes block, remaining stores on that host were skipped. A subsequent run skipped that host through persisted backoff and continued with the accessible provider. No SimplyCodes code recovery is claimed."
+}

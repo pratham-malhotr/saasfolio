@@ -114,24 +114,26 @@ Edit `app/globals.css`:
 ## 📄 License & Attribution
 Operated by SaaSFolio (saasfolio.tech). Released under the MIT License.
 
-## Source-backed catalog update (October 2026)
+## Expanded catalog and sourced offers
 
-The public site now uses `lib/data/verified-catalog.json` through `lib/catalog.ts`.
-The older mock datasets and demo components are retained for reference and are not
-connected to the public catalog. See [the launch audit](docs/LAUNCH-AUDIT.md) for
-findings, implemented changes, validation, and remaining deployment requirements.
+The catalog includes 220 additional brands and consolidates duplicate legacy
+profiles under canonical URLs. Public offers use recorded source evidence;
+pricing-only links do not claim a discount. See [catalog and refresh documentation](docs/CATALOG-AND-OFFERS.md)
+for data files, public-source research, coupon restrictions, the twice-daily
+GitHub Actions workflow, and deployment requirements.
 
 ```sh
+npm run catalog:expand
+npm run catalog:refresh -- --discovery
 npm run validate:catalog
+npm run test:offers
 npm run build
-npm run start
 ```
 
-Set the variables documented in `docs/DEPLOYMENT.env.example` in the deployment
-provider. Submission delivery needs an HTTPS intake webhook; the form is disabled
-until configured. No public customer review backend, account system, hosting, or
-DNS setup is claimed by this update. All listed offers are vendor-published,
-not checkout-tested.
+The refresh needs public internet access and no API keys. Publishing the workflow
+to GitHub, enabling Actions, and connecting the hosting deployment are required
+before scheduled updates appear on the live site. Source checks are not checkout
+tests. Existing editorial and community demo content still needs factual review.
 
 ## SEO configuration and validation
 

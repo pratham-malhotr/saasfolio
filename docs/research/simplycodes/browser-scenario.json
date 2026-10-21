@@ -1,0 +1,15 @@
+{
+  "browser": {
+    "mode": "launch",
+    "executable_path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  },
+  "start_url": { "url": "https://simplycodes.com/store/quillbot.com" },
+  "actions": [
+    { "step_id": "store-settled", "action": "wait_for_timeout", "duration_ms": 2000 }
+  ],
+  "capture": {
+    "at_end": ["dom", "url"],
+    "events": ["network", "page-errors"],
+    "network": { "response_body": true }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "blocked",
+  "sourceUrl": "https://simplycodes.com/store/quillbot.com",
+  "toolSlug": "quillbot-premium",
+  "observedAt": "2026-10-21T03:54:12.899Z",
+  "evidenceId": "ev_06510f12d14b277e6ff9ac46d28895762605fb49fed2110b86d8502224d00ee4",
+  "offers": [],
+  "limitations": [
+    "The captured document is an access challenge, not the merchant store page."
+  ],
+  "captureCoverage": {
+    "status": "incomplete",
+    "equality_eligible": false,
+    "missing_sections": [
+      "events"
+    ],
+    "truncated_sections": []
+  },
+  "inputSha256": "43136be033d9a9b208a8db41ba3c664118d0504a07b06886025b283851ac0b76",
+  "importedAt": "2026-10-21T04:05:07.834Z"
+}
