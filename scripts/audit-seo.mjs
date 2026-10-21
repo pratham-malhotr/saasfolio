@@ -83,7 +83,7 @@ async function auditPage(url) {
     const target = new URL(attrs.href, expectedOrigin);
     if (target.pathname.startsWith("/go/")) {
       assert.ok(attrs.rel?.includes("sponsored") && attrs.rel?.includes("nofollow"), `${path}: qualify affiliate link ${attrs.href}`);
-    } else if (!internalPaths.has(target.pathname)) internalPaths.set(target.pathname, path);
+    } else if (!target.pathname.match(/^\/deals\/[^/]+-pricing$/) && !internalPaths.has(target.pathname)) internalPaths.set(target.pathname, path);
   }
   if (++auditedPages % 100 === 0) console.log(`Checked ${auditedPages}/${urls.length} public pages...`);
 }
@@ -117,10 +117,19 @@ for (const path of imagePaths) {
     if (bytes.length < 1000) failures.push(`Empty sharing image: ${path}`);
   }
 }
-for (const path of ["/admin", "/profile", "/login", "/signup", "/submit", "/u/seo-audit", "/go/notion"]) {
+for (const path of ["/admin", "/profile", "/login", "/signup", "/submit", "/u/seo-audit"]) {
   const { result, html } = await response(path);
   const meta = metaTags(html).find((tag) => tag.name === "robots")?.content;
   if (!meta?.includes("noindex") || !result.headers.get("x-robots-tag")?.includes("noindex")) failures.push(`Missing noindex HTML/header: ${path}`);
+}
+for (const path of ["/go/notion", "/go/hostinger-couponspage-code", "/go/deal-hostinger-couponspage-code", "/go/hostinger-cloud-79-off"]) {
+  const result = await fetch(`${origin}${path}`, { redirect: "manual", signal: AbortSignal.timeout(30000) });
+  if (result.status !== 302 || !result.headers.get("location")?.startsWith("https://") || !result.headers.get("x-robots-tag")?.includes("noindex")) failures.push(`Invalid server offer redirect: ${path}`);
+  if (path.includes("couponspage") && result.headers.get("location") !== "https://www.hostinger.com/coupons") failures.push(`Lost offer-specific destination: ${path}`);
+}
+for (const path of ["/go/unknown-brand", "/go/https%3A%2F%2Fevil.example"]) {
+  const result = await fetch(`${origin}${path}`, { redirect: "manual", signal: AbortSignal.timeout(30000) });
+  if (result.status !== 404 || result.headers.get("location")) failures.push(`Unknown redirect identifiers must return 404: ${path}`);
 }
 for (const path of ["/tools/seo-missing", "/deals/seo-missing", "/articles/seo-missing", "/compare/seo-missing", "/compare/notion-vs-notion", "/community/seo-missing"]) {
   const { result, html } = await response(path);

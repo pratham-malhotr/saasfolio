@@ -7,7 +7,12 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "seo:audit": "node scripts/audit-seo.mjs"
+    "seo:audit": "node scripts/audit-seo.mjs",
+    "catalog:expand": "node scripts/build-brand-expansion.mjs",
+    "catalog:refresh": "node scripts/refresh-offers.mjs",
+    "validate:catalog": "node scripts/validate-catalog.mjs",
+    "test:offers": "node --test scripts/offer-sources.test.mjs scripts/simplycodes.test.mjs",
+    "coupons:inspect": "node scripts/inspect-simplycodes.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4",
@@ -32,6 +37,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
+    "parse5": "8.0.1",
     "typescript": "^5"
   }
 }
