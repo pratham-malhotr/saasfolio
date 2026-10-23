@@ -5,7 +5,7 @@ The directory contains 735 canonical profiles, including 244 additions recorded 
 generated ratings, customer reviews, coupon codes, countdowns, and verification
 claims are no longer used as proof of a real discount. The latest [24-brand expansion](brand-expansion-seo.md)
 includes an original discount guide for each addition. There are 727 available
-profiles and 40 dedicated guides; unavailable providers are excluded from browsing.
+profiles and 46 dedicated guides; unavailable providers are excluded from browsing.
 
 ## Data and sources
 

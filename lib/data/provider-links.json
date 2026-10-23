@@ -1,4 +1,10 @@
 {
+  "canva": { "pricingUrl": "https://www.canva.com/pricing/" },
+  "figma": { "pricingUrl": "https://www.figma.com/pricing/" },
+  "clickup": { "pricingUrl": "https://clickup.com/pricing" },
+  "slack": { "pricingUrl": "https://slack.com/pricing" },
+  "loom": { "pricingUrl": "https://www.loom.com/pricing" },
+  "miro": { "pricingUrl": "https://miro.com/pricing/" },
   "beehiiv": { "website": "https://www.beehiiv.com", "pricingUrl": "https://www.beehiiv.com/pricing" },
   "predis-ai": { "website": "https://predis.ai", "pricingUrl": "https://predis.ai/pricing/" },
   "taplio": { "website": "https://taplio.com", "pricingUrl": "https://taplio.com/pricing" },

@@ -2,7 +2,7 @@
 
 The follow-up [competitor investigation](research/competitors/README.md) adds source comparisons, membership-cost calculations, a complete brand directory and consistent search icons. It preserves the sixteen original guides described below.
 
-The primary search landing pages for brand discount queries live at `/discounts/[slug]`. `/discounts` links to every currently indexable brand guide. Forty brands have original editorial buying guides, including the [24-brand expansion and source review](brand-expansion-seo.md). Hostinger and Namecheap also have sourced coupon records. The table below describes the original sixteen guides.
+The primary search landing pages for brand discount queries live at `/discounts/[slug]`. `/discounts` links to every currently indexable brand guide. Forty-six brands have original editorial buying guides, including the [24-brand expansion and six-brand follow-up](brand-expansion-seo.md). Hostinger and Namecheap also have sourced coupon records. The table below describes the original sixteen guides.
 
 | Landing page | Search intent and editorial focus |
 | --- | --- |

@@ -1,6 +1,6 @@
 # Brand expansion and discount-search coverage
 
-Reviewed on October 23, 2026. This batch adds **24 real brands**, bringing the catalog to **735 canonical profiles, of which 727 are available**. Each new brand has a software profile and an original discount buying guide, increasing the guide collection from 16 to **40**. Counts describe repository data; they do not establish deployment, indexing or a coupon for every brand.
+Reviewed on October 23, 2026. This batch adds **24 real brands**, bringing the catalog to **735 canonical profiles, of which 727 are available**. Each new brand has a software profile and an original discount buying guide. Six established profiles also receive new guides, increasing the guide collection from 16 to **46**. Counts describe repository data; they do not establish deployment, indexing or a coupon for every brand.
 
 ## New search landing pages and primary sources
 
@@ -36,7 +36,7 @@ Each guide addresses the brand's discount and coupon availability, an account-sp
 ## Search intent and technical behavior
 
 - Every new guide has distinct descriptive copy and a title targeting the brand's discounts and coupon codes. The visible “How to choose the best [brand] discount” answer explains the lowest eligible total for a workflow; it does not assert an unverified exclusive offer or a market-wide price comparison.
-- All 40 guides are linked from the discount collection, the A–Z brand directory, their corresponding software profiles and related guides. New profile and discount URLs enter the existing canonical sitemap automatically.
+- All 46 guides are linked from the discount collection, the A–Z brand directory, their corresponding software profiles and related guides. New profile and discount URLs enter the existing canonical sitemap automatically.
 - Each guide has its own canonical, matching browser/bot metadata, social sharing image, breadcrumbs, software entity and visible source citations. Tracking parameters canonicalize to the clean brand URL.
 - Real variants such as Granola AI, Fellow AI, Reclaim, Wispr, Creatify AI and Zoho Bigin redirect permanently to the corresponding established guide. These are aliases, not additional keyword landing pages.
 - The discount index now describes the complete collection without repeatedly promoting the same four brands. The homepage still uses a compact category-based selection; affiliate commission is not a selection input.
@@ -52,6 +52,21 @@ The reviewed Reclaim and Clueso pages contained temporary campaign banners whose
 
 Each guide retains its own review date. Adding one brand cannot advance dates for the others. Monetary and eligibility observations continue to expire from the rendered tables after 30 days without a new review; automated offer evidence retains its separate 14-day freshness rules. Expired or future-dated observations are not reused in the new best-discount answer.
 
+## Continued coverage for established brands
+
+These six existing profiles receive original guides, reviewed product descriptions and corrected official pricing destinations. They do not increase the brand count or create duplicate product profiles. The Canva Pro name variant redirects to the canonical Canva guide.
+
+| Guide | Verified buying distinction | Primary references |
+| --- | --- | --- |
+| [Canva](https://saasfolio.tech/discounts/canva) | Approved nonprofit access and K–12 education are separate from commercial coupons; higher education should not be assumed eligible for the K–12 program | [Pricing](https://www.canva.com/pricing/), [nonprofit program](https://www.canva.com/nonprofits/), [education roles and exclusions](https://www.canva.com/help/about-canva-for-education/) |
+| [Figma](https://saasfolio.tech/discounts/figma) | Verified education access, different seat capabilities and the billing of seats added during an annual term | [Pricing and seat billing](https://www.figma.com/pricing/), [education verification](https://www.figma.com/education/) |
+| [ClickUp](https://saasfolio.tech/discounts/clickup) | Annual savings have a maximum; nonprofit and educator prices require a custom approved quote rather than an assumed universal percentage | [Pricing](https://clickup.com/pricing), [organization pricing help](https://help.clickup.com/hc/en-us/articles/7250693443607-Is-there-a-discount-for-non-profit-or-educational-companies) |
+| [Slack](https://saasfolio.tech/discounts/slack) | The nonprofit program depends on eligibility, Workspace size and plan; applications and approval are Workspace-specific | [Pricing](https://slack.com/pricing), [nonprofit program and billing rules](https://slack.com/help/articles/204368833-Apply-for-the-Slack-for-Nonprofits-discount) |
+| [Loom](https://saasfolio.tech/discounts/loom) | Current education guidance describes verified discounts rather than the former completely free education entitlement; AI capabilities depend on package | [Pricing](https://www.loom.com/pricing), [current Atlassian education policy](https://support.atlassian.com/loom/docs/loom-education-discount-verification/) |
+| [Miro](https://saasfolio.tech/discounts/miro) | Current nonprofit help permits a specific annual combination on named plans and describes a sequential 44% reduction, not addition of percentages | [Pricing](https://miro.com/pricing/), [nonprofit combination rules](https://help.miro.com/hc/en-us/articles/360026839633-Miro-for-non-profits), [education durations](https://miro.com/education-whiteboard/) |
+
+The six-source refresh succeeded for five pricing pages; Canva returned HTTP 403 and retains that real failure. The dated Canva guide cites the separately reviewed official program material. The established-brand entries use `newProfile: false`, preserving the 24-addition manifest and avoiding a fictitious increase in profile count.
+
 ## Adding the next brand
 
 1. Verify the current official product and pricing destination, including redirects and service availability. Avoid adding an alternate name as a new product profile.
@@ -63,8 +78,12 @@ Each guide retains its own review date. Adding one brand cannot advance dates fo
 
 ## Validation
 
-Passed `npm run validate:catalog`, `npm run lint` without warnings, `npx tsc --noEmit`, all 35 tests across the four regression suites, and `npm run build`.
+The initial 24-brand release passed `npm run validate:catalog`, `npm run lint` without warnings, `npx tsc --noEmit`, all 35 tests across the four regression suites, and `npm run build`.
 
-Against the production build on port 3210, `seo:audit:brands` passed all **40 guides**; `seo:audit` passed **983 sitemap pages, 1,960 JSON-LD blocks and 49 sharing images**, including additional internal destinations and canonical behavior. `brand:audit` confirmed **727 directory brands** with matching profile/guide links and accurate coupon counts. `audit:publisher` preserved ownership metadata, private cache headers, disclosures and non-indexed local previews. Chrome passed mobile/desktop cold loads and hard refreshes with CPU throttling, filters, coupons, savings, unavailable-service messages and no-JavaScript content. No report, signup, email or purchase was submitted.
+For that initial production build, `seo:audit:brands` passed all **40 guides**; `seo:audit` passed **983 sitemap pages, 1,960 JSON-LD blocks and 49 sharing images**, including additional internal destinations and canonical behavior. `brand:audit` confirmed **727 directory brands** with matching profile/guide links and accurate coupon counts. `audit:publisher` preserved ownership metadata, private cache headers, disclosures and non-indexed local previews. Chrome passed mobile/desktop cold loads and hard refreshes with CPU throttling, filters, coupons, savings, unavailable-service messages and no-JavaScript content. No report, signup, email or purchase was submitted.
+
+The six-brand continuation was built and checked against the latest shared code at `7e13f2d`, preserving the intervening analytics, submission and authentication changes. It passed catalog validation, TypeScript, the production build and **36 regression tests**. The rendered audits passed **46 guides, 991 sitemap pages, 1,976 JSON-LD blocks and 55 sharing images**; brand identity, publisher response checks and the full Chrome smoke also passed. Lint has no errors and reports six existing warnings in the authentication/navigation files; those flows were not rewritten by this SEO continuation.
+
+A public read-only check confirmed the first expansion had deployed: `/brands` listed 727 brands, and `/discounts/granola` and `/discounts/tactiq` returned HTTP 200 with their new brand titles and best-discount answers. This observation does not certify that every later commit is deployed.
 
 To reproduce, start the production build on port 3210 and run `seo:audit:brands`, `seo:audit`, `brand:audit`, `audit:publisher` and `test:browser:offers` against that origin. The brand audit checks actual HTML, including distinct metadata, best-discount answers, sources, eligibility, claim steps, related links, canonicals, images and permanent redirects. Counts reflect this source snapshot and can change after subsequent refreshes.

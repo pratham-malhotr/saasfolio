@@ -21,6 +21,42 @@ export const REVIEWED_BRAND_TOOLS: DetailedTool[] = [{
 
 // Refresh the priority profiles' descriptive copy alongside their savings guides.
 export const REVIEWED_BRAND_COPY: Record<string, Pick<DetailedTool, "description" | "longDescription" | "keyFeatures"> & Partial<Pick<DetailedTool, "name" | "website" | "pricingUrl" | "updatedAt">>> = {
+  canva: {
+    pricingUrl: "https://www.canva.com/pricing/", updatedAt: "2026-10-23T00:00:00.000Z",
+    description: "Canva provides visual design and publishing tools for individuals and teams. Compare workspace requirements and separately approved nonprofit or K–12 education access.",
+    longDescription: "Canva combines design, presentations and publishing workflows with shared assets and team collaboration. Test the formats, asset permissions and approval routine needed by your organization before choosing a workspace package. Nonprofit and K–12 education programs have their own eligibility and verification; neither is a universal commercial coupon. The discount guide compares the relevant purchase routes without inventing a public code.",
+    keyFeatures: ["Visual design and presentations", "Publishing and exports", "Shared brand assets", "Team collaboration", "Plan-dependent creative tools", "Separate nonprofit and education programs"],
+  },
+  figma: {
+    pricingUrl: "https://www.figma.com/pricing/", updatedAt: "2026-10-23T00:00:00.000Z",
+    description: "Figma provides collaborative design and product workflows with different seat capabilities. Compare design, development and review roles with verified education access.",
+    longDescription: "Figma supports collaborative design, prototypes and product handoff. Map each collaborator's editing, development or review requirements to the current seat choices before estimating a team invoice. Check how new paid seats and role changes are billed during the selected term. Verified education access is a separate program, and the savings guide distinguishes that entitlement from commercial licensing and public coupon availability.",
+    keyFeatures: ["Collaborative interface design", "Prototyping", "Design systems", "Development handoff", "Role-based seat capabilities", "Verified education access"],
+  },
+  clickup: {
+    pricingUrl: "https://clickup.com/pricing", updatedAt: "2026-10-23T00:00:00.000Z",
+    description: "ClickUp combines tasks, project views and team workflows. Compare the complete Workspace package, paid members, additional capabilities and approved organization pricing.",
+    longDescription: "ClickUp provides a Workspace for managing tasks and project delivery. Evaluate the views, automation and collaboration needed for a complete project before comparing subscriptions. Count the actual paid users and any separately purchased capabilities. Annual billing and customized nonprofit or educator pricing have different eligibility; the brand guide explains how to compare an approved quote without assuming a universal percentage or stacking rule.",
+    keyFeatures: ["Tasks and project views", "Documents", "Team collaboration", "Workflow automation", "Project reporting", "Plan-dependent additional capabilities"],
+  },
+  slack: {
+    pricingUrl: "https://slack.com/pricing", updatedAt: "2026-10-23T00:00:00.000Z",
+    description: "Slack supports team messaging and shared workspaces. Compare the capabilities and members you need, including Workspace-specific approval for nonprofit programs.",
+    longDescription: "Slack organizes team communication through workspaces and channels. Identify the conversation history, integrations and administrative requirements of the team before choosing a paid package. Nonprofit access depends on organization eligibility, Workspace membership and the approved plan. The savings guide explains application scope and billing considerations rather than presenting the program as a public coupon for every customer.",
+    keyFeatures: ["Team messaging", "Channels and workspaces", "Shared conversation history", "App integrations", "Plan-dependent administration", "Separate nonprofit eligibility program"],
+  },
+  loom: {
+    pricingUrl: "https://www.loom.com/pricing", updatedAt: "2026-10-23T00:00:00.000Z",
+    description: "Loom provides video recording, sharing and collaboration. Compare creator roles, recording requirements and plan-dependent AI with current verified education discounts.",
+    longDescription: "Loom supports recording and sharing video explanations with colleagues and other viewers. Test the recording, editing and sharing experience before comparing a team purchase. Count the people requiring paid creation access and confirm the package containing any required AI capabilities. Current Atlassian education guidance describes verified discounts rather than the former completely free education entitlement; the brand guide links to those current terms.",
+    keyFeatures: ["Video recording", "Video sharing", "Comments and collaboration", "Transcripts", "Plan-dependent AI capabilities", "Verified education discounts"],
+  },
+  miro: {
+    pricingUrl: "https://miro.com/pricing/", updatedAt: "2026-10-23T00:00:00.000Z",
+    description: "Miro provides collaborative boards and workshop tools. Compare paid team requirements, verified education access and the specific combination rules for nonprofit pricing.",
+    longDescription: "Miro supports shared boards, visual planning and workshops. Evaluate the contribution, ownership and retrieval workflow with the people who will use the team. Education and nonprofit access require their own eligibility checks. The nonprofit help describes a specific annual-price combination on eligible plans; the savings guide distinguishes that rule from a general ability to stack promotions or add percentages together.",
+    keyFeatures: ["Collaborative boards", "Visual planning", "Workshop collaboration", "Diagramming", "Team sharing", "Separate education and nonprofit programs"],
+  },
   mailerlite: {
     pricingUrl: "https://www.mailerlite.com/pricing",
     updatedAt: "2026-10-23T00:00:00.000Z",
