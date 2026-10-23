@@ -105,7 +105,13 @@ await Promise.all(Array.from({ length: 4 }, async () => {
     const path = extraPaths[linkCursor++];
     try {
       const { result, html } = await response(path);
-      if (result.status !== 200 || /<meta name="robots" content="[^"]*noindex/.test(html)) failures.push(`Broken or non-indexable public internal link: ${path} from ${internalPaths.get(path)} (HTTP ${result.status})`);
+      const noindex = /<meta name="robots" content="[^"]*noindex/.test(html);
+      const unavailableProvider = /^\/tools\/[^/]+$/.test(path) && html.includes('data-provider-unavailable="true"');
+      if (unavailableProvider) {
+        assert.ok(noindex, `${path}: unavailable provider must be noindex`);
+        assert.ok(!/<a\b[^>]*href="\/go\//.test(html), `${path}: unavailable provider must not expose an outbound offer`);
+      }
+      if (result.status !== 200 || (noindex && !unavailableProvider)) failures.push(`Broken or non-indexable public internal link: ${path} from ${internalPaths.get(path)} (HTTP ${result.status})`);
     } catch (error) { failures.push(`${path}: ${error.message}`); }
   }
 }));

@@ -9,6 +9,12 @@
     "lint": "eslint",
     "seo:audit": "node scripts/audit-seo.mjs",
     "seo:audit:brands": "node scripts/audit-brand-seo.mjs",
+    "audit:links": "node scripts/audit-outbound-links.mjs",
+    "audit:offer-flows": "node scripts/audit-offer-flows.mjs",
+    "test:browser:offers": "node scripts/browser-offer-smoke.mjs",
+    "brand:assets": "node scripts/generate-brand-assets.mjs",
+    "brand:audit": "node scripts/audit-brand-identity.mjs",
+    "test:savings": "node --test scripts/savings.test.mjs",
     "catalog:expand": "node scripts/build-brand-expansion.mjs",
     "catalog:refresh": "node scripts/refresh-offers.mjs",
     "validate:catalog": "node scripts/validate-catalog.mjs",
@@ -42,6 +48,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
     "parse5": "8.0.1",
+    "sharp": "0.35.5",
     "typescript": "^5"
   }
 }

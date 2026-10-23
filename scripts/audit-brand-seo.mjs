@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { parse } from "parse5";
+import { DISCOUNT_BRAND_ALIASES } from "../lib/data/brand-discount-aliases.mjs";
 
 // Exercise production HTML, including content available before JavaScript runs.
 // Usage: npm run seo:audit:brands -- http://localhost:3210
@@ -18,6 +19,10 @@ const brands = [
   { slug: "streamyard", name: "StreamYard" },
   { slug: "anytrack", name: "AnyTrack" },
   { slug: "baremetrics", name: "Baremetrics" },
+  { slug: "mailerlite", name: "MailerLite" },
+  { slug: "convertkit", name: "Kit (ConvertKit)" },
+  { slug: "notion", name: "Notion" },
+  { slug: "framer", name: "Framer" },
 ];
 
 async function fetchPage(path, userAgent = "Googlebot") {
@@ -36,7 +41,21 @@ const links = document => elements(document, "a").map(node => attr(node, "href")
 const { response: sitemapResponse } = await fetchPage("/sitemap.xml");
 assert.equal(sitemapResponse.status, 200);
 const sitemap = await (await fetch(`${origin}/sitemap.xml`)).text();
+const guidePaths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => new URL(url).pathname).filter(path => /^\/discounts\/[^/]+$/.test(path));
+assert.equal(guidePaths.length, brands.length, "Every indexable brand guide is covered by this audit");
 const { document: directory } = await fetchPage("/discounts");
+const { document: homepage } = await fetchPage("/");
+// React may stream a route's HTML outside <main> before moving the boundary
+// into place. Inspect the actual brand section rather than the loading shell.
+const homeBrands = nodes(homepage, node => attr(node, "aria-labelledby") === "brand-discounts-heading")[0];
+assert.match(contents(elements(homepage, "h1")[0]), /SaaS discounts.*software deals/i, "Homepage heading describes the SaaS discount business");
+assert.match(contents(elements(homepage, "title")[0]), /SaaS Discounts.*(?:Coupon Codes|Software Deals)/i, "Homepage title targets software savings");
+assert.ok(homeBrands && links(homeBrands).includes("/discounts"), "Brand directory is linked from homepage content");
+for (const slug of ["beehiiv", "predis-ai", "taplio", "baremetrics"]) {
+  assert.ok(links(homeBrands).includes(`/discounts/${slug}`), `${slug}: homepage content links directly to discount guide`);
+  assert.ok(links(directory).includes(`/discounts/${slug}`), `${slug}: brand directory links to guide`);
+}
+assert.match(contents(elements(directory, "h1")[0]), /SaaS discounts/i, "Brand directory heading has SaaS discount intent");
 const titles = new Set();
 const descriptions = new Set();
 
@@ -65,7 +84,28 @@ for (const { slug, name } of brands) {
   const faqs = elements(document, "details");
   assert.ok(faqs.length >= 3 && faqs.every(node => contents(node).length > 100), `${path}: answers included before interaction`);
   const text = contents(document);
-  if (!["hostinger", "namecheap"].includes(slug)) {
+  {
+    const currentOffers = nodes(document, node => attr(node, "id") === "current-offers")[0];
+    const answer = nodes(currentOffers, node => attr(node, "id") === "discount-answer")[0];
+    assert.ok(answer && contents(answer).includes(name) && contents(answer).length > 100, `${path}: useful direct answer about sourced discount availability`);
+    const savingsTable = elements(currentOffers, "table")[0];
+    const reviewedAt = Date.parse(attr(elements(document, "time")[0] || {}, "datetime") || "");
+    const reviewAge = Date.now() - reviewedAt;
+    // Editorial observations intentionally disappear when their review expires.
+    if (reviewAge >= 0 && reviewAge <= 30 * 86400000) {
+      if (!["hostinger", "namecheap"].includes(slug)) assert.ok(savingsTable, `${path}: recently reviewed savings table is present`);
+      const eligibility = nodes(document, node => attr(node, "id") === "eligibility")[0];
+      assert.ok(eligibility && elements(eligibility, "dt").length >= 3, `${path}: brand-specific eligibility checks`);
+      const troubleshooting = nodes(document, node => attr(node, "id") === "coupon-help")[0];
+      assert.ok(troubleshooting && elements(troubleshooting, "h3").length >= 2, `${path}: actionable coupon troubleshooting`);
+    }
+    if (savingsTable) {
+      assert.match(contents(savingsTable), /Annual billing|Education offer/, `${path}: sourced savings are visible before interaction`);
+      assert.ok(elements(savingsTable, "a").every(node => attr(node, "href")?.startsWith("https://")), `${path}: savings link to provider sources`);
+      assert.match(contents(currentOffers), /Source reviewed/, `${path}: savings show their review date`);
+    }
+  }
+  {
     const table = elements(document, "table").find(node => contents(node).includes("Option to evaluate"));
     assert.ok(table && elements(table, "tbody").flatMap(node => elements(node, "tr")).length >= 3, `${path}: server-rendered buying considerations`);
     const redemption = nodes(document, node => attr(node, "id") === "redemption")[0];
@@ -85,6 +125,7 @@ for (const { slug, name } of brands) {
   const page = schemas.find(node => node["@type"] === "CollectionPage");
   assert.equal(page?.url, canonical(document), `${path}: page entity URL`);
   assert.ok(schemas.some(node => node["@type"] === "BreadcrumbList"), `${path}: breadcrumb schema`);
+  assert.ok(page.citation?.length && page.citation.every(url => links(document).includes(url)), `${path}: structured citations match visible provider links`);
   const itemLinks = page.mainEntity.itemListElement.map(item => new URL(item.url).pathname);
   assert.ok(itemLinks.every(href => links(document).includes(href)), `${path}: schema describes visible linked offers`);
   for (const offerPath of itemLinks) {
@@ -107,6 +148,21 @@ for (const { slug, name } of brands) {
     assert.ok((await imageResponse.arrayBuffer()).byteLength > 1000, `${path}: image has content`);
   }
   console.log(`Passed ${path}: crawlable content, metadata, canonicals, schema, internal links and sharing images.`);
+}
+for (const [alias, destination] of Object.entries(DISCOUNT_BRAND_ALIASES)) {
+  assert.ok(!sitemap.includes(`<loc>${canonicalOrigin}/discounts/${alias}</loc>`), `${alias}: alias excluded from sitemap`);
+  for (const suffix of ["?utm_source=brand-audit", "/opengraph-image"]) {
+    const response = await fetch(`${origin}/discounts/${alias}${suffix}`, { redirect: "manual", signal: AbortSignal.timeout(30000) });
+    assert.equal(response.status, 308, `${alias}: permanent HTTP redirect before rendering`);
+    const location = new URL(response.headers.get("location"), origin);
+    assert.equal(location.pathname, `/discounts/${destination}${suffix.startsWith("/") ? suffix : ""}`, `${alias}: direct canonical destination`);
+    if (suffix.startsWith("?")) assert.equal(location.searchParams.get("utm_source"), "brand-audit", `${alias}: query retained`);
+  }
+}
+for (const [from, to] of [["/tools/kit-convertkit", "/tools/convertkit"], ["/deals/kit-convertkit-pricing", "/deals/convertkit-pricing"]]) {
+  const response = await fetch(`${origin}${from}`, { redirect: "manual", signal: AbortSignal.timeout(30000) });
+  assert.equal(response.status, 308, `${from}: duplicate Kit URL permanently consolidated`);
+  assert.equal(new URL(response.headers.get("location"), origin).pathname, to, `${from}: canonical destination`);
 }
 for (const path of ["/discounts/seo-missing", "/discounts/not-a-real-brand"]) {
   const { response } = await fetchPage(path);
