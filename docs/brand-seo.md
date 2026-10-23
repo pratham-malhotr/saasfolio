@@ -2,7 +2,7 @@
 
 The follow-up [competitor investigation](research/competitors/README.md) adds source comparisons, membership-cost calculations, a complete brand directory and consistent search icons. It preserves the sixteen original guides described below.
 
-The primary search landing pages for brand discount queries live at `/discounts/[slug]`. `/discounts` links to every currently indexable brand guide. Sixteen brands have original editorial buying guides, with sources reviewed on 2026-10-23. Hostinger and Namecheap also have sourced coupon records.
+The primary search landing pages for brand discount queries live at `/discounts/[slug]`. `/discounts` links to every currently indexable brand guide. Forty brands have original editorial buying guides, including the [24-brand expansion and source review](brand-expansion-seo.md). Hostinger and Namecheap also have sourced coupon records. The table below describes the original sixteen guides.
 
 | Landing page | Search intent and editorial focus |
 | --- | --- |
@@ -45,7 +45,7 @@ Each page has its own canonical URL. Tracking parameters canonicalize to that cl
 
 1. Confirm a real tool profile and an official provider URL exist.
 2. Publish a sourced coupon or monetary offer through the existing reviewed-offer and catalog refresh workflow. The current catalog requires checks within 14 days and excludes published expirations.
-3. For a brand without a monetary offer, write original buying guidance in `lib/data/brand-discount-guides.ts` or its imported `additional-discount-guides.ts` collection. Include a distinct description, official source, actual review date, billing or eligibility considerations, and useful questions. Add product-specific eligibility and coupon checks in `lib/data/brand-purchase-checks.ts`. Do not copy a guide and only replace the brand name.
+3. For a new catalog addition, use the complete entry format in `lib/data/expansion-discount-guides.ts`, which supplies the original guide and its purchase checks. The earlier `brand-discount-guides.ts`, `additional-discount-guides.ts` and `brand-purchase-checks.ts` collections remain supported. Include distinct metadata, official sources, an actual per-brand review date, buying considerations and useful answers. Do not copy a guide and only replace the brand name.
 4. The brand route is created for an editorial guide or a brand with historical sourced coupon evidence. A non-editorial guide with no current coupon or saving becomes `noindex, follow` and leaves the sitemap and directory until refreshed. Established URLs can still explain that no offer is recorded.
 5. Editorial pricing observations disappear after 30 days without review. Review the actual source before changing the date. Evergreen guidance stays visible.
 6. Refresh the catalog before the 14-day source window ends; do not merely update timestamps. If refreshing fails, investigate the source rather than creating a replacement claim.
@@ -59,7 +59,7 @@ npm run seo:audit:brands -- http://localhost:3210
 npm run seo:audit -- http://localhost:3210
 ```
 
-The first command checks all sixteen brand routes in rendered HTML, including direct discount answers, eligibility and troubleshooting, editorial depth, workflow tables, redemption steps, visible source citations, related guides, profile links, schema, query canonicals, unknown-brand 404s, browser/bot metadata and generated images. It also checks permanent redirects for brand-name variants and legacy Kit URLs. The second checks the complete sitemap and other existing SEO protections.
+The first command discovers and checks every indexable brand route in rendered HTML, including direct discount and best-value answers, eligibility and troubleshooting, editorial depth, workflow tables, redemption steps, visible source citations, related guides, profile links, schema, query canonicals, unknown-brand 404s, browser/bot metadata and generated images. It also checks permanent redirects for brand-name variants and legacy Kit URLs. The second checks the complete sitemap and other existing SEO protections.
 
 After deployment, submit `https://saasfolio.tech/sitemap.xml` in Google Search Console and Bing Webmaster Tools. Inspect the priority brand URLs in Search Console, check the rendered page, and request indexing. Deployment and Search Console submission must be performed separately; local validation does not publish or submit URLs.
 
