@@ -20,7 +20,38 @@ export const REVIEWED_BRAND_TOOLS: DetailedTool[] = [{
 }];
 
 // Refresh the priority profiles' descriptive copy alongside their savings guides.
-export const REVIEWED_BRAND_COPY: Record<string, Pick<DetailedTool, "description" | "longDescription" | "keyFeatures">> = {
+export const REVIEWED_BRAND_COPY: Record<string, Pick<DetailedTool, "description" | "longDescription" | "keyFeatures"> & Partial<Pick<DetailedTool, "name" | "website" | "pricingUrl" | "updatedAt">>> = {
+  mailerlite: {
+    pricingUrl: "https://www.mailerlite.com/pricing",
+    updatedAt: "2026-10-23T00:00:00.000Z",
+    description: "MailerLite combines email campaigns, automations, signup forms and websites. Compare subscriber and sending allowances, yearly billing and nonprofit eligibility.",
+    longDescription: "MailerLite is an email marketing platform for newsletters, automations, forms and landing pages. Compare the current package for your audience and sending schedule rather than relying on an older plan name. Evaluate a complete signup and campaign workflow, then check team access, applicable taxes and the terms of annual or approved nonprofit pricing in the savings guide.",
+    keyFeatures: ["Email campaigns and automations", "Signup forms and landing pages", "Subscriber management", "Plan-dependent sending and user capacity", "Website and digital product tools", "API and integrations"],
+  },
+  convertkit: {
+    name: "Kit (ConvertKit)",
+    website: "https://kit.com",
+    pricingUrl: "https://kit.com/pricing",
+    updatedAt: "2026-10-23T00:00:00.000Z",
+    description: "Kit, formerly ConvertKit, provides creator email marketing, forms and automations. Compare current subscriber tiers, paid features and annual billing options.",
+    longDescription: "Kit is the current brand for the creator email platform formerly called ConvertKit. Its tools support forms, broadcasts, email automations and creator monetization workflows. Compare the current package at your subscriber count and test migration and launch sequences before committing. Historical ConvertKit prices or coupon descriptions should be checked against the current Kit account and billing terms.",
+    keyFeatures: ["Email broadcasts", "Forms and landing pages", "Visual automations", "Subscriber tagging and segmentation", "Creator commerce and newsletter tools", "Plan-dependent reporting and integrations"],
+  },
+  notion: {
+    website: "https://www.notion.com",
+    pricingUrl: "https://www.notion.com/pricing",
+    updatedAt: "2026-10-23T00:00:00.000Z",
+    description: "Notion combines documents, databases and team workflows. Compare workspace plans, paid members, AI requirements and eligibility for education or nonprofit programs.",
+    longDescription: "Notion provides a workspace for documents, notes, databases and collaborative workflows. Identify the members, permissions, history and AI capabilities the team requires, then compare the complete package and any additional usage charges. Personal education access and nonprofit pricing use their own eligibility processes; review the savings guide before treating either as a general team discount.",
+    keyFeatures: ["Documents and notes", "Databases and project workflows", "Team collaboration", "Forms and published pages", "Plan-dependent AI capabilities", "Education and nonprofit eligibility programs"],
+  },
+  framer: {
+    pricingUrl: "https://www.framer.com/pricing",
+    updatedAt: "2026-10-23T00:00:00.000Z",
+    description: "Framer is a visual website design and publishing platform. Compare Site plans, CMS needs, editor access and the terms of its student website program.",
+    longDescription: "Framer combines visual website design with publishing and CMS features. Evaluate the page structure, content collections, traffic and editing workflow required by the site. Compare the total publishing cost, including any seats, domains and optional features. The official student program has an application and permitted-use conditions; it should not be assumed to cover a commercial client project.",
+    keyFeatures: ["Visual website design", "Website publishing", "CMS collections", "Responsive layouts", "Team editing", "Plan-dependent localization and site features"],
+  },
   beehiiv: {
     description: "Beehiiv is a newsletter platform with publishing, audience tools and paid-plan growth features. Compare subscriber tiers, billing and current plan limits.",
     longDescription: "Beehiiv combines newsletter publishing with website and audience tools. Its current pricing distinguishes Free, Lite, Pro and Enterprise plans. Compare the features required for your publication at its subscriber count, then evaluate migration, automation and monetization workflows before selecting a paid billing period. The savings guide explains annual billing and coupon availability separately from free access.",

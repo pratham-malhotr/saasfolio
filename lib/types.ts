@@ -34,6 +34,7 @@ export interface SaaSDeal {
   category: string;
   categorySlug: string;
   discountPercentage: number;
+  discountKind?: "exact" | "up-to";
   dealType: "coupon" | "lifetime" | "free_trial" | "free_plan" | "offer" | "pricing";
   code?: string;
   originalPrice?: number;
@@ -87,5 +88,7 @@ export interface DetailedTool {
   sourceUrl?: string;
   pricingUrl?: string;
   pricingVerified?: boolean;
+  providerStatus?: "unavailable";
+  providerNote?: string;
   updatedAt?: string;
 }

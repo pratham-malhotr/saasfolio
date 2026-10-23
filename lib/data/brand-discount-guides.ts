@@ -1,3 +1,12 @@
+import { ADDITIONAL_DISCOUNT_GUIDES } from "@/lib/data/additional-discount-guides";
+
+export interface BrandSavingsOption {
+  type: "Annual billing" | "Team discount" | "Bundle discount" | "Education offer" | "Nonprofit discount";
+  saving: string;
+  terms: string;
+  sourceUrl: string;
+}
+
 export interface BrandDiscountGuide {
   reviewedAt: string;
   sourceUrl: string;
@@ -9,6 +18,7 @@ export interface BrandDiscountGuide {
   redemptionSteps: string[];
   relatedSlugs: string[];
   sources?: { label: string; url: string }[];
+  savingsOptions?: BrandSavingsOption[];
   sections: { heading: string; text: string }[];
   sourceNotes: string[];
   faqs: { question: string; answer: string }[];
@@ -17,10 +27,11 @@ export interface BrandDiscountGuide {
 // Editorial observations are dated, sourced, and separate from live coupon data.
 // Add an original guide here before indexing a brand without a sourced discount.
 export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
+  ...ADDITIONAL_DISCOUNT_GUIDES,
   "predis-ai": {
-    reviewedAt: "2026-10-21",
+    reviewedAt: "2026-10-23",
     sourceUrl: "https://predis.ai/pricing/",
-    searchTitle: "Predis.ai Discounts, Promo Codes & Annual Savings",
+    searchTitle: "Predis.ai Discounts & Coupon Codes",
     metaDescription: "Compare Predis.ai discounts, annual billing and coupon availability. Check trial terms, plan limits and sourced savings options before subscribing.",
     intro: "Looking for a Predis discount? Compare annual billing with monthly billing, check the trial conditions, and choose the credits and brand limits you actually need before committing to an AI content subscription.",
     summary: "Start by testing a real content brief, then compare the yearly invoice for the plan that covers your brands and publishing workflow. A headline annual saving is useful only if the included generation allowance suits the work you expect to publish.",
@@ -31,6 +42,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     redemptionSteps: ["Open Predis.ai pricing and compare the same plan on monthly and annual billing.", "Test a representative post, carousel or video before the trial deadline shown in your account.", "Select your brand and channel requirements, then include any extra credits in the payable total.", "Apply a code only if a sourced offer supplies one; check the final invoice and cancellation deadline before confirming."],
     relatedSlugs: ["ocoya", "taplio", "beehiiv"],
+    savingsOptions: [
+      { type: "Annual billing", saving: "Plan-specific yearly savings", terms: "The pricing page shows different annual reductions for Core, Rise and Enterprise+. Select the same plan on both billing periods and compare the full yearly invoice. No separate coupon is required for the displayed billing price.", sourceUrl: "https://predis.ai/pricing/" },
+    ],
     sections: [
       { heading: "Predis.ai annual billing versus a promo code", text: "An annual billing reduction is a plan price, rather than a separate coupon. Compare the full yearly invoice with twelve monthly payments for the same plan. A lower monthly equivalent can still require a larger payment today." },
       { heading: "Choose a plan around your content workflow", text: "For a single brand, compare generation credits and connected channels first. Agencies should also check brand limits and whether automatic posting is included. Add the cost of extra credits and channels before deciding which plan offers better value." },
@@ -49,10 +63,10 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   beehiiv: {
-    reviewedAt: "2026-10-21",
+    reviewedAt: "2026-10-23",
     sourceUrl: "https://www.beehiiv.com/pricing",
-    searchTitle: "Beehiiv Discounts & Promo Codes: Newsletter Savings",
-    metaDescription: "Explore beehiiv discounts and coupon availability. Compare the free plan, paid-feature trials, subscriber limits and promotion terms before upgrading.",
+    searchTitle: "Beehiiv Discounts & Promo Codes",
+    metaDescription: "Find beehiiv discount and promo code guidance. Compare annual savings, subscriber tiers, free access and renewal terms before upgrading your newsletter.",
     intro: "Looking for a beehiiv discount? Start by comparing the free plan, paid-feature trials, and the subscription tier suited to your audience. Check the subscriber limit and renewal price before choosing a promotion.",
     summary: "Choose your newsletter workflow and subscriber tier before comparing a beehiiv promo code with annual billing. Starting free can preserve cash while you validate your publication; an introductory paid offer is more useful when you already need the eligible features.",
     decisionRows: [
@@ -61,7 +75,10 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
       { option: "Pay annually", bestFor: "A publication with a tested workflow and a year of budget", check: "Yearly total, audience growth, upgrades and renewal terms" },
     ],
     redemptionSteps: ["Open beehiiv pricing and set your actual subscriber count before comparing plans.", "Compare monthly and yearly totals for the same tier and identify the features you need now.", "If a sourced promotion is listed, review eligible accounts, billing periods and its duration before entering the code in signup or billing.", "Check the first invoice and the following renewal amount. Record the terms rather than assuming an affiliate link changes the price."],
-    relatedSlugs: ["systeme-io", "taplio", "predis-ai"],
+    relatedSlugs: ["convertkit", "mailerlite", "systeme-io"],
+    savingsOptions: [
+      { type: "Annual billing", saving: "Up to 20% with yearly billing", terms: "The provider advertises yearly savings compared with monthly billing. Set your subscriber count and paid plan first; the saving depends on the selected subscription. Confirm the full annual payment and renewal amount.", sourceUrl: "https://www.beehiiv.com/pricing" },
+    ],
     sources: [{ label: "Plan tiers and subscriber counting", url: "https://www.beehiiv.com/support/article/23874462928663-plan-types-and-subscriber-plan-tier-pricing" }],
     sections: [
       { heading: "Start with the free plan when it fits", text: "A free plan can be more useful than a short introductory promotion for a new newsletter. Check whether your publication fits its audience limit and whether you need paid features immediately. A free subscription is a separate option from a percentage-off coupon." },
@@ -83,9 +100,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   "snov-io": {
-    reviewedAt: "2026-10-21",
+    reviewedAt: "2026-10-23",
     sourceUrl: "https://snov.io/pricing",
-    searchTitle: "Snov.io Discounts & Coupon Codes: Outreach Savings",
+    searchTitle: "Snov.io Discounts & Coupon Codes",
     metaDescription: "Compare Snov.io discounts, annual Sales Suite billing and coupon availability. Check credits, recipients, LinkedIn slots and enrichment costs before paying.",
     intro: "Searching for a Snov discount? Price the outreach workflow you actually need: finding contacts, verifying addresses, reaching recipients and any separate LinkedIn or enrichment usage. A Sales Suite saving does not establish the cost of every service in your account.",
     summary: "Compare Snov.io billing terms against your expected prospecting volume. Work out which allowance you will exhaust first and include separately priced services before deciding whether a yearly commitment offers better value than monthly billing.",
@@ -96,6 +113,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     redemptionSteps: ["Select Sales Suite on official Snov.io pricing and compare the available billing periods for the same allowance.", "Estimate credits and recipients from a representative prospecting list; review separate LinkedIn slots and enrichment requirements.", "Review the terms of any sourced code before applying it to the eligible service.", "Confirm the invoice, credit renewal rules and any extra service charges before subscribing."],
     relatedSlugs: ["smartlead", "taplio", "systeme-io"],
+    savingsOptions: [
+      { type: "Annual billing", saving: "25% on annual Sales Suite billing", terms: "Compare the same credit and recipient allowance. LinkedIn Automation and enrichment have separate pricing; confirm which services the annual reduction covers before subscribing.", sourceUrl: "https://snov.io/pricing" },
+    ],
     sections: [
       { heading: "Snov.io annual billing versus a coupon", text: "Compare the same Sales Suite allowance across billing periods. Record the annual invoice and divide it by the number of months you realistically expect to use the product. If you are still changing your sales process, the flexibility of a shorter subscription may matter more than the lowest advertised monthly equivalent." },
       { heading: "Plan for the allowance you use first", text: "Build a budget from one realistic campaign: prospects researched, addresses verified, people contacted and follow-up work. Avoid treating every usage label as interchangeable. Ask what happens when one allowance is exhausted while another remains. This makes it easier to compare a larger plan with a smaller plan plus the extra work your team would otherwise do manually." },
@@ -111,9 +131,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   ocoya: {
-    reviewedAt: "2026-10-21",
+    reviewedAt: "2026-10-23",
     sourceUrl: "https://www.ocoya.com/pricing",
-    searchTitle: "Ocoya Discounts & Promo Codes: Social Media Savings",
+    searchTitle: "Ocoya Discounts & Promo Codes",
     metaDescription: "Explore Ocoya discounts, coupon availability and yearly billing. Compare social profiles, team access, shared credits and trial terms before subscribing.",
     intro: "Looking for an Ocoya discount or promo code? Compare the cost of the social profiles, people and content workload you need to manage. An annual price reduction can be useful for an established publishing calendar, while a trial helps test the workflow first.",
     summary: "List the brands and profiles you manage, then test a complete publishing cycle before committing to a year of Ocoya. Include content creation, approvals and scheduled delivery in that evaluation, and check the billing deadline shown when starting a trial.",
@@ -124,6 +144,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     redemptionSteps: ["Open Ocoya pricing and count every social profile and team member required for your workflow.", "Compare monthly and yearly billing for an eligible plan, including the full annual invoice and applicable VAT.", "Use the trial to connect a profile you control and test content, approval and scheduling steps before its billing deadline.", "If you have a sourced coupon, check its eligibility and the resulting invoice; otherwise compare the provider's displayed billing options."],
     relatedSlugs: ["predis-ai", "taplio", "beehiiv"],
+    savingsOptions: [
+      { type: "Annual billing", saving: "Two months free with yearly billing", terms: "The yearly billing option advertises two months free. Compare the same plan's profile, user and credit limits, and include applicable VAT in the annual invoice.", sourceUrl: "https://www.ocoya.com/pricing" },
+    ],
     sections: [
       { heading: "Compare Ocoya yearly billing with your publishing season", text: "Map out how many months you expect to manage the accounts. A year of regular client work is different from a short campaign or a temporary product launch. Compare the full yearly payment with the monthly payments you would actually make, and keep room in the budget for work that grows beyond the selected plan." },
       { heading: "Count social profiles before choosing a plan", text: "Prepare an inventory of client brands, networks and people who need access. Include accounts you plan to add soon. Check how the provider counts each connection and whether the intended workflow requires a higher tier. A discount on an undersized plan is less useful if you must upgrade immediately after onboarding." },
@@ -139,9 +162,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   taplio: {
-    reviewedAt: "2026-10-21",
+    reviewedAt: "2026-10-23",
     sourceUrl: "https://taplio.com/pricing",
-    searchTitle: "Taplio Discounts & Coupon Codes: LinkedIn Savings",
+    searchTitle: "Taplio Discounts & Coupon Codes",
     metaDescription: "Compare Taplio discounts, yearly billing, team-seat offers and coupon rules. Check LinkedIn workflow needs and eligible savings before choosing a plan.",
     intro: "A useful Taplio discount starts with the LinkedIn accounts and writing workflow you need. Compare the eligible yearly, team or bundle options for your account, then check whether an additional promo code would actually improve the invoice.",
     summary: "Choose a plan around the work you will use: preparing posts, publishing consistently or managing a larger engagement routine. Compare eligible savings on the next invoice and include every account you need to license.",
@@ -152,7 +175,12 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     redemptionSteps: ["Compare Taplio plans and list the accounts you need to license.", "Review the official discount rules for yearly billing, team seats or an eligible bundle.", "For a new subscription, enter a sourced coupon at checkout; for an existing subscription, ask provider support about applying it.", "Inspect the upcoming invoice and confirm which single discount applies before renewing."],
     relatedSlugs: ["ocoya", "predis-ai", "snov-io"],
-    sources: [{ label: "Official discount and coupon rules", url: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" }, { label: "Plans, credits and yearly prices", url: "https://intercom.help/taplio/en/articles/17172779-taplio-plans-and-pricing-starter-growth-and-pro-compared" }],
+    savingsOptions: [
+      { type: "Annual billing", saving: "Lower yearly subscription prices", terms: "Compare the yearly total for your selected plan with twelve monthly payments. The reduction varies by plan; the provider's discount policy lists each billing option.", sourceUrl: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" },
+      { type: "Team discount", saving: "10–20% for eligible organization seats", terms: "The provider lists 10% for 2+ seats, 15% for 11+ and 20% for 51+. Changes apply to future billing. Discounts cannot be combined; check your upcoming invoice.", sourceUrl: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" },
+      { type: "Bundle discount", saving: "25% on an eligible Tweet Hunter bundle", terms: "Connect eligible Taplio and Tweet Hunter accounts. The policy describes a reduction on future invoices for both subscriptions. Only one discount applies at a time; include both subscriptions in your budget.", sourceUrl: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" },
+    ],
+    sources: [{ label: "Official discount and coupon rules", url: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" }, { label: "Plans, credits and yearly prices", url: "https://intercom.help/taplio/en/articles/17357650-taplio-plans-and-pricing-starter-growth-and-pro-compared" }],
     sections: [
       { heading: "Buy for your actual LinkedIn routine", text: "Write down a realistic week: research, drafts, edits, scheduling and replies. Test the tasks where you expect the tool to save time. If you already have a strong writing process, compare the value of publishing support separately from AI assistance. Avoid paying for a larger workflow because its headline percentage saving is higher." },
       { heading: "Compare yearly, team and bundle eligibility", text: "Use the provider's discount policy to establish the options available to your account. List the final invoice for each eligible option rather than adding percentages together. For a team, include every licensed person and check when a changed seat count affects billing. For a bundle, include the second subscription in your total spending." },
@@ -166,9 +194,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   "systeme-io": {
-    reviewedAt: "2026-10-21",
+    reviewedAt: "2026-10-23",
     sourceUrl: "https://systeme.io/pricing",
-    searchTitle: "Systeme.io Discounts & Coupon Codes: Funnel Savings",
+    searchTitle: "Systeme.io Discounts & Coupon Codes",
     metaDescription: "Find Systeme.io discount guidance and coupon availability. Compare free access, annual billing, funnel limits and migration costs before upgrading.",
     intro: "Looking for a Systeme.io discount? Begin with the funnels, contact list and course workflow your business needs. Compare free access and paid billing options against the subscriptions you would actually replace, then review any promotion's eligibility.",
     summary: "Validate a complete customer journey before committing to a paid funnel platform: signup, email, checkout and product access. A lower annual bill is most useful once the workflow is ready to run and the plan's limits match your launch.",
@@ -178,7 +206,10 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
       { option: "Annual billing", bestFor: "An established funnel with a realistic operating budget", check: "Full invoice and the costs of migration and payment processing" },
     ],
     redemptionSteps: ["Review Systeme.io pricing and match the current plan limits to your contact list, funnels and products.", "Compare monthly and annual totals for that same plan.", "Test the complete signup and purchase journey before moving your production audience.", "If a sourced promotion applies, confirm the final invoice and renewal terms before upgrading."],
-    relatedSlugs: ["beehiiv", "anytrack", "taplio"],
+    relatedSlugs: ["beehiiv", "convertkit", "mailerlite"],
+    savingsOptions: [
+      { type: "Annual billing", saving: "Two months free on annual billing", terms: "The provider advertises two months free with annual billing. Check the eligible paid plan, contacts and funnel limits. Free-plan access is a separate option with its own allowances.", sourceUrl: "https://systeme.io/pricing" },
+    ],
     sections: [
       { heading: "Use the free option to validate a complete funnel", text: "Test more than the landing page. Follow a customer from the form through the email sequence and intended product access, using a test payment flow where available. Record the features your launch requires and compare them with the current plan limits. This helps you decide whether a paid tier solves an actual constraint." },
       { heading: "Compare the stack you will really replace", text: "List your existing email, page, course and automation subscriptions. Mark which can be cancelled after migration and which must stay. Add any overlap while the new workflow is being tested. Count only confirmed cancellations as savings; a new all-in-one account does not automatically remove the costs of your existing stack." },
@@ -192,9 +223,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   smartlead: {
-    reviewedAt: "2026-10-21",
+    reviewedAt: "2026-10-23",
     sourceUrl: "https://www.smartlead.ai/pricing",
-    searchTitle: "Smartlead.ai Discounts & Coupon Codes: Sending Costs",
+    searchTitle: "Smartlead.ai Discounts & Coupon Codes",
     metaDescription: "Compare Smartlead.ai discounts, annual billing and coupon status. Budget for contact storage, email sends, mailboxes and add-ons before subscribing.",
     intro: "A Smartlead discount should be evaluated against your complete outbound setup. Compare stored contacts, monthly sends and required account features, then include mailboxes, domains and other services in your campaign budget.",
     summary: "Estimate a real campaign before choosing a Smartlead plan. Count follow-ups as well as first emails, confirm the limits your team will use and compare the invoice with any optional add-ons included.",
@@ -205,6 +236,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     redemptionSteps: ["Open Smartlead pricing and choose the software plan rather than assuming a managed-service quote covers the same product.", "Estimate contact storage and monthly sends, including scheduled follow-ups.", "Compare billing periods with every required add-on included.", "Apply a sourced code only to an eligible purchase and review the invoice before confirming."],
     relatedSlugs: ["snov-io", "taplio", "anytrack"],
+    savingsOptions: [
+      { type: "Annual billing", saving: "17% with yearly billing", terms: "The software pricing page advertises a yearly reduction. Compare the same contact and sending capacity; add verification, infrastructure or managed-service charges separately where required.", sourceUrl: "https://www.smartlead.ai/pricing" },
+    ],
     sections: [
       { heading: "Calculate campaign volume before comparing discounts", text: "Start with the number of prospects and the sequence you intend to send. Allow for follow-ups and overlapping campaigns, then compare that volume with the plan's limits. Keep a separate estimate for stored contacts. An account can need more capacity even when the number of new prospects in a month looks modest." },
       { heading: "Separate the sending tool from its infrastructure", text: "List the mailbox, domain, verification and integration costs alongside the software subscription. Check which are included, optional or supplied by another provider. A saving on the central subscription is one line of the outbound budget; calculate the total before comparing two providers." },
@@ -218,9 +252,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   streamyard: {
-    reviewedAt: "2026-10-21",
+    reviewedAt: "2026-10-23",
     sourceUrl: "https://streamyard.com/pricing",
-    searchTitle: "StreamYard Discounts & Coupon Codes: Streaming Plans",
+    searchTitle: "StreamYard Discounts & Coupon Codes",
     metaDescription: "Compare StreamYard discounts, yearly billing and coupon status. Check individual or business eligibility, destinations and recording needs before paying.",
     intro: "Looking for a StreamYard discount? Match the plan to your live show first: who is using it, how many destinations it must reach, and what recordings you need afterwards. Plan eligibility matters alongside the subscription price.",
     summary: "For an occasional event, compare the months of access you actually need with a yearly commitment. For a regular show, test a full rehearsal and confirm the required recording, guest and destination features before choosing an annual offer.",
@@ -231,6 +265,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     redemptionSteps: ["Review the StreamYard plan usage rules and select the eligible individual or business offering.", "Compare billing periods for the plan with your required destinations and recording features.", "Rehearse with your actual guest, audio, screen-sharing and destination setup.", "Check any sourced code's conditions and the final invoice, including renewal, before subscribing."],
     relatedSlugs: ["ocoya", "predis-ai", "beehiiv"],
+    savingsOptions: [
+      { type: "Annual billing", saving: "Yearly savings on eligible streaming plans", terms: "Compare the yearly and monthly totals for your required streaming and recording features. Confirm individual or business eligibility before choosing a plan or applying a promotion.", sourceUrl: "https://streamyard.com/pricing" },
+    ],
     sections: [
       { heading: "Choose eligibility before comparing the lowest price", text: "Establish whether the broadcast is personal or operated for a business or organization. Use the provider's current plan rules when selecting the account. Ask for clarification before paying if the intended use falls between categories; the cheapest displayed individual option should not be assumed to cover a company production." },
       { heading: "Budget for the finished production", text: "Create a checklist of on-screen participants, destinations, local recordings and the files your editor needs afterwards. Include storage and any separate editing workflow. Compare a full rehearsal result across the plans you are considering rather than choosing only from the resolution printed on a pricing card." },
@@ -244,9 +281,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   anytrack: {
-    reviewedAt: "2026-10-21",
+    reviewedAt: "2026-10-23",
     sourceUrl: "https://anytrack.io/pricing",
-    searchTitle: "AnyTrack Discounts & Coupon Codes: Attribution Costs",
+    searchTitle: "AnyTrack Discounts & Coupon Codes",
     metaDescription: "Explore AnyTrack discounts, yearly billing and coupon availability. Compare sessions, websites, integrations and overage costs before choosing a plan.",
     intro: "An AnyTrack discount is most useful when the plan supports your actual traffic and conversion workflow. Count websites, estimate tracked sessions and identify the integrations required to connect a campaign with the outcome you want to measure.",
     summary: "Test a complete conversion path before making a long commitment. Compare plan limits with normal traffic and a peak campaign month, then include the cost of overages or extra websites when weighing a yearly offer.",
@@ -257,6 +294,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     redemptionSteps: ["Select AnyTrack pricing and list every website and integration required.", "Estimate normal and peak-month sessions and review the current overage rules.", "Test a representative conversion from landing page to the final destination before committing.", "Compare monthly and annual totals, then confirm any sourced coupon and the complete payable amount."],
     relatedSlugs: ["systeme-io", "smartlead", "baremetrics"],
+    savingsOptions: [
+      { type: "Annual billing", saving: "Two months free with annual billing", terms: "Select an eligible paid plan and compare the full annual invoice with monthly billing. Include website limits, tracked-session allowances and any overage charges in your budget.", sourceUrl: "https://anytrack.io/pricing" },
+    ],
     sources: [{ label: "Official feature comparison", url: "https://readme.anytrack.io/docs/plan-comparison" }],
     sections: [
       { heading: "Compare traffic costs before a yearly offer", text: "Use recent site traffic and the campaign calendar to estimate a normal month and a peak month. Leave room for tests or launches that increase volume. Compare the full plan cost at each level, including the stated overage treatment, so a temporary rise in traffic does not undermine the saving you expected." },
@@ -271,9 +311,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   baremetrics: {
-    reviewedAt: "2026-10-21",
+    reviewedAt: "2026-10-23",
     sourceUrl: "https://baremetrics.com/pricing",
-    searchTitle: "Baremetrics Discounts & Coupon Codes: Analytics Plans",
+    searchTitle: "Baremetrics Discounts & Coupon Codes",
     metaDescription: "Compare Baremetrics discounts, annual pricing and coupon status. Check revenue eligibility, integrations and analytics workflow before choosing a plan.",
     intro: "Looking for a Baremetrics discount? Compare the analytics plan your subscription business qualifies for, the data sources it must connect and the operational features you actually need. Review the total invoice rather than a historical annual-saving claim.",
     summary: "Validate the numbers against your own billing records before choosing an analytics subscription. Then compare the eligible monthly and annual prices, including the integrations and any additional workflow you plan to use.",
@@ -284,6 +324,9 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     redemptionSteps: ["Open Baremetrics pricing and check which plan and revenue band apply to your business.", "List the billing sources and modules required, then confirm what the quoted price includes.", "Evaluate the connected data against your own records before committing to an annual workflow.", "Compare the monthly and yearly invoices and apply a sourced code only when the provider confirms eligibility."],
     relatedSlugs: ["anytrack", "systeme-io", "beehiiv"],
+    savingsOptions: [
+      { type: "Annual billing", saving: "Up to 35% on annual plans", terms: "The official pricing FAQ describes annual discounts of up to 35%. Eligibility and the total depend on your revenue band, plan and integrations. Check add-ons and renewal terms in the quote for your business.", sourceUrl: "https://baremetrics.com/pricing" },
+    ],
     sections: [
       { heading: "Match the plan to revenue and data requirements", text: "List the billing systems your business uses and confirm which need to be connected. Review current plan eligibility with your actual revenue profile instead of assuming an entry price applies to every company. Ask how growth or an additional integration would affect the invoice before committing to a longer period." },
       { heading: "Reconcile metrics before approving a year", text: "Choose a sample of real subscription changes: a new customer, a cancellation, an upgrade and a refund. Compare how they appear in the reporting workflow with your billing records and internal definitions. Document unresolved differences so the team understands the reports it will use for decisions." },

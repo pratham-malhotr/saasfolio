@@ -1,8 +1,98 @@
 [
-  { "provider": "simplycodes", "toolSlug": "quillbot-premium", "name": "SimplyCodes", "url": "https://simplycodes.com/store/quillbot.com" },
-  { "provider": "simplycodes", "toolSlug": "writesonic", "name": "SimplyCodes", "url": "https://simplycodes.com/store/writesonic.com" },
-  { "provider": "simplycodes", "toolSlug": "hostinger", "name": "SimplyCodes", "url": "https://simplycodes.com/store/hostinger.com" },
-  { "provider": "simplycodes", "toolSlug": "canva", "name": "SimplyCodes", "url": "https://simplycodes.com/store/canva.com" },
-  { "provider": "simplycodes", "toolSlug": "unbounce", "name": "SimplyCodes", "url": "https://simplycodes.com/store/unbounce.com" },
-  { "provider": "techradar", "toolSlug": "hostinger", "name": "TechRadar", "url": "https://www.techradar.com/coupons/hostinger" }
+  {
+    "provider": "simplycodes",
+    "toolSlug": "quillbot-premium",
+    "name": "SimplyCodes",
+    "url": "https://simplycodes.com/store/quillbot.com"
+  },
+  {
+    "provider": "simplycodes",
+    "toolSlug": "writesonic",
+    "name": "SimplyCodes",
+    "url": "https://simplycodes.com/store/writesonic.com"
+  },
+  {
+    "provider": "simplycodes",
+    "toolSlug": "hostinger",
+    "name": "SimplyCodes",
+    "url": "https://simplycodes.com/store/hostinger.com"
+  },
+  {
+    "provider": "simplycodes",
+    "toolSlug": "canva",
+    "name": "SimplyCodes",
+    "url": "https://simplycodes.com/store/canva.com"
+  },
+  {
+    "provider": "simplycodes",
+    "toolSlug": "unbounce",
+    "name": "SimplyCodes",
+    "url": "https://simplycodes.com/store/unbounce.com"
+  },
+  {
+    "provider": "techradar",
+    "toolSlug": "hostinger",
+    "name": "TechRadar",
+    "url": "https://www.techradar.com/coupons/hostinger"
+  },
+  {
+    "provider": "simplycodes",
+    "toolSlug": "beehiiv",
+    "name": "SimplyCodes",
+    "url": "https://simplycodes.com/store/beehiiv.com",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-23",
+    "note": "Community-reported beehiiv codes and verification activity. Check each report’s age and eligibility; SaaSFolio has not tested these codes at checkout."
+  },
+  {
+    "provider": "secret",
+    "toolSlug": "beehiiv",
+    "name": "Secret",
+    "url": "https://www.joinsecret.com/beehiiv",
+    "kind": "partner-marketplace",
+    "access": "paid-membership",
+    "reviewedAt": "2026-10-23",
+    "note": "The reviewed beehiiv listing gates access behind Secret Premium. Include the membership fee and confirm new-customer eligibility before comparing it with direct pricing."
+  },
+  {
+    "provider": "secret",
+    "toolSlug": "predis-ai",
+    "name": "Secret",
+    "url": "https://www.joinsecret.com/predis-ai",
+    "kind": "partner-marketplace",
+    "access": "paid-membership",
+    "reviewedAt": "2026-10-23",
+    "note": "The reviewed listing requires Secret Premium and an eligible partner signup. Its stated eligibility covers new or free-version accounts; confirm approval and membership costs on the source."
+  },
+  {
+    "provider": "simplycodes",
+    "toolSlug": "taplio",
+    "name": "SimplyCodes",
+    "url": "https://simplycodes.com/store/taplio.com",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-23",
+    "note": "Historical and community-reported Taplio codes may appear beside newer activity labels. Compare the underlying report date with Taplio’s official discount and stacking policy."
+  },
+  {
+    "provider": "simplycodes",
+    "toolSlug": "snov-io",
+    "name": "SimplyCodes",
+    "url": "https://simplycodes.com/store/snov.io",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-23",
+    "note": "Third-party Snov.io code reports. Confirm the applicable service, billing period and original report date; a publisher badge is not a SaaSFolio checkout test."
+  },
+  {
+    "provider": "secret",
+    "toolSlug": "notion",
+    "name": "Secret",
+    "url": "https://www.joinsecret.com/notion",
+    "kind": "partner-marketplace",
+    "access": "account",
+    "reviewedAt": "2026-10-23",
+    "note": "An account or eligibility application may be required for the listed Notion partner program. Check existing-account restrictions and any access charges before applying."
+  }
 ]

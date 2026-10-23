@@ -1,13 +1,19 @@
 import { createHash } from "node:crypto";
 import { retryAfterSeconds } from "./source-backoff.mjs";
+import { parse } from "parse5";
+export { discoverVendorOffer } from "../../lib/offer-evidence.mjs";
 
 export const MAX_AGE_DAYS = 14;
 export const hash = (text) => createHash("sha256").update(text).digest("hex");
 export function plainText(html) {
-  return html.replace(/<(script|style|noscript|svg)\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
-    .replace(/<[^>]+>/g, " ").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
-    .replace(/&nbsp;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"')
-    .replace(/&#39;|&apos;/g, "'").replace(/\s+/g, " ").trim();
+  function visible(node) {
+    if (node.nodeName === "#text") return node.value;
+    if (node.nodeName === "#comment" || ["script", "style", "noscript", "svg", "template"].includes(node.tagName)) return "";
+    const attrs = Object.fromEntries((node.attrs || []).map(attr => [attr.name, attr.value]));
+    if (Object.hasOwn(attrs, "hidden") || Object.hasOwn(attrs, "inert") || attrs["aria-hidden"] === "true" || /(?:display\s*:\s*none|visibility\s*:\s*hidden)/i.test(attrs.style || "")) return "";
+    return (node.childNodes || []).map(visible).join(" ");
+  }
+  return visible(parse(html)).replace(/\s+/g, " ").trim();
 }
 export function safePublicUrl(value) {
   try {
@@ -21,26 +27,6 @@ export function safePublicUrl(value) {
 export function domainMatches(url, website) {
   const host = (value) => new URL(value).hostname.replace(/^www\./, "");
   return host(url) === host(website) || host(url).endsWith(`.${host(website)}`);
-}
-
-// Only extract visible evidence. Scripts, hidden API payloads, unrelated coupon
-// sites and percentage banners never become automatically published discounts.
-export function discoverVendorOffer(text) {
-  const patterns = [
-    { type: "free_trial", re: /\b(?:start|try|begin|get|claim)\s+(?:your\s+|a\s+|our\s+)?(?:free\s+)?(?:\d+[- ]day\s+)?free\s+trial\b/i },
-    { type: "free_trial", re: /\b(?:try|start|get)\s+(?:it\s+|your\s+|a\s+)?(?:free\s+for\s+\d+\s+days|\d+[- ]day\s+(?:free\s+)?trial)\b/i },
-    { type: "free_plan", re: /\b(?:free\s+(?:forever\s+)?plan|free\s+forever|forever\s+free)\b/i },
-  ];
-  for (const { type, re } of patterns) {
-    for (const match of text.matchAll(new RegExp(re.source, "gi"))) {
-      const before = text.slice(Math.max(0, match.index - 75), match.index);
-      const after = text.slice(match.index + match[0].length, match.index + match[0].length + 100);
-      if (/\b(?:no|not|never|without|discontinued|previously)\b[^.!?]{0,50}$/i.test(before) ||
-        /^\s*(?:is\s+not|isn't|was\s+discontinued|\?\s*No\b)/i.test(after)) continue;
-      return { type, evidence: text.slice(Math.max(0, match.index - 70), match.index + match[0].length + 150) };
-    }
-  }
-  return null;
 }
 
 export function extractCouponCandidates(html, sourceUrl, toolSlug) {

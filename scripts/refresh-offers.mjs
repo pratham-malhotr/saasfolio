@@ -16,7 +16,9 @@ const base = await read("lib/data/catalog-seeds.json", []);
 const reviewed = await read("lib/data/reviewed-offers.json", []);
 const state = await read("lib/data/offer-snapshot.json", { sources: {}, offers: [], candidates: [] });
 const selected = process.argv.find(a => a.startsWith("--only="))?.slice(7).split(",");
-const vendorSeeds = [...base, ...extra].filter((b, i, all) => all.findIndex(t => t.slug === b.slug) === i && (!selected || selected.includes(b.slug)));
+const providerLinks = await read("lib/data/provider-links.json", {});
+const vendorSeeds = [...base, ...extra].filter((b, i, all) => all.findIndex(t => t.slug === b.slug) === i && (!selected || selected.includes(b.slug)) && providerLinks[b.slug]?.providerStatus !== "unavailable")
+  .map(seed => ({ ...seed, url: providerLinks[seed.slug]?.pricingUrl || seed.url }));
 const discoveryOnly = process.argv.includes("--discovery-only");
 const jobs = discoveryOnly ? [] : vendorSeeds.map(b => ({ ...b, kind: "vendor", key: `vendor:${b.slug}` }));
 if (!discoveryOnly) for (const item of reviewed) if (!selected || selected.includes(item.toolSlug)) jobs.push({ ...item, offerSlug: item.slug, slug: item.toolSlug, url: item.sourceUrl, kind: item.sourceKind, key: `reviewed:${item.slug}` });
@@ -70,7 +72,8 @@ async function run(job) {
     if (page.unchanged) {
       if (!previous?.contentHash) throw new Error("304 without previous source evidence");
       state.sources[job.key] = { ...previous, checkedAt: now, status: "ok", error: null, failureCount: 0, nextAttemptAt: null, httpStatus: 304 };
-      state.offers = state.offers.map(o => o.sourceKey === job.key ? { ...o, checkedAt: now } : o);
+      state.offers = state.offers.filter(o => o.sourceKey !== job.key || !job.key.startsWith("vendor:") || discoverVendorOffer(o.evidence)?.type === o.dealType)
+        .map(o => o.sourceKey === job.key ? { ...o, checkedAt: now } : o);
       return;
     }
     const text = plainText(page.html);
@@ -106,6 +109,7 @@ async function run(job) {
     if (error.status === 401 || error.status === 403 || error.status === 429) blockedHosts.set(new URL(job.url).hostname, { error, backoff });
     state.sources[job.key] = { ...previous, toolSlug: job.slug, url: job.url, kind: job.kind, status: "error", lastAttemptAt: now,
       ...backoff, error: error.message };
+    if ([404, 410].includes(error.status)) state.offers = state.offers.filter(offer => offer.sourceKey !== job.key);
     // Failed fetches never advance checkedAt. Old records age out after 14 days.
   }
 }

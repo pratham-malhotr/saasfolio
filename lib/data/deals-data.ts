@@ -3,10 +3,13 @@ import { TOOLS_DATA, getToolBySlug } from "./tools-data";
 import snapshot from "./offer-snapshot.json";
 import aliases from "./legacy-deal-aliases.json";
 import { publicHttpsUrl } from "@/lib/offer-links";
+import { discoverVendorOffer } from "@/lib/offer-evidence.mjs";
 
 const MAX_AGE = 14 * 24 * 60 * 60 * 1000;
 const checkedOffers: SaaSDeal[] = snapshot.offers
-  .filter(offer => getToolBySlug(offer.toolSlug) &&
+  .filter(offer => getToolBySlug(offer.toolSlug) && getToolBySlug(offer.toolSlug)?.providerStatus !== "unavailable" &&
+    (!offer.sourceKey.startsWith("vendor:") || discoverVendorOffer(offer.evidence)?.type === offer.dealType) &&
+    ![404, 410].includes((snapshot.sources as Record<string, { httpStatus?: number | null }>)[offer.sourceKey]?.httpStatus || 0) &&
     Date.parse(offer.checkedAt) <= Date.now() && Date.now() - Date.parse(offer.checkedAt) <= MAX_AGE &&
     (!("expiryDate" in offer) || !offer.expiryDate || Date.parse(String(offer.expiryDate)) > Date.now()) &&
     publicHttpsUrl(offer.destinationUrl))
@@ -15,7 +18,9 @@ const checkedOffers: SaaSDeal[] = snapshot.offers
     return {
       ...offer, id: `deal-${offer.slug}`, slug: offer.slug, toolSlug: tool.slug, toolName: tool.name,
       title: offer.title, description: `${offer.title}. ${tool.tagline}`,
+      terms: offer.sourceKey.startsWith("vendor:") ? `Provider wording: “${offer.evidence}” ${offer.terms}` : offer.terms,
       dealType: offer.dealType as SaaSDeal["dealType"], category: tool.category, categorySlug: tool.categorySlug,
+      discountKind: "discountKind" in offer && offer.discountKind === "up-to" ? "up-to" as const : undefined,
       affiliateUrl: offer.destinationUrl, expiryDate: "expiryDate" in offer ? String(offer.expiryDate || "") : "",
       verifiedAt: offer.checkedAt.slice(0, 10), successRate: 0, votesUp: 0, votesDown: 0, revealsCount: 0,
       sourceKind: offer.sourceKind as SaaSDeal["sourceKind"], checkoutTested: false, featured: true,
@@ -26,7 +31,7 @@ const checkedOffers: SaaSDeal[] = snapshot.offers
 
 // Brands without a sourced discount still have a useful, honest vendor link.
 // These entries never advertise a code, percentage saving, or free subscription.
-const pricingLinks: SaaSDeal[] = TOOLS_DATA.map(tool => ({
+const pricingLinks: SaaSDeal[] = TOOLS_DATA.filter(tool => tool.providerStatus !== "unavailable").map(tool => ({
   id: `deal-${tool.slug}-pricing`, slug: `${tool.slug}-pricing`, toolSlug: tool.slug, toolName: tool.name,
   title: `Current ${tool.name} pricing and offers`, category: tool.category, categorySlug: tool.categorySlug,
   dealType: "pricing", discountPercentage: 0, description: `${tool.tagline} Visit the provider for current plans and any available promotions.`,
@@ -46,11 +51,15 @@ export function getAllDeals(): SaaSDeal[] {
   return [...active, ...pricingLinks.filter(offer => !activeBrands.has(offer.toolSlug))];
 }
 export const DEALS_DATA: SaaSDeal[] = getAllDeals();
+export function getHistoricOfferToolSlug(id: string): string | undefined {
+  if (Object.hasOwn(aliases, id)) return (aliases as Record<string, string>)[id];
+  return snapshot.offers.find(offer => id === offer.slug || id === `deal-${offer.slug}`)?.toolSlug;
+}
 export function getDealBySlug(slug: string): SaaSDeal | undefined {
   const current = getAllDeals();
   const exact = current.find(deal => deal.slug === slug || deal.id === slug);
   if (exact) return exact;
-  const oldToolSlug = (aliases as Record<string, string>)[slug];
+  const oldToolSlug = Object.hasOwn(aliases, slug) ? (aliases as Record<string, string>)[slug] : undefined;
   const oldOffer = snapshot.offers.find(offer => offer.slug === slug);
   const toolSlug = getToolBySlug(oldToolSlug || oldOffer?.toolSlug || "")?.slug;
   return toolSlug ? current.find(deal => deal.toolSlug === toolSlug && (!oldOffer || deal.dealType === oldOffer.dealType)) : pricingLinks.find(deal => deal.slug === slug);

@@ -2,6 +2,7 @@ import { DetailedTool } from "@/lib/types";
 import expandedTools from "./expanded-tools.json";
 import sourceSnapshot from "./offer-snapshot.json";
 import { REVIEWED_BRAND_TOOLS, REVIEWED_BRAND_COPY } from "./reviewed-brand-tools";
+import providerLinks from "./provider-links.json";
 
 const LEGACY_TOOLS_DATA: DetailedTool[] = [
   {
@@ -49934,9 +49935,10 @@ const COMBINED_TOOLS_DATA: DetailedTool[] = [...REVIEWED_BRAND_TOOLS, ...LEGACY_
     } : {}),
     ...REVIEWED_BRAND_COPY[tool.slug],
     pricingPlans: [], sourceUrl: tool.sourceUrl || tool.website,
-    pricingUrl: tool.pricingUrl || ((sourceSnapshot.sources as Record<string, { status: string; url: string }>)[`vendor:${tool.slug}`]?.status === "ok"
+    pricingUrl: REVIEWED_BRAND_COPY[tool.slug]?.pricingUrl || tool.pricingUrl || ((sourceSnapshot.sources as Record<string, { status: string; url: string }>)[`vendor:${tool.slug}`]?.status === "ok"
       ? (sourceSnapshot.sources as Record<string, { status: string; url: string }>)[`vendor:${tool.slug}`].url
       : tool.website),
+    ...(providerLinks as Record<string, Partial<DetailedTool>>)[tool.slug],
   }));
 
 const brandKey = (tool: DetailedTool) => tool.name.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -49949,5 +49951,5 @@ export function getToolBySlug(slug: string): DetailedTool | undefined {
 }
 
 export function getAllTools(): DetailedTool[] {
-  return TOOLS_DATA;
+  return TOOLS_DATA.filter(tool => tool.providerStatus !== "unavailable");
 }
