@@ -271,6 +271,26 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                 </div>
               )}
 
+              {/* Quick Demo Fill option for frictionless testing */}
+              {mode === "login" && (
+                <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-between text-xs">
+                  <div>
+                    <span className="text-zinc-300 font-bold block">Quick Demo Credentials:</span>
+                    <span className="font-mono text-[11px] text-zinc-500">demo@saasfolio.tech / Password1234!</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEmail("demo@saasfolio.tech");
+                      setPassword("Password1234!");
+                    }}
+                    className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-[#C6FF3D]/10 hover:text-[#C6FF3D] border border-white/10 text-[11px] font-mono text-zinc-300 transition-colors"
+                  >
+                    Auto-Fill
+                  </button>
+                </div>
+              )}
+
               {/* Form Body */}
               <form onSubmit={submit} className="space-y-4">
                 <ServiceNotice status={serviceStatus} />

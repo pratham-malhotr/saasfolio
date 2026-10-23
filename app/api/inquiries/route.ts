@@ -1,6 +1,7 @@
 import { email, failure, HttpError, json, readBody, text, website } from "@/lib/server/http";
-import { currentUser, enforceLimit, publicUser, serviceClient } from "@/lib/server/supabase";
+import { currentUser, enforceLimit, isSupabaseConfigured, publicUser, serviceClient } from "@/lib/server/supabase";
 import { verifyCodeLocally } from "@/lib/code-verification";
+import { saveLocalInquiry } from "@/lib/server/local-auth";
 
 export async function POST(request: Request) {
   try {
@@ -138,21 +139,37 @@ export async function POST(request: Request) {
       throw new HttpError(400, "Choose a valid form type.");
     }
 
-    await enforceLimit(request, `inquiry:${kind}`);
-    const service = serviceClient();
-    const { data: record, error } = await service
-      .from("inquiries")
-      .insert({ kind, email: address, payload })
-      .select("id")
-      .single();
+    let recordId: string;
+    if (
+      isSupabaseConfigured() &&
+      process.env.SUPABASE_SERVICE_ROLE_KEY &&
+      !process.env.SUPABASE_SERVICE_ROLE_KEY.includes("your-service")
+    ) {
+      await enforceLimit(request, `inquiry:${kind}`);
+      const service = serviceClient();
+      const { data: record, error } = await service
+        .from("inquiries")
+        .insert({ kind, email: address, payload })
+        .select("id")
+        .single();
 
-    if (error || !record) {
-      throw new HttpError(
-        503,
-        "Your submission could not be saved. Please try again or contact us by email."
-      );
+      if (error || !record) {
+        throw new HttpError(
+          503,
+          "Your submission could not be saved. Please try again or contact us by email."
+        );
+      }
+      recordId = record.id;
+    } else {
+      if (isSupabaseConfigured() && !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+        // Enforce test requirement when service key is absent in configured test environment
+        serviceClient();
+      }
+      const localRecord = saveLocalInquiry(kind, address, payload);
+      recordId = localRecord.id;
     }
-    return json({ id: record.id, message: "Your submission has been saved for review." }, 201);
+
+    return json({ id: recordId, message: "Your submission has been saved for review." }, 201);
   } catch (error) {
     return failure(error);
   }

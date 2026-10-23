@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { authConfigured } from "@/lib/server/supabase";
+import { authConfigured, formsConfigured } from "@/lib/server/supabase";
 
 /**
  * Enterprise Health & Liveness Probe
@@ -19,8 +19,8 @@ export async function GET() {
     checks: {
       catalog: "available",
       accountsConfigured: authConfigured(),
-      formsConfigured: authConfigured() && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
-      newsletterConfigured: authConfigured() && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.RESEND_API_KEY && process.env.NEWSLETTER_FROM_EMAIL),
+      formsConfigured: formsConfigured(),
+      newsletterConfigured: Boolean(process.env.RESEND_API_KEY && process.env.NEWSLETTER_FROM_EMAIL),
       responseTimeMs: Math.max(1, Date.now() - startTime),
     },
   };
