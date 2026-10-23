@@ -6,8 +6,6 @@ import { BRAND_PURCHASE_CHECKS } from "@/lib/data/brand-purchase-checks";
 import { summarize } from "@/lib/seo";
 import type { DetailedTool, SaaSDeal } from "@/lib/types";
 
-export const FEATURED_DISCOUNT_SLUGS = ["beehiiv", "predis-ai", "taplio", "baremetrics", "snov-io", "ocoya", "systeme-io", "smartlead"];
-
 const establishedBrands = new Set(snapshot.offers.filter(offer =>
   (offer.discountPercentage > 0 || ("code" in offer && offer.code)) && offer.sourceUrl && offer.evidence
 ).map(offer => offer.toolSlug));
@@ -39,9 +37,17 @@ export function getIndexableDiscountBrands() {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export function getFeaturedDiscountBrands() {
+export function getFeaturedDiscountBrands(limit = 8) {
   const brands = getIndexableDiscountBrands();
-  return FEATURED_DISCOUNT_SLUGS.flatMap(slug => brands.filter(tool => tool.slug === slug));
+  // Give different software categories space before repeating a category.
+  // Alphabetical selection is independent of affiliate links or commission.
+  const seen = new Set<string>();
+  const varied = brands.filter(tool => {
+    if (seen.has(tool.categorySlug)) return false;
+    seen.add(tool.categorySlug);
+    return true;
+  });
+  return [...varied, ...brands.filter(tool => !varied.includes(tool))].slice(0, limit);
 }
 
 export function brandSavingsSummary(tool: DetailedTool, catalogDeals = getAllDeals()): string {

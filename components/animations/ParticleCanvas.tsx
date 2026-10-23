@@ -1,21 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { useMediaQuery } from "@/lib/use-media-query";
 
 export function ParticleCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)", true);
 
   useEffect(() => {
-    // Check reduced motion
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion) {
-      setReducedMotion(true);
-      return;
-    }
+    if (reducedMotion) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -146,7 +139,7 @@ export function ParticleCanvas() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [reducedMotion]);
 
   if (reducedMotion) {
     return (

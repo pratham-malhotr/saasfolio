@@ -2,19 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import { useMediaQuery } from "@/lib/use-media-query";
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)", true);
 
   useEffect(() => {
-    // Respect user's reduced motion preferences
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion) {
-      return;
-    }
+    if (reducedMotion) return;
 
     const lenis = new Lenis({
       duration: 1.1,
@@ -28,19 +23,20 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     lenisRef.current = lenis;
 
+    let animFrame: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      animFrame = requestAnimationFrame(raf);
     }
 
-    const animFrame = requestAnimationFrame(raf);
+    animFrame = requestAnimationFrame(raf);
 
     return () => {
       cancelAnimationFrame(animFrame);
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, []);
+  }, [reducedMotion]);
 
   return <>{children}</>;
 }

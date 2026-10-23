@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Search, ArrowRight, ShieldCheck, Flame, Zap, CheckCircle2 } from "lucide-react";
+import { Search, ArrowRight, ArrowDown, ShieldCheck, Zap } from "lucide-react";
 import { ParticleCanvas } from "@/components/animations/ParticleCanvas";
 import { Reveal } from "@/components/animations/Reveal";
 import { MagneticButton } from "@/components/animations/MagneticButton";
@@ -12,44 +12,50 @@ export function HeroSection() {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-center items-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#050505]">
+    <section data-home-hero="" className="relative min-h-[85svh] flex flex-col justify-center items-center pt-36 pb-14 sm:pt-40 sm:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#050505]">
       {/* 3D / WebGL Interactive Particle Canvas */}
       <ParticleCanvas />
 
       {/* Radiant Glow Behind Headline */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[600px] h-[350px] sm:h-[400px] bg-[#C6FF3D]/12 blur-[140px] rounded-full pointer-events-none z-0" />
+      <div aria-hidden="true" className="hero-halo absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[720px] h-[280px] sm:h-[420px] bg-[#C6FF3D]/10 blur-[110px] rounded-full pointer-events-none z-0" />
 
       <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
         {/* Top Announcement Pill */}
         <Reveal delay={0.1} direction="down">
-          <Link href="/discounts" className="inline-flex flex-wrap justify-center items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md mb-8 hover:border-[#C6FF3D]/50 transition-colors group">
+          <Link href="/discounts" className="inline-flex justify-center items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md mb-7 hover:border-[#C6FF3D]/50 transition-colors group">
             <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C6FF3D] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C6FF3D]" />
             </span>
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-300">
-              Save on your SaaS subscriptions
+              Good software. Better prices.
             </span>
-            <span className="text-xs font-semibold text-[#C6FF3D] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-              Browse brand discounts <ArrowRight className="w-3.5 h-3.5" />
-            </span>
+            <ArrowRight className="h-3.5 w-3.5 text-[#C6FF3D] transition-transform group-hover:translate-x-0.5" />
           </Link>
         </Reveal>
 
         {/* Oversized Editorial Clamp Typography */}
-        <h1 className="font-display font-black tracking-tighter uppercase text-white leading-[1.05] text-5xl sm:text-7xl md:text-8xl lg:text-[6.8rem] mb-6 text-balance">
-          <span className="text-[#C6FF3D] text-glow">SaaS discounts</span> & software deals
+        <h1 className="hero-headline font-display font-bold tracking-[-0.065em] text-white leading-[1.08] mb-6 text-[clamp(2.65rem,7.8vw,6.5rem)]">
+          <span className="sr-only">SaaS discounts & software deals</span>
+          <span aria-hidden="true" className="block">
+            <span className="hero-word-window"><span className="hero-word text-[#C6FF3D]" style={{ "--word-delay": "70ms" } as React.CSSProperties}>SaaS</span></span>{" "}
+            <span className="hero-word-window"><span className="hero-word hero-discount-text text-[#C6FF3D]" style={{ "--word-delay": "160ms" } as React.CSSProperties}>discounts</span></span>
+          </span>
+          <span aria-hidden="true" className="block">
+            <span className="hero-word-window"><span className="hero-word text-zinc-500" style={{ "--word-delay": "260ms" } as React.CSSProperties}>&</span></span>{" "}
+            <span className="hero-word-window"><span className="hero-word" style={{ "--word-delay": "350ms" } as React.CSSProperties}>software</span></span>{" "}
+            <span className="hero-word-window"><span className="hero-word" style={{ "--word-delay": "440ms" } as React.CSSProperties}>deals.</span></span>
+          </span>
         </h1>
 
         {/* Sharp Subheadline */}
         <Reveal delay={0.35} direction="up">
-          <p className="max-w-2xl text-base sm:text-lg md:text-xl text-zinc-400 font-sans leading-relaxed mb-10">
-            Find SaaS discounts for beehiiv, Predis.ai, Taplio, Baremetrics and more. See source links, eligibility and check dates. Compare coupons, annual savings and trials before you subscribe.
+          <p className="max-w-lg text-base sm:text-lg text-zinc-400 font-sans leading-relaxed mb-8">
+            Find your next tool for less. Compare coupons, annual savings and trials, with clear terms before you click.
           </p>
         </Reveal>
 
         {/* Prominent Search Bar with Live Command Trigger */}
-        <Reveal delay={0.45} direction="up" className="w-full max-w-2xl mb-8">
+        <Reveal delay={0.45} direction="up" className="w-full max-w-xl mb-5">
           <button
             type="button"
             onClick={() => setSearchModalOpen(true)}
@@ -59,7 +65,7 @@ export function HeroSection() {
             <div className="flex items-center gap-3.5 pl-3 sm:pl-4 text-zinc-400 group-hover:text-white transition-colors">
               <Search className="w-5 h-5 text-[#C6FF3D]" />
               <span className="text-sm sm:text-base text-zinc-400 group-hover:text-zinc-200">
-                Search brands, discounts and coupon codes...
+                Search your next tool…
               </span>
             </div>
 
@@ -68,7 +74,7 @@ export function HeroSection() {
                 ⌘K
               </span>
               <div className="px-4 py-2 sm:py-2.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow-[0_0_15px_rgba(198,255,61,0.4)]">
-                <span>Find Deals</span>
+                <span className="hidden sm:inline">Find deals</span>
                 <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
               </div>
             </div>
@@ -76,13 +82,13 @@ export function HeroSection() {
         </Reveal>
 
         {/* Quick Discovery Tags */}
-        <Reveal delay={0.55} direction="up" className="flex flex-wrap items-center justify-center gap-2 mb-10 text-xs">
-          <span className="font-mono text-zinc-500 uppercase text-[11px] mr-1">Find your brand:</span>
+        <Reveal delay={0.55} direction="up" className="flex flex-wrap items-center justify-center gap-2 mb-8 text-xs">
+          <span className="text-zinc-500 text-xs mr-1">Explore:</span>
           {[
-            { name: "beehiiv discounts", href: "/discounts/beehiiv" },
-            { name: "Predis.ai discounts", href: "/discounts/predis-ai" },
-            { name: "Taplio discounts", href: "/discounts/taplio" },
-            { name: "Baremetrics discounts", href: "/discounts/baremetrics" },
+            { name: "AI tools", href: "/deals/category/ai-tools" },
+            { name: "Marketing", href: "/deals/category/marketing" },
+            { name: "Design", href: "/deals/category/design" },
+            { name: "All brands", href: "/brands" },
           ].map((tag) => (
             <Link
               key={tag.name}
@@ -120,21 +126,12 @@ export function HeroSection() {
         </Reveal>
 
         {/* Trust Badges Bar */}
-        <Reveal delay={0.75} direction="up" className="mt-14 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-500 font-mono">
+        <Reveal delay={0.75} direction="up" className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-zinc-500">
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-[#C6FF3D]" />
-            <span>Offer Sources Included</span>
+            <span>Sources included</span>
           </div>
-          <span>✦</span>
-          <div className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-[#C6FF3D]" />
-            <span>Provider Terms Apply</span>
-          </div>
-          <span>✦</span>
-          <div className="flex items-center gap-1.5">
-            <Flame className="w-4 h-4 text-[#C6FF3D]" />
-            <span>Check Dates Shown</span>
-          </div>
+          <Link href="#brand-discounts-heading" className="flex items-center gap-1.5 hover:text-zinc-200">Find your brand <ArrowDown className="h-3.5 w-3.5" /></Link>
         </Reveal>
       </div>
 

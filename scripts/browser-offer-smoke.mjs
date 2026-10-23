@@ -10,11 +10,13 @@ const profile = await mkdtemp(join(tmpdir(), "saasfolio-browser-"));
 const chrome = spawn(process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", ["--headless=new", "--remote-debugging-pipe", `--user-data-dir=${profile}`, "--no-first-run", "--no-default-browser-check", "about:blank"], { stdio: ["ignore", "ignore", "ignore", "pipe", "pipe"] });
 let sequence = 0, buffer = "";
 const pending = new Map();
+const runtimeErrors = [];
 chrome.stdio[4].on("data", chunk => {
   buffer += chunk.toString();
   let boundary;
   while ((boundary = buffer.indexOf("\0")) >= 0) {
     const message = JSON.parse(buffer.slice(0, boundary)); buffer = buffer.slice(boundary + 1);
+    if (message.method === "Runtime.exceptionThrown") runtimeErrors.push(message.params.exceptionDetails.exception?.description || message.params.exceptionDetails.text);
     if (!message.id || !pending.has(message.id)) continue;
     const { resolve, reject, timer } = pending.get(message.id); pending.delete(message.id); clearTimeout(timer);
     if (message.error) reject(new Error(message.error.message)); else resolve(message.result);
@@ -113,14 +115,48 @@ try {
   await writeFile(join(tmpdir(), "saasfolio-savings-mobile.png"), Buffer.from(screenshot.data, "base64"));
   await navigate("/contact?offer=hostinger-couponspage-code#contact-form");
   assert.ok(await evaluate("document.querySelector('#form-subject').value.includes('Hostinger') && document.querySelector('#form-message').value.includes('COUPONSPAGE') && document.querySelector('#form-message').value.includes('https://saasfolio.tech/deals/hostinger-couponspage-code')"), "correction form retains the affected offer and code");
+  const health = await (await fetch(`${origin}/api/health`)).json();
+  for (const [path, flag] of [["/contact", "formsConfigured"], ["/advertise", "formsConfigured"], ["/submit", "formsConfigured"], ["/login", "accountsConfigured"]]) {
+    if (health.checks[flag]) continue;
+    await navigate(path);
+    await until(() => evaluate("[...document.querySelectorAll('main [role=status]')].some(node => node.textContent.includes('temporarily unavailable'))"), `${path}: unavailable service notice`);
+    assert.ok(await evaluate("!!document.querySelector('main fieldset[disabled]') && !!document.querySelector('main a[href^=\"mailto:\"]')"), `${path}: disabled form and email alternative`);
+  }
+  await evaluate("localStorage.setItem('saasfolio_local_threads', '[null,{\"id\":\"bad\"}]'); localStorage.setItem('saasfolio_community_upvotes', 'null')");
+  await navigate("/community");
+  await until(() => evaluate("document.querySelector('main').textContent.includes('Editorial')"), "editorial prompts survive malformed local storage");
+  await evaluate("localStorage.removeItem('saasfolio_local_threads'); localStorage.removeItem('saasfolio_community_upvotes')");
+  await navigate("/");
+  await until(() => evaluate("!!document.querySelector('[data-home-hero] canvas')"), "hero particles restored for normal motion");
+  assert.ok(await evaluate("[...document.querySelectorAll('.hero-word')].every(word => getComputedStyle(word).animationName === 'hero-word-enter')"), "headline has a real staggered entrance");
+  await evaluate("Promise.all([...document.querySelectorAll('.hero-word')].flatMap(word => word.getAnimations()).map(animation => animation.finished.catch(() => {})))");
+  assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth"), "home hero and compact brand cards fit mobile");
+  const mobileHome = await page("Page.captureScreenshot", { format: "png" });
+  await writeFile(join(tmpdir(), "saasfolio-home-mobile.png"), Buffer.from(mobileHome.data, "base64"));
+  await page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
+  await until(() => evaluate("!document.querySelector('[data-home-hero] canvas') && !document.documentElement.classList.contains('lenis')"), "live reduced-motion preference removes canvas and smooth scrolling");
+  assert.ok(await evaluate("[...document.querySelectorAll('.hero-word')].every(word => getComputedStyle(word).animationName === 'none')"), "headline respects reduced motion");
+  await page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "no-preference" }] });
+  // Start a fresh navigation with JavaScript disabled, before any hydration.
+  await page("Emulation.setScriptExecutionDisabled", { value: true });
+  await navigate("/");
+  assert.ok(await evaluate("document.querySelector('main h1')?.checkVisibility({ checkVisibilityCSS: true }) && document.querySelector('[data-home-brands] a')?.checkVisibility({ checkVisibilityCSS: true })"), "cold no-JavaScript navigation exposes the real homepage and brand links");
+  await navigate("/deals/hostinger-couponspage-code");
+  await opensNativeLink('a[href="/go/hostinger-couponspage-code"]');
+  await page("Emulation.setScriptExecutionDisabled", { value: false });
   await page("Emulation.setDeviceMetricsOverride", { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
+  await navigate("/");
+  await evaluate("Promise.all([...document.querySelectorAll('.hero-word')].flatMap(word => word.getAnimations()).map(animation => animation.finished.catch(() => {})))");
+  const desktopHome = await page("Page.captureScreenshot", { format: "png" });
+  await writeFile(join(tmpdir(), "saasfolio-home-desktop.png"), Buffer.from(desktopHome.data, "base64"));
   await navigate("/discounts/beehiiv");
   await until(() => evaluate("document.querySelector('#offer-sources').getBoundingClientRect().width > 0"), "rendered source comparison");
   assert.ok(await evaluate("document.querySelector('#offer-sources').textContent.includes('Paid membership required')"), "membership gate shown before following a source");
   await evaluate("document.querySelector('#offer-sources').scrollIntoView({ block: 'start', behavior: 'instant' })");
   const sourcesScreenshot = await page("Page.captureScreenshot", { format: "png" });
   await writeFile(join(tmpdir(), "saasfolio-sources-desktop.png"), Buffer.from(sourcesScreenshot.data, "base64"));
-  console.log("Chrome smoke passed: coupon dialog and native redirects, denied clipboard fallback, mobile brand search and coupon filter, savings including access fees, contextual correction forms, and membership disclosures. No reports submitted or checkout attempted.");
+  assert.deepEqual(runtimeErrors, [], "No uncaught browser exceptions across the audited flows");
+  console.log("Chrome smoke passed: coupons and native redirects, denied clipboard, mobile search and savings, unavailable service forms, malformed local storage, animated mobile/desktop homepage, live reduced motion, cold no-JavaScript content and coupon navigation, and membership disclosures. No reports submitted or checkout attempted.");
 } finally {
   for (const entry of pending.values()) clearTimeout(entry.timer);
   chrome.kill();

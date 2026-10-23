@@ -18,7 +18,7 @@ export function Footer() {
           <div className="lg:col-span-2 space-y-5">
             <Logo size="lg" withTagline={true} />
             <p className="text-sm text-zinc-400 max-w-sm leading-relaxed">
-              Find SaaS discounts and software coupon codes for beehiiv, Predis.ai, Taplio, Baremetrics and more. Compare sourced offers, annual billing options and renewal terms before subscribing.
+              Spend less on the software you need. Explore sourced discounts, compare billing options, and check the terms before you subscribe.
             </p>
             <div className="flex items-center gap-2 pt-2">
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono">
@@ -37,10 +37,6 @@ export function Footer() {
               <li><Link href="/discounts" className="hover:text-[#C6FF3D] transition-colors">Discounts by Brand</Link></li>
               <li><Link href="/brands" className="hover:text-[#C6FF3D] transition-colors">All Brands A–Z</Link></li>
               <li><Link href="/savings-calculator" className="hover:text-[#C6FF3D] transition-colors">Annual Savings Calculator</Link></li>
-              <li><Link href="/discounts/predis-ai" className="hover:text-[#C6FF3D] transition-colors">Predis.ai Discounts</Link></li>
-              <li><Link href="/discounts/beehiiv" className="hover:text-[#C6FF3D] transition-colors">beehiiv Discounts</Link></li>
-              <li><Link href="/discounts/taplio" className="hover:text-[#C6FF3D] transition-colors">Taplio Discounts</Link></li>
-              <li><Link href="/discounts/baremetrics" className="hover:text-[#C6FF3D] transition-colors">Baremetrics Discounts</Link></li>
               <li>
                 <Link href="/deals" className="hover:text-[#C6FF3D] transition-colors flex items-center justify-between">
                   <span>Hot Deals This Week</span>
@@ -78,12 +74,12 @@ export function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link href="/articles" className="hover:text-[#C6FF3D] transition-colors">
-                  In-Depth Reviews
+                  Software Buying Guides
                 </Link>
               </li>
               <li>
-                <Link href="/articles/ultimate-saas-stack-bootstrapped-founders-2026" className="hover:text-[#C6FF3D] transition-colors">
-                  Founder Tech Stacks
+                <Link href="/articles/build-a-saas-budget-before-buying" className="hover:text-[#C6FF3D] transition-colors">
+                  Build a Software Budget
                 </Link>
               </li>
               <li>

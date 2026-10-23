@@ -71,7 +71,7 @@ export function Navbar() {
     { label: "Deals", href: "/deals", icon: Tag, badge: "HOT" },
     { label: "Brands", href: "/brands", icon: Layers },
     { label: "Compare", href: "/compare", icon: Scale },
-    { label: "Reviews", href: "/articles", icon: FileText },
+    { label: "Guides", href: "/articles", icon: FileText },
     { label: "Community", href: "/community", icon: Users },
   ];
 

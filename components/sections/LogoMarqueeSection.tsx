@@ -9,7 +9,7 @@ export function LogoMarqueeSection() {
     <section className="py-16 bg-[#040406] border-b border-white/10 relative overflow-hidden select-none">
       <div className="max-w-7xl mx-auto px-4 mb-8 text-center">
         <span className="font-mono text-xs uppercase tracking-widest text-zinc-500 font-semibold">
-          FEATURED TOOLS ON SAASFOLIO // CURATED & VERIFIED
+          DISCOVER MORE SOFTWARE
         </span>
       </div>
 

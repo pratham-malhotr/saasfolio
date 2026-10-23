@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useMediaQuery } from "@/lib/use-media-query";
 
 export function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [cursorLabel, setCursorLabel] = useState<string | null>(null);
-  const [isTouchDevice, setIsTouchDevice] = useState(true);
+  const isTouchDevice = useMediaQuery("(pointer: coarse), (prefers-reduced-motion: reduce)", true);
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -17,20 +18,12 @@ export function CustomCursor() {
   const springY = useSpring(mouseY, { stiffness: 450, damping: 30 });
 
   useEffect(() => {
-    // Detect touch device
-    const isTouch =
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      window.matchMedia("(pointer: coarse)").matches ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    setIsTouchDevice(isTouch);
-    if (isTouch) return;
+    if (isTouchDevice) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
 
       // Check for custom cursor targets
       const target = e.target as HTMLElement | null;
@@ -68,7 +61,7 @@ export function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [isVisible, mouseX, mouseY]);
+  }, [isTouchDevice, mouseX, mouseY]);
 
   if (isTouchDevice) return null;
 

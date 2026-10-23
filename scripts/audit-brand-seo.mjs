@@ -51,8 +51,8 @@ const homeBrands = nodes(homepage, node => attr(node, "aria-labelledby") === "br
 assert.match(contents(elements(homepage, "h1")[0]), /SaaS discounts.*software deals/i, "Homepage heading describes the SaaS discount business");
 assert.match(contents(elements(homepage, "title")[0]), /SaaS Discounts.*(?:Coupon Codes|Software Deals)/i, "Homepage title targets software savings");
 assert.ok(homeBrands && links(homeBrands).includes("/discounts"), "Brand directory is linked from homepage content");
+assert.ok(links(homeBrands).filter(href => /^\/discounts\/[^/]+$/.test(href)).length >= 6, "Homepage offers varied direct brand discovery");
 for (const slug of ["beehiiv", "predis-ai", "taplio", "baremetrics"]) {
-  assert.ok(links(homeBrands).includes(`/discounts/${slug}`), `${slug}: homepage content links directly to discount guide`);
   assert.ok(links(directory).includes(`/discounts/${slug}`), `${slug}: brand directory links to guide`);
 }
 assert.match(contents(elements(directory, "h1")[0]), /SaaS discounts/i, "Brand directory heading has SaaS discount intent");
