@@ -3,18 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { 
-  ArrowRight, 
-  Sparkles, 
-  Layers, 
-  Scale, 
-  Check, 
-  Zap, 
-  ArrowLeftRight,
-  ShieldCheck,
-  TrendingUp,
-  Star
-} from "lucide-react";
+import { ArrowRight, ArrowLeftRight } from "lucide-react";
 import { TOOLS_DATA } from "@/lib/data/tools-data";
 
 import { POPULAR_COMPARISONS } from "@/lib/data/comparisons-data";

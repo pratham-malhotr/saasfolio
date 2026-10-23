@@ -49928,10 +49928,11 @@ const COMBINED_TOOLS_DATA: DetailedTool[] = [...REVIEWED_BRAND_TOOLS, ...LEGACY_
       keyFeatures: [], pros: [], cons: [],
     } : {}),
     rating: 0, reviewCount: 0, reviews: [], verified: false, pricingVerified: false,
+    // Legacy pros/cons asserted results and rankings without testing evidence.
+    pros: [], cons: [],
     // The current provider advertises a trial, not the legacy free-forever plan.
     ...(tool.slug === "predis-ai" ? {
       pricingModel: "Free Trial" as const,
-      pros: tool.pros.filter(pro => !/free forever/i.test(pro)),
     } : {}),
     ...REVIEWED_BRAND_COPY[tool.slug],
     pricingPlans: [], sourceUrl: tool.sourceUrl || tool.website,

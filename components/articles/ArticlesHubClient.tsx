@@ -2,17 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  BookOpen,
-  Search,
-  Clock,
-  ArrowRight,
-  Sparkles,
-  TrendingUp,
-  Tag,
-} from "lucide-react";
-import { DETAILED_ARTICLES, DetailedArticle } from "@/lib/data/articles-data";
+import { ArrowLeft, BookOpen, Search, Clock, ArrowRight } from "lucide-react";
+import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 
 const CATEGORIES = [
   "All",
@@ -57,14 +48,14 @@ export function ArticlesHubClient() {
             <BookOpen className="w-4 h-4" />
           </span>
           <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-            HANDS-ON BENCHMARKS, STACKS & REVIEWS
+            SOURCED SOFTWARE BUYING GUIDES
           </span>
         </div>
         <h1 className="font-display font-black tracking-tighter uppercase text-4xl sm:text-6xl text-white mb-4">
           SAAS EDITORIAL MAGAZINE
         </h1>
         <p className="text-zinc-400 max-w-2xl text-base">
-          Transparent latency stress-tests, database cost audits, and real-world tech stack blueprints from engineers and founders.
+          Original guides to software costs, coupon conditions, trial evaluation and renewal decisions, with references you can inspect.
         </p>
       </div>
 

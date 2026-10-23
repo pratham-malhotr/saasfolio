@@ -2,7 +2,6 @@ import type { MetadataRoute } from "next";
 import { getAllDeals } from "@/lib/data/deals-data";
 import { TOOLS_DATA } from "@/lib/data/tools-data";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
-import { DETAILED_THREADS } from "@/lib/data/community-data";
 import { COMPARISON_SLUGS } from "@/lib/data/comparisons-data";
 import { getCatalogCategories } from "@/lib/categories";
 import { absoluteUrl, isoDate } from "@/lib/seo";
@@ -47,11 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: absoluteUrl("/articles"),
-      changeFrequency: "daily",
-      priority: 0.8,
-    },
-    {
-      url: absoluteUrl("/community"),
       changeFrequency: "daily",
       priority: 0.8,
     },
@@ -118,12 +112,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Community Discussion Threads
-  const communityRoutes: MetadataRoute.Sitemap = DETAILED_THREADS.map((thread) => ({
-    url: absoluteUrl(`/community/${thread.slug}`),
-    changeFrequency: "weekly",
-    priority: 0.6,
-  }));
+  // Browser-local community previews stay out of the sitemap.
 
   // Deduplicate and return complete canonical index
   const seen = new Set<string>();
@@ -140,7 +129,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...toolsRoutes,
     ...comparisonRoutes,
     ...articlesRoutes,
-    ...communityRoutes,
   ];
 
   return combined.filter((entry) => {

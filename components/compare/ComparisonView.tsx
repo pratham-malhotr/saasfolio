@@ -56,14 +56,14 @@ export function ComparisonView({
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 mb-4">
           <GitCompare className="w-3.5 h-3.5 text-[#C6FF3D]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-            UNBIASED ARCHITECTURAL BENCHMARK // 2026 EDITION
+            SOFTWARE COMPARISON
           </span>
         </div>
         <h1 className="font-display font-black tracking-tighter uppercase text-4xl sm:text-6xl text-white mb-4">
           {toolA.name} <span className="text-[#C6FF3D]">VS</span> {toolB.name}
         </h1>
         <p className="text-zinc-400 max-w-3xl text-sm sm:text-base leading-relaxed">
-          Comprehensive feature-by-feature breakdown, real pricing tiers, community sentiment, and active discounts for {toolA.name} and {toolB.name}.
+          Compare catalog features and sourced offers for {toolA.name} and {toolB.name}. This is not a hands-on benchmark; confirm current features, prices and eligibility with each provider.
         </p>
       </div>
 

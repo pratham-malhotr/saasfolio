@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { Search, Star, ExternalLink, ArrowRight, Sparkles, Filter, X, GitCompare } from "lucide-react";
+import { Search, Star, ArrowRight, X, GitCompare } from "lucide-react";
 import { DetailedTool } from "@/lib/types";
 import { CATEGORIES } from "@/lib/mock-data";
 import { TiltCard } from "@/components/animations/TiltCard";

@@ -55,7 +55,7 @@ export default function TermsOfServicePage() {
               <span>Discounts, Coupons & Merchant Disclaimers</span>
             </h2>
             <p className="mb-3">
-              While our editorial staff manually verifies coupon codes and discount links prior to publication:
+              Listings identify recorded sources and eligibility terms. A source check is separate from a successful signup or checkout test; current codes are not represented as checkout verified:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-zinc-400">
               <li>

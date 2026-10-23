@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { retryAfterSeconds } from "./source-backoff.mjs";
 import { parse } from "parse5";
+import { normalizePublicHttpsUrl } from "../../lib/public-url.mjs";
 export { discoverVendorOffer } from "../../lib/offer-evidence.mjs";
 
 export const MAX_AGE_DAYS = 14;
@@ -16,13 +17,7 @@ export function plainText(html) {
   return visible(parse(html)).replace(/\s+/g, " ").trim();
 }
 export function safePublicUrl(value) {
-  try {
-    const url = new URL(value);
-    if (url.protocol !== "https:" || url.username || url.password || url.port ||
-      !url.hostname.includes(".") || /^(localhost|127\.|10\.|192\.168\.|169\.254\.|172\.(1[6-9]|2\d|3[01])\.)/.test(url.hostname) ||
-      /\.(local|internal|test)$/.test(url.hostname)) return false;
-    return true;
-  } catch { return false; }
+  return Boolean(normalizePublicHttpsUrl(value));
 }
 export function domainMatches(url, website) {
   const host = (value) => new URL(value).hostname.replace(/^www\./, "");

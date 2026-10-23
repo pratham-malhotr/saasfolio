@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { AlertTriangle, RotateCcw, Home, ArrowRight, ShieldAlert } from "lucide-react";
+import { AlertTriangle, RotateCcw, ArrowRight } from "lucide-react";
 
 /**
  * Enterprise Resilient Error Boundary

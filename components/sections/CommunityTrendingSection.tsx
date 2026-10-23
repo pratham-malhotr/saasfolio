@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, MessageSquare, ThumbsUp, Flame, Tag, Users, Shield } from "lucide-react";
-import { TRENDING_DISCUSSIONS, CommunityThread } from "@/lib/mock-data";
+import { ArrowRight, MessageSquare, Users } from "lucide-react";
+import { TRENDING_DISCUSSIONS } from "@/lib/mock-data";
 import { Reveal } from "@/components/animations/Reveal";
 
 export function CommunityTrendingSection() {
@@ -40,7 +40,7 @@ export function CommunityTrendingSection() {
               </span>
             </div>
             <h2 className="font-display font-black tracking-tighter uppercase text-4xl sm:text-5xl lg:text-6xl text-white">
-              TRENDING IN COMMUNITY
+              SOFTWARE BUYING QUESTIONS
             </h2>
           </div>
 
@@ -145,7 +145,7 @@ export function CommunityTrendingSection() {
               <Users className="w-6 h-6 text-[#C6FF3D]" />
               <div>
                 <h4 className="text-sm font-bold text-white">Have a question about a software tool?</h4>
-                <p className="text-xs text-zinc-400">Ask 10,000+ founders and engineers. No sponsored bias.</p>
+                <p className="text-xs text-zinc-400">Browse editorial prompts. Discussion drafts remain in your browser.</p>
               </div>
             </div>
             <Link

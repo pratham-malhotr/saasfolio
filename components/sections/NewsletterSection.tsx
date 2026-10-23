@@ -1,4 +1,6 @@
 "use client";
+import { useServiceAvailability } from "@/lib/use-service-availability";
+import { ServiceNotice } from "@/components/forms/ServiceNotice";
 
 import React, { useState } from "react";
 import { Mail, Check, Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
@@ -9,6 +11,7 @@ import { apiRequest } from "@/lib/api-client";
 import Link from "next/link";
 
 export function NewsletterSection() {
+  const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("newsletterConfigured");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -68,35 +71,39 @@ export function NewsletterSection() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-3" aria-busy={status === "loading"}>
-                <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
-                <div className="flex flex-col sm:flex-row items-center gap-2 p-1.5 rounded-2xl bg-black/80 border border-white/20 focus-within:border-[#C6FF3D] transition-colors">
-                  <div className="flex items-center gap-2 pl-3 w-full sm:w-auto flex-1">
-                    <Mail className="w-4 h-4 text-zinc-500" />
-                    <input
-                      type="email" aria-label="Email address" autoComplete="email" required maxLength={254}
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                        if (status === "error") setStatus("idle");
-                      }}
-                      placeholder="founder@company.com"
-                      className="w-full bg-transparent text-white placeholder-zinc-500 text-sm py-2 outline-none font-sans"
-                    />
+                <ServiceNotice status={serviceStatus} />
+                <fieldset disabled={!serviceAvailable} className="contents">
+                  <legend className="sr-only">Form details</legend>
+                  <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
+                  <div className="flex flex-col sm:flex-row items-center gap-2 p-1.5 rounded-2xl bg-black/80 border border-white/20 focus-within:border-[#C6FF3D] transition-colors">
+                    <div className="flex items-center gap-2 pl-3 w-full sm:w-auto flex-1">
+                      <Mail className="w-4 h-4 text-zinc-500" />
+                      <input
+                        type="email" aria-label="Email address" autoComplete="email" required maxLength={254}
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          if (status === "error") setStatus("idle");
+                        }}
+                        placeholder="founder@company.com"
+                        className="w-full bg-transparent text-white placeholder-zinc-500 text-sm py-2 outline-none font-sans"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(198,255,61,0.3)] cursor-pointer shrink-0 disabled:opacity-50"
+                    >
+                      <span>{status === "loading" ? "Subscribing..." : "Subscribe Free"}</span>
+                      <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                    </button>
                   </div>
-                  <button
-                    type="submit"
-                    disabled={status === "loading"}
-                    className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(198,255,61,0.3)] cursor-pointer shrink-0 disabled:opacity-50"
-                  >
-                    <span>{status === "loading" ? "Subscribing..." : "Subscribe Free"}</span>
-                    <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
-                  </button>
-                </div>
 
-                <label className="flex items-start gap-2 text-left text-xs text-zinc-400"><input type="checkbox" checked={consent} onChange={event => setConsent(event.target.checked)} required className="mt-0.5" /><span>I agree to receive the SaaSFolio newsletter. See the <Link href="/privacy" className="underline">Privacy Policy</Link>.</span></label>
-                {status === "error" && (
-                  <p role="alert" className="text-xs text-red-400 font-mono">{errorMessage}</p>
-                )}
+                  <label className="flex items-start gap-2 text-left text-xs text-zinc-400"><input type="checkbox" checked={consent} onChange={event => setConsent(event.target.checked)} required className="mt-0.5" /><span>I agree to receive the SaaSFolio newsletter. See the <Link href="/privacy" className="underline">Privacy Policy</Link>.</span></label>
+                  {status === "error" && (
+                    <p role="alert" className="text-xs text-red-400 font-mono">{errorMessage}</p>
+                  )}
+                </fieldset>
               </form>
             )}
           </div>

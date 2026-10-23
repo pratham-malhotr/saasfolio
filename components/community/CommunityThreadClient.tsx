@@ -177,6 +177,7 @@ export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClie
   return (
     <div className="min-h-screen bg-[#050505] pt-28 pb-24 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p className="mb-6 rounded-xl border border-white/10 p-4 text-sm text-zinc-400">Editorial discussion prompt. Replies, votes and drafts in this view are stored only in your browser and are not published customer feedback.</p>
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 mb-8">
           <Link href="/" className="hover:text-[#C6FF3D] transition-colors">

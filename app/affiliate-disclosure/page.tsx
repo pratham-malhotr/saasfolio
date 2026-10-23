@@ -1,7 +1,7 @@
 import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft, ShieldCheck, Heart } from "lucide-react";
+import { ArrowLeft, ShieldCheck } from "lucide-react";
 
 export const metadata = pageMetadata({
   title: 'Affiliate Disclosure',
@@ -40,14 +40,14 @@ export default function AffiliateDisclosurePage() {
 
         <h2 className="text-xl font-bold text-white pt-4">What This Means For You</h2>
         <ul className="list-disc pl-6 space-y-2 text-zinc-400">
-          <li><strong>You never pay more:</strong> In fact, our negotiated coupon codes frequently provide exclusive discounts not available through standard search.</li>
-          <li><strong>Zero editorial bias:</strong> A vendor cannot purchase a positive review, higher rating, or altered benchmark metric. We report true cold-start latencies and shortcomings honestly.</li>
-          <li><strong>Transparent code verification:</strong> If a deal expires or fails to work for users, our automated systems and community votes flag it immediately.</li>
+          <li><strong>Check the payable total:</strong> A referral link alone does not apply a discount. Compare the same plan, eligibility, access fees and renewal price with the provider’s direct pricing.</li>
+          <li><strong>Editorial and sponsored material:</strong> Commercial relationships are disclosed. Buying guides explain sources and limitations; they do not establish hands-on testing, independent benchmarks or customer ratings.</li>
+          <li><strong>Source checks and corrections:</strong> Published expirations and observation-age limits are applied to listings. Feedback can be submitted for review, but immediate detection or removal is not guaranteed. Current codes have not been checkout tested.</li>
         </ul>
 
         <div className="pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-zinc-500">
           <span>LAST UPDATED: OCTOBER 2026</span>
-          <span className="text-[#C6FF3D]">STANDARDS // VERIFIED</span>
+          <span className="text-[#C6FF3D]">SOURCES & CLEAR TERMS</span>
         </div>
       </div>
     </div>

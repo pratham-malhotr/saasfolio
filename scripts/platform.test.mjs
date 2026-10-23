@@ -18,9 +18,10 @@ function platform(options = {}) {
   process.env.ADMIN_EMAILS = "owner@example.com";
   const cache = new Map();
   const writes = [];
+  const limits = [];
   let user = options.user || null;
   const database = {
-    rpc: async () => ({ data: options.limited ? false : true, error: options.limitFailure ? {} : null }),
+    rpc: async (_name, args) => { limits.push(args); return { data: options.limited ? false : true, error: options.limitFailure ? {} : null }; },
     from(table) {
       const operation = { table, filters: [] };
       const query = {
@@ -55,7 +56,7 @@ function platform(options = {}) {
     "@supabase/ssr": { createServerClient: () => ({ ...database, auth }) },
     "@supabase/supabase-js": { createClient: () => database },
     "@/lib/data/deals-data": { getDealBySlug: slug => slug === "valid-offer" ? { slug, title: "Valid offer" } : undefined },
-    "@/lib/data/articles-data": { DETAILED_ARTICLES: [{ slug: "valid-article", title: "Valid article" }] },
+    "@/lib/data/articles-data": { getArticleBySlug: slug => slug === "valid-article" ? { slug, title: "Valid article" } : undefined },
   };
   function load(filename) {
     const file = resolve(root, filename);
@@ -64,14 +65,14 @@ function platform(options = {}) {
     const source = ts.transpileModule(readFileSync(file, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true } }).outputText;
     const localRequire = name => {
       if (Object.hasOwn(overrides, name)) return overrides[name];
-      if (name.startsWith("@/")) return load(`${name.slice(2)}.ts`);
-      if (name.startsWith(".")) return load(resolve(dirname(file), `${name}.ts`));
+      if (name.startsWith("@/")) return load(`${name.slice(2)}${/\.[mc]?[jt]s$/.test(name) ? "" : ".ts"}`);
+      if (name.startsWith(".")) return load(resolve(dirname(file), `${name}${/\.[mc]?[jt]s$/.test(name) ? "" : ".ts"}`));
       return require(name);
     };
     new Function("require", "module", "exports", source)(localRequire, loadedModule, loadedModule.exports);
     return loadedModule.exports;
   }
-  return { load, writes };
+  return { load, writes, limits };
 }
 const request = (path, data, options = {}) => new Request(`https://saasfolio.tech${path}`, {
   method: options.method || "POST", headers: { "Content-Type": "application/json", Origin: options.origin || "https://saasfolio.tech" }, body: options.raw || JSON.stringify(data),
@@ -154,4 +155,24 @@ test("redirects cannot escape the site", () => {
   const { safeRedirect } = platform().load("lib/server/http.ts");
   for (const url of ["//evil.example", "https://evil.example", "/\\evil.example", "/\n/evil.example"]) assert.equal(safeRedirect(url), "/profile");
   assert.equal(safeRedirect("/deals?category=marketing"), "/deals?category=marketing");
+});
+
+test("rate limiting ignores spoofed client IP headers unless an ingress header is explicitly trusted", async () => {
+  delete process.env.TRUSTED_CLIENT_IP_HEADER; delete process.env.VERCEL;
+  const app = platform();
+  const { enforceLimit } = app.load("lib/server/supabase.ts");
+  await enforceLimit(new Request("https://saasfolio.tech/api/inquiries", { headers: { "cf-connecting-ip": "1.1.1.1", "x-forwarded-for": "2.2.2.2" } }), "test");
+  await enforceLimit(new Request("https://saasfolio.tech/api/inquiries", { headers: { "cf-connecting-ip": "3.3.3.3", "x-forwarded-for": "4.4.4.4" } }), "test");
+  assert.equal(app.limits[0].bucket_key, app.limits[1].bucket_key);
+  process.env.TRUSTED_CLIENT_IP_HEADER = "cf-connecting-ip";
+  await enforceLimit(new Request("https://saasfolio.tech/api/inquiries", { headers: { "cf-connecting-ip": "1.1.1.1" } }), "test");
+  await enforceLimit(new Request("https://saasfolio.tech/api/inquiries", { headers: { "cf-connecting-ip": "3.3.3.3" } }), "test");
+  assert.notEqual(app.limits[2].bucket_key, app.limits[3].bucket_key);
+  delete process.env.TRUSTED_CLIENT_IP_HEADER;
+});
+
+test("submitted websites reject private addresses, credentials and local-name bypasses", () => {
+  const { website } = platform().load("lib/server/http.ts");
+  for (const url of ["https://127.0.0.1", "https://[::ffff:127.0.0.1]", "https://admin:secret@example.com", "https://example.internal.", "https://x.localhost", "https://host.home.arpa"]) assert.throws(() => website({ url }, "url"));
+  assert.equal(website({ url: "https://example.com./pricing?coupon=SAVE" }, "url"), "https://example.com/pricing?coupon=SAVE");
 });

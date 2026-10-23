@@ -1,4 +1,5 @@
 import { DISCOUNT_BRAND_ALIASES } from "./lib/data/brand-discount-aliases.mjs";
+import { ARTICLE_ALIASES } from "./lib/data/article-aliases.mjs";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -13,6 +14,7 @@ const nextConfig = {
     }));
     return [
       ...discountRedirects,
+      ...Object.entries(ARTICLE_ALIASES).map(([alias, canonical]) => ({ source: `/articles/${alias}/:path*`, destination: `/articles/${canonical}/:path*`, permanent: true })),
       { source: "/tools/kit-convertkit/:path*", destination: "/tools/convertkit/:path*", permanent: true },
       { source: "/deals/kit-convertkit-pricing", destination: "/deals/convertkit-pricing", permanent: true },
     ];
@@ -66,11 +68,23 @@ const nextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
+          {
+            key: "Content-Security-Policy",
+            value: "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'",
+          },
         ],
       },
       {
         source: "/go/:path*",
         headers: [{ key: "Cache-Control", value: "no-store" }],
+      },
+      {
+        source: "/api/:path*",
+        headers: [{ key: "Cache-Control", value: "private, no-store" }],
+      },
+      {
+        source: "/:path(auth|admin|profile|login|signup|reset-password|newsletter)/:rest*",
+        headers: [{ key: "Cache-Control", value: "private, no-store" }],
       },
       {
         source: "/api/health",

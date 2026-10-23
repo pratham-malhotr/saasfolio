@@ -1,4 +1,6 @@
 "use client";
+import { useServiceAvailability } from "@/lib/use-service-availability";
+import { ServiceNotice } from "@/components/forms/ServiceNotice";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -28,15 +30,15 @@ const CHANNELS = [
   },
   {
     icon: MessageSquare,
-    title: "Editorial & Architecture Reviews",
+    title: "Editorial & Buying Guides",
     email: "editorial@saasfolio.tech",
-    description: "Pitch in-depth benchmarks, stack comparison articles, and developer tooling case studies.",
+    description: "Suggest a sourced buying guide, correction or comparison of software costs.",
   },
   {
     icon: ShieldCheck,
-    title: "Security & Bug Bounty Desk",
+    title: "Security Reports",
     email: "security@saasfolio.tech",
-    description: "Responsible vulnerability disclosures, cryptographic checks, and infrastructure audits.",
+    description: "Report a reproducible security issue without including private credentials or other users’ data.",
   },
 ];
 
@@ -55,11 +57,12 @@ const FAQS = [
   },
   {
     q: "Can I contribute an architectural stack review as a guest engineer?",
-    a: "Yes! We welcome technical reviews from verified founders and staff engineers. Reach out to editorial@saasfolio.tech with your outline and production benchmarks.",
+    a: "Send an outline, sources and a clear account of what you tested to editorial@saasfolio.tech. We review submissions before considering publication.",
   },
 ];
 
 export default function ContactPage({ initialReport }: { initialReport?: { subject: string; message: string } }) {
+  const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("formsConfigured");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -180,89 +183,93 @@ export default function ContactPage({ initialReport }: { initialReport?: { subje
               </div>
             ) : (
               <form id="contact-form" onSubmit={handleSubmit} className="space-y-5 scroll-mt-28" aria-busy={busy}>
-                {initialReport && <p className="rounded-xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/5 p-4 text-sm text-zinc-300">The listing details are included below. Describe what happened and add your contact details. Do not include passwords, card numbers or payment screenshots.</p>}
-                {error && <p role="alert" className="text-sm text-rose-400">{error}</p>}
-                <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <ServiceNotice status={serviceStatus} emailHref={`mailto:support@saasfolio.tech?subject=${encodeURIComponent(initialReport?.subject || "SaaSFolio support")}&body=${encodeURIComponent(initialReport?.message || "")}`} />
+                <fieldset disabled={!serviceAvailable} className="contents">
+                  <legend className="sr-only">Form details</legend>
+                  {initialReport && <p className="rounded-xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/5 p-4 text-sm text-zinc-300">The listing details are included below. Describe what happened and add your contact details. Do not include passwords, card numbers or payment screenshots.</p>}
+                  {error && <p role="alert" className="text-sm text-rose-400">{error}</p>}
+                  <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="form-name" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                        Your Full Name *
+                      </label>
+                      <input id="form-name"
+                        type="text"
+                        required
+                        placeholder="e.g. Sarah Jenkins"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="form-email" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                        Your Email Address *
+                      </label>
+                      <input id="form-email"
+                        type="email"
+                        required
+                        placeholder="sarah@company.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="form-department" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                        Department Desk
+                      </label>
+                      <select id="form-department"
+                        value={formData.department}
+                        onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                      >
+                        <option value="support">Member Support & Passports</option>
+                        <option value="partners">Vendor Partnerships & Deals</option>
+                        <option value="editorial">Editorial & Buying Guides</option>
+                        <option value="security">Security & Bug Bounty</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label htmlFor="form-subject" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                        Subject
+                      </label>
+                      <input id="form-subject"
+                        type="text"
+                        placeholder="Brief topic summary..."
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label htmlFor="form-name" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                      Your Full Name *
+                    <label htmlFor="form-message" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                      Your Message *
                     </label>
-                    <input id="form-name"
-                      type="text"
+                    <textarea id="form-message"
+                      rows={5}
                       required
-                      placeholder="e.g. Sarah Jenkins"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="Describe how we can assist you in detail..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="form-email" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                      Your Email Address *
-                    </label>
-                    <input id="form-email"
-                      type="email"
-                      required
-                      placeholder="sarah@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
-                    />
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="form-department" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                      Department Desk
-                    </label>
-                    <select id="form-department"
-                      value={formData.department}
-                      onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
-                    >
-                      <option value="support">Member Support & Passports</option>
-                      <option value="partners">Vendor Partnerships & Deals</option>
-                      <option value="editorial">Editorial & Architecture Reviews</option>
-                      <option value="security">Security & Bug Bounty</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="form-subject" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                      Subject
-                    </label>
-                    <input id="form-subject"
-                      type="text"
-                      placeholder="Brief topic summary..."
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="form-message" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                    Your Message *
-                  </label>
-                  <textarea id="form-message"
-                    rows={5}
-                    required
-                    placeholder="Describe how we can assist you in detail..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
-                  />
-                </div>
-
-                <button
-                  type="submit" disabled={busy}
-                  className="px-8 py-3.5 rounded-xl bg-[#C6FF3D] text-black font-bold font-mono text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(198,255,61,0.25)]"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>Dispatch Message</span>
-                </button>
+                  <button
+                    type="submit" disabled={busy}
+                    className="px-8 py-3.5 rounded-xl bg-[#C6FF3D] text-black font-bold font-mono text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(198,255,61,0.25)]"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>Dispatch Message</span>
+                  </button>
+                </fieldset>
               </form>
             )}
           </div>

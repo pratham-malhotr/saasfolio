@@ -92,7 +92,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
     } else {
       if ("speechSynthesis" in window) {
         window.speechSynthesis.cancel();
-        const textToSpeak = `${article.title}. An architectural review by ${article.author.name}. ${article.summary}. Key sections include: ${article.sections
+        const textToSpeak = `${article.title}. A software buying guide by ${article.author.name}. ${article.summary}. Key sections include: ${article.sections
           .slice(0, 3)
           .map((s) => s.heading + ". " + s.content.slice(0, 140))
           .join(" ")}`;
@@ -314,7 +314,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
             </button>
             <div>
               <div className="font-display font-bold text-xs sm:text-sm text-white flex items-center gap-2">
-                <span>Listen to Architectural Deep Dive</span>
+                <span>Listen to this buying guide</span>
                 <span className="font-mono text-[10px] text-[#C6FF3D] px-2 py-0.5 rounded bg-[#C6FF3D]/10 border border-[#C6FF3D]/20 uppercase font-bold">
                   AI AUDIO • {article.readTime}
                 </span>
@@ -451,6 +451,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
             )}
 
             {/* Author Bio Box */}
+            {article.sources?.length ? <section id="references" className="rounded-2xl border border-white/10 p-6 space-y-4"><h2 className="font-display text-2xl font-bold text-white">References and current provider terms</h2><p className="text-sm text-zinc-400">These references support the buying considerations above. Check the live provider terms before paying. This guide is not a hands-on benchmark, customer case study or checkout test.</p><ul className="space-y-3">{article.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="nofollow noopener noreferrer" className="text-[#C6FF3D] underline">{source.title} ↗</a></li>)}</ul></section> : null}
             <div className="p-8 rounded-2xl bg-[#09090C] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#C6FF3D] to-[#80B814] flex items-center justify-center font-display font-black text-black text-2xl shrink-0">
                 {article.author.avatarLetter}
@@ -515,7 +516,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
                 </div>
                 <div className="mb-3">
                   <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Perspective or Architectural Question *
+                    Your question or feedback *
                   </label>
                   <textarea
                     value={commentText}
@@ -527,7 +528,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[11px] text-zinc-500">
-                    SaaSFolio verified engineering discussion
+                    Browser-local comment preview; not publicly submitted
                   </span>
                   <button
                     type="submit"
@@ -626,7 +627,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
                   KEEP EXPLORING
                 </span>
                 <h3 className="font-display font-bold text-2xl sm:text-3xl text-white">
-                  Related Architecture Analyses
+                  Related buying guides
                 </h3>
               </div>
               <Link

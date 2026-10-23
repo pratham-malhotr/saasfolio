@@ -1,6 +1,7 @@
 import "server-only";
 import { NextResponse } from "next/server";
 import { SITE_URL } from "@/lib/seo";
+import { normalizePublicHttpsUrl } from "@/lib/public-url.mjs";
 
 export class HttpError extends Error {
   constructor(public status: number, message: string) { super(message); }
@@ -61,11 +62,9 @@ export function email(data: Record<string, unknown>, key = "email") {
 
 export function website(data: Record<string, unknown>, key: string) {
   const value = text(data, key, 8, 2000);
-  try {
-    const url = new URL(value);
-    if (url.protocol !== "https:" || url.username || url.password || !url.hostname.includes(".")) throw new Error();
-  } catch { throw new HttpError(400, "Please enter a complete HTTPS website URL."); }
-  return value;
+  const safe = normalizePublicHttpsUrl(value);
+  if (!safe) throw new HttpError(400, "Please enter a public HTTPS website URL without credentials or a private address.");
+  return safe;
 }
 
 export function safeRedirect(value: unknown, fallback = "/profile") {

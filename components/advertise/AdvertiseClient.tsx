@@ -1,4 +1,6 @@
 "use client";
+import { useServiceAvailability } from "@/lib/use-service-availability";
+import { ServiceNotice } from "@/components/forms/ServiceNotice";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -16,12 +18,12 @@ const PACKAGES = [
     name: "Featured Tool Spotlight",
     price: "$499",
     period: "per 30 days",
-    badge: "MOST POPULAR",
+    badge: "PROPOSED PLACEMENT",
     description: "Maximum discovery across the homepage hero banner, category leaderboards, and directory search suggestions.",
     features: [
       "Top sticky placement on /tools directory",
       "Homepage 'Featured SaaS' card inclusion",
-      "Direct verified outbound /go/[id] tracking link",
+      "Direct outbound /go/[id] provider link",
       "Clearly labeled sponsored placement",
       "Social mention on Twitter & LinkedIn channels",
     ],
@@ -31,8 +33,8 @@ const PACKAGES = [
     name: "Exclusive Deal Launch",
     price: "$349",
     period: "per deal campaign",
-    badge: "HIGH CONVERSION",
-    description: "Launch your coupon or lifetime deal with blur-to-reveal modal, confetti interaction, and high-visibility countdown.",
+    badge: "PROPOSED CAMPAIGN",
+    description: "Discuss a sourced coupon or software offer placement with clear eligibility, expiry information and redemption steps.",
     features: [
       "Top slot in /deals hub filter grid",
       "Interactive coupon reveal modal + clipboard copy",
@@ -46,11 +48,11 @@ const PACKAGES = [
     name: "Architectural Deep Dive",
     price: "$899",
     period: "permanent article",
-    badge: "LONG-TERM SEO",
-    description: "An unbiased, comprehensive 1,000+ word engineering comparison and benchmark review written by staff architects.",
+    badge: "EDITORIAL OPTION",
+    description: "A proposed sponsored buying guide with clear sponsorship disclosure, current references and scope agreed before publication. No positive review or measured result is guaranteed.",
     features: [
       "Permanent longform article on /articles/[slug]",
-      "AI audio voice narration embedded in review",
+      "Browser text-to-speech on supported devices",
       "Feature comparison matrix vs top 2 competitors",
       "Sponsored links disclosed and qualified appropriately",
       "Full Table of Contents and in-article deal callout",
@@ -74,6 +76,7 @@ const PACKAGES = [
 ];
 
 export default function AdvertisePage() {
+  const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("formsConfigured");
   const [formData, setFormData] = useState({
     companyName: "",
     toolUrl: "",
@@ -231,103 +234,107 @@ export default function AdvertisePage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6" aria-busy={busy}>
-              {error && <p role="alert" className="text-sm text-rose-400">{error}</p>}
-              <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <ServiceNotice status={serviceStatus} />
+              <fieldset disabled={!serviceAvailable} className="contents">
+                <legend className="sr-only">Form details</legend>
+                {error && <p role="alert" className="text-sm text-rose-400">{error}</p>}
+                <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="form-companyName" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                      Company / Product Name *
+                    </label>
+                    <input id="form-companyName"
+                      type="text"
+                      required
+                      placeholder="e.g. NextPulse AI"
+                      value={formData.companyName}
+                      onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="form-toolUrl" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                      Product Website URL *
+                    </label>
+                    <input id="form-toolUrl"
+                      type="url"
+                      required
+                      placeholder="https://yourproduct.com"
+                      value={formData.toolUrl}
+                      onChange={(e) => setFormData({ ...formData, toolUrl: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  <div>
+                    <label htmlFor="form-contactEmail" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                      Founder / Marketing Email *
+                    </label>
+                    <input id="form-contactEmail"
+                      type="email"
+                      required
+                      placeholder="founder@company.com"
+                      value={formData.contactEmail}
+                      onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="form-packageSelected" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                      Preferred Package
+                    </label>
+                    <select id="form-packageSelected"
+                      value={formData.packageSelected}
+                      onChange={(e) => setFormData({ ...formData, packageSelected: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                    >
+                      <option value="featured-tool">Featured Tool Spotlight ($499)</option>
+                      <option value="deal-showcase">Exclusive Deal Launch ($349)</option>
+                      <option value="editorial-deepdive">Architectural Deep Dive ($899)</option>
+                      <option value="newsletter-takeover">Tuesday SaaS Brief ($599)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="form-budget" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                      Estimated Monthly Budget
+                    </label>
+                    <select id="form-budget"
+                      value={formData.budget}
+                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                    >
+                      <option value="Under $500">Under $500</option>
+                      <option value="$500 - $1,500">$500 - $1,500</option>
+                      <option value="$1,500 - $5,000">$1,500 - $5,000</option>
+                      <option value="$5,000+ Enterprise">$5,000+ Enterprise</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div>
-                  <label htmlFor="form-companyName" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                    Company / Product Name *
+                  <label htmlFor="form-message" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+                    Campaign Goals & Special Requests (Optional)
                   </label>
-                  <input id="form-companyName"
-                    type="text"
-                    required
-                    placeholder="e.g. NextPulse AI"
-                    value={formData.companyName}
-                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                  <textarea id="form-message"
+                    rows={4}
+                    placeholder="Tell us about your target audience, current promo codes, or desired launch dates..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
                   />
                 </div>
-                <div>
-                  <label htmlFor="form-toolUrl" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                    Product Website URL *
-                  </label>
-                  <input id="form-toolUrl"
-                    type="url"
-                    required
-                    placeholder="https://yourproduct.com"
-                    value={formData.toolUrl}
-                    onChange={(e) => setFormData({ ...formData, toolUrl: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
-                  />
-                </div>
-              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div>
-                  <label htmlFor="form-contactEmail" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                    Founder / Marketing Email *
-                  </label>
-                  <input id="form-contactEmail"
-                    type="email"
-                    required
-                    placeholder="founder@company.com"
-                    value={formData.contactEmail}
-                    onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="form-packageSelected" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                    Preferred Package
-                  </label>
-                  <select id="form-packageSelected"
-                    value={formData.packageSelected}
-                    onChange={(e) => setFormData({ ...formData, packageSelected: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
-                  >
-                    <option value="featured-tool">Featured Tool Spotlight ($499)</option>
-                    <option value="deal-showcase">Exclusive Deal Launch ($349)</option>
-                    <option value="editorial-deepdive">Architectural Deep Dive ($899)</option>
-                    <option value="newsletter-takeover">Tuesday SaaS Brief ($599)</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="form-budget" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                    Estimated Monthly Budget
-                  </label>
-                  <select id="form-budget"
-                    value={formData.budget}
-                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
-                  >
-                    <option value="Under $500">Under $500</option>
-                    <option value="$500 - $1,500">$500 - $1,500</option>
-                    <option value="$1,500 - $5,000">$1,500 - $5,000</option>
-                    <option value="$5,000+ Enterprise">$5,000+ Enterprise</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="form-message" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
-                  Campaign Goals & Special Requests (Optional)
-                </label>
-                <textarea id="form-message"
-                  rows={4}
-                  placeholder="Tell us about your target audience, current promo codes, or desired launch dates..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
-                />
-              </div>
-
-              <button
-                type="submit" disabled={busy}
-                className="px-8 py-4 rounded-xl bg-[#C6FF3D] text-black font-bold font-mono text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(198,255,61,0.25)]"
-              >
-                <Send className="w-4 h-4" />
-                <span>Submit Partnership Inquiry</span>
-              </button>
+                <button
+                  type="submit" disabled={busy}
+                  className="px-8 py-4 rounded-xl bg-[#C6FF3D] text-black font-bold font-mono text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(198,255,61,0.25)]"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>Submit Partnership Inquiry</span>
+                </button>
+              </fieldset>
             </form>
           )}
         </div>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Clock, Tag, ExternalLink } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 import { FEATURED_ARTICLES } from "@/lib/mock-data";
 import { Reveal } from "@/components/animations/Reveal";
 import { TiltCard } from "@/components/animations/TiltCard";

@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, MessageSquare, AlertCircle } from "lucide-react";
+import { ArrowLeft, AlertCircle } from "lucide-react";
 import { DetailedCommunityThread } from "@/lib/data/community-data";
 import { CommunityThreadClient } from "./CommunityThreadClient";
+import { parseLocalThreads } from "@/lib/local-community";
 
 interface CommunityThreadFallbackProps {
   slug: string;
@@ -15,24 +16,27 @@ export function CommunityThreadFallback({ slug }: CommunityThreadFallbackProps) 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem("saasfolio_local_threads");
-      if (stored) {
-        const parsed: DetailedCommunityThread[] = JSON.parse(stored);
-        const match = parsed.find(
-          (t) =>
-            t.slug === slug ||
-            t.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") === slug
-        );
-        if (match) {
-          setThread(match);
+    const frame = requestAnimationFrame(() => {
+      try {
+        const stored = localStorage.getItem("saasfolio_local_threads");
+        if (stored) {
+          const parsed = parseLocalThreads(stored);
+          const match = parsed.find(
+            (t) =>
+              t.slug === slug ||
+              t.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") === slug
+          );
+          if (match) {
+            setThread(match);
+          }
         }
+      } catch {
+        // Invalid browser-local data is not a public thread.
+      } finally {
+        setLoading(false);
       }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
+    });
+    return () => cancelAnimationFrame(frame);
   }, [slug]);
 
   if (loading) {

@@ -1,14 +1,8 @@
 import type { SaaSDeal } from "@/lib/types";
+import { normalizePublicHttpsUrl } from "@/lib/public-url.mjs";
 
 export function publicHttpsUrl(value?: string): string | undefined {
-  try {
-    if (!value) return undefined;
-    const url = new URL(value);
-    if (url.protocol !== "https:" || url.username || url.password || url.port || !url.hostname.includes(".") ||
-      /^(localhost|127\.|10\.|192\.168\.|169\.254\.|172\.(1[6-9]|2\d|3[01])\.)/.test(url.hostname) ||
-      /\.(local|internal|test)$/.test(url.hostname)) return undefined;
-    return url.toString();
-  } catch { return undefined; }
+  return normalizePublicHttpsUrl(value);
 }
 
 // Offer destinations take precedence over generic affiliate homepages. A coupon

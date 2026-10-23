@@ -1,3 +1,5 @@
+import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
+import { DETAILED_THREADS } from "@/lib/data/community-data";
 export interface Category {
   id: string;
   name: string;
@@ -205,126 +207,11 @@ export const CATEGORIES: Category[] = [
 export const HOT_DEALS: SaaSDeal[] = []; // Homepage receives current offers from its server page.
 
 
-export const FEATURED_ARTICLES: ArticleItem[] = [
-  {
-    id: "art-1",
-    title: "The Ultimate SaaS Stack for Bootstrapped Founders in 2026",
-    slug: "ultimate-saas-stack-bootstrapped-founders-2026",
-    summary: "How to run a high-revenue, $50k MRR software company with less than $350/mo in software infrastructure.",
-    category: "Guides & Stacks",
-    readTime: "8 min read",
-    publishedAt: "Oct 16, 2026",
-    author: {
-      name: "Alex Sterling",
-      role: "Lead Systems Architect",
-      avatarLetter: "A",
-    },
-    featured: true,
-    coverAccent: "#C6FF3D",
-    tags: ["Bootstrapping", "Cost Optimization", "Dev Tools", "Founders"],
-  },
-  {
-    id: "art-2",
-    title: "Supabase vs. Firebase vs. EdgeBase: Real Production Latency Benchmarks",
-    slug: "supabase-vs-firebase-vs-edgebase-benchmarks",
-    summary: "We stress-tested query throughput, cold starts, and egress fees across 10 global regions.",
-    category: "Comparisons",
-    readTime: "11 min read",
-    publishedAt: "Oct 14, 2026",
-    author: {
-      name: "Marcus Vance",
-      role: "Database Engineer",
-      avatarLetter: "M",
-    },
-    coverAccent: "#7C5CFF",
-    tags: ["Databases", "Edge Infra", "Benchmarking"],
-  },
-  {
-    id: "art-3",
-    title: "How We Cut Our SaaS Invoicing & Billing Overhead by 65%",
-    slug: "cutting-saas-invoicing-overhead",
-    summary: "A practical breakdown of moving off legacy billing providers to modern automated tax compliance stacks.",
-    category: "Case Studies",
-    readTime: "6 min read",
-    publishedAt: "Oct 11, 2026",
-    author: {
-      name: "Elena Rostova",
-      role: "Fintech Lead",
-      avatarLetter: "E",
-    },
-    coverAccent: "#FF723D",
-    tags: ["Fintech", "Billing", "Stripe", "Taxes"],
-  },
-  {
-    id: "art-4",
-    title: "Top 7 AI Code Reviewers That Actually Catch Architecture Flaws",
-    slug: "top-ai-code-reviewers-architecture-flaws",
-    summary: "Beyond simple syntax linting: tools that simulate execution paths, identify race conditions, and guard API limits.",
-    category: "Tool Roundups",
-    readTime: "9 min read",
-    publishedAt: "Oct 08, 2026",
-    author: {
-      name: "Karan Patel",
-      role: "Staff Engineer",
-      avatarLetter: "K",
-    },
-    coverAccent: "#3DF0FF",
-    tags: ["AI Tools", "DevOps", "Code Quality"],
-  },
-];
+export const FEATURED_ARTICLES: ArticleItem[] = DETAILED_ARTICLES.slice(0, 4);
 
-export const TRENDING_DISCUSSIONS: CommunityThread[] = [
-  {
-    id: "disc-1",
-    title: "What is your #1 indispensable developer tool you'd pay personal money for?",
-    slug: "indispensable-developer-tool-2026",
-    contentSnippet: "With company budgets tightening, what software tools do you refuse to let go of even if you had to expense it out of pocket?",
-    category: "Dev Tools",
-    upvotes: 342,
-    commentCount: 89,
-    author: {
-      username: "dan_code",
-      reputation: 1840,
-      badge: "PRO FOUNDER",
-    },
-    createdAt: "3 hours ago",
-    toolTags: ["#DeployJet", "#EdgeBase", "#Raycast"],
-    hot: true,
-  },
-  {
-    id: "disc-2",
-    title: "Lifetime Deals (LTDs) vs Monthly Subscriptions: When is an LTD actually worth it?",
-    slug: "lifetime-deals-vs-subscriptions-worth-it",
-    contentSnippet: "Let's analyze unit economics. What happens to server costs 3 years down the line when a company offers lifetime access?",
-    category: "SaaS Economics",
-    upvotes: 278,
-    commentCount: 64,
-    author: {
-      username: "saas_economist",
-      reputation: 920,
-      badge: "DEAL HUNTER",
-    },
-    createdAt: "5 hours ago",
-    toolTags: ["#LTD", "#AppSumo", "#Pricing"],
-    hot: true,
-  },
-  {
-    id: "disc-3",
-    title: "Has anyone transitioned from Google Analytics 4 to self-hosted cookieless analytics?",
-    slug: "transitioning-ga4-to-cookieless-analytics",
-    contentSnippet: "Looking for recommendations. How is data discrepancy when comparing server-side events vs browser tracking scripts?",
-    category: "Analytics",
-    upvotes: 195,
-    commentCount: 42,
-    author: {
-      username: "sarah_growth",
-      reputation: 1250,
-      badge: "VERIFIED MKTG",
-    },
-    createdAt: "8 hours ago",
-    toolTags: ["#MetricPulse", "#Plausible", "#Telemetry"],
-  },
-];
+export const TRENDING_DISCUSSIONS: CommunityThread[] = DETAILED_THREADS.slice(0, 3).map(thread => ({
+  ...thread, contentSnippet: thread.content, toolTags: thread.toolTags.map(tool => tool.name),
+}));
 
 export const SAAS_LOGOS = [
   { name: "Coolify", label: "Self-Hosted PaaS" },

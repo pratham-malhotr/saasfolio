@@ -1,10 +1,13 @@
 "use client";
+import { useServiceAvailability } from "@/lib/use-service-availability";
+import { ServiceNotice } from "@/components/forms/ServiceNotice";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { apiRequest } from "@/lib/api-client";
 
 export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | "signup" | "password" }) {
+  const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("accountsConfigured");
   const router = useRouter();
   const params = useSearchParams();
   const [mode, setMode] = useState<"login" | "signup" | "reset" | "password">(initialMode);
@@ -39,10 +42,14 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
       {error && <p role="alert" className="p-3 rounded-xl bg-rose-500/10 text-rose-400 text-sm">{error}</p>}
       {notice && <p role="status" className="p-3 rounded-xl bg-[#C6FF3D]/10 text-[#C6FF3D] text-sm">{notice}</p>}
       <form onSubmit={submit} className="space-y-5">
-        {mode === "signup" && <label className="block text-sm text-zinc-300">Name<input name="name" autoComplete="name" required minLength={2} maxLength={100} value={name} onChange={event => setName(event.target.value)} className="mt-2 w-full rounded-xl p-3 bg-black border border-white/15 text-white" /></label>}
-        {mode !== "password" && <label className="block text-sm text-zinc-300">Email address<input name="email" type="email" autoComplete="email" required maxLength={254} value={email} onChange={event => setEmail(event.target.value)} className="mt-2 w-full rounded-xl p-3 bg-black border border-white/15 text-white" /></label>}
-        {mode !== "reset" && <div><label htmlFor="account-password" className="block text-sm text-zinc-300">Password</label><div className="relative mt-2"><input id="account-password" name="password" type={showPassword ? "text" : "password"} autoComplete={mode === "login" ? "current-password" : "new-password"} required minLength={mode === "login" ? 1 : 12} maxLength={128} value={password} onChange={event => setPassword(event.target.value)} className="w-full rounded-xl p-3 pr-20 bg-black border border-white/15 text-white" /><button type="button" onClick={() => setShowPassword(!showPassword)} aria-pressed={showPassword} className="absolute right-3 top-3 text-sm text-zinc-400">{showPassword ? "Hide" : "Show"}</button></div>{mode !== "login" && <p className="mt-2 text-xs text-zinc-500">Use at least 12 characters. Password managers and pasting are supported.</p>}</div>}
-        <button type="submit" disabled={busy} className="w-full rounded-xl py-3 bg-[#C6FF3D] text-black font-bold disabled:opacity-50">{busy ? "Please wait…" : mode === "signup" ? "Create account" : mode === "reset" ? "Send reset email" : mode === "password" ? "Save new password" : "Sign in"}</button>
+        <ServiceNotice status={serviceStatus} />
+        <fieldset disabled={!serviceAvailable} className="contents">
+          <legend className="sr-only">Form details</legend>
+          {mode === "signup" && <label className="block text-sm text-zinc-300">Name<input name="name" autoComplete="name" required minLength={2} maxLength={100} value={name} onChange={event => setName(event.target.value)} className="mt-2 w-full rounded-xl p-3 bg-black border border-white/15 text-white" /></label>}
+          {mode !== "password" && <label className="block text-sm text-zinc-300">Email address<input name="email" type="email" autoComplete="email" required maxLength={254} value={email} onChange={event => setEmail(event.target.value)} className="mt-2 w-full rounded-xl p-3 bg-black border border-white/15 text-white" /></label>}
+          {mode !== "reset" && <div><label htmlFor="account-password" className="block text-sm text-zinc-300">Password</label><div className="relative mt-2"><input id="account-password" name="password" type={showPassword ? "text" : "password"} autoComplete={mode === "login" ? "current-password" : "new-password"} required minLength={mode === "login" ? 1 : 12} maxLength={128} value={password} onChange={event => setPassword(event.target.value)} className="w-full rounded-xl p-3 pr-20 bg-black border border-white/15 text-white" /><button type="button" onClick={() => setShowPassword(!showPassword)} aria-pressed={showPassword} className="absolute right-3 top-3 text-sm text-zinc-400">{showPassword ? "Hide" : "Show"}</button></div>{mode !== "login" && <p className="mt-2 text-xs text-zinc-500">Use at least 12 characters. Password managers and pasting are supported.</p>}</div>}
+          <button type="submit" disabled={busy} className="w-full rounded-xl py-3 bg-[#C6FF3D] text-black font-bold disabled:opacity-50">{busy ? "Please wait…" : mode === "signup" ? "Create account" : mode === "reset" ? "Send reset email" : mode === "password" ? "Save new password" : "Sign in"}</button>
+        </fieldset>
       </form>
       <div className="flex flex-wrap gap-4 text-sm text-[#C6FF3D]">{mode !== "login" && <button onClick={() => changeMode("login")}>Sign in</button>}{mode !== "signup" && <button onClick={() => changeMode("signup")}>Create an account</button>}{mode === "login" && <button onClick={() => changeMode("reset")}>Forgot password?</button>}</div>
       <p className="text-xs text-zinc-500">By creating an account, you agree to the <Link href="/terms" className="underline">Terms</Link> and <Link href="/privacy" className="underline">Privacy Policy</Link>.</p>

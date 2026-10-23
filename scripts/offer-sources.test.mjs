@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import ts from "typescript";
+import { normalizePublicHttpsUrl } from "../lib/public-url.mjs";
 import { plainText, discoverVendorOffer, extractCouponCandidates, safePublicUrl, robotsAllows, fetchPublicPage } from "./lib/offer-sources.mjs";
 
 test("hidden payloads and unrelated percentage banners do not become offers", () => {
@@ -59,6 +60,7 @@ function loadTs(relativePath, dependencies = {}, date = Date) {
   const js = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, esModuleInterop: true } }).outputText;
   const testModule = { exports: {} };
   new Function("require", "module", "exports", "Date", js)(name => {
+    if (name === "@/lib/public-url.mjs") return { normalizePublicHttpsUrl };
     if (!(name in dependencies)) throw new Error(`Unexpected import: ${name}`);
     return dependencies[name];
   }, testModule, testModule.exports, date);

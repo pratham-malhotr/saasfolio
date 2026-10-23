@@ -1,7 +1,7 @@
 import { failure, HttpError, json, readBody, text } from "@/lib/server/http";
 import { authClient, publicUser, requireUser } from "@/lib/server/supabase";
 import { getDealBySlug } from "@/lib/data/deals-data";
-import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
+import { getArticleBySlug } from "@/lib/data/articles-data";
 
 export async function GET() {
   try {
@@ -10,7 +10,7 @@ export async function GET() {
     const { data, error } = await client.from("saved_items").select("kind,slug,created_at").eq("user_id", user.id).order("created_at", { ascending: false });
     if (error) throw new HttpError(503, "Your saved items could not be loaded.");
     const saved = data.map(item => {
-      const entry = item.kind === "deal" ? getDealBySlug(item.slug) : DETAILED_ARTICLES.find(article => article.slug === item.slug);
+      const entry = item.kind === "deal" ? getDealBySlug(item.slug) : getArticleBySlug(item.slug);
       return { ...item, title: entry?.title || "This item is no longer available", href: entry ? `/${item.kind === "deal" ? "deals" : "articles"}/${entry.slug}` : null };
     });
     return json({ user: publicUser(user), saved, bio: String(user.user_metadata?.bio || "") });
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const kind = text(data, "kind", 1, 10);
     const slug = text(data, "slug", 1, 200);
     if (!["deal", "article"].includes(kind)) throw new HttpError(400, "Choose a valid item type.");
-    const exists = kind === "deal" ? getDealBySlug(slug) : DETAILED_ARTICLES.find(article => article.slug === slug);
+    const exists = kind === "deal" ? getDealBySlug(slug) : getArticleBySlug(slug);
     if (data.saved !== false && !exists) throw new HttpError(404, "This item is no longer available.");
     const query = data.saved === false
       ? client.from("saved_items").delete().eq("user_id", user.id).eq("kind", kind).eq("slug", slug)

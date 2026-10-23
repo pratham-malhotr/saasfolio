@@ -2,24 +2,10 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  MessageSquare,
-  Flame,
-  TrendingUp,
-  Clock,
-  Plus,
-  Search,
-  CheckCircle2,
-  ChevronUp,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
-import {
-  DETAILED_THREADS,
-  DetailedCommunityThread,
-} from "@/lib/data/community-data";
+import { ArrowLeft, MessageSquare, Flame, TrendingUp, Clock, Plus, Search, ChevronUp } from "lucide-react";
+import { DETAILED_THREADS, DetailedCommunityThread } from "@/lib/data/community-data";
 import { NewDiscussionModal } from "@/components/modals/NewDiscussionModal";
+import { parseLocalThreads } from "@/lib/local-community";
 
 const CATEGORIES = [
   "All",
@@ -40,17 +26,23 @@ export function CommunityHubClient({ toolLinks }: { toolLinks: Record<string, st
 
   // Load persisted upvotes and locally created threads on mount
   React.useEffect(() => {
-    try {
-      const storedUpvotes = localStorage.getItem("saasfolio_community_upvotes");
-      if (storedUpvotes) {
-        setUpvotedIds(JSON.parse(storedUpvotes));
-      }
-      const storedLocalThreads = localStorage.getItem("saasfolio_local_threads");
-      if (storedLocalThreads) {
-        const parsed = JSON.parse(storedLocalThreads);
-        setThreads((prev) => [...parsed, ...prev.filter((t) => !parsed.some((p: any) => p.id === t.id))]);
-      }
-    } catch (e) {}
+    const frame = requestAnimationFrame(() => {
+      try {
+        const storedUpvotes = localStorage.getItem("saasfolio_community_upvotes");
+        if (storedUpvotes) {
+          const votes: unknown = JSON.parse(storedUpvotes);
+          if (votes && typeof votes === "object" && !Array.isArray(votes)) {
+            setUpvotedIds(Object.fromEntries(Object.entries(votes).filter(([, value]) => typeof value === "boolean")));
+          }
+        }
+        const storedLocalThreads = localStorage.getItem("saasfolio_local_threads");
+        if (storedLocalThreads) {
+          const parsed = parseLocalThreads(storedLocalThreads);
+          setThreads([...parsed, ...DETAILED_THREADS]);
+        }
+      } catch {}
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const toggleUpvote = (e: React.MouseEvent, id: string) => {
@@ -63,7 +55,7 @@ export function CommunityHubClient({ toolLinks }: { toolLinks: Record<string, st
 
     try {
       localStorage.setItem("saasfolio_community_upvotes", JSON.stringify(newUpvotesMap));
-    } catch (e) {}
+    } catch {}
 
     setThreads((prev) =>
       prev.map((t) => {
@@ -82,9 +74,9 @@ export function CommunityHubClient({ toolLinks }: { toolLinks: Record<string, st
     setThreads([newThread, ...threads]);
     try {
       const stored = localStorage.getItem("saasfolio_local_threads");
-      const list = stored ? JSON.parse(stored) : [];
+      const list = parseLocalThreads(stored);
       localStorage.setItem("saasfolio_local_threads", JSON.stringify([newThread, ...list]));
-    } catch (e) {}
+    } catch {}
   };
 
   // Filter and sort threads
@@ -122,14 +114,14 @@ export function CommunityHubClient({ toolLinks }: { toolLinks: Record<string, st
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2.5 h-2.5 rounded-full bg-[#C6FF3D] animate-ping" />
             <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-              10,000+ FOUNDERS, ARCHITECTS & DEAL HUNTERS
+              EDITORIAL PROMPTS & LOCAL DRAFTS
             </span>
           </div>
           <h1 className="font-display font-black tracking-tighter uppercase text-4xl sm:text-6xl text-white mb-4">
             SAAS COMMUNITY FORUM
           </h1>
           <p className="text-zinc-400 max-w-2xl text-base">
-            Crowdsourced tool comparisons, real feedback, and honest architectural debate without vendor censorship or sponsorship.
+            Explore editorial questions about software costs and buying decisions. Drafts, comments and feedback remain in your browser; they are not published community activity.
           </p>
         </div>
 

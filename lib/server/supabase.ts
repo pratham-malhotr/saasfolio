@@ -59,7 +59,11 @@ export function publicUser(user: User) {
 
 export async function enforceLimit(request: Request, action: string, max = 5, seconds = 600) {
   const service = serviceClient();
-  const address = request.headers.get("cf-connecting-ip") || request.headers.get("x-real-ip") || request.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
+  // Trust only a header explicitly configured for an edge that overwrites it.
+  // Otherwise use a shared anonymous bucket instead of accepting spoofable IPs.
+  const header = process.env.TRUSTED_CLIENT_IP_HEADER || (process.env.VERCEL === "1" ? "x-vercel-forwarded-for" : "");
+  const trusted = ["cf-connecting-ip", "x-vercel-forwarded-for", "x-real-ip", "x-forwarded-for"].includes(header);
+  const address = (trusted ? request.headers.get(header)?.split(",")[0].trim().slice(0, 64) : undefined) || "anonymous";
   const key = createHmac("sha256", process.env.RATE_LIMIT_SECRET || process.env.SUPABASE_SERVICE_ROLE_KEY!).update(`${action}:${address}`).digest("hex");
   const { data, error } = await service.rpc("consume_request_limit", { bucket_key: key, max_attempts: max, window_seconds: seconds });
   if (error) throw new HttpError(503, "This service is temporarily unavailable. Please try again later.");

@@ -167,7 +167,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
           {/* Detailed Overview */}
           <div className="p-8 rounded-3xl bg-[#09090C] border border-white/10 space-y-4">
             <h2 className="font-display font-bold text-2xl text-white uppercase">
-              Product Overview & Architecture
+              Product Overview
             </h2>
             <p className="text-zinc-300 text-sm leading-relaxed">
               {tool.longDescription}
@@ -179,7 +179,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
           </div>
 
           {/* Key Features Checklist */}
-          <div className="p-8 rounded-3xl bg-[#09090C] border border-white/10 space-y-4">
+          {tool.keyFeatures.length > 0 && <div className="p-8 rounded-3xl bg-[#09090C] border border-white/10 space-y-4">
             <h2 className="font-display font-bold text-2xl text-white uppercase">
               Key Features & Capabilities
             </h2>
@@ -191,10 +191,9 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Pros & Cons Box */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          </div>}
+          {/* Publish evaluations only when supported by actual review evidence. */}
+          {(tool.pros.length > 0 || tool.cons.length > 0) && <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Pros */}
             <div className="p-6 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 space-y-3">
               <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -224,8 +223,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
                 ))}
               </ul>
             </div>
-          </div>
-
+          </div>}
           {/* Pricing Plans Breakdown Table */}
           <div className="p-8 rounded-3xl bg-[#09090C] border border-white/10 space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -234,7 +232,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
                   Pricing Plans & Tiers
                 </h2>
                 <p className="text-xs text-zinc-400 mt-1">
-                  Transparent breakdown without hidden usage penalties.
+                  Check current pricing, usage limits and renewal terms with the provider.
                 </p>
               </div>
 

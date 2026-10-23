@@ -1,4 +1,6 @@
 "use client";
+import { useServiceAvailability } from "@/lib/use-service-availability";
+import { ServiceNotice } from "@/components/forms/ServiceNotice";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -19,6 +21,7 @@ import { apiRequest } from "@/lib/api-client";
 type SubmissionType = "deal" | "tool" | "review";
 
 export function SubmitWizardClient() {
+  const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("formsConfigured");
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
   const [submissionType, setSubmissionType] = useState<SubmissionType>("deal");
 
@@ -193,351 +196,355 @@ export function SubmitWizardClient() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="p-8 sm:p-10 rounded-3xl bg-[#09090C] border border-white/10 shadow-2xl" aria-busy={busy}>
-          {error && <p role="alert" className="text-sm text-rose-400 mb-5">{error}</p>}
-          <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
-          {/* STEP 1: Submission Intent */}
-          {currentStep === 1 && (
-            <div className="space-y-6 animate-in fade-in">
-              <div>
-                <h3 className="font-display font-bold text-xl text-white mb-1">
-                  1. Choose Your Submission Category
-                </h3>
-                <p className="text-zinc-400 text-xs sm:text-sm">
-                  Select how you would like your product to be listed and discovered.
-                </p>
-              </div>
+          <ServiceNotice status={serviceStatus} />
+          <fieldset disabled={!serviceAvailable} className="contents">
+            <legend className="sr-only">Form details</legend>
+            {error && <p role="alert" className="text-sm text-rose-400 mb-5">{error}</p>}
+            <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
+            {/* STEP 1: Submission Intent */}
+            {currentStep === 1 && (
+              <div className="space-y-6 animate-in fade-in">
+                <div>
+                  <h3 className="font-display font-bold text-xl text-white mb-1">
+                    1. Choose Your Submission Category
+                  </h3>
+                  <p className="text-zinc-400 text-xs sm:text-sm">
+                    Select how you would like your product to be listed and discovered.
+                  </p>
+                </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {[
-                  {
-                    type: "deal",
-                    icon: Tag,
-                    title: "Exclusive Deal",
-                    desc: "List a verified promo code, lifetime discount, or credit.",
-                  },
-                  {
-                    type: "tool",
-                    icon: Layers,
-                    title: "Tool Directory",
-                    desc: "Add your software to our browsable, searchable catalogue.",
-                  },
-                  {
-                    type: "review",
-                    icon: FileText,
-                    title: "Technical Review",
-                    desc: "Submit an architectural breakdown or benchmark test.",
-                  },
-                ].map((item) => (
-                  <button
-                    key={item.type}
-                    type="button"
-                    onClick={() => setSubmissionType(item.type as SubmissionType)}
-                    className={`p-6 rounded-2xl border text-left transition-all flex flex-col justify-between ${
-                      submissionType === item.type
-                        ? "bg-[#C6FF3D]/10 border-[#C6FF3D] shadow-[0_0_20px_rgba(198,255,61,0.15)]"
-                        : "bg-black/50 border-white/10 hover:border-white/20"
-                    }`}
-                  >
-                    <div>
-                      <item.icon
-                        className={`w-6 h-6 mb-3 ${
-                          submissionType === item.type ? "text-[#C6FF3D]" : "text-zinc-500"
-                        }`}
-                      />
-                      <div className="font-display font-bold text-base text-white mb-1">
-                        {item.title}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {[
+                    {
+                      type: "deal",
+                      icon: Tag,
+                      title: "Exclusive Deal",
+                      desc: "List a verified promo code, lifetime discount, or credit.",
+                    },
+                    {
+                      type: "tool",
+                      icon: Layers,
+                      title: "Tool Directory",
+                      desc: "Add your software to our browsable, searchable catalogue.",
+                    },
+                    {
+                      type: "review",
+                      icon: FileText,
+                      title: "Technical Review",
+                      desc: "Submit an architectural breakdown or benchmark test.",
+                    },
+                  ].map((item) => (
+                    <button
+                      key={item.type}
+                      type="button"
+                      onClick={() => setSubmissionType(item.type as SubmissionType)}
+                      className={`p-6 rounded-2xl border text-left transition-all flex flex-col justify-between ${
+                        submissionType === item.type
+                          ? "bg-[#C6FF3D]/10 border-[#C6FF3D] shadow-[0_0_20px_rgba(198,255,61,0.15)]"
+                          : "bg-black/50 border-white/10 hover:border-white/20"
+                      }`}
+                    >
+                      <div>
+                        <item.icon
+                          className={`w-6 h-6 mb-3 ${
+                            submissionType === item.type ? "text-[#C6FF3D]" : "text-zinc-500"
+                          }`}
+                        />
+                        <div className="font-display font-bold text-base text-white mb-1">
+                          {item.title}
+                        </div>
+                        <p className="text-zinc-400 text-xs leading-relaxed">{item.desc}</p>
                       </div>
-                      <p className="text-zinc-400 text-xs leading-relaxed">{item.desc}</p>
-                    </div>
 
-                    <div className="mt-4 pt-3 border-t border-white/5 font-mono text-[10px] text-zinc-500">
-                      {submissionType === item.type ? "● Selected" : "○ Click to select"}
-                    </div>
-                  </button>
-                ))}
-              </div>
-
-              <div>
-                <label htmlFor="form-category" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                  Target Product Category
-                </label>
-                <select id="form-category"
-                  value={formData.category}
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#C6FF3D]"
-                >
-                  <option value="Dev Tools">Dev Tools & Infrastructure</option>
-                  <option value="AI Tools">AI & Machine Learning</option>
-                  <option value="Security">Security & Zero-Trust Auth</option>
-                  <option value="Analytics">Analytics & Data Observability</option>
-                  <option value="Fintech">Fintech & Invoicing</option>
-                  <option value="Marketing">Marketing & Communication</option>
-                </select>
-              </div>
-            </div>
-          )}
-
-          {/* STEP 2: Tool & Offer Details */}
-          {currentStep === 2 && (
-            <div className="space-y-6 animate-in fade-in">
-              <div>
-                <h3 className="font-display font-bold text-xl text-white mb-1">
-                  2. Product & Offer Information
-                </h3>
-                <p className="text-zinc-400 text-xs sm:text-sm">
-                  Specify exact coupon terms, website links, and discount percentages.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="form-toolName" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    SaaS Tool Name *
-                  </label>
-                  <input id="form-toolName"
-                    type="text"
-                    required
-                    value={formData.toolName}
-                    onChange={(e) => setFormData({ ...formData, toolName: e.target.value })}
-                    placeholder="e.g. EdgeBase Cloud"
-                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                  />
+                      <div className="mt-4 pt-3 border-t border-white/5 font-mono text-[10px] text-zinc-500">
+                        {submissionType === item.type ? "● Selected" : "○ Click to select"}
+                      </div>
+                    </button>
+                  ))}
                 </div>
 
                 <div>
-                  <label htmlFor="form-websiteUrl" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Official Website URL *
+                  <label htmlFor="form-category" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    Target Product Category
                   </label>
-                  <input id="form-websiteUrl"
-                    type="url"
-                    required
-                    value={formData.websiteUrl}
-                    onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
-                    placeholder="https://edgebase.cloud"
-                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="form-tagline" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                  One-Line Tagline *
-                </label>
-                <input id="form-tagline"
-                  type="text"
-                  required
-                  value={formData.tagline}
-                  onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
-                  placeholder="e.g. Distributed SQLite for Edge Runtimes with Raft Consensus"
-                  className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-sans text-xs"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div>
-                  <label htmlFor="form-dealType" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Deal Type
-                  </label>
-                  <select id="form-dealType"
-                    value={formData.dealType}
-                    onChange={(e) => setFormData({ ...formData, dealType: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#C6FF3D]"
+                  <select id="form-category"
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#C6FF3D]"
                   >
-                    <option value="Verified Coupon Code">Verified Coupon Code</option>
-                    <option value="Lifetime Deal (LTD)">Lifetime Deal (LTD)</option>
-                    <option value="Extended Free Trial">Extended Free Trial</option>
-                    <option value="Startup Credits">Startup Credits</option>
+                    <option value="Dev Tools">Dev Tools & Infrastructure</option>
+                    <option value="AI Tools">AI & Machine Learning</option>
+                    <option value="Security">Security & Zero-Trust Auth</option>
+                    <option value="Analytics">Analytics & Data Observability</option>
+                    <option value="Fintech">Fintech & Invoicing</option>
+                    <option value="Marketing">Marketing & Communication</option>
                   </select>
                 </div>
+              </div>
+            )}
+
+            {/* STEP 2: Tool & Offer Details */}
+            {currentStep === 2 && (
+              <div className="space-y-6 animate-in fade-in">
+                <div>
+                  <h3 className="font-display font-bold text-xl text-white mb-1">
+                    2. Product & Offer Information
+                  </h3>
+                  <p className="text-zinc-400 text-xs sm:text-sm">
+                    Specify exact coupon terms, website links, and discount percentages.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="form-toolName" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                      SaaS Tool Name *
+                    </label>
+                    <input id="form-toolName"
+                      type="text"
+                      required
+                      value={formData.toolName}
+                      onChange={(e) => setFormData({ ...formData, toolName: e.target.value })}
+                      placeholder="e.g. EdgeBase Cloud"
+                      className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="form-websiteUrl" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                      Official Website URL *
+                    </label>
+                    <input id="form-websiteUrl"
+                      type="url"
+                      required
+                      value={formData.websiteUrl}
+                      onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
+                      placeholder="https://edgebase.cloud"
+                      className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
+                    />
+                  </div>
+                </div>
 
                 <div>
-                  <label htmlFor="form-discountPercentage" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Discount Percentage (%)
+                  <label htmlFor="form-tagline" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    One-Line Tagline *
                   </label>
-                  <input id="form-discountPercentage"
-                    type="number"
-                    min="0"
-                    max="100"
-                    value={formData.discountPercentage}
-                    onChange={(e) => setFormData({ ...formData, discountPercentage: e.target.value })}
-                    placeholder="50"
+                  <input id="form-tagline"
+                    type="text"
+                    required
+                    value={formData.tagline}
+                    onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
+                    placeholder="e.g. Distributed SQLite for Edge Runtimes with Raft Consensus"
+                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-sans text-xs"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label htmlFor="form-dealType" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                      Deal Type
+                    </label>
+                    <select id="form-dealType"
+                      value={formData.dealType}
+                      onChange={(e) => setFormData({ ...formData, dealType: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#C6FF3D]"
+                    >
+                      <option value="Verified Coupon Code">Verified Coupon Code</option>
+                      <option value="Lifetime Deal (LTD)">Lifetime Deal (LTD)</option>
+                      <option value="Extended Free Trial">Extended Free Trial</option>
+                      <option value="Startup Credits">Startup Credits</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="form-discountPercentage" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                      Discount Percentage (%)
+                    </label>
+                    <input id="form-discountPercentage"
+                      type="number"
+                      min="0"
+                      max="100"
+                      value={formData.discountPercentage}
+                      onChange={(e) => setFormData({ ...formData, discountPercentage: e.target.value })}
+                      placeholder="50"
+                      className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="form-couponCode" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                      Coupon Promo Code
+                    </label>
+                    <input id="form-couponCode"
+                      type="text"
+                      value={formData.couponCode}
+                      onChange={(e) => setFormData({ ...formData, couponCode: e.target.value.toUpperCase() })}
+                      placeholder="SAAS50"
+                      className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs font-bold text-[#C6FF3D]"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="form-verificationProof" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    Verification Proof Link / Documentation
+                  </label>
+                  <input id="form-verificationProof"
+                    type="text"
+                    value={formData.verificationProof}
+                    onChange={(e) => setFormData({ ...formData, verificationProof: e.target.value })}
+                    placeholder="https://twitter.com/... or public pricing checkout link"
+                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* STEP 3: Technical Specifications */}
+            {currentStep === 3 && (
+              <div className="space-y-6 animate-in fade-in">
+                <div>
+                  <h3 className="font-display font-bold text-xl text-white mb-1">
+                    3. Architecture & Competitive Edge
+                  </h3>
+                  <p className="text-zinc-400 text-xs sm:text-sm">
+                    Engineers love SaaSFolio because we explain why tools are built better.
+                  </p>
+                </div>
+
+                <div>
+                  <label htmlFor="form-techStack" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    Core Tech Stack / Cloud Infrastructure
+                  </label>
+                  <input id="form-techStack"
+                    type="text"
+                    value={formData.techStack}
+                    onChange={(e) => setFormData({ ...formData, techStack: e.target.value })}
+                    placeholder="e.g. Rust, WebAssembly, ClickHouse, AWS eu-central-1"
                     className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="form-couponCode" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Coupon Promo Code
+                  <label htmlFor="form-differentiator" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    Why is this product better than legacy alternatives? *
                   </label>
-                  <input id="form-couponCode"
-                    type="text"
-                    value={formData.couponCode}
-                    onChange={(e) => setFormData({ ...formData, couponCode: e.target.value.toUpperCase() })}
-                    placeholder="SAAS50"
-                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs font-bold text-[#C6FF3D]"
+                  <textarea id="form-differentiator"
+                    rows={4}
+                    required
+                    value={formData.differentiator}
+                    onChange={(e) => setFormData({ ...formData, differentiator: e.target.value })}
+                    placeholder="Explain latency, cost savings, compliance, or developer experience advantages..."
+                    className="w-full p-4 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-sans text-xs resize-none"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="form-founderEmail" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    Founder / Submitter Work Email *
+                  </label>
+                  <input id="form-founderEmail"
+                    type="email"
+                    required
+                    value={formData.founderEmail}
+                    onChange={(e) => setFormData({ ...formData, founderEmail: e.target.value })}
+                    placeholder="founder@yourcompany.com"
+                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
                   />
                 </div>
               </div>
+            )}
 
-              <div>
-                <label htmlFor="form-verificationProof" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                  Verification Proof Link / Documentation
-                </label>
-                <input id="form-verificationProof"
-                  type="text"
-                  value={formData.verificationProof}
-                  onChange={(e) => setFormData({ ...formData, verificationProof: e.target.value })}
-                  placeholder="https://twitter.com/... or public pricing checkout link"
-                  className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                />
-              </div>
-            </div>
-          )}
-
-          {/* STEP 3: Technical Specifications */}
-          {currentStep === 3 && (
-            <div className="space-y-6 animate-in fade-in">
-              <div>
-                <h3 className="font-display font-bold text-xl text-white mb-1">
-                  3. Architecture & Competitive Edge
-                </h3>
-                <p className="text-zinc-400 text-xs sm:text-sm">
-                  Engineers love SaaSFolio because we explain why tools are built better.
-                </p>
-              </div>
-
-              <div>
-                <label htmlFor="form-techStack" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                  Core Tech Stack / Cloud Infrastructure
-                </label>
-                <input id="form-techStack"
-                  type="text"
-                  value={formData.techStack}
-                  onChange={(e) => setFormData({ ...formData, techStack: e.target.value })}
-                  placeholder="e.g. Rust, WebAssembly, ClickHouse, AWS eu-central-1"
-                  className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="form-differentiator" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                  Why is this product better than legacy alternatives? *
-                </label>
-                <textarea id="form-differentiator"
-                  rows={4}
-                  required
-                  value={formData.differentiator}
-                  onChange={(e) => setFormData({ ...formData, differentiator: e.target.value })}
-                  placeholder="Explain latency, cost savings, compliance, or developer experience advantages..."
-                  className="w-full p-4 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-sans text-xs resize-none"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="form-founderEmail" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                  Founder / Submitter Work Email *
-                </label>
-                <input id="form-founderEmail"
-                  type="email"
-                  required
-                  value={formData.founderEmail}
-                  onChange={(e) => setFormData({ ...formData, founderEmail: e.target.value })}
-                  placeholder="founder@yourcompany.com"
-                  className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                />
-              </div>
-            </div>
-          )}
-
-          {/* STEP 4: Live Card Preview & Final Review */}
-          {currentStep === 4 && (
-            <div className="space-y-6 animate-in fade-in">
-              <div>
-                <h3 className="font-display font-bold text-xl text-white mb-1">
-                  4. Real-Time Deal Card Preview
-                </h3>
-                <p className="text-zinc-400 text-xs sm:text-sm">
-                  This is how your product listing will appear in the SaaSFolio directory.
-                </p>
-              </div>
-
-              {/* Live Preview Card */}
-              <div className="max-w-md mx-auto p-6 rounded-2xl bg-[#09090C] border-2 border-[#C6FF3D]/40 shadow-[0_0_30px_rgba(198,255,61,0.1)] relative">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-mono text-xs text-[#C6FF3D] font-bold">
-                    {formData.category}
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#C6FF3D] text-black font-mono text-xs font-black">
-                    {formData.discountPercentage}% OFF
-                  </span>
+            {/* STEP 4: Live Card Preview & Final Review */}
+            {currentStep === 4 && (
+              <div className="space-y-6 animate-in fade-in">
+                <div>
+                  <h3 className="font-display font-bold text-xl text-white mb-1">
+                    4. Real-Time Deal Card Preview
+                  </h3>
+                  <p className="text-zinc-400 text-xs sm:text-sm">
+                    This is how your product listing will appear in the SaaSFolio directory.
+                  </p>
                 </div>
 
-                <h4 className="font-display font-black text-xl text-white mb-1">
-                  {formData.toolName || "Your SaaS Tool"}
-                </h4>
-                <p className="text-zinc-400 text-xs mb-4 line-clamp-2">
-                  {formData.tagline || "High performance software designed for high-scale teams."}
-                </p>
-
-                <div className="p-3 rounded-xl bg-black/60 border border-white/5 font-mono text-xs space-y-1 mb-4">
-                  <div className="text-zinc-400 flex justify-between">
-                    <span>Deal Type:</span>
-                    <span className="text-white">{formData.dealType}</span>
+                {/* Live Preview Card */}
+                <div className="max-w-md mx-auto p-6 rounded-2xl bg-[#09090C] border-2 border-[#C6FF3D]/40 shadow-[0_0_30px_rgba(198,255,61,0.1)] relative">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-mono text-xs text-[#C6FF3D] font-bold">
+                      {formData.category}
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#C6FF3D] text-black font-mono text-xs font-black">
+                      {formData.discountPercentage}% OFF
+                    </span>
                   </div>
-                  <div className="text-zinc-400 flex justify-between">
-                    <span>Promo Code:</span>
-                    <span className="text-[#C6FF3D] font-bold">{formData.couponCode || "DISCOUNT"}</span>
+
+                  <h4 className="font-display font-black text-xl text-white mb-1">
+                    {formData.toolName || "Your SaaS Tool"}
+                  </h4>
+                  <p className="text-zinc-400 text-xs mb-4 line-clamp-2">
+                    {formData.tagline || "High performance software designed for high-scale teams."}
+                  </p>
+
+                  <div className="p-3 rounded-xl bg-black/60 border border-white/5 font-mono text-xs space-y-1 mb-4">
+                    <div className="text-zinc-400 flex justify-between">
+                      <span>Deal Type:</span>
+                      <span className="text-white">{formData.dealType}</span>
+                    </div>
+                    <div className="text-zinc-400 flex justify-between">
+                      <span>Promo Code:</span>
+                      <span className="text-[#C6FF3D] font-bold">{formData.couponCode || "DISCOUNT"}</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+                    <span className="flex items-center gap-1 text-emerald-400">
+                      <ShieldCheck className="w-3.5 h-3.5" /> Preview · Not yet reviewed
+                    </span>
+                    <span className="text-[#C6FF3D] font-bold">Reveal Coupon →</span>
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-500">
-                  <span className="flex items-center gap-1 text-emerald-400">
-                    <ShieldCheck className="w-3.5 h-3.5" /> Preview · Not yet reviewed
+                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-mono flex items-start gap-2.5">
+                  <ShieldCheck className="w-4 h-4 shrink-0 text-amber-400 mt-0.5" />
+                  <span>
+                    By submitting, you confirm that this offer is active and you have rights to represent the product or coupon. Submissions require review before publication.
                   </span>
-                  <span className="text-[#C6FF3D] font-bold">Reveal Coupon →</span>
                 </div>
               </div>
+            )}
 
-              <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-mono flex items-start gap-2.5">
-                <ShieldCheck className="w-4 h-4 shrink-0 text-amber-400 mt-0.5" />
-                <span>
-                  By submitting, you confirm that this offer is active and you have rights to represent the product or coupon. Submissions require review before publication.
-                </span>
-              </div>
+            {/* Wizard Navigation Controls */}
+            <div className="flex items-center justify-between pt-8 border-t border-white/10 mt-8">
+              {currentStep > 1 ? (
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="px-5 py-2.5 rounded-xl border border-white/10 text-zinc-400 hover:text-white font-mono text-xs transition-colors"
+                >
+                  ← Previous Step
+                </button>
+              ) : (
+                <div />
+              )}
+
+              {currentStep < 4 ? (
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="px-6 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-display font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(198,255,61,0.2)]"
+                >
+                  Continue to Step {currentStep + 1} <ArrowRight className="w-4 h-4" />
+                </button>
+              ) : (
+                <button
+                  type="submit" disabled={busy}
+                  className="px-8 py-3 rounded-xl bg-[#C6FF3D] text-black font-display font-black text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(198,255,61,0.3)]"
+                >
+                  <Send className="w-4 h-4" /> Submit to Moderation Queue
+                </button>
+              )}
             </div>
-          )}
-
-          {/* Wizard Navigation Controls */}
-          <div className="flex items-center justify-between pt-8 border-t border-white/10 mt-8">
-            {currentStep > 1 ? (
-              <button
-                type="button"
-                onClick={handleBack}
-                className="px-5 py-2.5 rounded-xl border border-white/10 text-zinc-400 hover:text-white font-mono text-xs transition-colors"
-              >
-                ← Previous Step
-              </button>
-            ) : (
-              <div />
-            )}
-
-            {currentStep < 4 ? (
-              <button
-                type="button"
-                onClick={handleNext}
-                className="px-6 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-display font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(198,255,61,0.2)]"
-              >
-                Continue to Step {currentStep + 1} <ArrowRight className="w-4 h-4" />
-              </button>
-            ) : (
-              <button
-                type="submit" disabled={busy}
-                className="px-8 py-3 rounded-xl bg-[#C6FF3D] text-black font-display font-black text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(198,255,61,0.3)]"
-              >
-                <Send className="w-4 h-4" /> Submit to Moderation Queue
-              </button>
-            )}
-          </div>
+          </fieldset>
         </form>
       )}
     </div>

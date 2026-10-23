@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // server content for search engines to index.
     return pageMetadata({ title: "Community Discussion", description: "SaaSFolio community discussion.", path: `/community/${encodeURIComponent(slug)}`, noIndex: true });
   }
-  return pageMetadata({ title: thread.title, description: thread.content, path: `/community/${thread.slug}` });
+  return pageMetadata({ title: thread.title, description: thread.content, path: `/community/${thread.slug}`, noIndex: true });
 }
 
 import { CommunityThreadFallback } from "@/components/community/CommunityThreadFallback";
@@ -53,9 +53,9 @@ export default async function CommunityThreadPage({ params }: PageProps) {
   };
 
   return (
-    <>
+    <div data-community-preview="true">
       <JsonLd data={jsonLd} />
       <CommunityThreadClient thread={thread} toolLinks={Object.fromEntries(thread.toolTags.map((tag) => [tag.slug, getToolHref(tag.slug)]))} />
-    </>
+    </div>
   );
 }
