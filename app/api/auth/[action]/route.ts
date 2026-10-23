@@ -50,7 +50,9 @@ export async function POST(request: Request, { params }: { params: Promise<{ act
       } catch {
         // Ignore
       }
-      return json({ ok: true });
+      const res = json({ ok: true });
+      res.cookies.delete("saasfolio_session");
+      return res;
     }
 
     if (action === "password") {
@@ -58,7 +60,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ act
       if (!user) {
         throw new HttpError(401, "Open a valid password reset link or sign in first.");
       }
-      const password = text(data, "password", 12, 128);
+      const password = text(data, "password", 8, 128);
 
       if (isSupabaseConfigured()) {
         const client = await authClient();
@@ -74,7 +76,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ act
     }
 
     const address = email(data);
-    const password = action === "reset" ? "" : text(data, "password", action === "signup" ? 12 : 1, 128);
+    const password = action === "reset" ? "" : text(data, "password", action === "signup" ? 8 : 1, 128);
     const name = action === "signup" ? text(data, "name", 2, 100) : "";
 
     await enforceLimit(request, `auth:${action}`, action === "login" ? 15 : 5);
@@ -93,6 +95,14 @@ export async function POST(request: Request, { params }: { params: Promise<{ act
         message: "If an account exists for that address, a password reset email has been requested.",
       });
     }
+
+    const cookieOpts = {
+      httpOnly: true,
+      sameSite: "lax" as const,
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: 30 * 24 * 60 * 60,
+    };
 
     if (action === "signup") {
       if (isSupabaseConfigured()) {
@@ -120,23 +130,22 @@ export async function POST(request: Request, { params }: { params: Promise<{ act
       try {
         const localUser = createLocalAccount(name, address, password);
         const token = createSessionToken(localUser.id);
-        store.set?.("saasfolio_session", token, {
-          httpOnly: true,
-          sameSite: "lax",
-          secure: process.env.NODE_ENV === "production",
-          path: "/",
-          maxAge: 30 * 24 * 60 * 60,
-        });
-
         const userObj = {
           id: localUser.id,
           email: localUser.email,
           user_metadata: { name: localUser.name, bio: localUser.bio || "" },
         };
-        return json({
+        const res = json({
           user: publicUser(userObj as never),
           message: "Your account is ready.",
         });
+        res.cookies.set("saasfolio_session", token, cookieOpts);
+        try {
+          store.set?.("saasfolio_session", token, cookieOpts);
+        } catch {
+          // Ignore
+        }
+        return res;
       } catch (err) {
         throw new HttpError(400, err instanceof Error ? err.message : "Account creation failed.");
       }
@@ -158,19 +167,19 @@ export async function POST(request: Request, { params }: { params: Promise<{ act
       const localUser = verifyLocalCredentials(address, password);
       if (localUser) {
         const token = createSessionToken(localUser.id);
-        store.set?.("saasfolio_session", token, {
-          httpOnly: true,
-          sameSite: "lax",
-          secure: process.env.NODE_ENV === "production",
-          path: "/",
-          maxAge: 30 * 24 * 60 * 60,
-        });
         const userObj = {
           id: localUser.id,
           email: localUser.email,
           user_metadata: { name: localUser.name, bio: localUser.bio || "" },
         };
-        return json({ user: publicUser(userObj as never) });
+        const res = json({ user: publicUser(userObj as never) });
+        res.cookies.set("saasfolio_session", token, cookieOpts);
+        try {
+          store.set?.("saasfolio_session", token, cookieOpts);
+        } catch {
+          // Ignore
+        }
+        return res;
       }
 
       throw new HttpError(401, "Sign in failed. Check your email, password, and email confirmation.");
@@ -179,24 +188,23 @@ export async function POST(request: Request, { params }: { params: Promise<{ act
     // Local auth login
     const localUser = verifyLocalCredentials(address, password);
     if (!localUser) {
-      throw new HttpError(401, "Sign in failed. Check your email, password, and email confirmation.");
+      throw new HttpError(401, "Invalid email or password. Please verify your credentials or create an account.");
     }
 
     const token = createSessionToken(localUser.id);
-    store.set?.("saasfolio_session", token, {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      path: "/",
-      maxAge: 30 * 24 * 60 * 60,
-    });
-
     const userObj = {
       id: localUser.id,
       email: localUser.email,
       user_metadata: { name: localUser.name, bio: localUser.bio || "" },
     };
-    return json({ user: publicUser(userObj as never) });
+    const res = json({ user: publicUser(userObj as never) });
+    res.cookies.set("saasfolio_session", token, cookieOpts);
+    try {
+      store.set?.("saasfolio_session", token, cookieOpts);
+    } catch {
+      // Ignore
+    }
+    return res;
   } catch (error) {
     return failure(error);
   }

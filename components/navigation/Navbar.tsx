@@ -192,9 +192,10 @@ export function Navbar() {
                       onClick={async () => {
                         try {
                           await apiRequest("/api/auth/logout", {});
-                          setCurrentUser(null); setProfileDropdownOpen(false);
-                          window.dispatchEvent(new Event("saasfolio_auth_changed"));
-                        } catch { router.push("/profile"); }
+                          window.location.href = "/login";
+                        } catch {
+                          window.location.href = "/";
+                        }
                       }}
                       className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-rose-400 hover:bg-rose-500/10 transition-colors text-left"
                     >
@@ -282,23 +283,49 @@ export function Navbar() {
 
               <div className="pt-4 space-y-2 border-t border-white/10">
                 {currentUser ? (
-                  <Link
-                    href="/profile"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between py-2 text-sm text-[#C6FF3D]"
-                  >
-                    <span>Member Passport ({currentUser.email})</span>
-                    <span className="font-mono text-xs">VIEW →</span>
-                  </Link>
+                  <>
+                    <Link
+                      href="/profile"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between py-2 text-sm text-[#C6FF3D]"
+                    >
+                      <span>Member Passport ({currentUser.email})</span>
+                      <span className="font-mono text-xs">VIEW →</span>
+                    </Link>
+                    <button
+                      onClick={async () => {
+                        try {
+                          await apiRequest("/api/auth/logout", {});
+                          window.location.href = "/login";
+                        } catch {
+                          window.location.href = "/";
+                        }
+                      }}
+                      className="w-full flex items-center justify-between py-2 text-sm text-rose-400 hover:text-rose-300 text-left"
+                    >
+                      <span className="flex items-center gap-2"><LogOut className="w-3.5 h-3.5" /> Sign Out</span>
+                      <span className="font-mono text-xs">EXIT →</span>
+                    </button>
+                  </>
                 ) : (
-                  <Link
-                    href="/login"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between py-2 text-sm text-zinc-300 hover:text-white"
-                  >
-                    <span>Sign In to SaaSFolio</span>
-                    <span className="font-mono text-xs text-[#C6FF3D]">LOGIN →</span>
-                  </Link>
+                  <>
+                    <Link
+                      href="/login"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between py-2 text-sm text-zinc-300 hover:text-white"
+                    >
+                      <span>Sign In to SaaSFolio</span>
+                      <span className="font-mono text-xs text-[#C6FF3D]">LOGIN →</span>
+                    </Link>
+                    <Link
+                      href="/signup"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between py-2 text-sm text-zinc-400 hover:text-white"
+                    >
+                      <span>Create Free Account</span>
+                      <span className="font-mono text-xs text-[#C6FF3D]">REGISTER →</span>
+                    </Link>
+                  </>
                 )}
                 <Link
                   href="/submit"

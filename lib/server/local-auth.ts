@@ -90,20 +90,24 @@ function getSeedUsers(): LocalUser[] {
 }
 
 export function loadUsers(): LocalUser[] {
-  if (memoryUsers) return memoryUsers;
   ensureDataDir();
   if (existsSync(USERS_FILE)) {
     try {
       const content = readFileSync(USERS_FILE, "utf8");
-      memoryUsers = JSON.parse(content);
-      return memoryUsers!;
+      const parsed = JSON.parse(content);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        memoryUsers = parsed;
+        return parsed;
+      }
     } catch {
-      // If parsing fails, fall back to seed users
+      // If parsing fails, fall back to memory or seed
     }
   }
-  memoryUsers = getSeedUsers();
-  saveUsers(memoryUsers);
-  return memoryUsers;
+  if (memoryUsers && memoryUsers.length > 0) return memoryUsers;
+  const seed = getSeedUsers();
+  memoryUsers = seed;
+  saveUsers(seed);
+  return seed;
 }
 
 export function saveUsers(users: LocalUser[]): void {

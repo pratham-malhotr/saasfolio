@@ -46,16 +46,16 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
   const passwordStrength = useMemo(() => {
     if (!password) return { score: 0, label: "Enter password", color: "bg-zinc-700" };
     let score = 0;
-    if (password.length >= 12) score += 40;
-    else if (password.length >= 8) score += 20;
-    if (/[A-Z]/.test(password) && /[a-z]/.test(password)) score += 20;
+    if (password.length >= 12) score += 35;
+    else if (password.length >= 8) score += 25;
+    if (/[A-Z]/.test(password) && /[a-z]/.test(password)) score += 25;
     if (/[0-9]/.test(password)) score += 20;
     if (/[^A-Za-z0-9]/.test(password)) score += 20;
 
-    if (score < 40) return { score, label: "Weak (min 12 chars required)", color: "bg-rose-500" };
-    if (score < 70) return { score, label: "Fair", color: "bg-amber-400" };
-    if (score < 90) return { score, label: "Good", color: "bg-emerald-400" };
-    return { score, label: "Excellent & Secure", color: "bg-[#C6FF3D]" };
+    if (score < 40) return { score, label: "Weak (min 8 characters)", color: "bg-rose-500" };
+    if (score < 65) return { score, label: "Fair", color: "bg-amber-400" };
+    if (score < 85) return { score, label: "Good", color: "bg-emerald-400" };
+    return { score, label: "Strong & Secure", color: "bg-[#C6FF3D]" };
   }, [password]);
 
   async function submit(event: React.FormEvent) {
@@ -76,13 +76,13 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
           redirect && /^\/(?!\/)/.test(redirect) && !/[\\\u0000-\u0020]/.test(redirect)
             ? redirect
             : "/profile";
-        router.replace(safeDestination);
-        router.refresh();
+        // Full navigation ensures cookies are attached immediately to RSC requests
+        window.location.href = safeDestination;
       } else {
-        setNotice(result.message || "Your request has been saved.");
+        setNotice(result.message || "Your request has been processed.");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Please try again.");
+      setError(err instanceof Error ? err.message : "Please check your details and try again.");
     } finally {
       setBusy(false);
     }
@@ -106,11 +106,11 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
 
   const subtitle =
     mode === "signup"
-      ? "Join verified builders and shoppers. Submit working codes, earn karma, and unlock deals."
+      ? "Join verified builders and software buyers. Submit working promo codes, unlock deals, and earn community karma."
       : mode === "reset"
       ? "Enter your email address and we'll send you an encrypted password recovery link."
       : mode === "password"
-      ? "Enter your new password below (must be at least 12 characters)."
+      ? "Enter your new password below (must be at least 8 characters)."
       : "Sign in to access your personal deal vault, bookmarks, and submit verified promo codes.";
 
   return (
@@ -271,26 +271,6 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                 </div>
               )}
 
-              {/* Quick Demo Fill option for frictionless testing */}
-              {mode === "login" && (
-                <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-between text-xs">
-                  <div>
-                    <span className="text-zinc-300 font-bold block">Quick Demo Credentials:</span>
-                    <span className="font-mono text-[11px] text-zinc-500">demo@saasfolio.tech / Password1234!</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setEmail("demo@saasfolio.tech");
-                      setPassword("Password1234!");
-                    }}
-                    className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-[#C6FF3D]/10 hover:text-[#C6FF3D] border border-white/10 text-[11px] font-mono text-zinc-300 transition-colors"
-                  >
-                    Auto-Fill
-                  </button>
-                </div>
-              )}
-
               {/* Form Body */}
               <form onSubmit={submit} className="space-y-4">
                 <ServiceNotice status={serviceStatus} />
@@ -378,9 +358,9 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                           type={showPassword ? "text" : "password"}
                           autoComplete={mode === "login" ? "current-password" : "new-password"}
                           required
-                          minLength={mode === "login" ? 1 : 12}
+                          minLength={mode === "login" ? 1 : 8}
                           maxLength={128}
-                          placeholder={mode === "login" ? "••••••••••••" : "Minimum 12 characters"}
+                          placeholder={mode === "login" ? "••••••••••••" : "Minimum 8 characters"}
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           className="w-full rounded-2xl py-3 pl-10 pr-12 bg-black/60 border border-white/15 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] focus:ring-1 focus:ring-[#C6FF3D] transition-colors font-mono text-sm"
@@ -409,8 +389,8 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                             />
                           </div>
                           <div className="flex items-center gap-3 text-[10px] font-mono text-zinc-500 pt-1">
-                            <span className={password.length >= 12 ? "text-[#C6FF3D] flex items-center gap-0.5" : ""}>
-                              {password.length >= 12 && <Check className="w-3 h-3" />} 12+ chars
+                            <span className={password.length >= 8 ? "text-[#C6FF3D] flex items-center gap-0.5" : ""}>
+                              {password.length >= 8 && <Check className="w-3 h-3" />} 8+ chars
                             </span>
                             <span className={/[A-Z]/.test(password) && /[a-z]/.test(password) ? "text-[#C6FF3D] flex items-center gap-0.5" : ""}>
                               {/[A-Z]/.test(password) && /[a-z]/.test(password) && <Check className="w-3 h-3" />} Mixed case
@@ -433,7 +413,7 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                     {busy ? (
                       <span className="inline-flex items-center gap-2">
                         <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                        <span>Verifying credentials...</span>
+                        <span>{mode === "signup" ? "Creating your account..." : mode === "login" ? "Signing you in..." : "Processing request..."}</span>
                       </span>
                     ) : (
                       <>
