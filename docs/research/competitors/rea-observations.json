@@ -1,0 +1,234 @@
+{
+  "tool": "rea-agents",
+  "version": "6.7.0",
+  "scope": "Public navigation in isolated temporary browser profiles. No checkout, accounts or challenge bypass.",
+  "results": [
+    {
+      "name": "simplycodes",
+      "sourceUrl": "https://simplycodes.com/store/beehiiv.com",
+      "evidenceId": "ev_e08ac2873b5f1cd39ef11d8c27944c3f87f778404153b67e20c3bac373f3f180",
+      "captureFileSha256": "a9c34ac813b840d7af08110de94d5b5afd2f43c1460fd66cb094064d9f8cbec2",
+      "localCaptureFinishedAt": "2026-10-23T07:25:13.695Z",
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "144.0.7559.97"
+      },
+      "documentStatuses": [
+        403
+      ],
+      "dom": {
+        "bytes": 5746,
+        "sha256": "f81c89bd7585018a525e5fb72bdd7bdec10e95b953dd333708ce543b51c3ded7"
+      },
+      "blocked": true,
+      "pageTitle": "Attention Required! | Cloudflare",
+      "pageInventory": null,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Browser host platform and architecture were not observed."
+      ]
+    },
+    {
+      "name": "secret",
+      "sourceUrl": "https://www.joinsecret.com/beehiiv",
+      "evidenceId": "ev_76b4e65c9a363470757c1c3288e0b2cb8292015c0bc808328432b40b6fe59c3b",
+      "captureFileSha256": "a93587a230af0b136e1e7f36683b0c5cc9e120230666669b33be3d74d0a30826",
+      "localCaptureFinishedAt": "2026-10-23T07:25:13.695Z",
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "144.0.7559.97"
+      },
+      "documentStatuses": [
+        307,
+        403,
+        200
+      ],
+      "dom": {
+        "bytes": 28816,
+        "sha256": "f62fad703bfb7475d1c2c1b23e194f0be871a73de4af6bc8b29b9c1cec9def01"
+      },
+      "blocked": true,
+      "pageTitle": "Just a moment...",
+      "pageInventory": null,
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some network requests had not completed when capture ended; later activity is unknown.",
+        "Browser host platform and architecture were not observed."
+      ]
+    },
+    {
+      "name": "appsumo",
+      "sourceUrl": "https://appsumo.com/",
+      "evidenceId": "ev_c16120f14d899a9737ae5f7cba0260d3cf82010ccc1d350772110e3505ec052b",
+      "captureFileSha256": "f3b81a1440ded27f1cbfb6bc4b222a4fd566388d2b7d4dd7368acecf0f463282",
+      "localCaptureFinishedAt": "2026-10-23T07:28:52.204Z",
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "144.0.7559.97"
+      },
+      "documentStatuses": [
+        200,
+        200
+      ],
+      "dom": {
+        "bytes": 228486,
+        "sha256": "3c077c4cd2a157e987948616215c1a659d5ef4a95eeeaacfff56efc52b5418ae"
+      },
+      "blocked": false,
+      "pageTitle": "AppSumo - Discover products. Stay weird. | AppSumo",
+      "pageInventory": {
+        "links": 103,
+        "searchInputs": 1,
+        "categoryLinks": 2,
+        "declaredIcons": 8
+      },
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some network requests had not completed when capture ended; later activity is unknown.",
+        "Browser host platform and architecture were not observed."
+      ]
+    },
+    {
+      "name": "dealfuel",
+      "sourceUrl": "https://www.dealfuel.com/",
+      "evidenceId": "ev_b1a735479fe55f9e08753f30ae5d06e0d50975ffa76f37551d79b3d10bcab70c",
+      "captureFileSha256": "3f5893f12bc043b70aa7c34df03b9eb6f05f89768fa535e359343edcd1dee82b",
+      "localCaptureFinishedAt": "2026-10-23T07:28:52.001Z",
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "144.0.7559.97"
+      },
+      "documentStatuses": [
+        200
+      ],
+      "dom": {
+        "bytes": 619853,
+        "sha256": "69747ab704f927027a83fea3ad7cd64e44f736a139483a84017720b6ab31d2fb"
+      },
+      "blocked": false,
+      "pageTitle": "Deals For Web Designers, Developers, Marketers & Bloggers",
+      "pageInventory": {
+        "links": 264,
+        "searchInputs": 1,
+        "categoryLinks": 31,
+        "declaredIcons": 3
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Browser host platform and architecture were not observed."
+      ]
+    },
+    {
+      "name": "saasfolio",
+      "sourceUrl": "https://saasfolio.tech/",
+      "evidenceId": "ev_cfed8a67333740f69912309c2e0c543431bf326381c95a65b92e4e96b932e44b",
+      "captureFileSha256": "a98ac138471cbb57710fa4e5dd162e645ddd59fbd94de5b23514633cdabbd422",
+      "localCaptureFinishedAt": "2026-10-23T07:28:51.993Z",
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "144.0.7559.97"
+      },
+      "documentStatuses": [
+        200
+      ],
+      "dom": {
+        "bytes": 389855,
+        "sha256": "ed8ac494b81f07f26c9bbe95743d4f22c78bef5b3eec3a2d6cf2ce719db7bca9"
+      },
+      "blocked": false,
+      "pageTitle": "SaaS Discounts, Software Deals & Reviews | SaaSFolio",
+      "pageInventory": {
+        "links": 78,
+        "searchInputs": 0,
+        "categoryLinks": 22,
+        "declaredIcons": 1
+      },
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some network requests had not completed when capture ended; later activity is unknown.",
+        "Browser host platform and architecture were not observed."
+      ]
+    }
+  ]
+}

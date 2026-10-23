@@ -1,6 +1,8 @@
 # Brand discount SEO
 
-The primary search landing pages for brand discount queries live at `/discounts/[slug]`. `/discounts` links to every currently indexable brand guide. Hostinger and Namecheap have guides backed by sourced coupon records. Ten brands have original editorial buying guides, reviewed against official sources on 2026-10-21.
+The follow-up [competitor investigation](research/competitors/README.md) adds source comparisons, membership-cost calculations, a complete brand directory and consistent search icons. It preserves the sixteen original guides described below.
+
+The primary search landing pages for brand discount queries live at `/discounts/[slug]`. `/discounts` links to every currently indexable brand guide. Sixteen brands have original editorial buying guides, with sources reviewed on 2026-10-23. Hostinger and Namecheap also have sourced coupon records.
 
 | Landing page | Search intent and editorial focus |
 | --- | --- |
@@ -14,8 +16,22 @@ The primary search landing pages for brand discount queries live at `/discounts/
 | `/discounts/streamyard` | StreamYard discount / coupon; individual/business eligibility and recording workflows |
 | `/discounts/anytrack` | AnyTrack discount / coupon; sessions, websites, integrations and overages |
 | `/discounts/baremetrics` | Baremetrics discount / coupon; revenue eligibility, integrations and analytics evaluation |
+| `/discounts/mailerlite` | MailerLite discount / coupon; annual billing, nonprofit approval and current versus Legacy accounts |
+| `/discounts/convertkit` | Kit / ConvertKit discount / promo code; current packages, subscriber tiers and annual switching |
+| `/discounts/notion` | Notion discount; yearly seats, student eligibility, nonprofit approval and workspace billing |
+| `/discounts/framer` | Framer discount / coupon / student offer; personal-use approval, Site plans and editor costs |
+| `/discounts/hostinger` | Hostinger discount / coupon; product exclusions, prepaid terms and renewal costs |
+| `/discounts/namecheap` | Namecheap discount / promo code; domain extensions, registration versus transfer, email and SSL |
 
-Each editorial page includes a distinct title and description, an original introduction and buying summary, a workflow comparison table, four or more substantive sections, brand-specific redemption steps, visible questions, official references and relevant links to other guides. These are original buying considerations, not hands-on product reviews or checkout tests. Volatile numeric observations live in the dated source-notes panel, which is hidden after 30 days without review. Ocoya now has a corresponding sourced catalog profile at `/tools/ocoya`.
+Each editorial page includes a distinct title and description, an original introduction and buying summary, a workflow comparison table, four or more substantive sections, brand-specific redemption steps, visible questions, official references and links to other guides. The current-offer section gives a direct answer about recorded coupons and reviewed savings. Eligibility and coupon troubleshooting use original checks for the particular brand. These are buying considerations, not hands-on product reviews or checkout tests.
+
+Dated savings options, eligibility guidance and troubleshooting are hidden after 30 days without review, or when the review date is in the future. The evergreen guide remains available. MailerLite, Kit, Notion and Framer also have updated, source-backed product descriptions. The Kit profile uses its current name while retaining `/tools/convertkit` as the established canonical URL.
+
+## Brand-name variants
+
+`lib/data/brand-discount-aliases.mjs` defines real name variants such as Predis, Snov, Systeme, Smartlead.ai, AnyTrack.io and Kit. `next.config.mjs` returns permanent HTTP redirects before page rendering, including for social-image paths. Query parameters are retained. Only the canonical guides enter the sitemap; coupon/promo/discount variants do not get separate near-duplicate pages.
+
+Updating the Kit name also consolidates the pre-existing duplicate `kit-convertkit` product profile. Its old tool and pricing URLs permanently redirect to the established `convertkit` URLs.
 
 ## Page responsibilities
 
@@ -29,7 +45,7 @@ Each page has its own canonical URL. Tracking parameters canonicalize to that cl
 
 1. Confirm a real tool profile and an official provider URL exist.
 2. Publish a sourced coupon or monetary offer through the existing reviewed-offer and catalog refresh workflow. The current catalog requires checks within 14 days and excludes published expirations.
-3. For a brand without a monetary offer, write original buying guidance in `lib/data/brand-discount-guides.ts`. Include a distinct description, official source, actual review date, billing or eligibility considerations, and useful questions. Do not copy a guide and only replace the brand name.
+3. For a brand without a monetary offer, write original buying guidance in `lib/data/brand-discount-guides.ts` or its imported `additional-discount-guides.ts` collection. Include a distinct description, official source, actual review date, billing or eligibility considerations, and useful questions. Add product-specific eligibility and coupon checks in `lib/data/brand-purchase-checks.ts`. Do not copy a guide and only replace the brand name.
 4. The brand route is created for an editorial guide or a brand with historical sourced coupon evidence. A non-editorial guide with no current coupon or saving becomes `noindex, follow` and leaves the sitemap and directory until refreshed. Established URLs can still explain that no offer is recorded.
 5. Editorial pricing observations disappear after 30 days without review. Review the actual source before changing the date. Evergreen guidance stays visible.
 6. Refresh the catalog before the 14-day source window ends; do not merely update timestamps. If refreshing fails, investigate the source rather than creating a replacement claim.
@@ -43,7 +59,7 @@ npm run seo:audit:brands -- http://localhost:3210
 npm run seo:audit -- http://localhost:3210
 ```
 
-The first command checks twelve brand routes in rendered HTML, including editorial depth, workflow tables, redemption steps, sources, related guides, links, schema, query canonicals, unknown-brand 404s, browser/bot metadata, and generated images. The second checks the complete sitemap and other existing SEO protections.
+The first command checks all sixteen brand routes in rendered HTML, including direct discount answers, eligibility and troubleshooting, editorial depth, workflow tables, redemption steps, visible source citations, related guides, profile links, schema, query canonicals, unknown-brand 404s, browser/bot metadata and generated images. It also checks permanent redirects for brand-name variants and legacy Kit URLs. The second checks the complete sitemap and other existing SEO protections.
 
 After deployment, submit `https://saasfolio.tech/sitemap.xml` in Google Search Console and Bing Webmaster Tools. Inspect the priority brand URLs in Search Console, check the rendered page, and request indexing. Deployment and Search Console submission must be performed separately; local validation does not publish or submit URLs.
 
@@ -62,7 +78,7 @@ Google chooses whether to index a page, its search position, title link, and sni
 - [beehiiv plan and subscriber-tier help](https://www.beehiiv.com/support/article/23874462928663-plan-types-and-subscriber-plan-tier-pricing)
 - [Snov.io official pricing](https://snov.io/pricing)
 - [Ocoya official pricing](https://www.ocoya.com/pricing)
-- [Taplio official plan help](https://intercom.help/taplio/en/articles/17172779-taplio-plans-and-pricing-starter-growth-and-pro-compared)
+- [Taplio official plan help](https://intercom.help/taplio/en/articles/17357650-taplio-plans-and-pricing-starter-growth-and-pro-compared)
 - [Taplio official discount rules](https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio)
 - [Systeme.io official pricing](https://systeme.io/pricing)
 - [Smartlead official pricing](https://www.smartlead.ai/pricing)
@@ -70,3 +86,14 @@ Google chooses whether to index a page, its search position, title link, and sni
 - [AnyTrack official pricing](https://anytrack.io/pricing)
 - [AnyTrack feature comparison](https://readme.anytrack.io/docs/plan-comparison)
 - [Baremetrics official pricing](https://baremetrics.com/pricing)
+- [MailerLite pricing](https://www.mailerlite.com/pricing)
+- [MailerLite nonprofit eligibility](https://www.mailerlite.com/legal/terms-for-nonprofit-discount)
+- [Kit pricing](https://kit.com/pricing)
+- [Kit billing](https://help.kit.com/en/articles/2502679-billing-at-kit)
+- [Notion pricing](https://www.notion.com/pricing)
+- [Notion education](https://www.notion.com/help/notion-for-education)
+- [Notion nonprofit program](https://www.notion.com/nonprofits)
+- [Framer pricing](https://www.framer.com/pricing)
+- [Framer student program](https://www.framer.com/education/students/)
+- [Hostinger coupons](https://www.hostinger.com/coupons)
+- [Namecheap coupons](https://www.namecheap.com/promos/coupons/)
