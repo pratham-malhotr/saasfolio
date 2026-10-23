@@ -1,13 +1,13 @@
 "use client";
 
+import { OfferAction } from "@/components/deals/OfferAction";
 import React, { useState, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight, Sparkles, Clock, ShieldCheck, Tag, Zap, ExternalLink } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Clock, ShieldCheck, ExternalLink } from "lucide-react";
 import type { SaaSDeal } from "@/lib/types";
 import { offerLabel } from "@/lib/offer-links";
 import { TiltCard } from "@/components/animations/TiltCard";
 import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
-import { Reveal } from "@/components/animations/Reveal";
 
 export function HotDealsSection({ deals, totalDeals }: { deals: SaaSDeal[]; totalDeals: number }) {
   const [selectedDeal, setSelectedDeal] = useState<SaaSDeal | null>(null);
@@ -151,22 +151,16 @@ export function HotDealsSection({ deals, totalDeals }: { deals: SaaSDeal[]; tota
 
                   {/* Action Buttons: Reveal + Direct Claim */}
                   <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => handleOpenReveal(deal)}
-                      className="flex-1 py-3 px-3 rounded-xl bg-white/5 border border-white/15 text-white font-bold text-xs uppercase tracking-wider hover:bg-[#C6FF3D] hover:text-black hover:border-[#C6FF3D] transition-all flex items-center justify-center gap-1.5 group/btn shadow-[0_0_15px_rgba(198,255,61,0.05)] cursor-pointer"
-                    >
-                      <Sparkles className="w-3.5 h-3.5 text-[#C6FF3D] group-hover/btn:text-black" />
-                      <span>{deal.code ? "Reveal Code" : "View Offer"}</span>
-                    </button>
+                    <OfferAction deal={deal} onReveal={handleOpenReveal} className="flex-1 py-3 px-3 rounded-xl bg-white/5 border border-white/15 text-white font-bold text-xs uppercase tracking-wider hover:bg-[#C6FF3D] hover:text-black hover:border-[#C6FF3D] transition-all flex items-center justify-center gap-1.5 group/btn shadow-[0_0_15px_rgba(198,255,61,0.05)] cursor-pointer" />
 
                     <a
                       href={`/go/${deal.slug}`}
                       target="_blank"
                       rel="sponsored nofollow noopener noreferrer"
                       className="py-3 px-3.5 rounded-xl bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 text-[#C6FF3D] hover:bg-[#C6FF3D] hover:text-black transition-all font-mono text-xs font-bold flex items-center justify-center gap-1"
-                      title={`Go directly to ${deal.toolName} discount checkout`}
+                      title={`Visit ${deal.toolName} and review provider terms`}
                     >
-                      <span>Claim</span>
+                      <span>Visit</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>

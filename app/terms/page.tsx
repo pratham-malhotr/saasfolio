@@ -1,7 +1,7 @@
 import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import Link from "next/link";
-import { Scale, FileText, CheckCircle2, Mail } from "lucide-react";
+import { Scale, Mail } from "lucide-react";
 
 export const metadata = pageMetadata({
   title: 'Terms of Service',
@@ -76,7 +76,7 @@ export default function TermsOfServicePage() {
               <span>Affiliate & Compensation Disclosure</span>
             </h2>
             <p>
-              In full compliance with Federal Trade Commission (FTC) guidelines, SaaSFolio discloses that certain outbound links (accessible via <code className="text-zinc-300">/go/[id]</code>) are affiliate tracking links. When you purchase software through these links, SaaSFolio may earn a referral commission at zero additional cost to you. We frequently negotiate exclusive lower prices for our readers that are unavailable on open retail channels.
+              In full compliance with Federal Trade Commission (FTC) guidelines, SaaSFolio discloses that certain outbound links (accessible via <code className="text-zinc-300">/go/[id]</code>) are affiliate tracking links. When you purchase software through these links, SaaSFolio may earn a referral commission at zero additional cost to you. A referral link alone does not establish a lower price. Any listed coupon or saving is subject to the provider’s current eligibility and billing terms.
             </p>
           </section>
 

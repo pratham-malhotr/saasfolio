@@ -7,7 +7,7 @@ import { CATEGORIES } from "@/lib/mock-data";
 
 export function Footer() {
   return (
-    <footer className="relative bg-[#000000] border-t border-white/10 pt-20 pb-12 overflow-hidden text-zinc-400">
+    <footer data-nosnippet="" className="relative bg-[#000000] border-t border-white/10 pt-20 pb-12 overflow-hidden text-zinc-400">
       {/* Subtle top glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#C6FF3D]/50 to-transparent" />
 
@@ -18,7 +18,7 @@ export function Footer() {
           <div className="lg:col-span-2 space-y-5">
             <Logo size="lg" withTagline={true} />
             <p className="text-sm text-zinc-400 max-w-sm leading-relaxed">
-              Find software offers, compare tools, and read brand savings guides. We show offer sources, eligibility, and check dates to help engineers, marketers, and founders make informed choices.
+              Find SaaS discounts and software coupon codes for beehiiv, Predis.ai, Taplio, Baremetrics and more. Compare sourced offers, annual billing options and renewal terms before subscribing.
             </p>
             <div className="flex items-center gap-2 pt-2">
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono">
@@ -35,8 +35,12 @@ export function Footer() {
             </div>
             <ul className="space-y-2.5 text-sm">
               <li><Link href="/discounts" className="hover:text-[#C6FF3D] transition-colors">Discounts by Brand</Link></li>
+              <li><Link href="/brands" className="hover:text-[#C6FF3D] transition-colors">All Brands A–Z</Link></li>
+              <li><Link href="/savings-calculator" className="hover:text-[#C6FF3D] transition-colors">Annual Savings Calculator</Link></li>
               <li><Link href="/discounts/predis-ai" className="hover:text-[#C6FF3D] transition-colors">Predis.ai Discounts</Link></li>
               <li><Link href="/discounts/beehiiv" className="hover:text-[#C6FF3D] transition-colors">beehiiv Discounts</Link></li>
+              <li><Link href="/discounts/taplio" className="hover:text-[#C6FF3D] transition-colors">Taplio Discounts</Link></li>
+              <li><Link href="/discounts/baremetrics" className="hover:text-[#C6FF3D] transition-colors">Baremetrics Discounts</Link></li>
               <li>
                 <Link href="/deals" className="hover:text-[#C6FF3D] transition-colors flex items-center justify-between">
                   <span>Hot Deals This Week</span>
@@ -50,7 +54,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/deals?type=free_trial" className="hover:text-[#C6FF3D] transition-colors">
-                  Extended Free Trials
+                  Free Trials
                 </Link>
               </li>
               <li>
@@ -89,8 +93,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-[#C6FF3D] transition-colors">
-                  About & Testing Methodology
+                <Link href="/about#standards" className="hover:text-[#C6FF3D] transition-colors">
+                  How We Check Offers
                 </Link>
               </li>
               <li>
@@ -120,7 +124,7 @@ export function Footer() {
               {CATEGORIES.slice(0, 8).map((cat) => (
                 <Link
                   key={cat.id}
-                  href={`/deals?category=${cat.slug}`}
+                  href={`/deals/category/${cat.slug}`}
                   className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 hover:border-[#C6FF3D]/50 hover:text-white transition-all font-mono text-[11px]"
                 >
                   {cat.shortCode}

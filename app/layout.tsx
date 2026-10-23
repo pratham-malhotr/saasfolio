@@ -38,6 +38,14 @@ export const metadata: Metadata = {
   alternates: undefined,
   title: { default: SITE_TITLE, template: "%s | SaaSFolio" },
   applicationName: "SaaSFolio",
+  icons: {
+    icon: [
+      { url: "/brand/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/brand/saasfolio-icon.svg", sizes: "any", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico",
+  },
   creator: "SaaSFolio",
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION || "gbheBtdeCps6aaCGBaVDKgoU7zAlh8Z7z8I364jKWM0",
@@ -56,6 +64,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} dark`}
     >
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4529948026803680"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="min-h-screen bg-[#050505] text-[#EDEDED] antialiased selection:bg-[#C6FF3D] selection:text-black font-body overflow-x-hidden">
         <a href="#main-content" className="skip-link">Skip to content</a>
         <JsonLd data={siteSchema()} />

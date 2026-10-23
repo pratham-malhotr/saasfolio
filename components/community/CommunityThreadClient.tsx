@@ -1,15 +1,14 @@
 "use client";
 
+import { offerLabel } from "@/lib/offer-links";
+import { OfferAction } from "@/components/deals/OfferAction";
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft,
   ChevronUp,
   MessageSquare,
   Sparkles,
   ShieldCheck,
-  Tag,
-  Share2,
   Copy,
   Check,
   ArrowRight,
@@ -34,36 +33,39 @@ export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClie
   const [comments, setComments] = useState<ThreadComment[]>(thread.comments);
   const [replyText, setReplyText] = useState("");
   const [copiedLink, setCopiedLink] = useState(false);
-  const [selectedDeal, setSelectedDeal] = useState<any>(null);
+  const [selectedDeal, setSelectedDeal] = useState<SaaSDeal | null>(null);
   const [commentUpvotes, setCommentUpvotes] = useState<Record<string, boolean>>({});
   const [activeReplyId, setActiveReplyId] = useState<string | null>(null);
   const [nestedReplyText, setNestedReplyText] = useState("");
 
   // Load persisted upvote and user comments for this thread
   React.useEffect(() => {
-    try {
-      const storedUpvotes = localStorage.getItem("saasfolio_community_upvotes");
-      if (storedUpvotes) {
-        const parsed = JSON.parse(storedUpvotes);
-        if (parsed[thread.id]) {
-          setHasUpvoted(true);
-          setUpvotes((prev) => prev + 1);
+    const frame = requestAnimationFrame(() => {
+      try {
+        const storedUpvotes = localStorage.getItem("saasfolio_community_upvotes");
+        if (storedUpvotes) {
+          const parsed = JSON.parse(storedUpvotes);
+          if (parsed[thread.id]) {
+            setHasUpvoted(true);
+            setUpvotes(thread.upvotes + 1);
+          }
         }
-      }
-      const storedCommentUpvotes = localStorage.getItem("saasfolio_comment_upvotes");
-      if (storedCommentUpvotes) {
-        setCommentUpvotes(JSON.parse(storedCommentUpvotes));
-      }
-      const threadComments = localStorage.getItem(`saasfolio_thread_comments_${thread.id}`);
-      if (threadComments) {
-        const parsedComments = JSON.parse(threadComments);
-        // Merge without duplicating
-        const existingIds = new Set(thread.comments.map((c) => c.id));
-        const customAdded = parsedComments.filter((c: any) => !existingIds.has(c.id));
-        setComments([...thread.comments, ...customAdded]);
-      }
-    } catch (e) {}
-  }, [thread.id, thread.comments]);
+        const storedCommentUpvotes = localStorage.getItem("saasfolio_comment_upvotes");
+        if (storedCommentUpvotes) {
+          setCommentUpvotes(JSON.parse(storedCommentUpvotes));
+        }
+        const threadComments = localStorage.getItem(`saasfolio_thread_comments_${thread.id}`);
+        if (threadComments) {
+          const parsedComments = JSON.parse(threadComments);
+          // Merge without duplicating
+          const existingIds = new Set(thread.comments.map((c) => c.id));
+          const customAdded = parsedComments.filter((c: ThreadComment) => !existingIds.has(c.id));
+          setComments([...thread.comments, ...customAdded]);
+        }
+      } catch {}
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [thread.id, thread.comments, thread.upvotes]);
 
   const toggleCommentUpvote = (commentId: string) => {
     const isUpvoted = !!commentUpvotes[commentId];
@@ -71,7 +73,7 @@ export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClie
     setCommentUpvotes(newMap);
     try {
       localStorage.setItem("saasfolio_comment_upvotes", JSON.stringify(newMap));
-    } catch (e) {}
+    } catch {}
 
     setComments((prev) =>
       prev.map((c) =>
@@ -111,7 +113,7 @@ export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClie
 
     try {
       localStorage.setItem(`saasfolio_thread_comments_${thread.id}`, JSON.stringify(updated));
-    } catch (e) {}
+    } catch {}
   };
 
   const toggleUpvote = () => {
@@ -124,7 +126,7 @@ export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClie
       const map = storedUpvotes ? JSON.parse(storedUpvotes) : {};
       map[thread.id] = nextState;
       localStorage.setItem("saasfolio_community_upvotes", JSON.stringify(map));
-    } catch (e) {}
+    } catch {}
   };
 
   const handlePostReply = (e: React.FormEvent) => {
@@ -152,7 +154,7 @@ export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClie
       const stored = localStorage.getItem(`saasfolio_thread_comments_${thread.id}`);
       const list = stored ? JSON.parse(stored) : [];
       localStorage.setItem(`saasfolio_thread_comments_${thread.id}`, JSON.stringify([...list, newComment]));
-    } catch (e) {}
+    } catch {}
   };
 
   const handleCopyLink = () => {
@@ -460,11 +462,11 @@ export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClie
                 <div className="flex items-center gap-2 mb-3">
                   <Sparkles className="w-4 h-4 text-[#C6FF3D]" />
                   <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-                    EXCLUSIVE DEALS ON MENTIONED TOOLS
+                    OPTIONS FOR MENTIONED TOOLS
                   </span>
                 </div>
                 <p className="text-xs text-zinc-300 mb-4">
-                  Active verified discounts available for software referenced in this discussion:
+                  Review the offer type and provider terms for software referenced in this discussion:
                 </p>
 
                 <div className="space-y-3">
@@ -478,18 +480,13 @@ export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClie
                           {deal.toolName}
                         </span>
                         <span className="px-2 py-0.5 rounded bg-[#C6FF3D] text-black font-mono text-[10px] font-bold">
-                          {deal.discountPercentage}% OFF
+                          {offerLabel(deal)}
                         </span>
                       </div>
                       <p className="text-[11px] text-zinc-400 line-clamp-1 mb-3">
                         {deal.title}
                       </p>
-                      <button
-                        onClick={() => setSelectedDeal(deal)}
-                        className="w-full py-2 rounded-lg bg-[#C6FF3D]/10 hover:bg-[#C6FF3D] text-[#C6FF3D] hover:text-black font-mono text-xs font-bold transition-all flex items-center justify-center gap-1.5"
-                      >
-                        <Tag className="w-3 h-3" /> Reveal Coupon
-                      </button>
+                      <OfferAction deal={deal} onReveal={setSelectedDeal} className="w-full py-2 rounded-lg bg-[#C6FF3D]/10 hover:bg-[#C6FF3D] text-[#C6FF3D] hover:text-black font-mono text-xs font-bold transition-all flex items-center justify-center gap-1.5" />
                     </div>
                   ))}
                 </div>

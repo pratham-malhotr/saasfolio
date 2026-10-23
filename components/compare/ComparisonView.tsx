@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { offerLabel } from "@/lib/offer-links";
 import { useRouter } from "next/navigation";
 import { 
   GitCompare, 
@@ -9,10 +10,6 @@ import {
   Check, 
   X, 
   ExternalLink, 
-  Sparkles, 
-  ArrowRight,
-  ShieldCheck,
-  ChevronDown
 } from "lucide-react";
 import { DetailedTool, SaaSDeal } from "@/lib/types";
 
@@ -125,7 +122,7 @@ export function ComparisonView({
               </div>
               <div className="flex items-center gap-1 font-mono text-xs text-[#C6FF3D] font-bold">
                 <Star className="w-4 h-4 fill-[#C6FF3D]" />
-                <span>{toolA.rating} / 5.0</span>
+                <span>{toolA.reviewCount ? `${toolA.rating} / 5.0` : "Unrated"}</span>
               </div>
             </div>
             <h2 className="font-display font-black text-2xl sm:text-3xl text-white mb-2">
@@ -133,18 +130,18 @@ export function ComparisonView({
             </h2>
             <p className="text-xs text-zinc-400 mb-4">{toolA.tagline}</p>
             <div className="flex items-baseline gap-1 font-mono mb-6">
-              <span className="text-3xl font-black text-[#C6FF3D]">${toolA.pricingStart}</span>
-              <span className="text-xs text-zinc-500">/mo starting</span>
+              <span className="text-3xl font-black text-[#C6FF3D]">{toolA.pricingVerified ? `$${toolA.pricingStart}` : "See provider"}</span>
+              <span className="text-xs text-zinc-500">{toolA.pricingVerified && toolB.pricingVerified ? "/mo starting" : ""}</span>
             </div>
           </div>
-          <Link
+          {toolA.providerStatus === "unavailable" ? <p role="status" className="text-sm text-amber-200">Provider link unavailable; no current offer.</p> : <a
             href={`/go/${toolA.slug}`}
             rel="sponsored nofollow noopener noreferrer"
             className="w-full py-3.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5"
           >
             <span>Visit {toolA.name}</span>
             <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
-          </Link>
+          </a>}
         </div>
 
         {/* Tool B Card */}
@@ -156,7 +153,7 @@ export function ComparisonView({
               </div>
               <div className="flex items-center gap-1 font-mono text-xs text-[#C6FF3D] font-bold">
                 <Star className="w-4 h-4 fill-[#C6FF3D]" />
-                <span>{toolB.rating} / 5.0</span>
+                <span>{toolB.reviewCount ? `${toolB.rating} / 5.0` : "Unrated"}</span>
               </div>
             </div>
             <h2 className="font-display font-black text-2xl sm:text-3xl text-white mb-2">
@@ -164,18 +161,18 @@ export function ComparisonView({
             </h2>
             <p className="text-xs text-zinc-400 mb-4">{toolB.tagline}</p>
             <div className="flex items-baseline gap-1 font-mono mb-6">
-              <span className="text-3xl font-black text-[#C6FF3D]">${toolB.pricingStart}</span>
-              <span className="text-xs text-zinc-500">/mo starting</span>
+              <span className="text-3xl font-black text-[#C6FF3D]">{toolB.pricingVerified ? `$${toolB.pricingStart}` : "See provider"}</span>
+              <span className="text-xs text-zinc-500">{toolA.pricingVerified && toolB.pricingVerified ? "/mo starting" : ""}</span>
             </div>
           </div>
-          <Link
+          {toolB.providerStatus === "unavailable" ? <p role="status" className="text-sm text-amber-200">Provider link unavailable; no current offer.</p> : <a
             href={`/go/${toolB.slug}`}
             rel="sponsored nofollow noopener noreferrer"
             className="w-full py-3.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5"
           >
             <span>Visit {toolB.name}</span>
             <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
-          </Link>
+          </a>}
         </div>
       </div>
 
@@ -207,10 +204,10 @@ export function ComparisonView({
               PRICING MODEL
             </div>
             <div className="md:col-span-4 font-mono text-xs text-white">
-              {toolA.pricingModel} (Starts at ${toolA.pricingStart}/mo)
+              {toolA.pricingModel} · {toolA.pricingVerified ? `Starts at $${toolA.pricingStart}/mo` : "See official pricing"}
             </div>
             <div className="md:col-span-4 font-mono text-xs text-white">
-              {toolB.pricingModel} (Starts at ${toolB.pricingStart}/mo)
+              {toolB.pricingModel} · {toolB.pricingVerified ? `Starts at $${toolB.pricingStart}/mo` : "See official pricing"}
             </div>
           </div>
 
@@ -222,7 +219,7 @@ export function ComparisonView({
             <div className="md:col-span-4 text-xs">
               {dealsA.length > 0 ? (
                 <span className="font-mono text-xs text-[#C6FF3D] font-bold">
-                  {dealsA[0].discountPercentage}% OFF ({dealsA[0].dealType.toUpperCase()})
+                  {offerLabel(dealsA[0])}
                 </span>
               ) : (
                 <span className="font-mono text-xs text-zinc-500">Standard Pricing</span>
@@ -231,7 +228,7 @@ export function ComparisonView({
             <div className="md:col-span-4 text-xs">
               {dealsB.length > 0 ? (
                 <span className="font-mono text-xs text-[#C6FF3D] font-bold">
-                  {dealsB[0].discountPercentage}% OFF ({dealsB[0].dealType.toUpperCase()})
+                  {offerLabel(dealsB[0])}
                 </span>
               ) : (
                 <span className="font-mono text-xs text-zinc-500">Standard Pricing</span>

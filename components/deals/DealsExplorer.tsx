@@ -1,18 +1,14 @@
 "use client";
 
+import { OfferAction } from "@/components/deals/OfferAction";
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { 
   Search, 
-  Filter, 
-  Clock, 
   ShieldCheck, 
-  Tag, 
   Sparkles, 
   X, 
-  ChevronDown, 
   SlidersHorizontal,
-  Flame,
   ArrowRight,
   RotateCcw,
   ExternalLink
@@ -425,25 +421,16 @@ export function DealsExplorer({
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => {
-                          setModalDeal(deal);
-                          setModalOpen(true);
-                        }}
-                        className="flex-1 py-3 px-3 rounded-xl bg-white/5 border border-white/15 text-white font-bold text-xs uppercase tracking-wider hover:bg-[#C6FF3D] hover:text-black hover:border-[#C6FF3D] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-                      >
-                        <Sparkles className="w-3.5 h-3.5" />
-                        <span>{deal.code ? "Reveal Code" : "View Offer"}</span>
-                      </button>
+                      <OfferAction deal={deal} onReveal={(deal) => { setModalDeal(deal); setModalOpen(true); }} className="flex-1 py-3 px-3 rounded-xl bg-white/5 border border-white/15 text-white font-bold text-xs uppercase tracking-wider hover:bg-[#C6FF3D] hover:text-black hover:border-[#C6FF3D] transition-all flex items-center justify-center gap-1.5 cursor-pointer" />
 
                       <a
                         href={`/go/${deal.slug}`}
                         target="_blank"
                         rel="sponsored nofollow noopener noreferrer"
                         className="py-3 px-3.5 rounded-xl bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 text-[#C6FF3D] hover:bg-[#C6FF3D] hover:text-black transition-all font-mono text-xs font-bold flex items-center justify-center gap-1"
-                        title={`Go directly to ${deal.toolName} discount checkout`}
+                        title={`Visit ${deal.toolName} and review provider terms`}
                       >
-                        <span>Claim</span>
+                        <span>Visit</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
 

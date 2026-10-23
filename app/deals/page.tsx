@@ -31,6 +31,8 @@ export default async function DealsPage({
         initialDeals={allDeals}
         initialCategory={params.category}
         initialType={params.type}
+        heading="SaaS discounts & software deals"
+        description="Compare sourced software offers, coupon codes, free plans and trials. For annual billing savings and brand-specific eligibility, open the matching brand discount guide."
       />
       <p className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-zinc-400 text-sm">Looking for a particular provider? <Link href="/discounts" className="text-[#C6FF3D] underline">Compare discounts and coupon availability by brand</Link>.</p>
     </div>

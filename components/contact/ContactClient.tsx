@@ -59,13 +59,13 @@ const FAQS = [
   },
 ];
 
-export default function ContactPage() {
+export default function ContactPage({ initialReport }: { initialReport?: { subject: string; message: string } }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     department: "support",
-    subject: "",
-    message: "",
+    subject: initialReport?.subject || "",
+    message: initialReport?.message || "",
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -179,7 +179,8 @@ export default function ContactPage() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5" aria-busy={busy}>
+              <form id="contact-form" onSubmit={handleSubmit} className="space-y-5 scroll-mt-28" aria-busy={busy}>
+                {initialReport && <p className="rounded-xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/5 p-4 text-sm text-zinc-300">The listing details are included below. Describe what happened and add your contact details. Do not include passwords, card numbers or payment screenshots.</p>}
                 {error && <p role="alert" className="text-sm text-rose-400">{error}</p>}
                 <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

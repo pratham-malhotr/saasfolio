@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Search, ArrowRight, Sparkles, ShieldCheck, Flame, Zap, CheckCircle2 } from "lucide-react";
+import { Search, ArrowRight, ShieldCheck, Flame, Zap, CheckCircle2 } from "lucide-react";
 import { ParticleCanvas } from "@/components/animations/ParticleCanvas";
-import { SplitReveal, Reveal } from "@/components/animations/Reveal";
+import { Reveal } from "@/components/animations/Reveal";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { CommandPalette } from "@/components/modals/CommandPalette";
 
@@ -22,47 +22,44 @@ export function HeroSection() {
       <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
         {/* Top Announcement Pill */}
         <Reveal delay={0.1} direction="down">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md mb-8 hover:border-[#C6FF3D]/50 transition-colors cursor-pointer group">
+          <Link href="/discounts" className="inline-flex flex-wrap justify-center items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md mb-8 hover:border-[#C6FF3D]/50 transition-colors group">
             <span className="flex h-2 w-2 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C6FF3D] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C6FF3D]" />
             </span>
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-300">
-              Q4 2026 SAAS SAVINGS INDEX ✦
+              Save on your SaaS subscriptions
             </span>
             <span className="text-xs font-semibold text-[#C6FF3D] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-              Explore 40+ New Deals <ArrowRight className="w-3.5 h-3.5" />
+              Browse brand discounts <ArrowRight className="w-3.5 h-3.5" />
             </span>
-          </div>
+          </Link>
         </Reveal>
 
         {/* Oversized Editorial Clamp Typography */}
-        <SplitReveal
-          as="h1"
-          className="font-display font-black tracking-tighter uppercase text-white leading-[0.92] text-5xl sm:text-7xl md:text-8xl lg:text-[6.8rem] mb-6 flex justify-center"
-          text="DISCOVER. SAVE. SCALE."
-          highlightWord="SAVE."
-          highlightClassName="text-[#C6FF3D] text-glow"
-          delay={0.2}
-        />
+        <h1 className="font-display font-black tracking-tighter uppercase text-white leading-[1.05] text-5xl sm:text-7xl md:text-8xl lg:text-[6.8rem] mb-6 text-balance">
+          <span className="text-[#C6FF3D] text-glow">SaaS discounts</span> & software deals
+        </h1>
 
         {/* Sharp Subheadline */}
         <Reveal delay={0.35} direction="up">
           <p className="max-w-2xl text-base sm:text-lg md:text-xl text-zinc-400 font-sans leading-relaxed mb-10">
-            The premium discovery platform for verified SaaS coupons, lifetime software deals, and transparent architectural reviews. Built for founders, marketers, and developers who refuse to overpay.
+            Find SaaS discounts for beehiiv, Predis.ai, Taplio, Baremetrics and more. See source links, eligibility and check dates. Compare coupons, annual savings and trials before you subscribe.
           </p>
         </Reveal>
 
         {/* Prominent Search Bar with Live Command Trigger */}
         <Reveal delay={0.45} direction="up" className="w-full max-w-2xl mb-8">
-          <div
+          <button
+            type="button"
             onClick={() => setSearchModalOpen(true)}
+            aria-label="Search SaaS discounts and coupon codes"
             className="group relative flex items-center justify-between w-full p-2 sm:p-2.5 rounded-2xl bg-[#0D0D10]/90 border border-white/15 hover:border-[#C6FF3D]/70 transition-all shadow-[0_10px_40px_rgba(0,0,0,0.6),0_0_20px_rgba(198,255,61,0.06)] cursor-pointer"
           >
             <div className="flex items-center gap-3.5 pl-3 sm:pl-4 text-zinc-400 group-hover:text-white transition-colors">
               <Search className="w-5 h-5 text-[#C6FF3D]" />
               <span className="text-sm sm:text-base text-zinc-400 group-hover:text-zinc-200">
-                Search software, coupon codes, lifetime deals...
+                Search brands, discounts and coupon codes...
               </span>
             </div>
 
@@ -75,17 +72,17 @@ export function HeroSection() {
                 <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
               </div>
             </div>
-          </div>
+          </button>
         </Reveal>
 
         {/* Quick Discovery Tags */}
         <Reveal delay={0.55} direction="up" className="flex flex-wrap items-center justify-center gap-2 mb-10 text-xs">
-          <span className="font-mono text-zinc-500 uppercase text-[11px] mr-1">TRENDING:</span>
+          <span className="font-mono text-zinc-500 uppercase text-[11px] mr-1">Find your brand:</span>
           {[
-            { name: "Claude & GPT-4o Stacks", href: "/deals?category=ai-tools" },
-            { name: "Lifetime Dev Tools", href: "/deals?type=lifetime" },
-            { name: "Cookieless Analytics", href: "/deals?category=analytics" },
-            { name: "Sub-$50 Bootstrapping", href: "/articles/ultimate-saas-stack-bootstrapped-founders-2026" },
+            { name: "beehiiv discounts", href: "/discounts/beehiiv" },
+            { name: "Predis.ai discounts", href: "/discounts/predis-ai" },
+            { name: "Taplio discounts", href: "/discounts/taplio" },
+            { name: "Baremetrics discounts", href: "/discounts/baremetrics" },
           ].map((tag) => (
             <Link
               key={tag.name}
@@ -99,24 +96,24 @@ export function HeroSection() {
 
         {/* Dual Primary CTAs */}
         <Reveal delay={0.65} direction="up" className="flex flex-col sm:flex-row items-center gap-4">
-          <Link href="/deals">
+          <Link href="/discounts">
             <MagneticButton
               variant="primary"
               size="lg"
               className="w-full sm:w-auto font-bold tracking-tight text-sm px-8 py-4 flex items-center gap-2"
             >
               <Zap className="w-4 h-4 fill-black" />
-              <span>Explore Software Offers</span>
+              <span>Browse SaaS Discounts</span>
             </MagneticButton>
           </Link>
 
-          <Link href="/articles">
+          <Link href="/deals">
             <MagneticButton
               variant="secondary"
               size="lg"
               className="w-full sm:w-auto font-medium text-sm px-8 py-4 flex items-center gap-2 text-zinc-300 hover:text-white"
             >
-              <span>Read Tech Stacks & Reviews</span>
+              <span>See All Software Offers</span>
               <ArrowRight className="w-4 h-4 text-zinc-400" />
             </MagneticButton>
           </Link>

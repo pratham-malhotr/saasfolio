@@ -23,8 +23,8 @@ export default function AboutPage() {
   return <article className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 space-y-12">
     <header className="max-w-3xl space-y-5">
       <p className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D]">About SaaSFolio</p>
-      <h1 className="font-display font-bold text-4xl sm:text-6xl text-white">Software offers with sources you can check.</h1>
-      <p className="text-lg text-zinc-400 leading-relaxed">SaaSFolio helps you discover software, compare alternatives, and understand available ways to save. Our goal is to make offer status, eligibility, and the difference between a promotion and standard pricing clear before you visit a provider.</p>
+      <h1 className="font-display font-bold text-4xl sm:text-6xl text-white">SaaS discounts with sources you can check.</h1>
+      <p className="text-lg text-zinc-400 leading-relaxed">SaaSFolio is a SaaS discount and software deals directory for founders, creators and teams. Our <Link href="/discounts" className="text-[#C6FF3D] underline">brand discount guides</Link> help you compare savings on beehiiv, Predis.ai, Taplio, Baremetrics and other subscriptions. Each guide explains offer status, eligibility and renewal terms before you visit a provider.</p>
     </header>
     <div className="grid sm:grid-cols-2 gap-4">
       {[{ count: tools.length, label: "Software profiles in the catalog" }, { count: offers.length, label: "Currently sourced offers, free plans & trials" }].map(item => <div key={item.label} className="rounded-2xl border border-white/10 p-6 bg-[#09090C]">
@@ -32,7 +32,7 @@ export default function AboutPage() {
         <p className="text-sm text-zinc-400 mt-2">{item.label}</p>
       </div>)}
     </div>
-    <section className="space-y-6">
+    <section id="standards" className="space-y-6 scroll-mt-28">
       <h2 className="font-display text-3xl font-bold text-white">Our sourcing and editorial standards</h2>
       <div className="grid md:grid-cols-2 gap-5">{standards.map(item => <div key={item.title} className="rounded-2xl border border-white/10 p-6 bg-[#09090C] space-y-3">
         <h3 className="font-display text-xl font-bold text-white">{item.title}</h3>
@@ -41,6 +41,9 @@ export default function AboutPage() {
     </section>
     <section className="space-y-4 max-w-3xl">
       <h2 className="font-display text-2xl font-bold text-white">What has been tested?</h2>
+      <dl className="space-y-4 rounded-2xl border border-white/10 p-6">
+        {[{ label: "Official provider source", text: "A provider page describes its own plan or promotion. We record its terms and observation date. The provider still decides account eligibility." }, { label: "Coupon publisher or partner report", text: "A separate publisher reports a code or a partner offer. Its badge, shopper feedback and access requirements belong to that source and are not SaaSFolio checkout evidence." }, { label: "Checkout acceptance", text: "Acceptance requires a test against a particular account, plan, region and billing period. Our current published codes have not completed that test, so we do not label them checkout verified." }].map(item => <div key={item.label}><dt className="font-semibold text-white">{item.label}</dt><dd className="mt-2 text-sm text-zinc-400 leading-relaxed">{item.text}</dd></div>)}
+      </dl>
       <p className="text-zinc-400 leading-relaxed">Current offer listings have not been tested through signup or checkout. A vendor source check and a coupon publisher’s report are recorded as evidence, rather than a guarantee of acceptance. Always confirm the final payable amount and renewal terms with the provider.</p>
       <p className="text-zinc-400 leading-relaxed">We do not publish invented customer ratings or coupon success rates as structured data. Feedback shown during a browser session is not an independently verified measurement of how often a coupon succeeds.</p>
     </section>

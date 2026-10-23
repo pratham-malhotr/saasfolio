@@ -9,7 +9,7 @@ export const SITE_URL = new URL(
 export const SITE_NAME = "SaaSFolio";
 export const SITE_TITLE = "SaaS Discounts, Software Deals & Reviews | SaaSFolio";
 export const SITE_DESCRIPTION =
-  "Discover SaaS discounts, software coupon codes, lifetime deals and free trials. Read software reviews, compare pricing and find tools for your business.";
+  "Find SaaS discounts and software deals with clear terms, source links and check dates. Compare coupon codes, annual savings and trials before you subscribe.";
 
 export function absoluteUrl(path = "/"): string {
   return new URL(path, `${SITE_URL}/`).toString().replace(/\/$/, "");

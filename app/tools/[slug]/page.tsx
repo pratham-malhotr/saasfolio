@@ -35,6 +35,7 @@ export async function generateMetadata({
     title: toolSearchTitle(tool.name),
     description: toolMetaDescription(tool.name, tool.description),
     path: `/tools/${tool.slug}`,
+    noIndex: tool.providerStatus === "unavailable",
   });
 }
 

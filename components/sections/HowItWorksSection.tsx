@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Search, GitCompare, Sparkles, Check, ArrowRight } from "lucide-react";
+import { Search, GitCompare, Sparkles, Check } from "lucide-react";
 import { Reveal } from "@/components/animations/Reveal";
 
 export function HowItWorksSection() {
@@ -18,7 +18,7 @@ export function HowItWorksSection() {
     {
       step: "02",
       title: "COMPARE",
-      tagline: "Unbiased technical vetting",
+      tagline: "Compare plans and savings",
       description:
         "Compare product features, official pricing, eligibility, and alternatives before subscribing.",
       icon: GitCompare,
@@ -27,7 +27,7 @@ export function HowItWorksSection() {
     {
       step: "03",
       title: "SAVE & SCALE",
-      tagline: "Instant checkout discounts",
+      tagline: "Claim an eligible offer",
       description:
         "Review the offer conditions, copy a recorded code when one is available, and confirm the final total and renewal cost with the provider.",
       icon: Sparkles,
@@ -49,7 +49,7 @@ export function HowItWorksSection() {
             HOW SAASFOLIO WORKS
           </h2>
           <p className="text-sm sm:text-base text-zinc-400 font-sans leading-relaxed">
-            Research software, compare available options, and understand the terms before you choose.
+            Find your SaaS brand, compare discount options, and follow the steps to claim an eligible offer.
           </p>
         </div>
 

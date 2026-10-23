@@ -1,30 +1,58 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { BrandDiscountCard } from "@/components/seo/BrandDiscountCard";
 import { getIndexableDiscountBrands } from "@/lib/brand-discounts";
+import { getAllDeals } from "@/lib/data/deals-data";
 import { collectionSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
-import { BRAND_DISCOUNT_GUIDES } from "@/lib/data/brand-discount-guides";
 
-const title = "Software Discounts & Coupon Codes by Brand";
-const description = "Find brand-specific software discounts, coupon availability and savings guides. Compare sourced offers, free options, eligibility and renewal terms.";
+const title = "SaaS Discounts & Coupon Codes by Brand";
+const description = "Compare SaaS discounts for beehiiv, Predis.ai, Taplio, Baremetrics and more. Find sourced coupon codes, annual billing savings and offer eligibility.";
 export const metadata = pageMetadata({ title, description, path: "/discounts" });
 export const revalidate = 3600;
 
 export default function BrandDiscountsPage() {
   const brands = getIndexableDiscountBrands();
+  const deals = getAllDeals();
+  const categories = [...new Set(brands.map(tool => tool.categorySlug))].map(slug => ({
+    slug,
+    name: brands.find(tool => tool.categorySlug === slug)!.category,
+    brands: brands.filter(tool => tool.categorySlug === slug),
+  }));
   return <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 space-y-8">
     <JsonLd data={collectionSchema(title, description, "/discounts", brands.map(tool => ({ name: `${tool.name} discounts`, path: `/discounts/${tool.slug}` })))} />
     <header className="max-w-3xl space-y-4">
       <p className="text-[#C6FF3D] font-mono text-xs uppercase tracking-widest">Brand savings guides</p>
-      <h1 className="font-display text-4xl sm:text-5xl font-bold text-white">Software discounts by brand</h1>
-      <p className="text-lg text-zinc-400 leading-relaxed">Choose a brand to check coupon availability, compare ways to save, and understand the terms before you pay. Each guide separates paid discounts from free plans and trials.</p>
+      <h1 className="font-display text-4xl sm:text-5xl font-bold text-white">SaaS discounts & coupon codes by brand</h1>
+      <p className="text-lg text-zinc-400 leading-relaxed">Save on software subscriptions with brand-specific guides for beehiiv, Predis.ai, Taplio, Baremetrics and more. Compare coupon availability, annual billing savings and offer eligibility before you subscribe.</p>
+      <p className="text-sm text-zinc-400 leading-relaxed">Browse {brands.length} brand guides below. Each explains the available ways to save, links to its sources, and separates paid discounts from free plans and trials.</p>
+      <p className="text-sm text-zinc-400">Looking for another tool? <Link href="/brands" className="text-[#C6FF3D] underline">Search all software brands A–Z</Link>. Comparing a yearly commitment? <Link href="/savings-calculator" className="text-[#C6FF3D] underline">Calculate the full annual cost</Link>.</p>
     </header>
-    <div className="grid sm:grid-cols-2 gap-4">{brands.map(tool => <Link key={tool.slug} href={`/discounts/${tool.slug}`} className="p-6 rounded-2xl border border-white/10 bg-[#09090C] hover:border-[#C6FF3D]/40 space-y-3">
-      <span className="text-xs font-mono text-zinc-500">{tool.category}</span>
-      <h2 className="font-display text-xl text-white font-bold">{tool.name} discounts & coupon codes</h2>
-      <p className="text-sm text-zinc-400 leading-relaxed">{BRAND_DISCOUNT_GUIDES[tool.slug]?.intro || `Offer status, eligibility, redemption steps, and ways to save on ${tool.name}.`}</p>
-      <span className="inline-block text-sm text-[#C6FF3D]">Read the savings guide →</span>
-    </Link>)}</div>
+    <nav aria-label="Discount categories" className="flex flex-wrap gap-3">{categories.map(category => <a key={category.slug} href={`#${category.slug}`} className="rounded-full border border-white/15 px-4 py-2 text-sm text-[#C6FF3D] hover:border-[#C6FF3D]/50">{category.name}</a>)}</nav>
+    {categories.map(category => <section key={category.slug} id={category.slug} className="scroll-mt-28 space-y-4 pt-4">
+      <h2 className="font-display text-2xl font-bold text-white">{category.name} discounts</h2>
+      <div className="grid gap-4 sm:grid-cols-2">{category.brands.map(tool => <BrandDiscountCard key={tool.slug} tool={tool} deals={deals} />)}</div>
+    </section>)}
+    <section className="space-y-5 border-t border-white/10 pt-8 max-w-3xl">
+      <h2 className="font-display text-2xl font-bold text-white">How to find a SaaS discount that fits your business</h2>
+      <ol className="list-decimal space-y-4 pl-5 text-zinc-400 leading-relaxed">
+        <li><strong className="text-zinc-200">Choose the brand and plan.</strong> Match your subscriber count, team seats or usage to the plan you need. Compare the same features and billing period across offers.</li>
+        <li><strong className="text-zinc-200">Compare the kind of saving.</strong> A coupon can reduce an eligible checkout price. Annual billing changes your payment commitment. A free trial gives temporary access, and a free plan has its own limits.</li>
+        <li><strong className="text-zinc-200">Check the full cost.</strong> Read the source, offer duration, customer eligibility and renewal price. Follow the guide’s redemption steps and confirm the provider’s payable total.</li>
+      </ol>
+      <p className="text-sm text-zinc-400">Our <Link href="/about" className="text-[#C6FF3D] underline">offer sourcing standards</Link> explain check dates and how expired listings are handled. Some provider links may earn us a commission; read the <Link href="/affiliate-disclosure" className="text-[#C6FF3D] underline">affiliate disclosure</Link>.</p>
+    </section>
+    <section className="space-y-4 max-w-3xl">
+      <h2 className="font-display text-2xl font-bold text-white">SaaS discount questions</h2>
+      {[
+        { question: "Can I save on SaaS without a promo code?", answer: "Some providers offer annual billing savings, team pricing or eligible bundles without a coupon. Compare these with the plan and commitment you need. The brand guide lists sourced options and links to the provider’s terms." },
+        { question: "Are the coupon codes checkout tested?", answer: "Current listings identify their sources and check dates. Codes have not been checkout tested, and the provider decides whether your account, plan and billing period qualify. Confirm the total before paying." },
+        { question: "Where do I find beehiiv, Predis.ai, Taplio and Baremetrics discounts?", answer: "Open the matching brand guide above. It brings together coupon availability, reviewed billing savings, eligibility details and redemption steps. Check the official pricing source for the plan you intend to buy." },
+      ].map(faq => <details key={faq.question} className="rounded-2xl border border-white/10 bg-[#09090C] p-5">
+        <summary className="cursor-pointer font-semibold text-white">{faq.question}</summary>
+        <p className="pt-4 text-sm leading-relaxed text-zinc-400">{faq.answer}</p>
+      </details>)}
+    </section>
     <p className="text-sm text-zinc-400">More software: <Link href="/deals" className="text-[#C6FF3D] underline">Browse all offers</Link> · <Link href="/tools" className="text-[#C6FF3D] underline">Explore the software directory</Link></p>
   </div>;
 }

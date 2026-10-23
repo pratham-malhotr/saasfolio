@@ -3,6 +3,10 @@ import { getCatalogCategories } from "@/lib/categories";
 import { getAllTools } from "@/lib/data/tools-data";
 import { getAllDeals } from "@/lib/data/deals-data";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { BrandDiscountsSection } from "@/components/sections/BrandDiscountsSection";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getFeaturedDiscountBrands } from "@/lib/brand-discounts";
+import { webPageSchema } from "@/lib/structured-data";
 import { MarqueeTickerBand } from "@/components/sections/MarqueeTickerBand";
 import { StatsCounters } from "@/components/sections/StatsCounters";
 import { HotDealsSection } from "@/components/sections/HotDealsSection";
@@ -13,7 +17,7 @@ import { LogoMarqueeSection } from "@/components/sections/LogoMarqueeSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { NewsletterSection } from "@/components/sections/NewsletterSection";
 
-import { pageMetadata, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
+import { absoluteUrl, pageMetadata, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
 
 export const metadata = pageMetadata({ title: SITE_TITLE, description: SITE_DESCRIPTION, path: "/" });
 
@@ -23,8 +27,21 @@ export default function HomePage() {
   const deals = getAllDeals();
   return (
     <div className="relative bg-[#050505] text-[#EDEDED] min-h-screen">
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        ...webPageSchema("SaaS Discounts & Software Coupon Codes", SITE_DESCRIPTION, "/"),
+        mainEntity: {
+          "@type": "ItemList",
+          name: "Featured SaaS brand discounts",
+          itemListElement: getFeaturedDiscountBrands().map((tool, index) => ({
+            "@type": "ListItem", position: index + 1, name: `${tool.name} discounts`, url: absoluteUrl(`/discounts/${tool.slug}`),
+          })),
+        },
+      }} />
       {/* 1. Hero Section */}
       <HeroSection />
+
+      <BrandDiscountsSection deals={deals} />
 
       {/* 2. Infinite Marquee Ticker Band */}
       <MarqueeTickerBand />

@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Tag, Sparkles, Copy, Check, ArrowRight, ShieldCheck } from "lucide-react";
+import { Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
 import { getDealBySlug } from "@/lib/data/deals-data";
 import { offerStatus } from "@/lib/offer-links";
 import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
+import { CouponCode } from "@/components/deals/CouponCode";
+import { OfferAction } from "@/components/deals/OfferAction";
 
 interface DealCalloutProps {
   dealSlug: string;
@@ -14,19 +16,8 @@ interface DealCalloutProps {
 export function DealCallout({ dealSlug }: DealCalloutProps) {
   const deal = getDealBySlug(dealSlug);
   const [modalOpen, setModalOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   if (!deal) return null;
-
-  const handleCopy = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (deal.code) {
-      navigator.clipboard.writeText(deal.code).then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }).catch(() => setCopied(false));
-    }
-  };
 
   return (
     <>
@@ -59,38 +50,8 @@ export function DealCallout({ dealSlug }: DealCalloutProps) {
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
-            {deal.code ? (
-              <button
-                onClick={() => setModalOpen(true)}
-                className="px-5 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-display font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(198,255,61,0.2)]"
-              >
-                <Tag className="w-3.5 h-3.5" />
-                Reveal Coupon Code
-              </button>
-            ) : (
-              <Link
-                href={`/go/${deal.slug}`}
-                rel="sponsored nofollow noopener noreferrer"
-                target="_blank"
-                className="px-5 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-display font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2"
-              >
-                View Provider Offer <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            )}
-
-            {deal.code && (
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-black/60 border border-white/10 font-mono text-xs text-zinc-300">
-                <span className="text-zinc-500">CODE:</span>
-                <span className="text-[#C6FF3D] font-bold tracking-wider">{deal.code}</span>
-                <button
-                  onClick={handleCopy}
-                  className="p-1 hover:text-[#C6FF3D] transition-colors ml-1"
-                  title="Copy code"
-                >
-                  {copied ? <Check className="w-3.5 h-3.5 text-[#C6FF3D]" /> : <Copy className="w-3.5 h-3.5" />}
-                </button>
-              </div>
-            )}
+            <OfferAction deal={deal} onReveal={() => setModalOpen(true)} className="px-5 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-display font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2" />
+            {deal.code && <CouponCode code={deal.code} />}
 
             <Link
               href={`/deals/${deal.slug}`}

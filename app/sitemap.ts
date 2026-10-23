@@ -13,8 +13,13 @@ export const revalidate = 3600;
 export default function sitemap(): MetadataRoute.Sitemap {
   // Use stable ISO timestamps so Google Search Console identifies accurate modification milestones.
 
+  const catalogDeals = getAllDeals();
+  const discountBrands = getIndexableDiscountBrands();
+
   // Core navigation pages
   const coreRoutes: MetadataRoute.Sitemap = [
+    { url: absoluteUrl("/brands"), changeFrequency: "daily", priority: 0.8 },
+    { url: absoluteUrl("/savings-calculator"), changeFrequency: "monthly", priority: 0.6 },
     {
       url: absoluteUrl("/"),
       changeFrequency: "daily",
@@ -22,6 +27,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: absoluteUrl("/deals"),
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: absoluteUrl("/discounts"),
       changeFrequency: "daily",
       priority: 0.9,
     },
@@ -77,8 +87,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Verified SaaS Deals
-  const dealsRoutes: MetadataRoute.Sitemap = getAllDeals().filter(deal => deal.dealType !== "pricing").map((deal) => ({
+  // Sourced offers; ordinary pricing links are excluded.
+  const dealsRoutes: MetadataRoute.Sitemap = catalogDeals.filter(deal => deal.dealType !== "pricing").map((deal) => ({
     url: absoluteUrl(`/deals/${deal.slug}`),
     lastModified: deal.updatedAt || deal.checkedAt,
     changeFrequency: "daily",
@@ -86,7 +96,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Software Catalog Tools
-  const toolsRoutes: MetadataRoute.Sitemap = TOOLS_DATA.map((tool) => ({
+  const toolsRoutes: MetadataRoute.Sitemap = TOOLS_DATA.filter(tool => tool.providerStatus !== "unavailable").map((tool) => ({
     url: absoluteUrl(`/tools/${tool.slug}`),
     lastModified: tool.updatedAt,
     changeFrequency: "weekly",
@@ -119,10 +129,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const seen = new Set<string>();
   const combined = [
     ...coreRoutes,
-    { url: absoluteUrl("/discounts"), changeFrequency: "weekly" as const, priority: 0.9 },
-    ...getIndexableDiscountBrands().map(tool => ({
+    ...discountBrands.map(tool => ({
       url: absoluteUrl(`/discounts/${tool.slug}`),
-      lastModified: getBrandDiscountData(tool).modifiedAt,
+      lastModified: getBrandDiscountData(tool, catalogDeals).modifiedAt,
       changeFrequency: "daily" as const,
       priority: 0.9,
     })),

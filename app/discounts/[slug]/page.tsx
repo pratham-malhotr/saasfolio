@@ -6,8 +6,10 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata, absoluteUrl } from "@/lib/seo";
 import { breadcrumbSchema, softwareSchema, webPageSchema } from "@/lib/structured-data";
 import { offerLabel, offerStatus } from "@/lib/offer-links";
+import { BrandSourcePanel } from "@/components/seo/BrandSourcePanel";
+import { SavingsCalculator } from "@/components/deals/SavingsCalculator";
 import {
-  brandDiscountTitle, brandDiscountDescription, getBrandDiscountData,
+  brandDiscountTitle, brandDiscountDescription, brandDiscountAnswer, getBrandDiscountData,
   getBrandDiscountFaqs, getIndexableDiscountBrands, hasBrandDiscountPage,
 } from "@/lib/brand-discounts";
 
@@ -36,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BrandDiscountPage({ params }: { params: Promise<{ slug: string }> }) {
   const tool = await resolveBrand(params);
-  const { offers, guide, modifiedAt, sourceNotesCurrent } = getBrandDiscountData(tool);
+  const { offers, savingsOptions, purchaseChecks, guide, modifiedAt, sourceNotesCurrent } = getBrandDiscountData(tool);
   const path = `/discounts/${tool.slug}`;
   const title = brandDiscountTitle(tool);
   const faqs = getBrandDiscountFaqs(tool, offers);
@@ -56,6 +58,8 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
             ...webPageSchema(title, brandDiscountDescription(tool, offers), path, "CollectionPage"),
             ...(modifiedAt ? { dateModified: modifiedAt } : {}),
             about: { "@id": softwareSchema(tool)["@id"] },
+            ...(guide ? { citation: [guide.sourceUrl, ...(guide.sources || []).map(source => source.url)] } : {}),
+            relatedLink: related.map(other => absoluteUrl(`/discounts/${other.slug}`)),
             mainEntity: {
               "@type": "ItemList", numberOfItems: offers.length,
               itemListElement: offers.map((offer, index) => ({
@@ -84,21 +88,37 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           {guide && <> · Guide reviewed <time dateTime={guide.reviewedAt}>{guide.reviewedAt}</time></>}
           . Source checks and checkout testing are different; the provider confirms the final price.</p>
         <div className="flex flex-wrap gap-4 text-sm">
-          <a href="#current-offers" className="rounded-xl bg-[#C6FF3D] text-black px-5 py-3 font-bold">View current offers</a>
+          <a href="#current-offers" className="rounded-xl bg-[#C6FF3D] text-black px-5 py-3 font-bold">Compare discounts & offers</a>
           <a href={pricingUrl} target="_blank" rel="nofollow noopener noreferrer" className="rounded-xl border border-white/15 px-5 py-3 text-white">Check official pricing ↗</a>
           <Link href={`/tools/${tool.slug}`} className="px-2 py-3 text-zinc-300 underline">{tool.name} features & alternatives</Link>
         </div>
         <nav aria-label="On this page" className="flex flex-wrap gap-5 border-t border-white/10 pt-4 text-sm text-[#C6FF3D]">
           <a href="#current-offers">Offers & codes</a>{guide && <a href="#plan-fit">Choose your workflow</a>}<a href="#saving-guide">Ways to save</a>
-          <a href="#redemption">How to redeem</a><a href="#questions">Questions</a>
+          <a href="#offer-sources">Compare sources</a><a href="#compare-costs">Compare annual costs</a>
+          {purchaseChecks && <a href="#eligibility">Eligibility</a>}
+          <a href="#redemption">How to redeem</a>{purchaseChecks && <a href="#coupon-help">Code not working?</a>}<a href="#questions">Questions</a>
         </nav>
       </header>
 
       <section id="current-offers" className="space-y-5 scroll-mt-28">
-        <h2 className="font-display text-2xl font-bold text-white">Current {tool.name} offers and coupon status</h2>
-        <p className="text-zinc-400">{offers.some(offer => offer.code)
-          ? "Reported codes are listed with their sources. Check each offer for plan restrictions and whether a code is needed."
-          : `No current ${tool.name} coupon code is recorded. ${offers.length ? "The options below are labeled by offer type; a free plan or trial does not establish a paid-plan discount." : "Check official pricing for available promotions. We do not invent a coupon when none is sourced."}`}</p>
+        <h2 className="font-display text-2xl font-bold text-white">Current {tool.name} discount codes & offers</h2>
+        <p id="discount-answer" className="max-w-3xl text-zinc-300 leading-relaxed">{brandDiscountAnswer(tool, offers)}</p>
+        {savingsOptions.length > 0 && <div className="space-y-4 rounded-2xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/[0.03] p-5 sm:p-6">
+          <h3 className="font-display text-xl font-bold text-white">{tool.name} discounts at a glance</h3>
+          <p className="text-sm text-zinc-400">Compare these reviewed provider offers with any coupon listed below. Education and nonprofit programs can require an application or approval.</p>
+          <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={`${tool.name} discount options`}>
+            <table className="w-full min-w-[580px] text-left text-sm">
+              <caption className="sr-only">Sourced {tool.name} discounts and eligibility, reviewed {guide!.reviewedAt}.</caption>
+              <thead className="text-white"><tr><th scope="col" className="p-3">Saving option</th><th scope="col" className="p-3">What to check</th><th scope="col" className="p-3">Source</th></tr></thead>
+              <tbody className="text-zinc-400">{savingsOptions.map(option => <tr key={option.type} className="border-t border-white/10 align-top">
+                <th scope="row" className="p-3 font-normal"><span className="block text-xs text-zinc-500 mb-1">{option.type}</span><span className="font-semibold text-[#C6FF3D]">{option.saving}</span></th>
+                <td className="p-3 leading-relaxed">{option.terms}</td>
+                <td className="p-3"><a href={option.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">Provider terms ↗</a></td>
+              </tr>)}</tbody>
+            </table>
+          </div>
+          <p className="text-xs text-zinc-500">Source reviewed <time dateTime={guide!.reviewedAt}>{guide!.reviewedAt}</time>. Displayed savings are subject to provider terms; no checkout test is recorded.</p>
+        </div>}
         <div className="grid gap-4 md:grid-cols-2">
           {offers.map(offer => (
             <div key={offer.id} className="p-6 rounded-2xl border border-white/10 bg-[#09090C] space-y-4">
@@ -112,12 +132,26 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
               </p>
               <div className="flex flex-wrap gap-4 text-sm">
                 <Link href={`/deals/${offer.slug}`} className="text-[#C6FF3D] underline">Offer details & redemption</Link>
+                <a href={`/go/${offer.slug}`} target="_blank" rel="sponsored nofollow noopener noreferrer" className="text-white underline">{offer.code ? "Use code at provider" : offer.dealType === "free_trial" ? "View provider trial" : offer.dealType === "free_plan" ? "View free plan" : "View provider offer"} ↗</a>
                 {offer.sourceUrl && <a href={offer.sourceUrl} target="_blank" rel="nofollow noopener noreferrer" className="text-zinc-400 underline">{offer.sourceKind === "vendor" ? "Vendor source" : "Coupon publisher"} ↗</a>}
               </div>
             </div>
           ))}
         </div>
       </section>
+
+      <BrandSourcePanel tool={tool} />
+      <SavingsCalculator brand={tool.name} />
+
+      {purchaseChecks && <section id="eligibility" className="space-y-5 scroll-mt-28">
+        <h2 className="font-display text-2xl font-bold text-white">Who qualifies for {tool.name} discounts?</h2>
+        <p className="max-w-3xl text-zinc-400">Check these details against the provider’s current terms before applying a promotion or changing your subscription.</p>
+        <dl className="grid gap-4 md:grid-cols-3">{purchaseChecks.eligibility.map(check => <div key={check.label} className="rounded-2xl border border-white/10 bg-[#09090C] p-6 space-y-3">
+          <dt className="font-display text-lg font-bold text-white">{check.label}</dt>
+          <dd className="text-sm text-zinc-400 leading-relaxed">{check.detail}</dd>
+        </div>)}</dl>
+        <p className="text-xs text-zinc-500">Guide reviewed <time dateTime={guide!.reviewedAt}>{guide!.reviewedAt}</time>. <a href={pricingUrl} target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">Check {tool.name}’s official terms ↗</a></p>
+      </section>}
 
       {guide && <section id="plan-fit" className="space-y-5 scroll-mt-28">
         <h2 className="font-display text-2xl font-bold text-white">Which {tool.name} option fits your workflow?</h2>
@@ -164,6 +198,16 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
         </ol>
       </section>
 
+      {purchaseChecks && <section id="coupon-help" className="space-y-5 scroll-mt-28">
+        <h2 className="font-display text-2xl font-bold text-white">{tool.name} coupon not working? What to check</h2>
+        <p className="max-w-3xl text-zinc-400">Use the order and account details to identify a mismatch before paying. These checks do not establish that an unsourced code is valid.</p>
+        <div className="grid gap-4 md:grid-cols-2">{purchaseChecks.troubleshooting.map(check => <div key={check.problem} className="rounded-2xl border border-white/10 p-6 space-y-3">
+          <h3 className="font-display text-lg font-bold text-white">{check.problem}</h3>
+          <p className="text-sm text-zinc-400 leading-relaxed">{check.action}</p>
+        </div>)}</div>
+        <p className="text-sm text-zinc-400">If a listed offer is inaccurate, <Link href="/contact" className="text-[#C6FF3D] underline">report the {tool.name} offer to SaaSFolio</Link> with the listing and the provider’s response.</p>
+      </section>}
+
       <section id="questions" className="space-y-4 scroll-mt-28">
         <h2 className="font-display text-2xl font-bold text-white">{tool.name} discount questions</h2>
         {faqs.map(faq => <details key={faq.question} className="rounded-2xl border border-white/10 bg-[#09090C] p-5">
@@ -179,7 +223,10 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
 
       {related.length > 0 && <nav aria-label="More brand discounts" className="space-y-4">
         <h2 className="font-display text-xl text-white font-bold">Compare more brand discounts</h2>
-        <div className="flex flex-wrap gap-3">{related.map(other => <Link key={other.slug} href={`/discounts/${other.slug}`} className="rounded-xl border border-white/10 px-4 py-3 text-sm text-[#C6FF3D] hover:border-[#C6FF3D]/40">{other.name} discounts</Link>)}</div>
+        <div className="grid gap-3 sm:grid-cols-2">{related.map(other => <Link key={other.slug} href={`/discounts/${other.slug}`} className="rounded-xl border border-white/10 px-4 py-4 space-y-2 hover:border-[#C6FF3D]/40">
+          <span className="block text-sm font-semibold text-[#C6FF3D]">{other.name} discounts & offer terms →</span>
+          <span className="block text-xs text-zinc-500">{other.category}</span>
+        </Link>)}</div>
       </nav>}
     </article>
   );

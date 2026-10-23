@@ -2,16 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import confetti from "canvas-confetti";
+import { CouponCode } from "@/components/deals/CouponCode";
+import { OfferReportLink } from "@/components/deals/OfferReportLink";
 import { 
-  Copy, 
   Check, 
   ExternalLink, 
   ThumbsUp, 
   ThumbsDown, 
   Clock, 
   ShieldCheck, 
-  Sparkles, 
   MessageSquare, 
   Send,
   ArrowLeft,
@@ -26,7 +25,7 @@ import {
 } from "lucide-react";
 import { SaveItemButton } from "@/components/profile/SaveItemButton";
 import { SaaSDeal, DetailedTool } from "@/lib/types";
-import { getOfferDestination, offerLabel, offerStatus } from "@/lib/offer-links";
+import { getOfferHref, offerActionLabel, offerLabel, offerStatus } from "@/lib/offer-links";
 
 interface DealDetailClientProps {
   deal: SaaSDeal;
@@ -47,8 +46,6 @@ export function DealDetailClient({
   relatedDeals,
   comparisonHref,
 }: DealDetailClientProps) {
-  const [revealed, setRevealed] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [voted, setVoted] = useState<"up" | "down" | null>(null);
   const [votesUp, setVotesUp] = useState(deal.votesUp || 0);
   const [votesDown, setVotesDown] = useState(deal.votesDown || 0);
@@ -69,38 +66,6 @@ export function DealDetailClient({
     const timer = setInterval(update, 1000);
     return () => clearInterval(timer);
   }, [deal.expiryDate]);
-
-  const triggerConfetti = () => {
-    confetti({
-      particleCount: 90,
-      spread: 75,
-      origin: { y: 0.55 },
-      colors: ["#C6FF3D", "#FFFFFF", "#7C5CFF", "#111111"],
-      disableForReducedMotion: true,
-    });
-  };
-
-  const handleRevealAndCopy = () => {
-    setRevealed(true);
-    triggerConfetti();
-
-    if (deal.code) {
-      try {
-        navigator.clipboard.writeText(deal.code).then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 3000);
-        }).catch(() => setCopied(false));
-      } catch {
-        // Fallback
-      }
-    }
-
-    // Automatically navigate to official checkout in new tab
-    if (typeof window !== "undefined") {
-      const destinationUrl = getOfferDestination(deal);
-      window.open(destinationUrl, "_blank", "noopener,noreferrer");
-    }
-  };
 
   const handleVote = (type: "up" | "down") => {
     if (voted === type) return;
@@ -217,65 +182,23 @@ export function DealDetailClient({
             </p>
             {discountHref && <p className="mb-6 text-sm"><Link href={discountHref} className="text-[#C6FF3D] underline">Compare all {deal.toolName} discounts, coupon codes & ways to save →</Link></p>}
 
-            {/* Interactive Reveal Coupon Code Box */}
-            <div className="relative p-6 sm:p-8 rounded-2xl border-2 border-dashed border-[#C6FF3D]/40 bg-black/70 text-center mb-8">
-              <div className="font-mono text-xs uppercase tracking-widest text-zinc-400 mb-3">
-                {deal.code ? "REPORTED COUPON CODE" : "PROVIDER OFFER"}
-              </div>
-
-              {revealed ? (
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <div className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#121215] border-2 border-[#C6FF3D] font-mono text-2xl sm:text-3xl font-black tracking-widest text-[#C6FF3D] shadow-[0_0_30px_rgba(198,255,61,0.3)] select-all">
-                    {deal.code || "NO CODE NEEDED"}
-                  </div>
-                  <button
-                    onClick={handleRevealAndCopy}
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#C6FF3D] text-black font-bold text-sm uppercase tracking-wider hover:bg-[#D6FF66] transition-all shadow-[0_0_25px_rgba(198,255,61,0.4)] cursor-pointer"
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-4 h-4 stroke-[3]" /> Copied to Clipboard
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-4 h-4" /> {deal.code ? "Copy Promo Code" : "Open Provider"}
-                      </>
-                    )}
-                  </button>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  <div className="filter blur-md select-none font-mono text-3xl font-bold tracking-widest text-zinc-500">
-                    FOLIO••••••••
-                  </div>
-                  <button
-                    onClick={handleRevealAndCopy}
-                    className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#C6FF3D] text-black font-bold text-sm uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-2 mx-auto shadow-[0_0_30px_rgba(198,255,61,0.4)] cursor-pointer"
-                  >
-                    <Sparkles className="w-5 h-5 fill-black" />
-                    <span>{deal.code ? "Reveal Code & Open Provider" : "Open Provider Offer"}</span>
-                  </button>
-                </div>
-              )}
-
-              {copied && (
-                <div className="mt-3 text-xs font-mono text-[#C6FF3D] font-bold flex items-center justify-center gap-1.5 animate-pulse">
-                  <Check className="w-4 h-4" /> Copied! Ready to paste at checkout.
-                </div>
-              )}
+            <div className="rounded-2xl border border-white/15 bg-black/70 p-6 mb-8 text-center space-y-4">
+              <p className="font-mono text-xs uppercase tracking-widest text-zinc-400">{deal.code ? "Reported coupon code" : offerLabel(deal)}</p>
+              {deal.code ? <CouponCode key={`${deal.slug}:${deal.code}`} code={deal.code} /> : <p className="text-sm text-zinc-300">{deal.dealType === "pricing" ? "No coupon or paid-plan discount is recorded. View the provider’s current pricing and plans." : "This option has no recorded coupon code. Review the provider’s signup conditions and the terms below."}</p>}
             </div>
 
             {/* Outbound Link CTA */}
             <div className="flex flex-col sm:flex-row items-center gap-4">
-              <Link
-                href={`/go/${deal.slug}`}
+              <a
+                href={getOfferHref(deal)}
                 rel="sponsored nofollow noopener noreferrer"
                 className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-[#C6FF3D] text-black font-bold text-sm uppercase tracking-wider hover:bg-[#D6FF66] transition-all shadow-[0_0_25px_rgba(198,255,61,0.3)]"
               >
-                <span>Visit {deal.toolName} Offer</span>
+                <span>{offerActionLabel(deal)} · {deal.toolName}</span>
                 <ExternalLink className="w-4 h-4 stroke-[2.5]" />
-              </Link>
+              </a>
             </div>
+            <div className="mt-5"><OfferReportLink offerSlug={deal.slug} /></div>
           </div>
 
           {/* Step-by-Step Coupon Redemption Guide */}
@@ -337,46 +260,11 @@ export function DealDetailClient({
               </div>
               <span className="font-mono text-xs text-[#C6FF3D] font-bold">SOURCE DETAILS</span>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-mono">
-                <thead>
-                  <tr className="border-b border-white/10 text-zinc-400 uppercase">
-                    <th className="pb-3 font-semibold">Offer Attribute</th>
-                    <th className="pb-3 font-semibold">Standard Rate</th>
-                    <th className="pb-3 font-semibold text-[#C6FF3D]">Provider Offer</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/5 text-zinc-300">
-                  <tr>
-                    <td className="py-3 text-white font-medium">Discount Rate</td>
-                    <td className="py-3 text-zinc-500">0% (Full Price)</td>
-                    <td className="py-3 text-[#C6FF3D] font-bold">{offerLabel(deal)}</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 text-white font-medium">Coupon Code</td>
-                    <td className="py-3 text-zinc-500">None required</td>
-                    <td className="py-3 font-mono text-[#C6FF3D] font-bold">{deal.code || "See provider terms"}</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 text-white font-medium">Applicable Plans</td>
-                    <td className="py-3 text-zinc-500">All Tiers</td>
-                    <td className="py-3 text-white">See offer terms</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 text-white font-medium">Verification Status</td>
-                    <td className="py-3 text-zinc-500">—</td>
-                    <td className="py-3 text-emerald-400 font-bold flex items-center gap-1">
-                      <Check className="w-3.5 h-3.5" /> {offerStatus(deal)}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 text-white font-medium">Customer Eligibility</td>
-                    <td className="py-3 text-zinc-500">All</td>
-                    <td className="py-3 text-white">See provider eligibility</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <dl className="divide-y divide-white/10 text-sm">
+              {[{ name: "Offer type", value: offerLabel(deal) }, { name: "Coupon code", value: deal.code || "No code recorded" }, { name: "Eligibility and billing", value: deal.terms }, { name: "Testing status", value: offerStatus(deal) }].map(item => <div key={item.name} className="grid gap-2 py-3 sm:grid-cols-3">
+                <dt className="text-zinc-400">{item.name}</dt><dd className="text-zinc-200 sm:col-span-2">{item.value}</dd>
+              </div>)}
+            </dl>
           </div>
 
           {/* Sibling Deals / Other Promo Codes for the Same Brand */}
@@ -682,7 +570,7 @@ export function DealDetailClient({
           {/* Affiliate Disclosure Notice */}
           <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 text-[11px] text-zinc-500 leading-relaxed">
             <span className="font-mono text-zinc-400 font-bold uppercase mr-1">Transparency Note:</span>
-            SaaSFolio operates independently. When you click checkout links, we may receive a commission that supports continuous verification audits.
+            SaaSFolio operates independently. When you click checkout links, we may receive a commission that supports maintaining the offer catalog.
           </div>
         </div>
       </div>

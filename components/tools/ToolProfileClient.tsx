@@ -1,5 +1,6 @@
 "use client";
 
+import { OfferAction } from "@/components/deals/OfferAction";
 import React, { useState } from "react";
 import Link from "next/link";
 import { 
@@ -15,7 +16,6 @@ import {
 import { offerLabel } from "@/lib/offer-links";
 import { DetailedTool, SaaSDeal } from "@/lib/types";
 import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
-import { DISCOUNT_SOURCES } from "@/lib/discount-sources";
 
 interface ToolProfileClientProps {
   tool: DetailedTool;
@@ -82,14 +82,14 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
 
           {/* Header Action Buttons */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <Link
+            {tool.providerStatus === "unavailable" ? <span data-provider-unavailable="true" role="status" className="rounded-xl border border-amber-400/30 px-5 py-3 text-sm text-amber-200">Provider link unavailable</span> : <a
               href={`/go/${tool.slug}`}
               rel="sponsored nofollow noopener noreferrer"
               className="px-6 py-3.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(198,255,61,0.3)]"
             >
               <span>Visit Official Website</span>
               <ExternalLink className="w-4 h-4 stroke-[2.5]" />
-            </Link>
+            </a>}
 
             {tool.alternatives[0] && (
               <Link
@@ -108,7 +108,6 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
           <p className="text-zinc-300 text-base sm:text-lg max-w-3xl leading-relaxed">
             {tool.tagline}
           </p>
-          {DISCOUNT_SOURCES[tool.slug] && <p className="text-xs text-zinc-400">Research reported coupons: {DISCOUNT_SOURCES[tool.slug].map(source => <a key={source.url} href={source.url} target="_blank" rel="nofollow noopener noreferrer" className="text-[#C6FF3D] hover:underline mr-3">{source.name} ↗</a>)}</p>}
 
           <div className="flex items-center gap-6 font-mono text-xs text-zinc-400 shrink-0">
             <div className="flex items-center gap-1.5 text-white">
@@ -124,7 +123,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
         </div>
       </div>
 
-      {discountSummary}
+      {tool.providerStatus === "unavailable" ? <section data-provider-unavailable="true" className="mb-10 rounded-2xl border border-amber-400/20 p-6 space-y-3"><h2 className="text-xl text-white">No current provider offer</h2><p className="text-sm text-zinc-400">{tool.providerNote}</p><Link href="/tools" className="text-[#C6FF3D] underline">Browse available alternatives</Link></section> : discountSummary}
 
       {/* Active Deals Banner (if tool has live coupons) */}
       {deals.length > 0 && (
@@ -154,15 +153,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
                   </div>
                   <h4 className="text-sm font-bold text-white line-clamp-1">{deal.title}</h4>
                 </div>
-                <button
-                  onClick={() => {
-                    setSelectedDeal(deal);
-                    setModalOpen(true);
-                  }}
-                  className="px-4 py-2 rounded-lg bg-[#C6FF3D] text-black font-mono text-xs font-bold uppercase hover:bg-[#D6FF66] transition-all ml-4 shrink-0"
-                >
-                  {deal.code ? "Reveal Code" : "View Offer"}
-                </button>
+                <OfferAction deal={deal} onReveal={(deal) => { setSelectedDeal(deal); setModalOpen(true); }} className="px-4 py-2 rounded-lg bg-[#C6FF3D] text-black font-mono text-xs font-bold uppercase hover:bg-[#D6FF66] transition-all ml-4 shrink-0" />
               </div>
             ))}
           </div>
@@ -270,7 +261,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {!tool.pricingPlans.length && <a href={tool.pricingUrl || tool.website} target="_blank" rel="noopener noreferrer" className="text-sm text-[#C6FF3D] hover:underline">View current {tool.name} plans and billing terms on the official website ↗</a>}
+              {!tool.pricingPlans.length && tool.providerStatus !== "unavailable" && <a href={tool.pricingUrl || tool.website} target="_blank" rel="noopener noreferrer" className="text-sm text-[#C6FF3D] hover:underline">View current {tool.name} plans and billing terms on the official website ↗</a>}
               {tool.pricingPlans.map((plan) => {
                 const price = billingCycle === "yearly" ? plan.priceYearly : plan.priceMonthly;
                 return (
@@ -307,7 +298,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
                       </ul>
                     </div>
 
-                    <Link
+                    <a
                       href={`/go/${tool.slug}`}
                       rel="sponsored nofollow noopener noreferrer"
                       className={`w-full py-2.5 rounded-xl text-center text-xs font-mono font-bold uppercase transition-all mt-4 ${
@@ -317,7 +308,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
                       }`}
                     >
                       Choose Plan
-                    </Link>
+                    </a>
                   </div>
                 );
               })}

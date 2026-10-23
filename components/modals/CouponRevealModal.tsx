@@ -1,213 +1,32 @@
 "use client";
+
+import { X, ExternalLink } from "lucide-react";
+import type { SaaSDeal } from "@/lib/types";
 import { useDialog } from "@/components/modals/useDialog";
+import { CouponCode } from "@/components/deals/CouponCode";
+import { getOfferHref, offerActionLabel, offerLabel, offerStatus } from "@/lib/offer-links";
+import { OfferReportLink } from "@/components/deals/OfferReportLink";
 
-import React, { useState } from "react";
-import confetti from "canvas-confetti";
-import { Copy, Check, ExternalLink, ThumbsUp, ThumbsDown, X, ShieldCheck, Sparkles, Clock } from "lucide-react";
-import { SaaSDeal } from "@/lib/mock-data";
-import { getOfferDestination, offerLabel, offerStatus } from "@/lib/offer-links";
-import { motion, AnimatePresence } from "framer-motion";
-
-interface CouponRevealModalProps {
-  deal: SaaSDeal | null;
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export function CouponRevealModal({ deal, isOpen, onClose }: CouponRevealModalProps) {
+export function CouponRevealModal({ deal, isOpen, onClose }: { deal: SaaSDeal | null; isOpen: boolean; onClose: () => void }) {
   const dialogRef = useDialog(isOpen && Boolean(deal), onClose);
-  const [copied, setCopied] = useState(false);
-  const [revealed, setRevealed] = useState(false);
-  const [voted, setVoted] = useState<"up" | "down" | null>(null);
-
   if (!isOpen || !deal) return null;
-
-  const destinationUrl = getOfferDestination(deal);
-
-  const triggerConfetti = () => {
-    confetti({
-      particleCount: 80,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ["#C6FF3D", "#FFFFFF", "#7C5CFF", "#111111"],
-      disableForReducedMotion: true,
-    });
-  };
-
-  const handleRevealAndCopy = () => {
-    setRevealed(true);
-    triggerConfetti();
-
-    if (deal.code) {
-      try {
-        navigator.clipboard.writeText(deal.code).then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 3000);
-        }).catch(() => setCopied(false));
-      } catch {
-        // Fallback for non-secure contexts
-      }
-    }
-
-    // Seamlessly open the official vendor checkout in a new window with discount activated
-    if (destinationUrl && typeof window !== "undefined") {
-      window.open(destinationUrl, "_blank", "noopener,noreferrer");
-    }
-  };
-
-  const handleVote = (type: "up" | "down") => {
-    if (voted) return;
-    setVoted(type);
-  };
-
-  return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-        {/* Backdrop click */}
-        <div className="fixed inset-0" onClick={onClose} />
-
-        {/* Modal Card */}
-        <motion.div ref={dialogRef} role="dialog" aria-modal="true" aria-label="Software offer details" tabIndex={-1}
-          initial={{ opacity: 0, scale: 0.95, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full max-w-lg rounded-2xl border border-white/20 bg-[#0C0C0E] p-6 sm:p-8 shadow-[0_0_60px_rgba(0,0,0,0.9),0_0_30px_rgba(198,255,61,0.15)] z-10"
-        >
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-5 right-5 text-zinc-400 hover:text-white p-1 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-black border border-white/15 flex items-center justify-center font-bold text-base text-[#C6FF3D] shadow-[0_0_15px_rgba(198,255,61,0.2)]">
-              {offerLabel(deal)}
-            </div>
-            <div>
-              <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400">
-                {deal.toolName} ✦ {deal.category}
-              </span>
-              <h3 className="text-xl font-bold text-white leading-snug">{deal.title}</h3>
-            </div>
-          </div>
-
-          <p className="text-sm text-zinc-300 mb-6 leading-relaxed">
-            {deal.description}
-          </p>
-
-          {/* Reveal Code Box */}
-          <div className="relative mb-6 rounded-xl border border-dashed border-[#C6FF3D]/40 bg-black/60 p-4 text-center">
-            <div className="font-mono text-xs uppercase tracking-widest text-zinc-400 mb-2">
-              {deal.code ? "REPORTED COUPON CODE" : "PROVIDER OFFER"}
-            </div>
-
-            {revealed ? (
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <div className="w-full sm:w-auto px-6 py-3 rounded-lg bg-[#141416] border border-[#C6FF3D] font-mono text-xl font-black tracking-widest text-[#C6FF3D] shadow-[0_0_20px_rgba(198,255,61,0.25)] select-all">
-                  {deal.code || "NO CODE NEEDED"}
-                </div>
-                <button
-                  onClick={handleRevealAndCopy}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#C6FF3D] text-black font-bold text-sm hover:bg-[#D6FF66] transition-all shadow-[0_0_20px_rgba(198,255,61,0.4)]"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="w-4 h-4 stroke-[3]" /> Copied!
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-4 h-4" /> {deal.code ? "Copy Code" : "Open Provider"}
-                    </>
-                  )}
-                </button>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <div className="filter blur-md select-none font-mono text-2xl font-bold tracking-widest text-zinc-400">
-                  ••••••••••••
-                </div>
-                <button
-                  onClick={handleRevealAndCopy}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-base hover:bg-[#D6FF66] transition-all shadow-[0_0_25px_rgba(198,255,61,0.4)] cursor-pointer"
-                >
-                  <Sparkles className="w-5 h-5" />
-                  {deal.code ? "Reveal Code & Open Provider" : "Open Provider Offer"}
-                </button>
-              </div>
-            )}
-
-            {copied && (
-              <motion.div
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-2 text-xs font-medium text-[#C6FF3D] flex items-center justify-center gap-1.5"
-              >
-                <Check className="w-3.5 h-3.5" /> Coupon copied! Ready to paste at checkout.
-              </motion.div>
-            )}
-          </div>
-
-          {/* Social Proof & Guarantee */}
-          <div className="flex items-center justify-between text-xs text-zinc-400 mb-6 px-1">
-            <span className="flex items-center gap-1.5 text-zinc-300">
-              <ShieldCheck className="w-4 h-4 text-[#C6FF3D]" />
-              {offerStatus(deal)}
-            </span>
-            <span className="flex items-center gap-1 font-mono text-[11px] text-zinc-400">
-              <Clock className="w-3.5 h-3.5" />
-              Source: {deal.verifiedAt}
-            </span>
-          </div>
-
-          {/* Did it work voting widget */}
-          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between mb-6">
-            <span className="text-xs text-zinc-300 font-medium">Did this discount work?</span>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => handleVote("up")}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-colors ${
-                  voted === "up"
-                    ? "bg-[#C6FF3D] text-black font-bold"
-                    : "bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10"
-                }`}
-              >
-                <ThumbsUp className="w-3.5 h-3.5" />
-                <span>Yes (this session)</span>
-              </button>
-              <button
-                onClick={() => handleVote("down")}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-colors ${
-                  voted === "down"
-                    ? "bg-red-500/20 text-red-300 border border-red-500/30"
-                    : "bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10"
-                }`}
-              >
-                <ThumbsDown className="w-3.5 h-3.5" />
-                <span>No</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Action Button: Direct to Deal Partner */}
-          <a
-            href={destinationUrl}
-            target="_blank"
-            rel="sponsored nofollow noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 text-white font-semibold text-sm hover:bg-white/15 border border-white/15 transition-all group"
-          >
-            <span>Visit {deal.toolName}</span>
-            <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
-
-          <p className="font-mono text-[10px] text-center text-zinc-500 uppercase mt-4">
-            Affiliate Disclosure: SaaSFolio may earn a verified commission on eligible plans.
-          </p>
-        </motion.div>
+  return <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md">
+    <div className="absolute inset-0" onClick={onClose} aria-hidden="true" />
+    <div ref={dialogRef} role="dialog" aria-modal="true" aria-label={`${deal.toolName} offer details`} tabIndex={-1} className="relative z-10 max-h-[90dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/20 bg-[#0C0C0E] p-6 shadow-2xl sm:p-8 space-y-5">
+      <button type="button" onClick={onClose} aria-label="Close offer details" className="absolute right-4 top-4 rounded-lg bg-white/5 p-2 text-zinc-300 hover:text-white"><X className="h-5 w-5" /></button>
+      <div className="pr-9 space-y-3">
+        <span className="inline-block rounded-lg bg-[#C6FF3D]/10 px-3 py-1 font-mono text-xs text-[#C6FF3D]">{offerLabel(deal)}</span>
+        <p className="text-xs text-zinc-400">{deal.toolName} · {deal.category}</p>
+        <h2 className="font-display text-xl font-bold text-white">{deal.title}</h2>
       </div>
-    </AnimatePresence>
-  );
+      {deal.code ? <CouponCode key={`${deal.slug}:${deal.code}`} code={deal.code} /> : <p className="text-sm text-zinc-300">{deal.dealType === "pricing" ? "This is a pricing link. No coupon or paid-plan discount is recorded." : "No coupon code is recorded for this option. Review the provider’s signup and eligibility terms."}</p>}
+      <p className="text-sm leading-relaxed text-zinc-300">{deal.terms}</p>
+      <p className="text-xs text-zinc-400">{offerStatus(deal)}.{deal.checkedAt && <> Source checked <time dateTime={deal.checkedAt}>{deal.checkedAt.slice(0, 10)}</time>.</>}</p>
+      <a href={getOfferHref(deal)} target="_blank" rel="sponsored nofollow noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#C6FF3D] px-5 py-3 font-bold text-black">
+        {offerActionLabel(deal)}<ExternalLink className="h-4 w-4" />
+      </a>
+      <p className="text-xs text-zinc-500">Provider links may earn SaaSFolio a commission. A referral link does not by itself apply a discount.</p>
+      <OfferReportLink offerSlug={deal.slug} />
+    </div>
+  </div>;
 }

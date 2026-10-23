@@ -2,12 +2,13 @@
 import { useDialog } from "@/components/modals/useDialog";
 
 import React, { useEffect, useState, useMemo } from "react";
-import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight, Layers, Check } from "lucide-react";
-import confetti from "canvas-confetti";
+import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight, Layers } from "lucide-react";
+import { CouponCode } from "@/components/deals/CouponCode";
+import { OfferAction } from "@/components/deals/OfferAction";
 import { FEATURED_ARTICLES, TRENDING_DISCUSSIONS, CATEGORIES } from "@/lib/mock-data";
 import { TOOLS_DATA } from "@/lib/data/tools-data";
 import { DEALS_DATA } from "@/lib/data/deals-data";
-import { getOfferDestination, offerLabel } from "@/lib/offer-links";
+import { getOfferHref, offerLabel, offerStatus } from "@/lib/offer-links";
 import type { SaaSDeal } from "@/lib/types";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -46,13 +47,13 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
 
   // Tokenized tools matching
   const filteredTools = useMemo(() => {
-    if (!query) return TOOLS_DATA.slice(0, 4);
+    if (!query) return TOOLS_DATA.filter(tool => tool.providerStatus !== "unavailable").slice(0, 4);
     const q = query.toLowerCase().trim();
     const tokens = q.split(/\s+/).filter(Boolean);
     const intentWords = ["reveal", "coupon", "code", "voucher", "promo", "discount", "deal"];
     const coreTokens = tokens.filter((t) => !intentWords.includes(t));
 
-    return TOOLS_DATA.filter((t) => {
+    return TOOLS_DATA.filter(t => t.providerStatus !== "unavailable").filter((t) => {
       const target = `${t.name} ${t.slug} ${t.tagline} ${t.category} ${t.bestFor}`.toLowerCase();
       if (coreTokens.length > 0) {
         return coreTokens.every((tok) => target.includes(tok));
@@ -102,43 +103,9 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
     return null;
   }, [query, filteredDeals]);
 
-  // Instant coupon reveal & direct site redirect handler
+  // Showing a code does not open a popup or claim it was copied successfully.
   const handleRevealAndRedirect = (deal: SaaSDeal) => {
-    const targetUrl = getOfferDestination(deal);
-
-    // 1. Copy code to clipboard
-    if (deal.code && typeof navigator !== "undefined" && navigator.clipboard) {
-      try {
-        void navigator.clipboard.writeText(deal.code).catch(() => undefined);
-      } catch {
-        // Fallback for non-secure contexts
-      }
-    }
-
-    // 2. Trigger celebration confetti
-    try {
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ["#C6FF3D", "#FFFFFF", "#7C5CFF", "#111111"],
-        disableForReducedMotion: true,
-      });
-    } catch {
-      // Confetti fallback
-    }
-
-    // 3. Set visual notice banner
-    setRevealedNotice({
-      code: deal.code || "NO CODE NEEDED",
-      toolName: deal.toolName,
-      url: targetUrl,
-    });
-
-    // 4. Immediately open destination website
-    if (typeof window !== "undefined") {
-      window.open(targetUrl, "_blank", "noopener,noreferrer");
-    }
+    if (deal.code) setRevealedNotice({ code: deal.code, toolName: deal.toolName, url: getOfferHref(deal) });
   };
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -198,7 +165,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                 setRevealedNotice(null);
               }}
               onKeyDown={handleInputKeyDown}
-              placeholder="Search tools, type 'beehiiv reveal coupon' or press ↵ to open site..."
+              placeholder="Search software, offers and sourced coupon codes..."
               className="flex-1 bg-transparent text-white placeholder-zinc-500 font-sans text-sm sm:text-base outline-none"
               autoFocus
             />
@@ -218,25 +185,11 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
             </kbd>
           </div>
 
-          {/* Instant Coupon Reveal Notification Banner */}
-          {revealedNotice && (
-            <div className="mx-4 mt-3 p-3 rounded-xl bg-[#C6FF3D]/10 border border-[#C6FF3D]/40 flex items-center justify-between text-xs font-mono text-[#C6FF3D] animate-in fade-in duration-200">
-              <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 stroke-[3]" />
-                <span>
-                  Code <strong className="text-white bg-black px-1.5 py-0.5 rounded border border-[#C6FF3D]/40">{revealedNotice.code}</strong> copied! Redirecting to {revealedNotice.toolName}...
-                </span>
-              </div>
-              <a
-                href={revealedNotice.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-white ml-2 shrink-0 font-bold"
-              >
-                Open Site ↗
-              </a>
-            </div>
-          )}
+          {revealedNotice && <div className="mx-4 my-3 space-y-3 rounded-xl border border-[#C6FF3D]/30 bg-black/50 p-4">
+            <p className="text-sm text-white">Reported {revealedNotice.toolName} coupon</p>
+            <CouponCode key={revealedNotice.code} code={revealedNotice.code} />
+            <a href={revealedNotice.url} target="_blank" rel="sponsored nofollow noopener noreferrer" className="inline-block text-sm text-[#C6FF3D] underline">Visit {revealedNotice.toolName} and check eligibility ↗</a>
+          </div>}
 
           {/* Filter Pills */}
           <div className="flex items-center gap-2 px-5 py-2.5 border-b border-white/5 bg-[#0A0A0C] text-xs overflow-x-auto">
@@ -283,14 +236,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                     </div>
                   </div>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => handleRevealAndRedirect(topCouponDeal)}
-                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(198,255,61,0.35)] cursor-pointer shrink-0"
-                >
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Reveal & Open Site ↗</span>
-                </button>
+                <OfferAction deal={topCouponDeal} onReveal={handleRevealAndRedirect} className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(198,255,61,0.35)] cursor-pointer shrink-0" />
               </div>
             )}
 
@@ -342,7 +288,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="font-mono text-xs px-2 py-0.5 rounded bg-white/5 text-zinc-300 border border-white/10">
-                          ${tool.pricingStart}/mo
+                          {tool.pricingVerified ? `$${tool.pricingStart}/mo` : "See pricing"}
                         </span>
                         <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
                       </div>
@@ -357,7 +303,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                 <div className="flex items-center justify-between text-xs font-mono uppercase text-zinc-500 mb-2 px-2">
                   <span className="flex items-center gap-1.5 text-[#C6FF3D]">
                     <Tag className="w-3.5 h-3.5" />
-                    Verified Deals ({filteredDeals.length})
+                    Software options ({filteredDeals.length})
                   </span>
                   <Link
                     href="/deals"
@@ -388,7 +334,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                           <div className="text-xs text-zinc-400 flex items-center gap-2 mt-0.5">
                             <span className="font-mono text-[10px] text-zinc-500">{deal.category}</span>
                             <span>✦</span>
-                            <span className="text-[#C6FF3D]">{deal.successRate}% Success</span>
+                            <span className="text-[#C6FF3D]">{offerStatus(deal)}</span>
                             {deal.code && (
                               <>
                                 <span>✦</span>
@@ -401,19 +347,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                         </div>
                       </Link>
                       <div className="flex items-center gap-2 shrink-0 ml-3">
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            handleRevealAndRedirect(deal);
-                          }}
-                          className="px-2.5 py-1.5 rounded-lg bg-[#C6FF3D] text-black font-mono font-bold text-[11px] hover:bg-[#D6FF66] transition-all flex items-center gap-1 shadow-[0_0_12px_rgba(198,255,61,0.25)] cursor-pointer"
-                          title={`Reveal ${deal.code || 'code'} and open official site`}
-                        >
-                          <Sparkles className="w-3 h-3" />
-                          <span>Reveal & Visit ↗</span>
-                        </button>
+                        <OfferAction deal={deal} onReveal={handleRevealAndRedirect} className="px-2.5 py-1.5 rounded-lg bg-[#C6FF3D] text-black font-mono font-bold text-[11px] hover:bg-[#D6FF66] transition-all flex items-center gap-1 shadow-[0_0_12px_rgba(198,255,61,0.25)] cursor-pointer" />
                         <Link
                           href={`/deals/${deal.slug}`}
                           onClick={onClose}
@@ -537,7 +471,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
               ))}
             </div>
             <div className="font-mono text-[10px] text-zinc-500">
-              PRESS <span className="text-white">↵</span> TO NAVIGATE
+              PRESS <span className="text-white">↵</span> TO VIEW A MATCHING CODE
             </div>
           </div>
         </motion.div>
