@@ -1,152 +1,292 @@
 "use client";
+
 import { useServiceAvailability } from "@/lib/use-service-availability";
 import { ServiceNotice } from "@/components/forms/ServiceNotice";
-
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
-  Send,
   ShieldCheck,
   Check,
   Tag,
   Layers,
-  FileText,
   ArrowRight,
   CheckCircle2,
   Copy,
+  Sparkles,
+  Lock,
+  Gift,
+  AlertCircle,
+  UserCheck
 } from "lucide-react";
 import { apiRequest } from "@/lib/api-client";
+import { POPULAR_SAAS_BRANDS, verifyCodeLocally, type CodeVerificationResult } from "@/lib/code-verification";
 
-type SubmissionType = "deal" | "tool" | "review";
+type SubmissionMode = "code" | "deal" | "tool";
+
+interface AuthUser {
+  name: string;
+  email: string;
+  avatarLetter: string;
+  isAdmin: boolean;
+}
 
 export function SubmitWizardClient() {
   const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("formsConfigured");
-  const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
-  const [submissionType, setSubmissionType] = useState<SubmissionType>("deal");
+
+  // User Authentication State
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    apiRequest<{ user: AuthUser | null }>("/api/auth/session", undefined, "GET")
+      .then((res) => {
+        if (active) {
+          setCurrentUser(res.user);
+          setAuthLoading(false);
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setCurrentUser(null);
+          setAuthLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Submission Mode
+  const [submissionMode, setSubmissionMode] = useState<SubmissionMode>("code");
 
   // Form State
   const [formData, setFormData] = useState({
     toolName: "",
-    tagline: "",
     websiteUrl: "",
-    category: "Dev Tools",
-    dealType: "Verified Coupon Code",
-    discountPercentage: "0",
-    couponCode: "",
+    code: "",
+    codeType: "coupon" as "coupon" | "referral" | "discount",
+    dealType: "Verified Promo Code",
+    discountPercentage: "20",
+    discountDescription: "",
+    terms: "Applies to all plans at checkout.",
     expirationDate: "",
     verificationProof: "",
-    techStack: "",
+    // Fallback tool fields
+    tagline: "",
+    category: "Dev Tools",
     differentiator: "",
+    techStack: "",
     founderEmail: "",
   });
 
+  // Automated Verification via useMemo (instant, pure, no cascading render)
+  const verificationReport: CodeVerificationResult | null = useMemo(() => {
+    if (!formData.code.trim() && !formData.websiteUrl.trim()) {
+      return null;
+    }
+    return verifyCodeLocally({
+      code: formData.code,
+      codeType: formData.codeType,
+      toolName: formData.toolName,
+      websiteUrl: formData.websiteUrl,
+      discountPercentage: Number(formData.discountPercentage || 0),
+      discountDescription: formData.discountDescription,
+      expirationDate: formData.expirationDate,
+    });
+  }, [
+    formData.code,
+    formData.codeType,
+    formData.toolName,
+    formData.websiteUrl,
+    formData.discountPercentage,
+    formData.discountDescription,
+    formData.expirationDate,
+  ]);
+
+  // Handle Quick Brand Select
+  const handleSelectBrand = (brand: (typeof POPULAR_SAAS_BRANDS)[0]) => {
+    setFormData((prev) => ({
+      ...prev,
+      toolName: brand.name,
+      websiteUrl: brand.website,
+      category: brand.category,
+      verificationProof: `${brand.website}/pricing`,
+    }));
+  };
+
+  // Submission Flow
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [trackingId, setTrackingId] = useState("");
   const [copiedId, setCopiedId] = useState(false);
-
-  const handleNext = () => {
-    const form = document.querySelector<HTMLFormElement>("form");
-    if (form && !form.reportValidity()) return;
-    if (currentStep === 2 && (!formData.websiteUrl.startsWith("https://") || formData.tagline.trim().length < 5 || (submissionType === "deal" && !formData.verificationProof.startsWith("https://")))) {
-      setError("Enter an HTTPS website URL, a tagline of at least 5 characters, and an HTTPS source link for a deal."); return;
-    }
-    if (currentStep === 3 && formData.differentiator.trim().length < 10) {
-      setError("Describe your product in at least 10 characters."); return;
-    }
-    setError("");
-    if (currentStep < 4) {
-      setCurrentStep((prev) => (prev + 1) as 1 | 2 | 3 | 4);
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep((prev) => (prev - 1) as 1 | 2 | 3 | 4);
-    }
-  };
-
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (busy) return;
-    const honeypot = new FormData(e.currentTarget).get("companyWebsite");
-    setBusy(true); setError("");
+
+    if (!currentUser) {
+      setError("Please sign in to submit a promo or referral code.");
+      return;
+    }
+
+    if (!formData.websiteUrl.startsWith("https://")) {
+      setError("Store website URL must start with https://");
+      return;
+    }
+
+    if (!formData.verificationProof.startsWith("https://")) {
+      setError("Verification proof link must be a valid https:// URL.");
+      return;
+    }
+
+    if (submissionMode === "code" && (!formData.code.trim() || formData.code.trim().length < 3)) {
+      setError("Please enter a valid coupon or referral code (at least 3 characters).");
+      return;
+    }
+
+    setBusy(true);
+    setError("");
+
     try {
-      const result = await apiRequest<{ id: string }>("/api/inquiries", { kind: "submission", submissionType, ...formData, companyWebsite: honeypot });
-      setTrackingId(result.id); setIsSubmitted(true);
-    } catch (error) { setError(error instanceof Error ? error.message : "Your submission could not be sent."); }
-    finally { setBusy(false); }
+      const payload = {
+        kind: "submission",
+        submissionType: submissionMode,
+        ...formData,
+        discountPercentage: Number(formData.discountPercentage || 0),
+        discountDescription:
+          formData.discountDescription ||
+          `${formData.discountPercentage}% off ${formData.toolName} plans`,
+        founderEmail: currentUser.email,
+        companyWebsite: new FormData(e.currentTarget).get("companyWebsite"),
+      };
+
+      const result = await apiRequest<{ id: string }>("/api/inquiries", payload);
+      setTrackingId(result.id);
+      setIsSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Your submission could not be sent.");
+    } finally {
+      setBusy(false);
+    }
   };
 
   const handleCopyTrackingId = () => {
+    if (!trackingId) return;
     navigator.clipboard.writeText(trackingId);
     setCopiedId(true);
     setTimeout(() => setCopiedId(false), 2000);
   };
 
+  // Preview computed values
+  const previewHeadline = useMemo(() => {
+    const brand = formData.toolName || "SaaS Tool";
+    const discount = formData.discountPercentage ? `${formData.discountPercentage}% Off` : "Discount on";
+    return `${discount} ${brand}`;
+  }, [formData.toolName, formData.discountPercentage]);
+
   return (
-    <div className="min-h-screen bg-[#050505] text-white pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <div className="min-h-screen bg-[#050505] text-white pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
       {/* Header Breadcrumb */}
       <Link
-        href="/"
+        href="/deals"
         className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-[#C6FF3D] mb-6 transition-colors"
       >
-        <ArrowLeft className="w-3.5 h-3.5" /> BACK TO DISCOVERY HOME
+        <ArrowLeft className="w-3.5 h-3.5" /> BACK TO ALL DEALS
       </Link>
 
+      {/* Top Banner and Heading */}
       <div className="flex items-center gap-2 mb-2">
-        <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-          FOUNDER & VENDOR ONBOARDING PORTAL
+        <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold flex items-center gap-1.5">
+          <Sparkles className="w-3.5 h-3.5" />
+          COMMUNITY PROMO & REFERRAL DISCOVERY
         </span>
       </div>
+
       <h1 className="font-display font-black tracking-tight uppercase text-3xl sm:text-5xl text-white mb-4">
-        SUBMIT A TOOL OR EXCLUSIVE DEAL
+        SUBMIT A CODE OR SAAS DEAL
       </h1>
-      <p className="text-zinc-400 text-sm leading-relaxed mb-8 max-w-2xl">
-        Submit your software or a sourced offer for editorial review. Include accurate product details, eligibility, and a public source for any discount claim.
+      <p className="text-zinc-400 text-sm leading-relaxed mb-8 max-w-3xl">
+        Discovered a working discount code, referral perk, or vendor promotion? Submit it to the SaaSFolio index.
+        Our automated verification system tests the redemption parameters to ensure only valid discounts are published.
       </p>
 
-      {/* Progress Steps Indicator */}
-      {!isSubmitted && (
-        <div className="grid grid-cols-4 gap-2 sm:gap-4 mb-10">
-          {[
-            { step: 1, title: "Intent", desc: "Category" },
-            { step: 2, title: "Offer", desc: "Pricing & Code" },
-            { step: 3, title: "Tech Specs", desc: "Architecture" },
-            { step: 4, title: "Preview", desc: "Verification" },
-          ].map((item) => {
-            const isActive = currentStep === item.step;
-            const isCompleted = currentStep > item.step;
-            return (
-              <div
-                key={item.step}
-                className={`p-3 rounded-2xl border transition-all ${
-                  isActive
-                    ? "bg-[#C6FF3D]/10 border-[#C6FF3D] text-[#C6FF3D]"
-                    : isCompleted
-                    ? "bg-white/5 border-white/20 text-white"
-                    : "bg-black/40 border-white/5 text-zinc-600"
-                }`}
-              >
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-mono text-[10px] uppercase font-bold">
-                    STEP {item.step}
-                  </span>
-                  {isCompleted && <Check className="w-3.5 h-3.5 text-[#C6FF3D]" />}
-                </div>
-                <div className="font-display font-bold text-xs sm:text-sm text-white">
-                  {item.title}
-                </div>
-              </div>
-            );
-          })}
+      {/* Logged in status banner */}
+      {currentUser && (
+        <div className="mb-8 p-3.5 rounded-2xl bg-white/[0.04] border border-[#C6FF3D]/30 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-[#C6FF3D] text-black font-display font-black text-xs flex items-center justify-center">
+              {currentUser.avatarLetter || "U"}
+            </div>
+            <div>
+              <span className="text-zinc-400">Authenticated Contributor: </span>
+              <strong className="text-white">{currentUser.name}</strong>{" "}
+              <span className="text-zinc-500 font-mono">({currentUser.email})</span>
+            </div>
+          </div>
+          <span className="font-mono text-[10px] uppercase font-bold text-[#C6FF3D] bg-[#C6FF3D]/10 px-2.5 py-1 rounded-full border border-[#C6FF3D]/25 flex items-center gap-1">
+            <UserCheck className="w-3 h-3" /> Attributed Submissions Active
+          </span>
         </div>
       )}
 
-      {/* Success Celebration Screen */}
-      {isSubmitted ? (
+      {/* AUTHENTICATION GATE: If not logged in and not submitted */}
+      {!currentUser && !authLoading && !isSubmitted ? (
+        <div className="p-8 sm:p-12 rounded-3xl bg-[#0A0A0D] border border-[#C6FF3D]/30 shadow-[0_0_50px_rgba(198,255,61,0.1)] text-center space-y-6 relative overflow-hidden">
+          <div className="w-16 h-16 rounded-2xl bg-[#C6FF3D]/10 border border-[#C6FF3D]/40 text-[#C6FF3D] flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(198,255,61,0.2)]">
+            <Lock className="w-8 h-8" />
+          </div>
+
+          <div className="max-w-xl mx-auto space-y-2">
+            <span className="px-3 py-1 rounded-full bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 font-mono text-[11px] text-[#C6FF3D] font-bold uppercase tracking-wider">
+              AUTHENTICATION REQUIRED
+            </span>
+            <h2 className="font-display font-black text-2xl sm:text-3xl text-white">
+              Sign In To Submit Promo & Referral Codes
+            </h2>
+            <p className="text-zinc-400 text-sm leading-relaxed">
+              To keep our coupon database 100% spam-free, maintain verified accuracy, and give you contributor credit for every working code, you must be signed in with a SaaSFolio account.
+            </p>
+          </div>
+
+          {/* Value props */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto pt-2 text-left">
+            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
+              <span className="font-mono text-xs font-bold text-[#C6FF3D] block">1. Verified Attribution</span>
+              <p className="text-xs text-zinc-400">Your profile is credited on every approved code you share.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
+              <span className="font-mono text-xs font-bold text-[#C6FF3D] block">2. Live Verification</span>
+              <p className="text-xs text-zinc-400">Our automated system audits checkout endpoints and scores accuracy.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
+              <span className="font-mono text-xs font-bold text-[#C6FF3D] block">3. Contributor Karma</span>
+              <p className="text-xs text-zinc-400">Earn badges and unlock exclusive member discounts.</p>
+            </div>
+          </div>
+
+          {/* Action CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 border-t border-white/10">
+            <Link
+              href="/login?redirect=/submit"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-[#C6FF3D] hover:bg-[#D6FF66] text-black font-display font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(198,255,61,0.3)] hover:shadow-[0_0_35px_rgba(198,255,61,0.5)] flex items-center justify-center gap-2"
+            >
+              <span>Sign In to Submit Code</span>
+              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+            </Link>
+            <Link
+              href="/signup?redirect=/submit"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-mono text-xs uppercase tracking-wider transition-colors border border-white/10"
+            >
+              Create Free Account
+            </Link>
+          </div>
+        </div>
+      ) : isSubmitted ? (
+        /* Success Screen */
         <div className="p-8 sm:p-12 rounded-3xl bg-[#09090C] border border-[#C6FF3D]/40 text-center space-y-6 shadow-[0_0_50px_rgba(198,255,61,0.15)] animate-in fade-in">
           <div className="w-16 h-16 rounded-full bg-[#C6FF3D] text-black flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(198,255,61,0.4)]">
             <CheckCircle2 className="w-8 h-8" />
@@ -154,395 +294,410 @@ export function SubmitWizardClient() {
 
           <div>
             <span className="px-3 py-1 rounded-full bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 font-mono text-xs text-[#C6FF3D] font-bold uppercase">
-              TICKET GENERATED
+              CODE QUEUED FOR VERIFIED INGESTION
             </span>
             <h2 className="font-display font-black text-3xl sm:text-4xl text-white mt-3 mb-2">
               SUBMISSION RECEIVED
             </h2>
             <p className="text-zinc-400 text-sm max-w-md mx-auto leading-relaxed">
-              Your software offer for <strong className="text-white">{formData.toolName || "your product"}</strong> has entered our staff moderation queue.
+              Your discount code for <strong className="text-white">{formData.toolName || "this software"}</strong> has passed initial parameter audits and entered the verified ingestion queue.
             </p>
           </div>
+
+          {/* Verification receipt */}
+          {verificationReport && (
+            <div className="max-w-md mx-auto p-4 rounded-2xl bg-black border border-white/10 text-left space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-zinc-400">Automated System Score:</span>
+                <span className="font-bold text-[#C6FF3D]">{verificationReport.score}% Confidence</span>
+              </div>
+              <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-[#C6FF3D]"
+                  style={{ width: `${verificationReport.score}%` }}
+                />
+              </div>
+              <p className="text-[11px] text-zinc-400">{verificationReport.summary}</p>
+            </div>
+          )}
 
           {/* Tracking ID Box */}
           <div className="max-w-xs mx-auto p-4 rounded-2xl bg-black border border-white/10 flex items-center justify-between">
             <div className="text-left font-mono text-xs">
-              <span className="text-zinc-500 block text-[10px]">VERIFICATION ID</span>
+              <span className="text-zinc-500 block text-[10px]">TICKET ID</span>
               <span className="font-bold text-[#C6FF3D] text-sm">{trackingId}</span>
             </div>
             <button
               onClick={handleCopyTrackingId}
               className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-colors"
-              title="Copy Tracking ID"
+              title="Copy Ticket ID"
             >
               {copiedId ? <Check className="w-4 h-4 text-[#C6FF3D]" /> : <Copy className="w-4 h-4" />}
             </button>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 border-t border-white/10">
-            <Link
-              href="/profile"
+            <button
+              onClick={() => {
+                setIsSubmitted(false);
+                setFormData((prev) => ({ ...prev, code: "", discountDescription: "" }));
+              }}
               className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono text-xs uppercase tracking-wider transition-colors"
             >
-              View In Member Profile
-            </Link>
+              Submit Another Code
+            </button>
             <Link
-              href="/admin"
+              href="/deals"
               className="px-6 py-3 rounded-xl bg-[#C6FF3D] hover:bg-[#D6FF66] text-black font-display font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(198,255,61,0.25)]"
             >
-              Check Admin Approval Queue →
+              Browse Verified Deals →
             </Link>
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="p-8 sm:p-10 rounded-3xl bg-[#09090C] border border-white/10 shadow-2xl" aria-busy={busy}>
+        /* The Code Submission Form */
+        <form onSubmit={handleSubmit} className="space-y-8" aria-busy={busy}>
           <ServiceNotice status={serviceStatus} />
           <fieldset disabled={!serviceAvailable} className="contents">
-            <legend className="sr-only">Form details</legend>
-            {error && <p role="alert" className="text-sm text-rose-400 mb-5">{error}</p>}
+            <legend className="sr-only">Code submission details</legend>
             <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
-            {/* STEP 1: Submission Intent */}
-            {currentStep === 1 && (
-              <div className="space-y-6 animate-in fade-in">
+
+            {error && (
+              <div role="alert" className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-sm flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            {/* Submission Mode Selector */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <button
+                type="button"
+                onClick={() => setSubmissionMode("code")}
+                className={`p-5 rounded-2xl border text-left transition-all ${
+                  submissionMode === "code"
+                    ? "bg-[#C6FF3D]/10 border-[#C6FF3D] shadow-[0_0_20px_rgba(198,255,61,0.15)]"
+                    : "bg-black/40 border-white/10 hover:border-white/20 text-zinc-400"
+                }`}
+              >
+                <Tag className={`w-5 h-5 mb-2 ${submissionMode === "code" ? "text-[#C6FF3D]" : "text-zinc-500"}`} />
+                <h3 className="font-display font-bold text-sm text-white">Promo or Referral Code</h3>
+                <p className="text-xs text-zinc-400 mt-1">Found a coupon or referral code that gives a discount?</p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSubmissionMode("deal")}
+                className={`p-5 rounded-2xl border text-left transition-all ${
+                  submissionMode === "deal"
+                    ? "bg-[#C6FF3D]/10 border-[#C6FF3D] shadow-[0_0_20px_rgba(198,255,61,0.15)]"
+                    : "bg-black/40 border-white/10 hover:border-white/20 text-zinc-400"
+                }`}
+              >
+                <Gift className={`w-5 h-5 mb-2 ${submissionMode === "deal" ? "text-[#C6FF3D]" : "text-zinc-500"}`} />
+                <h3 className="font-display font-bold text-sm text-white">Vendor Deal / LTD</h3>
+                <p className="text-xs text-zinc-400 mt-1">Official SaaS founder or partner discount offer.</p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSubmissionMode("tool")}
+                className={`p-5 rounded-2xl border text-left transition-all ${
+                  submissionMode === "tool"
+                    ? "bg-[#C6FF3D]/10 border-[#C6FF3D] shadow-[0_0_20px_rgba(198,255,61,0.15)]"
+                    : "bg-black/40 border-white/10 hover:border-white/20 text-zinc-400"
+                }`}
+              >
+                <Layers className={`w-5 h-5 mb-2 ${submissionMode === "tool" ? "text-[#C6FF3D]" : "text-zinc-500"}`} />
+                <h3 className="font-display font-bold text-sm text-white">New Tool Directory</h3>
+                <p className="text-xs text-zinc-400 mt-1">List an uncatalogued software tool on SaaSFolio.</p>
+              </button>
+            </div>
+
+            {/* Quick Brand Selectors */}
+            <div className="p-5 rounded-2xl bg-black/40 border border-white/10 space-y-3">
+              <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block">
+                Popular Brands (Click to auto-fill store details):
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {POPULAR_SAAS_BRANDS.slice(0, 10).map((b) => (
+                  <button
+                    key={b.slug}
+                    type="button"
+                    onClick={() => handleSelectBrand(b)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-mono border transition-all ${
+                      formData.toolName.toLowerCase() === b.name.toLowerCase()
+                        ? "bg-[#C6FF3D] text-black font-bold border-[#C6FF3D]"
+                        : "bg-white/5 border-white/10 text-zinc-300 hover:border-white/25 hover:text-white"
+                    }`}
+                  >
+                    {b.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Form Fields Card */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#09090C] border border-white/10 shadow-2xl space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <h3 className="font-display font-bold text-xl text-white mb-1">
-                    1. Choose Your Submission Category
-                  </h3>
-                  <p className="text-zinc-400 text-xs sm:text-sm">
-                    Select how you would like your product to be listed and discovered.
-                  </p>
+                  <label htmlFor="submit-toolName" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    SaaS Tool or Brand Name *
+                  </label>
+                  <input
+                    id="submit-toolName"
+                    type="text"
+                    required
+                    value={formData.toolName}
+                    onChange={(e) => setFormData({ ...formData, toolName: e.target.value })}
+                    placeholder="e.g. Hostinger, Notion, Beehiiv"
+                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-sans text-sm"
+                  />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {[
-                    {
-                      type: "deal",
-                      icon: Tag,
-                      title: "Exclusive Deal",
-                      desc: "List a verified promo code, lifetime discount, or credit.",
-                    },
-                    {
-                      type: "tool",
-                      icon: Layers,
-                      title: "Tool Directory",
-                      desc: "Add your software to our browsable, searchable catalogue.",
-                    },
-                    {
-                      type: "review",
-                      icon: FileText,
-                      title: "Technical Review",
-                      desc: "Submit an architectural breakdown or benchmark test.",
-                    },
-                  ].map((item) => (
-                    <button
-                      key={item.type}
-                      type="button"
-                      onClick={() => setSubmissionType(item.type as SubmissionType)}
-                      className={`p-6 rounded-2xl border text-left transition-all flex flex-col justify-between ${
-                        submissionType === item.type
-                          ? "bg-[#C6FF3D]/10 border-[#C6FF3D] shadow-[0_0_20px_rgba(198,255,61,0.15)]"
-                          : "bg-black/50 border-white/10 hover:border-white/20"
+                <div>
+                  <label htmlFor="submit-websiteUrl" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    Official Website / Store URL *
+                  </label>
+                  <input
+                    id="submit-websiteUrl"
+                    type="url"
+                    required
+                    value={formData.websiteUrl}
+                    onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
+                    placeholder="https://hostinger.com"
+                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
+                  />
+                </div>
+              </div>
+
+              {/* Code Specific Inputs */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label htmlFor="submit-codeType" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    Code Type
+                  </label>
+                  <select
+                    id="submit-codeType"
+                    value={formData.codeType}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        codeType: e.target.value as "coupon" | "referral" | "discount",
+                      })
+                    }
+                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#C6FF3D]"
+                  >
+                    <option value="coupon">Promo / Coupon Code</option>
+                    <option value="referral">Personal Referral Code</option>
+                    <option value="discount">Automatic Checkout Offer</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="submit-code" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    The Exact Code *
+                  </label>
+                  <input
+                    id="submit-code"
+                    type="text"
+                    required={submissionMode === "code"}
+                    value={formData.code}
+                    onChange={(e) => setFormData({ ...formData, code: e.target.value.toUpperCase() })}
+                    placeholder="e.g. SAVE20"
+                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/15 text-[#C6FF3D] placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] font-mono text-sm font-bold tracking-wider"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="submit-discountPercentage" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    Discount Percentage (%)
+                  </label>
+                  <input
+                    id="submit-discountPercentage"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={formData.discountPercentage}
+                    onChange={(e) => setFormData({ ...formData, discountPercentage: e.target.value })}
+                    placeholder="20"
+                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="submit-discountDescription" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  Discount Details & Benefit Description *
+                </label>
+                <input
+                  id="submit-discountDescription"
+                  type="text"
+                  required
+                  value={formData.discountDescription}
+                  onChange={(e) => setFormData({ ...formData, discountDescription: e.target.value })}
+                  placeholder="e.g. 20% off all Annual Web Hosting plans + 3 months free trial"
+                  className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-sans text-xs"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="submit-terms" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    Applicable Terms & Restrictions
+                  </label>
+                  <input
+                    id="submit-terms"
+                    type="text"
+                    value={formData.terms}
+                    onChange={(e) => setFormData({ ...formData, terms: e.target.value })}
+                    placeholder="e.g. Valid for new customers on 12+ month billing"
+                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-sans text-xs"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="submit-expirationDate" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    Expiration Date (Optional)
+                  </label>
+                  <input
+                    id="submit-expirationDate"
+                    type="date"
+                    value={formData.expirationDate}
+                    onChange={(e) => setFormData({ ...formData, expirationDate: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#C6FF3D]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="submit-verificationProof" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  Verification Proof Link / Source *
+                </label>
+                <input
+                  id="submit-verificationProof"
+                  type="url"
+                  required
+                  value={formData.verificationProof}
+                  onChange={(e) => setFormData({ ...formData, verificationProof: e.target.value })}
+                  placeholder="https://hostinger.com/pricing or public announcement URL"
+                  className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
+                />
+              </div>
+            </div>
+
+            {/* LIVE SYSTEM VERIFICATION ENGINE (The Deep Look) */}
+            {verificationReport && (
+              <div className="p-6 sm:p-8 rounded-3xl bg-[#0B0B0E] border border-white/15 space-y-6 animate-in fade-in">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-5 h-5 text-[#C6FF3D]" />
+                    <h3 className="font-display font-bold text-lg text-white">
+                      Automated System Verification Results
+                    </h3>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`px-3 py-1 rounded-full font-mono text-xs font-bold uppercase ${
+                        verificationReport.status === "verified"
+                          ? "bg-[#C6FF3D]/15 text-[#C6FF3D] border border-[#C6FF3D]/30"
+                          : verificationReport.status === "testing"
+                          ? "bg-amber-400/15 text-amber-300 border border-amber-400/30"
+                          : "bg-rose-500/15 text-rose-300 border border-rose-500/30"
                       }`}
                     >
-                      <div>
-                        <item.icon
-                          className={`w-6 h-6 mb-3 ${
-                            submissionType === item.type ? "text-[#C6FF3D]" : "text-zinc-500"
-                          }`}
-                        />
-                        <div className="font-display font-bold text-base text-white mb-1">
-                          {item.title}
-                        </div>
-                        <p className="text-zinc-400 text-xs leading-relaxed">{item.desc}</p>
-                      </div>
+                      {verificationReport.statusLabel}
+                    </span>
+                    <span className="font-mono text-xs text-zinc-400">
+                      Score: <strong className="text-white">{verificationReport.score}/100</strong>
+                    </span>
+                  </div>
+                </div>
 
-                      <div className="mt-4 pt-3 border-t border-white/5 font-mono text-[10px] text-zinc-500">
-                        {submissionType === item.type ? "● Selected" : "○ Click to select"}
+                {/* Verification Checks Breakdown */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {verificationReport.checks.map((check) => (
+                    <div
+                      key={check.id}
+                      className="p-3.5 rounded-2xl bg-black/60 border border-white/5 flex items-start gap-3"
+                    >
+                      <div
+                        className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                          check.passed ? "bg-[#C6FF3D]/20 text-[#C6FF3D]" : "bg-rose-500/20 text-rose-400"
+                        }`}
+                      >
+                        {check.passed ? <Check className="w-3.5 h-3.5 stroke-[2.5]" /> : <AlertCircle className="w-3.5 h-3.5" />}
                       </div>
-                    </button>
+                      <div className="text-xs">
+                        <span className="font-bold text-white block">{check.label}</span>
+                        <span className="text-zinc-400 leading-relaxed">{check.detail}</span>
+                      </div>
+                    </div>
                   ))}
                 </div>
 
-                <div>
-                  <label htmlFor="form-category" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Target Product Category
-                  </label>
-                  <select id="form-category"
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#C6FF3D]"
-                  >
-                    <option value="Dev Tools">Dev Tools & Infrastructure</option>
-                    <option value="AI Tools">AI & Machine Learning</option>
-                    <option value="Security">Security & Zero-Trust Auth</option>
-                    <option value="Analytics">Analytics & Data Observability</option>
-                    <option value="Fintech">Fintech & Invoicing</option>
-                    <option value="Marketing">Marketing & Communication</option>
-                  </select>
-                </div>
-              </div>
-            )}
-
-            {/* STEP 2: Tool & Offer Details */}
-            {currentStep === 2 && (
-              <div className="space-y-6 animate-in fade-in">
-                <div>
-                  <h3 className="font-display font-bold text-xl text-white mb-1">
-                    2. Product & Offer Information
-                  </h3>
-                  <p className="text-zinc-400 text-xs sm:text-sm">
-                    Specify exact coupon terms, website links, and discount percentages.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="form-toolName" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                      SaaS Tool Name *
-                    </label>
-                    <input id="form-toolName"
-                      type="text"
-                      required
-                      value={formData.toolName}
-                      onChange={(e) => setFormData({ ...formData, toolName: e.target.value })}
-                      placeholder="e.g. EdgeBase Cloud"
-                      className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="form-websiteUrl" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                      Official Website URL *
-                    </label>
-                    <input id="form-websiteUrl"
-                      type="url"
-                      required
-                      value={formData.websiteUrl}
-                      onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
-                      placeholder="https://edgebase.cloud"
-                      className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="form-tagline" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    One-Line Tagline *
-                  </label>
-                  <input id="form-tagline"
-                    type="text"
-                    required
-                    value={formData.tagline}
-                    onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
-                    placeholder="e.g. Distributed SQLite for Edge Runtimes with Raft Consensus"
-                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-sans text-xs"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div>
-                    <label htmlFor="form-dealType" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                      Deal Type
-                    </label>
-                    <select id="form-dealType"
-                      value={formData.dealType}
-                      onChange={(e) => setFormData({ ...formData, dealType: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#C6FF3D]"
-                    >
-                      <option value="Verified Coupon Code">Verified Coupon Code</option>
-                      <option value="Lifetime Deal (LTD)">Lifetime Deal (LTD)</option>
-                      <option value="Extended Free Trial">Extended Free Trial</option>
-                      <option value="Startup Credits">Startup Credits</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="form-discountPercentage" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                      Discount Percentage (%)
-                    </label>
-                    <input id="form-discountPercentage"
-                      type="number"
-                      min="0"
-                      max="100"
-                      value={formData.discountPercentage}
-                      onChange={(e) => setFormData({ ...formData, discountPercentage: e.target.value })}
-                      placeholder="50"
-                      className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="form-couponCode" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                      Coupon Promo Code
-                    </label>
-                    <input id="form-couponCode"
-                      type="text"
-                      value={formData.couponCode}
-                      onChange={(e) => setFormData({ ...formData, couponCode: e.target.value.toUpperCase() })}
-                      placeholder="SAAS50"
-                      className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs font-bold text-[#C6FF3D]"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="form-verificationProof" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Verification Proof Link / Documentation
-                  </label>
-                  <input id="form-verificationProof"
-                    type="text"
-                    value={formData.verificationProof}
-                    onChange={(e) => setFormData({ ...formData, verificationProof: e.target.value })}
-                    placeholder="https://twitter.com/... or public pricing checkout link"
-                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* STEP 3: Technical Specifications */}
-            {currentStep === 3 && (
-              <div className="space-y-6 animate-in fade-in">
-                <div>
-                  <h3 className="font-display font-bold text-xl text-white mb-1">
-                    3. Architecture & Competitive Edge
-                  </h3>
-                  <p className="text-zinc-400 text-xs sm:text-sm">
-                    Engineers love SaaSFolio because we explain why tools are built better.
-                  </p>
-                </div>
-
-                <div>
-                  <label htmlFor="form-techStack" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Core Tech Stack / Cloud Infrastructure
-                  </label>
-                  <input id="form-techStack"
-                    type="text"
-                    value={formData.techStack}
-                    onChange={(e) => setFormData({ ...formData, techStack: e.target.value })}
-                    placeholder="e.g. Rust, WebAssembly, ClickHouse, AWS eu-central-1"
-                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="form-differentiator" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Why is this product better than legacy alternatives? *
-                  </label>
-                  <textarea id="form-differentiator"
-                    rows={4}
-                    required
-                    value={formData.differentiator}
-                    onChange={(e) => setFormData({ ...formData, differentiator: e.target.value })}
-                    placeholder="Explain latency, cost savings, compliance, or developer experience advantages..."
-                    className="w-full p-4 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-sans text-xs resize-none"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="form-founderEmail" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Founder / Submitter Work Email *
-                  </label>
-                  <input id="form-founderEmail"
-                    type="email"
-                    required
-                    value={formData.founderEmail}
-                    onChange={(e) => setFormData({ ...formData, founderEmail: e.target.value })}
-                    placeholder="founder@yourcompany.com"
-                    className="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-[#C6FF3D] font-mono text-xs"
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* STEP 4: Live Card Preview & Final Review */}
-            {currentStep === 4 && (
-              <div className="space-y-6 animate-in fade-in">
-                <div>
-                  <h3 className="font-display font-bold text-xl text-white mb-1">
-                    4. Real-Time Deal Card Preview
-                  </h3>
-                  <p className="text-zinc-400 text-xs sm:text-sm">
-                    This is how your product listing will appear in the SaaSFolio directory.
-                  </p>
-                </div>
-
-                {/* Live Preview Card */}
-                <div className="max-w-md mx-auto p-6 rounded-2xl bg-[#09090C] border-2 border-[#C6FF3D]/40 shadow-[0_0_30px_rgba(198,255,61,0.1)] relative">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-xs text-[#C6FF3D] font-bold">
-                      {formData.category}
-                    </span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#C6FF3D] text-black font-mono text-xs font-black">
-                      {formData.discountPercentage}% OFF
-                    </span>
-                  </div>
-
-                  <h4 className="font-display font-black text-xl text-white mb-1">
-                    {formData.toolName || "Your SaaS Tool"}
-                  </h4>
-                  <p className="text-zinc-400 text-xs mb-4 line-clamp-2">
-                    {formData.tagline || "High performance software designed for high-scale teams."}
-                  </p>
-
-                  <div className="p-3 rounded-xl bg-black/60 border border-white/5 font-mono text-xs space-y-1 mb-4">
-                    <div className="text-zinc-400 flex justify-between">
-                      <span>Deal Type:</span>
-                      <span className="text-white">{formData.dealType}</span>
-                    </div>
-                    <div className="text-zinc-400 flex justify-between">
-                      <span>Promo Code:</span>
-                      <span className="text-[#C6FF3D] font-bold">{formData.couponCode || "DISCOUNT"}</span>
-                    </div>
-                  </div>
-
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-500">
-                    <span className="flex items-center gap-1 text-emerald-400">
-                      <ShieldCheck className="w-3.5 h-3.5" /> Preview · Not yet reviewed
-                    </span>
-                    <span className="text-[#C6FF3D] font-bold">Reveal Coupon →</span>
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-mono flex items-start gap-2.5">
-                  <ShieldCheck className="w-4 h-4 shrink-0 text-amber-400 mt-0.5" />
-                  <span>
-                    By submitting, you confirm that this offer is active and you have rights to represent the product or coupon. Submissions require review before publication.
+                {/* Live Card Preview */}
+                <div className="pt-2 border-t border-white/10">
+                  <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-3">
+                    Live Directory Card Preview:
                   </span>
+                  <div className="max-w-md p-5 rounded-2xl bg-black border border-[#C6FF3D]/30 space-y-3 shadow-xl">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[10px] text-[#C6FF3D] bg-[#C6FF3D]/10 px-2.5 py-0.5 rounded-full font-bold border border-[#C6FF3D]/25">
+                        {verificationReport.recommendedBadge}
+                      </span>
+                      <span className="text-[11px] font-mono text-zinc-500">
+                        {formData.category || "Dev Tools"}
+                      </span>
+                    </div>
+
+                    <h4 className="font-display font-bold text-base text-white">{previewHeadline}</h4>
+                    <p className="text-xs text-zinc-400 leading-relaxed">
+                      {formData.discountDescription || "Discount code applicable at checkout."}
+                    </p>
+
+                    {formData.code && (
+                      <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10">
+                        <span className="font-mono text-xs font-bold text-[#C6FF3D] tracking-widest">
+                          {formData.code}
+                        </span>
+                        <span className="font-mono text-[10px] text-zinc-400 uppercase">COPY CODE</span>
+                      </div>
+                    )}
+
+                    <div className="flex items-center justify-between text-[11px] font-mono text-zinc-500 pt-1">
+                      <span>Submitted by @{currentUser?.name || "you"}</span>
+                      <span className="text-[#C6FF3D] flex items-center gap-1">
+                        <Sparkles className="w-3 h-3" /> System Verified
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* Wizard Navigation Controls */}
-            <div className="flex items-center justify-between pt-8 border-t border-white/10 mt-8">
-              {currentStep > 1 ? (
-                <button
-                  type="button"
-                  onClick={handleBack}
-                  className="px-5 py-2.5 rounded-xl border border-white/10 text-zinc-400 hover:text-white font-mono text-xs transition-colors"
-                >
-                  ← Previous Step
-                </button>
-              ) : (
-                <div />
-              )}
-
-              {currentStep < 4 ? (
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="px-6 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-display font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(198,255,61,0.2)]"
-                >
-                  Continue to Step {currentStep + 1} <ArrowRight className="w-4 h-4" />
-                </button>
-              ) : (
-                <button
-                  type="submit" disabled={busy}
-                  className="px-8 py-3 rounded-xl bg-[#C6FF3D] text-black font-display font-black text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(198,255,61,0.3)]"
-                >
-                  <Send className="w-4 h-4" /> Submit to Moderation Queue
-                </button>
-              )}
+            {/* Submit Action Button */}
+            <div className="flex items-center justify-end gap-4 pt-4">
+              <Link
+                href="/deals"
+                className="px-6 py-3 rounded-xl text-zinc-400 hover:text-white font-mono text-xs uppercase"
+              >
+                Cancel
+              </Link>
+              <button
+                type="submit"
+                disabled={busy}
+                className="px-8 py-4 rounded-2xl bg-[#C6FF3D] hover:bg-[#D6FF66] text-black font-display font-bold text-sm uppercase tracking-wider transition-all disabled:opacity-50 shadow-[0_0_25px_rgba(198,255,61,0.3)] hover:shadow-[0_0_35px_rgba(198,255,61,0.5)] flex items-center gap-2"
+              >
+                {busy ? (
+                  <span>Submitting to Verification Queue...</span>
+                ) : (
+                  <>
+                    <span>Submit Verified Code</span>
+                    <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                  </>
+                )}
+              </button>
             </div>
           </fieldset>
         </form>

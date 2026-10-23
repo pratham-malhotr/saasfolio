@@ -89,6 +89,32 @@ test("contact submissions are saved server-side and return the database referenc
   assert.equal(app.writes[0].value.email, contact.email);
 });
 
+test("code submissions require authentication and record verification metadata", async () => {
+  const unauthApp = platform();
+  const codeSubmission = {
+    kind: "submission",
+    submissionType: "code",
+    toolName: "Hostinger",
+    websiteUrl: "https://hostinger.com",
+    code: "SAVE20",
+    codeType: "coupon",
+    discountPercentage: 20,
+    discountDescription: "20% off web hosting plans",
+    verificationProof: "https://hostinger.com/pricing",
+  };
+  const unauthRes = await unauthApp.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", codeSubmission));
+  assert.equal(unauthRes.status, 401);
+
+  const authApp = platform({ user: testUser });
+  const authRes = await authApp.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", codeSubmission));
+  assert.equal(authRes.status, 201);
+  assert.equal(authApp.writes[0].table, "inquiries");
+  assert.equal(authApp.writes[0].value.payload.submissionType, "code");
+  assert.equal(authApp.writes[0].value.payload.code, "SAVE20");
+  assert.equal(authApp.writes[0].value.payload.submittedBy.id, testUser.id);
+  assert.ok(authApp.writes[0].value.payload.verificationScore >= 80);
+});
+
 test("invalid, cross-origin, oversized, malformed and honeypot forms do not write", async () => {
   const app = platform(); const route = app.load("app/api/inquiries/route.ts");
   for (const [data, options, status] of [

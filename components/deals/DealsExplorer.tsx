@@ -11,7 +11,8 @@ import {
   SlidersHorizontal,
   ArrowRight,
   RotateCcw,
-  ExternalLink
+  ExternalLink,
+  Tag
 } from "lucide-react";
 import { offerLabel } from "@/lib/offer-links";
 import { SaaSDeal } from "@/lib/types";
@@ -202,6 +203,14 @@ export function DealsExplorer({
               <span className="hidden sm:inline">Reset</span>
             </button>
           )}
+
+          <Link
+            href="/submit"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#C6FF3D]/10 hover:bg-[#C6FF3D]/20 border border-[#C6FF3D]/30 text-xs font-mono text-[#C6FF3D] font-bold transition-all shadow-[0_0_15px_rgba(198,255,61,0.15)] whitespace-nowrap"
+          >
+            <Tag className="w-3.5 h-3.5" />
+            <span>Submit a Code</span>
+          </Link>
         </div>
       </div>
 
