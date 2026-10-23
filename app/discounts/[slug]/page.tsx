@@ -9,7 +9,7 @@ import { offerLabel, offerStatus } from "@/lib/offer-links";
 import { BrandSourcePanel } from "@/components/seo/BrandSourcePanel";
 import { SavingsCalculator } from "@/components/deals/SavingsCalculator";
 import {
-  brandDiscountTitle, brandDiscountDescription, brandDiscountAnswer, getBrandDiscountData,
+  brandDiscountTitle, brandDiscountDescription, brandDiscountAnswer, brandBestDiscountAnswer, getBrandDiscountData,
   getBrandDiscountFaqs, getIndexableDiscountBrands, hasBrandDiscountPage,
 } from "@/lib/brand-discounts";
 
@@ -94,7 +94,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
         </div>
         <nav aria-label="On this page" className="flex flex-wrap gap-5 border-t border-white/10 pt-4 text-sm text-[#C6FF3D]">
           <a href="#current-offers">Offers & codes</a>{guide && <a href="#plan-fit">Choose your workflow</a>}<a href="#saving-guide">Ways to save</a>
-          <a href="#offer-sources">Compare sources</a><a href="#compare-costs">Compare annual costs</a>
+          <a href="#offer-sources">Compare sources</a>{guide?.billingModel !== "usage" && <a href="#compare-costs">Compare annual costs</a>}
           {purchaseChecks && <a href="#eligibility">Eligibility</a>}
           <a href="#redemption">How to redeem</a>{purchaseChecks && <a href="#coupon-help">Code not working?</a>}<a href="#questions">Questions</a>
         </nav>
@@ -103,6 +103,10 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
       <section id="current-offers" className="space-y-5 scroll-mt-28">
         <h2 className="font-display text-2xl font-bold text-white">Current {tool.name} discount codes & offers</h2>
         <p id="discount-answer" className="max-w-3xl text-zinc-300 leading-relaxed">{brandDiscountAnswer(tool, offers)}</p>
+        <div id="best-discount" className="max-w-3xl space-y-2">
+          <h3 className="font-display text-xl font-semibold text-white">How to choose the best {tool.name} discount</h3>
+          <p className="text-sm leading-relaxed text-zinc-400">{brandBestDiscountAnswer(tool, offers)}</p>
+        </div>
         {savingsOptions.length > 0 && <div className="space-y-4 rounded-2xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/[0.03] p-5 sm:p-6">
           <h3 className="font-display text-xl font-bold text-white">{tool.name} discounts at a glance</h3>
           <p className="text-sm text-zinc-400">Compare these reviewed provider offers with any coupon listed below. Education and nonprofit programs can require an application or approval.</p>
@@ -141,7 +145,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
       </section>
 
       <BrandSourcePanel tool={tool} />
-      <SavingsCalculator brand={tool.name} />
+      {guide?.billingModel !== "usage" && <SavingsCalculator brand={tool.name} />}
 
       {purchaseChecks && <section id="eligibility" className="space-y-5 scroll-mt-28">
         <h2 className="font-display text-2xl font-bold text-white">Who qualifies for {tool.name} discounts?</h2>

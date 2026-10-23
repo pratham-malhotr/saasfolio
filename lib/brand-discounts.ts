@@ -64,6 +64,14 @@ export function brandDiscountTitle(tool: DetailedTool): string {
   return BRAND_DISCOUNT_GUIDES[tool.slug]?.searchTitle || `${tool.name} Discounts & Coupon Codes`;
 }
 
+export function brandBestDiscountAnswer(tool: DetailedTool, catalogDeals = getAllDeals()): string {
+  const { guide, sourceNotesCurrent, coupons, savingsOptions } = getBrandDiscountData(tool, catalogDeals);
+  if (sourceNotesCurrent && guide?.bestDiscountAnswer) return guide.bestDiscountAnswer;
+  if (guide?.summary) return guide.summary;
+  const options = coupons.length || savingsOptions.length ? "Compare the sourced options above" : "Check the provider's current options";
+  return `${options} for the ${tool.name} package you need. Match the account, usage and billing period, include any access fee or add-ons, and compare the full payable and renewal amounts. The largest advertised percentage is not necessarily the lowest eligible total.`;
+}
+
 export function brandDiscountAnswer(tool: DetailedTool, catalogDeals = getAllDeals()): string {
   const { coupons, savingsOptions, offers } = getBrandDiscountData(tool, catalogDeals);
   if (coupons.length) return `${coupons.length} sourced ${tool.name} ${coupons.length === 1 ? "coupon code is" : "coupon codes are"} listed below. Match each code to the eligible product, account and billing period. Acceptance has not been tested at checkout.`;

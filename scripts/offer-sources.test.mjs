@@ -145,8 +145,10 @@ test("old coupons age out in a running process, with pricing fallback and legacy
 test("reviewed brand savings age out of summaries and FAQs without losing the guide", () => {
   const clock = { now: Date.parse("2026-10-23T12:00:00Z") };
   class TestDate extends Date { static now() { return clock.now; } }
+  const expansion = loadTs("lib/data/expansion-discount-guides.ts");
   const guides = loadTs("lib/data/brand-discount-guides.ts", {
     "@/lib/data/additional-discount-guides": loadTs("lib/data/additional-discount-guides.ts"),
+    "@/lib/data/expansion-discount-guides": expansion,
   }).BRAND_DISCOUNT_GUIDES;
   const tool = { slug: "beehiiv", name: "Beehiiv" };
   const catalog = loadTs("lib/brand-discounts.ts", {
@@ -154,7 +156,7 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
     "@/lib/data/deals-data": { getAllDeals: () => [] },
     "@/lib/data/offer-snapshot.json": { offers: [] },
     "@/lib/data/brand-discount-guides": { BRAND_DISCOUNT_GUIDES: guides },
-    "@/lib/data/brand-purchase-checks": loadTs("lib/data/brand-purchase-checks.ts"),
+    "@/lib/data/brand-purchase-checks": loadTs("lib/data/brand-purchase-checks.ts", { "@/lib/data/expansion-discount-guides": expansion }),
     "@/lib/seo": loadTs("lib/seo.ts"),
   }, TestDate);
   assert.equal(catalog.getBrandDiscountData(tool).savingsOptions.length, 1);
@@ -162,6 +164,8 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
   assert.ok(catalog.getBrandDiscountFaqs(tool, []).some(faq => /20%/.test(faq.answer)));
   assert.match(catalog.brandDiscountAnswer(tool), /20%/);
   assert.equal(catalog.getBrandDiscountData(tool).purchaseChecks.eligibility.length, 3);
+  const addedBrand = { slug: "meetgeek", name: "MeetGeek" };
+  assert.match(catalog.brandBestDiscountAnswer(addedBrand), /yearly quote/);
   clock.now += 31 * 86400000;
   assert.deepEqual(catalog.getBrandDiscountData(tool).savingsOptions, []);
   assert.doesNotMatch(catalog.brandSavingsSummary(tool), /20%/);
@@ -169,9 +173,12 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
   assert.doesNotMatch(catalog.brandDiscountAnswer(tool), /20%/);
   assert.equal(catalog.getBrandDiscountData(tool).purchaseChecks, undefined);
   assert.equal(catalog.getBrandDiscountData(tool).indexable, true);
+  assert.doesNotMatch(catalog.brandBestDiscountAnswer(addedBrand), /yearly quote/);
+  assert.equal(catalog.getBrandDiscountData(addedBrand).purchaseChecks, undefined);
   assert.equal(catalog.getIndexableDiscountBrands()[0].slug, "beehiiv");
   // Future-dated observations must never appear as reviewed savings.
   clock.now = Date.parse("2026-10-22T12:00:00Z");
   assert.deepEqual(catalog.getBrandDiscountData(tool).savingsOptions, []);
   assert.equal(catalog.getBrandDiscountData(tool).purchaseChecks, undefined);
+  assert.doesNotMatch(catalog.brandBestDiscountAnswer(addedBrand), /yearly quote/);
 });

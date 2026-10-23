@@ -1,7 +1,8 @@
 import { ADDITIONAL_DISCOUNT_GUIDES } from "@/lib/data/additional-discount-guides";
+import { EXPANSION_DISCOUNT_GUIDES } from "@/lib/data/expansion-discount-guides";
 
 export interface BrandSavingsOption {
-  type: "Annual billing" | "Team discount" | "Bundle discount" | "Education offer" | "Nonprofit discount";
+  type: "Annual billing" | "Team discount" | "Bundle discount" | "Education offer" | "Nonprofit discount" | "Organization offer";
   saving: string;
   terms: string;
   sourceUrl: string;
@@ -14,6 +15,8 @@ export interface BrandDiscountGuide {
   metaDescription: string;
   intro: string;
   summary: string;
+  bestDiscountAnswer?: string;
+  billingModel?: "subscription" | "usage";
   decisionRows: { option: string; bestFor: string; check: string }[];
   redemptionSteps: string[];
   relatedSlugs: string[];
@@ -28,6 +31,7 @@ export interface BrandDiscountGuide {
 // Add an original guide here before indexing a brand without a sourced discount.
 export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
   ...ADDITIONAL_DISCOUNT_GUIDES,
+  ...EXPANSION_DISCOUNT_GUIDES,
   "predis-ai": {
     reviewedAt: "2026-10-23",
     sourceUrl: "https://predis.ai/pricing/",

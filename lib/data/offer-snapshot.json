@@ -508,6 +508,17 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:alitu": {
+      "toolSlug": "alitu",
+      "url": "https://alitu.com/pricing",
+      "kind": "vendor",
+      "status": "error",
+      "lastAttemptAt": "2026-10-23T14:50:16.114Z",
+      "failureCount": 1,
+      "httpStatus": 403,
+      "nextAttemptAt": "2026-10-24T14:50:17.316Z",
+      "error": "HTTP 403"
+    },
     "vendor:amazing-marvin": {
       "toolSlug": "amazing-marvin",
       "url": "https://amazingmarvin.com/pricing/",
@@ -1118,6 +1129,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:bigin": {
+      "toolSlug": "bigin",
+      "url": "https://www.bigin.com/pricing.html",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:18.789Z",
+      "definitionHash": "dc0542261d1e41eb6c65ed2b1a0cf0ad25a45be620238d88b29bf303ef5c8ed5",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:18.789Z",
+      "contentHash": "dfdd1a427e7a4cc02cadedcc6120b041cc93ae71f67cc06a055e9a162ae844b9",
+      "etag": "\"6a69d1ba-2b13\"",
+      "lastModified": "Wed, 29 Jul 2026 10:11:06 GMT",
+      "error": null
+    },
     "vendor:bill4time": {
       "toolSlug": "bill4time",
       "url": "https://bill4time.com",
@@ -1441,6 +1468,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:buttondown": {
+      "toolSlug": "buttondown",
+      "url": "https://buttondown.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:12.942Z",
+      "definitionHash": "8c3c8dc48a67bba1a599f04ab7e51d1874fe18cbfaa3ab944fd0dd03b6cdbc5a",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:12.942Z",
+      "contentHash": "90db40bee88faddf078c1b555ebe643457da11e22122f7dfb2787759891ed71c",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
     "vendor:buzzsprout-podcast": {
       "toolSlug": "buzzsprout-podcast",
       "url": "https://www.buzzsprout.com/",
@@ -1637,6 +1680,22 @@
       "contentHash": "eac7b45b2e579cfbb792e773afb5a6f1cf91d26aef6ed1aa65f4bed8f6db7b7a",
       "etag": null,
       "lastModified": "Fri, 23 Oct 2026 09:23:16 GMT",
+      "error": null
+    },
+    "vendor:castmagic": {
+      "toolSlug": "castmagic",
+      "url": "https://www.castmagic.io/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:15.833Z",
+      "definitionHash": "657102940448dba08327b92ab728bf1e93a9248eaf63813e8f4c781657664bfb",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:15.833Z",
+      "contentHash": "6bd40b0818fec9793b13c128eaa6cb2536c760e87bcd3c9933b7c50e6b3f0d30",
+      "etag": "W/\"d857ba3d73ba07ed7f3bd856b0394be4\"",
+      "lastModified": "Fri, 23 Oct 2026 05:48:18 GMT",
       "error": null
     },
     "vendor:castos-hosting": {
@@ -2008,6 +2067,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:clueso": {
+      "toolSlug": "clueso",
+      "url": "https://www.clueso.io/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:14.647Z",
+      "definitionHash": "f540dc88c54ac09812a0e81dd5df8c6079c345292e42e6c21051bca730ba4c6c",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:14.647Z",
+      "contentHash": "44ee15bb7486ce9b2e4535f883990a7ea36a6ead36fbbccecf5e53d5ef3f33c2",
+      "etag": "W/\"zvdy9b1zx07jlv\"",
+      "lastModified": null,
+      "error": null
+    },
     "vendor:cockroachdb-cloud": {
       "toolSlug": "cockroachdb-cloud",
       "url": "https://www.cockroachlabs.com/",
@@ -2106,6 +2181,22 @@
       "httpStatus": 200,
       "changedAt": "2026-10-23T09:22:19.768Z",
       "contentHash": "7f52930e5bcfbbd842be692ca8a6799966d2054a723cc93072ccc2da3616492f",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
+    "vendor:colossyan": {
+      "toolSlug": "colossyan",
+      "url": "https://www.colossyan.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:17.656Z",
+      "definitionHash": "41d587ec25845c16665f33f2ee32690fd3a427cd867649f6a126134daba8307d",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:17.656Z",
+      "contentHash": "06305d279b1dd1c9c104c95bfa313ae3914a2144925cb2aa097718702ccc89c6",
       "etag": null,
       "lastModified": null,
       "error": null
@@ -2334,6 +2425,22 @@
       "contentHash": "3429f754d7ecb3c3631e37c9b533e81a6ece3220d97dafcf1f88d513eb3e97ac",
       "etag": "W/\"9ca392a731df6a344f4ff8ed5143f14a\"",
       "lastModified": "Fri, 23 Oct 2026 04:58:19 GMT",
+      "error": null
+    },
+    "vendor:creatify": {
+      "toolSlug": "creatify",
+      "url": "https://creatify.ai/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:17.645Z",
+      "definitionHash": "65cd8e6363486ff82df370e53b1216d20751858b1d36ab4e6eb119f60301f23e",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:17.645Z",
+      "contentHash": "95f2f1e3da2d6fa17b2260bb1ee3000fdfdaa3ea56c26db99cfea1850b5300e8",
+      "etag": null,
+      "lastModified": null,
       "error": null
     },
     "vendor:crisp-chat": {
@@ -2754,6 +2861,22 @@
       "httpStatus": 403,
       "nextAttemptAt": "2026-10-23T09:28:46.023Z"
     },
+    "vendor:dubble": {
+      "toolSlug": "dubble",
+      "url": "https://dubble.so/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:14.174Z",
+      "definitionHash": "3f57c34a141fc8d640f5b25189313fed5bc5eb6ea38f67f9ec572ef08d6b6e4e",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:14.174Z",
+      "contentHash": "7244ebe94980d1c6025931b0d1e4705d748c3740de74ec2cb52d70664d2c089d",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
     "vendor:dust": {
       "toolSlug": "dust",
       "url": "https://dust.tt/home/pricing",
@@ -3016,6 +3139,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:famewall": {
+      "toolSlug": "famewall",
+      "url": "https://famewall.io/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:13.024Z",
+      "definitionHash": "365a4731cdf72bfc2aec4a4e31317ed41fdb93540fb168782e00ba071ecc4041",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:13.024Z",
+      "contentHash": "cfc7d171be23c84a06e04fd57aa77210af52df053898cebbce87f5f3b641d6df",
+      "etag": "W/\"b0d95c00a129aabdbf203b6a0a73914b\"",
+      "lastModified": "Fri, 23 Oct 2026 11:36:55 GMT",
+      "error": null
+    },
     "vendor:fastgpt": {
       "toolSlug": "fastgpt",
       "url": "https://fastgpt.in",
@@ -3105,6 +3244,22 @@
       "contentHash": "8c76d6650bff6ad34564a8a3a143a8531544efe685c2daa933c85d6811e1a172",
       "etag": null,
       "lastModified": null,
+      "error": null
+    },
+    "vendor:fellow": {
+      "toolSlug": "fellow",
+      "url": "https://fellow.ai/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:11.196Z",
+      "definitionHash": "2ea0a719c52df4d2b524932d8accc91158764fe1d097fd76f5bca8ef17b1eade",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:11.196Z",
+      "contentHash": "b3263dd986d6a3d9572197431daa8efa37fb813837d353ff25a98741b42c64a7",
+      "etag": null,
+      "lastModified": "Fri, 23 Oct 2026 14:48:23 GMT",
       "error": null
     },
     "vendor:figma": {
@@ -3786,6 +3941,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:granola": {
+      "toolSlug": "granola",
+      "url": "https://www.granola.ai/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:11.193Z",
+      "definitionHash": "6a89532b57dd75a38149fcde07bacc40235ed141fdc4c95440a336c2e66ebda6",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:11.193Z",
+      "contentHash": "a27cf2c59a4ee5ddeaf4acc7c6b6dc9a635c1f33d60f8960df000a30a8e192dd",
+      "etag": "W/\"10nsx4nmm5wb92o\"",
+      "lastModified": null,
+      "error": null
+    },
     "vendor:grok": {
       "toolSlug": "grok",
       "url": "https://grok.com/",
@@ -3848,6 +4019,22 @@
       "contentHash": "c3f794bee69d30eb4f9526d723cf8c4de3872abd885287afd2aafbfe9c19a685",
       "etag": null,
       "lastModified": "Thu, 22 Oct 2026 14:26:00 GMT",
+      "error": null
+    },
+    "vendor:guideflow": {
+      "toolSlug": "guideflow",
+      "url": "https://www.guideflow.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:13.225Z",
+      "definitionHash": "941936e4bc59260549602df66436fc0271263c3fe737dea6b1e6f532fea0304c",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:13.225Z",
+      "contentHash": "01e3e1722eb0097fc45dd5b727f882e20c6ce2fa3e492505d656288bc8ef1afb",
+      "etag": null,
+      "lastModified": "Fri, 23 Oct 2026 14:50:14 GMT",
       "error": null
     },
     "vendor:gumloop": {
@@ -3923,6 +4110,22 @@
       "contentHash": "288889d57864007628f81ecdbe0eabd863cd40357881a4fc22f699fa3f29cd64",
       "etag": "W/\"a772797b187a629904861cce37280504\"",
       "lastModified": "Thu, 22 Oct 2026 00:22:53 GMT",
+      "error": null
+    },
+    "vendor:hedra": {
+      "toolSlug": "hedra",
+      "url": "https://www.hedra.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:17.654Z",
+      "definitionHash": "557db49c4bb64c62dc78d39147d112f30e4cb40c816de0d4ea684f955211996c",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:17.654Z",
+      "contentHash": "cae91cd1848fed92e2d40d89f933e3263d6740bf7a80b7ec4aa9339667c09ba9",
+      "etag": null,
+      "lastModified": null,
       "error": null
     },
     "vendor:height": {
@@ -4057,6 +4260,22 @@
       "contentHash": "1ab44de360720c7c3a2258834954617189312723b064cd353c4d6dd1ee97733c",
       "etag": "\"21a96849c4a04da093d9d6a11229fe41\"",
       "lastModified": "Wed, 21 Oct 2026 18:16:11 GMT",
+      "error": null
+    },
+    "vendor:hiver": {
+      "toolSlug": "hiver",
+      "url": "https://hiverhq.com/pricing/hiver-omni",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:11.196Z",
+      "definitionHash": "f83377f703d5564ab1bb776f2e5e19ad70a2e48cb2a85107c144547803155959",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:11.196Z",
+      "contentHash": "e677a3c6ab1e4eaafadbd8e046b4646ad4c53eb335e37a63b3771f7302cb9530",
+      "etag": null,
+      "lastModified": "Fri, 23 Oct 2026 14:32:18 GMT",
       "error": null
     },
     "vendor:honeycomb-io": {
@@ -5564,6 +5783,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:meetgeek": {
+      "toolSlug": "meetgeek",
+      "url": "https://meetgeek.ai/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:11.196Z",
+      "definitionHash": "f61eae15fb315930a83c252f522f0b93429b93758e402a38780ee0fc3de583cf",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:11.196Z",
+      "contentHash": "84ceb104de258d60ea753f70329c86f78dff715a2efc3e578c20d0f79126bc87",
+      "etag": null,
+      "lastModified": "Fri, 23 Oct 2026 06:49:11 GMT",
+      "error": null
+    },
     "vendor:meistertask": {
       "toolSlug": "meistertask",
       "url": "https://www.meistertask.com/",
@@ -6670,6 +6905,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:photoroom": {
+      "toolSlug": "photoroom",
+      "url": "https://www.photoroom.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:17.317Z",
+      "definitionHash": "e1892c79aff20fa6f029577a9a59ad4636fc68d3ed76923d192ddcd20d3d2194",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:17.317Z",
+      "contentHash": "4f976619ab05e5534adbe275ee121c6436f2f4e18ea446fc42afc60d5dd4c83a",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
     "vendor:pika": {
       "toolSlug": "pika",
       "url": "https://pika.art/pricing",
@@ -6808,6 +7059,22 @@
       "contentHash": "f7d571cbea041ca21b7c6289125902ee5a9dee5f48e6cb0d61870c8596c37cd5",
       "etag": "\"76eaa7ce212df647b24c802a6d360ade\"",
       "lastModified": "Fri, 23 Oct 2026 07:37:11 GMT",
+      "error": null
+    },
+    "vendor:pixelcut": {
+      "toolSlug": "pixelcut",
+      "url": "https://www.pixelcut.ai/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:17.539Z",
+      "definitionHash": "7c9d6c0d62e99b795408ebaaa16d37603390996c46070e73c3fb8721bdce2669",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:17.539Z",
+      "contentHash": "be86d4424123c185fdc9998b51fedea24ea4c2682982049fc6b698c15a0f99b7",
+      "etag": null,
+      "lastModified": "Fri, 23 Oct 2026 14:50:19 GMT",
       "error": null
     },
     "vendor:pixelmator-pro": {
@@ -7548,6 +7815,22 @@
       "contentHash": "685da58feb28442ff96095c701d51325c4c04db0bc0161569d2d0d8db70e00e9",
       "etag": "W/\"d03690d82857d098e647e5865086dfae\"",
       "lastModified": null,
+      "error": null
+    },
+    "vendor:reclaim-ai": {
+      "toolSlug": "reclaim-ai",
+      "url": "https://reclaim.ai/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:11.196Z",
+      "definitionHash": "26af9e84cfce3f22089d59432e8b2723246b81b3603cc6e164c6d617e09a7119",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:11.196Z",
+      "contentHash": "4346afd4a979c024558eab0c25c59aa83b1ff34701dd245a59c10cd01b452538",
+      "etag": null,
+      "lastModified": "Thu, 22 Oct 2026 17:21:28 GMT",
       "error": null
     },
     "vendor:recraft": {
@@ -9381,6 +9664,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:superwhisper": {
+      "toolSlug": "superwhisper",
+      "url": "https://superwhisper.com/#pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:15.432Z",
+      "definitionHash": "2f4dd557e24893d253de88f1d5e92be51e3e08a6c292c414b924d96e47558bfb",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:15.432Z",
+      "contentHash": "f1d15b6c59c8a926611b58ef636f4c2508d765e1cf037208eb14402cd0d1457e",
+      "etag": "W/\"62edd89188cf3e9efee189f7279ee2ce\"",
+      "lastModified": null,
+      "error": null
+    },
     "vendor:surfer-seo": {
       "toolSlug": "surfer-seo",
       "url": "https://surferseo.com",
@@ -9536,6 +9835,22 @@
       "failureCount": 4,
       "httpStatus": 502,
       "nextAttemptAt": "2026-10-23T11:23:27.498Z"
+    },
+    "vendor:tactiq": {
+      "toolSlug": "tactiq",
+      "url": "https://tactiq.io/buy",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:11.196Z",
+      "definitionHash": "b1556746ce618e2792cacee0419da5fc2e6e80e4ebad3daa14dfea87368890fc",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:11.196Z",
+      "contentHash": "d73685cc56efce68a51133670b149fb33cdb640bf6e5677595cea026652ed12c",
+      "etag": null,
+      "lastModified": null,
+      "error": null
     },
     "vendor:taiga": {
       "toolSlug": "taiga",
@@ -10037,6 +10352,38 @@
       "httpStatus": 200,
       "changedAt": "2026-10-23T09:23:21.360Z",
       "contentHash": "dd435e129850610bca42e0537704aa7c98702764dcf12c9954456ee09048eba7",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
+    "vendor:trupeer": {
+      "toolSlug": "trupeer",
+      "url": "https://www.trupeer.ai/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:15.239Z",
+      "definitionHash": "4477220eca5717f2b623c325c07d55340c15aa1bc70e7bceea8a10058ac205d3",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:15.239Z",
+      "contentHash": "ce24f6d3818cc06eaea97703a447021582222a6d3779031d5ae10d8db6210333",
+      "etag": "\"035104d1f820043680433a94a7300aa2\"",
+      "lastModified": "Fri, 23 Oct 2026 10:13:26 GMT",
+      "error": null
+    },
+    "vendor:trustmary": {
+      "toolSlug": "trustmary",
+      "url": "https://trustmary.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:13.060Z",
+      "definitionHash": "42d9322e27d23565b28e1a66e88827c7af0d1db3d6424438a09bbe5eec32f634",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:13.060Z",
+      "contentHash": "a7bc1bfe6378626fd2ca06ab236030144253c5ecd122f3f25c12831647c7f194",
       "etag": null,
       "lastModified": null,
       "error": null
@@ -10965,6 +11312,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:wispr-flow": {
+      "toolSlug": "wispr-flow",
+      "url": "https://wisprflow.ai/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:15.259Z",
+      "definitionHash": "1a6c01b44769820c158a4325626293576c8b5023f4cafcf78ec682cb3c877262",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:15.259Z",
+      "contentHash": "f3b45ed45311b67018c4e000b84f0a56bc255e02797b18b2f393fd4e398d0a13",
+      "etag": null,
+      "lastModified": "Fri, 23 Oct 2026 11:15:36 GMT",
+      "error": null
+    },
     "vendor:wistia": {
       "toolSlug": "wistia",
       "url": "https://wistia.com/pricing",
@@ -11138,6 +11501,22 @@
       "changedAt": "2026-10-23T09:22:43.294Z",
       "contentHash": "d74341ffd6eaf9422fda5fe6ad44958c23b9411e4fe0f2020dbd09ea6c31eec4",
       "etag": "W/\"13dnctd8uy2tr8\"",
+      "lastModified": null,
+      "error": null
+    },
+    "vendor:zencastr": {
+      "toolSlug": "zencastr",
+      "url": "https://zencastr.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-23T14:50:16.768Z",
+      "definitionHash": "aa79f68462dcf3398d4e92d48e948883e7ec123fcff379080727399a2db072e8",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-23T14:50:16.768Z",
+      "contentHash": "ecbbd0accae05565f9523cb1f64375ec61b3e917804dbfefefade30538442a2c",
+      "etag": "W/\"16hxkqlvbhv3k5j\"",
       "lastModified": null,
       "error": null
     },
@@ -11416,6 +11795,21 @@
       "evidence": "ith no code and turn engagement into measurable retention and growth. Start free trial Book Demo Trusted by industry leaders who demand results The modern community platform people come back to Modern tools that make building, managing,",
       "checkedAt": "2026-10-23T09:23:49.302Z",
       "updatedAt": "2026-10-21T03:31:01.396Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "bigin-free-trial",
+      "toolSlug": "bigin",
+      "title": "Bigin free trial",
+      "dealType": "free_trial",
+      "discountPercentage": 0,
+      "sourceUrl": "https://www.bigin.com/pricing.html",
+      "destinationUrl": "https://www.bigin.com/pricing.html",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:bigin",
+      "evidence": "Bigin Pricing and Editions | The Most Affordable CRM Start Free Trial Monthly Yearly The CRM you need. Pricing you'll love. 15-day free trial Free onboarding 100% money-back guarantee Support you can count on No forced ",
+      "checkedAt": "2026-10-23T14:50:18.789Z",
+      "updatedAt": "2026-10-23T14:50:18.789Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
@@ -11764,6 +12158,21 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "colossyan-free-plan",
+      "toolSlug": "colossyan",
+      "title": "Colossyan free plan",
+      "dealType": "free_plan",
+      "discountPercentage": 0,
+      "sourceUrl": "https://www.colossyan.com/pricing/",
+      "destinationUrl": "https://www.colossyan.com/pricing/",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:colossyan",
+      "evidence": "esidency – – Frequently asked questions How much does Colossyan cost? Our free plan gives you $27/month worth of value, including our entire 300+ avatar library with best-in-class avatars. When you need more, Professional is $59/mont",
+      "checkedAt": "2026-10-23T14:50:17.656Z",
+      "updatedAt": "2026-10-23T14:50:17.656Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
       "slug": "convertflow-free-trial",
       "toolSlug": "convertflow",
       "title": "ConvertFlow free trial",
@@ -11821,6 +12230,21 @@
       "evidence": " USD EUR AUD Free Start exploring Creately and its Basic features $ 0 Free forever Start free Basic features + AI tools in all Creately products ● Infinite canvas with all diagram types ● Up to 40 shapes per diagram ● Creately White",
       "checkedAt": "2026-10-23T09:24:52.907Z",
       "updatedAt": "2026-10-23T09:24:52.907Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "creatify-free-plan",
+      "toolSlug": "creatify",
+      "title": "Creatify free plan",
+      "dealType": "free_plan",
+      "discountPercentage": 0,
+      "sourceUrl": "https://creatify.ai/pricing",
+      "destinationUrl": "https://creatify.ai/pricing",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:creatify",
+      "evidence": "ager 24/7 Customer Support FAQ What is included in the free plan? The Free Plan includes 10 monthly credits. Create up to 2 video ads or 20 image ads, access 300 AI actors, and use 10 premium AI models plus 40 ad templates. Exports includ",
+      "checkedAt": "2026-10-23T14:50:17.645Z",
+      "updatedAt": "2026-10-23T14:50:17.645Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
@@ -12034,6 +12458,21 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "fellow-free-plan",
+      "toolSlug": "fellow",
+      "title": "Fellow free plan",
+      "dealType": "free_plan",
+      "discountPercentage": 0,
+      "sourceUrl": "https://fellow.ai/pricing",
+      "destinationUrl": "https://fellow.ai/pricing",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:fellow",
+      "evidence": "al ends?  Once your trial ends, your workspace will be downgraded to our Free plan. If you’re wondering how much time you have left on your trial, there’s a handy indicator in the left-hand navigation bar. Learn more Who can perform",
+      "checkedAt": "2026-10-23T14:50:11.196Z",
+      "updatedAt": "2026-10-23T14:50:11.196Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
       "slug": "firstpromoter-free-trial",
       "toolSlug": "firstpromoter",
       "title": "FirstPromoter free trial",
@@ -12166,6 +12605,21 @@
       "evidence": "ngo WalkMe Camtasia Tool Comparison Knowledge Hub 100 % free to start Start your free trial. No credit card required. Start your free trial. No credit card required. Activate your 7-day trial in seconds and see how Guidde transforms your wor",
       "checkedAt": "2026-10-23T09:24:54.397Z",
       "updatedAt": "2026-10-23T09:24:54.397Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "hiver-free-trial",
+      "toolSlug": "hiver",
+      "title": "Hiver free trial",
+      "dealType": "free_trial",
+      "discountPercentage": 0,
+      "sourceUrl": "https://hiverhq.com/pricing/hiver-omni",
+      "destinationUrl": "https://hiverhq.com/pricing/hiver-omni",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:hiver",
+      "evidence": " Microsoft Sign in with email Not on Hiver? Sign up now X Book a demo Start free trial Plans and pricing for Hiver Omni Hiver Omni Hiver in Gmail For teams that need a dedicated omnichannel platform. Annual Monthly Growth $ 25 $ 35 /use",
+      "checkedAt": "2026-10-23T14:50:11.196Z",
+      "updatedAt": "2026-10-23T14:50:11.196Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
@@ -12501,6 +12955,21 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "meetgeek-free-plan",
+      "toolSlug": "meetgeek",
+      "title": "MeetGeek free plan",
+      "dealType": "free_plan",
+      "discountPercentage": 0,
+      "sourceUrl": "https://meetgeek.ai/pricing",
+      "destinationUrl": "https://meetgeek.ai/pricing",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:meetgeek",
+      "evidence": "n-profits & edu. Contact us BASIC Free Ideal for occasional meetings. Free forever. 3 hours of transcription / month 3 months of transcript storage 1 month of audio storage Capture Recording Zoom, Google Meet, Teams, and more Mobile",
+      "checkedAt": "2026-10-23T14:50:11.196Z",
+      "updatedAt": "2026-10-23T14:50:11.196Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
       "slug": "metricool-free-plan",
       "toolSlug": "metricool",
       "title": "Metricool free plan",
@@ -12748,6 +13217,21 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "photoroom-free-trial",
+      "toolSlug": "photoroom",
+      "title": "Photoroom free trial",
+      "dealType": "free_trial",
+      "discountPercentage": 0,
+      "sourceUrl": "https://www.photoroom.com/pricing",
+      "destinationUrl": "https://www.photoroom.com/pricing",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:photoroom",
+      "evidence": "nal visuals Per month, billed yearly 8,000 AI credits • 1,000 exports Start free trial Unlimited core tools AI Backgrounds AI Fashion Models Not included : Video Generator Not included : Adjustable AI Shadows Not included : 4K video/ima",
+      "checkedAt": "2026-10-23T14:50:17.317Z",
+      "updatedAt": "2026-10-23T14:50:17.317Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
       "slug": "piktochart-free-plan",
       "toolSlug": "piktochart",
       "title": "Piktochart free plan",
@@ -12880,6 +13364,21 @@
       "evidence": "ership just asked how you're going to let AI agents ship code safely. Start free trial (14 days with no credit card) or talk to us directly . Do I need to rewrite my app to use it? No. Connect your existing git repo or container registr",
       "checkedAt": "2026-10-23T09:23:28.312Z",
       "updatedAt": "2026-10-23T09:23:28.312Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "reclaim-ai-free-plan",
+      "toolSlug": "reclaim-ai",
+      "title": "Reclaim.ai free plan",
+      "dealType": "free_plan",
+      "discountPercentage": 0,
+      "sourceUrl": "https://reclaim.ai/pricing",
+      "destinationUrl": "https://reclaim.ai/pricing",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:reclaim-ai",
+      "evidence": "discounts 🚀 Yearly - SAVE 20% Monthly Lite For calendar basics. Free Free forever Get Started Free features 5 AI Agents i Create specialized agents to continuously optimize your schedule across Focus Time, Habits, Buffer Time, Smar",
+      "checkedAt": "2026-10-23T14:50:11.196Z",
+      "updatedAt": "2026-10-23T14:50:11.196Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
@@ -13258,6 +13757,21 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "tactiq-free-plan",
+      "toolSlug": "tactiq",
+      "title": "Tactiq free plan",
+      "dealType": "free_plan",
+      "discountPercentage": 0,
+      "sourceUrl": "https://tactiq.io/buy",
+      "destinationUrl": "https://tactiq.io/buy",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:tactiq",
+      "evidence": "ing Billing period Monthly Annual (Save up to 33%) Free For 1 user $0 Free forever. No credit card. Start for free 5 AI credits / mo 10 transcripts / mo AI generated insights Share & export transcripts In-meeting AI Pro For 1 pro $8",
+      "checkedAt": "2026-10-23T14:50:11.196Z",
+      "updatedAt": "2026-10-23T14:50:11.196Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
       "slug": "tana-free-trial",
       "toolSlug": "tana",
       "title": "Tana free trial",
@@ -13405,6 +13919,21 @@
       "evidence": " podcast RSS feed? How to promote your podcast View all Posts Sign in Start Free trial Sign in Free trial Dashboard Dashboard document.body.classList.toggle('max-md:overflow-hidden', isOpen)) } }\" x-model=\"open\" class=\"flex md:hidden ju",
       "checkedAt": "2026-10-23T09:24:05.724Z",
       "updatedAt": "2026-10-21T03:31:32.981Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "trupeer-free-trial",
+      "toolSlug": "trupeer",
+      "title": "Trupeer free trial",
+      "dealType": "free_trial",
+      "discountPercentage": 0,
+      "sourceUrl": "https://www.trupeer.ai/pricing",
+      "destinationUrl": "https://www.trupeer.ai/pricing",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:trupeer",
+      "evidence": "c share links and embeds Pro For solo professionals $40 $49 per month Start a free trial Usage limits: 2,000 AI credits per month Recordings up to 10 minutes Single creator seat Everything in Free, plus: Watermark-free exports Export docu",
+      "checkedAt": "2026-10-23T14:50:15.239Z",
+      "updatedAt": "2026-10-23T14:50:15.239Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
@@ -13588,6 +14117,21 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "wispr-flow-free-plan",
+      "toolSlug": "wispr-flow",
+      "title": "Wispr Flow free plan",
+      "dealType": "free_plan",
+      "discountPercentage": 0,
+      "sourceUrl": "https://wisprflow.ai/pricing",
+      "destinationUrl": "https://wisprflow.ai/pricing",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:wispr-flow",
+      "evidence": "terprise. Does the free plan include the Notetaker? Answer: Yes. Flow free plan includes the Notetaker with speaker identification, the ability to ask questions about any meeting, and MCP access so your notes work in Claude, ChatGPT, and ",
+      "checkedAt": "2026-10-23T14:50:15.259Z",
+      "updatedAt": "2026-10-23T14:50:15.259Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
       "slug": "wistia-free-trial",
       "toolSlug": "wistia",
       "title": "Wistia free trial",
@@ -13649,5 +14193,5 @@
     }
   ],
   "candidates": [],
-  "lastRun": "2026-10-23T09:25:10.209Z"
+  "lastRun": "2026-10-23T14:50:22.764Z"
 }

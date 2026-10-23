@@ -1,29 +1,14 @@
 import assert from "node:assert/strict";
 import { parse } from "parse5";
 import { DISCOUNT_BRAND_ALIASES } from "../lib/data/brand-discount-aliases.mjs";
+import { loadCatalogModule } from "./lib/load-catalog.mjs";
 
 // Exercise production HTML, including content available before JavaScript runs.
 // Usage: npm run seo:audit:brands -- http://localhost:3210
 const origin = (process.argv[2] || "http://localhost:3210").replace(/\/$/, "");
 const canonicalOrigin = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech").origin;
-const brands = [
-  { slug: "predis-ai", name: "Predis.ai" },
-  { slug: "beehiiv", name: "Beehiiv" },
-  { slug: "hostinger", name: "Hostinger" },
-  { slug: "namecheap", name: "Namecheap" },
-  { slug: "snov-io", name: "Snov.io" },
-  { slug: "ocoya", name: "Ocoya" },
-  { slug: "taplio", name: "Taplio" },
-  { slug: "systeme-io", name: "Systeme.io" },
-  { slug: "smartlead", name: "Smartlead.ai" },
-  { slug: "streamyard", name: "StreamYard" },
-  { slug: "anytrack", name: "AnyTrack" },
-  { slug: "baremetrics", name: "Baremetrics" },
-  { slug: "mailerlite", name: "MailerLite" },
-  { slug: "convertkit", name: "Kit (ConvertKit)" },
-  { slug: "notion", name: "Notion" },
-  { slug: "framer", name: "Framer" },
-];
+const { getIndexableDiscountBrands, getBrandDiscountData } = loadCatalogModule("lib/brand-discounts.ts");
+const brands = getIndexableDiscountBrands();
 
 async function fetchPage(path, userAgent = "Googlebot") {
   const response = await fetch(`${origin}${path}`, { headers: { "User-Agent": userAgent }, signal: AbortSignal.timeout(30000) });
@@ -59,7 +44,9 @@ assert.match(contents(elements(directory, "h1")[0]), /SaaS discounts/i, "Brand d
 const titles = new Set();
 const descriptions = new Set();
 
-for (const { slug, name } of brands) {
+for (const tool of brands) {
+  const { slug, name } = tool;
+  const expected = getBrandDiscountData(tool);
   const path = `/discounts/${slug}`;
   const { response, document } = await fetchPage(path);
   assert.equal(response.status, 200, `${path}: HTTP 200`);
@@ -88,22 +75,25 @@ for (const { slug, name } of brands) {
     const currentOffers = nodes(document, node => attr(node, "id") === "current-offers")[0];
     const answer = nodes(currentOffers, node => attr(node, "id") === "discount-answer")[0];
     assert.ok(answer && contents(answer).includes(name) && contents(answer).length > 100, `${path}: useful direct answer about sourced discount availability`);
+    const best = nodes(currentOffers, node => attr(node, "id") === "best-discount")[0];
+    assert.ok(best && /best.*discount/i.test(contents(elements(best, "h3")[0])) && contents(best).includes(name) && contents(best).length > 150, `${path}: useful answer to brand best-discount intent`);
     const savingsTable = elements(currentOffers, "table")[0];
     const reviewedAt = Date.parse(attr(elements(document, "time")[0] || {}, "datetime") || "");
     const reviewAge = Date.now() - reviewedAt;
     // Editorial observations intentionally disappear when their review expires.
     if (reviewAge >= 0 && reviewAge <= 30 * 86400000) {
-      if (!["hostinger", "namecheap"].includes(slug)) assert.ok(savingsTable, `${path}: recently reviewed savings table is present`);
+      assert.equal(Boolean(savingsTable), expected.savingsOptions.length > 0, `${path}: savings table appears only for recorded provider options`);
       const eligibility = nodes(document, node => attr(node, "id") === "eligibility")[0];
       assert.ok(eligibility && elements(eligibility, "dt").length >= 3, `${path}: brand-specific eligibility checks`);
       const troubleshooting = nodes(document, node => attr(node, "id") === "coupon-help")[0];
       assert.ok(troubleshooting && elements(troubleshooting, "h3").length >= 2, `${path}: actionable coupon troubleshooting`);
     }
     if (savingsTable) {
-      assert.match(contents(savingsTable), /Annual billing|Education offer/, `${path}: sourced savings are visible before interaction`);
+      for (const option of expected.savingsOptions) assert.ok(contents(savingsTable).includes(option.saving) && links(savingsTable).includes(option.sourceUrl), `${path}: each provider saving and its source are visible`);
       assert.ok(elements(savingsTable, "a").every(node => attr(node, "href")?.startsWith("https://")), `${path}: savings link to provider sources`);
       assert.match(contents(currentOffers), /Source reviewed/, `${path}: savings show their review date`);
     }
+    assert.equal(links(document).includes("#compare-costs"), expected.guide?.billingModel !== "usage", `${path}: annual calculator navigation fits the billing model`);
   }
   {
     const table = elements(document, "table").find(node => contents(node).includes("Option to evaluate"));
