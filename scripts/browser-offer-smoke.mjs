@@ -54,6 +54,52 @@ try {
     await page("Page.navigate", { url: `${origin}${path}` });
     await until(() => evaluate(`location.href === ${JSON.stringify(`${origin}${path}`)} && document.readyState === 'complete'`), path);
   }
+  async function auditHomeRefresh() {
+    // Measure the first painted content, before hydration, as well as refreshes.
+    // Waiting for hydration alone misses the old 80px navigation-placeholder jump.
+    const { identifier } = await page("Page.addScriptToEvaluateOnNewDocument", { source: `
+      window.homeRefresh = { frames: [], done: false };
+      function sampleHome() {
+        const heading = document.querySelector('.hero-headline');
+        const words = [...document.querySelectorAll('.hero-word')];
+        if (heading && words.length) {
+          window.homeRefresh.frames.push({ top: heading.getBoundingClientRect().top,
+            wordTops: words.map(word => word.getBoundingClientRect().top),
+            opacities: words.map(word => Number(getComputedStyle(word).opacity)) });
+        }
+        if (performance.now() < 3000) requestAnimationFrame(sampleHome);
+        else window.homeRefresh.done = true;
+      }
+      requestAnimationFrame(sampleHome);
+    ` });
+    await page("Network.setCacheDisabled", { cacheDisabled: true });
+    await page("Emulation.setCPUThrottlingRate", { rate: 4 });
+    try {
+      for (const viewport of [{ width: 390, height: 844, mobile: true }, { width: 1440, height: 1000, mobile: false }]) {
+        await page("Emulation.setDeviceMetricsOverride", { ...viewport, deviceScaleFactor: 1 });
+        for (const refresh of [false, true]) {
+          const previousOrigin = await evaluate("performance.timeOrigin");
+          if (refresh) await page("Page.reload", { ignoreCache: true });
+          else await page("Page.navigate", { url: `${origin}/` });
+          await until(() => evaluate(`performance.timeOrigin !== ${previousOrigin} && window.homeRefresh?.done && document.readyState === 'complete'`), "cold homepage frame capture");
+          const frames = await evaluate("homeRefresh.frames");
+          const label = `${viewport.width}px ${refresh ? "hard refresh" : "cold load"}`;
+          assert.ok(frames.length >= 3, `${label}: capture content before and after hydration`);
+          const range = values => Math.max(...values) - Math.min(...values);
+          assert.ok(range(frames.map(frame => frame.top)) <= 1, `${label}: headline layout stays fixed from its first paint`);
+          for (let word = 0; word < frames[0].wordTops.length; word++) {
+            assert.ok(range(frames.map(frame => frame.wordTops[word])) <= 1, `${label}: headline words do not drop or slide`);
+            for (let frame = 1; frame < frames.length; frame++) assert.ok(frames[frame].opacities[word] >= frames[frame - 1].opacities[word] - 0.01, `${label}: entrance never restarts after hydration`);
+          }
+        }
+      }
+    } finally {
+      await page("Page.removeScriptToEvaluateOnNewDocument", { identifier });
+      await page("Emulation.setCPUThrottlingRate", { rate: 1 });
+      await page("Network.setCacheDisabled", { cacheDisabled: false });
+      await page("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+    }
+  }
   async function opensNativeLink(selector) {
     const previous = (await send("Target.getTargets")).targetInfos;
     const before = new Set(previous.map(target => target.targetId));
@@ -68,6 +114,7 @@ try {
     assert.ok(target.url.startsWith(`${origin}/go/`) || target.url.startsWith("https://"), target.url);
     if (newTab) await send("Target.closeTarget", { targetId: target.targetId });
   }
+  await auditHomeRefresh();
   await navigate("/tools/hostinger");
   // Wait for the production client bundle to hydrate before invoking its handler.
   await until(() => evaluate("[...document.querySelectorAll('button')].some(button => Object.keys(button).some(key => key.startsWith('__reactProps')) && button.getAttribute('aria-label') === 'View Hostinger coupon code')"), "hydrated coupon action");
@@ -156,7 +203,7 @@ try {
   const sourcesScreenshot = await page("Page.captureScreenshot", { format: "png" });
   await writeFile(join(tmpdir(), "saasfolio-sources-desktop.png"), Buffer.from(sourcesScreenshot.data, "base64"));
   assert.deepEqual(runtimeErrors, [], "No uncaught browser exceptions across the audited flows");
-  console.log("Chrome smoke passed: coupons and native redirects, denied clipboard, mobile search and savings, unavailable service forms, malformed local storage, animated mobile/desktop homepage, live reduced motion, cold no-JavaScript content and coupon navigation, and membership disclosures. No reports submitted or checkout attempted.");
+  console.log("Chrome smoke passed: stable cold loads and hard refreshes on mobile/desktop with 4x CPU throttling, coupons and native redirects, denied clipboard, mobile search and savings, unavailable service forms, malformed local storage, animated homepage, live reduced motion, cold no-JavaScript content and coupon navigation, and membership disclosures. No reports submitted or checkout attempted.");
 } finally {
   for (const entry of pending.values()) clearTimeout(entry.timer);
   chrome.kill();

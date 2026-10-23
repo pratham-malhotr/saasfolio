@@ -76,7 +76,8 @@ export default function RootLayout({
         <SmoothScroll>
           <div className="flex flex-col min-h-screen">
             {/* Sticky Translucent Navbar */}
-            <Suspense fallback={<div className="h-20" />}>
+            {/* The header is fixed; a flow-height fallback shifts the page on hydration. */}
+            <Suspense fallback={null}>
               <Navbar />
             </Suspense>
 

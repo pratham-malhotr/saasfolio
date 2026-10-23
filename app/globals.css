@@ -214,9 +214,9 @@ body {
   outline-offset: 4px;
 }
 
-/* A finite, staggered entrance: real HTML stays readable without JavaScript. */
+/* Fade in at the final position so cold loads never drop or slide the headline. */
 .hero-word-window { display: inline-block; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; overflow: clip; }
-.hero-word { display: inline-block; transform-origin: 0 100%; }
+.hero-word { display: inline-block; }
 .hero-discount-text { position: relative; }
 .hero-discount-text::after {
   content: "";
@@ -230,14 +230,15 @@ body {
   opacity: 0.5;
 }
 @keyframes hero-word-enter {
-  from { transform: translateY(105%) rotate(4deg); opacity: 0.15; }
-  to { transform: translateY(0) rotate(0); opacity: 1; }
+  from { opacity: 0.45; }
+  to { opacity: 1; }
 }
 @keyframes hero-underline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes hero-halo-reveal { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: no-preference) {
-  .hero-word { animation: hero-word-enter 900ms var(--ease-luxury) var(--word-delay, 0ms) both; }
-  .hero-discount-text::after { animation: hero-underline 1100ms var(--ease-luxury) 800ms both; }
+  .hero-word { animation: hero-word-enter 550ms ease-out var(--word-delay, 0ms) both; }
+  .hero-intro-item { animation: hero-word-enter 450ms ease-out 120ms both; }
+  .hero-discount-text::after { animation: hero-underline 650ms var(--ease-luxury) 350ms both; }
   .hero-halo { animation: hero-halo-reveal 1800ms ease-out both; }
 }
 
