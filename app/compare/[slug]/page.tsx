@@ -8,6 +8,8 @@ import { pageMetadata } from "@/lib/seo";
 import { COMPARISON_SLUGS, comparisonCanonicalSlug } from "@/lib/data/comparisons-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, webPageSchema, softwareSchema } from "@/lib/structured-data";
+import { getBrandDiscountData, hasBrandDiscountPage } from "@/lib/brand-discounts";
+import { RelatedDiscountGuides } from "@/components/seo/RelatedDiscountGuides";
 
 export async function generateStaticParams() {
   return COMPARISON_SLUGS.map((slug) => ({ slug }));
@@ -55,6 +57,7 @@ export default async function ComparePage({
   const dealsA = getDealsByTool(toolA.slug);
   const dealsB = getDealsByTool(toolB.slug);
   const allTools = getAllTools();
+  const discountBrands = [toolA, toolB].filter(tool => hasBrandDiscountPage(tool.slug) && getBrandDiscountData(tool).indexable);
 
   return (
     <div className="min-h-screen bg-[#050505]">
@@ -71,6 +74,7 @@ export default async function ComparePage({
         dealsA={dealsA}
         dealsB={dealsB}
         allTools={allTools}
+        discountGuides={<RelatedDiscountGuides brands={discountBrands} deals={[...dealsA, ...dealsB]} heading="Compare discounts before subscribing" />}
       />
     </div>
   );

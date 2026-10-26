@@ -4,6 +4,13 @@ The expanded catalog keeps the current design and adds 12 crawlable category
 pages. See [catalog and offer operations](CATALOG-AND-OFFERS.md) for source
 provenance, duplicate consolidation, stale offers, and scheduled updates.
 
+See the [26 October brand discount search review](discount-search-audit-2026-10-26.md)
+for the current landing-page improvements, source reviews and Search Console
+measurement procedure.
+
+The [24-guide expansion](brand-discount-expansion-2026-10-26.md) adds twelve
+providers and a repeatable nine-intent audit for each brand's canonical guide.
+
 ## Implemented
 
 - Unique server-rendered titles and concise descriptions for public pages.

@@ -35,11 +35,24 @@ for (const [key, source] of Object.entries(snapshot.sources)) {
 const canonicalBrands = new Set(all.map(tool => tool.name.toLowerCase().replace(/[^a-z0-9]/g, ""))).size;
 // New reviewed additions must ship their profile and complete brand search page.
 const { EXPANSION_BRAND_SLUGS } = loadCatalogModule("lib/data/expansion-discount-guides.ts");
+const { NEW_DISCOUNT_BRAND_SLUGS, DISCOUNT_EXPANSION_ENTRIES } = loadCatalogModule("lib/data/discount-brand-expansion.ts");
 const { getToolBySlug } = loadCatalogModule("lib/data/tools-data.ts");
 const { BRAND_DISCOUNT_GUIDES } = loadCatalogModule("lib/data/brand-discount-guides.ts");
 const { BRAND_PURCHASE_CHECKS } = loadCatalogModule("lib/data/brand-purchase-checks.ts");
 for (const tool of tools.filter(tool => tool.updatedAt.slice(0, 10) >= "2026-10-23")) assert.ok(BRAND_DISCOUNT_GUIDES[tool.slug], `${tool.slug}: newly reviewed brands need an original discount guide`);
-for (const slug of EXPANSION_BRAND_SLUGS) {
+assert.equal(new Set(DISCOUNT_EXPANSION_ENTRIES.map(entry => entry.slug)).size, DISCOUNT_EXPANSION_ENTRIES.length, "New discount guides must have distinct brand identities");
+for (const entry of DISCOUNT_EXPANSION_ENTRIES) {
+  const tool = getToolBySlug(entry.slug);
+  assert.ok(tool, `${entry.slug}: reviewed brand resolves to a canonical profile`);
+  assert.equal(tool.slug, entry.slug, `${entry.slug}: no duplicate alias profile`);
+  assert.equal(tool.pricingUrl, entry.url, `${entry.slug}: current official pricing destination`);
+  assert.equal(tool.pricingModel, entry.profile.pricingModel, `${entry.slug}: reviewed access model`);
+  assert.equal(tool.updatedAt.slice(0, 10), entry.reviewedAt, `${entry.slug}: actual profile review date`);
+  assert.ok(entry.sections.map(([, text]) => text).join(" ").split(/\s+/).length >= 280, `${entry.slug}: substantive original buying guidance`);
+  assert.ok(entry.meta.length >= 70 && entry.meta.length <= 155, `${entry.slug}: useful search description`);
+  assert.ok(safePublicUrl(entry.url) && (entry.sources || []).every(source => safePublicUrl(source.url)) && entry.faqs.length >= 3, `${entry.slug}: provider sources and specific questions`);
+}
+for (const slug of [...EXPANSION_BRAND_SLUGS, ...NEW_DISCOUNT_BRAND_SLUGS]) {
   const tool = getToolBySlug(slug), guide = BRAND_DISCOUNT_GUIDES[slug], checks = BRAND_PURCHASE_CHECKS[slug];
   assert.ok(tool && guide && checks, `${slug}: a new brand needs a profile, discount guide and purchase checks`);
   assert.equal(tool.updatedAt.slice(0, 10), guide.reviewedAt, `${slug}: profile and guide preserve their actual review date`);

@@ -39,6 +39,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function BrandDiscountPage({ params }: { params: Promise<{ slug: string }> }) {
   const tool = await resolveBrand(params);
   const { offers, savingsOptions, purchaseChecks, guide, modifiedAt, sourceNotesCurrent } = getBrandDiscountData(tool);
+  const couponOffers = offers.filter(offer => offer.code);
+  const otherOffers = offers.filter(offer => !offer.code);
+  const freeOptions = otherOffers.filter(offer => offer.dealType === "free_plan" || offer.dealType === "free_trial");
+  const offerGroups = [
+    { id: "coupon-codes", heading: `${tool.name} coupon & promo code listings`, offers: couponOffers },
+    { id: "other-offers", heading: `Other sourced ${tool.name} offers`, offers: otherOffers },
+  ].filter(group => group.offers.length > 0);
   const path = `/discounts/${tool.slug}`;
   const title = brandDiscountTitle(tool);
   const faqs = getBrandDiscountFaqs(tool, offers);
@@ -103,11 +110,26 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
       <section id="current-offers" className="space-y-5 scroll-mt-28">
         <h2 className="font-display text-2xl font-bold text-white">Current {tool.name} discount codes & offers</h2>
         <p id="discount-answer" className="max-w-3xl text-zinc-300 leading-relaxed">{brandDiscountAnswer(tool, offers)}</p>
+        <dl id="discount-availability" aria-label={`${tool.name} discount availability`} className="grid gap-3 sm:grid-cols-3">
+          <div className="rounded-2xl border border-white/10 bg-[#09090C] p-5 space-y-2">
+            <dt className="text-xs font-mono uppercase tracking-wide text-zinc-500">Coupon & promo codes</dt>
+            <dd className="space-y-2"><p className="font-semibold text-white">{couponOffers.length ? `${couponOffers.length} sourced ${couponOffers.length === 1 ? "code" : "codes"}` : "No current code recorded"}</p><a href={couponOffers.length ? "#coupon-codes" : "#offer-sources"} className="inline-block text-sm text-[#C6FF3D] underline">{couponOffers.length ? "Read code terms" : "Where to check for codes"}</a></dd>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-[#09090C] p-5 space-y-2">
+            <dt className="text-xs font-mono uppercase tracking-wide text-zinc-500">Provider savings</dt>
+            <dd className="space-y-2"><p className="font-semibold text-white">{savingsOptions.length ? `${savingsOptions.length} reviewed ${savingsOptions.length === 1 ? "option" : "options"}` : "Check official pricing"}</p><a href={savingsOptions.length ? "#provider-savings" : pricingUrl} {...(savingsOptions.length ? {} : { target: "_blank", rel: "noopener noreferrer" })} className="inline-block text-sm text-[#C6FF3D] underline">{savingsOptions.length ? "Compare savings & eligibility" : "View provider plans ↗"}</a></dd>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-[#09090C] p-5 space-y-2">
+            <dt className="text-xs font-mono uppercase tracking-wide text-zinc-500">Free plans & trials</dt>
+            <dd className="space-y-2"><p className="font-semibold text-white">{freeOptions.length ? `${freeOptions.length} sourced ${freeOptions.length === 1 ? "option" : "options"}` : "No current listing"}</p><a href={freeOptions.length ? "#other-offers" : "#saving-guide"} className="inline-block text-sm text-[#C6FF3D] underline">{freeOptions.length ? "Review free access terms" : "Read the savings guide"}</a></dd>
+          </div>
+        </dl>
+        {guide && !sourceNotesCurrent && <p className="max-w-3xl rounded-xl border border-amber-300/20 bg-amber-300/5 p-4 text-sm leading-relaxed text-zinc-300">The provider savings review dated <time dateTime={guide.reviewedAt}>{guide.reviewedAt}</time> needs an update, so previous savings amounts are hidden. <a href={pricingUrl} target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">Check current {tool.name} pricing ↗</a>. Any current sourced offers below have their own check dates.</p>}
         <div id="best-discount" className="max-w-3xl space-y-2">
           <h3 className="font-display text-xl font-semibold text-white">How to choose the best {tool.name} discount</h3>
           <p className="text-sm leading-relaxed text-zinc-400">{brandBestDiscountAnswer(tool, offers)}</p>
         </div>
-        {savingsOptions.length > 0 && <div className="space-y-4 rounded-2xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/[0.03] p-5 sm:p-6">
+        {savingsOptions.length > 0 && <div id="provider-savings" className="space-y-4 scroll-mt-28 rounded-2xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/[0.03] p-5 sm:p-6">
           <h3 className="font-display text-xl font-bold text-white">{tool.name} discounts at a glance</h3>
           <p className="text-sm text-zinc-400">Compare these reviewed provider offers with any coupon listed below. Education and nonprofit programs can require an application or approval.</p>
           <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={`${tool.name} discount options`}>
@@ -123,11 +145,14 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           </div>
           <p className="text-xs text-zinc-500">Source reviewed <time dateTime={guide!.reviewedAt}>{guide!.reviewedAt}</time>. Displayed savings are subject to provider terms; no checkout test is recorded.</p>
         </div>}
-        <div className="grid gap-4 md:grid-cols-2">
-          {offers.map(offer => (
+        {offerGroups.map(group => <section key={group.id} id={group.id} className="space-y-4 scroll-mt-28" aria-labelledby={`${group.id}-heading`}>
+          <h3 id={`${group.id}-heading`} className="font-display text-xl font-bold text-white">{group.heading}</h3>
+          {group.id === "other-offers" && <p className="max-w-3xl text-sm leading-relaxed text-zinc-400">These listings do not require a recorded coupon code. A free plan or trial has its own limits and any conversion to paid billing should be checked separately.</p>}
+          <div className="grid gap-4 md:grid-cols-2">
+          {group.offers.map(offer => (
             <div key={offer.id} className="p-6 rounded-2xl border border-white/10 bg-[#09090C] space-y-4">
               <span className="inline-block rounded-md bg-[#C6FF3D]/10 px-3 py-1 text-[#C6FF3D] text-xs font-mono">{offerLabel(offer)}</span>
-              <h3 className="font-display text-xl font-bold text-white"><Link href={`/deals/${offer.slug}`} className="hover:text-[#C6FF3D]">{offer.title}</Link></h3>
+              <h4 className="font-display text-xl font-bold text-white"><Link href={`/deals/${offer.slug}`} className="hover:text-[#C6FF3D]">{offer.title}</Link></h4>
               {offer.code && <p className="text-zinc-300">Reported code: <code className="text-[#C6FF3D]">{offer.code}</code></p>}
               <p className="text-sm text-zinc-300 leading-relaxed">{offer.terms}</p>
               <p className="text-xs text-zinc-400">{offerStatus(offer)}.
@@ -141,7 +166,8 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
               </div>
             </div>
           ))}
-        </div>
+          </div>
+        </section>)}
       </section>
 
       <BrandSourcePanel tool={tool} />

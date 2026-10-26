@@ -1,5 +1,9 @@
 # Brand expansion and discount-search coverage
 
+The [26 October continuation](brand-discount-expansion-2026-10-26.md) adds another
+12 catalog brands and 24 discount guides, bringing coverage to 70 guides. The
+dated counts and validation below describe the earlier 23 October release.
+
 Reviewed on October 23, 2026. This batch adds **24 real brands**, bringing the catalog to **735 canonical profiles, of which 727 are available**. Each new brand has a software profile and an original discount buying guide. Six established profiles also receive new guides, increasing the guide collection from 16 to **46**. Counts describe repository data; they do not establish deployment, indexing or a coupon for every brand.
 
 ## New search landing pages and primary sources

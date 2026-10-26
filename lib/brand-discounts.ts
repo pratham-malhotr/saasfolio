@@ -37,17 +37,20 @@ export function getIndexableDiscountBrands() {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export function getFeaturedDiscountBrands(limit = 8) {
+export function getFeaturedDiscountBrands(limit = 12) {
   const brands = getIndexableDiscountBrands();
-  // Give different software categories space before repeating a category.
-  // Alphabetical selection is independent of affiliate links or commission.
-  const seen = new Set<string>();
-  const varied = brands.filter(tool => {
+  // Keep the established editorial priorities discoverable from the homepage.
+  // Fill the remaining places across categories, independent of commissions.
+  const featured = ["beehiiv", "predis-ai", "taplio", "baremetrics", "notion", "canva", "slack", "hostinger"]
+    .flatMap(slug => brands.filter(tool => tool.slug === slug));
+  const remaining = brands.filter(tool => !featured.includes(tool));
+  const seen = new Set(featured.map(tool => tool.categorySlug));
+  const varied = remaining.filter(tool => {
     if (seen.has(tool.categorySlug)) return false;
     seen.add(tool.categorySlug);
     return true;
   });
-  return [...varied, ...brands.filter(tool => !varied.includes(tool))].slice(0, limit);
+  return [...featured, ...varied, ...remaining.filter(tool => !varied.includes(tool))].slice(0, limit);
 }
 
 export function brandSavingsSummary(tool: DetailedTool, catalogDeals = getAllDeals()): string {
@@ -80,7 +83,8 @@ export function brandDiscountAnswer(tool: DetailedTool, catalogDeals = getAllDea
 }
 
 export function brandDiscountDescription(tool: DetailedTool, offers: SaaSDeal[]): string {
-  const editorialDescription = BRAND_DISCOUNT_GUIDES[tool.slug]?.metaDescription;
+  const { guide, sourceNotesCurrent } = getBrandDiscountData(tool, offers);
+  const editorialDescription = sourceNotesCurrent ? guide?.metaDescription : undefined;
   if (editorialDescription) return summarize(editorialDescription, 155);
   const codes = offers.filter(offer => offer.code).length;
   const status = codes ? `${codes} sourced ${codes === 1 ? "code" : "codes"}, offer terms` : "Coupon availability, free options";
@@ -89,16 +93,16 @@ export function brandDiscountDescription(tool: DetailedTool, offers: SaaSDeal[])
 
 export function getBrandDiscountFaqs(tool: DetailedTool, offers: SaaSDeal[]) {
   const codes = offers.filter(offer => offer.code);
-  const { savingsOptions } = getBrandDiscountData(tool, offers);
+  const { guide, savingsOptions, sourceNotesCurrent } = getBrandDiscountData(tool, offers);
   return [
     { question: `Is there a ${tool.name} discount code available?`, answer: codes.length
       ? `${codes.length} sourced ${codes.length === 1 ? "code is" : "codes are"} recorded above. Each listing identifies the publisher, source check date, and terms. Acceptance has not been tested at checkout; the provider determines eligibility.`
       : `No current ${tool.name} coupon code is recorded in our catalog. ${offers.length ? "The offers above are separately labeled, including any free plans or trials." : "Check the official provider for current pricing and promotions."} A referral link alone does not guarantee a discount.` },
     ...(savingsOptions.length ? [{
-      question: `Can I save on ${tool.name} without a coupon code?`,
-      answer: `The reviewed provider sources describe these options: ${savingsOptions.map(option => `${option.saving}. ${option.terms}`).join(" ")} These are billing or eligibility programs, separate from a public coupon listing. Follow any provider application or redemption process.`,
+      question: `What ${tool.name} savings options does the provider publish?`,
+      answer: `The reviewed provider sources describe these options: ${savingsOptions.map(option => `${option.saving}. ${option.terms}`).join(" ")} Each option has its own billing, code or eligibility requirements. Follow the linked provider terms and any application or redemption process.`,
     }] : []),
-    ...(BRAND_DISCOUNT_GUIDES[tool.slug]?.faqs || [
+    ...((sourceNotesCurrent ? guide?.faqs : undefined) || [
       { question: `How do I apply a ${tool.name} coupon?`, answer: "Open the offer details and review the eligible products, billing period, and customer restrictions. Follow the provider link, enter the recorded code if required, and confirm the final price and renewal cost before payment." },
       { question: `Can I combine ${tool.name} offers?`, answer: "Do not assume offers can be combined. Check the provider's rules for sale prices, coupon stacking, regional restrictions, and new-customer eligibility." },
     ]),

@@ -29,6 +29,10 @@ export default function BrandDiscountsPage() {
       <p className="text-sm text-zinc-400">Looking for another tool? <Link href="/brands" className="text-[#C6FF3D] underline">Search all software brands A–Z</Link>. Comparing a yearly commitment? <Link href="/savings-calculator" className="text-[#C6FF3D] underline">Calculate the full annual cost</Link>.</p>
     </header>
     <nav aria-label="Discount categories" className="flex flex-wrap gap-3">{categories.map(category => <a key={category.slug} href={`#${category.slug}`} className="rounded-full border border-white/15 px-4 py-2 text-sm text-[#C6FF3D] hover:border-[#C6FF3D]/50">{category.name}</a>)}</nav>
+    <nav aria-label="Find a brand discount" className="rounded-2xl border border-white/10 bg-[#09090C] p-5 space-y-3">
+      <h2 className="font-display text-xl font-bold text-white">Find your brand, A–Z</h2>
+      <ul className="flex flex-wrap gap-x-5 gap-y-3 text-sm">{brands.map(tool => <li key={tool.slug}><Link href={`/discounts/${tool.slug}`} className="text-[#C6FF3D] underline underline-offset-4">{tool.name} discounts</Link></li>)}</ul>
+    </nav>
     {categories.map(category => <section key={category.slug} id={category.slug} className="scroll-mt-28 space-y-4 pt-4">
       <h2 className="font-display text-2xl font-bold text-white">{category.name} discounts</h2>
       <div className="grid gap-4 sm:grid-cols-2">{category.brands.map(tool => <BrandDiscountCard key={tool.slug} tool={tool} deals={deals} />)}</div>

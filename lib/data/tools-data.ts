@@ -49935,7 +49935,7 @@ const COMBINED_TOOLS_DATA: DetailedTool[] = [...REVIEWED_BRAND_TOOLS, ...LEGACY_
       pricingModel: "Free Trial" as const,
     } : {}),
     ...REVIEWED_BRAND_COPY[tool.slug],
-    pricingPlans: [], sourceUrl: tool.sourceUrl || tool.website,
+    pricingPlans: [], sourceUrl: REVIEWED_BRAND_COPY[tool.slug]?.pricingUrl || tool.sourceUrl || tool.website,
     pricingUrl: REVIEWED_BRAND_COPY[tool.slug]?.pricingUrl || tool.pricingUrl || ((sourceSnapshot.sources as Record<string, { status: string; url: string }>)[`vendor:${tool.slug}`]?.status === "ok"
       ? (sourceSnapshot.sources as Record<string, { status: string; url: string }>)[`vendor:${tool.slug}`].url
       : tool.website),

@@ -174,5 +174,31 @@
     ],
     "expiryDate": "2026-10-31T23:59:59.000Z",
     "terms": "Published for October 1\u201331, 2026. Applies to eligible Standard Wildcard SSL purchases with prices depending on certificate duration. Check the official terms before purchase. Not checkout tested."
+  },
+  {
+    "slug": "scispace-yearly-international-code",
+    "toolSlug": "scispace",
+    "title": "SciSpace 30% yearly coupon for non-INR billing",
+    "dealType": "coupon",
+    "code": "SCI30",
+    "discountPercentage": 30,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://scispace.com/help/en/articles/14686913-discounts-on-scispace-plans",
+    "destinationUrl": "https://scispace.com/pricing",
+    "evidence": ["SCI30", "non-INR billing", "30%", "yearly plans"],
+    "terms": "The official help page publishes SCI30 for yearly plans billed in currencies other than INR. It excludes monthly subscriptions and permits one coupon per purchase. Confirm the accepted reduction and renewal amount before paying. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "scispace-yearly-inr-code",
+    "toolSlug": "scispace",
+    "title": "SciSpace 30% yearly coupon for INR billing",
+    "dealType": "coupon",
+    "code": "IND30",
+    "discountPercentage": 30,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://scispace.com/help/en/articles/14686913-discounts-on-scispace-plans",
+    "destinationUrl": "https://scispace.com/pricing",
+    "evidence": ["IND30", "Customers billed in INR", "30%", "yearly plans"],
+    "terms": "The official help page publishes IND30 for yearly plans billed in INR. It excludes monthly subscriptions and permits one coupon per purchase. Select the code by billing currency, and confirm the accepted reduction and renewal amount before paying. Source reviewed; checkout has not been tested."
   }
 ]

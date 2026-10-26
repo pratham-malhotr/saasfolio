@@ -43,6 +43,7 @@ async function auditPage(url) {
   const path = new URL(url).pathname;
   const { result, html } = await response(path);
   assert.equal(result.status, 200, `${path}: public page returns HTTP 200`);
+  assert.ok(!result.redirected, `${path}: sitemap URL resolves without a redirect`);
   const head = html.match(/<head>([\s\S]*?)<\/head>/)?.[1] || "";
   const metas = metaTags(head);
   const value = (key) => metas.find((tag) => tag.name === key || tag.property === key)?.content;
@@ -53,6 +54,7 @@ async function auditPage(url) {
   titles.set(title, path);
   assert.ok(value("description")?.length >= 30 && value("description").length <= 160, `${path}: useful concise meta description`);
   assert.ok(!value("robots")?.includes("noindex"), `${path}: public page must be indexable`);
+  assert.ok(!value("googlebot")?.includes("noindex"), `${path}: Googlebot-specific directive allows indexing`);
   assert.ok(!result.headers.get("x-robots-tag")?.includes("noindex"), `${path}: public page has no noindex header`);
   const canonicals = [...head.matchAll(/<link\b[^>]*>/g)].map(([tag]) => attributes(tag)).filter((tag) => tag.rel === "canonical");
   assert.equal(canonicals.length, 1, `${path}: exactly one canonical in head`);

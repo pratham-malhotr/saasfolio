@@ -1,4 +1,5 @@
 import type { DetailedTool } from "@/lib/types";
+import { NEW_REVIEWED_BRAND_COPY } from "@/lib/data/discount-brand-expansion";
 
 // Provider-backed additions. No invented prices, ratings or customer reviews.
 export const REVIEWED_BRAND_TOOLS: DetailedTool[] = [{
@@ -20,7 +21,8 @@ export const REVIEWED_BRAND_TOOLS: DetailedTool[] = [{
 }];
 
 // Refresh the priority profiles' descriptive copy alongside their savings guides.
-export const REVIEWED_BRAND_COPY: Record<string, Pick<DetailedTool, "description" | "longDescription" | "keyFeatures"> & Partial<Pick<DetailedTool, "name" | "website" | "pricingUrl" | "updatedAt">>> = {
+export const REVIEWED_BRAND_COPY: Record<string, Pick<DetailedTool, "description" | "longDescription" | "keyFeatures"> & Partial<Pick<DetailedTool, "name" | "website" | "pricingUrl" | "updatedAt" | "pricingModel">>> = {
+  ...NEW_REVIEWED_BRAND_COPY,
   canva: {
     pricingUrl: "https://www.canva.com/pricing/", updatedAt: "2026-10-23T00:00:00.000Z",
     description: "Canva provides visual design and publishing tools for individuals and teams. Compare workspace requirements and separately approved nonprofit or K–12 education access.",

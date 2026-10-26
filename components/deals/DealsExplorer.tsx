@@ -26,6 +26,7 @@ interface DealsExplorerProps {
   initialType?: string;
   heading?: string;
   description?: string;
+  discountGuides?: React.ReactNode;
 }
 
 export function DealsExplorer({
@@ -34,6 +35,7 @@ export function DealsExplorer({
   initialType,
   heading = "EXPLORE SAAS DEALS",
   description = "Browse sourced offers, reported coupon codes, free plans, trials, and official pricing across 12 software categories.",
+  discountGuides,
 }: DealsExplorerProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory || "all");
@@ -142,17 +144,19 @@ export function DealsExplorer({
         </p>
       </div>
 
+      {discountGuides}
+
       {/* Top Search & Filter Bar */}
       <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8 p-3 rounded-2xl bg-[#09090C] border border-white/10">
         {/* Search Input */}
-        <div className="flex items-center gap-3 px-3 py-2 flex-1">
+        <div className="flex min-w-0 items-center gap-3 px-3 py-2 flex-1">
           <Search className="w-4 h-4 text-[#C6FF3D]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Filter by software, feature, or promo..."
-            className="w-full bg-transparent text-sm text-white placeholder-zinc-500 outline-none font-sans"
+            className="w-full min-w-0 bg-transparent text-sm text-white placeholder-zinc-500 outline-none font-sans"
           />
           {searchQuery && (
             <button
@@ -165,7 +169,7 @@ export function DealsExplorer({
         </div>
 
         {/* Controls: Sort & Mobile Filter Toggle */}
-        <div className="flex items-center gap-2 pt-2 md:pt-0 border-t md:border-t-0 border-white/5">
+        <div className="flex flex-wrap items-center gap-2 pt-2 md:pt-0 border-t md:border-t-0 border-white/5">
           {/* Mobile Filter Sheet Button */}
           <button
             onClick={() => setMobileFilterOpen(!mobileFilterOpen)}

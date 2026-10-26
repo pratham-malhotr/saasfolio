@@ -11,6 +11,9 @@ test("hidden payloads and unrelated percentage banners do not become offers", ()
   assert.equal(discoverVendorOffer("We do not have a free plan."), null);
   assert.equal(discoverVendorOffer("Our free plan is not available anymore."), null);
   assert.equal(discoverVendorOffer("Do you have a free plan? No, all plans are paid."), null);
+  assert.equal(discoverVendorOffer("Free forever plans create bad incentives, and aren't sustainable. Sunsama doesn't have a free forever plan and doesn't plan to."), null);
+  assert.equal(discoverVendorOffer("We don't have a free forever plan. All subscriptions are paid."), null);
+  assert.equal(discoverVendorOffer("On the other hand, users on a free forever plan can be the most fickle while getting the least value from the product."), null);
   const hidden = '<!-- Free forever --><template>Our free plan includes everything</template><div hidden>Start your free trial</div><div aria-hidden="true">Free forever</div><p style="display: none">Free forever</p><main>Plans start at $50.</main>';
   assert.equal(plainText(hidden), "Plans start at $50.");
   assert.equal(discoverVendorOffer(plainText(hidden)), null);
@@ -43,6 +46,7 @@ test("public source fetches reject unsafe targets, off-domain redirects, and cha
   await assert.rejects(fetchPublicPage("https://example.com", { fetchImpl: async () => new Response(null, { status: 302, headers: { location: "https://other.example/" } }) }), /allowed hosts/);
   await assert.rejects(fetchPublicPage("https://example.com", { fetchImpl: async () => new Response("Just a moment", { headers: { "content-type": "text/html" } }) }), /verification/);
   await assert.rejects(fetchPublicPage("https://example.com", { fetchImpl: async () => new Response("Blocked", { status: 403 }) }), /403/);
+  await assert.rejects(fetchPublicPage("https://example.com/pricing", { fetchImpl: async () => new Response("<p>It appears you’re viewing the page in the staging environment, so the information shown may not be up to date.</p><h2>Free plan</h2>", { headers: { "content-type": "text/html" } }) }), /staging preview/);
 });
 test("conditional fetches preserve 304 without fabricating new evidence", async () => {
   let supplied;
@@ -149,14 +153,20 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
   const guides = loadTs("lib/data/brand-discount-guides.ts", {
     "@/lib/data/additional-discount-guides": loadTs("lib/data/additional-discount-guides.ts"),
     "@/lib/data/expansion-discount-guides": expansion,
+    "@/lib/data/discount-brand-expansion": { NEW_DISCOUNT_GUIDES: {} },
   }).BRAND_DISCOUNT_GUIDES;
+  // Editorial reviews advance independently; test freshness relative to the
+  // actual source dates rather than pinning otherwise valid reviews in future.
+  const reviewDates = [guides.beehiiv.reviewedAt, guides.meetgeek.reviewedAt]
+    .map(date => Date.parse(`${date}T12:00:00Z`));
+  clock.now = Math.max(...reviewDates);
   const tool = { slug: "beehiiv", name: "Beehiiv" };
   const catalog = loadTs("lib/brand-discounts.ts", {
     "@/lib/data/tools-data": { getAllTools: () => [tool] },
     "@/lib/data/deals-data": { getAllDeals: () => [] },
     "@/lib/data/offer-snapshot.json": { offers: [] },
     "@/lib/data/brand-discount-guides": { BRAND_DISCOUNT_GUIDES: guides },
-    "@/lib/data/brand-purchase-checks": loadTs("lib/data/brand-purchase-checks.ts", { "@/lib/data/expansion-discount-guides": expansion }),
+    "@/lib/data/brand-purchase-checks": loadTs("lib/data/brand-purchase-checks.ts", { "@/lib/data/expansion-discount-guides": expansion, "@/lib/data/discount-brand-expansion": { NEW_DISCOUNT_PURCHASE_CHECKS: {} } }),
     "@/lib/seo": loadTs("lib/seo.ts"),
   }, TestDate);
   assert.equal(catalog.getBrandDiscountData(tool).savingsOptions.length, 1);
@@ -165,7 +175,11 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
   assert.match(catalog.brandDiscountAnswer(tool), /20%/);
   assert.equal(catalog.getBrandDiscountData(tool).purchaseChecks.eligibility.length, 3);
   const addedBrand = { slug: "meetgeek", name: "MeetGeek" };
+  const analyticsBrand = { slug: "baremetrics", name: "Baremetrics" };
+  const contentBrand = { slug: "predis-ai", name: "Predis.ai" };
   assert.match(catalog.brandBestDiscountAnswer(addedBrand), /yearly quote/);
+  assert.ok(catalog.getBrandDiscountFaqs(analyticsBrand, []).some(faq => /35%/.test(faq.answer)));
+  assert.match(catalog.brandDiscountDescription(contentBrand, []), /3-day/);
   clock.now += 31 * 86400000;
   assert.deepEqual(catalog.getBrandDiscountData(tool).savingsOptions, []);
   assert.doesNotMatch(catalog.brandSavingsSummary(tool), /20%/);
@@ -174,10 +188,12 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
   assert.equal(catalog.getBrandDiscountData(tool).purchaseChecks, undefined);
   assert.equal(catalog.getBrandDiscountData(tool).indexable, true);
   assert.doesNotMatch(catalog.brandBestDiscountAnswer(addedBrand), /yearly quote/);
+  assert.ok(catalog.getBrandDiscountFaqs(analyticsBrand, []).every(faq => !/35%/.test(faq.answer)), "Expired source amounts must also leave editorial FAQs");
+  assert.doesNotMatch(catalog.brandDiscountDescription(contentBrand, []), /3-day/, "Expired trial terms must leave search descriptions");
   assert.equal(catalog.getBrandDiscountData(addedBrand).purchaseChecks, undefined);
   assert.equal(catalog.getIndexableDiscountBrands()[0].slug, "beehiiv");
   // Future-dated observations must never appear as reviewed savings.
-  clock.now = Date.parse("2026-10-22T12:00:00Z");
+  clock.now = Math.min(...reviewDates) - 86400000;
   assert.deepEqual(catalog.getBrandDiscountData(tool).savingsOptions, []);
   assert.equal(catalog.getBrandDiscountData(tool).purchaseChecks, undefined);
   assert.doesNotMatch(catalog.brandBestDiscountAnswer(addedBrand), /yearly quote/);

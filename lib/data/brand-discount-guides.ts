@@ -1,5 +1,6 @@
 import { ADDITIONAL_DISCOUNT_GUIDES } from "@/lib/data/additional-discount-guides";
 import { EXPANSION_DISCOUNT_GUIDES } from "@/lib/data/expansion-discount-guides";
+import { NEW_DISCOUNT_GUIDES } from "@/lib/data/discount-brand-expansion";
 
 export interface BrandSavingsOption {
   type: "Annual billing" | "Team discount" | "Bundle discount" | "Education offer" | "Nonprofit discount" | "Organization offer";
@@ -32,13 +33,15 @@ export interface BrandDiscountGuide {
 export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
   ...ADDITIONAL_DISCOUNT_GUIDES,
   ...EXPANSION_DISCOUNT_GUIDES,
+  ...NEW_DISCOUNT_GUIDES,
   "predis-ai": {
-    reviewedAt: "2026-10-23",
+    reviewedAt: "2026-10-26",
     sourceUrl: "https://predis.ai/pricing/",
     searchTitle: "Predis.ai Discounts & Coupon Codes",
-    metaDescription: "Compare Predis.ai discounts, annual billing and coupon availability. Check trial terms, plan limits and sourced savings options before subscribing.",
+    metaDescription: "Compare Predis.ai discounts and coupon availability, plan-specific annual savings, the 3-day trial and promo renewal terms before subscribing.",
     intro: "Looking for a Predis discount? Compare annual billing with monthly billing, check the trial conditions, and choose the credits and brand limits you actually need before committing to an AI content subscription.",
     summary: "Start by testing a real content brief, then compare the yearly invoice for the plan that covers your brands and publishing workflow. A headline annual saving is useful only if the included generation allowance suits the work you expect to publish.",
+    bestDiscountAnswer: "For a Predis.ai discount without a separate coupon, compare the annual option for the Core, Rise or Enterprise+ plan you need. The displayed reduction differs by plan. Test your content during the three-day trial, which requires a card, and include extra brands, channels and credits in the total before choosing a year.",
     decisionRows: [
       { option: "One brand, occasional content", bestFor: "A creator validating a repeatable content format", check: "Generation usage, export quality and whether manual publishing is acceptable" },
       { option: "Multiple brands and scheduled publishing", bestFor: "A business or agency with an established calendar", check: "Brand allowances, automatic posting and the total cost of connected channels" },
@@ -49,6 +52,7 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     savingsOptions: [
       { type: "Annual billing", saving: "Plan-specific yearly savings", terms: "The pricing page shows different annual reductions for Core, Rise and Enterprise+. Select the same plan on both billing periods and compare the full yearly invoice. No separate coupon is required for the displayed billing price.", sourceUrl: "https://predis.ai/pricing/" },
     ],
+    sources: [{ label: "Trial charges, promotional renewals and cancellation", url: "https://help.predis.ai/knowledgebase/en/article/why-was-i-charged-understanding-auto-renewal-on-predis" }],
     sections: [
       { heading: "Predis.ai annual billing versus a promo code", text: "An annual billing reduction is a plan price, rather than a separate coupon. Compare the full yearly invoice with twelve monthly payments for the same plan. A lower monthly equivalent can still require a larger payment today." },
       { heading: "Choose a plan around your content workflow", text: "For a single brand, compare generation credits and connected channels first. Agencies should also check brand limits and whether automatic posting is included. Add the cost of extra credits and channels before deciding which plan offers better value." },
@@ -58,32 +62,35 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     sourceNotes: [
       "The pricing page displayed annual reductions that varied by plan. This is a billing offer, not evidence of a universal promo code.",
-      "The listed trial lasted three days, required a card, and converted to a charge at the end. The provider stated that subsequent payments were non-refundable.",
+      "The pricing page listed a three-day trial requiring a card. The billing help describes automatic renewal, a regular-price renewal after a promotion, and case-by-case refund requests; a refund is not guaranteed.",
     ],
     faqs: [
       { question: "How can I get a discount on Predis.ai?", answer: "Compare the annual and monthly options on the official pricing page. Review the full annual charge, plan limits, add-ons, and renewal terms. Any separately sourced coupons appear in the current offers section above." },
       { question: "Does a Predis referral link automatically apply a discount?", answer: "A referral parameter alone does not establish a saving. Confirm the actual plan price or accepted code in Predis.ai checkout before paying." },
       { question: "Is annual Predis billing right for a new user?", answer: "Test your content workflow first. Compare the upfront annual cost with the flexibility of monthly billing, especially if your generation needs or number of client brands may change." },
+      { question: "Does a Predis.ai promo discount continue at renewal?", answer: "The provider's billing help says promotional plans renew at the regular listed price after the promotional period. Check Pricing & Account Settings → Billing Plan for your renewal amount before comparing an introductory discount with annual billing." },
+      { question: "How do I avoid a charge after the Predis.ai free trial?", answer: "Check the trial deadline in Billing Plan and cancel in advance. The billing help recommends at least 24 hours before the next billing date. App Store and Google Play subscriptions must be cancelled through those stores; direct subscriptions use the Predis dashboard." },
     ],
   },
   beehiiv: {
-    reviewedAt: "2026-10-23",
+    reviewedAt: "2026-10-26",
     sourceUrl: "https://www.beehiiv.com/pricing",
     searchTitle: "Beehiiv Discounts & Promo Codes",
     metaDescription: "Find beehiiv discount and promo code guidance. Compare annual savings, subscriber tiers, free access and renewal terms before upgrading your newsletter.",
     intro: "Looking for a beehiiv discount? Start by comparing the free plan, paid-feature trials, and the subscription tier suited to your audience. Check the subscriber limit and renewal price before choosing a promotion.",
     summary: "Choose your newsletter workflow and subscriber tier before comparing a beehiiv promo code with annual billing. Starting free can preserve cash while you validate your publication; an introductory paid offer is more useful when you already need the eligible features.",
+    bestDiscountAnswer: "For a beehiiv discount without a public code, compare yearly billing, advertised at up to 20% less than monthly billing. The free plan may be enough for a newsletter with up to 2,500 subscribers. Set your audience size first, then compare any eligible promotion with the yearly total and its renewal terms.",
     decisionRows: [
       { option: "Validate a newsletter", bestFor: "A writer building a consistent publishing habit", check: "Audience cap, publication count and the features needed for the next launch" },
       { option: "Add paid growth tools", bestFor: "A publication ready to test automation or monetization", check: "Required features at your subscriber count and the price after a promotion" },
       { option: "Pay annually", bestFor: "A publication with a tested workflow and a year of budget", check: "Yearly total, audience growth, upgrades and renewal terms" },
     ],
-    redemptionSteps: ["Open beehiiv pricing and set your actual subscriber count before comparing plans.", "Compare monthly and yearly totals for the same tier and identify the features you need now.", "If a sourced promotion is listed, review eligible accounts, billing periods and its duration before entering the code in signup or billing.", "Check the first invoice and the following renewal amount. Record the terms rather than assuming an affiliate link changes the price."],
+    redemptionSteps: ["Open beehiiv pricing and compare plans at your actual subscriber count.", "In Settings → Billing & Plan, choose Change, then select the plan, subscriber tier and billing period.", "For an eligible sourced code, choose Add Promotion Code before checkout. If an offer uses a discount link, follow that link instead.", "Confirm the reduction, first invoice and renewal amount in checkout before paying."],
     relatedSlugs: ["convertkit", "mailerlite", "systeme-io"],
     savingsOptions: [
       { type: "Annual billing", saving: "Up to 20% with yearly billing", terms: "The provider advertises yearly savings compared with monthly billing. Set your subscriber count and paid plan first; the saving depends on the selected subscription. Confirm the full annual payment and renewal amount.", sourceUrl: "https://www.beehiiv.com/pricing" },
     ],
-    sources: [{ label: "Plan tiers and subscriber counting", url: "https://www.beehiiv.com/support/article/23874462928663-plan-types-and-subscriber-plan-tier-pricing" }],
+    sources: [{ label: "Subscriber tiers, trials and how to apply a promo code", url: "https://www.beehiiv.com/support/article/23874462928663-plan-types-and-subscriber-plan-tier-pricing" }],
     sections: [
       { heading: "Start with the free plan when it fits", text: "A free plan can be more useful than a short introductory promotion for a new newsletter. Check whether your publication fits its audience limit and whether you need paid features immediately. A free subscription is a separate option from a percentage-off coupon." },
       { heading: "Compare the cost as your newsletter grows", text: "Compare plans using your present audience and your next growth milestone. Check publication limits, team access, automation, and monetization requirements alongside the subscription charge. Your cheapest starting plan may differ from the best choice after growth." },
@@ -101,6 +108,8 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
       { question: "Is beehiiv's free plan a discount code?", answer: "No. A free plan is an ongoing plan with its own limits. A coupon changes the price of an eligible paid subscription. This page labels free plans and coupons separately." },
       { question: "Will a beehiiv affiliate link guarantee a lower price?", answer: "Only an explicit promotion and the price shown by beehiiv establish a saving. A referral link by itself does not guarantee a discount or an extended trial." },
       { question: "Does an older beehiiv Scale or Max code apply to Lite or Pro?", answer: "Do not assume a previous plan name establishes current eligibility. Check the promotion's written terms or ask beehiiv support whether it covers the plan shown in your account before making a payment." },
+      { question: "Where do I enter a beehiiv promo code?", answer: "Open Settings → Billing & Plan → Change, choose your plan, tier and billing period, then select Add Promotion Code before checkout. A promotion supplied through an eligible affiliate discount link uses that link instead; confirm the actual reduction at checkout." },
+      { question: "Can I pause a beehiiv subscription to save money?", answer: "The billing help describes a pause of up to 30 days for eligible monthly subscriptions, with Free-plan limits during the pause. Annual subscriptions cannot be paused. Compare that flexibility with the yearly saving if you publish seasonally." },
     ],
   },
   "snov-io": {
@@ -166,12 +175,13 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   taplio: {
-    reviewedAt: "2026-10-23",
+    reviewedAt: "2026-10-26",
     sourceUrl: "https://taplio.com/pricing",
     searchTitle: "Taplio Discounts & Coupon Codes",
     metaDescription: "Compare Taplio discounts, yearly billing, team-seat offers and coupon rules. Check LinkedIn workflow needs and eligible savings before choosing a plan.",
     intro: "A useful Taplio discount starts with the LinkedIn accounts and writing workflow you need. Compare the eligible yearly, team or bundle options for your account, then check whether an additional promo code would actually improve the invoice.",
     summary: "Choose a plan around the work you will use: preparing posts, publishing consistently or managing a larger engagement routine. Compare eligible savings on the next invoice and include every account you need to license.",
+    bestDiscountAnswer: "Compare Taplio yearly billing with an eligible organization-seat or Tweet Hunter bundle offer. Only one discount applies, so compare final invoices rather than adding percentages. A solo LinkedIn user should include the cost of the second subscription before choosing a bundle; a team should count every account it needs to license.",
     decisionRows: [
       { option: "Consistent solo posting", bestFor: "A creator who already writes most of their content", check: "Scheduling and analytics needs before paying for additional AI usage" },
       { option: "AI-assisted writing", bestFor: "A regular workflow that benefits from draft assistance", check: "Actual monthly writing and comment usage" },
@@ -195,6 +205,8 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     faqs: [
       { question: "Can I combine a Taplio coupon with another discount?", answer: "The official discount policy says only one discount applies at a time. Check the upcoming invoice for the applicable offer and ask support which eligible option gives the better final price." },
       { question: "How does a current Taplio user apply a code?", answer: "The provider directs existing subscribers to contact its chat with the code for an eligibility check. Ask which future invoice it can affect, and keep the confirmed terms before changing your subscription." },
+      { question: "Does Taplio offer a student or nonprofit discount?", answer: "The reviewed official discount policy says Taplio does not currently offer student, academic or nonprofit discounts. Compare its published yearly, organization-seat and bundle options instead, and recheck the policy before subscribing." },
+      { question: "Why is my Taplio coupon code not working?", answer: "Check its expiry, eligible plan, billing period and new-customer restrictions. Taplio applies discounts to future invoices, and an existing larger discount can take precedence. For a current subscription, send the code to provider chat for an eligibility review." },
     ],
   },
   "systeme-io": {
@@ -315,12 +327,13 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   baremetrics: {
-    reviewedAt: "2026-10-23",
+    reviewedAt: "2026-10-26",
     sourceUrl: "https://baremetrics.com/pricing",
     searchTitle: "Baremetrics Discounts & Coupon Codes",
     metaDescription: "Compare Baremetrics discounts, annual pricing and coupon status. Check revenue eligibility, integrations and analytics workflow before choosing a plan.",
     intro: "Looking for a Baremetrics discount? Compare the analytics plan your subscription business qualifies for, the data sources it must connect and the operational features you actually need. Review the total invoice rather than a historical annual-saving claim.",
     summary: "Validate the numbers against your own billing records before choosing an analytics subscription. Then compare the eligible monthly and annual prices, including the integrations and any additional workflow you plan to use.",
+    bestDiscountAnswer: "Baremetrics advertises up to 35% off annual plans. Compare the package for your revenue band and integration count, then price Payment Recovery or Cancellation Insights separately if needed. Validate reporting during evaluation before paying for a year, and confirm the full quote rather than assuming the starting price applies to every business.",
     decisionRows: [
       { option: "Initial metrics evaluation", bestFor: "A founder validating recurring-revenue reporting", check: "Supported billing data and metric reconciliation" },
       { option: "Broader subscription reporting", bestFor: "A business with multiple operational requirements", check: "Eligible revenue band, sources and included modules" },
@@ -331,16 +344,20 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     savingsOptions: [
       { type: "Annual billing", saving: "Up to 35% on annual plans", terms: "The official pricing FAQ describes annual discounts of up to 35%. Eligibility and the total depend on your revenue band, plan and integrations. Check add-ons and renewal terms in the quote for your business.", sourceUrl: "https://baremetrics.com/pricing" },
     ],
+    sources: [{ label: "Current Accelerator startup directory", url: "https://baremetrics.com/accelerator" }],
     sections: [
       { heading: "Match the plan to revenue and data requirements", text: "List the billing systems your business uses and confirm which need to be connected. Review current plan eligibility with your actual revenue profile instead of assuming an entry price applies to every company. Ask how growth or an additional integration would affect the invoice before committing to a longer period." },
       { heading: "Reconcile metrics before approving a year", text: "Choose a sample of real subscription changes: a new customer, a cancellation, an upgrade and a refund. Compare how they appear in the reporting workflow with your billing records and internal definitions. Document unresolved differences so the team understands the reports it will use for decisions." },
       { heading: "Separate reporting value from recovery assumptions", text: "Identify the features your team will actively operate and what work they replace. If a proposed workflow includes payment recovery or cancellation analysis, decide who will maintain it and how results will be measured. Do not subtract hypothetical recovered revenue from the subscription cost as though it were guaranteed." },
       { heading: "Compare a current quote with legacy discount claims", text: "Record the plan, integrations, billing period and renewal terms in the actual offer you receive. A historical blog post or old coupon headline can refer to a different packaging model. Use the payable total for your own account when comparing an annual commitment with a shorter evaluation." },
+      { heading: "Check Baremetrics startup offers with the provider", text: "The current Accelerator page showcases emerging SaaS customers; it does not publish a free-plan application or discount entitlement. If an older review promises free startup access, ask Baremetrics for current written eligibility and the package it covers before including that saving in your budget." },
     ],
     sourceNotes: ["Baremetrics displayed a 35% annual-discount label and Launch, Growth and Scale pricing. The Launch description referenced a revenue eligibility band and a single integration; this guide does not treat the entry price as universal."],
     faqs: [
       { question: "Does a Baremetrics entry price apply to every SaaS business?", answer: "Check the current plan eligibility, revenue band and integration requirements against your own account. Obtain the complete quote before comparing discounts, especially if your data sources or revenue profile differ from the starting plan." },
       { question: "Should I choose Baremetrics annual billing immediately?", answer: "First reconcile the reporting with your billing records and confirm the team will use the workflow. Compare the final annual invoice with monthly spending for the same eligible package, including any additional requirements." },
+      { question: "Is Baremetrics annual pricing a coupon code?", answer: "The pricing page describes an annual billing discount of up to 35%, separate from a public coupon code. Compare the eligible package on both billing periods and confirm how add-ons and renewal pricing affect the invoice." },
+      { question: "Does the Baremetrics Accelerator page guarantee free startup access?", answer: "The reviewed Accelerator page is a directory of emerging SaaS customers. It does not establish a current free subscription for your business. Ask Baremetrics to confirm any startup offer and its eligibility before relying on an older third-party pricing description." },
     ],
   },
 };

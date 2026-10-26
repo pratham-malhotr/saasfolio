@@ -1,0 +1,20 @@
+# Productivity discount guide sources
+
+Public sources reviewed on 26 October 2026. All eight providers were active. These observations establish published terms, not successful coupon acceptance or checkout testing. Generic evaluation exercises in the guides are editorial buying guidance, not claims of hands-on product testing.
+
+| Brand | Official sources | Review boundary |
+| --- | --- | --- |
+| AFFiNE | [Current pricing](https://affine.pro/pricing) | Local/Cloud Basic, cloud packages, deployment choices and separately priced AI; annual billing reduction recorded without assuming every contract qualifies. |
+| Huly | [Pricing](https://huly.io/pricing), [self-hosting](https://docs.huly.io/getting-started/self-host/), [workspace setup](https://docs.huly.io/getting-started/workspace-setup/) | Resource-package comparison and independent deployment; no annual percentage or public coupon established. |
+| mymind | [Pricing](https://mymind.com/pricing), [guest plan](https://mymind.helpscoutdocs.com/article/72-free-plan), [student guidance](https://mymind.helpscoutdocs.com/article/24-do-you-have-a-student-plan), [Apple billing](https://mymind.helpscoutdocs.com/article/87-why-was-i-charged-a-higher-different-price-for-my-membership-on-apple), [cancellation](https://mymind.helpscoutdocs.com/article/11-how-can-i-cancel-or-close-my-account) | Student of Life is a tier, not an additional invented education percentage; billing channels and cancellation/deletion are distinct. |
+| Fabric | [Individual pricing](https://fabric.so/pricing-and-plans-for-individuals), [official introduction](https://fabric.so/guide/introduction) | Identity is the fabric.so knowledge workspace. The annual banner and FAQ use differing comparisons, so the guide records lower yearly rates without repeating a universal percentage. |
+| Akiflow | [Pricing](https://akiflow.com/pricing), [team help](https://product.akiflow.com/help/articles/3951313-onboarding-your-team), [account help](https://product.akiflow.com/help/articles/8417992-your-account) | Individual annual, education request and invited-member team offer are separate comparisons; no unconfirmed stacking or public code. |
+| Sunsama | [Pricing](https://www.sunsama.com/pricing), [current billing manual](https://help.sunsama.com/docs/billing/overview/) | Current education/nonprofit application guidance takes precedence over older discussion percentages. Program amounts remain account-specific. |
+| Morgen Calendar | [Pricing and programs](https://www.morgen.so/pricing), [FAQs](https://www.morgen.so/faq) | Individual and team annual comparisons differ. Eligibility and switching routes require provider approval; combination rights were not established. |
+| Motion Calendar | [Pricing](https://www.usemotion.com/pricing), [onboarding](https://www.usemotion.com/help/motions-onboarding-process), [cancellation](https://www.usemotion.com/help/motion-support/cancel-your-plan), [account and calendar access](https://www.usemotion.com/help/getting-started/faq/account-and-login-faq) | Current AI package and capacity terms take precedence over older calendar-only blog pricing. Cancellation does not establish an automatic refund. |
+
+New profiles: AFFiNE, Huly, mymind and Fabric. Existing canonical slugs retained: `akiflow`, `sunsama`, `morgen-calendar` and `motion-calendar`. The latter two retain the directory names used by their existing URLs.
+
+Morgen, Sunsama and Akiflow profiles describe trial access rather than asserting an ongoing free subscription. Fabric's profile uses paid pricing because no quantified permanent free entitlement was established from the reviewed current pricing. Huly uses the usage billing model in the guide to avoid presenting an invented annual-versus-monthly calculator for its resource packages.
+
+The shared guide builder supplies canonical discount pages and freshness behavior. Dates in other brand records were not advanced. No account, application, invitation, message, subscription or payment was submitted during research.

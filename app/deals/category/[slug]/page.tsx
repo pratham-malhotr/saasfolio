@@ -5,6 +5,8 @@ import { getCatalogCategories } from "@/lib/categories";
 import { getAllDeals } from "@/lib/data/deals-data";
 import { pageMetadata } from "@/lib/seo";
 import { collectionSchema } from "@/lib/structured-data";
+import { getIndexableDiscountBrands } from "@/lib/brand-discounts";
+import { RelatedDiscountGuides } from "@/components/seo/RelatedDiscountGuides";
 
 export function generateStaticParams() {
   return getCatalogCategories().map(category => ({ slug: category.slug }));
@@ -27,9 +29,11 @@ export default async function CategoryDealsPage({ params }: { params: Promise<{ 
   if (!category) notFound();
   const deals = getAllDeals();
   const categoryDeals = deals.filter(deal => deal.categorySlug === slug);
+  const discountBrands = getIndexableDiscountBrands().filter(tool => tool.categorySlug === slug);
   return <div className="min-h-screen bg-[#050505]">
     <JsonLd data={collectionSchema(`${category.name} Software Offers`, category.description, `/deals/category/${slug}`,
       categoryDeals.map(deal => ({ name: deal.title, path: `/deals/${deal.slug}` })))} />
-    <DealsExplorer initialDeals={deals} initialCategory={slug} heading={`${category.name} Offers`} description={category.description} />
+    <DealsExplorer initialDeals={deals} initialCategory={slug} heading={`${category.name} Offers`} description={category.description}
+      discountGuides={<RelatedDiscountGuides brands={discountBrands} deals={deals} heading={`${category.name} discounts by brand`} />} />
   </div>;
 }

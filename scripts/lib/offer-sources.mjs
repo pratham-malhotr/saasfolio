@@ -100,6 +100,7 @@ export async function fetchPublicPage(url, { fetchImpl = fetch, etag, lastModifi
     }
     html += decoder.decode();
     if (/just a moment|verify you are human|checking your browser/i.test(html.slice(0, 6000))) throw new Error("Source requires browser verification");
+    if (/you['’]?re viewing the page in the staging environment/i.test(plainText(html))) throw new Error("Source identifies its pricing as an outdated staging preview");
     return { html, url: current, etag: res.headers.get("etag"), lastModified: res.headers.get("last-modified") };
   }
   throw new Error("Too many redirects");

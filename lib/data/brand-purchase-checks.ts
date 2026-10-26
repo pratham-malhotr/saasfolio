@@ -1,4 +1,5 @@
 import { EXPANSION_PURCHASE_CHECKS } from "@/lib/data/expansion-discount-guides";
+import { NEW_DISCOUNT_PURCHASE_CHECKS } from "@/lib/data/discount-brand-expansion";
 
 export interface BrandPurchaseChecks {
   eligibility: { label: string; detail: string }[];
@@ -9,6 +10,7 @@ export interface BrandPurchaseChecks {
 // to resolve before paying, rather than assertions that checkout was tested.
 export const BRAND_PURCHASE_CHECKS: Record<string, BrandPurchaseChecks> = {
   ...EXPANSION_PURCHASE_CHECKS,
+  ...NEW_DISCOUNT_PURCHASE_CHECKS,
   beehiiv: {
     eligibility: [
       { label: "Subscriber tier", detail: "Set your audience size before comparing Lite or Pro billing. Check the next tier you expect to reach rather than applying a small-list promotion to a larger publication." },

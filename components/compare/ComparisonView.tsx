@@ -19,6 +19,7 @@ interface ComparisonViewProps {
   dealsA: SaaSDeal[];
   dealsB: SaaSDeal[];
   allTools: DetailedTool[];
+  discountGuides?: React.ReactNode;
 }
 
 export function ComparisonView({
@@ -27,6 +28,7 @@ export function ComparisonView({
   dealsA,
   dealsB,
   allTools,
+  discountGuides,
 }: ComparisonViewProps) {
   const router = useRouter();
   const [selectedSlugA, setSelectedSlugA] = useState(toolA.slug);
@@ -66,6 +68,8 @@ export function ComparisonView({
           Compare catalog features and sourced offers for {toolA.name} and {toolB.name}. This is not a hands-on benchmark; confirm current features, prices and eligibility with each provider.
         </p>
       </div>
+
+      {discountGuides}
 
       {/* Interactive Tool Selector Bar */}
       <div className="p-4 rounded-2xl bg-[#09090C] border border-white/10 mb-12 flex flex-col sm:flex-row items-center justify-between gap-4">

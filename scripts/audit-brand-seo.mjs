@@ -8,6 +8,7 @@ import { loadCatalogModule } from "./lib/load-catalog.mjs";
 const origin = (process.argv[2] || "http://localhost:3210").replace(/\/$/, "");
 const canonicalOrigin = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech").origin;
 const { getIndexableDiscountBrands, getBrandDiscountData } = loadCatalogModule("lib/brand-discounts.ts");
+const { COMPARISON_SLUGS } = loadCatalogModule("lib/data/comparisons-data.ts");
 const brands = getIndexableDiscountBrands();
 
 async function fetchPage(path, userAgent = "Googlebot") {
@@ -23,12 +24,34 @@ const contents = node => node.nodeName === "#text" ? node.value : ["script", "st
 const metadata = (document, key) => attr(elements(document, "meta").find(node => [attr(node, "name"), attr(node, "property")].includes(key)) || {}, "content");
 const canonical = document => attr(elements(document, "link").find(node => attr(node, "rel") === "canonical") || {}, "href");
 const links = document => elements(document, "a").map(node => attr(node, "href"));
+function assertDiscoveryLink(document, path, label, brandName) {
+  const candidates = elements(document, "a").filter(node => attr(node, "href") === path);
+  assert.ok(candidates.length, `${label}: crawlable HTML link to ${path}`);
+  assert.ok(candidates.some(node => {
+    const rel = (attr(node, "rel") || "").toLowerCase().split(/\s+/);
+    const text = contents(node).replace(/\s+/g, " ").trim();
+    return !rel.includes("nofollow") && text.length > 0 && (!brandName || text.toLowerCase().includes(brandName.toLowerCase()));
+  }), `${label}: descriptive followed link to ${path}`);
+}
+function assertSectionNavigation(document, path) {
+  const navigation = elements(document, "nav").find(node => attr(node, "aria-label") === "On this page");
+  assert.ok(navigation, `${path}: section navigation is present in HTML`);
+  const availability = nodes(document, node => attr(node, "id") === "discount-availability")[0];
+  assert.equal(elements(availability, "dt").length, 3, `${path}: code, provider savings and free-access status are distinguished`);
+  for (const href of [...links(navigation), ...links(availability)]) {
+    if (!href?.startsWith("#")) continue;
+    const id = decodeURIComponent(href.slice(1));
+    assert.equal(nodes(document, node => attr(node, "id") === id).length, 1, `${path}: ${href} reaches exactly one section`);
+  }
+}
 const { response: sitemapResponse } = await fetchPage("/sitemap.xml");
 assert.equal(sitemapResponse.status, 200);
 const sitemap = await (await fetch(`${origin}/sitemap.xml`)).text();
 const guidePaths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => new URL(url).pathname).filter(path => /^\/discounts\/[^/]+$/.test(path));
 assert.equal(guidePaths.length, brands.length, "Every indexable brand guide is covered by this audit");
-const { document: directory } = await fetchPage("/discounts");
+const { response: directoryResponse, document: directory } = await fetchPage("/discounts");
+assert.equal(directoryResponse.status, 200, "Discount directory returns HTTP 200");
+assert.ok(!directoryResponse.redirected, "Discount directory resolves without a redirect");
 const { document: homepage } = await fetchPage("/");
 // React may stream a route's HTML outside <main> before moving the boundary
 // into place. Inspect the actual brand section rather than the loading shell.
@@ -36,13 +59,39 @@ const homeBrands = nodes(homepage, node => attr(node, "aria-labelledby") === "br
 assert.match(contents(elements(homepage, "h1")[0]), /SaaS discounts.*software deals/i, "Homepage heading describes the SaaS discount business");
 assert.match(contents(elements(homepage, "title")[0]), /SaaS Discounts.*(?:Coupon Codes|Software Deals)/i, "Homepage title targets software savings");
 assert.ok(homeBrands && links(homeBrands).includes("/discounts"), "Brand directory is linked from homepage content");
+assertDiscoveryLink(homeBrands, "/discounts", "Homepage content");
 assert.ok(links(homeBrands).filter(href => /^\/discounts\/[^/]+$/.test(href)).length >= 6, "Homepage offers varied direct brand discovery");
 for (const slug of ["beehiiv", "predis-ai", "taplio", "baremetrics"]) {
   assert.ok(links(directory).includes(`/discounts/${slug}`), `${slug}: brand directory links to guide`);
+  assertDiscoveryLink(homeBrands, `/discounts/${slug}`, "Homepage priority brands");
 }
 assert.match(contents(elements(directory, "h1")[0]), /SaaS discounts/i, "Brand directory heading has SaaS discount intent");
 const titles = new Set();
 const descriptions = new Set();
+
+for (const categorySlug of new Set(brands.map(tool => tool.categorySlug))) {
+  const path = `/deals/category/${categorySlug}`;
+  const { response, document } = await fetchPage(path);
+  assert.equal(response.status, 200, `${path}: category returns HTTP 200`);
+  const categoryGuides = brands.filter(tool => tool.categorySlug === categorySlug);
+  // Exclude global navigation/footer shortcuts: this must be a contextual route
+  // from the category's buying content to a relevant brand guide.
+  const section = nodes(document, node => attr(node, "data-related-discount-guides") !== undefined)[0];
+  assert.ok(section, `${path}: contextual discount guidance is rendered`);
+  assert.deepEqual(new Set(links(section)), new Set(categoryGuides.map(tool => `/discounts/${tool.slug}`)), `${path}: all related guides match the category`);
+  for (const tool of categoryGuides) assertDiscoveryLink(section, `/discounts/${tool.slug}`, path, tool.name);
+}
+for (const comparison of COMPARISON_SLUGS) {
+  const comparedBrands = brands.filter(tool => comparison.split("-vs-").includes(tool.slug));
+  if (!comparedBrands.length) continue;
+  const path = `/compare/${comparison}`;
+  const { response, document } = await fetchPage(path);
+  assert.equal(response.status, 200, `${path}: comparison returns HTTP 200`);
+  const section = nodes(document, node => attr(node, "data-related-discount-guides") !== undefined)[0];
+  assert.ok(section, `${path}: contextual discount guidance is rendered`);
+  assert.deepEqual(new Set(links(section)), new Set(comparedBrands.map(tool => `/discounts/${tool.slug}`)), `${path}: discount guides belong to compared brands`);
+  for (const tool of comparedBrands) assertDiscoveryLink(section, `/discounts/${tool.slug}`, path, tool.name);
+}
 
 for (const tool of brands) {
   const { slug, name } = tool;
@@ -50,8 +99,10 @@ for (const tool of brands) {
   const path = `/discounts/${slug}`;
   const { response, document } = await fetchPage(path);
   assert.equal(response.status, 200, `${path}: HTTP 200`);
+  assert.ok(!response.redirected, `${path}: canonical sitemap URL resolves directly`);
   assert.ok(sitemap.includes(`<loc>${canonicalOrigin}${path}</loc>`), `${path}: discoverable in sitemap`);
   assert.ok(links(directory).includes(path), `${path}: discoverable from brand directory`);
+  assertDiscoveryLink(directory, path, "Discount directory", name);
   const h1s = elements(document, "h1");
   assert.equal(h1s.length, 1, `${path}: one primary heading`);
   assert.ok(contents(h1s[0]).includes(name) && /discount/i.test(contents(h1s[0])), `${path}: brand discount intent in heading`);
@@ -63,11 +114,16 @@ for (const tool of brands) {
   assert.ok(!descriptions.has(description), `${path}: unique description`);
   titles.add(title); descriptions.add(description);
   assert.equal(canonical(document), `${canonicalOrigin}${path}`, `${path}: self canonical`);
+  const head = elements(document, "head")[0];
+  assert.equal(elements(head, "title").length, 1, `${path}: one title in the document head`);
+  assert.equal(elements(head, "link").filter(node => attr(node, "rel") === "canonical").length, 1, `${path}: one canonical in the document head`);
   assert.equal(metadata(document, "og:url"), canonical(document), `${path}: social URL matches canonical`);
   assert.ok(!metadata(document, "robots")?.includes("noindex"), `${path}: indexable`);
+  assert.ok(!metadata(document, "googlebot")?.includes("noindex"), `${path}: Googlebot-specific directive allows indexing`);
   assert.ok(!response.headers.get("x-robots-tag")?.includes("noindex"), `${path}: indexable response header`);
   assert.ok(links(document).includes(`/tools/${slug}`), `${path}: links to software profile`);
   assert.ok(links(document).includes("/affiliate-disclosure"), `${path}: disclosure linked`);
+  assertSectionNavigation(document, path);
   const faqs = elements(document, "details");
   assert.ok(faqs.length >= 3 && faqs.every(node => contents(node).length > 100), `${path}: answers included before interaction`);
   const text = contents(document);
@@ -106,6 +162,7 @@ for (const tool of brands) {
     assert.ok(sources.some(href => href?.startsWith("https://")), `${path}: official sources linked`);
     const related = links(document).filter(href => /^\/discounts\/[^/]+$/.test(href || "") && href !== path);
     assert.ok(new Set(related).size >= 3, `${path}: related brand guides are crawlable`);
+    for (const relatedPath of new Set(related)) assertDiscoveryLink(document, relatedPath, path);
   }
   assert.match(text, /not.*checkout tested|not been tested at checkout/i, `${path}: testing status is explicit`);
   assert.ok(!/Hand-Tested Codes|Every coupon is checked in real checkouts/.test(text), `${path}: no unsupported testing claims`);
@@ -122,8 +179,17 @@ for (const tool of brands) {
     const { document: offer } = await fetchPage(offerPath);
     assert.ok(links(offer).includes(path), `${offerPath}: links back to brand guide`);
   }
-  const { document: profile } = await fetchPage(`/tools/${slug}`);
+  const { response: profileResponse, document: profile } = await fetchPage(`/tools/${slug}`);
+  assert.equal(profileResponse.status, 200, `${path}: software profile returns HTTP 200`);
+  assert.ok(!profileResponse.redirected, `${path}: software profile resolves directly`);
+  assert.equal(canonical(profile), `${canonicalOrigin}/tools/${slug}`, `${path}: product and discount intent keep distinct canonicals`);
+  assert.notEqual(contents(elements(profile, "title")[0]), title, `${path}: product and discount intent keep distinct titles`);
   assert.ok(links(profile).includes(path), `${path}: profile links to savings guide`);
+  assertDiscoveryLink(profile, path, "Software profile", name);
+  for (const href of links(profile).filter(href => href?.startsWith(`${path}#`))) {
+    const id = decodeURIComponent(new URL(href, canonicalOrigin).hash.slice(1));
+    assert.equal(nodes(document, node => attr(node, "id") === id).length, 1, `${path}: profile shortcut ${href} reaches a rendered guide section`);
+  }
   const { document: tracked } = await fetchPage(`${path}?utm_source=brand-audit`);
   assert.equal(canonical(tracked), canonical(document), `${path}: tracking does not duplicate canonical`);
   const { document: browser } = await fetchPage(path, "Mozilla/5.0");
