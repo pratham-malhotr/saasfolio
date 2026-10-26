@@ -1,8 +1,11 @@
+import { normalizePublicHttpsUrl } from "@/lib/public-url.mjs";
+
 export interface VerificationCheck {
   id: string;
   label: string;
   passed: boolean;
-  score: number;
+  /** Legacy compatibility field. Input checks do not assign a confidence score. */
+  score: 0;
   detail: string;
 }
 
@@ -17,11 +20,17 @@ export interface CodeVerificationInput {
 }
 
 export interface CodeVerificationResult {
+  /** Whether the supplied input passes local formatting checks, not whether a code works. */
   valid: boolean;
-  score: number;
-  status: "verified" | "testing" | "flagged";
+  /** Legacy compatibility field; always zero, never a confidence or success rate. */
+  score: 0;
+  status: "pending_review" | "needs_changes";
   statusLabel: string;
-  recommendedBadge: "VERIFIED" | "COMMUNITY CODE" | "REFERRAL" | "EXCLUSIVE";
+  recommendedBadge: "UNREVIEWED SUBMISSION";
+  reviewStatus: "pending";
+  sourceChecked: false;
+  checkoutTested: false;
+  scope: "input-preflight";
   matchedBrand?: {
     name: string;
     slug: string;
@@ -52,164 +61,49 @@ export const POPULAR_SAAS_BRANDS = [
   { name: "Postman", slug: "postman", category: "API Development", website: "https://postman.com" },
 ];
 
-const SUSPICIOUS_PATTERNS = [
-  /^(?:test|sample|dummy|coupon|code|promocode|discount|promo|xxxx|asdf|qwerty)$/i,
-  /^(.)\1{4,}$/, // 5+ same repeated characters e.g. AAAAA
-  /^([a-z0-9])\1{5,}$/i,
-];
-
+// Pure input checks only. This function does not fetch a domain or source,
+// inspect the catalog for duplicates, enqueue work, or attempt checkout.
 export function verifyCodeLocally(input: CodeVerificationInput): CodeVerificationResult {
-  const code = (input.code || "").trim().toUpperCase();
-  const checks: VerificationCheck[] = [];
-  let totalScore = 0;
-
-  // 1. Syntax & Format Check
-  const isSuspicious = SUSPICIOUS_PATTERNS.some(re => re.test(code));
-  const hasValidLength = code.length >= 3 && code.length <= 40;
-  const hasAllowedCharacters = /^[A-Z0-9_-]+$/.test(code);
-  const isReferralPattern = input.codeType === "referral" || /^(?:REF|INVITE|FRIEND|JOIN|GET|SAVE)-?[A-Z0-9]+$/i.test(code);
-
-  const formatPassed = hasValidLength && hasAllowedCharacters && !isSuspicious;
-  const formatScore = formatPassed ? (isReferralPattern ? 25 : 30) : 0;
-  totalScore += formatScore;
-
-  checks.push({
-    id: "format",
-    label: "Code Syntax & Structure Validation",
-    passed: formatPassed,
-    score: formatScore,
-    detail: !hasValidLength
-      ? "Code must be between 3 and 40 characters in length."
-      : !hasAllowedCharacters
-      ? "Code must contain only standard letters, numbers, hyphens or underscores."
-      : isSuspicious
-      ? "Code appears to be a generic placeholder or test string."
-      : isReferralPattern
-      ? "Valid referral / invite code format recognized."
-      : "Standard uppercase promotional coupon code syntax verified.",
-  });
-
-  // 2. Domain & Store Security Check
-  let domain = "";
-  let domainValid = false;
-  let isHttps = false;
-  try {
-    const parsed = new URL(input.websiteUrl);
-    domain = parsed.hostname.toLowerCase();
-    isHttps = parsed.protocol === "https:";
-    const isPrivate = /^(?:localhost|127\.|192\.168\.|10\.|172\.(?:1[6-9]|2\d|3[01])\.)/.test(domain) ||
-                      domain.endsWith(".internal") || domain.endsWith(".local");
-    domainValid = isHttps && !isPrivate && domain.includes(".") && domain.length >= 4;
-  } catch {
-    domainValid = false;
-  }
-
-  const domainScore = domainValid ? 25 : 0;
-  totalScore += domainScore;
-
-  checks.push({
-    id: "domain",
-    label: "Store Endpoint & TLS Security Check",
-    passed: domainValid,
-    score: domainScore,
-    detail: !input.websiteUrl
-      ? "No store website or checkout URL provided."
-      : !domainValid
-      ? "Store URL must be a valid public HTTPS link without private or local addresses."
-      : `Live HTTPS vendor domain [${domain}] verified with standard encryption transport.`,
-  });
-
-  // 3. Brand & Catalog Cross-Match Check
-  const toolQuery = (input.toolName || "").trim().toLowerCase();
-  const matchedBrand = POPULAR_SAAS_BRANDS.find(t => 
-    t.name.toLowerCase() === toolQuery || 
-    t.slug.toLowerCase() === toolQuery ||
-    (domain && t.website.toLowerCase().includes(domain))
-  );
-
-  let brandMatchScore = 15;
-  if (matchedBrand) {
-    brandMatchScore = 20;
-    totalScore += brandMatchScore;
-
-    checks.push({
-      id: "catalog_match",
-      label: "Brand Catalog & Directory Alignment",
-      passed: true,
-      score: brandMatchScore,
-      detail: `Matched registered SaaS brand: ${matchedBrand.name} (${matchedBrand.category}) in SaaSFolio index.`,
-    });
-  } else {
-    totalScore += 12;
-    checks.push({
-      id: "catalog_match",
-      label: "Brand Catalog & Directory Alignment",
-      passed: true,
-      score: 12,
-      detail: `Custom / newly discovered SaaS provider: "${input.toolName || domain}". Ready for directory ingestion.`,
-    });
-  }
-
-  // 4. Duplicate Code & Freshness Check
-  const uniquenessPassed = true;
-  const uniquenessScore = 15;
-  totalScore += uniquenessScore;
-
-  checks.push({
-    id: "uniqueness",
-    label: "Catalog Uniqueness & Freshness Check",
-    passed: uniquenessPassed,
-    score: uniquenessScore,
-    detail: "Fresh submission: code syntax registered for real-time checkout verification.",
-  });
-
-  // 5. Discount Rate & Feasibility Check
-  const discount = Number(input.discountPercentage || 0);
-  const discountPlausible = discount >= 0 && discount <= 90;
-  const discountScore = discountPlausible ? 10 : 0;
-  totalScore += discountScore;
-
-  checks.push({
-    id: "discount_integrity",
-    label: "Discount Feasibility & Anti-Fraud Audit",
-    passed: discountPlausible,
-    score: discountScore,
-    detail: discount > 90
-      ? "Discounts exceeding 90% are flagged for manual checkout audit."
-      : discount > 0
-      ? `Reported ${discount}% discount falls within standard software promotional ranges.`
-      : "No fixed percentage specified; classified as variable credit or referral perk.",
-  });
-
-  // Normalized score out of 100
-  const finalScore = Math.min(100, Math.max(0, totalScore));
-
-  let status: "verified" | "testing" | "flagged" = "flagged";
-  let statusLabel = "Flagged For Staff Review";
-  let recommendedBadge: "VERIFIED" | "COMMUNITY CODE" | "REFERRAL" | "EXCLUSIVE" = "COMMUNITY CODE";
-
-  if (finalScore >= 80 && formatPassed && domainValid) {
-    status = "verified";
-    statusLabel = "System Verified Active";
-    recommendedBadge = input.codeType === "referral" ? "REFERRAL" : "VERIFIED";
-  } else if (finalScore >= 50 && domainValid) {
-    status = "testing";
-    statusLabel = "Community Checkout Testing";
-    recommendedBadge = input.codeType === "referral" ? "REFERRAL" : "COMMUNITY CODE";
-  }
-
-  const summary = status === "verified"
-    ? `Confidence ${finalScore}%: Code structure and vendor endpoint pass all automated verification checks.`
-    : status === "testing"
-    ? `Confidence ${finalScore}%: Basic parameters confirmed; queued for automated browser checkout verification and community testing.`
-    : `Confidence ${finalScore}%: Parameter anomalies detected. Requires human staff verification before publishing.`;
+  const code = typeof input.code === "string" ? input.code.trim() : "";
+  const formatPassed = code.length >= 3 && code.length <= 60 && /^[a-z0-9_-]+$/i.test(code);
+  const url = normalizePublicHttpsUrl(input.websiteUrl);
+  const name = typeof input.toolName === "string" ? input.toolName.trim() : "";
+  const namePassed = name.length >= 2 && name.length <= 100 && !/[\u0000-\u001f]/.test(name);
+  const matchedBrand = POPULAR_SAAS_BRANDS.find(brand => [brand.name.toLowerCase(), brand.slug].includes(name.toLowerCase()));
+  const discount = input.discountPercentage ?? 0;
+  const discountPassed = Number.isFinite(discount) && discount >= 0 && discount <= 100;
+  const expiry = typeof input.expirationDate === "string" ? input.expirationDate.trim() : "";
+  const expiryTime = /^\d{4}-\d{2}-\d{2}$/.test(expiry) ? Date.parse(`${expiry}T23:59:59.999Z`) : NaN;
+  const expiryPassed = !expiry || (Number.isFinite(expiryTime) && new Date(expiryTime).toISOString().slice(0, 10) === expiry && expiryTime > Date.now());
+  const checks: VerificationCheck[] = [
+    { id: "format", label: "Code format", passed: formatPassed, score: 0, detail: formatPassed
+      ? "The supplied code uses the supported format. Its acceptance is untested."
+      : "Use 3–60 letters, numbers, hyphens or underscores, or describe a different code format for editorial review." },
+    { id: "domain", label: "Website URL format", passed: Boolean(url), score: 0, detail: url
+      ? `The supplied URL uses a public HTTPS hostname (${new URL(url).hostname}). No connection, ownership or source check was performed.`
+      : "Provide a public HTTPS website URL without credentials or a private address." },
+    { id: "brand_name", label: "Brand details", passed: namePassed, score: 0, detail: namePassed
+      ? matchedBrand ? `The entered name matches the ${matchedBrand.name} brand suggestion. The submitted website and offer still need review.` : "A brand name was supplied for review; its identity and offer have not been checked."
+      : "Provide a brand name between 2 and 100 characters." },
+    { id: "discount_amount", label: "Reported discount format", passed: discountPassed, score: 0, detail: discountPassed
+      ? "The reported percentage is within the accepted input range. The saving has not been confirmed against a source."
+      : "Enter a finite percentage between 0 and 100; this field does not establish an actual saving." },
+    { id: "expiration", label: "Reported expiry", passed: expiryPassed, score: 0, detail: expiryPassed
+      ? expiry ? "A future calendar date was supplied. Its published terms still need source review." : "No expiry was supplied. The provider's terms still need review."
+      : "Use a future calendar date in YYYY-MM-DD format or leave the expiry blank." },
+  ];
+  const valid = checks.every(check => check.passed);
 
   return {
-    valid: formatPassed && domainValid,
-    score: finalScore,
-    status,
-    statusLabel,
-    recommendedBadge,
+    valid,
+    score: 0,
+    status: valid ? "pending_review" : "needs_changes",
+    statusLabel: valid ? "Ready for editorial review" : "Submission details need changes",
+    recommendedBadge: "UNREVIEWED SUBMISSION",
+    reviewStatus: "pending",
+    sourceChecked: false,
+    checkoutTested: false,
+    scope: "input-preflight",
     matchedBrand: matchedBrand ? {
       name: matchedBrand.name,
       slug: matchedBrand.slug,
@@ -217,6 +111,8 @@ export function verifyCodeLocally(input: CodeVerificationInput): CodeVerificatio
     } : undefined,
     checks,
     timestamp: new Date().toISOString(),
-    summary,
+    summary: valid
+      ? "Input checks passed. Submit the details for editorial review. The source has not been checked and the code has not been tested at checkout."
+      : "Review the highlighted input details before submitting. No source verification or checkout test has been performed.",
   };
 }

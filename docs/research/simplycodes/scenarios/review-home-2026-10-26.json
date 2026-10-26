@@ -1,0 +1,14 @@
+{
+  "browser": {
+    "mode": "launch",
+    "executable_path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  },
+  "start_url": { "url": "https://simplycodes.com/" },
+  "actions": [
+    { "step_id": "public-home-settled", "action": "wait_for_timeout", "duration_ms": 2000 }
+  ],
+  "capture": {
+    "at_end": ["dom", "accessibility", "screenshot", "url"],
+    "events": ["network", "page-errors"]
+  }
+}

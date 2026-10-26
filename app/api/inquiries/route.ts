@@ -70,7 +70,8 @@ export async function POST(request: Request) {
         const discountDescription = text(data, "discountDescription", 2, 300);
         const terms = text(data, "terms", 0, 1000);
 
-        // Run automated verification engine
+        // Input checks inform editorial review; they never establish source or
+        // checkout verification and cannot publish an offer.
         const verificationReport = verifyCodeLocally({
           code,
           codeType,
@@ -96,6 +97,10 @@ export async function POST(request: Request) {
           verificationStatus: verificationReport.status,
           verificationBadge: verificationReport.recommendedBadge,
           verificationSummary: verificationReport.summary,
+          preflightValid: verificationReport.valid,
+          reviewStatus: verificationReport.reviewStatus,
+          sourceChecked: verificationReport.sourceChecked,
+          checkoutTested: verificationReport.checkoutTested,
           submittedBy: publicUser(user),
           submittedAt: new Date().toISOString(),
         };

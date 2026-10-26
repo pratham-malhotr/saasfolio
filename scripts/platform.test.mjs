@@ -89,7 +89,7 @@ test("contact submissions are saved server-side and return the database referenc
   assert.equal(app.writes[0].value.email, contact.email);
 });
 
-test("code submissions require authentication and record verification metadata", async () => {
+test("code submissions require authentication and remain pending after input checks", async () => {
   const unauthApp = platform();
   const codeSubmission = {
     kind: "submission",
@@ -101,6 +101,10 @@ test("code submissions require authentication and record verification metadata",
     discountPercentage: 20,
     discountDescription: "20% off web hosting plans",
     verificationProof: "https://hostinger.com/pricing",
+    verificationStatus: "verified",
+    verificationScore: 100,
+    sourceChecked: true,
+    checkoutTested: true,
   };
   const unauthRes = await unauthApp.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", codeSubmission));
   assert.equal(unauthRes.status, 401);
@@ -112,7 +116,48 @@ test("code submissions require authentication and record verification metadata",
   assert.equal(authApp.writes[0].value.payload.submissionType, "code");
   assert.equal(authApp.writes[0].value.payload.code, "SAVE20");
   assert.equal(authApp.writes[0].value.payload.submittedBy.id, testUser.id);
-  assert.ok(authApp.writes[0].value.payload.verificationScore >= 80);
+  const payload = authApp.writes[0].value.payload;
+  assert.equal(payload.verificationScore, 0);
+  assert.equal(payload.verificationStatus, "pending_review");
+  assert.equal(payload.verificationBadge, "UNREVIEWED SUBMISSION");
+  assert.equal(payload.preflightValid, true);
+  assert.equal(payload.reviewStatus, "pending");
+  assert.equal(payload.sourceChecked, false);
+  assert.equal(payload.checkoutTested, false);
+});
+
+test("preflight of an invented code never claims source or checkout verification or writes a submission", async () => {
+  const app = platform();
+  const route = app.load("app/api/verify-code/route.ts");
+  const response = await route.POST(request("/api/verify-code", {
+    code: "INVENTED2026", codeType: "coupon", toolName: "Hostinger", websiteUrl: "https://hostinger.com",
+    discountPercentage: 20, sourceChecked: true, checkoutTested: true,
+  }));
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("cache-control"), /no-store/);
+  const { report } = await response.json();
+  assert.equal(report.valid, true);
+  assert.equal(report.status, "pending_review");
+  assert.equal(report.reviewStatus, "pending");
+  assert.equal(report.score, 0);
+  assert.equal(report.sourceChecked, false);
+  assert.equal(report.checkoutTested, false);
+  assert.equal(report.scope, "input-preflight");
+  assert.equal(app.writes.length, 0);
+});
+
+test("preflight reports invalid input and rejects cross-origin requests without writes", async () => {
+  const app = platform();
+  const route = app.load("app/api/verify-code/route.ts");
+  const input = { code: "SAVE20", codeType: "coupon", toolName: "Hostinger", websiteUrl: "https://127.0.0.1", discountPercentage: "not-a-number", expirationDate: "2099-02-31" };
+  const response = await route.POST(request("/api/verify-code", input));
+  assert.equal(response.status, 200);
+  const { report } = await response.json();
+  assert.equal(report.valid, false);
+  assert.equal(report.status, "needs_changes");
+  for (const id of ["domain", "discount_amount", "expiration"]) assert.equal(report.checks.find(check => check.id === id).passed, false);
+  assert.equal((await route.POST(request("/api/verify-code", input, { origin: "https://attacker.example" }))).status, 403);
+  assert.equal(app.writes.length, 0);
 });
 
 test("invalid, cross-origin, oversized, malformed and honeypot forms do not write", async () => {

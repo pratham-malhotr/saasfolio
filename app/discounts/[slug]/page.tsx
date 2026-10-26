@@ -5,9 +5,12 @@ import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata, absoluteUrl } from "@/lib/seo";
 import { breadcrumbSchema, softwareSchema, webPageSchema } from "@/lib/structured-data";
-import { offerLabel, offerStatus } from "@/lib/offer-links";
+import { offerLabel } from "@/lib/offer-links";
 import { BrandSourcePanel } from "@/components/seo/BrandSourcePanel";
 import { SavingsCalculator } from "@/components/deals/SavingsCalculator";
+import { CouponCode } from "@/components/deals/CouponCode";
+import { OfferEvidenceDetails } from "@/components/deals/OfferEvidenceDetails";
+import { OfferReportLink } from "@/components/deals/OfferReportLink";
 import {
   brandDiscountTitle, brandDiscountDescription, brandDiscountAnswer, brandBestDiscountAnswer, getBrandDiscountData,
   getBrandDiscountFaqs, getIndexableDiscountBrands, hasBrandDiscountPage,
@@ -153,17 +156,17 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
             <div key={offer.id} className="p-6 rounded-2xl border border-white/10 bg-[#09090C] space-y-4">
               <span className="inline-block rounded-md bg-[#C6FF3D]/10 px-3 py-1 text-[#C6FF3D] text-xs font-mono">{offerLabel(offer)}</span>
               <h4 className="font-display text-xl font-bold text-white"><Link href={`/deals/${offer.slug}`} className="hover:text-[#C6FF3D]">{offer.title}</Link></h4>
-              {offer.code && <p className="text-zinc-300">Reported code: <code className="text-[#C6FF3D]">{offer.code}</code></p>}
+              {offer.code && <div className="space-y-3 rounded-xl border border-white/10 bg-black/30 p-4">
+                <p className="text-xs font-mono text-zinc-400">Reported coupon code</p>
+                <CouponCode key={`${offer.slug}:${offer.code}`} code={offer.code} />
+              </div>}
               <p className="text-sm text-zinc-300 leading-relaxed">{offer.terms}</p>
-              <p className="text-xs text-zinc-400">{offerStatus(offer)}.
-                {offer.checkedAt && <> Checked <time dateTime={offer.checkedAt}>{offer.checkedAt.slice(0, 10)}</time>.</>}
-                {offer.expiryDate && <> Published expiry: <time dateTime={offer.expiryDate}>{offer.expiryDate.slice(0, 10)}</time>.</>}
-              </p>
+              <OfferEvidenceDetails deal={offer} />
               <div className="flex flex-wrap gap-4 text-sm">
                 <Link href={`/deals/${offer.slug}`} className="text-[#C6FF3D] underline">Offer details & redemption</Link>
                 <a href={`/go/${offer.slug}`} target="_blank" rel="sponsored nofollow noopener noreferrer" className="text-white underline">{offer.code ? "Use code at provider" : offer.dealType === "free_trial" ? "View provider trial" : offer.dealType === "free_plan" ? "View free plan" : "View provider offer"} ↗</a>
-                {offer.sourceUrl && <a href={offer.sourceUrl} target="_blank" rel="nofollow noopener noreferrer" className="text-zinc-400 underline">{offer.sourceKind === "vendor" ? "Vendor source" : "Coupon publisher"} ↗</a>}
               </div>
+              <OfferReportLink offerSlug={offer.slug} />
             </div>
           ))}
           </div>

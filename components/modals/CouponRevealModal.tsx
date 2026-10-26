@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { X, ExternalLink } from "lucide-react";
 import type { SaaSDeal } from "@/lib/types";
 import { useDialog } from "@/components/modals/useDialog";
 import { CouponCode } from "@/components/deals/CouponCode";
-import { getOfferHref, offerActionLabel, offerLabel, offerStatus } from "@/lib/offer-links";
+import { getOfferHref, offerActionLabel, offerLabel } from "@/lib/offer-links";
 import { OfferReportLink } from "@/components/deals/OfferReportLink";
+import { OfferEvidenceDetails } from "@/components/deals/OfferEvidenceDetails";
 
 export function CouponRevealModal({ deal, isOpen, onClose }: { deal: SaaSDeal | null; isOpen: boolean; onClose: () => void }) {
   const dialogRef = useDialog(isOpen && Boolean(deal), onClose);
@@ -21,7 +23,8 @@ export function CouponRevealModal({ deal, isOpen, onClose }: { deal: SaaSDeal | 
       </div>
       {deal.code ? <CouponCode key={`${deal.slug}:${deal.code}`} code={deal.code} /> : <p className="text-sm text-zinc-300">{deal.dealType === "pricing" ? "This is a pricing link. No coupon or paid-plan discount is recorded." : "No coupon code is recorded for this option. Review the provider’s signup and eligibility terms."}</p>}
       <p className="text-sm leading-relaxed text-zinc-300">{deal.terms}</p>
-      <p className="text-xs text-zinc-400">{offerStatus(deal)}.{deal.checkedAt && <> Source checked <time dateTime={deal.checkedAt}>{deal.checkedAt.slice(0, 10)}</time>.</>}</p>
+      <OfferEvidenceDetails deal={deal} />
+      <Link href={`/deals/${deal.slug}`} onClick={onClose} className="inline-block text-sm text-[#C6FF3D] underline underline-offset-4">Full offer details & redemption steps →</Link>
       <a href={getOfferHref(deal)} target="_blank" rel="sponsored nofollow noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#C6FF3D] px-5 py-3 font-bold text-black">
         {offerActionLabel(deal)}<ExternalLink className="h-4 w-4" />
       </a>

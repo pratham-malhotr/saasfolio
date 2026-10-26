@@ -33,5 +33,6 @@ export function offerLabel(deal: Pick<SaaSDeal, "discountPercentage" | "discount
 
 export function offerStatus(deal: Pick<SaaSDeal, "checkedAt" | "sourceKind" | "dealType">): string {
   if (!deal.checkedAt || deal.dealType === "pricing") return "Check current vendor terms";
-  return deal.sourceKind === "coupon-site" ? "Reported by coupon source; not checkout tested" : "Vendor source checked; not checkout tested";
+  if (deal.sourceKind === "coupon-site") return "Reported by coupon source; not checkout tested";
+  return deal.sourceKind === "vendor" ? "Vendor source checked; not checkout tested" : "Recorded source check; not checkout tested";
 }

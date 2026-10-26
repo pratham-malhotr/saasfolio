@@ -68,7 +68,7 @@ export function SubmitWizardClient() {
     websiteUrl: "",
     code: "",
     codeType: "coupon" as "coupon" | "referral" | "discount",
-    dealType: "Verified Promo Code",
+    dealType: "Reported Promo Code",
     discountPercentage: "20",
     discountDescription: "",
     terms: "Applies to all plans at checkout.",
@@ -82,7 +82,7 @@ export function SubmitWizardClient() {
     founderEmail: "",
   });
 
-  // Automated Verification via useMemo (instant, pure, no cascading render)
+  // Local input checks; acceptance at checkout remains untested.
   const verificationReport: CodeVerificationResult | null = useMemo(() => {
     if (!formData.code.trim() && !formData.websiteUrl.trim()) {
       return null;
@@ -139,7 +139,7 @@ export function SubmitWizardClient() {
     }
 
     if (!formData.verificationProof.startsWith("https://")) {
-      setError("Verification proof link must be a valid https:// URL.");
+      setError("The offer source must be a valid https:// URL.");
       return;
     }
 
@@ -211,7 +211,7 @@ export function SubmitWizardClient() {
       </h1>
       <p className="text-zinc-400 text-sm leading-relaxed mb-8 max-w-3xl">
         Discovered a working discount code, referral perk, or vendor promotion? Submit it to the SaaSFolio index.
-        Our automated verification system tests the redemption parameters to ensure only valid discounts are published.
+        We check the submitted format and collect the source and conditions for editorial review. Submitting a code does not verify that it works at checkout.
       </p>
 
       {/* Logged in status banner */}
@@ -248,23 +248,23 @@ export function SubmitWizardClient() {
               Sign In To Submit Promo & Referral Codes
             </h2>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              To keep our coupon database 100% spam-free, maintain verified accuracy, and give you contributor credit for every working code, you must be signed in with a SaaSFolio account.
+              Sign in to attach your submission to your account and send its source and conditions for review. Account access does not establish that a code works.
             </p>
           </div>
 
           {/* Value props */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto pt-2 text-left">
             <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
-              <span className="font-mono text-xs font-bold text-[#C6FF3D] block">1. Verified Attribution</span>
-              <p className="text-xs text-zinc-400">Your profile is credited on every approved code you share.</p>
+              <span className="font-mono text-xs font-bold text-[#C6FF3D] block">1. Account attribution</span>
+              <p className="text-xs text-zinc-400">Keep your submission associated with your contributor account.</p>
             </div>
             <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
-              <span className="font-mono text-xs font-bold text-[#C6FF3D] block">2. Live Verification</span>
-              <p className="text-xs text-zinc-400">Our automated system audits checkout endpoints and scores accuracy.</p>
+              <span className="font-mono text-xs font-bold text-[#C6FF3D] block">2. Input checks</span>
+              <p className="text-xs text-zinc-400">Review the code format, source URL and reported expiry before submitting.</p>
             </div>
             <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
-              <span className="font-mono text-xs font-bold text-[#C6FF3D] block">3. Contributor Karma</span>
-              <p className="text-xs text-zinc-400">Earn badges and unlock exclusive member discounts.</p>
+              <span className="font-mono text-xs font-bold text-[#C6FF3D] block">3. Source context</span>
+              <p className="text-xs text-zinc-400">Include eligibility and a source so the offer can be reviewed.</p>
             </div>
           </div>
 
@@ -294,13 +294,13 @@ export function SubmitWizardClient() {
 
           <div>
             <span className="px-3 py-1 rounded-full bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 font-mono text-xs text-[#C6FF3D] font-bold uppercase">
-              CODE QUEUED FOR VERIFIED INGESTION
+              AWAITING EDITORIAL REVIEW
             </span>
             <h2 className="font-display font-black text-3xl sm:text-4xl text-white mt-3 mb-2">
               SUBMISSION RECEIVED
             </h2>
             <p className="text-zinc-400 text-sm max-w-md mx-auto leading-relaxed">
-              Your discount code for <strong className="text-white">{formData.toolName || "this software"}</strong> has passed initial parameter audits and entered the verified ingestion queue.
+              Your submitted offer for <strong className="text-white">{formData.toolName || "this software"}</strong> has been received for review. Its source and checkout acceptance have not been verified.
             </p>
           </div>
 
@@ -308,14 +308,8 @@ export function SubmitWizardClient() {
           {verificationReport && (
             <div className="max-w-md mx-auto p-4 rounded-2xl bg-black border border-white/10 text-left space-y-2">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-zinc-400">Automated System Score:</span>
-                <span className="font-bold text-[#C6FF3D]">{verificationReport.score}% Confidence</span>
-              </div>
-              <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-[#C6FF3D]"
-                  style={{ width: `${verificationReport.score}%` }}
-                />
+                <span className="text-zinc-400">Review status:</span>
+                <span className="font-bold text-amber-300">Pending editorial review</span>
               </div>
               <p className="text-[11px] text-zinc-400">{verificationReport.summary}</p>
             </div>
@@ -350,7 +344,7 @@ export function SubmitWizardClient() {
               href="/deals"
               className="px-6 py-3 rounded-xl bg-[#C6FF3D] hover:bg-[#D6FF66] text-black font-display font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(198,255,61,0.25)]"
             >
-              Browse Verified Deals →
+              Browse sourced offers →
             </Link>
           </div>
         </div>
@@ -572,7 +566,7 @@ export function SubmitWizardClient() {
 
               <div>
                 <label htmlFor="submit-verificationProof" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                  Verification Proof Link / Source *
+                  Offer source link *
                 </label>
                 <input
                   id="submit-verificationProof"
@@ -586,30 +580,25 @@ export function SubmitWizardClient() {
               </div>
             </div>
 
-            {/* LIVE SYSTEM VERIFICATION ENGINE (The Deep Look) */}
+            {/* Input preflight, separate from source review or checkout testing. */}
             {verificationReport && (
               <div className="p-6 sm:p-8 rounded-3xl bg-[#0B0B0E] border border-white/15 space-y-6 animate-in fade-in">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-5 h-5 text-[#C6FF3D]" />
                     <h3 className="font-display font-bold text-lg text-white">
-                      Automated System Verification Results
+                      Submission input checks
                     </h3>
                   </div>
                   <div className="flex items-center gap-2">
                     <span
                       className={`px-3 py-1 rounded-full font-mono text-xs font-bold uppercase ${
-                        verificationReport.status === "verified"
-                          ? "bg-[#C6FF3D]/15 text-[#C6FF3D] border border-[#C6FF3D]/30"
-                          : verificationReport.status === "testing"
+                        verificationReport.status === "pending_review"
                           ? "bg-amber-400/15 text-amber-300 border border-amber-400/30"
                           : "bg-rose-500/15 text-rose-300 border border-rose-500/30"
                       }`}
                     >
                       {verificationReport.statusLabel}
-                    </span>
-                    <span className="font-mono text-xs text-zinc-400">
-                      Score: <strong className="text-white">{verificationReport.score}/100</strong>
                     </span>
                   </div>
                 </div>
@@ -639,7 +628,7 @@ export function SubmitWizardClient() {
                 {/* Live Card Preview */}
                 <div className="pt-2 border-t border-white/10">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-3">
-                    Live Directory Card Preview:
+                    Submission preview · not published
                   </span>
                   <div className="max-w-md p-5 rounded-2xl bg-black border border-[#C6FF3D]/30 space-y-3 shadow-xl">
                     <div className="flex items-center justify-between">
@@ -668,7 +657,7 @@ export function SubmitWizardClient() {
                     <div className="flex items-center justify-between text-[11px] font-mono text-zinc-500 pt-1">
                       <span>Submitted by @{currentUser?.name || "you"}</span>
                       <span className="text-[#C6FF3D] flex items-center gap-1">
-                        <Sparkles className="w-3 h-3" /> System Verified
+                        <Sparkles className="w-3 h-3" /> Pending review
                       </span>
                     </div>
                   </div>
@@ -690,10 +679,10 @@ export function SubmitWizardClient() {
                 className="px-8 py-4 rounded-2xl bg-[#C6FF3D] hover:bg-[#D6FF66] text-black font-display font-bold text-sm uppercase tracking-wider transition-all disabled:opacity-50 shadow-[0_0_25px_rgba(198,255,61,0.3)] hover:shadow-[0_0_35px_rgba(198,255,61,0.5)] flex items-center gap-2"
               >
                 {busy ? (
-                  <span>Submitting to Verification Queue...</span>
+                  <span>Submitting details...</span>
                 ) : (
                   <>
-                    <span>Submit Verified Code</span>
+                    <span>Submit for review</span>
                     <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                   </>
                 )}

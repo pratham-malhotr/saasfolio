@@ -1,0 +1,19 @@
+{
+  "browser": {
+    "mode": "launch",
+    "executable_path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  },
+  "start_url": { "url": "http://127.0.0.1:3210" },
+  "actions": [
+    { "step_id": "hydrate-home", "action": "wait_for_timeout", "duration_ms": 1200 },
+    { "step_id": "open-search", "action": "click", "locator": { "kind": "css", "selector": "button[aria-label=\"Search deals and tools\"]" }, "timeout_ms": 10000 },
+    { "step_id": "enter-brand-intent", "action": "fill", "locator": { "kind": "css", "selector": "input[aria-label=\"Search brands, discounts and offers\"]" }, "value": { "source": "literal", "value": "best discount for Predis" }, "timeout_ms": 10000 },
+    { "step_id": "wait-brand-match", "action": "wait_for", "locator": { "kind": "css", "selector": "[data-discount-search-results] a:first-child[href=\"/discounts/predis-ai\"]" }, "state": "visible", "timeout_ms": 10000 },
+    { "step_id": "open-brand-guide", "action": "click", "locator": { "kind": "css", "selector": "[data-discount-search-results] a:first-child[href=\"/discounts/predis-ai\"]" }, "timeout_ms": 10000 },
+    { "step_id": "wait-discount-answer", "action": "wait_for", "locator": { "kind": "css", "selector": "#discount-answer" }, "state": "visible", "timeout_ms": 10000 }
+  ],
+  "capture": {
+    "at_end": ["dom", "accessibility", "screenshot", "url"],
+    "events": ["network", "page-errors"]
+  }
+}

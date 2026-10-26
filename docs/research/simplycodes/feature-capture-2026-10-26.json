@@ -1,0 +1,114 @@
+{
+  "tool": "rea-agents",
+  "version": "6.8.0",
+  "scope": "Fresh public navigation in isolated temporary Chrome profiles; no accounts, checkout, submissions or challenge bypass. Raw block documents and screenshots remain in temporary files.",
+  "results": [
+    {
+      "page": "home",
+      "sourceUrl": "https://simplycodes.com/",
+      "evidenceId": "ev_3ad6c51b09aed13766e27543de34f4ab3ca083029c5742b0f35e4e05c66ef6c8",
+      "scenarioSha256": "1d518bfb591f0dc6388f4768a43659749cc7f7d5e0bbeda2a6eba73db22b93e1",
+      "captureSha256": "3ac66cc8bb2d90d884423508787cb2a78de9dfa6919f22c6c916544c00a5e784",
+      "observedAt": "2026-10-26T08:48:00.342537+00:00",
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "144.0.7559.97"
+      },
+      "pageTitle": "Attention Required! | Cloudflare",
+      "blocked": true,
+      "dom": {
+        "bytes": 5746,
+        "sha256": "ff88adbb8c94ae4a1f49f536b67c37d3b7d11982a97ecad5e2bb94abe4d8be01"
+      },
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some network requests had not completed when capture ended; later activity is unknown.",
+        "Browser host platform and architecture were not observed."
+      ],
+      "documentResponses": [
+        {
+          "url": {
+            "url": "https://simplycodes.com/",
+            "origin": "https://simplycodes.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "status": 403,
+          "resource_type": "document",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "page": "store",
+      "sourceUrl": "https://simplycodes.com/store/hostinger.com",
+      "evidenceId": "ev_2829068ed5d2b0027f5db003cf0821812d17117739ac28cd6c1597119e049ff5",
+      "scenarioSha256": "e241db226698b581c2b400d2685d2d6c5820ebf1991923cf2ed587ccfb5b443b",
+      "captureSha256": "dec1fcce7946ac7280cfb80f0e1c5162cfc7ad3e15d9ed0c1d3a05cea0d610df",
+      "observedAt": "2026-10-26T08:49:08.301127+00:00",
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "144.0.7559.97"
+      },
+      "pageTitle": "Attention Required! | Cloudflare",
+      "blocked": true,
+      "dom": {
+        "bytes": 5746,
+        "sha256": "497e1518c0e3ca3bb0d664e0cb3340e0ced51b4efcafd1d8c6b8b848742ccec7"
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Browser host platform and architecture were not observed."
+      ],
+      "documentResponses": [
+        {
+          "url": {
+            "url": "https://simplycodes.com/store/hostinger.com",
+            "origin": "https://simplycodes.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "status": 403,
+          "resource_type": "document",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "conclusions": [
+    "Both declared navigation scenarios completed, but the captured pages are Cloudflare block documents, not SimplyCodes application behavior.",
+    "Public-page text evidence is recorded separately and is not described as a successful REA click trace."
+  ]
+}

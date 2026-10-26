@@ -1,0 +1,26 @@
+# SimplyCodes public feature review
+
+Reviewed 26 October 2026 using public web text. This supplements the earlier [REA investigation](README.md); it is not new REA runtime evidence. The parent investigation owns browser captures and their evidence IDs. No login, account submission, checkout, extension installation or challenge bypass was performed in this review.
+
+Text extraction can include dialogs or other content that is not currently displayed. Control labels below establish public content and intended affordances, not that clicks, clipboard writes, sorting, filtering or navigation were executed successfully.
+
+## Observed public patterns
+
+| Official public URL | Observation | Evidence boundary |
+| --- | --- | --- |
+| [Homepage](https://simplycodes.com/) | The hero asks “Search any store (e.g. nike.com)”. The header asks “Search a store: Nike, Amazon, Sephora”. Discovery links include “Browse all stores” and “Browse by category”; category buttons include “Software & Apps”. | Merchant identity is the stated search target. Autocomplete, typo handling, ranking and submitted-search results were not tested. |
+| [QuillBot store](https://simplycodes.com/store/quillbot.com) | The extracted page places offer conditions near reveal controls. Per-code material distinguishes “Latest check” from “Shopper reports” and lists dated “Worked” and “Didn’t work” outcomes. It identifies shopper-shared discount amounts as submitter claims. | These are upstream reports, not our checkout observations. A badge can coexist with a failed latest check; neither a badge nor report count alone proves current applicability. |
+| [QuillBot store](https://simplycodes.com/store/quillbot.com) | Dialog text includes “Copy and open quillbot.com”, a new-tab explanation, alternative codes and commission disclosure. An in-page search field and section links are present in the extracted material. | Dialog open state, actual copied value, clipboard failure handling and the destination tab were not exercised. No general code/deal filter or sort control was confirmed. |
+| [Hostinger store](https://simplycodes.com/store/hostinger.com) | Cards identify Code or Community Code and expose a Show Code control. User-contributed tips separately use Get Deal merchant links. Additional details distinguish product restrictions, reported uses and verification activity. | This supports distinct reveal and merchant-link affordances. It does not establish a complete code-versus-sale taxonomy or functioning filter tabs. A noncash free-gift card also uses the code affordance, so offer value and redemption mechanism are separate properties. |
+| [beehiiv store](https://simplycodes.com/store/beehiiv.com) | The page contains code-specific restriction details, provider-directed actions, feedback prompts and a section explaining where to locate the provider's promo field with linked images. Some summary sections disagree about active-code counts and the best discount. | Images were not independently inspected in this text pass. Forecasts, aggregate counts and best-price assertions must not be treated as authoritative offer evidence when they conflict with their own cards. |
+| [How it works](https://simplycodes.com/how-it-works) | The company describes automated checkout tests, human reports with dated screenshot evidence and extension outcomes as separate inputs. It also describes conditional results and rechecking after failure changes. | These are the company's published methodology claims. No private scoring formula, human calibration system, extension telemetry, cart test, API or architecture was independently reproduced. |
+
+## Three useful transfers
+
+1. **Search by brand, then distinguish redemption actions.** Let a SaaS name or domain lead directly to its discount guide and sourced offers. Keep code reveal/copy separate from a provider offer that needs no code. Count the actual recorded codes independently from trials, billing programs and deal links. This applies the observed merchant-first discovery and distinct action labels without claiming that SimplyCodes has a particular filter implementation.
+
+2. **Present the reason to try an offer before copying.** Put account, plan, billing and expiry conditions beside the action. Offer a compact evidence disclosure with source date and attributed observations. Show unknown or conflicting evidence plainly; do not turn a publisher badge, syntax check or shopper report into SaaSFolio checkout verification. This adds an offer-level decision aid beyond the already implemented brand source panels and parser fields.
+
+3. **Make the handoff and fallback explicit.** Clearly identify the merchant, whether the action copies a code, and whether a new tab opens. Keep the code and terms available when clipboard permission fails, and offer another eligible sourced option or brand guide without asserting guaranteed savings. Validate these states in SaaSFolio's own browser tests; the extracted competitor dialog alone does not prove its runtime behavior.
+
+These are our implementation proposals, not reconstructed proprietary mechanisms. Existing SaaSFolio directories, source registry, correction links and savings calculator were already documented in the [earlier competitor review](../competitors/README.md) and are not counted as newly discovered functionality here.

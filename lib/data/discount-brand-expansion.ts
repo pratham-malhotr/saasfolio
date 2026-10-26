@@ -14,7 +14,12 @@ export const NEW_DISCOUNT_BRAND_SLUGS = DISCOUNT_EXPANSION_ENTRIES.filter(entry 
 export const NEW_DISCOUNT_GUIDES = buildDiscountGuides(DISCOUNT_EXPANSION_ENTRIES);
 export const NEW_DISCOUNT_PURCHASE_CHECKS = buildPurchaseChecks(DISCOUNT_EXPANSION_ENTRIES);
 
-export const NEW_REVIEWED_BRAND_COPY: Record<string, Pick<DetailedTool, "description" | "longDescription" | "keyFeatures"> & Partial<DetailedTool>> = Object.fromEntries(DISCOUNT_EXPANSION_ENTRIES.map(entry => [entry.slug, {
+// Editorial/generator source only. Browser-facing catalog code imports the
+// compact file emitted by catalog:expand instead of these complete guides.
+export type DiscountReviewedProfileCopy = Pick<DetailedTool,
+  "name" | "website" | "pricingUrl" | "updatedAt" | "pricingModel" | "tagline" | "description" | "longDescription" | "keyFeatures">;
+
+export const NEW_REVIEWED_BRAND_COPY: Record<string, DiscountReviewedProfileCopy> = Object.fromEntries(DISCOUNT_EXPANSION_ENTRIES.map(entry => [entry.slug, {
   name: entry.name, website: new URL(entry.url).origin, pricingUrl: entry.url,
   updatedAt: `${entry.reviewedAt}T00:00:00.000Z`, pricingModel: entry.profile.pricingModel,
   tagline: entry.profile.description, description: entry.profile.description,

@@ -1,0 +1,94 @@
+{
+  "tool": "rea-agents",
+  "version": "6.8.0",
+  "evidenceId": "ev_9f3c171934d4ff8d06cdfd80a70fd96af853a38e966a02419b94c47789a47559",
+  "scope": "Isolated local production search flow; no account or merchant activity.",
+  "captureSha256": "2a3c3f82552c06a938b071da8ff3cf533b2349b2869a610a98e88dc26750a8cf",
+  "scenarioSha256": "43156973881cc57b1b99ef442293a4332e60524421484da77e236151d1d0e921",
+  "browser": {
+    "mode": "launch",
+    "process_ownership": "provider-owned",
+    "cleanup": "terminated-owned-process",
+    "product": "Chromium",
+    "version": "144.0.7559.97"
+  },
+  "steps": [
+    {
+      "stepId": "scenario_start",
+      "action": "goto_start",
+      "status": "completed"
+    },
+    {
+      "stepId": "hydrate-home",
+      "action": "wait_for_timeout",
+      "status": "completed"
+    },
+    {
+      "stepId": "open-search",
+      "action": "click",
+      "status": "completed"
+    },
+    {
+      "stepId": "enter-brand-intent",
+      "action": "fill",
+      "status": "completed"
+    },
+    {
+      "stepId": "wait-brand-match",
+      "action": "wait_for",
+      "status": "completed"
+    },
+    {
+      "stepId": "open-brand-guide",
+      "action": "click",
+      "status": "completed"
+    },
+    {
+      "stepId": "wait-discount-answer",
+      "action": "wait_for",
+      "status": "completed"
+    }
+  ],
+  "finalUrl": "http://127.0.0.1:3210/discounts/predis-ai",
+  "artifacts": {
+    "screenshot": {
+      "state": "captured",
+      "sha256": "1b6ec598d2e8c936682fec80447f4d80ce50abfe97c0fdf5e16eb8d77149598a",
+      "bytes": 98862,
+      "media_type": "image/png"
+    },
+    "dom": {
+      "state": "captured",
+      "sha256": "f5f8d7ec85c75df6cd70a4c001f1048ac0f9c3234133de15a7b8946915a7b00d",
+      "bytes": 130379
+    },
+    "accessibility": {
+      "state": "captured",
+      "sha256": "26a451572a7ac83e1248f4ee5ccbdc36182a56f47506e7248531cd8d59d709b6",
+      "bytes": 19888
+    },
+    "url": {
+      "state": "captured"
+    },
+    "history": {
+      "state": "not_requested"
+    },
+    "storage": {
+      "state": "not_requested"
+    }
+  },
+  "completeness": {
+    "status": "complete",
+    "equality_eligible": true,
+    "missing_sections": [],
+    "truncated_sections": []
+  },
+  "limitations": [
+    "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+    "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+    "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+    "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+    "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+    "Storage values are hashed only after declared-secret redaction."
+  ]
+}

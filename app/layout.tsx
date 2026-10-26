@@ -11,6 +11,7 @@ import { CustomCursor } from "@/components/animations/CustomCursor";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
 import { ADSENSE_ACCOUNT } from "@/lib/advertising.mjs";
+import { getDiscountSearchEntries } from "@/lib/brand-discounts";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-display",
@@ -93,7 +94,7 @@ export default function RootLayout({
             {/* Sticky Translucent Navbar */}
             {/* The header is fixed; a flow-height fallback shifts the page on hydration. */}
             <Suspense fallback={null}>
-              <Navbar />
+              <Navbar discountBrands={getDiscountSearchEntries()} />
             </Suspense>
 
             {/* Main Content Area */}

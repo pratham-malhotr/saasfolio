@@ -168,6 +168,7 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
     "@/lib/data/brand-discount-guides": { BRAND_DISCOUNT_GUIDES: guides },
     "@/lib/data/brand-purchase-checks": loadTs("lib/data/brand-purchase-checks.ts", { "@/lib/data/expansion-discount-guides": expansion, "@/lib/data/discount-brand-expansion": { NEW_DISCOUNT_PURCHASE_CHECKS: {} } }),
     "@/lib/seo": loadTs("lib/seo.ts"),
+    "@/lib/data/brand-discount-aliases.mjs": { DISCOUNT_BRAND_ALIASES: {} },
   }, TestDate);
   assert.equal(catalog.getBrandDiscountData(tool).savingsOptions.length, 1);
   assert.match(catalog.brandSavingsSummary(tool), /20%/);

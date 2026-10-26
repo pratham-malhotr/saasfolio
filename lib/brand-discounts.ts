@@ -5,6 +5,8 @@ import { BRAND_DISCOUNT_GUIDES } from "@/lib/data/brand-discount-guides";
 import { BRAND_PURCHASE_CHECKS } from "@/lib/data/brand-purchase-checks";
 import { summarize } from "@/lib/seo";
 import type { DetailedTool, SaaSDeal } from "@/lib/types";
+import type { DiscountSearchEntry } from "@/lib/discount-search";
+import { DISCOUNT_BRAND_ALIASES } from "@/lib/data/brand-discount-aliases.mjs";
 
 const establishedBrands = new Set(snapshot.offers.filter(offer =>
   (offer.discountPercentage > 0 || ("code" in offer && offer.code)) && offer.sourceUrl && offer.evidence
@@ -51,6 +53,27 @@ export function getFeaturedDiscountBrands(limit = 12) {
     return true;
   });
   return [...featured, ...varied, ...remaining.filter(tool => !varied.includes(tool))].slice(0, limit);
+}
+
+// Send only a compact directory to interactive search, never the guide corpus.
+export function getDiscountSearchEntries(): DiscountSearchEntry[] {
+  const all = getIndexableDiscountBrands();
+  const featured = getFeaturedDiscountBrands();
+  const deals = getAllDeals();
+  return [...featured, ...all.filter(tool => !featured.some(item => item.slug === tool.slug))].map(tool => {
+    const data = getBrandDiscountData(tool, deals);
+    const deadlines = data.offers.flatMap(offer => [
+      offer.checkedAt ? Date.parse(offer.checkedAt) + 14 * 86400000 : NaN,
+      offer.expiryDate ? Date.parse(offer.expiryDate) : NaN,
+    ]).filter(Number.isFinite);
+    if (data.sourceNotesCurrent && data.guide) deadlines.push(Date.parse(`${data.guide.reviewedAt}T00:00:00Z`) + 30 * 86400000);
+    return {
+      slug: tool.slug, name: tool.name, category: tool.category,
+      aliases: Object.entries(DISCOUNT_BRAND_ALIASES).filter(([, slug]) => slug === tool.slug).map(([alias]) => alias),
+      summary: brandSavingsSummary(tool, deals), couponCount: data.coupons.length,
+      freshUntil: deadlines.length ? Math.min(...deadlines) : undefined,
+    };
+  });
 }
 
 export function brandSavingsSummary(tool: DetailedTool, catalogDeals = getAllDeals()): string {

@@ -6,8 +6,9 @@ import { Search, ArrowRight, ArrowDown, ShieldCheck, Zap } from "lucide-react";
 import { ParticleCanvas } from "@/components/animations/ParticleCanvas";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { CommandPalette } from "@/components/modals/CommandPalette";
+import type { DiscountSearchEntry } from "@/lib/discount-search";
 
-export function HeroSection() {
+export function HeroSection({ discountBrands }: { discountBrands: DiscountSearchEntry[] }) {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
 
   return (
@@ -135,7 +136,7 @@ export function HeroSection() {
       </div>
 
       {/* Global Command Palette Integration */}
-      <CommandPalette isOpen={searchModalOpen} onClose={() => setSearchModalOpen(false)} />
+      <CommandPalette isOpen={searchModalOpen} onClose={() => setSearchModalOpen(false)} discountBrands={discountBrands} />
     </section>
   );
 }

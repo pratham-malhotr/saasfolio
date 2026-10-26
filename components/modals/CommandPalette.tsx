@@ -12,15 +12,20 @@ import { getOfferHref, offerLabel, offerStatus } from "@/lib/offer-links";
 import type { SaaSDeal } from "@/lib/types";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { discountSearchSummary, searchDiscountBrands, type DiscountSearchEntry } from "@/lib/discount-search";
 
 interface CommandPaletteProps {
   isOpen: boolean;
   onClose: () => void;
+  discountBrands: DiscountSearchEntry[];
 }
 
-export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
+export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPaletteProps) {
+  const router = useRouter();
   const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState<"all" | "tools" | "deals" | "articles" | "community">("all");
+  const [filter, setFilter] = useState<"all" | "brands" | "tools" | "deals" | "articles" | "community">("all");
+  const filteredBrands = useMemo(() => searchDiscountBrands(discountBrands, query), [discountBrands, query]);
   const [revealedNotice, setRevealedNotice] = useState<{
     code: string;
     toolName: string;
@@ -109,7 +114,12 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   };
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && topCouponDeal) {
+    if (e.key !== "Enter") return;
+    if ((filter === "all" || filter === "brands") && filteredBrands[0]) {
+      e.preventDefault();
+      router.push(`/discounts/${filteredBrands[0].slug}`);
+      onClose();
+    } else if ((filter === "all" || filter === "deals") && topCouponDeal) {
       e.preventDefault();
       handleRevealAndRedirect(topCouponDeal);
     }
@@ -137,6 +147,11 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   }, [query]);
 
   const dialogRef = useDialog(isOpen, onClose);
+  const visibleCount = (filter === "all" || filter === "brands" ? filteredBrands.length : 0)
+    + (filter === "all" || filter === "tools" ? filteredTools.length : 0)
+    + (filter === "all" || filter === "deals" ? filteredDeals.length : 0)
+    + (filter === "all" || filter === "articles" ? filteredArticles.length : 0)
+    + (filter === "all" || filter === "community" ? filteredDiscussions.length : 0);
 
   if (!isOpen) return null;
 
@@ -165,7 +180,8 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                 setRevealedNotice(null);
               }}
               onKeyDown={handleInputKeyDown}
-              placeholder="Search software, offers and sourced coupon codes..."
+              placeholder="Search a SaaS brand, discount or coupon code…"
+              aria-label="Search brands, discounts and offers"
               className="flex-1 bg-transparent text-white placeholder-zinc-500 font-sans text-sm sm:text-base outline-none"
               autoFocus
             />
@@ -175,6 +191,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                   setQuery("");
                   setRevealedNotice(null);
                 }}
+                aria-label="Clear search"
                 className="text-zinc-400 hover:text-white p-1 rounded transition-colors"
               >
                 <X className="w-4 h-4" />
@@ -194,7 +211,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
           {/* Filter Pills */}
           <div className="flex items-center gap-2 px-5 py-2.5 border-b border-white/5 bg-[#0A0A0C] text-xs overflow-x-auto">
             <span className="text-zinc-500 font-mono text-[11px] uppercase mr-1">FILTER:</span>
-            {(["all", "tools", "deals", "articles", "community"] as const).map((tab) => (
+            {(["all", "brands", "tools", "deals", "articles", "community"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setFilter(tab)}
@@ -211,8 +228,18 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
 
           {/* Search Results Scroll Area */}
           <div className="max-h-[60vh] overflow-y-auto p-4 space-y-6">
+            {(filter === "all" || filter === "brands") && filteredBrands.length > 0 && <section aria-label="Brand discount guides" data-discount-search-results="" className="space-y-3">
+              <div className="flex items-center justify-between gap-3 px-2 text-xs">
+                <h2 className="font-mono uppercase text-white">Brand discount guides</h2>
+                <Link href="/discounts" onClick={onClose} className="text-[#C6FF3D] underline">All brands</Link>
+              </div>
+              <div className="space-y-2">{filteredBrands.map(brand => <Link key={brand.slug} href={`/discounts/${brand.slug}`} onClick={onClose} className="flex items-start justify-between gap-3 rounded-xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/[0.04] p-4 hover:border-[#C6FF3D]/50">
+                <div className="min-w-0 space-y-1"><h3 className="font-semibold text-white">{brand.name} discounts & coupon codes</h3><p className="text-xs leading-relaxed text-zinc-400">{discountSearchSummary(brand)}</p></div>
+                <ArrowRight aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[#C6FF3D]" />
+              </Link>)}</div>
+            </section>}
             {/* Top Direct Coupon Reveal & Instant Site Redirection Action */}
-            {topCouponDeal && (
+            {(filter === "all" || filter === "deals") && topCouponDeal && (
               <div className="p-4 rounded-xl bg-gradient-to-r from-[#C6FF3D]/15 via-[#0F0F14] to-black border border-[#C6FF3D]/40 shadow-[0_0_25px_rgba(198,255,61,0.15)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="w-11 h-11 rounded-xl bg-black border border-[#C6FF3D]/60 flex flex-col items-center justify-center font-bold text-xs text-[#C6FF3D] shadow-[0_0_15px_rgba(198,255,61,0.25)] shrink-0">
@@ -446,11 +473,11 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
             )}
 
             {/* Empty State */}
-            {filteredDeals.length === 0 && filteredArticles.length === 0 && filteredDiscussions.length === 0 && (
+            {visibleCount === 0 && (
               <div className="py-12 text-center text-zinc-500">
                 <Sparkles className="w-8 h-8 text-zinc-600 mx-auto mb-2" />
                 <p className="text-sm">No matches found for &quot;{query}&quot;</p>
-                <p className="text-xs text-zinc-600 mt-1">Try searching for &quot;AI&quot;, &quot;EdgeBase&quot;, or &quot;Lifetime&quot;</p>
+                <p className="text-xs text-zinc-600 mt-1">Try a brand name such as beehiiv, Notion or Hostinger, or choose another filter.</p>
               </div>
             )}
           </div>
@@ -458,7 +485,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
           {/* Quick Categories Bar in Footer */}
           <div className="flex items-center justify-between px-5 py-3 border-t border-white/10 bg-[#08080A] text-xs text-zinc-400">
             <div className="flex items-center gap-1.5">
-              <span className="font-mono text-[10px] text-zinc-500">POPULAR:</span>
+              <span className="font-mono text-[10px] text-zinc-500">CATEGORIES:</span>
               {CATEGORIES.slice(0, 4).map((c) => (
                 <Link
                   key={c.id}
@@ -471,7 +498,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
               ))}
             </div>
             <div className="font-mono text-[10px] text-zinc-500">
-              PRESS <span className="text-white">↵</span> TO VIEW A MATCHING CODE
+              Choose a result to compare terms
             </div>
           </div>
         </motion.div>

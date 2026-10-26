@@ -5,7 +5,7 @@ import { getAllDeals } from "@/lib/data/deals-data";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { BrandDiscountsSection } from "@/components/sections/BrandDiscountsSection";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getFeaturedDiscountBrands } from "@/lib/brand-discounts";
+import { getDiscountSearchEntries, getFeaturedDiscountBrands } from "@/lib/brand-discounts";
 import { webPageSchema } from "@/lib/structured-data";
 import { MarqueeTickerBand } from "@/components/sections/MarqueeTickerBand";
 import { StatsCounters } from "@/components/sections/StatsCounters";
@@ -39,7 +39,7 @@ export default function HomePage() {
         },
       }} />
       {/* 1. Hero Section */}
-      <HeroSection />
+      <HeroSection discountBrands={getDiscountSearchEntries()} />
 
       <BrandDiscountsSection deals={deals} />
 

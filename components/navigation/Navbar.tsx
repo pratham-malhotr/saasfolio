@@ -10,8 +10,9 @@ import { CommandPalette } from "@/components/modals/CommandPalette";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { apiRequest } from "@/lib/api-client";
+import type { DiscountSearchEntry } from "@/lib/discount-search";
 
-export function Navbar() {
+export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry[] }) {
   const pathname = usePathname();
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -364,7 +365,7 @@ export function Navbar() {
       </AnimatePresence>
 
       {/* Global Command Palette */}
-      <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} discountBrands={discountBrands} />
     </>
   );
 }

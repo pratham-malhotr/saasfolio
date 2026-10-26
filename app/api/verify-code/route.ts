@@ -10,8 +10,8 @@ export async function POST(request: Request) {
       ? (rawType as "coupon" | "referral" | "discount")
       : "coupon";
     const toolName = text(data, "toolName", 1, 100);
-    const websiteUrl = String(data.websiteUrl || "").slice(0, 500);
-    const discountPercentage = Number(data.discountPercentage || 0);
+    const websiteUrl = text(data, "websiteUrl", 0, 2000);
+    const discountPercentage = Number(data.discountPercentage ?? 0);
 
     const input: CodeVerificationInput = {
       code,
@@ -19,9 +19,12 @@ export async function POST(request: Request) {
       toolName,
       websiteUrl,
       discountPercentage,
-      discountDescription: String(data.discountDescription || "").slice(0, 200),
+      discountDescription: text(data, "discountDescription", 0, 300),
+      expirationDate: text(data, "expirationDate", 0, 10),
     };
 
+    // A preview of local input checks. This endpoint does not submit the code,
+    // verify a source, or test acceptance with the provider.
     const report = verifyCodeLocally(input);
     return json({ report });
   } catch (error) {
