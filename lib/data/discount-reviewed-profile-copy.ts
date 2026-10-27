@@ -3,6 +3,23 @@
 import type { DetailedTool } from "@/lib/types";
 
 export const DISCOUNT_REVIEWED_PROFILE_COPY = {
+  "adobe-creative-cloud": {
+    "name": "Adobe Creative Cloud",
+    "website": "https://www.adobe.com",
+    "pricingUrl": "https://www.adobe.com/creativecloud/plans.html",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "Adobe Creative Cloud offers subscriptions to creative applications for image editing, design, illustration, video and related production workflows.",
+    "description": "Adobe Creative Cloud offers subscriptions to creative applications for image editing, design, illustration, video and related production workflows.",
+    "longDescription": "Adobe Creative Cloud provides individual applications and creative subscription bundles. Evaluate the tools needed for an actual design or production workflow before comparing a bundle with a smaller purchase. Storage, generative allowances and related services should be checked against the selected local package. The student and teacher route requires current eligibility and has a defined contractual term. Its discount guide explains verification, the distinction between monthly payments and annual commitment, and the need to budget for the renewal rate.",
+    "keyFeatures": [
+      "Image editing applications",
+      "Illustration and design",
+      "Video production applications",
+      "Creative application bundles",
+      "Plan-dependent generative tools"
+    ]
+  },
   "affine": {
     "name": "AFFiNE",
     "website": "https://affine.pro",
@@ -37,6 +54,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Verified-site free access"
     ]
   },
+  "airtable": {
+    "name": "Airtable",
+    "website": "https://airtable.com",
+    "pricingUrl": "https://airtable.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Airtable connects structured data, interfaces and automations for teams building shared operational workflows and internal applications.",
+    "description": "Airtable connects structured data, interfaces and automations for teams building shared operational workflows and internal applications.",
+    "longDescription": "Airtable gives teams a configurable way to organize structured information and build operational interfaces around it. Evaluate linked records, access roles, forms and automations against a real process before choosing a paid workspace. Collaborator billing, required capacity and additional capabilities can change the total. Its official discount documentation has specific rules for Team nonprofit access and separate institutional or student routes. The guide explains the monthly-rate basis and the restriction on combining nonprofit and ordinary annual reductions.",
+    "keyFeatures": [
+      "Connected records",
+      "Workflow interfaces",
+      "Forms and views",
+      "Automations",
+      "Workspace collaboration"
+    ]
+  },
   "akiflow": {
     "name": "Akiflow",
     "website": "https://akiflow.com",
@@ -52,6 +86,125 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Daily planning",
       "AI assistant",
       "Team billing"
+    ]
+  },
+  "asana": {
+    "name": "Asana",
+    "website": "https://asana.com",
+    "pricingUrl": "https://asana.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Asana coordinates projects and cross-functional work through tasks, project views, workflow rules and plan-dependent reporting and administration.",
+    "description": "Asana coordinates projects and cross-functional work through tasks, project views, workflow rules and plan-dependent reporting and administration.",
+    "longDescription": "Asana supports the coordination of work across people and projects. Test a representative initiative from intake and assignment through review and reporting, including the roles responsible for administration. Compare the paid package that covers that workflow rather than assuming every feature belongs to the entry plan. Its official nonprofit program names eligible Starter and Advanced subscriptions. The savings guide explains organization approval, scope and the full renewal comparison without treating the benefit as a universal code.",
+    "keyFeatures": [
+      "Tasks and project ownership",
+      "Project views",
+      "Workflow rules",
+      "Team coordination",
+      "Plan-dependent reporting"
+    ]
+  },
+  "baserow": {
+    "name": "Baserow",
+    "website": "https://baserow.io",
+    "pricingUrl": "https://baserow.io/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Baserow combines a no-code database and application builder with cloud hosting and self-hosted deployment options for structured team workflows.",
+    "description": "Baserow combines a no-code database and application builder with cloud hosting and self-hosted deployment options for structured team workflows.",
+    "longDescription": "Baserow helps teams organize structured information into databases, views and applications. It suits workflows such as an internal directory, an operational register or a shared intake process where relationships between records matter. Cloud service and self-hosted software are distinct purchasing choices. Evaluate permission requirements, workspace collaborators and responsibility for operating the service before selecting a deployment. The savings guide explains documented education and nonprofit enquiries without turning a sales quote into a universal coupon.",
+    "keyFeatures": [
+      "Relational database builder",
+      "Application builder",
+      "Forms and views",
+      "Cloud workspaces",
+      "Self-hosted deployment"
+    ]
+  },
+  "box": {
+    "name": "Box",
+    "website": "https://www.box.com",
+    "pricingUrl": "https://www.box.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Box provides cloud content storage, sharing and collaboration with plan-dependent administration, workflow, e-signature and governance capabilities.",
+    "description": "Box provides cloud content storage, sharing and collaboration with plan-dependent administration, workflow, e-signature and governance capabilities.",
+    "longDescription": "Box supports the management and sharing of organizational content. Evaluate a document workflow involving internal authors, an external collaborator and the person responsible for access or retention. Plan fit depends on more than storage: file limits, administration and required workflow capabilities can change the purchase. Its official nonprofit resources describe donated or discounted access with approval-specific scope. The savings guide compares current organization and ordinary billing routes without promising an old percentage across the full Box portfolio.",
+    "keyFeatures": [
+      "Content storage and sharing",
+      "External collaboration",
+      "Plan-dependent e-signatures",
+      "Content workflows",
+      "Administrative controls"
+    ]
+  },
+  "browserstack": {
+    "name": "BrowserStack",
+    "website": "https://www.browserstack.com",
+    "pricingUrl": "https://www.browserstack.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "BrowserStack offers cloud-based browser and device testing products for manual, automated, visual and accessibility testing workflows.",
+    "description": "BrowserStack offers cloud-based browser and device testing products for manual, automated, visual and accessibility testing workflows.",
+    "longDescription": "BrowserStack provides several products for checking applications across browser, device and testing contexts. A release team should identify its required coverage and distinguish manual sessions from automated parallel execution before selecting a subscription. Visual, accessibility and other testing products can introduce separate commercial requirements. Its discount guide compares eligible annual selectors within the correct configuration and explains why a starting rate or maximum saving should not be extrapolated across the entire product portfolio.",
+    "keyFeatures": [
+      "Browser and device testing",
+      "Automated test execution",
+      "Manual testing sessions",
+      "Visual testing products",
+      "Accessibility testing products"
+    ]
+  },
+  "checkly": {
+    "name": "Checkly",
+    "website": "https://www.checklyhq.com",
+    "pricingUrl": "https://www.checklyhq.com/pricing/",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Checkly provides uptime and synthetic monitoring for APIs and browser journeys, with code-based checks and plan-dependent execution allowances.",
+    "description": "Checkly provides uptime and synthetic monitoring for APIs and browser journeys, with code-based checks and plan-dependent execution allowances.",
+    "longDescription": "Checkly helps engineering teams check the availability and behavior of services from outside the application. Evaluate an API and an important browser journey, including alert handling and the work required to keep checks reliable. Schedule frequency and execution locations affect usage, while different products can address monitoring or response needs. Its savings guide compares the published annual option against the same required configuration without assuming every run type, plan or related product receives the maximum advertised reduction.",
+    "keyFeatures": [
+      "API monitoring",
+      "Browser checks",
+      "Uptime monitoring",
+      "Monitoring as code",
+      "Team alerting workflows"
+    ]
+  },
+  "coderabbit": {
+    "name": "CodeRabbit",
+    "website": "https://www.coderabbit.ai",
+    "pricingUrl": "https://www.coderabbit.ai/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "CodeRabbit provides AI-assisted code review across pull requests and developer workflows, with commercial plans and public-repository access.",
+    "description": "CodeRabbit provides AI-assisted code review across pull requests and developer workflows, with commercial plans and public-repository access.",
+    "longDescription": "CodeRabbit adds automated review assistance to a software team's change process. Evaluate representative pull requests, the usefulness of suggestions and how developers handle feedback before deciding which subscription fits. Review scope, paid developers and organization controls matter more than the size of a promotional percentage. Public-repository access has a different eligibility model from private commercial work. The discount guide compares current annual plans and their continuing cost without assuming older plan entitlements still apply.",
+    "keyFeatures": [
+      "Pull request code review",
+      "Review summaries",
+      "Review rules and feedback",
+      "GitHub and GitLab workflows",
+      "Developer review surfaces"
+    ]
+  },
+  "confluence": {
+    "name": "Confluence",
+    "website": "https://www.atlassian.com",
+    "pricingUrl": "https://www.atlassian.com/software/confluence/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Confluence is a shared knowledge and collaboration workspace for creating, organizing and discussing team documentation.",
+    "description": "Confluence is a shared knowledge and collaboration workspace for creating, organizing and discussing team documentation.",
+    "longDescription": "Confluence gives teams a shared location for documentation, decisions and reference material. Evaluate a real document lifecycle, from authorship and review to retrieval by the people relying on it. Permissions, workspace administration and required extensions should guide the plan comparison. The subscription's user model and the organization's other Atlassian purchases can affect the complete budget. Its discount guide addresses separate eligible nonprofit and academic cloud routes, along with the need to check renewal and app licensing.",
+    "keyFeatures": [
+      "Collaborative pages",
+      "Knowledge spaces",
+      "Content permissions",
+      "Team documentation",
+      "Atlassian integrations"
     ]
   },
   "consensus": {
@@ -85,6 +238,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Recording and podcast workflows",
       "AI audio and video tools",
       "Media-minute and AI-credit plan allowances"
+    ]
+  },
+  "dropbox": {
+    "name": "Dropbox",
+    "website": "https://www.dropbox.com",
+    "pricingUrl": "https://www.dropbox.com/plans",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "Dropbox provides file storage, synchronization, sharing and collaboration through individual and team subscription options.",
+    "description": "Dropbox provides file storage, synchronization, sharing and collaboration through individual and team subscription options.",
+    "longDescription": "Dropbox helps people store and share files across devices and collaborators. Evaluate a representative folder, an external sharing interaction and a recovery need before selecting individual or team service. Storage volume is only one purchasing consideration; administration, recovery and access ownership also affect plan fit. The official billing help describes organization discount enquiries for eligible nonprofit and education team accounts. Its savings guide focuses on the approved team configuration and renewal rather than an unsupported public coupon.",
+    "keyFeatures": [
+      "File synchronization",
+      "Shared folders and links",
+      "File recovery options",
+      "Team administration",
+      "Document collaboration"
     ]
   },
   "elicit": {
@@ -137,6 +307,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Team collaboration and CRM workflows"
     ]
   },
+  "fibery": {
+    "name": "Fibery",
+    "website": "https://fibery.com",
+    "pricingUrl": "https://fibery.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "Fibery combines connected databases, product planning, documents and configurable team workflows in a shared workspace.",
+    "description": "Fibery combines connected databases, product planning, documents and configurable team workflows in a shared workspace.",
+    "longDescription": "Fibery is a workspace for connecting information across product and operational processes. A team can relate customer requests to specifications, planned work and supporting knowledge instead of managing each as an isolated list. Evaluate how those relationships and permissions fit your process before migrating a production workflow. The startup benefit is an application route for a particular plan and period; assess the full workspace cost after the benefit, including the people who need continued editing access.",
+    "keyFeatures": [
+      "Connected databases",
+      "Product planning",
+      "Documents and knowledge",
+      "Workflow configuration",
+      "Customer feedback organization"
+    ]
+  },
   "fireflies-ai": {
     "name": "Fireflies.ai",
     "website": "https://fireflies.ai",
@@ -151,6 +338,40 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Search across meeting conversations",
       "Video and transcript exports on eligible plans",
       "Team integrations and AI-credit features"
+    ]
+  },
+  "google-workspace": {
+    "name": "Google Workspace",
+    "website": "https://workspace.google.com",
+    "pricingUrl": "https://workspace.google.com/pricing.html",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "Google Workspace combines business email, shared documents, storage, meetings and administration for organizations using a managed collaboration suite.",
+    "description": "Google Workspace combines business email, shared documents, storage, meetings and administration for organizations using a managed collaboration suite.",
+    "longDescription": "Google Workspace brings organizational email and collaborative work into a managed suite. Evaluate domain ownership, account migration, file sharing, meetings and administrative responsibilities together before choosing an edition. Retention, storage and meeting needs can lead different teams to different packages. Ordinary commercial commitments and nonprofit access have separate terms. The savings guide compares those routes and emphasizes the full license period and ongoing price instead of assuming a temporary regional promotion applies to every purchase.",
+    "keyFeatures": [
+      "Custom-domain email",
+      "Collaborative documents",
+      "Shared file storage",
+      "Video meetings",
+      "Organization administration"
+    ]
+  },
+  "healthchecks-io": {
+    "name": "Healthchecks.io",
+    "website": "https://healthchecks.io",
+    "pricingUrl": "https://healthchecks.io/pricing/",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Healthchecks.io monitors scheduled jobs and background tasks by receiving success or failure signals and notifying teams when expected activity is missing.",
+    "description": "Healthchecks.io monitors scheduled jobs and background tasks by receiving success or failure signals and notifying teams when expected activity is missing.",
+    "longDescription": "Healthchecks.io helps operators detect when expected background work does not run or complete. Integrate a representative scheduled job, define its expected timing and test both a missed run and an explicit failure. Hosted plans differ in check capacity, history and notification allowances. Self-hosting changes the operating responsibility rather than simply making monitoring cost disappear. The discount guide compares the documented annual Business options with the hosted free route and the real work of maintaining a separate monitoring service.",
+    "keyFeatures": [
+      "Cron-job monitoring",
+      "Heartbeat checks",
+      "Failure notifications",
+      "Check history",
+      "Hosted and self-hosted choices"
     ]
   },
   "huly": {
@@ -168,6 +389,125 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Team communication",
       "Personal scheduling",
       "Self-hosting"
+    ]
+  },
+  "hyperping": {
+    "name": "Hyperping",
+    "website": "https://hyperping.com",
+    "pricingUrl": "https://hyperping.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Hyperping combines service monitoring, status pages and alerting with plan-dependent browser checks, on-call capabilities and log usage.",
+    "description": "Hyperping combines service monitoring, status pages and alerting with plan-dependent browser checks, on-call capabilities and log usage.",
+    "longDescription": "Hyperping gives operations teams tools for observing service availability and communicating incidents. Evaluate a real failure path from a monitor through an alert to a status update, including the people responsible for response. Package limits and separately metered log traffic matter when comparing a consolidated purchase with existing tools. Its official pricing describes a yearly billing benefit. The savings guide distinguishes that invoice comparison from the provider's illustrative competitor-stack comparison and explains how to budget the monitoring workload.",
+    "keyFeatures": [
+      "Uptime monitoring",
+      "Status pages",
+      "Browser and cron checks",
+      "Alerts and on-call workflows",
+      "Log monitoring"
+    ]
+  },
+  "incident-io": {
+    "name": "incident.io",
+    "website": "https://incident.io",
+    "pricingUrl": "https://incident.io/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "incident.io supports incident response, team coordination and on-call workflows through integrations with Slack or Microsoft Teams and plan-dependent automation.",
+    "description": "incident.io supports incident response, team coordination and on-call workflows through integrations with Slack or Microsoft Teams and plan-dependent automation.",
+    "longDescription": "incident.io helps teams organize the work of responding to an operational incident. Evaluate the journey from an alert through role assignment, coordination, communication and follow-up. Separate the people who need incident-response access from the requirements of an on-call schedule. The pricing page offers a Basic route and paid packages with their own scope. Its savings guide compares the annual Team arrangement with an equivalent operational configuration rather than applying one discount percentage to every response product.",
+    "keyFeatures": [
+      "Incident coordination",
+      "Slack and Teams workflows",
+      "On-call response",
+      "Incident automation",
+      "Status communication"
+    ]
+  },
+  "intercom": {
+    "name": "Intercom",
+    "website": "https://www.intercom.com",
+    "pricingUrl": "https://www.intercom.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Paid",
+    "tagline": "Intercom combines a customer support helpdesk, shared inbox workflows and AI-assisted service with seat- and usage-dependent pricing.",
+    "description": "Intercom combines a customer support helpdesk, shared inbox workflows and AI-assisted service with seat- and usage-dependent pricing.",
+    "longDescription": "Intercom supports customer service through a helpdesk and AI-related products. Evaluate the actual support workflow, staffing and channel mix before choosing a subscription. Some costs relate to seats while others follow outcomes or communication usage, making a complete workload model more useful than a single starting rate. The official Early Stage program has a declining schedule, company requirements and specific allowances. Its savings guide explains those conditions and the need to budget for later years and excluded usage.",
+    "keyFeatures": [
+      "Customer support inbox",
+      "Helpdesk workflows",
+      "AI customer service",
+      "Knowledge resources",
+      "Seat and usage reporting"
+    ]
+  },
+  "jira": {
+    "name": "Jira",
+    "website": "https://www.atlassian.com",
+    "pricingUrl": "https://www.atlassian.com/software/jira/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Jira provides work tracking, planning and configurable project workflows for software delivery and other business teams.",
+    "description": "Jira provides work tracking, planning and configurable project workflows for software delivery and other business teams.",
+    "longDescription": "Jira helps teams plan and track work through configurable projects and workflows. Evaluate a real delivery cycle, including intake, ownership, status changes and reporting, before selecting a cloud package. User access and required Marketplace apps affect the full subscription, while annual tiering and monthly billing need equivalent comparisons. Atlassian offers separate nonprofit and academic licensing routes for eligible organizations. The savings guide addresses those programs and the ongoing cost of the actual Jira configuration.",
+    "keyFeatures": [
+      "Work item tracking",
+      "Project planning",
+      "Configurable workflows",
+      "Team reporting",
+      "Marketplace integrations"
+    ]
+  },
+  "linear": {
+    "name": "Linear",
+    "website": "https://linear.app",
+    "pricingUrl": "https://linear.app/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Linear organizes software and product work through issues, projects, planning and integrations that connect customer context with delivery.",
+    "description": "Linear organizes software and product work through issues, projects, planning and integrations that connect customer context with delivery.",
+    "longDescription": "Linear supports product and engineering teams coordinating issues, projects and delivery. Evaluate a representative flow from a customer request through planning, implementation and follow-up. Match workspace administration and paid capabilities to that process before comparing subscriptions. The startup program is tied to official partner affiliation and a qualifying non-paying company, with administrator-controlled redemption. Its savings guide explains those boundaries and the need to confirm the benefit period and ordinary renewal price.",
+    "keyFeatures": [
+      "Issue tracking",
+      "Product projects",
+      "Planning workflows",
+      "Team coordination",
+      "Development integrations"
+    ]
+  },
+  "microsoft-365": {
+    "name": "Microsoft 365",
+    "website": "https://www.microsoft.com",
+    "pricingUrl": "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Paid",
+    "tagline": "Microsoft 365 combines productivity applications, organizational collaboration and plan-dependent email, administration, identity and security capabilities.",
+    "description": "Microsoft 365 combines productivity applications, organizational collaboration and plan-dependent email, administration, identity and security capabilities.",
+    "longDescription": "Microsoft 365 offers several organizational subscriptions with different application and administrative scope. Buyers should distinguish desktop application needs from browser collaboration, security requirements and any Teams or Copilot components. License term, payment schedule and the people receiving access affect the full cost. Official nonprofit offers have their own approval and permitted-user rules. The savings guide explains those differences without presenting historical grants, AI add-ons or one edition's discount as an entitlement across the entire suite.",
+    "keyFeatures": [
+      "Productivity applications",
+      "Organizational email",
+      "Shared documents",
+      "Plan-dependent Teams",
+      "Administration and security"
+    ]
+  },
+  "monday": {
+    "name": "monday.com",
+    "website": "https://monday.com",
+    "pricingUrl": "https://monday.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "monday.com supports work coordination through configurable boards, dashboards and automations, with distinct products for different business workflows.",
+    "description": "monday.com supports work coordination through configurable boards, dashboards and automations, with distinct products for different business workflows.",
+    "longDescription": "monday.com offers work platforms and related products for coordinating business processes. Evaluate the intended workflow, board structure, automation and administrative roles before selecting the exact product and package. Team size and additional capabilities affect the final subscription. Its official nonprofit program distinguishes included seats from a reduction on eligible additional seats. The savings guide explains how to compare that approved configuration without extending one program percentage to every product or AI capability.",
+    "keyFeatures": [
+      "Configurable work boards",
+      "Dashboards and reporting",
+      "Workflow automation",
+      "Team collaboration",
+      "Distinct business products"
     ]
   },
   "morgen-calendar": {
@@ -221,6 +561,57 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Paid article reading and backup"
     ]
   },
+  "nifty": {
+    "name": "Nifty",
+    "website": "https://niftypm.com",
+    "pricingUrl": "https://niftypm.com/pricing/",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Nifty combines projects, milestones, tasks, documents and team discussions for coordinating delivery in a shared workspace.",
+    "description": "Nifty combines projects, milestones, tasks, documents and team discussions for coordinating delivery in a shared workspace.",
+    "longDescription": "Nifty gives a project team a place to coordinate milestones, task ownership, discussions and supporting documents. Evaluate a live delivery cycle with the people who create, review and complete work. Its pricing page distinguishes configurations for different team sizes, making the total workspace quote more useful than an isolated per-user number. Eligible nonprofits and educational institutions can enquire about the published Pro and Business discount; the savings guide explains its scope and the billing questions to settle before buying.",
+    "keyFeatures": [
+      "Project milestones",
+      "Tasks and delivery views",
+      "Team discussions",
+      "Project documents",
+      "Time tracking"
+    ]
+  },
+  "nocodb": {
+    "name": "NocoDB",
+    "website": "https://nocodb.com",
+    "pricingUrl": "https://nocodb.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "NocoDB provides a collaborative database workspace with tables, views and workflow tools through cloud and self-hosted deployment choices.",
+    "description": "NocoDB provides a collaborative database workspace with tables, views and workflow tools through cloud and self-hosted deployment choices.",
+    "longDescription": "NocoDB gives teams a visual interface for organizing data and coordinating record-based work. Buyers should distinguish a hosted workspace from a self-operated edition, then test the views, permissions and database connections needed by their process. A cloud plan's included usage and a self-hosted license's capabilities require separate comparison. Its savings guide covers the published yearly billing option and restricted legacy account eligibility without presenting competitor price comparisons as a discount on your invoice.",
+    "keyFeatures": [
+      "Structured tables and relations",
+      "Database views",
+      "Forms and collaboration",
+      "Cloud workspaces",
+      "Self-hosted editions"
+    ]
+  },
+  "notesnook": {
+    "name": "Notesnook",
+    "website": "https://notesnook.com",
+    "pricingUrl": "https://notesnook.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Notesnook is a privacy-focused note-taking service for organizing and synchronizing notes across desktop, mobile and web applications.",
+    "description": "Notesnook is a privacy-focused note-taking service for organizing and synchronizing notes across desktop, mobile and web applications.",
+    "longDescription": "Notesnook focuses on private note capture and organization across devices. Evaluate importing a representative collection, editing on the devices you use and exporting a useful copy before moving your primary notes. Match attachment and organizational requirements to the current package rather than buying only on storage volume. Its official education program has its own verification and duration. The savings guide separates that eligible purchase route from ordinary free or paid access and addresses what to check when academic status changes.",
+    "keyFeatures": [
+      "Encrypted note taking",
+      "Cross-device sync",
+      "Notebooks and organization",
+      "Attachments",
+      "Import and export workflows"
+    ]
+  },
   "notta": {
     "name": "Notta",
     "website": "https://www.notta.ai",
@@ -270,6 +661,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "AI Writer"
     ]
   },
+  "plutio": {
+    "name": "Plutio",
+    "website": "https://www.plutio.com",
+    "pricingUrl": "https://www.plutio.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "Plutio connects client-facing business workflows through projects, proposals, contracts, invoicing, time tracking and client portals.",
+    "description": "Plutio connects client-facing business workflows through projects, proposals, contracts, invoicing, time tracking and client portals.",
+    "longDescription": "Plutio is a workspace for service businesses that want to connect client agreements with delivery and billing. Evaluate a representative engagement from a proposal through its signed contract, project work and final invoice. Confirm who needs internal access and how clients use the portal before choosing a package. An all-in-one subscription can consolidate work, while payment providers and specialist tools may still carry separate costs. The savings guide compares the published annual option with an equivalent monthly configuration.",
+    "keyFeatures": [
+      "Client projects",
+      "Proposals and contracts",
+      "Invoices",
+      "Time tracking",
+      "Client portals"
+    ]
+  },
   "ranktracker": {
     "name": "Ranktracker",
     "website": "https://www.ranktracker.com",
@@ -301,6 +709,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Separate-track production workflows",
       "Text-based editing and clips",
       "Podcast, livestream and webinar packages"
+    ]
+  },
+  "rootly": {
+    "name": "Rootly",
+    "website": "https://rootly.com",
+    "pricingUrl": "https://rootly.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Paid",
+    "tagline": "Rootly provides incident response, on-call management and AI-assisted operational investigation through separately scoped platform products.",
+    "description": "Rootly provides incident response, on-call management and AI-assisted operational investigation through separately scoped platform products.",
+    "longDescription": "Rootly supports engineering teams coordinating operational response and learning from incidents. Its product lineup includes incident response, on-call and AI SRE capabilities with configuration-dependent commercial terms. Test an incident exercise and identify the products and people required before comparing a purchase. The current startup program distinguishes a qualified percentage-based route from a smaller-company pay-what-you-can discussion. The savings guide explains those eligibility boundaries and the importance of an approved continuing quote.",
+    "keyFeatures": [
+      "Incident response workflows",
+      "On-call scheduling",
+      "Alert routing",
+      "Retrospectives",
+      "AI-assisted investigation"
     ]
   },
   "scispace": {
@@ -353,6 +778,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Specialist marketing toolkits"
     ]
   },
+  "sentry": {
+    "name": "Sentry",
+    "website": "https://sentry.io",
+    "pricingUrl": "https://sentry.io/pricing/",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Sentry provides application observability for investigating software errors and performance through plan- and usage-dependent telemetry products.",
+    "description": "Sentry provides application observability for investigating software errors and performance through plan- and usage-dependent telemetry products.",
+    "longDescription": "Sentry helps developers investigate application failures and performance issues with production telemetry and development context. Evaluate the events and products necessary to diagnose an actual issue before forecasting usage. High-volume sources and optional telemetry can change the operating bill. The official startup application offers an approval-based credit balance with company-history requirements and an expiry. Its savings guide treats that balance as temporary support for usage rather than a permanent percentage discount on unlimited observability.",
+    "keyFeatures": [
+      "Application error monitoring",
+      "Performance investigation",
+      "Release context",
+      "Telemetry usage controls",
+      "Developer integrations"
+    ]
+  },
   "serpstat": {
     "name": "Serpstat",
     "website": "https://serpstat.com",
@@ -368,6 +810,40 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Rank tracking",
       "Site Audit",
       "Team and API options"
+    ]
+  },
+  "smartsuite": {
+    "name": "SmartSuite",
+    "website": "https://www.smartsuite.com",
+    "pricingUrl": "https://www.smartsuite.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "SmartSuite organizes business processes through connected records, configurable views, forms, dashboards and workflow automation.",
+    "description": "SmartSuite organizes business processes through connected records, configurable views, forms, dashboards and workflow automation.",
+    "longDescription": "SmartSuite is a work management platform for modelling operational processes with records and configurable interfaces. Evaluate a complete intake-to-completion workflow, including ownership, approval and reporting, before deciding which subscription fits. The people who administer solutions may need different capabilities from occasional participants. Official documentation provides organization discount applications for registered nonprofits and accredited education institutions. Application approval, rather than a generic coupon string, establishes the price available to an eligible workspace.",
+    "keyFeatures": [
+      "Connected work records",
+      "Configurable views",
+      "Forms and dashboards",
+      "Workflow automation",
+      "Workspace permissions"
+    ]
+  },
+  "sourcery": {
+    "name": "Sourcery",
+    "website": "https://www.sourcery.ai",
+    "pricingUrl": "https://www.sourcery.ai/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Sourcery provides AI code review, pull-request summaries and review guidance for development workflows on GitHub and GitLab.",
+    "description": "Sourcery provides AI code review, pull-request summaries and review guidance for development workflows on GitHub and GitLab.",
+    "longDescription": "Sourcery adds review feedback to a development team's pull-request process. Assess the relevance of suggestions, how review rules reflect the codebase and how developers handle the output before selecting a paid package. The pricing model counts assigned developer seats, making access management an important part of a team comparison. Public-repository review and a temporary Team trial are separate from paid private development. The savings guide explains the published annual reduction and what to check before renewing.",
+    "keyFeatures": [
+      "AI pull-request reviews",
+      "Review summaries and diagrams",
+      "Review rules",
+      "GitHub and GitLab integration",
+      "Assigned developer seats"
     ]
   },
   "sunsama": {
@@ -401,6 +877,74 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "AI notes and summaries",
       "Searchable meeting conversations",
       "CRM and collaboration workflows"
+    ]
+  },
+  "trello": {
+    "name": "Trello",
+    "website": "https://trello.com",
+    "pricingUrl": "https://trello.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Trello organizes projects through visual boards, lists and cards, with plan-dependent collaboration, automation and workspace views.",
+    "description": "Trello organizes projects through visual boards, lists and cards, with plan-dependent collaboration, automation and workspace views.",
+    "longDescription": "Trello supports visual coordination of tasks through boards and cards that teams move through a process. Evaluate a representative project with its collaborators, handoffs and automation before choosing a workspace plan. A small free setup and a paid Standard or Premium workspace have different limits and capabilities. Trello also publishes its own eligible nonprofit program. The savings guide compares those purchase routes without transferring licensing assumptions from another Atlassian product.",
+    "keyFeatures": [
+      "Boards, lists and cards",
+      "Task ownership",
+      "Workflow automation",
+      "Workspace views",
+      "Project integrations"
+    ]
+  },
+  "typeform": {
+    "name": "Typeform",
+    "website": "https://www.typeform.com",
+    "pricingUrl": "https://www.typeform.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Typeform builds interactive forms, surveys and data-collection workflows with plan-dependent response capacity, collaboration and integrations.",
+    "description": "Typeform builds interactive forms, surveys and data-collection workflows with plan-dependent response capacity, collaboration and integrations.",
+    "longDescription": "Typeform supports structured data collection through interactive forms and related workflows. Evaluate a representative survey or intake process from respondent completion to the downstream action taken by the team. Response capacity, required integrations and collaboration should guide the package comparison. Official help provides separate application-based startup, student and educator or NGO offers. The savings guide explains their billing-period and duration boundaries and how to apply an approved coupon without treating one program as universal pricing.",
+    "keyFeatures": [
+      "Interactive forms",
+      "Surveys and intake",
+      "Response workflows",
+      "Integrations",
+      "Team collaboration"
+    ]
+  },
+  "xtiles": {
+    "name": "xTiles",
+    "website": "https://xtiles.app",
+    "pricingUrl": "https://xtiles.app/en/pricing/",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "xTiles is a visual workspace for organizing notes, plans, projects and collections with linked pages and planning tools.",
+    "description": "xTiles is a visual workspace for organizing notes, plans, projects and collections with linked pages and planning tools.",
+    "longDescription": "xTiles supports visual organization of information through pages, projects and planning layouts. Test the way you connect reference material with tasks and your calendar before deciding on a paid workspace. Individual study, teaching and organization collaboration can have different requirements, so choose the correct subscription identity at the start. Its official pricing and help pages describe verification-based education and nonprofit offers, including a limited duration; those benefits should be compared with the plan you will need after the discounted year.",
+    "keyFeatures": [
+      "Visual pages and projects",
+      "Notes and collections",
+      "Task planning",
+      "Calendar connections",
+      "Shared workspaces"
+    ]
+  },
+  "zapier": {
+    "name": "Zapier",
+    "website": "https://zapier.com",
+    "pricingUrl": "https://zapier.com/pricing",
+    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Zapier connects applications through automated workflows, with package-dependent task allowances, collaboration and platform capabilities.",
+    "description": "Zapier connects applications through automated workflows, with package-dependent task allowances, collaboration and platform capabilities.",
+    "longDescription": "Zapier helps teams move information and trigger actions between applications. Evaluate an entire workflow, including failures and downstream effects, before forecasting task consumption or choosing a subscription. Required application access and specialist services may also carry separate costs. Its official help distinguishes annual billing from a verified nonprofit benefit and excludes pay-per-task charges from the latter. The savings guide compares the complete expected invoice and the continuing workflow workload rather than adding unrelated headline percentages.",
+    "keyFeatures": [
+      "Application integrations",
+      "Automated workflows",
+      "Task usage reporting",
+      "Workflow collaboration",
+      "Platform automation tools"
     ]
   }
 } satisfies Record<string, Pick<DetailedTool,

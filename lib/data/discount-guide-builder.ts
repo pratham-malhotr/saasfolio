@@ -10,6 +10,7 @@ export interface DiscountGuideEntry {
   reviewedAt: string;
   url: string;
   meta: string;
+  searchTitle?: string;
   intro: string;
   summary: string;
   best: string;
@@ -29,6 +30,7 @@ export interface DiscountGuideEntry {
     categorySlug: string;
     pricingModel: DetailedTool["pricingModel"];
     description: string;
+    longDescription?: string;
     features: string[];
   };
 }
@@ -36,7 +38,7 @@ export interface DiscountGuideEntry {
 export function buildDiscountGuides(entries: DiscountGuideEntry[]): Record<string, BrandDiscountGuide> {
   return Object.fromEntries(entries.map(entry => [entry.slug, {
     reviewedAt: entry.reviewedAt, sourceUrl: entry.url,
-    searchTitle: `${entry.name} Discounts & Coupon Codes`,
+    searchTitle: entry.searchTitle || `${entry.name} Discounts & Coupon Codes`,
     metaDescription: entry.meta, intro: entry.intro, summary: entry.summary,
     bestDiscountAnswer: entry.best, billingModel: entry.billingModel,
     relatedSlugs: entry.related,
