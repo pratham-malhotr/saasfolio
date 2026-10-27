@@ -27,7 +27,10 @@
     "coupons:inspect": "node scripts/inspect-simplycodes.mjs",
     "test:browser:features": "node scripts/browser-simplycodes-features.mjs",
     "test:offer-ui": "node --test scripts/offer-evidence-ui.test.mjs",
-    "test:search": "node --test scripts/discount-search.test.mjs"
+    "test:search": "node --test scripts/discount-search.test.mjs",
+    "test:browser:auth": "node scripts/browser-auth-smoke.mjs",
+    "test:auth": "node --test scripts/auth-oauth.test.mjs scripts/local-auth-security.test.mjs scripts/auth-proxy.test.mjs",
+    "test:auth:http": "node scripts/auth-http-smoke.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

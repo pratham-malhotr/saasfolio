@@ -19,6 +19,7 @@ function platform(options = {}) {
   const cache = new Map();
   const writes = [];
   const limits = [];
+  const authCookies = new Map();
   let user = options.user || null;
   const database = {
     rpc: async (_name, args) => { limits.push(args); return { data: options.limited ? false : true, error: options.limitFailure ? {} : null }; },
@@ -52,7 +53,12 @@ function platform(options = {}) {
   };
   const overrides = {
     "server-only": {},
-    "next/headers": { cookies: async () => ({ getAll: () => [], set: () => {} }) },
+    "next/headers": { cookies: async () => ({
+      get: name => authCookies.has(name) ? { name, value: authCookies.get(name) } : undefined,
+      getAll: () => [...authCookies].map(([name, value]) => ({ name, value })),
+      set: (name, value, options) => { if (options?.maxAge === 0) authCookies.delete(name); else authCookies.set(name, value); },
+      delete: name => { authCookies.delete(name); },
+    }) },
     "@supabase/ssr": { createServerClient: () => ({ ...database, auth }) },
     "@supabase/supabase-js": { createClient: () => database },
     "@/lib/data/deals-data": { getDealBySlug: slug => slug === "valid-offer" ? { slug, title: "Valid offer" } : undefined },

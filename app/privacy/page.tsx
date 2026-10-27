@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
             SAASFOLIO PRIVACY POLICY
           </h1>
           <p className="font-mono text-xs text-zinc-500">
-            UPDATED: OCTOBER 23, 2026
+            UPDATED: OCTOBER 27, 2026
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul className="list-disc pl-5 space-y-2 text-zinc-400">
               <li>
-                <strong className="text-zinc-200">Account Credentials:</strong> Account signup uses Supabase Auth to process your email address and password. Profile settings contain your display name and optional biography. Passwords are handled by the authentication provider.
+                <strong className="text-zinc-200">Account Credentials:</strong> Account signup uses Supabase Auth to process your email address and password. When enabled, Google or Apple sign-in provides identity details such as your provider-confirmed email and available profile name; Apple may provide a private relay address. Your Google or Apple password is entered with that provider. Profile settings contain your display name and optional biography. Supabase stores salted password hashes for email/password accounts.
               </li>
               <li>
                 <strong className="text-zinc-200">Messages and Submissions:</strong> Contact, advertising and software-submission forms collect the details you enter when the online submission service is configured. Community and article drafts, comments and session feedback are browser-local previews and are not shared publicly by the current implementation.

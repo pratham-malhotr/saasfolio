@@ -2,6 +2,7 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { SITE_URL } from "@/lib/seo";
 import { normalizePublicHttpsUrl } from "@/lib/public-url.mjs";
+import { safeAuthRedirect } from "@/lib/auth-navigation";
 
 export class HttpError extends Error {
   constructor(public status: number, message: string) { super(message); }
@@ -68,5 +69,5 @@ export function website(data: Record<string, unknown>, key: string) {
 }
 
 export function safeRedirect(value: unknown, fallback = "/profile") {
-  return typeof value === "string" && /^\/(?!\/)/.test(value) && !/[\\\u0000-\u0020]/.test(value) ? value : fallback;
+  return safeAuthRedirect(value, fallback);
 }

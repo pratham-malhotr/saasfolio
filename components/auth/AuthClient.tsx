@@ -1,10 +1,11 @@
 "use client";
 
-import { useServiceAvailability } from "@/lib/use-service-availability";
+import { useAuthAvailability } from "@/lib/use-auth-availability";
+import { safeAuthRedirect } from "@/lib/auth-navigation";
 import { ServiceNotice } from "@/components/forms/ServiceNotice";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { apiRequest } from "@/lib/api-client";
 import {
   Mail,
@@ -23,76 +24,116 @@ import {
 } from "lucide-react";
 
 export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | "signup" | "password" }) {
-  const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("accountsConfigured");
-  const router = useRouter();
+  const { status: serviceStatus, available: serviceAvailable, providers, minimumPasswordLength } = useAuthAvailability();
   const params = useSearchParams();
-  const redirectParam = params.get("redirect") || "";
-  const isFromSubmit = redirectParam.includes("/submit");
+  const destination = safeAuthRedirect(params.get("redirect"));
+  const backHref = safeAuthRedirect(params.get("redirect"), "/");
+  const isFromSubmit = destination.split(/[?#]/)[0] === "/submit";
 
   const [mode, setMode] = useState<"login" | "signup" | "reset" | "password">(initialMode);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [busy, setBusy] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [recoveryAllowed, setRecoveryAllowed] = useState(false);
+  const [checkingRecovery, setCheckingRecovery] = useState(initialMode === "password");
+  const [busy, setBusy] = useState<"email" | "google" | "apple" | null>(null);
+  const requestLock = useRef(false);
   const [error, setError] = useState(
     params.get("error") === "confirmation"
       ? "That confirmation link could not be used. Request a fresh link or try signing in."
+      : params.get("error") === "oauth"
+      ? "Provider sign-in could not be completed. Try again or use your email and password."
       : ""
   );
-  const [notice, setNotice] = useState("");
+  const [notice, setNotice] = useState(params.get("reset") === "success" ? "Your password has been changed. Sign in with your new password." : "");
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    if (initialMode !== "password") return;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 8000);
+    fetch("/api/auth/session", { credentials: "same-origin", cache: "no-store", signal: controller.signal })
+      .then(async response => { if (!response.ok) throw new Error(); return response.json(); })
+      .then(result => { if (!controller.signal.aborted) setRecoveryAllowed(result.recoveryAllowed === true); })
+      .catch(() => { /* The backend still requires current-password or recovery proof. */ })
+      .finally(() => { window.clearTimeout(timeout); setCheckingRecovery(false); });
+    return () => { window.clearTimeout(timeout); controller.abort(); };
+  }, [initialMode]);
 
   // Password strength calculation for sign up
   const passwordStrength = useMemo(() => {
     if (!password) return { score: 0, label: "Enter password", color: "bg-zinc-700" };
     let score = 0;
-    if (password.length >= 12) score += 35;
-    else if (password.length >= 8) score += 25;
+    if (password.length >= minimumPasswordLength) score += 35;
     if (/[A-Z]/.test(password) && /[a-z]/.test(password)) score += 25;
     if (/[0-9]/.test(password)) score += 20;
     if (/[^A-Za-z0-9]/.test(password)) score += 20;
 
-    if (score < 40) return { score, label: "Weak (min 8 characters)", color: "bg-rose-500" };
+    if (password.length < minimumPasswordLength) return { score, label: `Use at least ${minimumPasswordLength} characters`, color: "bg-rose-500" };
+    if (score < 40) return { score, label: "Add more variety", color: "bg-rose-500" };
     if (score < 65) return { score, label: "Fair", color: "bg-amber-400" };
     if (score < 85) return { score, label: "Good", color: "bg-emerald-400" };
-    return { score, label: "Strong & Secure", color: "bg-[#C6FF3D]" };
-  }, [password]);
+    return { score, label: "Strong", color: "bg-[#C6FF3D]" };
+  }, [password, minimumPasswordLength]);
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
-    setBusy(true);
+    if (requestLock.current || !serviceAvailable || checkingRecovery) return;
+    requestLock.current = true;
+    setBusy("email");
     setError("");
     setNotice("");
+    let navigating = false;
     try {
       const result = await apiRequest<{ user?: unknown; message?: string }>(`/api/auth/${mode}`, {
         name,
         email,
         password,
+        ...(mode === "password" ? { currentPassword } : {}),
+        redirect: destination,
       });
       if (result.user || mode === "password") {
         window.dispatchEvent(new Event("saasfolio_auth_changed"));
-        const redirect = params.get("redirect");
-        const safeDestination =
-          redirect && /^\/(?!\/)/.test(redirect) && !/[\\\u0000-\u0020]/.test(redirect)
-            ? redirect
-            : "/profile";
         // Full navigation ensures cookies are attached immediately to RSC requests
-        window.location.href = safeDestination;
+        navigating = true;
+        window.location.assign(mode === "password" ? "/login?reset=success" : destination);
       } else {
         setNotice(result.message || "Your request has been processed.");
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Please check your details and try again.");
     } finally {
-      setBusy(false);
+      if (!navigating) { requestLock.current = false; setBusy(null); }
+    }
+  }
+
+  async function signInWithProvider(provider: "google" | "apple") {
+    if (requestLock.current || !providers[provider]) return;
+    requestLock.current = true;
+    setBusy(provider); setError(""); setNotice("");
+    let navigating = false;
+    try {
+      const result = await apiRequest<{ url: string }>("/api/auth/oauth", { provider, redirect: destination });
+      const url = new URL(result.url);
+      if (url.protocol !== "https:" || url.username || url.password) throw new Error("The provider sign-in link could not be opened. Please try again.");
+      navigating = true;
+      window.location.assign(url.toString());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Provider sign-in could not be started. Try again or use email and password.");
+    } finally {
+      if (!navigating) { requestLock.current = false; setBusy(null); }
     }
   }
 
   function changeMode(next: "login" | "signup" | "reset") {
+    if (requestLock.current) return;
     setMode(next);
     setPassword("");
+    setCurrentPassword("");
     setError("");
     setNotice("");
+    setShowPassword(false);
   }
 
   const heading =
@@ -106,12 +147,18 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
 
   const subtitle =
     mode === "signup"
-      ? "Join verified builders and software buyers. Submit working promo codes, unlock deals, and earn community karma."
+      ? "Save software offers to your account and submit sourced discounts for review."
       : mode === "reset"
-      ? "Enter your email address and we'll send you an encrypted password recovery link."
+      ? "Enter your email address to request a password reset link."
       : mode === "password"
-      ? "Enter your new password below (must be at least 8 characters)."
-      : "Sign in to access your personal deal vault, bookmarks, and submit verified promo codes.";
+      ? `Choose a new password with at least ${minimumPasswordLength} characters.`
+      : "Sign in to manage saved offers and submit discounts for review.";
+  const unavailableProviders = [!providers.google && "Google", !providers.apple && "Apple"].filter(Boolean);
+  const providerNotice = serviceStatus === "loading"
+    ? "Checking sign-in options…"
+    : unavailableProviders.length
+    ? `${unavailableProviders.join(" and ")} sign-in ${unavailableProviders.length === 1 ? "is" : "are"} not available on this site yet.${serviceAvailable ? " You can continue with email and password." : ""}`
+    : `Choose a provider${serviceAvailable ? ", or continue with email and password" : ""}.`;
 
   return (
     <div className="min-h-screen bg-[#050505] text-white pt-28 pb-24 px-4 sm:px-6 lg:px-8 flex flex-col justify-center relative overflow-hidden">
@@ -122,11 +169,12 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
       <div className="max-w-5xl mx-auto w-full relative z-10">
         {/* Navigation back */}
         <Link
-          href={redirectParam || "/"}
+          href={backHref}
+          data-auth-back=""
           className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-[#C6FF3D] mb-8 transition-colors group"
         >
           <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
-          <span>{redirectParam ? "BACK TO PREVIOUS PAGE" : "BACK TO DISCOVERY HOME"}</span>
+          <span>{backHref !== "/" ? "BACK TO PREVIOUS PAGE" : "BACK TO DISCOVERY HOME"}</span>
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -138,12 +186,12 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
             </div>
 
             <h2 className="font-display font-black text-3xl xl:text-4xl tracking-tight text-white leading-tight">
-              Submit Working Codes. <br />
-              <span className="text-[#C6FF3D]">Never Pay Full Price.</span>
+              Save useful offers. <br />
+              <span className="text-[#C6FF3D]">Keep the terms in view.</span>
             </h2>
 
             <p className="text-zinc-400 text-sm leading-relaxed">
-              SaaSFolio is built on transparency. Our automated verification system checks every promo code at checkout so you only see discounts that actually work.
+              Compare offer sources, eligibility and billing terms before choosing your software. An account helps you keep the offers you want to revisit.
             </p>
 
             <div className="space-y-4 pt-2">
@@ -154,7 +202,7 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                 <div>
                   <h3 className="font-display font-bold text-sm text-white">Submit Promo & Referral Codes</h3>
                   <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">
-                    Discovered a working discount code? Share it with the community and earn contributor attribution.
+                    Share an offer with its source and conditions so it can be reviewed.
                   </p>
                 </div>
               </div>
@@ -164,9 +212,9 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="font-display font-bold text-sm text-white">Automated Verification Engine</h3>
+                  <h3 className="font-display font-bold text-sm text-white">Read the Source and Terms</h3>
                   <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">
-                    Our algorithms verify checkout endpoints, SSL, and parameters before publishing.
+                    Source checks are labeled separately from checkout acceptance. The provider confirms the final price.
                   </p>
                 </div>
               </div>
@@ -176,20 +224,15 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="font-display font-bold text-sm text-white">Personal Deal Vault</h3>
+                  <h3 className="font-display font-bold text-sm text-white">Saved Offers</h3>
                   <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">
-                    Bookmark software deals, track renewal dates, and sync across your devices.
+                    Keep useful deals in your account and return to their current terms before buying.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Quick trust metrics */}
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-zinc-500">
-              <span>✓ 1,600+ Active Deals</span>
-              <span>✓ 0% Spam Guarantee</span>
-              <span>✓ 100% Free</span>
-            </div>
+            <p className="pt-4 border-t border-white/10 text-xs text-zinc-500">Browsing software and discount guides does not require an account.</p>
           </div>
 
           {/* Right Form Card */}
@@ -204,7 +247,7 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                   <div className="text-xs">
                     <span className="font-bold text-[#C6FF3D] block">Sign In Required To Submit Codes</span>
                     <span className="text-zinc-300">
-                      Sign in or register to submit promo & referral codes with verified community attribution.
+                      Sign in or register to attach a sourced offer submission to your account for review.
                     </span>
                   </div>
                 </div>
@@ -220,6 +263,8 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                     <div className="flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/10 text-xs font-mono">
                       <button
                         type="button"
+                        disabled={Boolean(busy)}
+                        aria-pressed={mode === "login"}
                         onClick={() => changeMode("login")}
                         className={`px-3 py-1 rounded-full transition-all ${
                           mode === "login"
@@ -231,6 +276,8 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                       </button>
                       <button
                         type="button"
+                        disabled={Boolean(busy)}
+                        aria-pressed={mode === "signup"}
                         onClick={() => changeMode("signup")}
                         className={`px-3 py-1 rounded-full transition-all ${
                           mode === "signup"
@@ -271,10 +318,28 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                 </div>
               )}
 
+              {(mode === "login" || mode === "signup") && <section aria-label="Provider sign-in options" className="space-y-3">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {(["google", "apple"] as const).map(provider => <button
+                    key={provider}
+                    type="button"
+                    data-auth-provider={provider}
+                    disabled={Boolean(busy) || !providers[provider]}
+                    aria-describedby="auth-provider-status"
+                    aria-busy={busy === provider}
+                    onClick={() => signInWithProvider(provider)}
+                    className="min-h-12 rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-[#C6FF3D]/50 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
+                  >{busy === provider ? `Opening ${provider === "google" ? "Google" : "Apple"}…` : `Continue with ${provider === "google" ? "Google" : "Apple"}`}</button>)}
+                </div>
+                <p id="auth-provider-status" role="status" className="text-xs leading-relaxed text-zinc-400">{providerNotice}</p>
+                <div className="flex items-center gap-3 pt-2 text-xs text-zinc-500"><span className="h-px flex-1 bg-white/10" /><span>Or use email and password</span><span className="h-px flex-1 bg-white/10" /></div>
+              </section>}
+
               {/* Form Body */}
-              <form onSubmit={submit} className="space-y-4">
+              <form onSubmit={submit} aria-busy={busy === "email"} data-auth-email-form="" className="space-y-4">
                 <ServiceNotice status={serviceStatus} />
-                <fieldset disabled={!serviceAvailable} className="contents">
+                {checkingRecovery && <p role="status" className="text-sm text-zinc-400">Checking password reset access…</p>}
+                <fieldset disabled={!serviceAvailable || Boolean(busy) || checkingRecovery} className="contents">
                   <legend className="sr-only">Authentication credentials</legend>
 
                   {/* Name field (Only on signup) */}
@@ -330,12 +395,21 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                     </div>
                   )}
 
+                  {mode === "password" && !checkingRecovery && !recoveryAllowed && <div className="space-y-1.5">
+                    <label htmlFor="auth-current-password" className="block text-xs font-mono uppercase text-zinc-400 tracking-wider">Current password *</label>
+                    <input id="auth-current-password" name="currentPassword" type="password" autoComplete="current-password" required minLength={1} maxLength={128}
+                      value={currentPassword} onChange={event => setCurrentPassword(event.target.value)}
+                      className="w-full rounded-2xl py-3 px-4 bg-black/60 border border-white/15 text-white focus:outline-none focus:border-[#C6FF3D] focus:ring-1 focus:ring-[#C6FF3D] text-sm" />
+                    <p className="text-xs leading-relaxed text-zinc-500">Enter your current password, or request a password reset link from the sign-in page.</p>
+                  </div>}
+                  {mode === "password" && !checkingRecovery && recoveryAllowed && <p role="status" className="text-xs text-zinc-400">Password reset access confirmed. Choose your new password below.</p>}
+
                   {/* Password field */}
                   {mode !== "reset" && (
                     <div className="space-y-1.5">
                       <div className="flex items-center justify-between">
                         <label htmlFor="auth-password" className="block text-xs font-mono uppercase text-zinc-400 tracking-wider">
-                          Password *
+                          {mode === "password" ? "New password *" : "Password *"}
                         </label>
                         {mode === "login" && (
                           <button
@@ -358,9 +432,9 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                           type={showPassword ? "text" : "password"}
                           autoComplete={mode === "login" ? "current-password" : "new-password"}
                           required
-                          minLength={mode === "login" ? 1 : 8}
+                          minLength={mode === "login" ? 1 : minimumPasswordLength}
                           maxLength={128}
-                          placeholder={mode === "login" ? "••••••••••••" : "Minimum 8 characters"}
+                          placeholder={mode === "login" ? "Your password" : `At least ${minimumPasswordLength} characters`}
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           className="w-full rounded-2xl py-3 pl-10 pr-12 bg-black/60 border border-white/15 text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6FF3D] focus:ring-1 focus:ring-[#C6FF3D] transition-colors font-mono text-sm"
@@ -379,7 +453,7 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                       {mode !== "login" && password.length > 0 && (
                         <div className="pt-2 space-y-1.5 animate-in fade-in">
                           <div className="flex items-center justify-between text-[11px] font-mono">
-                            <span className="text-zinc-400">Security Strength:</span>
+                            <span className="text-zinc-400">Password suggestions:</span>
                             <span className="font-bold text-white">{passwordStrength.label}</span>
                           </div>
                           <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
@@ -388,9 +462,9 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                               style={{ width: `${passwordStrength.score}%` }}
                             />
                           </div>
-                          <div className="flex items-center gap-3 text-[10px] font-mono text-zinc-500 pt-1">
-                            <span className={password.length >= 8 ? "text-[#C6FF3D] flex items-center gap-0.5" : ""}>
-                              {password.length >= 8 && <Check className="w-3 h-3" />} 8+ chars
+                          <div className="flex flex-wrap items-center gap-3 text-[10px] font-mono text-zinc-500 pt-1">
+                            <span className={password.length >= minimumPasswordLength ? "text-[#C6FF3D] flex items-center gap-0.5" : ""}>
+                              {password.length >= minimumPasswordLength && <Check className="w-3 h-3" />} {minimumPasswordLength}+ characters
                             </span>
                             <span className={/[A-Z]/.test(password) && /[a-z]/.test(password) ? "text-[#C6FF3D] flex items-center gap-0.5" : ""}>
                               {/[A-Z]/.test(password) && /[a-z]/.test(password) && <Check className="w-3 h-3" />} Mixed case
@@ -407,10 +481,11 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    disabled={busy}
+                    disabled={Boolean(busy)}
+                    data-auth-email-submit=""
                     className="w-full mt-2 rounded-2xl py-3.5 px-6 bg-[#C6FF3D] hover:bg-[#D6FF66] text-black font-display font-bold text-sm uppercase tracking-wider transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_25px_rgba(198,255,61,0.3)] hover:shadow-[0_0_35px_rgba(198,255,61,0.5)] flex items-center justify-center gap-2"
                   >
-                    {busy ? (
+                    {busy === "email" ? (
                       <span className="inline-flex items-center gap-2">
                         <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
                         <span>{mode === "signup" ? "Creating your account..." : mode === "login" ? "Signing you in..." : "Processing request..."}</span>
@@ -419,12 +494,12 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                       <>
                         <span>
                           {mode === "signup"
-                            ? "Create Free Account"
+                            ? "Create Account with Email"
                             : mode === "reset"
                             ? "Send Password Reset Link"
                             : mode === "password"
                             ? "Save New Password"
-                            : "Sign In to SaaSFolio"}
+                            : "Sign In with Email"}
                         </span>
                         <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                       </>
@@ -440,10 +515,11 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                     Don’t have an account?{" "}
                     <button
                       type="button"
+                      disabled={Boolean(busy)}
                       onClick={() => changeMode("signup")}
                       className="text-[#C6FF3D] font-bold hover:underline"
                     >
-                      Create one for free
+                      Create an account
                     </button>
                   </p>
                 ) : mode === "signup" ? (
@@ -451,6 +527,7 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                     Already registered?{" "}
                     <button
                       type="button"
+                      disabled={Boolean(busy)}
                       onClick={() => changeMode("login")}
                       className="text-[#C6FF3D] font-bold hover:underline"
                     >
@@ -460,6 +537,7 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                 ) : (
                   <button
                     type="button"
+                    disabled={Boolean(busy)}
                     onClick={() => changeMode("login")}
                     className="text-[#C6FF3D] font-bold hover:underline flex items-center gap-1"
                   >
@@ -478,7 +556,7 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
                 <Link href="/privacy" className="underline hover:text-zinc-300">
                   Privacy Policy
                 </Link>
-                . Your credentials and verified submissions are protected.
+                .
               </p>
             </div>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Search, Menu, X, ArrowUpRight, Tag, Layers, FileText, Users, User, LogOut, ShieldCheck, Scale } from "lucide-react";
@@ -22,6 +22,31 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
   const [searchOpen, setSearchOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<{ name: string; email: string; avatarLetter: string; isAdmin: boolean } | null>(null);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
+  const [signOutError, setSignOutError] = useState("");
+  const signOutLock = useRef(false);
+
+  async function signOut() {
+    if (signOutLock.current) return;
+    signOutLock.current = true;
+    setSigningOut(true);
+    setSignOutError("");
+    try {
+      await apiRequest("/api/auth/logout", {});
+      setCurrentUser(null);
+      setProfileDropdownOpen(false);
+      setMobileMenuOpen(false);
+      window.dispatchEvent(new Event("saasfolio_auth_changed"));
+      router.replace("/login");
+      router.refresh();
+    } catch (error) {
+      setSignOutError(error instanceof Error ? error.message : "Sign-out could not be confirmed. Please try again.");
+      window.dispatchEvent(new Event("saasfolio_auth_changed"));
+    } finally {
+      signOutLock.current = false;
+      setSigningOut(false);
+    }
+  }
 
   useEffect(() => {
     let active = true;
@@ -190,18 +215,12 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
                     </Link>}
 
                     <button
-                      onClick={async () => {
-                        try {
-                          await apiRequest("/api/auth/logout", {});
-                          window.location.href = "/login";
-                        } catch {
-                          window.location.href = "/";
-                        }
-                      }}
+                      onClick={signOut}
+                      disabled={signingOut}
                       className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-rose-400 hover:bg-rose-500/10 transition-colors text-left"
                     >
                       <LogOut className="w-3.5 h-3.5" />
-                      <span>Sign Out</span>
+                      <span>{signingOut ? "Signing out…" : "Sign Out"}</span>
                     </button>
                   </div>
                 )}
@@ -294,17 +313,11 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
                       <span className="font-mono text-xs">VIEW →</span>
                     </Link>
                     <button
-                      onClick={async () => {
-                        try {
-                          await apiRequest("/api/auth/logout", {});
-                          window.location.href = "/login";
-                        } catch {
-                          window.location.href = "/";
-                        }
-                      }}
+                      onClick={signOut}
+                      disabled={signingOut}
                       className="w-full flex items-center justify-between py-2 text-sm text-rose-400 hover:text-rose-300 text-left"
                     >
-                      <span className="flex items-center gap-2"><LogOut className="w-3.5 h-3.5" /> Sign Out</span>
+                      <span className="flex items-center gap-2"><LogOut className="w-3.5 h-3.5" /> {signingOut ? "Signing out…" : "Sign Out"}</span>
                       <span className="font-mono text-xs">EXIT →</span>
                     </button>
                   </>
@@ -365,6 +378,10 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
       </AnimatePresence>
 
       {/* Global Command Palette */}
+      {signOutError && <div role="alert" className="fixed bottom-5 left-4 right-4 z-[100] mx-auto flex max-w-xl items-start gap-3 rounded-2xl border border-rose-500/30 bg-[#140b0d] p-4 text-sm text-rose-200 shadow-xl">
+        <p className="flex-1">{signOutError}</p>
+        <button type="button" onClick={() => setSignOutError("")} aria-label="Dismiss sign-out error" className="p-1"><X className="h-4 w-4" /></button>
+      </div>}
       <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} discountBrands={discountBrands} />
     </>
   );

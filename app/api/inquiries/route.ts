@@ -144,13 +144,13 @@ export async function POST(request: Request) {
       throw new HttpError(400, "Choose a valid form type.");
     }
 
+    await enforceLimit(request, `inquiry:${kind}`);
     let recordId: string;
     if (
       isSupabaseConfigured() &&
       process.env.SUPABASE_SERVICE_ROLE_KEY &&
       !process.env.SUPABASE_SERVICE_ROLE_KEY.includes("your-service")
     ) {
-      await enforceLimit(request, `inquiry:${kind}`);
       const service = serviceClient();
       const { data: record, error } = await service
         .from("inquiries")
@@ -167,7 +167,7 @@ export async function POST(request: Request) {
       recordId = record.id;
     } else {
       if (isSupabaseConfigured() && !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-        // Enforce test requirement when service key is absent in configured test environment
+        // A missing private-service key must not redirect cloud data to local storage.
         serviceClient();
       }
       const localRecord = saveLocalInquiry(kind, address, payload);
