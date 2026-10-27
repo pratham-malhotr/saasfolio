@@ -135,7 +135,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <div className="p-4 rounded-xl bg-[#09090C] border border-white/10 flex items-center gap-3">
               <Mail className="w-5 h-5 text-[#C6FF3D]" />
-              <span className="font-mono text-sm text-white">privacy@saasfolio.tech</span>
+              <a href="mailto:privacy@saasfolio.tech" className="font-mono text-sm text-white hover:text-[#C6FF3D] underline">privacy@saasfolio.tech</a>
             </div>
           </section>
 

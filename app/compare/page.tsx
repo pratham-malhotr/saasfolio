@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { collectionSchema } from "@/lib/structured-data";
 import { POPULAR_COMPARISONS } from "@/lib/data/comparisons-data";
+import { getAllTools } from "@/lib/data/tools-data";
 
 export const metadata = pageMetadata({
   title: 'Compare SaaS Tools: Pricing, Features & Deals',
@@ -11,5 +12,6 @@ export const metadata = pageMetadata({
 });
 
 export default function Page() {
-  return <><JsonLd data={collectionSchema('Compare SaaS Tools: Pricing, Features & Deals', 'Compare SaaS tools side by side. Explore software pricing, features, pros and cons, alternatives and available discounts before choosing your stack.', "/compare", POPULAR_COMPARISONS.map((item) => ({ name: item.title, path: `/compare/${item.slug}` })))} /><CompareHubClient /></>;
+  const tools = getAllTools().map(({ id, slug, name, category }) => ({ id, slug, name, category }));
+  return <><JsonLd data={collectionSchema('Compare SaaS Tools: Pricing, Features & Deals', 'Compare SaaS tools side by side. Explore software pricing, features, pros and cons, alternatives and available discounts before choosing your stack.', "/compare", POPULAR_COMPARISONS.map((item) => ({ name: item.title, path: `/compare/${item.slug}` })))} /><CompareHubClient tools={tools} comparisons={POPULAR_COMPARISONS} /></>;
 }

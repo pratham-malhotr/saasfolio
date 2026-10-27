@@ -18,7 +18,7 @@ interface ComparisonViewProps {
   toolB: DetailedTool;
   dealsA: SaaSDeal[];
   dealsB: SaaSDeal[];
-  allTools: DetailedTool[];
+  allTools: Pick<DetailedTool, "id" | "slug" | "name">[];
   discountGuides?: React.ReactNode;
 }
 
@@ -33,10 +33,13 @@ export function ComparisonView({
   const router = useRouter();
   const [selectedSlugA, setSelectedSlugA] = useState(toolA.slug);
   const [selectedSlugB, setSelectedSlugB] = useState(toolB.slug);
+  const [selectionError, setSelectionError] = useState("");
 
   const handleSwitchComparison = () => {
     if (selectedSlugA && selectedSlugB && selectedSlugA !== selectedSlugB) {
       router.push(`/compare/${selectedSlugA}-vs-${selectedSlugB}`);
+    } else {
+      setSelectionError("Please select two different tools to compare.");
     }
   };
 
@@ -75,10 +78,13 @@ export function ComparisonView({
       <div className="p-4 rounded-2xl bg-[#09090C] border border-white/10 mb-12 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto flex-1">
           <div className="w-full sm:w-64 font-mono text-xs">
-            <label className="text-zinc-500 block mb-1 text-[10px] uppercase">TOOL A</label>
+            <label htmlFor="comparison-switch-a" className="text-zinc-500 block mb-1 text-[10px] uppercase">TOOL A</label>
             <select
+              id="comparison-switch-a"
+              aria-describedby={selectionError ? "comparison-switch-error" : undefined}
+              aria-invalid={Boolean(selectionError)}
               value={selectedSlugA}
-              onChange={(e) => setSelectedSlugA(e.target.value)}
+              onChange={(e) => { setSelectedSlugA(e.target.value); setSelectionError(""); }}
               className="w-full px-3 py-2 rounded-xl bg-black border border-white/15 text-white outline-none cursor-pointer"
             >
               {allTools.map((t) => (
@@ -92,10 +98,13 @@ export function ComparisonView({
           <span className="font-mono text-xs text-[#C6FF3D] font-bold px-2">VS</span>
 
           <div className="w-full sm:w-64 font-mono text-xs">
-            <label className="text-zinc-500 block mb-1 text-[10px] uppercase">TOOL B</label>
+            <label htmlFor="comparison-switch-b" className="text-zinc-500 block mb-1 text-[10px] uppercase">TOOL B</label>
             <select
+              id="comparison-switch-b"
+              aria-describedby={selectionError ? "comparison-switch-error" : undefined}
+              aria-invalid={Boolean(selectionError)}
               value={selectedSlugB}
-              onChange={(e) => setSelectedSlugB(e.target.value)}
+              onChange={(e) => { setSelectedSlugB(e.target.value); setSelectionError(""); }}
               className="w-full px-3 py-2 rounded-xl bg-black border border-white/15 text-white outline-none cursor-pointer"
             >
               {allTools.map((t) => (
@@ -108,12 +117,16 @@ export function ComparisonView({
         </div>
 
         <button
+          type="button"
+          aria-label="Compare selected tools"
           onClick={handleSwitchComparison}
           className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs font-mono uppercase tracking-wider hover:bg-[#D6FF66] transition-all"
         >
           Compare Now →
         </button>
       </div>
+
+      {selectionError && <p id="comparison-switch-error" role="alert" className="mb-8 text-sm text-rose-300">{selectionError}</p>}
 
       {/* Side-by-Side Dual Header Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">

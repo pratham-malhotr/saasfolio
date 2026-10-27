@@ -56,7 +56,7 @@ export default async function ComparePage({
 
   const dealsA = getDealsByTool(toolA.slug);
   const dealsB = getDealsByTool(toolB.slug);
-  const allTools = getAllTools();
+  const allTools = getAllTools().map(({ id, slug, name }) => ({ id, slug, name }));
   const discountBrands = [toolA, toolB].filter(tool => hasBrandDiscountPage(tool.slug) && getBrandDiscountData(tool).indexable);
 
   return (
@@ -69,6 +69,7 @@ export default async function ComparePage({
         ],
       }} />
       <ComparisonView
+        key={`${toolA.slug}:${toolB.slug}`}
         toolA={toolA}
         toolB={toolB}
         dealsA={dealsA}

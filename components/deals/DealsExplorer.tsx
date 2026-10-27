@@ -237,6 +237,7 @@ export function DealsExplorer({
               ].map((t) => (
                 <button
                   key={t.value}
+                  aria-pressed={selectedType === t.value}
                   onClick={() => setSelectedType(t.value)}
                   className={`w-full text-left px-3 py-2 rounded-xl transition-all flex items-center justify-between ${
                     selectedType === t.value
@@ -257,6 +258,7 @@ export function DealsExplorer({
             </div>
             <div className="max-h-64 overflow-y-auto space-y-1 text-xs font-mono scrollbar-none pr-1">
               <button
+                aria-pressed={selectedCategory === "all"}
                 onClick={() => setSelectedCategory("all")}
                 className={`w-full text-left px-3 py-1.5 rounded-xl transition-all flex items-center justify-between ${
                   selectedCategory === "all"
@@ -270,6 +272,7 @@ export function DealsExplorer({
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
+                  aria-pressed={selectedCategory === cat.slug}
                   onClick={() => setSelectedCategory(cat.slug)}
                   className={`w-full text-left px-3 py-1.5 rounded-xl transition-all flex items-center justify-between ${
                     selectedCategory === cat.slug

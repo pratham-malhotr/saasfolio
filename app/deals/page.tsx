@@ -28,6 +28,7 @@ export default async function DealsPage({
         (!params.type || params.type === "all" || deal.dealType === params.type)
       ).sort((a, b) => b.revealsCount - a.revealsCount).map((deal) => ({ name: deal.title, path: `/deals/${deal.slug}` })))} />
       <DealsExplorer
+        key={`${params.category || "all"}:${params.type || "all"}`}
         initialDeals={allDeals}
         initialCategory={params.category}
         initialType={params.type}

@@ -126,7 +126,7 @@ export default function TermsOfServicePage() {
             </p>
             <div className="p-4 rounded-xl bg-[#09090C] border border-white/10 flex items-center gap-3">
               <Mail className="w-5 h-5 text-[#C6FF3D]" />
-              <span className="font-mono text-sm text-white">legal@saasfolio.tech</span>
+              <a href="mailto:legal@saasfolio.tech" className="font-mono text-sm text-white hover:text-[#C6FF3D] underline">legal@saasfolio.tech</a>
             </div>
           </section>
 

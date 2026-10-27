@@ -289,20 +289,17 @@ export default function ContactPage({ initialReport }: { initialReport?: { subje
               {FAQS.map((faq, idx) => (
                 <div
                   key={idx}
-                  className="rounded-2xl bg-[#09090C] border border-white/10 p-5 cursor-pointer hover:border-white/20 transition-all"
-                  onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                  className="rounded-2xl bg-[#09090C] border border-white/10 p-5 hover:border-white/20 transition-all"
                 >
-                  <div className="flex items-center justify-between font-display font-bold text-sm text-white">
+                  <button type="button" aria-expanded={activeFaq === idx} aria-controls={`contact-faq-${idx}`} onClick={() => setActiveFaq(activeFaq === idx ? null : idx)} className="flex w-full items-center justify-between text-left font-display font-bold text-sm text-white">
                     <span>{faq.q}</span>
-                    <span className="font-mono text-xs text-[#C6FF3D] ml-2">
+                    <span aria-hidden="true" className="font-mono text-xs text-[#C6FF3D] ml-2">
                       {activeFaq === idx ? "−" : "+"}
                     </span>
-                  </div>
-                  {activeFaq === idx && (
-                    <p className="mt-3 text-xs text-zinc-400 font-sans leading-relaxed pt-3 border-t border-white/5">
-                      {faq.a}
-                    </p>
-                  )}
+                  </button>
+                  <p id={`contact-faq-${idx}`} hidden={activeFaq !== idx} className="mt-3 text-xs text-zinc-400 font-sans leading-relaxed pt-3 border-t border-white/5">
+                    {faq.a}
+                  </p>
                 </div>
               ))}
             </div>
