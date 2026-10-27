@@ -1,0 +1,534 @@
+{
+  "reviewedAt": "2026-10-27T11:08:54.757Z",
+  "newBrands": 24,
+  "newGuides": 32,
+  "availableBrands": 763,
+  "indexableGuides": 102,
+  "registeredDefinitions": 32,
+  "publishedReviewedOffers": 26,
+  "sourceIssues": [
+    {
+      "key": "reviewed:adobe-creative-cloud-education-offer",
+      "status": "error",
+      "error": "HTTP 403"
+    },
+    {
+      "key": "reviewed:airtable-nonprofit-team",
+      "status": "error",
+      "error": "Disallowed by robots.txt"
+    },
+    {
+      "key": "reviewed:box-annual-billing",
+      "status": "error",
+      "error": "Host paused after HTTP 403; page request skipped"
+    },
+    {
+      "key": "reviewed:browserstack-annual-billing",
+      "status": "error",
+      "error": "Source exceeds 3 MB limit"
+    },
+    {
+      "key": "reviewed:microsoft-365-nonprofit-program",
+      "status": "error",
+      "error": "fetch failed"
+    },
+    {
+      "key": "reviewed:typeform-startup-business-year",
+      "status": "error",
+      "error": "HTTP 403"
+    }
+  ],
+  "evidenceChanges": [
+    {
+      "toolSlug": "checkly",
+      "sourceUrl": "https://www.checklyhq.com/pricing/",
+      "status": "evidence-changed",
+      "observedAt": "2026-10-27T11:04:12.326Z"
+    },
+    {
+      "toolSlug": "adobe-creative-cloud",
+      "sourceUrl": "https://www.adobe.com/education/students/creativecloud.html",
+      "status": "evidence-changed",
+      "observedAt": "2026-10-27T11:04:15.209Z"
+    }
+  ],
+  "brands": [
+    {
+      "name": "Baserow",
+      "slug": "baserow",
+      "isNew": true,
+      "title": "Baserow Discounts: Nonprofit & Education Offers",
+      "description": "Compare Baserow discounts for nonprofits and education, cloud versus self-hosted billing, paid seats and source-backed offer eligibility.",
+      "primarySource": "https://baserow.io/pricing",
+      "programSources": [
+        "https://baserow.io/faq"
+      ],
+      "guidanceWords": 300,
+      "publishedReviewedOffers": [
+        "baserow-organization-program"
+      ]
+    },
+    {
+      "name": "NocoDB",
+      "slug": "nocodb",
+      "isNew": true,
+      "title": "NocoDB Discounts & Annual Billing Savings",
+      "description": "Find NocoDB discount guidance: 20% yearly billing, restricted early-adopter eligibility, cloud versus self-hosted plans and seat costs.",
+      "primarySource": "https://nocodb.com/pricing",
+      "programSources": [
+        "https://nocodb.com/pricing"
+      ],
+      "guidanceWords": 302,
+      "publishedReviewedOffers": [
+        "nocodb-annual-billing"
+      ]
+    },
+    {
+      "name": "Fibery",
+      "slug": "fibery",
+      "isNew": true,
+      "title": "Fibery Discounts & Startup Program Eligibility",
+      "description": "Explore Fibery discounts and the six-month Pro startup program. Check application approval, workspace users, plan fit and renewal costs.",
+      "primarySource": "https://fibery.com/pricing",
+      "programSources": [
+        "https://fibery.com/startups"
+      ],
+      "guidanceWords": 297,
+      "publishedReviewedOffers": [
+        "fibery-startup-pro-access"
+      ]
+    },
+    {
+      "name": "SmartSuite",
+      "slug": "smartsuite",
+      "isNew": true,
+      "title": "SmartSuite Discounts: Nonprofit & Education Plans",
+      "description": "Find SmartSuite discount eligibility for nonprofits and education. Compare workflow plans, users, verification documents and renewal terms.",
+      "primarySource": "https://www.smartsuite.com/pricing",
+      "programSources": [
+        "https://help.smartsuite.com/en/articles/7786139-nonprofit-education-discount-program"
+      ],
+      "guidanceWords": 299,
+      "publishedReviewedOffers": [
+        "smartsuite-organization-program"
+      ]
+    },
+    {
+      "name": "Nifty",
+      "slug": "nifty",
+      "isNew": true,
+      "title": "Nifty Discounts & Nonprofit Plan Eligibility",
+      "description": "Compare Nifty discounts, including 50% off eligible nonprofit and education Pro or Business plans, team pricing and annual billing terms.",
+      "primarySource": "https://niftypm.com/pricing/",
+      "programSources": [
+        "https://niftypm.com/pricing/"
+      ],
+      "guidanceWords": 292,
+      "publishedReviewedOffers": [
+        "nifty-nonprofit-education"
+      ]
+    },
+    {
+      "name": "Plutio",
+      "slug": "plutio",
+      "isNew": true,
+      "title": "Plutio Discounts & Yearly Billing Savings",
+      "description": "Explore Plutio discounts through yearly billing with two months free. Compare client work, workspace plans, add-ons and renewal costs.",
+      "primarySource": "https://www.plutio.com/pricing",
+      "programSources": [
+        "https://www.plutio.com/pricing"
+      ],
+      "guidanceWords": 292,
+      "publishedReviewedOffers": [
+        "plutio-yearly-billing"
+      ]
+    },
+    {
+      "name": "xTiles",
+      "slug": "xtiles",
+      "isNew": true,
+      "title": "xTiles Discounts: Student & Nonprofit Eligibility",
+      "description": "Find xTiles discounts for students, educators and nonprofits: 50% off eligible Plus access for one year, verification and code redemption.",
+      "primarySource": "https://xtiles.app/en/pricing/",
+      "programSources": [
+        "https://xtiles.app/en/pricing/",
+        "https://xtiles.app/en/pricing/"
+      ],
+      "guidanceWords": 298,
+      "publishedReviewedOffers": [
+        "xtiles-education-year"
+      ]
+    },
+    {
+      "name": "Notesnook",
+      "slug": "notesnook",
+      "isNew": true,
+      "title": "Notesnook Discounts & Education Offer Terms",
+      "description": "Explore Notesnook discounts for education: eligible Pro access at $19.99 a year, current student or educator verification and renewal checks.",
+      "primarySource": "https://notesnook.com/pricing",
+      "programSources": [
+        "https://notesnook.com/education"
+      ],
+      "guidanceWords": 308,
+      "publishedReviewedOffers": [
+        "notesnook-education-year"
+      ]
+    },
+    {
+      "name": "CodeRabbit",
+      "slug": "coderabbit",
+      "isNew": true,
+      "title": "CodeRabbit Discounts & Annual Plan Savings",
+      "description": "Compare CodeRabbit discounts: 20% annual savings, public-repository access, review seats, plan changes and the full renewal commitment.",
+      "primarySource": "https://www.coderabbit.ai/pricing",
+      "programSources": [
+        "https://www.coderabbit.ai/pricing"
+      ],
+      "guidanceWords": 301,
+      "publishedReviewedOffers": [
+        "coderabbit-annual-billing"
+      ]
+    },
+    {
+      "name": "Sourcery",
+      "slug": "sourcery",
+      "isNew": true,
+      "title": "Sourcery Discounts & Annual Review Plan Savings",
+      "description": "Find Sourcery discounts: 20% annual billing, assigned review seats, public-repository access and the 14-day Team trial before purchasing.",
+      "primarySource": "https://www.sourcery.ai/pricing",
+      "programSources": [
+        "https://www.sourcery.ai/pricing"
+      ],
+      "guidanceWords": 307,
+      "publishedReviewedOffers": [
+        "sourcery-annual-billing"
+      ]
+    },
+    {
+      "name": "Checkly",
+      "slug": "checkly",
+      "isNew": true,
+      "title": "Checkly Discounts & Annual Monitoring Savings",
+      "description": "Compare Checkly discounts with up to 20% annual savings. Model API and browser runs, product scope, monitoring frequency and renewal costs.",
+      "primarySource": "https://www.checklyhq.com/pricing/",
+      "programSources": [
+        "https://www.checklyhq.com/pricing/"
+      ],
+      "guidanceWords": 303,
+      "publishedReviewedOffers": [
+        "checkly-annual-billing"
+      ]
+    },
+    {
+      "name": "Hyperping",
+      "slug": "hyperping",
+      "isNew": true,
+      "title": "Hyperping Discounts & Yearly Billing Terms",
+      "description": "Explore Hyperping discounts: two months free with yearly billing, monitor and status-page limits, log costs, trial access and renewal terms.",
+      "primarySource": "https://hyperping.com/pricing",
+      "programSources": [
+        "https://hyperping.com/pricing"
+      ],
+      "guidanceWords": 296,
+      "publishedReviewedOffers": [
+        "hyperping-yearly-billing"
+      ]
+    },
+    {
+      "name": "Healthchecks.io",
+      "slug": "healthchecks-io",
+      "isNew": true,
+      "title": "Healthchecks.io Discounts & Annual Monitoring Plans",
+      "description": "Compare Healthchecks.io discounts: 20% annual Business savings, cron-job capacity, notification credits and hosted versus self-hosted costs.",
+      "primarySource": "https://healthchecks.io/pricing/",
+      "programSources": [
+        "https://healthchecks.io/pricing/"
+      ],
+      "guidanceWords": 297,
+      "publishedReviewedOffers": [
+        "healthchecks-io-annual-business"
+      ]
+    },
+    {
+      "name": "incident.io",
+      "slug": "incident-io",
+      "isNew": true,
+      "title": "incident.io Discounts & Annual Response Plan Pricing",
+      "description": "Explore incident.io discounts and annual Team pricing. Compare response seats, separate on-call costs, free access and renewal commitment.",
+      "primarySource": "https://incident.io/pricing",
+      "programSources": [
+        "https://incident.io/pricing"
+      ],
+      "guidanceWords": 296,
+      "publishedReviewedOffers": [
+        "incident-io-annual-team"
+      ]
+    },
+    {
+      "name": "Rootly",
+      "slug": "rootly",
+      "isNew": true,
+      "title": "Rootly Discounts & Startup Program Requirements",
+      "description": "Find Rootly startup discounts: up to 50% for eligible teams and a separate pay-what-you-can route. Compare product scope and approval terms.",
+      "primarySource": "https://rootly.com/pricing",
+      "programSources": [
+        "https://rootly.com/pricing"
+      ],
+      "guidanceWords": 297,
+      "publishedReviewedOffers": [
+        "rootly-startup-program"
+      ]
+    },
+    {
+      "name": "BrowserStack",
+      "slug": "browserstack",
+      "isNew": true,
+      "title": "BrowserStack Discounts & Annual Testing Plans",
+      "description": "Compare BrowserStack discounts and product-specific annual savings. Match devices, users, testing concurrency and the full yearly commitment.",
+      "primarySource": "https://www.browserstack.com/pricing",
+      "programSources": [
+        "https://www.browserstack.com/pricing"
+      ],
+      "guidanceWords": 306,
+      "publishedReviewedOffers": []
+    },
+    {
+      "name": "Jira",
+      "slug": "jira",
+      "isNew": true,
+      "title": "Jira Discounts & Nonprofit Cloud Eligibility",
+      "description": "Compare Jira discounts for eligible nonprofits and academic buyers, cloud licensing, annual user tiers, Marketplace extras and renewal terms.",
+      "primarySource": "https://www.atlassian.com/software/jira/pricing",
+      "programSources": [
+        "https://www.atlassian.com/licensing/cloud",
+        "https://www.atlassian.com/licensing/cloud"
+      ],
+      "guidanceWords": 299,
+      "publishedReviewedOffers": [
+        "jira-community-cloud"
+      ]
+    },
+    {
+      "name": "Confluence",
+      "slug": "confluence",
+      "isNew": true,
+      "title": "Confluence Discounts & Organization Cloud Pricing",
+      "description": "Explore Confluence discounts for nonprofit and academic cloud customers. Compare user tiers, knowledge access, apps and renewal requirements.",
+      "primarySource": "https://www.atlassian.com/software/confluence/pricing",
+      "programSources": [
+        "https://www.atlassian.com/licensing/cloud",
+        "https://www.atlassian.com/licensing/cloud"
+      ],
+      "guidanceWords": 293,
+      "publishedReviewedOffers": [
+        "confluence-community-cloud"
+      ]
+    },
+    {
+      "name": "Trello",
+      "slug": "trello",
+      "isNew": true,
+      "title": "Trello Discounts: Nonprofit & Annual Plan Options",
+      "description": "Find Trello discounts for eligible nonprofits and compare Standard or Premium annual billing, workspace collaborators, paid access and renewals.",
+      "primarySource": "https://trello.com/pricing",
+      "programSources": [
+        "https://trello.com/en/use-cases/nonprofits",
+        "https://trello.com/pricing"
+      ],
+      "guidanceWords": 303,
+      "publishedReviewedOffers": [
+        "trello-nonprofit-program"
+      ]
+    },
+    {
+      "name": "Dropbox",
+      "slug": "dropbox",
+      "isNew": true,
+      "title": "Dropbox Discounts & Nonprofit Team Eligibility",
+      "description": "Explore Dropbox discounts for eligible nonprofit and education team accounts. Compare plan scope, users, storage needs and renewal terms.",
+      "primarySource": "https://www.dropbox.com/plans",
+      "programSources": [
+        "https://help.dropbox.com/billing/discounts"
+      ],
+      "guidanceWords": 304,
+      "publishedReviewedOffers": [
+        "dropbox-organization-program"
+      ]
+    },
+    {
+      "name": "Box",
+      "slug": "box",
+      "isNew": true,
+      "title": "Box Discounts & Nonprofit Content Plans",
+      "description": "Compare Box discounts and nonprofit access with ordinary plans. Check users, file limits, content controls, application scope and renewal costs.",
+      "primarySource": "https://www.box.com/pricing",
+      "programSources": [
+        "https://www.box.com/pricing",
+        "https://www.box.com/industries/non-profit/"
+      ],
+      "guidanceWords": 305,
+      "publishedReviewedOffers": []
+    },
+    {
+      "name": "Google Workspace",
+      "slug": "google-workspace",
+      "isNew": true,
+      "title": "Google Workspace Discounts & Nonprofit Offers",
+      "description": "Find Google Workspace discounts: annual commitment pricing, nonprofit editions, eligible paid upgrades, domain setup and renewal checks.",
+      "primarySource": "https://workspace.google.com/pricing.html",
+      "programSources": [
+        "https://workspace.google.com/pricing.html",
+        "https://www.google.com/nonprofits/workspace/compare/"
+      ],
+      "guidanceWords": 304,
+      "publishedReviewedOffers": [
+        "google-workspace-annual-commitment"
+      ]
+    },
+    {
+      "name": "Microsoft 365",
+      "slug": "microsoft-365",
+      "isNew": true,
+      "title": "Microsoft 365 Discounts & Nonprofit Plan Eligibility",
+      "description": "Explore Microsoft 365 discounts and nonprofit eligibility. Compare granted versus paid licenses, staff and volunteer access, plans and renewal.",
+      "primarySource": "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing",
+      "programSources": [
+        "https://www.microsoft.com/en-us/nonprofits/microsoft-365"
+      ],
+      "guidanceWords": 308,
+      "publishedReviewedOffers": []
+    },
+    {
+      "name": "Adobe Creative Cloud",
+      "slug": "adobe-creative-cloud",
+      "isNew": true,
+      "title": "Adobe Creative Cloud Discounts & Student Terms",
+      "description": "Find Adobe Creative Cloud discounts for students and teachers. Check education eligibility, annual commitments, renewal pricing and plan scope.",
+      "primarySource": "https://www.adobe.com/creativecloud/plans.html",
+      "programSources": [
+        "https://helpx.adobe.com/creative-cloud/faq/students-teachers.html"
+      ],
+      "guidanceWords": 310,
+      "publishedReviewedOffers": []
+    },
+    {
+      "name": "Asana",
+      "slug": "asana",
+      "isNew": false,
+      "title": "Asana Discounts & Nonprofit Plan Requirements",
+      "description": "Find Asana discounts for approved nonprofits: 50% off Starter or Advanced, organization verification, paid users and renewal checks.",
+      "primarySource": "https://asana.com/pricing",
+      "programSources": [
+        "https://asana.com/industry/nonprofit"
+      ],
+      "guidanceWords": 309,
+      "publishedReviewedOffers": [
+        "asana-nonprofit-program"
+      ]
+    },
+    {
+      "name": "Airtable",
+      "slug": "airtable",
+      "isNew": false,
+      "title": "Airtable Discounts & Nonprofit Team Plan Terms",
+      "description": "Compare Airtable discounts: nonprofit Team eligibility, the 50% monthly-rate basis, no annual stacking, workspace users and renewal rules.",
+      "primarySource": "https://airtable.com/pricing",
+      "programSources": [
+        "https://support.airtable.com/articles/4920135568-applying-for-non-profit-education-and-student-airtable-plans"
+      ],
+      "guidanceWords": 312,
+      "publishedReviewedOffers": []
+    },
+    {
+      "name": "monday.com",
+      "slug": "monday",
+      "isNew": false,
+      "title": "monday.com Discounts & Nonprofit Seat Eligibility",
+      "description": "Find monday.com discounts: approved nonprofit access with ten free seats, reduced additional seats, product scope and renewal requirements.",
+      "primarySource": "https://monday.com/pricing",
+      "programSources": [
+        "https://monday.com/w/nonprofits"
+      ],
+      "guidanceWords": 307,
+      "publishedReviewedOffers": [
+        "monday-nonprofit-additional-seats"
+      ]
+    },
+    {
+      "name": "Linear",
+      "slug": "linear",
+      "isNew": false,
+      "title": "Linear Discounts & Partner Startup Eligibility",
+      "description": "Explore Linear discounts and partner startup Business access. Check non-paying eligibility, team size, redemption authority and standard renewal.",
+      "primarySource": "https://linear.app/pricing",
+      "programSources": [
+        "https://linear.app/startups"
+      ],
+      "guidanceWords": 305,
+      "publishedReviewedOffers": [
+        "linear-partner-startup-business"
+      ]
+    },
+    {
+      "name": "Sentry",
+      "slug": "sentry",
+      "isNew": false,
+      "title": "Sentry Discounts & Startup Credit Eligibility",
+      "description": "Find Sentry startup credits up to $5,000. Check company age, funding, paying history, twelve-month expiry and ongoing event costs.",
+      "primarySource": "https://sentry.io/pricing/",
+      "programSources": [
+        "https://sentry.io/for/startups/apply/"
+      ],
+      "guidanceWords": 307,
+      "publishedReviewedOffers": [
+        "sentry-startup-credits"
+      ]
+    },
+    {
+      "name": "Intercom",
+      "slug": "intercom",
+      "isNew": false,
+      "title": "Intercom Discounts & Early Stage Startup Terms",
+      "description": "Compare Intercom startup discounts, the 93%, 50% and 25% program stages, team and funding rules, Fin allowances and excluded usage costs.",
+      "primarySource": "https://www.intercom.com/pricing",
+      "programSources": [
+        "https://www.intercom.com/early-stage"
+      ],
+      "guidanceWords": 305,
+      "publishedReviewedOffers": [
+        "intercom-early-stage-year-one"
+      ]
+    },
+    {
+      "name": "Typeform",
+      "slug": "typeform",
+      "isNew": false,
+      "title": "Typeform Discounts: Startup, Student & NGO Offers",
+      "description": "Find Typeform discounts for startups, students, educators and NGOs. Compare eligible plans, approval, response needs and renewal periods.",
+      "primarySource": "https://www.typeform.com/pricing",
+      "programSources": [
+        "https://help.typeform.com/hc/en-us/articles/360045878891-Startup-discount-at-Typeform",
+        "https://help.typeform.com/hc/en-us/articles/360039728951-Non-profit-NGO-and-student-discounts-at-Typeform",
+        "https://help.typeform.com/hc/en-us/articles/360039728951-Non-profit-NGO-and-student-discounts-at-Typeform"
+      ],
+      "guidanceWords": 313,
+      "publishedReviewedOffers": []
+    },
+    {
+      "name": "Zapier",
+      "slug": "zapier",
+      "isNew": false,
+      "title": "Zapier Discounts & Nonprofit Automation Pricing",
+      "description": "Compare Zapier discounts: 33% annual billing and approved 15% nonprofit access, task workloads, excluded usage and renewal requirements.",
+      "primarySource": "https://zapier.com/pricing",
+      "programSources": [
+        "https://help.zapier.com/hc/en-us/articles/8496197165581-Discounts-for-Zapier-plans",
+        "https://help.zapier.com/hc/en-us/articles/8496197165581-Discounts-for-Zapier-plans"
+      ],
+      "guidanceWords": 312,
+      "publishedReviewedOffers": [
+        "zapier-annual-billing"
+      ]
+    }
+  ]
+}

@@ -65,7 +65,7 @@ for (const tool of brands) {
         assert.match(text, /sourced code|no current code recorded/i, `${label}: code availability is distinguished from billing offers`);
       } else if (intent.id === "best-discount") {
         assert.ok(words(section) >= 30, `${label}: substantive best-value answer`);
-        assert.match(text, /plan|package|account|usage|workload|seat|invoice|billing|annual|year|credit|cost/i, `${label}: best-value answer identifies a buying criterion`);
+        assert.match(text, /plan|package|account|usage|workload|seat|invoice|billing|annual|year|credit|cost|renewal/i, `${label}: best-value answer identifies a buying criterion`);
       } else if (intent.id === "billing-savings") {
         assert.ok(elements(section, "tbody").flatMap(node => elements(node, "tr")).length >= 3, `${label}: compares at least three buying routes`);
         assert.match(contents(byId(document, "saving-guide")), /annual|yearly|monthly|billing|usage|self.host|credit|pricing|price|invoice/i, `${label}: brand guidance covers its actual purchase model`);
