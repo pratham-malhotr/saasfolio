@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
@@ -34,32 +32,32 @@ export function Footer() {
               Discover SaaS
             </div>
             <ul className="space-y-2.5 text-sm">
-              <li><Link href="/discounts" className="hover:text-[#C6FF3D] transition-colors">Discounts by Brand</Link></li>
-              <li><Link href="/brands" className="hover:text-[#C6FF3D] transition-colors">All Brands A–Z</Link></li>
-              <li><Link href="/savings-calculator" className="hover:text-[#C6FF3D] transition-colors">Annual Savings Calculator</Link></li>
+              <li><Link prefetch={false} href="/discounts" className="hover:text-[#C6FF3D] transition-colors">Discounts by Brand</Link></li>
+              <li><Link prefetch={false} href="/brands" className="hover:text-[#C6FF3D] transition-colors">All Brands A–Z</Link></li>
+              <li><Link prefetch={false} href="/savings-calculator" className="hover:text-[#C6FF3D] transition-colors">Annual Savings Calculator</Link></li>
               <li>
-                <Link href="/deals" className="hover:text-[#C6FF3D] transition-colors flex items-center justify-between">
+                <Link prefetch={false} href="/deals" className="hover:text-[#C6FF3D] transition-colors flex items-center justify-between">
                   <span>Hot Deals This Week</span>
                   <span className="font-mono text-[9px] px-1.5 py-0.2 rounded bg-[#C6FF3D]/10 text-[#C6FF3D]">HOT</span>
                 </Link>
               </li>
               <li>
-                <Link href="/deals?type=lifetime" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/deals?type=lifetime" className="hover:text-[#C6FF3D] transition-colors">
                   Lifetime Deals (LTDs)
                 </Link>
               </li>
               <li>
-                <Link href="/deals?type=free_trial" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/deals?type=free_trial" className="hover:text-[#C6FF3D] transition-colors">
                   Free Trials
                 </Link>
               </li>
               <li>
-                <Link href="/tools" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/tools" className="hover:text-[#C6FF3D] transition-colors">
                   Software Directory
                 </Link>
               </li>
               <li>
-                <Link href="/submit" className="hover:text-[#C6FF3D] transition-colors text-white font-medium">
+                <Link prefetch={false} href="/submit" className="hover:text-[#C6FF3D] transition-colors text-white font-medium">
                   Submit a SaaS Deal →
                 </Link>
               </li>
@@ -73,38 +71,38 @@ export function Footer() {
             </div>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/articles" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/articles" className="hover:text-[#C6FF3D] transition-colors">
                   Software Buying Guides
                 </Link>
               </li>
               <li>
-                <Link href="/articles/build-a-saas-budget-before-buying" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/articles/build-a-saas-budget-before-buying" className="hover:text-[#C6FF3D] transition-colors">
                   Build a Software Budget
                 </Link>
               </li>
               <li>
-                <Link href="/community" className="hover:text-[#C6FF3D] transition-colors flex items-center gap-1.5">
+                <Link prefetch={false} href="/community" className="hover:text-[#C6FF3D] transition-colors flex items-center gap-1.5">
                   <span>Community Q&A</span>
                   <span className="font-mono text-[9px] px-1.5 py-0.2 rounded bg-white/10 text-zinc-300">NEW</span>
                 </Link>
               </li>
               <li>
-                <Link href="/about#standards" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/about#standards" className="hover:text-[#C6FF3D] transition-colors">
                   How We Check Offers
                 </Link>
               </li>
               <li>
-                <Link href="/compare" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/compare" className="hover:text-[#C6FF3D] transition-colors">
                   Compare Tools Side-by-Side
                 </Link>
               </li>
               <li>
-                <Link href="/advertise" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/advertise" className="hover:text-[#C6FF3D] transition-colors">
                   Partner / Advertise
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/contact" className="hover:text-[#C6FF3D] transition-colors">
                   Contact & Support
                 </Link>
               </li>
@@ -119,6 +117,7 @@ export function Footer() {
             <div className="flex flex-wrap gap-1.5">
               {CATEGORIES.slice(0, 8).map((cat) => (
                 <Link
+                  prefetch={false}
                   key={cat.id}
                   href={`/deals/category/${cat.slug}`}
                   className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 hover:border-[#C6FF3D]/50 hover:text-white transition-all font-mono text-[11px]"
@@ -140,23 +139,23 @@ export function Footer() {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-zinc-500">
           <div className="flex flex-wrap items-center gap-6">
             <span>© 2026 SaaSFolio (saasfolio.tech). All rights reserved.</span>
-            <Link href="/privacy" className="hover:text-zinc-300 transition-colors">
+            <Link prefetch={false} href="/privacy" className="hover:text-zinc-300 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-zinc-300 transition-colors">
+            <Link prefetch={false} href="/terms" className="hover:text-zinc-300 transition-colors">
               Terms of Service
             </Link>
-            <Link href="/affiliate-disclosure" className="hover:text-zinc-300 transition-colors">
+            <Link prefetch={false} href="/affiliate-disclosure" className="hover:text-zinc-300 transition-colors">
               Affiliate Disclosure
             </Link>
-            <Link href="/contact" className="hover:text-zinc-300 transition-colors">
+            <Link prefetch={false} href="/contact" className="hover:text-zinc-300 transition-colors">
               Contact Desk
             </Link>
           </div>
 
           <div className="flex items-center gap-4">
             <span className="font-mono text-[11px] text-zinc-400">WHERE SAAS DEALS WIN ✦</span>
-            <Link href="/contact" className="hover:text-[#C6FF3D] underline">Contact SaaSFolio</Link>
+            <Link prefetch={false} href="/contact" className="hover:text-[#C6FF3D] underline">Contact SaaSFolio</Link>
           </div>
         </div>
 

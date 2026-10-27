@@ -30,7 +30,7 @@ export function NewsletterSection() {
   };
 
   return (
-    <section id="newsletter" className="py-24 bg-[#050505] relative overflow-hidden">
+    <section id="newsletter" className="home-deferred py-24 bg-[#050505] relative overflow-hidden">
       {/* Glow highlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-[#C6FF3D]/10 blur-[150px] rounded-full pointer-events-none" />
 

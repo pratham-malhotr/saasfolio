@@ -5,10 +5,10 @@ import { useMediaQuery } from "@/lib/use-media-query";
 
 export function ParticleCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)", true);
+  const animated = useMediaQuery("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (!animated) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -16,7 +16,8 @@ export function ParticleCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationFrameId: number;
+    let animationFrameId = 0;
+    let visible = true;
     let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
     let height = (canvas.height = canvas.parentElement?.clientHeight || 650);
 
@@ -73,7 +74,11 @@ export function ParticleCanvas() {
     window.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseleave", handleMouseLeave);
 
-    const render = () => {
+    let lastFrame = 0;
+    const render = (time: number) => {
+      animationFrameId = requestAnimationFrame(render);
+      if (time - lastFrame < 1000 / 30) return;
+      lastFrame = time;
       ctx.clearRect(0, 0, width, height);
 
       // Draw and update particles
@@ -128,20 +133,31 @@ export function ParticleCanvas() {
       }
 
       ctx.globalAlpha = 1;
-      animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    const updateAnimation = () => {
+      cancelAnimationFrame(animationFrameId);
+      if (visible && !document.hidden) animationFrameId = requestAnimationFrame(render);
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      updateAnimation();
+    });
+    observer.observe(canvas);
+    document.addEventListener("visibilitychange", updateAnimation);
+    updateAnimation();
 
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("visibilitychange", updateAnimation);
+      observer.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
-  }, [reducedMotion]);
+  }, [animated]);
 
-  if (reducedMotion) {
+  if (!animated) {
     return (
       <div className="absolute inset-0 bg-gradient-to-b from-[#C6FF3D]/5 via-transparent to-transparent pointer-events-none" />
     );

@@ -36,7 +36,7 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-24 bg-[#050505] border-b border-white/10 relative overflow-hidden">
+    <section className="home-deferred py-24 bg-[#050505] border-b border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">

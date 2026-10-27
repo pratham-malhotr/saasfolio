@@ -1,7 +1,7 @@
 "use client";
 import { useDialog } from "@/components/modals/useDialog";
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight, Layers } from "lucide-react";
 import { CouponCode } from "@/components/deals/CouponCode";
 import { OfferAction } from "@/components/deals/OfferAction";
@@ -31,24 +31,6 @@ export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPalet
     toolName: string;
     url: string;
   } | null>(null);
-
-  // Handle Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        if (isOpen) {
-          onClose();
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
 
   // Tokenized tools matching
   const filteredTools = useMemo(() => {

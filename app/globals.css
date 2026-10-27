@@ -160,11 +160,11 @@ body {
 /* Infinite Marquee Animations */
 @keyframes marquee-left {
   0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-100%); }
 }
 
 @keyframes marquee-right {
-  0% { transform: translateX(-50%); }
+  0% { transform: translateX(-100%); }
   100% { transform: translateX(0%); }
 }
 
@@ -217,6 +217,11 @@ body {
 /* Fade in at the final position so cold loads never drop or slide the headline. */
 .hero-word-window { display: inline-block; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; overflow: clip; }
 .hero-word { display: inline-block; }
+/* Keep long, server-rendered sections searchable while deferring offscreen layout. */
+.home-deferred {
+  content-visibility: auto;
+  contain-intrinsic-height: auto 900px;
+}
 .hero-discount-text { position: relative; }
 .hero-discount-text::after {
   content: "";
@@ -235,7 +240,7 @@ body {
 }
 @keyframes hero-underline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes hero-halo-reveal { from { opacity: 0; } to { opacity: 1; } }
-@media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
   .hero-word { animation: hero-word-enter 550ms ease-out var(--word-delay, 0ms) both; }
   .hero-intro-item { animation: hero-word-enter 450ms ease-out 120ms both; }
   .hero-discount-text::after { animation: hero-underline 650ms var(--ease-luxury) 350ms both; }

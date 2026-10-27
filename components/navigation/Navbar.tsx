@@ -2,22 +2,27 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
 import { Search, Menu, X, ArrowUpRight, Tag, Layers, FileText, Users, User, LogOut, ShieldCheck, Scale } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { MagneticButton } from "@/components/animations/MagneticButton";
-import { CommandPalette } from "@/components/modals/CommandPalette";
+import { SearchLoading } from "@/components/modals/SearchLoading";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { apiRequest } from "@/lib/api-client";
 import type { DiscountSearchEntry } from "@/lib/discount-search";
+
+const CommandPalette = dynamic(() => import("@/components/modals/CommandPalette").then(module => module.CommandPalette), {
+  loading: () => <SearchLoading />,
+});
 
 export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry[] }) {
   const pathname = usePathname();
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<{ name: string; email: string; avatarLetter: string; isAdmin: boolean } | null>(null);
@@ -25,6 +30,25 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
   const [signingOut, setSigningOut] = useState(false);
   const [signOutError, setSignOutError] = useState("");
   const signOutLock = useRef(false);
+
+  useEffect(() => {
+    const openSearch = () => setSearchOpen(true);
+    const closeSearch = () => setSearchOpen(false);
+    const keyboardSearch = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k" && !event.repeat) {
+        event.preventDefault();
+        setSearchOpen(open => !open);
+      }
+    };
+    window.addEventListener("saasfolio_search_open", openSearch);
+    window.addEventListener("saasfolio_search_close", closeSearch);
+    window.addEventListener("keydown", keyboardSearch);
+    return () => {
+      window.removeEventListener("saasfolio_search_open", openSearch);
+      window.removeEventListener("saasfolio_search_close", closeSearch);
+      window.removeEventListener("keydown", keyboardSearch);
+    };
+  }, []);
 
   async function signOut() {
     if (signOutLock.current) return;
@@ -73,18 +97,18 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
       }
 
       // Hide navbar when scrolling down, show when scrolling up
-      if (currentScrollY > lastScrollY && currentScrollY > 120) {
+      if (currentScrollY > lastScrollY.current && currentScrollY > 120) {
         setIsVisible(false);
       } else {
         setIsVisible(true);
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -124,6 +148,7 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
                 <Link
                   key={link.label}
                   href={link.href}
+                  prefetch={false}
                   className={cn(
                     "relative px-2 lg:px-2.5 xl:px-4 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1.5",
                     isActive
@@ -366,7 +391,7 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-[#C6FF3D] text-black font-bold text-base shadow-[0_0_25px_rgba(198,255,61,0.4)]"
               >
-                <span>Browse All 1,200+ Deals</span>
+                <span>Browse software offers</span>
                 <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
               </Link>
               <div className="font-mono text-center text-[10px] text-zinc-500 uppercase tracking-widest">
@@ -382,7 +407,7 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
         <p className="flex-1">{signOutError}</p>
         <button type="button" onClick={() => setSignOutError("")} aria-label="Dismiss sign-out error" className="p-1"><X className="h-4 w-4" /></button>
       </div>}
-      <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} discountBrands={discountBrands} />
+      {searchOpen && <CommandPalette isOpen onClose={() => setSearchOpen(false)} discountBrands={discountBrands} />}
     </>
   );
 }

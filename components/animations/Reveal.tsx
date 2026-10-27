@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/lib/use-media-query";
@@ -23,32 +23,33 @@ export function Reveal({
   blur = false,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
-  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)", true);
-  const offset = 22;
+  useEffect(() => {
+    const element = ref.current;
+    const media = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+    if (!element || !media.matches) return;
+    let animation: Animation | undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      const x = direction === "left" ? -22 : direction === "right" ? 22 : 0;
+      const y = direction === "up" ? 22 : direction === "down" ? -22 : 0;
+      animation = element.animate([
+        { opacity: 0, transform: `translate(${x}px, ${y}px)`, ...(blur ? { filter: "blur(5px)" } : {}) },
+        { opacity: 1, transform: "none", ...(blur ? { filter: "blur(0px)" } : {}) },
+      ], { duration: duration * 1000, delay: delay * 1000, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "backwards" });
+    }, { rootMargin: "-40px" });
+    observer.observe(element);
+    const motionChanged = () => { if (!media.matches) { observer.disconnect(); animation?.cancel(); } };
+    media.addEventListener("change", motionChanged);
+    return () => { observer.disconnect(); animation?.cancel(); media.removeEventListener("change", motionChanged); };
+  }, [blur, delay, direction, duration]);
   return (
-      <motion.div
+      <div
         ref={ref}
         className={cn("overflow-visible", className)}
-        initial={false}
-        animate={
-          isInView && !reducedMotion
-            ? {
-                opacity: [0, 1],
-                x: [direction === "left" ? -offset : direction === "right" ? offset : 0, 0],
-                y: [direction === "up" ? offset : direction === "down" ? -offset : 0, 0],
-                ...(blur ? { filter: ["blur(5px)", "blur(0px)"] } : {}),
-              }
-            : { opacity: 1, x: 0, y: 0, filter: "blur(0px)" }
-        }
-        transition={{
-          duration: reducedMotion ? 0 : duration,
-          delay: reducedMotion ? 0 : delay,
-          ease: [0.22, 1, 0.36, 1],
-        }}
       >
         {children}
-      </motion.div>
+      </div>
   );
 }
 

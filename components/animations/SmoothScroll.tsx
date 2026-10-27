@@ -1,42 +1,47 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Lenis from "lenis";
+import { useEffect } from "react";
+import type Lenis from "lenis";
 import { useMediaQuery } from "@/lib/use-media-query";
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
-  const lenisRef = useRef<Lenis | null>(null);
-  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)", true);
+  const enabled = useMediaQuery("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (!enabled) return;
 
-    const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.5,
+    let disposed = false;
+    let lenis: Lenis | undefined;
+    let animFrame = 0;
+    const raf = (time: number) => {
+      lenis?.raf(time);
+      animFrame = requestAnimationFrame(raf);
+    };
+    const visibilityChanged = () => {
+      cancelAnimationFrame(animFrame);
+      if (!document.hidden) animFrame = requestAnimationFrame(raf);
+    };
+    void import("lenis").then(({ default: Lenis }) => {
+      if (disposed) return;
+      lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+      });
+      visibilityChanged();
+      document.addEventListener("visibilitychange", visibilityChanged);
     });
 
-    lenisRef.current = lenis;
-
-    let animFrame: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      animFrame = requestAnimationFrame(raf);
-    }
-
-    animFrame = requestAnimationFrame(raf);
-
     return () => {
+      disposed = true;
       cancelAnimationFrame(animFrame);
-      lenis.destroy();
-      lenisRef.current = null;
+      document.removeEventListener("visibilitychange", visibilityChanged);
+      lenis?.destroy();
     };
-  }, [reducedMotion]);
+  }, [enabled]);
 
   return <>{children}</>;
 }

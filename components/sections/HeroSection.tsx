@@ -1,15 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { Search, ArrowRight, ArrowDown, ShieldCheck, Zap } from "lucide-react";
 import { ParticleCanvas } from "@/components/animations/ParticleCanvas";
 import { MagneticButton } from "@/components/animations/MagneticButton";
-import { CommandPalette } from "@/components/modals/CommandPalette";
-import type { DiscountSearchEntry } from "@/lib/discount-search";
 
-export function HeroSection({ discountBrands }: { discountBrands: DiscountSearchEntry[] }) {
-  const [searchModalOpen, setSearchModalOpen] = useState(false);
+export function HeroSection() {
 
   return (
     <section data-home-hero="" className="relative min-h-[85svh] flex flex-col justify-center items-center pt-36 pb-14 sm:pt-40 sm:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#050505]">
@@ -17,16 +14,16 @@ export function HeroSection({ discountBrands }: { discountBrands: DiscountSearch
       <ParticleCanvas />
 
       {/* Radiant Glow Behind Headline */}
-      <div aria-hidden="true" className="hero-halo absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[720px] h-[280px] sm:h-[420px] bg-[#C6FF3D]/10 blur-[110px] rounded-full pointer-events-none z-0" />
+      <div aria-hidden="true" className="hero-halo absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[720px] h-[280px] sm:h-[420px] bg-[radial-gradient(ellipse,rgba(198,255,61,0.1),transparent_70%)] sm:bg-[#C6FF3D]/10 sm:blur-[110px] rounded-full pointer-events-none z-0" />
 
-      <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center">
         {/* Top Announcement Pill */}
         <div className="hero-intro-item">
           <Link href="/discounts" className="inline-flex justify-center items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md mb-7 hover:border-[#C6FF3D]/50 transition-colors group">
             <span className="flex h-2 w-2 relative">
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C6FF3D]" />
             </span>
-            <span className="font-mono text-xs uppercase tracking-wider text-zinc-300">
+            <span className="whitespace-nowrap font-mono text-[11px] leading-4 sm:text-xs uppercase tracking-wider text-zinc-300">
               Good software. Better prices.
             </span>
             <ArrowRight className="h-3.5 w-3.5 text-[#C6FF3D] transition-transform group-hover:translate-x-0.5" />
@@ -58,7 +55,7 @@ export function HeroSection({ discountBrands }: { discountBrands: DiscountSearch
         <div className="hero-intro-item w-full max-w-xl mb-5">
           <button
             type="button"
-            onClick={() => setSearchModalOpen(true)}
+            onClick={() => window.dispatchEvent(new Event("saasfolio_search_open"))}
             aria-label="Search SaaS discounts and coupon codes"
             className="group relative flex items-center justify-between w-full p-2 sm:p-2.5 rounded-2xl bg-[#0D0D10]/90 border border-white/15 hover:border-[#C6FF3D]/70 transition-all shadow-[0_10px_40px_rgba(0,0,0,0.6),0_0_20px_rgba(198,255,61,0.06)] cursor-pointer"
           >
@@ -93,6 +90,7 @@ export function HeroSection({ discountBrands }: { discountBrands: DiscountSearch
             <Link
               key={tag.name}
               href={tag.href}
+              prefetch={false}
               className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 hover:border-[#C6FF3D]/60 hover:text-white transition-colors text-zinc-400 font-mono text-[11px]"
             >
               {tag.name}
@@ -135,8 +133,6 @@ export function HeroSection({ discountBrands }: { discountBrands: DiscountSearch
         </div>
       </div>
 
-      {/* Global Command Palette Integration */}
-      <CommandPalette isOpen={searchModalOpen} onClose={() => setSearchModalOpen(false)} discountBrands={discountBrands} />
     </section>
   );
 }

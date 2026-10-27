@@ -12,7 +12,7 @@ export function StatsCounters({ toolCount, offerCount, couponCount, categoryCoun
   ];
 
   return (
-    <section className="py-20 bg-[#050505] border-b border-white/10 relative overflow-hidden">
+    <section className="home-deferred py-20 bg-[#050505] border-b border-white/10 relative overflow-hidden">
       {/* Background Grid Accent */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
 

@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +25,7 @@ export function Marquee({
     >
       <div
         className={cn(
-          "flex min-w-full shrink-0 items-center justify-around gap-6",
+          "flex min-w-full shrink-0 items-center justify-around gap-6 pr-6",
           direction === "left" ? "animate-marquee-left" : "animate-marquee-right",
           pauseOnHover && "group-hover:[animation-play-state:paused]"
         )}
@@ -35,15 +33,12 @@ export function Marquee({
           animationDuration: `${speed}s`,
         }}
       >
-        {children}
-        {children}
-        {children}
         {children}
       </div>
       <div
         aria-hidden="true"
         className={cn(
-          "flex min-w-full shrink-0 items-center justify-around gap-6",
+          "flex min-w-full shrink-0 items-center justify-around gap-6 pr-6",
           direction === "left" ? "animate-marquee-left" : "animate-marquee-right",
           pauseOnHover && "group-hover:[animation-play-state:paused]"
         )}
@@ -51,9 +46,6 @@ export function Marquee({
           animationDuration: `${speed}s`,
         }}
       >
-        {children}
-        {children}
-        {children}
         {children}
       </div>
     </div>
