@@ -139,7 +139,7 @@
       "October 31, 2026"
     ],
     "expiryDate": "2026-10-31T23:59:59.000Z",
-    "terms": "Published for October 1\u201331, 2026. Up to 40% applies to the two-year Scale Business Email plan; other plans and billing terms have lower savings. Confirm renewal prices and final charges with Namecheap. Not checkout tested."
+    "terms": "Published for October 1–31, 2026. Up to 40% applies to the two-year Scale Business Email plan; other plans and billing terms have lower savings. Confirm renewal prices and final charges with Namecheap. Not checkout tested."
   },
   {
     "slug": "namecheap-october-domain-code",
@@ -156,7 +156,7 @@
       "October 31, 2026"
     ],
     "expiryDate": "2026-10-31T23:59:59.000Z",
-    "terms": "Published for October 1\u201331, 2026. First-year registration and transfer offers apply to eligible extensions; premium and aftermarket domains are excluded. ICANN fees may apply. Not checkout tested."
+    "terms": "Published for October 1–31, 2026. First-year registration and transfer offers apply to eligible extensions; premium and aftermarket domains are excluded. ICANN fees may apply. Not checkout tested."
   },
   {
     "slug": "namecheap-october-ssl-code",
@@ -173,7 +173,7 @@
       "October 31, 2026"
     ],
     "expiryDate": "2026-10-31T23:59:59.000Z",
-    "terms": "Published for October 1\u201331, 2026. Applies to eligible Standard Wildcard SSL purchases with prices depending on certificate duration. Check the official terms before purchase. Not checkout tested."
+    "terms": "Published for October 1–31, 2026. Applies to eligible Standard Wildcard SSL purchases with prices depending on certificate duration. Check the official terms before purchase. Not checkout tested."
   },
   {
     "slug": "scispace-yearly-international-code",
@@ -185,7 +185,12 @@
     "sourceKind": "vendor",
     "sourceUrl": "https://scispace.com/help/en/articles/14686913-discounts-on-scispace-plans",
     "destinationUrl": "https://scispace.com/pricing",
-    "evidence": ["SCI30", "non-INR billing", "30%", "yearly plans"],
+    "evidence": [
+      "SCI30",
+      "non-INR billing",
+      "30%",
+      "yearly plans"
+    ],
     "terms": "The official help page publishes SCI30 for yearly plans billed in currencies other than INR. It excludes monthly subscriptions and permits one coupon per purchase. Confirm the accepted reduction and renewal amount before paying. Source reviewed; checkout has not been tested."
   },
   {
@@ -198,7 +203,525 @@
     "sourceKind": "vendor",
     "sourceUrl": "https://scispace.com/help/en/articles/14686913-discounts-on-scispace-plans",
     "destinationUrl": "https://scispace.com/pricing",
-    "evidence": ["IND30", "Customers billed in INR", "30%", "yearly plans"],
+    "evidence": [
+      "IND30",
+      "Customers billed in INR",
+      "30%",
+      "yearly plans"
+    ],
     "terms": "The official help page publishes IND30 for yearly plans billed in INR. It excludes monthly subscriptions and permits one coupon per purchase. Select the code by billing currency, and confirm the accepted reduction and renewal amount before paying. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "baserow-organization-program",
+    "toolSlug": "baserow",
+    "title": "Baserow nonprofit and education pricing enquiries",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://baserow.io/faq",
+    "destinationUrl": "https://baserow.io/faq",
+    "evidence": [
+      "discounts",
+      "non-profits",
+      "education"
+    ],
+    "terms": "The official FAQ directs nonprofit and education customers to sales. Confirm the eligible deployment, plan, seats, duration and renewal quote. No fixed reduction or public code is established by that statement. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "nocodb-annual-billing",
+    "toolSlug": "nocodb",
+    "title": "NocoDB 20% yearly billing option",
+    "dealType": "offer",
+    "discountPercentage": 20,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://nocodb.com/pricing",
+    "destinationUrl": "https://nocodb.com/pricing",
+    "evidence": [
+      "Yearly",
+      "20% off"
+    ],
+    "terms": "The pricing selector advertises 20% off yearly billing. Select the correct cloud or self-hosted plan and paid users; confirm the upfront amount and renewal price. Early-adopter account offers have separate eligibility. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "fibery-startup-pro-access",
+    "toolSlug": "fibery",
+    "title": "Fibery six-month Pro startup program",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://fibery.com/pricing",
+    "destinationUrl": "https://fibery.com/pricing",
+    "evidence": [
+      "6 months",
+      "Pro",
+      "startup"
+    ],
+    "terms": "Fibery advertises six months of Pro through its startup program. Application and provider approval apply. Confirm included users, start date, end date and the paid renewal arrangement; this is not a universal public coupon. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "smartsuite-organization-program",
+    "toolSlug": "smartsuite",
+    "title": "SmartSuite nonprofit and education application",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://help.smartsuite.com/en/articles/7786139-nonprofit-education-discount-program",
+    "destinationUrl": "https://help.smartsuite.com/en/articles/7786139-nonprofit-education-discount-program",
+    "evidence": [
+      "discounted",
+      "nonprofit",
+      "educational"
+    ],
+    "terms": "Official help describes applications for legally recognized nonprofits and accredited educational institutions. Verification documents and an organization-matching email domain may be required. The provider supplies application-specific pricing instructions after approval. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "nifty-nonprofit-education",
+    "toolSlug": "nifty",
+    "title": "Nifty 50% eligible nonprofit and education Pro or Business offer",
+    "dealType": "offer",
+    "discountPercentage": 50,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://niftypm.com/pricing/",
+    "destinationUrl": "https://niftypm.com/pricing/",
+    "evidence": [
+      "50%",
+      "Pro",
+      "Business"
+    ],
+    "terms": "The pricing FAQ restricts the advertised 50% program to eligible educational institutions and nonprofits on Pro or Business. Apply through the provider and confirm the team configuration, billing period and continuation terms. Other plans are not assumed eligible. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "plutio-yearly-billing",
+    "toolSlug": "plutio",
+    "title": "Plutio yearly billing with two months free",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.plutio.com/pricing",
+    "destinationUrl": "https://www.plutio.com/pricing",
+    "evidence": [
+      "Yearly",
+      "2 months free"
+    ],
+    "terms": "Plutio describes annual billing as roughly two months free versus monthly payments. Compare the same package, any optional capabilities and the full amount charged upfront. Confirm renewal and cancellation terms; the displayed monthly equivalent is not month-to-month billing. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "xtiles-education-year",
+    "toolSlug": "xtiles",
+    "title": "xTiles eligible education Plus offer for one year",
+    "dealType": "offer",
+    "discountPercentage": 50,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://xtiles.app/en/pricing/",
+    "destinationUrl": "https://xtiles.app/en/pricing/",
+    "evidence": [
+      "50% off for Educators",
+      "Plus Plan",
+      "1 year"
+    ],
+    "terms": "Students use the application form; educators provide requested status documents. The pricing page names the Plus plan and a one-year period. Use the provider-supplied code after approval and confirm the selected invoice and renewal. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "notesnook-education-year",
+    "toolSlug": "notesnook",
+    "title": "Notesnook Pro education access at US$19.99 for one year",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://notesnook.com/education",
+    "destinationUrl": "https://notesnook.com/education",
+    "evidence": [
+      "19.99 USD/yr",
+      "student or educator",
+      "1 year"
+    ],
+    "terms": "The program requires current student or educator verification through a university email or official documents. The education page states one year from purchase and excludes claiming or using the discount after graduation. Confirm the account's actual purchase and renewal terms. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "coderabbit-annual-billing",
+    "toolSlug": "coderabbit",
+    "title": "CodeRabbit 20% annual plan savings",
+    "dealType": "offer",
+    "discountPercentage": 20,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.coderabbit.ai/pricing",
+    "destinationUrl": "https://www.coderabbit.ai/pricing",
+    "evidence": [
+      "Annual Plans saves 20%",
+      "Essentials"
+    ],
+    "terms": "CodeRabbit's pricing page advertises a 20% annual saving. Match the selected current plan and paid users, and confirm the yearly invoice, plan-change treatment and renewal amount. Public-repository free access is a separate entitlement. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "sourcery-annual-billing",
+    "toolSlug": "sourcery",
+    "title": "Sourcery 20% annual Pro and Team billing",
+    "dealType": "offer",
+    "discountPercentage": 20,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.sourcery.ai/pricing",
+    "destinationUrl": "https://www.sourcery.ai/pricing",
+    "evidence": [
+      "Annual",
+      "Save 20%",
+      "Pro",
+      "Team"
+    ],
+    "terms": "The pricing FAQ explicitly advertises 20% annual savings on Pro and Team. Compare the same number of assigned developers and required package. Confirm the upfront invoice and renewal; free public-repository access and the Team trial are separate. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "checkly-annual-billing",
+    "toolSlug": "checkly",
+    "title": "Checkly annual savings up to 20% on eligible configurations",
+    "dealType": "offer",
+    "discountPercentage": 20,
+    "discountKind": "up-to",
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.checklyhq.com/pricing/",
+    "destinationUrl": "https://www.checklyhq.com/pricing/",
+    "evidence": [
+      "Annual",
+      "Save up to 20 %"
+    ],
+    "terms": "The pricing page advertises a maximum annual reduction. Match the monitoring product, selected plan and API/browser execution allowance; not every configuration is assumed to receive 20%. Confirm additional usage, upfront billing and renewal terms. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "hyperping-yearly-billing",
+    "toolSlug": "hyperping",
+    "title": "Hyperping yearly billing with two months free",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://hyperping.com/pricing",
+    "destinationUrl": "https://hyperping.com/pricing",
+    "evidence": [
+      "pay for a year up front",
+      "two months free"
+    ],
+    "terms": "The official FAQ describes a yearly upfront payment with two months free. Match the plan and required capacity, include separately billed log usage, and inspect current cancellation and renewal terms. Competitor-stack examples are not an additional subscription discount. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "healthchecks-io-annual-business",
+    "toolSlug": "healthchecks-io",
+    "title": "Healthchecks.io 20% annual Business plan savings",
+    "dealType": "offer",
+    "discountPercentage": 20,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://healthchecks.io/pricing/",
+    "destinationUrl": "https://healthchecks.io/pricing/",
+    "evidence": [
+      "save 20%",
+      "Business",
+      "Business Plus"
+    ],
+    "terms": "Official pricing explicitly states a 20% annual saving for Business and Business Plus. Match job capacity, history and notification credits, and confirm the full upfront amount and continuing subscription terms. Hosted free access is separate from the paid annual benefit. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "incident-io-annual-team",
+    "toolSlug": "incident-io",
+    "title": "incident.io annual Team incident-response pricing",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://incident.io/pricing",
+    "destinationUrl": "https://incident.io/pricing",
+    "evidence": [
+      "Annual discount",
+      "Team",
+      "Incident Response"
+    ],
+    "terms": "The current pricing page labels the Team incident-response annual option. Compare the same responder configuration and separately priced on-call requirements. Confirm the selected package's annual invoice and renewal; no universal percentage is asserted. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "rootly-startup-program",
+    "toolSlug": "rootly",
+    "title": "Rootly startup program with savings up to 50%",
+    "dealType": "offer",
+    "discountPercentage": 50,
+    "discountKind": "up-to",
+    "sourceKind": "vendor",
+    "sourceUrl": "https://rootly.com/pricing",
+    "destinationUrl": "https://rootly.com/pricing",
+    "evidence": [
+      "Up to 50% off",
+      "100 employees",
+      "50m raised",
+      "5 years in business"
+    ],
+    "terms": "Published requirements are fewer than 100 employees, less than US$50 million raised and under five years in business. Application and provider approval determine the eligible products and price. A separate pay-what-you-can route is advertised for companies below 25 employees; combination is not assumed. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "browserstack-annual-billing",
+    "toolSlug": "browserstack",
+    "title": "BrowserStack eligible annual configurations with savings up to 25%",
+    "dealType": "offer",
+    "discountPercentage": 25,
+    "discountKind": "up-to",
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.browserstack.com/pricing",
+    "destinationUrl": "https://www.browserstack.com/pricing",
+    "evidence": [
+      "Annually",
+      "Save up to 25%"
+    ],
+    "terms": "BrowserStack's pricing page displays annual savings up to 25% for relevant product configurations. Verify the selected testing product, user count, device scope and execution capacity. The maximum is not asserted for every product, and volume or sales quotes need their own terms. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "jira-community-cloud",
+    "toolSlug": "jira",
+    "title": "Jira eligible nonprofit Community cloud offer",
+    "dealType": "offer",
+    "discountPercentage": 75,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.atlassian.com/licensing/cloud",
+    "destinationUrl": "https://www.atlassian.com/licensing/cloud",
+    "evidence": [
+      "75% off",
+      "Jira",
+      "charitable"
+    ],
+    "terms": "Atlassian documents 75% off eligible Community cloud subscriptions, including Jira. The organization must satisfy its charitable nonprofit criteria and receive approval. Confirm plan, users, apps and continuing terms; unrelated Atlassian products can have separate programs. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "confluence-community-cloud",
+    "toolSlug": "confluence",
+    "title": "Confluence eligible nonprofit Community cloud offer",
+    "dealType": "offer",
+    "discountPercentage": 75,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.atlassian.com/licensing/cloud",
+    "destinationUrl": "https://www.atlassian.com/licensing/cloud",
+    "evidence": [
+      "75% off",
+      "Confluence",
+      "charitable"
+    ],
+    "terms": "Atlassian's cloud licensing includes Confluence in the eligible Community route. Organization criteria, application and subscription approval apply. Confirm site, plan, users and associated app conditions before payment. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "trello-nonprofit-program",
+    "toolSlug": "trello",
+    "title": "Trello 75% offer for eligible nonprofit workspaces",
+    "dealType": "offer",
+    "discountPercentage": 75,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://trello.com/en/use-cases/nonprofits",
+    "destinationUrl": "https://trello.com/en/use-cases/nonprofits",
+    "evidence": [
+      "75% off",
+      "eligible nonprofits"
+    ],
+    "terms": "Trello's nonprofit page publishes 75% off for eligible organizations. Use Trello's own approval process and confirm the workspace, paid package and term. Another Atlassian product's approval is not assumed to activate this benefit. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "dropbox-organization-program",
+    "toolSlug": "dropbox",
+    "title": "Dropbox team nonprofit and education pricing enquiries",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://help.dropbox.com/billing/discounts",
+    "destinationUrl": "https://help.dropbox.com/billing/discounts",
+    "evidence": [
+      "Non-profit organizations",
+      "Educational institutions",
+      "admin console"
+    ],
+    "terms": "Official help names eligible Dropbox team subscriptions and directs administrators to contact Dropbox through the admin console. No universal percentage is published. The article says unused storage or licenses do not receive discounts; confirm the actual approved team configuration. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "box-annual-billing",
+    "toolSlug": "box",
+    "title": "Box plan-specific annual billing savings",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.box.com/pricing",
+    "destinationUrl": "https://www.box.com/pricing",
+    "evidence": [
+      "Annually",
+      "Save",
+      "Personal Pro"
+    ],
+    "terms": "The pricing page presents monthly and annual alternatives with plan-dependent rates. Match the selected plan, user minimum and required capabilities before comparing the upfront invoice. Nonprofit approval and donated access have separate conditions. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "google-workspace-annual-commitment",
+    "toolSlug": "google-workspace",
+    "title": "Google Workspace annual commitment pricing with 16% savings",
+    "dealType": "offer",
+    "discountPercentage": 16,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://workspace.google.com/pricing.html",
+    "destinationUrl": "https://workspace.google.com/pricing.html",
+    "evidence": [
+      "Annual",
+      "Save 16%",
+      "1 year commitment"
+    ],
+    "terms": "The reviewed business pricing selector advertises an annual comparison with a one-year commitment. Confirm edition, users, local currency and payment schedule. A commitment is not the same as unrestricted monthly cancellation; temporary promotional prices have separate terms. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "microsoft-365-nonprofit-program",
+    "toolSlug": "microsoft-365",
+    "title": "Microsoft 365 approved nonprofit grants and discounted plans",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.microsoft.com/en-us/nonprofits/microsoft-365",
+    "destinationUrl": "https://www.microsoft.com/en-us/nonprofits/microsoft-365",
+    "evidence": [
+      "grants and discounts",
+      "nonprofits"
+    ],
+    "terms": "Microsoft requires organization validation and publishes plan- and market-dependent nonprofit offers. Granted and discounted licenses have different permitted-user conditions. Confirm current edition, staff or volunteer eligibility, term and renewal; historical Business Premium grants are not assumed current. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "adobe-creative-cloud-education-offer",
+    "toolSlug": "adobe-creative-cloud",
+    "title": "Adobe Creative Cloud verified student and teacher pricing",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://helpx.adobe.com/creative-cloud/faq/students-teachers.html",
+    "destinationUrl": "https://helpx.adobe.com/creative-cloud/faq/students-teachers.html",
+    "evidence": [
+      "student and teacher",
+      "one-year commitment",
+      "introductory price"
+    ],
+    "terms": "Current education verification, local package and introductory conditions apply. Adobe's official FAQ states that education purchases require a one-year commitment and renew at the standard education rate after the introductory period. Confirm the local invoice and cancellation terms; no universal percentage is applied across regions. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "asana-nonprofit-program",
+    "toolSlug": "asana",
+    "title": "Asana 50% nonprofit Starter or Advanced offer",
+    "dealType": "offer",
+    "discountPercentage": 50,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://asana.com/industry/nonprofit",
+    "destinationUrl": "https://asana.com/industry/nonprofit",
+    "evidence": [
+      "50%",
+      "Starter",
+      "Advanced",
+      "approved"
+    ],
+    "terms": "Asana's official program requires qualifying organization verification and names Starter or Advanced for the published benefit. Confirm the approved organization, users and billing period. Enterprise and education have separate enquiries; no general public code or stacking is assumed. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "airtable-nonprofit-team",
+    "toolSlug": "airtable",
+    "title": "Airtable 50% nonprofit Team offer on the monthly-rate basis",
+    "dealType": "offer",
+    "discountPercentage": 50,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://support.airtable.com/articles/4920135568-applying-for-non-profit-education-and-student-airtable-plans",
+    "destinationUrl": "https://support.airtable.com/articles/4920135568-applying-for-non-profit-education-and-student-airtable-plans",
+    "evidence": [
+      "50% nonprofit discount",
+      "monthly Team plan rate",
+      "annual plan discount does not apply"
+    ],
+    "terms": "Official help restricts the self-serve nonprofit discount to Team and bases it on the monthly Team rate. It explicitly says the ordinary annual discount does not apply to nonprofit-discounted workspaces. Registration verification, workspace approval and the current billing conditions apply. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "monday-nonprofit-additional-seats",
+    "toolSlug": "monday",
+    "title": "monday.com 70% off eligible additional nonprofit seats",
+    "dealType": "offer",
+    "discountPercentage": 70,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://monday.com/w/nonprofits",
+    "destinationUrl": "https://monday.com/w/nonprofits",
+    "evidence": [
+      "10 seats free",
+      "70% off additional seats"
+    ],
+    "terms": "The official nonprofit page advertises ten free seats and 70% off additional seats for eligible organizations. Confirm approved product, package and continuation conditions. Separate AI or other capabilities have their own pricing; 70% is not applied to every line of the invoice. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "linear-partner-startup-business",
+    "toolSlug": "linear",
+    "title": "Linear Business access for eligible partner-affiliated startups",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://linear.app/startups",
+    "destinationUrl": "https://linear.app/startups",
+    "evidence": [
+      "free access",
+      "Business",
+      "non-paying",
+      "50 employees"
+    ],
+    "terms": "Linear's startup FAQ requires official partner affiliation, non-paying user status and fewer than 50 employees. A workspace admin redeems through the partner route. Confirm the approved benefit period; the Business subscription renews at the standard rate unless changed or cancelled before it ends. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "sentry-startup-credits",
+    "toolSlug": "sentry",
+    "title": "Sentry startup credits up to US$5,000 with twelve-month expiry",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://sentry.io/for/startups/apply/",
+    "destinationUrl": "https://sentry.io/for/startups/apply/",
+    "evidence": [
+      "$5,000",
+      "12 months",
+      "last 2 years",
+      "$5M"
+    ],
+    "terms": "The application requires founding within the last two years, less than US$5 million in venture funding and being new to paying for Sentry. Credits expire after twelve months. Confirm approved use and the actual balance; the page says separate YC or a16z speedrun deals do not stack. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "intercom-early-stage-year-one",
+    "toolSlug": "intercom",
+    "title": "Intercom Early Stage first-year offer on eligible configuration",
+    "dealType": "offer",
+    "discountPercentage": 93,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.intercom.com/early-stage",
+    "destinationUrl": "https://www.intercom.com/early-stage",
+    "evidence": [
+      "93% off",
+      "Fewer than 15 employees",
+      "Up to $10M",
+      "New customer"
+    ],
+    "terms": "The program publishes year-one, year-two and year-three reductions for its covered configuration. Eligibility includes a new Intercom customer, fewer than fifteen employees and up to US$10 million in funding. Fin overages and specified channels have separate or list-price charges; confirm the approved invoice and allowances. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "typeform-startup-business-year",
+    "toolSlug": "typeform",
+    "title": "Typeform 75% startup Business yearly offer for one year",
+    "dealType": "offer",
+    "discountPercentage": 75,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://help.typeform.com/hc/en-us/articles/360045878891-Startup-discount-at-Typeform",
+    "destinationUrl": "https://help.typeform.com/hc/en-us/articles/360045878891-Startup-discount-at-Typeform",
+    "evidence": [
+      "75% off",
+      "Business plan",
+      "yearly plan",
+      "seed stage"
+    ],
+    "terms": "Official help requires a seed-stage startup, less than US$1 million in funding, less than US$1 million in lifetime revenue and no existing Typeform customer status. The offer is for Business on a yearly plan for one year. Apply and confirm approval before purchase. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "zapier-annual-billing",
+    "toolSlug": "zapier",
+    "title": "Zapier 33% annual prepaid plan savings",
+    "dealType": "offer",
+    "discountPercentage": 33,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://help.zapier.com/hc/en-us/articles/8496197165581-Discounts-for-Zapier-plans",
+    "destinationUrl": "https://help.zapier.com/hc/en-us/articles/8496197165581-Discounts-for-Zapier-plans",
+    "evidence": [
+      "33% discount",
+      "annual plan",
+      "prepay"
+    ],
+    "terms": "Official help describes a 33% reduction when an annual plan is selected and prepaid. Match the task allowance and package, then confirm the upfront amount and renewal. Additional usage and other services need their own budget. Source reviewed; checkout has not been tested."
   }
 ]
