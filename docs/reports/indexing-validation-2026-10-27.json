@@ -1,0 +1,191 @@
+{
+  "validatedAt": "2026-10-27T03:57:49.990684+00:00",
+  "scope": "Public HTTP evidence and local production validation. No authenticated Search Console access or owner export was supplied. These checks do not establish production deployment of this revision.",
+  "sitemapUrl": "https://saasfolio.tech/sitemap.xml",
+  "liveCrawl": {
+    "observedAt": "2026-10-27T03:42:41.023Z",
+    "sitemapUrls": 1009,
+    "sitemapPageHttpStatusCounts": {
+      "200": 1009
+    },
+    "historicalProbeHttpStatusCounts": {
+      "404": 4
+    },
+    "unexpectedSitemap4xxOr5xx": 0,
+    "historicalProbeSource": "Exact URLs retained in repository offer history, not a Search Console export",
+    "auditNote": "The original audit also reported apex-root slash canonical equivalence as a mismatch. This was an audit false positive; the URL comparison was corrected without changing site canonical metadata."
+  },
+  "historicalUrls": [
+    {
+      "url": "https://saasfolio.tech/deals/browserbase-free-plan",
+      "liveStatus": 404
+    },
+    {
+      "url": "https://saasfolio.tech/deals/dubb-free-trial",
+      "liveStatus": 404
+    },
+    {
+      "url": "https://saasfolio.tech/deals/meetgeek-free-plan",
+      "liveStatus": 404
+    },
+    {
+      "url": "https://saasfolio.tech/deals/recraft-free-plan",
+      "liveStatus": 404
+    }
+  ],
+  "localRedirectRecheck": {
+    "observedAt": "2026-10-27T03:56:23.034Z",
+    "summary": {
+      "sitemapUrls": 1009,
+      "importedUrls": 4,
+      "auditedUrls": 4,
+      "skippedUrls": 0,
+      "pageStatusCounts": {
+        "308": 4
+      },
+      "publicStatusCounts": {
+        "308": 4
+      },
+      "expectedPrivateStatusCounts": {},
+      "classificationCounts": {
+        "redirect": 4
+      },
+      "documentStatusCounts": {
+        "200": 2
+      },
+      "errors": 0,
+      "warnings": 0,
+      "affectedPages": 0
+    },
+    "scope": "imported-pages-only; sitemap/robots documents inspected",
+    "results": [
+      {
+        "url": "https://saasfolio.tech/deals/browserbase-free-plan",
+        "status": 308,
+        "finalUrl": "https://saasfolio.tech/tools/browserbase",
+        "finalStatus": 200,
+        "canonical": [
+          "https://saasfolio.tech/tools/browserbase"
+        ],
+        "issues": []
+      },
+      {
+        "url": "https://saasfolio.tech/deals/dubb-free-trial",
+        "status": 308,
+        "finalUrl": "https://saasfolio.tech/tools/dubb",
+        "finalStatus": 200,
+        "canonical": [
+          "https://saasfolio.tech/tools/dubb"
+        ],
+        "issues": []
+      },
+      {
+        "url": "https://saasfolio.tech/deals/meetgeek-free-plan",
+        "status": 308,
+        "finalUrl": "https://saasfolio.tech/discounts/meetgeek",
+        "finalStatus": 200,
+        "canonical": [
+          "https://saasfolio.tech/discounts/meetgeek"
+        ],
+        "issues": []
+      },
+      {
+        "url": "https://saasfolio.tech/deals/recraft-free-plan",
+        "status": 308,
+        "finalUrl": "https://saasfolio.tech/tools/recraft",
+        "finalStatus": 200,
+        "canonical": [
+          "https://saasfolio.tech/tools/recraft"
+        ],
+        "issues": []
+      }
+    ]
+  },
+  "syntheticCrawlerProbe": {
+    "observedAt": "2026-10-27T03:34:10.072528+00:00",
+    "ordinaryRobotsAndSitemapStatus": 200,
+    "googlebotUserAgentRobotsAndSitemapStatus": 403,
+    "limitation": "Requests came from this connection, not verified Google crawler IPs. Hostinger documents that rejecting impersonated crawler user agents is normal. This does not establish a verified-Google access failure."
+  },
+  "productionValidation": {
+    "build": "passed",
+    "seoAudit": {
+      "sitemapPages": 1009,
+      "jsonLdBlocks": 2012,
+      "sharingImages": 79,
+      "additionalInternalDestinations": 900,
+      "result": "passed"
+    },
+    "offerAndHistoryTests": 24,
+    "indexingAuditTests": 9,
+    "redirectChecks": [
+      {
+        "path": "/discounts/semrush?utm_source=diagnostic",
+        "requestHost": "www.saasfolio.tech",
+        "status": 308,
+        "location": "https://saasfolio.tech/discounts/semrush?utm_source=diagnostic"
+      },
+      {
+        "path": "/sitemap.xml",
+        "requestHost": "www.saasfolio.tech",
+        "status": 308,
+        "location": "https://saasfolio.tech/sitemap.xml"
+      },
+      {
+        "path": "/discounts/semrush",
+        "requestHost": "saasfolio.tech",
+        "status": 200,
+        "location": null
+      },
+      {
+        "path": "/deals/meetgeek-free-plan",
+        "requestHost": "saasfolio.tech",
+        "status": 308,
+        "location": "/discounts/meetgeek"
+      },
+      {
+        "path": "/deals/browserbase-free-plan",
+        "requestHost": "saasfolio.tech",
+        "status": 308,
+        "location": "/tools/browserbase"
+      },
+      {
+        "path": "/deals/dubb-free-trial",
+        "requestHost": "saasfolio.tech",
+        "status": 308,
+        "location": "/tools/dubb"
+      },
+      {
+        "path": "/deals/recraft-free-plan",
+        "requestHost": "saasfolio.tech",
+        "status": 308,
+        "location": "/tools/recraft"
+      },
+      {
+        "path": "/deals/fabricated-never-published-2026",
+        "requestHost": "saasfolio.tech",
+        "status": 404,
+        "location": null
+      },
+      {
+        "path": "/discounts/kit",
+        "requestHost": "saasfolio.tech",
+        "status": 308,
+        "location": "/discounts/convertkit"
+      }
+    ]
+  },
+  "rawEvidenceSha256": {
+    "live-audit.json": "c23c1c6b884b5850053e6ee3100f8f74423b062546d9852c31ee5e16f9d7a764",
+    "local-audit.json": "142515ae781e20f43a928dd02a8848e48f92bda9715a748bf922dea90307ba48",
+    "local-redirect-recheck.json": "9848069b2735454d2ea716fab190661098abd6df4bdcde511d3c8e5e7fce396a",
+    "live-probe.json": "1c16d05f67b2d5d89f60ae7717cd0bfb19af675d457034520c20792126101590",
+    "redirect-check.json": "8e1042c9cb1dc93c83cc58155bb8fbbfecbc1bbd20f890879fa12255a9214b0d"
+  },
+  "remainingOwnerActions": [
+    "Deploy these local changes",
+    "Run Search Console Test live URL on actual reported failures",
+    "Inspect Hostinger logs/settings if verified live crawling remains forbidden or returns server errors",
+    "Submit the canonical sitemap and use Validate fix after successful live tests"
+  ]
+}

@@ -2,7 +2,7 @@
 
 ## Replaced in this pass
 
-- Fake browser sign-in became Supabase password authentication, email confirmation, sign-out, and password recovery. Cookies are HttpOnly, SameSite=Lax, and Secure in production. Redirect destinations are restricted to local paths. OAuth and simulated magic-link buttons were removed.
+- Fake browser sign-in became Supabase password authentication, email confirmation, sign-out, and password recovery. Google and Apple now use a real server-side PKCE integration and remain unavailable until enabled in the intended Supabase project. Cookies are HttpOnly, SameSite=Lax, and Secure in production. Redirect destinations are restricted to local paths. See [authentication configuration and security](AUTHENTICATION.md).
 - The account dashboard loads the authenticated user, persists settings, and saves actual deals and articles through the database. It no longer invents a profile, saved articles, reputation, or submissions.
 - Contact, partnership, and vendor forms submit to a server endpoint with field validation, a request size limit, same-origin checks, and database-backed limits. Success references come from persisted database records. No customer confirmation or admin notification email is claimed.
 - The review inbox is limited to confirmed users listed in `ADMIN_EMAILS`. Page and API access are independently checked. Private inquiries are not readable with public credentials. Updating an inquiry status does not automatically publish an unverified offer.

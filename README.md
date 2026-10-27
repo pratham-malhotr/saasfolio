@@ -101,7 +101,7 @@ Edit `app/globals.css`:
   - [x] Thread detail pages (`/community/[slug]`) with nested replies, user badges, and tool deal shelf
 
 - [x] **Phase 4: User Authentication, Submissions, Bookmarks & Admin Portal**
-  - [x] 1-Click OAuth simulation & passwordless magic-link authentication (`/login`, `/signup`)
+  - [x] Supabase email/password authentication and Google/Apple PKCE integration (`/login`, `/signup`); production provider activation requires configuration
   - [x] Member Passport Dashboard (`/profile`, `/u/[username]`) with reputation points (640 PTS) and 4 interactive tabs
   - [x] 4-Step Vendor & Deal Submission Portal (`/submit`) with real-time card preview and ticket generation
   - [x] Admin Mission Control Dashboard (`/admin`) with live KPI metrics, vendor moderation queue, and deal toggles
@@ -139,8 +139,14 @@ tests. Existing editorial and community demo content still needs factual review.
 
 See [the SEO implementation and launch checklist](docs/SEO.md) for canonical URLs, indexing rules, structured data, Search Console setup, content verification requirements, and the production-response audit (`npm run seo:audit`).
 
+The [indexing recovery report](docs/INDEXING-RECOVERY.md) covers the October 27 live sitemap crawl, retired-offer URL fixes, hosting checks and Search Console validation steps. Run `npm run seo:audit:indexing -- https://saasfolio.tech` to produce a current JSON/CSV crawl report.
+
 ## Account, form, and newsletter setup
 
 Sign-in, saved items, contact forms, and the administrator inbox now use Supabase instead of simulated browser identities and local form receipts. Newsletter signup uses Resend confirmation emails. These services require the migration and credentials described in [production readiness](docs/PRODUCTION-READINESS.md); without configuration, the APIs return an unavailable response. That document also identifies the community and editorial features that still need production work.
+
+Google and Apple sign-in configuration, password/session protections, and the explicitly enabled development-only account store are documented in [authentication setup](docs/AUTHENTICATION.md).
+
+Use the [owner activation steps](docs/AUTH-OWNER-SETUP.md) for dashboard settings and credentials, and the [local validation report](docs/AUTH-VALIDATION-2026-10-27.md) for the completed checks and live-service boundaries.
 
 Run `npm run test:platform` to check the server flows with mocked providers. No production accounts or emails are created by those tests.

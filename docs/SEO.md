@@ -11,6 +11,10 @@ measurement procedure.
 The [24-guide expansion](brand-discount-expansion-2026-10-26.md) adds twelve
 providers and a repeatable nine-intent audit for each brand's canonical guide.
 
+See [indexing recovery](INDEXING-RECOVERY.md) for the October 27 live crawl,
+historical offer URL recovery, canonical-host redirects, repeatable error
+reports, and the deployment/Search Console validation steps.
+
 ## Implemented
 
 - Unique server-rendered titles and concise descriptions for public pages.
@@ -27,8 +31,9 @@ providers and a repeatable nine-intent audit for each brand's canonical guide.
   HTML. Software entities describe features and official URLs without invented
   `AggregateRating`, `Review`, `Offer`, or price fields. FAQ schema matches visible
   deal FAQs; profiles do not publish invisible FAQ content. JSON-LD escapes `<`.
-- Public profiles, sourced offers, category collections, comparisons, articles,
-  and discussions are in the canonical sitemap. Pricing-only offer pages use
+- Public profiles, sourced offers, category collections, comparisons and articles
+  are in the canonical sitemap. Browser-local discussions are excluded.
+  Pricing-only offer pages use
   `noindex, follow` and are excluded to avoid duplicating profiles. Modification
   dates come from recorded content/evidence changes or article dates.
 - Pages depending on offers and the sitemap revalidate hourly. Offers expire
