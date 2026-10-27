@@ -22,7 +22,7 @@
     "catalog:expand": "node scripts/build-brand-expansion.mjs",
     "catalog:refresh": "node scripts/refresh-offers.mjs",
     "validate:catalog": "node scripts/validate-catalog.mjs",
-    "test:offers": "node --test scripts/offer-sources.test.mjs scripts/simplycodes.test.mjs",
+    "test:offers": "node --test scripts/offer-sources.test.mjs scripts/simplycodes.test.mjs scripts/offer-url-history.test.mjs",
     "test:platform": "node --test scripts/platform.test.mjs scripts/code-verification.test.mjs",
     "coupons:inspect": "node scripts/inspect-simplycodes.mjs",
     "test:browser:features": "node scripts/browser-simplycodes-features.mjs",
@@ -30,7 +30,8 @@
     "test:search": "node --test scripts/discount-search.test.mjs",
     "test:browser:auth": "node scripts/browser-auth-smoke.mjs",
     "test:auth": "node --test scripts/auth-oauth.test.mjs scripts/local-auth-security.test.mjs scripts/auth-proxy.test.mjs",
-    "test:auth:http": "node scripts/auth-http-smoke.mjs"
+    "test:auth:http": "node scripts/auth-http-smoke.mjs",
+    "catalog:history": "node scripts/build-offer-url-history.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

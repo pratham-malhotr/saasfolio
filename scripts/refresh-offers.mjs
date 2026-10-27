@@ -1,13 +1,23 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { randomUUID } from "node:crypto";
 import { discoverVendorOffer, extractCouponCandidates, fetchPublicPage, plainText, robotsAllows, hash } from "./lib/offer-sources.mjs";
 import { parseSimplyCodes, compareDiscoveryCandidates } from "./lib/simplycodes.mjs";
 import { sourceBackoff, shouldAttemptSource } from "./lib/source-backoff.mjs";
+import { loadCatalogModule } from "./lib/load-catalog.mjs";
+import { rememberOfferIdentifiers, rememberOfferUrls, validateOfferUrlHistory } from "./lib/offer-url-history.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = async (name, fallback) => { try { return JSON.parse(await fs.readFile(path.join(root, name), "utf8")); } catch { return fallback; } };
-const write = async (name, data) => fs.writeFile(path.join(root, name), `${JSON.stringify(data, null, 2)}\n`);
+const write = async (name, data) => {
+  const destination = path.join(root, name);
+  const temporary = `${destination}.${randomUUID()}.tmp`;
+  try {
+    await fs.writeFile(temporary, `${JSON.stringify(data, null, 2)}\n`, { flag: "wx" });
+    await fs.rename(temporary, destination);
+  } finally { await fs.rm(temporary, { force: true }); }
+};
 const extra = (await fs.readFile(path.join(root, "lib/data/brand-expansion.txt"), "utf8")).split(/\r?\n/).filter(l => l && !l.startsWith("#")).map(l => {
   const [name, slug, categorySlug, url, description, features] = l.split("|");
   return { name, slug, categorySlug, url, description, features: features.split(";") };
@@ -15,6 +25,12 @@ const extra = (await fs.readFile(path.join(root, "lib/data/brand-expansion.txt")
 const base = await read("lib/data/catalog-seeds.json", []);
 const reviewed = await read("lib/data/reviewed-offers.json", []);
 const state = await read("lib/data/offer-snapshot.json", { sources: {}, offers: [], candidates: [] });
+const offerUrlHistory = validateOfferUrlHistory(JSON.parse(await fs.readFile(path.join(root, "lib/data/offer-url-history.json"), "utf8")));
+const { getToolBySlug } = loadCatalogModule("lib/data/tools-data.ts");
+const canonicalBrand = slug => getToolBySlug(slug)?.slug;
+rememberOfferIdentifiers(offerUrlHistory, Object.entries(await read("lib/data/legacy-deal-aliases.json", {})), canonicalBrand);
+// Capture identities before successful replacement or 404/410 source removal.
+rememberOfferUrls(offerUrlHistory, state.offers, canonicalBrand);
 const selected = process.argv.find(a => a.startsWith("--only="))?.slice(7).split(",");
 const providerLinks = await read("lib/data/provider-links.json", {});
 const vendorSeeds = [...base, ...extra].filter((b, i, all) => all.findIndex(t => t.slug === b.slug) === i && (!selected || selected.includes(b.slug)) && providerLinks[b.slug]?.providerStatus !== "unavailable")
@@ -125,6 +141,10 @@ state.offers.sort((a, b) => a.slug.localeCompare(b.slug));
 state.sources = Object.fromEntries(Object.entries(state.sources).sort(([a], [b]) => a.localeCompare(b)));
 state.candidates = [...new Map(state.candidates.map(c => [`${c.sourceUrl}:${c.candidateId || c.code || c.status}`, c])).values()].slice(-1000);
 state.lastRun = new Date().toISOString();
+rememberOfferUrls(offerUrlHistory, state.offers, canonicalBrand);
+// Persist identities first, so replacing the evidence snapshot cannot erase
+// the only record of an already published URL.
+await write("lib/data/offer-url-history.json", offerUrlHistory);
 await write("lib/data/offer-snapshot.json", state);
 console.log(JSON.stringify({ sources: Object.keys(state.sources).length, successful: Object.values(state.sources).filter(s => s.status === "ok").length,
   offers: state.offers.length, candidates: state.candidates.length, scheduledJobs: jobs.length, sourceRequests, skippedJobs }));

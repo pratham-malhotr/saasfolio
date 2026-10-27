@@ -1,10 +1,10 @@
 import React from "react";
 import { notFound, permanentRedirect } from "next/navigation";
-import { getAllDeals, getDealBySlug } from "@/lib/data/deals-data";
+import { getAllDeals, getDealBySlug, getRetiredOfferToolSlug } from "@/lib/data/deals-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { DealDetailClient } from "@/components/deals/DealDetailClient";
 import type { Metadata } from "next";
-import { pageMetadata, dealSearchTitle, dealMetaDescription } from "@/lib/seo";
+import { pageMetadata, dealSearchTitle, dealMetaDescription, toolSearchTitle, toolMetaDescription } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   breadcrumbSchema,
@@ -15,7 +15,7 @@ import {
   getDealFaqs,
 } from "@/lib/structured-data";
 import { getComparisonHref } from "@/lib/catalog-links";
-import { hasBrandDiscountPage } from "@/lib/brand-discounts";
+import { hasBrandDiscountPage, getBrandDiscountData, brandDiscountTitle, brandDiscountDescription } from "@/lib/brand-discounts";
 
 export async function generateStaticParams() {
   const deals = getAllDeals();
@@ -24,20 +24,48 @@ export async function generateStaticParams() {
   }));
 }
 
+function resolveDeal(slug: string) {
+  const retiredBrand = getRetiredOfferToolSlug(slug);
+  if (retiredBrand) {
+    const tool = getToolBySlug(retiredBrand);
+    if (!tool || tool.providerStatus === "unavailable") notFound();
+    const discountData = hasBrandDiscountPage(tool.slug) ? getBrandDiscountData(tool) : undefined;
+    return {
+      kind: "retired" as const,
+      tool,
+      discountData: discountData?.indexable ? discountData : undefined,
+      path: discountData?.indexable ? `/discounts/${tool.slug}` : `/tools/${tool.slug}`,
+    };
+  }
+  const deal = getDealBySlug(slug);
+  if (!deal) notFound();
+  return { kind: "active" as const, deal, path: `/deals/${deal.slug}` };
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const deal = getDealBySlug(slug);
-
-  if (!deal) notFound();
+  const target = resolveDeal(slug);
+  // Only the page emits redirects. Next.js resolves metadata and the page in
+  // parallel; redirecting from both can append duplicate Location headers.
+  if (target.kind === "retired") {
+    return pageMetadata({
+      title: target.discountData ? brandDiscountTitle(target.tool) : toolSearchTitle(target.tool.name),
+      description: target.discountData
+        ? brandDiscountDescription(target.tool, target.discountData.offers)
+        : toolMetaDescription(target.tool.name, target.tool.description),
+      path: target.path,
+    });
+  }
+  const { deal } = target;
 
   return pageMetadata({
     title: dealSearchTitle(deal),
     description: dealMetaDescription(deal),
-    path: `/deals/${deal.slug}`,
+    path: target.path,
     noIndex: deal.dealType === "pricing",
   });
 }
@@ -50,13 +78,9 @@ export default async function DealDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const deal = getDealBySlug(slug);
-
-  if (!deal) {
-    notFound();
-  }
-
-  if (slug !== deal.slug) permanentRedirect(`/deals/${deal.slug}`);
+  const target = resolveDeal(slug);
+  if (target.kind === "retired" || slug !== target.deal.slug) permanentRedirect(target.path);
+  const { deal } = target;
 
   const tool = getToolBySlug(deal.toolSlug);
   const allDeals = getAllDeals();

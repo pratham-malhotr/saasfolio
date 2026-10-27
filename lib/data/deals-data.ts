@@ -2,6 +2,7 @@ import type { SaaSDeal } from "@/lib/types";
 import { TOOLS_DATA, getToolBySlug } from "./tools-data";
 import snapshot from "./offer-snapshot.json";
 import aliases from "./legacy-deal-aliases.json";
+import offerUrlHistory from "./offer-url-history.json";
 import { publicHttpsUrl } from "@/lib/offer-links";
 import { discoverVendorOffer } from "@/lib/offer-evidence.mjs";
 
@@ -52,8 +53,16 @@ export function getAllDeals(): SaaSDeal[] {
 }
 export const DEALS_DATA: SaaSDeal[] = getAllDeals();
 export function getHistoricOfferToolSlug(id: string): string | undefined {
+  if (Object.hasOwn(offerUrlHistory.offers, id)) return (offerUrlHistory.offers as Record<string, string>)[id];
   if (Object.hasOwn(aliases, id)) return (aliases as Record<string, string>)[id];
   return snapshot.offers.find(offer => id === offer.slug || id === `deal-${offer.slug}`)?.toolSlug;
+}
+// A known retired URL keeps its brand identity, but never becomes a fresh
+// coupon or trial merely because another offer for that brand is available.
+export function getRetiredOfferToolSlug(id: string): string | undefined {
+  if (getAllDeals().some(deal => id === deal.slug || id === deal.id)) return undefined;
+  const tool = getToolBySlug(getHistoricOfferToolSlug(id) || "");
+  return tool && tool.providerStatus !== "unavailable" ? tool.slug : undefined;
 }
 export function getDealBySlug(slug: string): SaaSDeal | undefined {
   const current = getAllDeals();

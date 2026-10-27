@@ -92,6 +92,7 @@ test("ambiguous evidence, unavailable providers and 404 sources cannot publish o
     "./tools-data": { TOOLS_DATA: tools, getToolBySlug: slug => tools.find(tool => tool.slug === slug) },
     "./offer-snapshot.json": { sources: { "vendor:removed": { httpStatus: 404 } }, offers },
     "./legacy-deal-aliases.json": {},
+    "./offer-url-history.json": { offers: {} },
     "@/lib/offer-links": { publicHttpsUrl },
     "@/lib/offer-evidence.mjs": { discoverVendorOffer },
   });
@@ -135,6 +136,7 @@ test("old coupons age out in a running process, with pricing fallback and legacy
     "./tools-data": { TOOLS_DATA: [tool], getToolBySlug: slug => slug === tool.slug ? tool : undefined },
     "./offer-snapshot.json": { sources: {}, offers: [{ slug: "example-coupon", sourceKey: "reviewed:example", toolSlug: "example", dealType: "coupon", code: "SAVE20", checkedAt: new Date(clock.now - 13 * 86400000).toISOString(), destinationUrl: "https://example.com/offer", sourceUrl: "https://example.com/offer", sourceKind: "vendor", title: "Example coupon", terms: "New subscriptions only", discountPercentage: 20 }] },
     "./legacy-deal-aliases.json": { "old-generated-coupon": "example" },
+    "./offer-url-history.json": { offers: {} },
     "@/lib/offer-links": { publicHttpsUrl },
     "@/lib/offer-evidence.mjs": { discoverVendorOffer },
   }, TestDate);

@@ -1,6 +1,8 @@
 import { DISCOUNT_BRAND_ALIASES } from "./lib/data/brand-discount-aliases.mjs";
 import { ARTICLE_ALIASES } from "./lib/data/article-aliases.mjs";
 
+const canonicalSite = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
@@ -13,6 +15,13 @@ const nextConfig = {
       permanent: true,
     }));
     return [
+      // Keep the declared primary host consistent for crawlers and auth cookies.
+      ...(!canonicalSite.hostname.startsWith("www.") && !["localhost", "127.0.0.1", "[::1]"].includes(canonicalSite.hostname) ? [{
+        source: "/:path*",
+        has: [{ type: "host", value: `www\\.${canonicalSite.hostname.replace(/\./g, "\\.")}` }],
+        destination: `${canonicalSite.origin}/:path*`,
+        permanent: true,
+      }] : []),
       ...discountRedirects,
       ...Object.entries(ARTICLE_ALIASES).map(([alias, canonical]) => ({ source: `/articles/${alias}/:path*`, destination: `/articles/${canonical}/:path*`, permanent: true })),
       { source: "/tools/kit-convertkit/:path*", destination: "/tools/convertkit/:path*", permanent: true },

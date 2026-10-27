@@ -26,12 +26,11 @@ async function resolveBrand(params: Promise<{ slug: string }>) {
   const { slug } = await params;
   const tool = getToolBySlug(slug);
   if (!tool || !hasBrandDiscountPage(tool.slug)) notFound();
-  if (slug !== tool.slug) permanentRedirect(`/discounts/${tool.slug}`);
-  return tool;
+  return { tool, slug };
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const tool = await resolveBrand(params);
+  const { tool } = await resolveBrand(params);
   const { offers, indexable } = getBrandDiscountData(tool);
   return pageMetadata({
     title: brandDiscountTitle(tool), description: brandDiscountDescription(tool, offers),
@@ -40,7 +39,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function BrandDiscountPage({ params }: { params: Promise<{ slug: string }> }) {
-  const tool = await resolveBrand(params);
+  const { tool, slug } = await resolveBrand(params);
+  if (slug !== tool.slug) permanentRedirect(`/discounts/${tool.slug}`);
   const { offers, savingsOptions, purchaseChecks, guide, modifiedAt, sourceNotesCurrent } = getBrandDiscountData(tool);
   const couponOffers = offers.filter(offer => offer.code);
   const otherOffers = offers.filter(offer => !offer.code);
