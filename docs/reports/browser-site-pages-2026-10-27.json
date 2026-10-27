@@ -1,0 +1,280 @@
+{
+  "checkedAt": "2026-10-27T11:57:15.327Z",
+  "origin": "http://127.0.0.1:3227",
+  "pages": [
+    {
+      "width": 360,
+      "href": "/",
+      "heading": "SaaS discounts & software dealsSaaS discounts& software deals."
+    },
+    {
+      "width": 360,
+      "href": "/discounts",
+      "heading": "SaaS discounts & coupon codes by brand"
+    },
+    {
+      "width": 360,
+      "href": "/brands",
+      "heading": "Software brands, A–Z"
+    },
+    {
+      "width": 360,
+      "href": "/savings-calculator",
+      "heading": "SaaS savings calculator"
+    },
+    {
+      "width": 360,
+      "href": "/deals",
+      "heading": "SaaS discounts & software deals"
+    },
+    {
+      "width": 360,
+      "href": "/deals?type=lifetime",
+      "heading": "SaaS discounts & software deals"
+    },
+    {
+      "width": 360,
+      "href": "/deals?type=free_trial",
+      "heading": "SaaS discounts & software deals"
+    },
+    {
+      "width": 360,
+      "href": "/tools",
+      "heading": "SAAS DIRECTORY"
+    },
+    {
+      "width": 360,
+      "href": "/submit",
+      "heading": "SUBMIT A CODE OR SAAS DEAL"
+    },
+    {
+      "width": 360,
+      "href": "/articles",
+      "heading": "SAAS EDITORIAL MAGAZINE"
+    },
+    {
+      "width": 360,
+      "href": "/articles/build-a-saas-budget-before-buying",
+      "heading": "Build a SaaS budget before choosing discounts"
+    },
+    {
+      "width": 360,
+      "href": "/community",
+      "heading": "SAAS COMMUNITY FORUM"
+    },
+    {
+      "width": 360,
+      "href": "/about#standards",
+      "heading": "SaaS discounts with sources you can check."
+    },
+    {
+      "width": 360,
+      "href": "/compare",
+      "heading": "COMPARE SAAS TOOLS SIDE BY SIDE."
+    },
+    {
+      "width": 360,
+      "href": "/advertise",
+      "heading": "PUT YOUR SAAS IN FRONT OF 120,000+ FOUNDERS & DEVS."
+    },
+    {
+      "width": 360,
+      "href": "/contact",
+      "heading": "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+    },
+    {
+      "width": 360,
+      "href": "/deals/category/ai-tools",
+      "heading": "Artificial Intelligence Offers"
+    },
+    {
+      "width": 360,
+      "href": "/deals/category/marketing",
+      "heading": "Growth & Marketing Offers"
+    },
+    {
+      "width": 360,
+      "href": "/deals/category/crm-sales",
+      "heading": "CRM & Sales Automation Offers"
+    },
+    {
+      "width": 360,
+      "href": "/deals/category/dev-tools",
+      "heading": "Developer & API Tools Offers"
+    },
+    {
+      "width": 360,
+      "href": "/deals/category/design",
+      "heading": "Design & Creative Systems Offers"
+    },
+    {
+      "width": 360,
+      "href": "/deals/category/analytics",
+      "heading": "Analytics & Product Telemetry Offers"
+    },
+    {
+      "width": 360,
+      "href": "/deals/category/hosting",
+      "heading": "Cloud Hosting & Edge Infra Offers"
+    },
+    {
+      "width": 360,
+      "href": "/deals/category/finance",
+      "heading": "Fintech, Billing & Invoicing Offers"
+    },
+    {
+      "width": 360,
+      "href": "/privacy",
+      "heading": "SAASFOLIO PRIVACY POLICY"
+    },
+    {
+      "width": 360,
+      "href": "/terms",
+      "heading": "SAASFOLIO TERMS OF SERVICE"
+    },
+    {
+      "width": 360,
+      "href": "/affiliate-disclosure",
+      "heading": "AFFILIATE & EDITORIAL DISCLOSURE"
+    },
+    {
+      "width": 1440,
+      "href": "/",
+      "heading": "SaaS discounts & software dealsSaaS discounts& software deals."
+    },
+    {
+      "width": 1440,
+      "href": "/discounts",
+      "heading": "SaaS discounts & coupon codes by brand"
+    },
+    {
+      "width": 1440,
+      "href": "/brands",
+      "heading": "Software brands, A–Z"
+    },
+    {
+      "width": 1440,
+      "href": "/savings-calculator",
+      "heading": "SaaS savings calculator"
+    },
+    {
+      "width": 1440,
+      "href": "/deals",
+      "heading": "SaaS discounts & software deals"
+    },
+    {
+      "width": 1440,
+      "href": "/deals?type=lifetime",
+      "heading": "SaaS discounts & software deals"
+    },
+    {
+      "width": 1440,
+      "href": "/deals?type=free_trial",
+      "heading": "SaaS discounts & software deals"
+    },
+    {
+      "width": 1440,
+      "href": "/tools",
+      "heading": "SAAS DIRECTORY"
+    },
+    {
+      "width": 1440,
+      "href": "/submit",
+      "heading": "SUBMIT A CODE OR SAAS DEAL"
+    },
+    {
+      "width": 1440,
+      "href": "/articles",
+      "heading": "SAAS EDITORIAL MAGAZINE"
+    },
+    {
+      "width": 1440,
+      "href": "/articles/build-a-saas-budget-before-buying",
+      "heading": "Build a SaaS budget before choosing discounts"
+    },
+    {
+      "width": 1440,
+      "href": "/community",
+      "heading": "SAAS COMMUNITY FORUM"
+    },
+    {
+      "width": 1440,
+      "href": "/about#standards",
+      "heading": "SaaS discounts with sources you can check."
+    },
+    {
+      "width": 1440,
+      "href": "/compare",
+      "heading": "COMPARE SAAS TOOLS SIDE BY SIDE."
+    },
+    {
+      "width": 1440,
+      "href": "/advertise",
+      "heading": "PUT YOUR SAAS IN FRONT OF 120,000+ FOUNDERS & DEVS."
+    },
+    {
+      "width": 1440,
+      "href": "/contact",
+      "heading": "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+    },
+    {
+      "width": 1440,
+      "href": "/deals/category/ai-tools",
+      "heading": "Artificial Intelligence Offers"
+    },
+    {
+      "width": 1440,
+      "href": "/deals/category/marketing",
+      "heading": "Growth & Marketing Offers"
+    },
+    {
+      "width": 1440,
+      "href": "/deals/category/crm-sales",
+      "heading": "CRM & Sales Automation Offers"
+    },
+    {
+      "width": 1440,
+      "href": "/deals/category/dev-tools",
+      "heading": "Developer & API Tools Offers"
+    },
+    {
+      "width": 1440,
+      "href": "/deals/category/design",
+      "heading": "Design & Creative Systems Offers"
+    },
+    {
+      "width": 1440,
+      "href": "/deals/category/analytics",
+      "heading": "Analytics & Product Telemetry Offers"
+    },
+    {
+      "width": 1440,
+      "href": "/deals/category/hosting",
+      "heading": "Cloud Hosting & Edge Infra Offers"
+    },
+    {
+      "width": 1440,
+      "href": "/deals/category/finance",
+      "heading": "Fintech, Billing & Invoicing Offers"
+    },
+    {
+      "width": 1440,
+      "href": "/privacy",
+      "heading": "SAASFOLIO PRIVACY POLICY"
+    },
+    {
+      "width": 1440,
+      "href": "/terms",
+      "heading": "SAASFOLIO TERMS OF SERVICE"
+    },
+    {
+      "width": 1440,
+      "href": "/affiliate-disclosure",
+      "heading": "AFFILIATE & EDITORIAL DISCLOSURE"
+    }
+  ],
+  "mockedFormWrites": 6,
+  "runtimeErrors": [],
+  "failedResources": [],
+  "externalSubmissions": 0
+}

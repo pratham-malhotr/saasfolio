@@ -12,6 +12,8 @@
     "seo:audit:brands": "node scripts/audit-brand-seo.mjs",
     "seo:audit:queries": "node scripts/audit-brand-search-intents.mjs",
     "audit:links": "node scripts/audit-outbound-links.mjs",
+    "audit:pages": "node scripts/audit-site-pages.mjs",
+    "test:browser:pages": "node scripts/browser-site-pages.mjs",
     "audit:offer-flows": "node scripts/audit-offer-flows.mjs",
     "test:browser:offers": "node scripts/browser-offer-smoke.mjs",
     "test:browser:discounts": "node scripts/browser-discount-seo-smoke.mjs",

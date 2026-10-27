@@ -63,7 +63,7 @@ try {
         const heading = document.querySelector('.hero-headline');
         const words = [...document.querySelectorAll('.hero-word')];
         if (heading && words.length) {
-          window.homeRefresh.frames.push({ top: heading.getBoundingClientRect().top,
+          window.homeRefresh.frames.push({ top: heading.getBoundingClientRect().top, time: performance.now(), fontStatus: document.fonts.status, height: heading.getBoundingClientRect().height,
             wordTops: words.map(word => word.getBoundingClientRect().top),
             opacities: words.map(word => Number(getComputedStyle(word).opacity)) });
         }
@@ -86,6 +86,11 @@ try {
           const label = `${viewport.width}px ${refresh ? "hard refresh" : "cold load"}`;
           assert.ok(frames.length >= 3, `${label}: capture content before and after hydration`);
           const range = values => Math.max(...values) - Math.min(...values);
+          if (range(frames.map(frame => frame.top)) > 1) {
+            const path = join(tmpdir(), `saasfolio-home-refresh-${viewport.width}.json`);
+            await writeFile(path, JSON.stringify(frames, null, 2));
+            console.error({ label, first: frames[0], last: frames.at(-1), drift: range(frames.map(frame => frame.top)), frames: path });
+          }
           assert.ok(range(frames.map(frame => frame.top)) <= 1, `${label}: headline layout stays fixed from its first paint`);
           for (let word = 0; word < frames[0].wordTops.length; word++) {
             assert.ok(range(frames.map(frame => frame.wordTops[word])) <= 1, `${label}: headline words do not drop or slide`);
@@ -163,12 +168,15 @@ try {
   await navigate("/contact?offer=hostinger-couponspage-code#contact-form");
   assert.ok(await evaluate("document.querySelector('#form-subject').value.includes('Hostinger') && document.querySelector('#form-message').value.includes('COUPONSPAGE') && document.querySelector('#form-message').value.includes('https://saasfolio.tech/deals/hostinger-couponspage-code')"), "correction form retains the affected offer and code");
   const health = await (await fetch(`${origin}/api/health`)).json();
-  for (const [path, flag] of [["/contact", "formsConfigured"], ["/advertise", "formsConfigured"], ["/submit", "formsConfigured"], ["/login", "accountsConfigured"]]) {
+  for (const [path, flag] of [["/contact", "formsConfigured"], ["/advertise", "formsConfigured"], ["/login", "accountsConfigured"]]) {
     if (health.checks[flag]) continue;
     await navigate(path);
     await until(() => evaluate("[...document.querySelectorAll('main [role=status]')].some(node => node.textContent.includes('temporarily unavailable'))"), `${path}: unavailable service notice`);
     assert.ok(await evaluate("!!document.querySelector('main fieldset[disabled]') && !!document.querySelector('main a[href^=\"mailto:\"]')"), `${path}: disabled form and email alternative`);
   }
+  await navigate("/submit");
+  await until(() => evaluate("document.querySelector('main').textContent.includes('AUTHENTICATION REQUIRED')"), "anonymous submission requires authentication");
+  assert.ok(await evaluate("!!document.querySelector('main a[href=\"/login?redirect=/submit\"]') && !document.querySelector('main form')"), "anonymous submission has a recoverable sign-in link and cannot expose the contributor form");
   await evaluate("localStorage.setItem('saasfolio_local_threads', '[null,{\"id\":\"bad\"}]'); localStorage.setItem('saasfolio_community_upvotes', 'null')");
   await navigate("/community");
   await until(() => evaluate("document.querySelector('main').textContent.includes('Editorial')"), "editorial prompts survive malformed local storage");

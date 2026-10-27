@@ -1,5 +1,9 @@
 # Expanded SaaS catalog and automatic offer refresh
 
+The [27 October expansion](BRAND-EXPANSION-2026-10-27.md) adds 24 brands and 32 original guides, bringing current available coverage to **763 brands and 102 guides**. The dated counts below describe earlier batches.
+
+See the [mobile performance and page review](PERFORMANCE-AND-PAGE-AUDIT-2026-10-27.md) for the Lighthouse comparison, footer fixes, full-site checks and reconciliation with GitHub's automated offer refresh.
+
 The directory contains 735 canonical profiles, including 244 additions recorded in
 `lib/data/brand-expansion.txt`. The existing visual design is preserved. Existing
 generated ratings, customer reviews, coupon codes, countdowns, and verification
