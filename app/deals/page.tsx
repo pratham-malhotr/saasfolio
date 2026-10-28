@@ -5,10 +5,12 @@ import React from "react";
 import { DealsExplorer } from "@/components/deals/DealsExplorer";
 import { getAllDeals } from "@/lib/data/deals-data";
 import Link from "next/link";
+import { getPublishedSavingsOffers } from "@/lib/savings-collections";
+import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
 
 export const metadata = pageMetadata({
-  title: 'SaaS Discounts, Coupon Codes & Lifetime Deals',
-  description: 'Browse SaaS discounts, software coupon codes, lifetime deals, free plans and extended trials. Compare offers for business, developer and AI tools.',
+  title: 'SaaS Deals: Software Offers, Free Plans & Trials',
+  description: 'Browse sourced SaaS deals, software offers, free plans and trials. Compare offer types, check dates, eligibility and billing terms before subscribing.',
   path: "/deals",
 });
 
@@ -18,11 +20,11 @@ export default async function DealsPage({
   searchParams: Promise<{ category?: string; type?: string }>;
 }) {
   const params = await searchParams;
-  const allDeals = getAllDeals();
+  const allDeals = getPublishedSavingsOffers(getAllDeals());
 
   return (
     <div className="min-h-screen bg-[#050505]">
-      <JsonLd data={collectionSchema('SaaS Discounts & Software Deals', 'Software discounts, coupon codes, lifetime deals and free trials.', "/deals", allDeals.filter((deal) =>
+      <JsonLd data={collectionSchema('SaaS Deals: Software Offers, Free Plans & Trials', 'Sourced software offers, free plans and trials with eligibility and billing checks.', "/deals", allDeals.filter((deal) =>
         (deal.dealPrice ?? 0) <= 500 &&
         (!params.category || params.category === "all" || deal.categorySlug === params.category || deal.category.toLowerCase() === params.category.toLowerCase()) &&
         (!params.type || params.type === "all" || deal.dealType === params.type)
@@ -32,8 +34,9 @@ export default async function DealsPage({
         initialDeals={allDeals}
         initialCategory={params.category}
         initialType={params.type}
-        heading="SaaS discounts & software deals"
-        description="Compare sourced software offers, coupon codes, free plans and trials. For annual billing savings and brand-specific eligibility, open the matching brand discount guide."
+        heading="SaaS deals & software offers"
+        description="Compare current sourced offers, free plans and trials by their actual type. Ordinary pricing links are in the software directory; a listing here is still subject to the provider’s eligibility and billing terms."
+        afterResults={<SavingsCollectionLinks heading="Need a code or an eligibility-based program?" />}
       />
       <p className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-zinc-400 text-sm">Looking for a particular provider? <Link href="/discounts" className="text-[#C6FF3D] underline">Compare discounts and coupon availability by brand</Link>.</p>
     </div>

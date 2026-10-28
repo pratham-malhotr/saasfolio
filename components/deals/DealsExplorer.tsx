@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { offerLabel } from "@/lib/offer-links";
 import { SaaSDeal } from "@/lib/types";
-import { CATEGORIES } from "@/lib/mock-data";
+import { CATEGORIES } from "@/lib/catalog-categories";
 import { TiltCard } from "@/components/animations/TiltCard";
 import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
 
@@ -27,6 +27,7 @@ interface DealsExplorerProps {
   heading?: string;
   description?: string;
   discountGuides?: React.ReactNode;
+  afterResults?: React.ReactNode;
 }
 
 export function DealsExplorer({
@@ -36,6 +37,7 @@ export function DealsExplorer({
   heading = "EXPLORE SAAS DEALS",
   description = "Browse sourced offers, reported coupon codes, free plans, trials, and official pricing across 12 software categories.",
   discountGuides,
+  afterResults,
 }: DealsExplorerProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory || "all");
@@ -133,7 +135,7 @@ export function DealsExplorer({
         <div className="flex items-center gap-2 mb-3">
           <span className="w-2 h-2 rounded-full bg-[#C6FF3D] animate-ping" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-            SOFTWARE OFFERS & PRICING // {filteredDeals.length} MATCHES
+            SOURCED SOFTWARE OFFERS // {filteredDeals.length} MATCHES
           </span>
         </div>
         <h1 className="font-display font-black tracking-tighter uppercase text-4xl sm:text-6xl text-white mb-4">
@@ -281,7 +283,7 @@ export function DealsExplorer({
                   }`}
                 >
                   <span>{cat.shortCode} - {cat.name.split(" ")[0]}</span>
-                  <span className="text-zinc-500 text-[10px]">{cat.dealCount}</span>
+                  <span className="text-zinc-500 text-[10px]">{initialDeals.filter(deal => deal.categorySlug === cat.slug).length}</span>
                 </button>
               ))}
             </div>
@@ -333,7 +335,7 @@ export function DealsExplorer({
         </aside>
 
         {/* Deals Grid (9 Cols) */}
-        <main className="md:col-span-9 space-y-6">
+        <section aria-label="Matching software offers" className="md:col-span-9 space-y-6">
           {/* Active Filter Badges */}
           {hasActiveFilters && (
             <div className="flex flex-wrap items-center gap-2 p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs font-mono">
@@ -480,8 +482,10 @@ export function DealsExplorer({
               </button>
             </div>
           )}
-        </main>
+        </section>
       </div>
+
+      {afterResults}
 
       {/* Coupon Reveal Modal */}
       <CouponRevealModal
