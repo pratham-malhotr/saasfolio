@@ -33,6 +33,13 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       });
       visibilityChanged();
       document.addEventListener("visibilitychange", visibilityChanged);
+    }).catch(() => {
+      // Scrolling is a progressive enhancement. A failed or cancelled chunk
+      // request must leave native scrolling available during navigation.
+      cancelAnimationFrame(animFrame);
+      document.removeEventListener("visibilitychange", visibilityChanged);
+      lenis?.destroy();
+      lenis = undefined;
     });
 
     return () => {

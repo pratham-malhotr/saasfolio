@@ -1,22 +1,30 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { loadCatalogModule } from "./lib/load-catalog.mjs";
 
 // A dependency-free Chrome smoke test. Set CHROME_PATH on non-macOS hosts.
 const origin = (process.argv[2] || "http://127.0.0.1:3210").replace(/\/$/, "");
+const { getAllDeals } = loadCatalogModule("lib/data/deals-data.ts");
+const currentCoupons = getAllDeals().filter(deal => deal.code);
+const couponBrands = [...new Set(currentCoupons.map(deal => deal.toolSlug))].sort();
+const officialCoupons = currentCoupons.filter(deal => deal.sourceKind === "vendor");
 const profile = await mkdtemp(join(tmpdir(), "saasfolio-browser-"));
 const chrome = spawn(process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", ["--headless=new", "--remote-debugging-pipe", `--user-data-dir=${profile}`, "--no-first-run", "--no-default-browser-check", "about:blank"], { stdio: ["ignore", "ignore", "ignore", "pipe", "pipe"] });
 let sequence = 0, buffer = "";
 const pending = new Map();
 const runtimeErrors = [];
+const requestUrls = new Map(), failedRequests = new Set();
 chrome.stdio[4].on("data", chunk => {
   buffer += chunk.toString();
   let boundary;
   while ((boundary = buffer.indexOf("\0")) >= 0) {
     const message = JSON.parse(buffer.slice(0, boundary)); buffer = buffer.slice(boundary + 1);
     if (message.method === "Runtime.exceptionThrown") runtimeErrors.push(message.params.exceptionDetails.exception?.description || message.params.exceptionDetails.text);
+    if (message.method === "Network.requestWillBeSent") requestUrls.set(message.params.requestId, message.params.request.url);
+    if (message.method === "Network.loadingFailed") failedRequests.add(requestUrls.get(message.params.requestId));
     if (!message.id || !pending.has(message.id)) continue;
     const { resolve, reject, timer } = pending.get(message.id); pending.delete(message.id); clearTimeout(timer);
     if (message.error) reject(new Error(message.error.message)); else resolve(message.result);
@@ -41,7 +49,9 @@ try {
   const { sessionId } = await send("Target.attachToTarget", { targetId, flatten: true });
   const page = (method, params) => send(method, params, sessionId);
   const evaluate = async expression => {
-    const result = await page("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true });
+    const result = await page("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true }).catch(error => {
+      throw new Error(`${error.message}: ${expression.slice(0, 160)}`);
+    });
     if (result.exceptionDetails) throw new Error(result.exceptionDetails.text);
     return result.result.value;
   };
@@ -110,7 +120,19 @@ try {
     const before = new Set(previous.map(target => target.targetId));
     assert.ok(await evaluate(`!!document.querySelector(${JSON.stringify(selector)})`), selector);
     const newTab = await evaluate(`document.querySelector(${JSON.stringify(selector)}).target === '_blank'`);
-    const point = await evaluate(`(() => { const link = document.querySelector(${JSON.stringify(selector)}); link.scrollIntoView({ block: 'center', behavior: 'instant' }); const rect = link.getBoundingClientRect(); return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 }; })()`);
+    await evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({ block: 'center', behavior: 'instant' })`);
+    let previousPoint, stable = 0;
+    const point = await until(async () => {
+      const next = await evaluate(`(() => {
+        const link = document.querySelector(${JSON.stringify(selector)});
+        const rect = link.getBoundingClientRect();
+        const point = { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 };
+        return { ...point, receivesInput: link.contains(document.elementFromPoint(point.x, point.y)) };
+      })()`);
+      stable = previousPoint && next.receivesInput && Math.abs(next.x - previousPoint.x) < 0.25 && Math.abs(next.y - previousPoint.y) < 0.25 ? stable + 1 : 0;
+      previousPoint = next;
+      return stable >= 2 ? { x: next.x, y: next.y } : false;
+    }, `stable clickable position: ${selector}`);
     const hit = await evaluate(`(() => { const link = document.querySelector(${JSON.stringify(selector)}); const hit = document.elementFromPoint(${point.x}, ${point.y}); return { receivesInput: link.contains(hit), hit: hit?.outerHTML.slice(0, 200), point: ${JSON.stringify(point)}, width: innerWidth, height: innerHeight, scrollY, url: location.href }; })()`);
     assert.ok(hit.receivesInput, `Link must receive pointer input: ${selector}: ${JSON.stringify(hit)}`);
     await page("Input.dispatchMouseEvent", { type: "mousePressed", button: "left", clickCount: 1, ...point });
@@ -138,6 +160,19 @@ try {
   await page("Emulation.setScriptExecutionDisabled", { value: true });
   await opensNativeLink('a[href="/go/hostinger-couponspage-code"]');
   await page("Emulation.setScriptExecutionDisabled", { value: false });
+  // Exercise every current official code, including new brand additions. The
+  // recorded source and native anchor are checked without following the new
+  // provider links. audit:offer-flows verifies their HTTP redirect destinations.
+  for (const coupon of officialCoupons) {
+    await navigate(`/deals/${coupon.slug}`);
+    await until(() => evaluate("Object.keys(document.querySelector('button[aria-label=\"Copy coupon code\"]') || {}).some(key => key.startsWith('__reactProps'))"), `${coupon.slug}: hydrated copy action`);
+    assert.equal(await evaluate("document.querySelector('main code').textContent"), coupon.code, `${coupon.slug}: exact source-reported code`);
+    assert.equal(await evaluate(`document.querySelector(${JSON.stringify(`main a[href="${coupon.sourceUrl}"]`)})?.href`), coupon.sourceUrl, `${coupon.slug}: original provider source`);
+    await evaluate("document.querySelector('button[aria-label=\"Copy coupon code\"]').click()");
+    await until(() => evaluate("document.querySelector('[role=status]').textContent.includes('copy it manually')"), `${coupon.slug}: denied clipboard fallback`);
+    assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth"), `${coupon.slug}: mobile coupon fits`);
+    assert.ok(await evaluate(`!!document.querySelector(${JSON.stringify(`main a[href="/go/${coupon.slug}"]`)})`), `${coupon.slug}: native provider anchor`);
+  }
   await navigate("/tools/beehiiv");
   await until(() => evaluate("document.querySelector('a[href=\"/go/beehiiv-free-plan\"]')?.getBoundingClientRect().width > 0"), "visible free-plan action");
   await page("Emulation.setScriptExecutionDisabled", { value: true });
@@ -150,7 +185,7 @@ try {
   await until(() => evaluate("document.querySelectorAll('[data-brand]').length === 1 && !!document.querySelector('[data-brand=beehiiv]')"), "brand search results");
   await evaluate("[...document.querySelectorAll('button')].find(button => button.textContent === 'Clear filters').click()");
   await evaluate("const filter = document.querySelector('#brand-kind'); filter.value = 'codes'; filter.dispatchEvent(new Event('change', { bubbles: true }))");
-  await until(() => evaluate("document.querySelectorAll('[data-brand]').length === 2 && !!document.querySelector('[data-brand=hostinger]') && !!document.querySelector('[data-brand=namecheap]')"), "only brands with recorded codes");
+  await until(() => evaluate(`JSON.stringify([...document.querySelectorAll('[data-brand]')].map(node => node.dataset.brand).sort()) === ${JSON.stringify(JSON.stringify(couponBrands))}`), "exactly the brands with current recorded codes");
   assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth"), "brand directory fits mobile viewport");
   await navigate("/savings-calculator");
   await until(() => evaluate("Object.keys(document.querySelector('input[name=monthly]')).some(key => key.startsWith('__reactProps'))"), "hydrated cost calculator");
@@ -210,8 +245,25 @@ try {
   await evaluate("document.querySelector('#offer-sources').scrollIntoView({ block: 'start', behavior: 'instant' })");
   const sourcesScreenshot = await page("Page.captureScreenshot", { format: "png" });
   await writeFile(join(tmpdir(), "saasfolio-sources-desktop.png"), Buffer.from(sourcesScreenshot.data, "base64"));
+  // Simulate an unavailable optional animation asset on a cold desktop visit.
+  // Locate the emitted library by its version marker rather than a build hash.
+  const chunks = new URL("../.next/static/chunks/", import.meta.url);
+  const chunkFiles = (await readdir(chunks)).filter(name => name.endsWith(".js"));
+  const animationAssets = (await Promise.all(chunkFiles.map(async name => (await readFile(new URL(name, chunks), "utf8")).includes("lenisVersion") ? name : null))).filter(Boolean);
+  assert.equal(animationAssets.length, 1, "One optional scroll library asset is emitted");
+  const blockedAnimation = `${origin}/_next/static/chunks/${animationAssets[0]}`;
+  failedRequests.clear();
+  await page("Network.setCacheDisabled", { cacheDisabled: true });
+  await page("Network.setBlockedURLs", { urls: ["https://*", blockedAnimation] });
+  await navigate("/");
+  await until(async () => failedRequests.has(blockedAnimation), "optional scroll asset is deliberately blocked");
+  assert.ok(await evaluate("!document.documentElement.classList.contains('lenis')"), "failed enhancement leaves native scrolling enabled");
+  await evaluate("window.scrollTo({ top: 400, behavior: 'instant' })");
+  await until(() => evaluate("window.scrollY >= 350"), "native scrolling works without the optional asset");
+  await navigate("/discounts/wpforms");
+  assert.ok(await evaluate("document.querySelector('main h1').textContent.includes('WPForms')"), "brand navigation works after optional asset failure");
   assert.deepEqual(runtimeErrors, [], "No uncaught browser exceptions across the audited flows");
-  console.log("Chrome smoke passed: stable cold loads and hard refreshes on mobile/desktop with 4x CPU throttling, coupons and native redirects, denied clipboard, mobile search and savings, unavailable service forms, malformed local storage, animated homepage, live reduced motion, cold no-JavaScript content and coupon navigation, and membership disclosures. No reports submitted or checkout attempted.");
+  console.log(`Chrome smoke passed: stable cold loads and hard refreshes on mobile/desktop with 4x CPU throttling, ${officialCoupons.length} official coupon copy/source checks, native redirects, denied clipboard, exact current coupon-brand filtering, mobile search and savings, unavailable service forms, malformed local storage, animated homepage, live reduced motion, cold no-JavaScript content and coupon navigation, membership disclosures, and native scrolling when its optional asset is blocked. No reports submitted or checkout attempted.`);
 } finally {
   for (const entry of pending.values()) clearTimeout(entry.timer);
   chrome.kill();
