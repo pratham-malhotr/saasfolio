@@ -94,5 +94,85 @@
     "access": "account",
     "reviewedAt": "2026-10-23",
     "note": "An account or eligibility application may be required for the listed Notion partner program. Check existing-account restrictions and any access charges before applying."
+  },
+  {
+    "provider": "wpbeginner",
+    "toolSlug": "wpforms",
+    "name": "WPBeginner",
+    "url": "https://www.wpbeginner.com/deals/wpforms-coupon/",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-28",
+    "note": "Public publisher research link. The automated request was blocked during this batch; no publisher code was promoted from that failed check. Third-party reports and their terms require review and are not SaaSFolio checkout tests."
+  },
+  {
+    "provider": "wpbeginner",
+    "toolSlug": "aioseo",
+    "name": "WPBeginner",
+    "url": "https://www.wpbeginner.com/deals/all-in-one-seo-coupon/",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-28",
+    "note": "Public publisher research link. The automated request was blocked during this batch; no publisher code was promoted from that failed check. Third-party reports and their terms require review and are not SaaSFolio checkout tests."
+  },
+  {
+    "provider": "wpbeginner",
+    "toolSlug": "wp-rocket",
+    "name": "WPBeginner",
+    "url": "https://www.wpbeginner.com/deals/wp-rocket-coupon/",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-28",
+    "note": "Public publisher research link. The automated request was blocked during this batch; no publisher code was promoted from that failed check. Third-party reports and their terms require review and are not SaaSFolio checkout tests."
+  },
+  {
+    "provider": "wpbeginner",
+    "toolSlug": "gravity-forms",
+    "name": "WPBeginner",
+    "url": "https://www.wpbeginner.com/deals/gravity-forms-coupon/",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-28",
+    "note": "Public publisher research link. The automated request was blocked during this batch; no publisher code was promoted from that failed check. Third-party reports and their terms require review and are not SaaSFolio checkout tests."
+  },
+  {
+    "provider": "wethrift",
+    "toolSlug": "paperpal",
+    "name": "Wethrift",
+    "url": "https://www.wethrift.com/codes/paperpal.com",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-28",
+    "note": "Public publisher research link. The automated request was blocked during this batch; no publisher code was promoted from that failed check. Third-party reports and their terms require review and are not SaaSFolio checkout tests."
+  },
+  {
+    "provider": "wethrift",
+    "toolSlug": "jenni-ai",
+    "name": "Wethrift",
+    "url": "https://www.wethrift.com/jenni-ai",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-28",
+    "note": "Public publisher research link. The automated request was blocked during this batch; no publisher code was promoted from that failed check. Third-party reports and their terms require review and are not SaaSFolio checkout tests."
+  },
+  {
+    "provider": "simplycodes",
+    "toolSlug": "linguix",
+    "name": "SimplyCodes",
+    "url": "https://simplycodes.com/store/linguix.com",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-28",
+    "note": "Public publisher research link. The automated request was blocked during this batch; no publisher code was promoted from that failed check. Third-party reports and their terms require review and are not SaaSFolio checkout tests."
+  },
+  {
+    "provider": "simplycodes",
+    "toolSlug": "socialpilot",
+    "name": "SimplyCodes",
+    "url": "https://simplycodes.com/store/socialpilot.co",
+    "kind": "coupon-publisher",
+    "access": "public",
+    "reviewedAt": "2026-10-28",
+    "note": "Public publisher research link. The automated request was blocked during this batch; no publisher code was promoted from that failed check. Third-party reports and their terms require review and are not SaaSFolio checkout tests."
   }
 ]

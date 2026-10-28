@@ -723,5 +723,333 @@
       "prepay"
     ],
     "terms": "Official help describes a 33% reduction when an annual plan is selected and prepaid. Match the task allowance and package, then confirm the upfront amount and renewal. Additional usage and other services need their own budget. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "wpforms-official-new-license-code",
+    "toolSlug": "wpforms",
+    "title": "WPForms: official 50% new-license code",
+    "dealType": "coupon",
+    "discountPercentage": 50,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://wpforms.com/wpforms-coupon-code/",
+    "destinationUrl": "https://wpforms.com/pricing/",
+    "evidence": [
+      "SAVE50",
+      "50% off a new license",
+      "brand new license"
+    ],
+    "terms": "Applies to a brand-new WPForms license. Compare the same plan with introductory pricing already displayed; stacking is not assumed. Website limits and paid features depend on the license. Pricing states renewals are at full price. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+    "code": "SAVE50"
+  },
+  {
+    "slug": "monsterinsights-official-intro-code",
+    "toolSlug": "monsterinsights",
+    "title": "MonsterInsights: official 50% introductory code",
+    "dealType": "coupon",
+    "discountPercentage": 50,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.monsterinsights.com/monsterinsights-coupon-code/",
+    "destinationUrl": "https://www.monsterinsights.com/pricing/",
+    "evidence": [
+      "INTRO50",
+      "50% off any of our plans"
+    ],
+    "terms": "Official introductory coupon. Confirm the selected license, site allowance and included features. Compare any already applied offer once; the vendor describes regular pricing after the introductory term. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+    "code": "INTRO50"
+  },
+  {
+    "slug": "seedprod-official-intro-code",
+    "toolSlug": "seedprod",
+    "title": "SeedProd: official 50% license code",
+    "dealType": "coupon",
+    "discountPercentage": 50,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.seedprod.com/seedprod-coupon-code/",
+    "destinationUrl": "https://www.seedprod.com/pricing/",
+    "evidence": [
+      "SAVE50",
+      "50% off any of our plans"
+    ],
+    "terms": "Compare the eligible license with the displayed introductory offer. Theme building, integrations and website allowances depend on the package. The reviewed pricing states renewals are at full price; no stacking is assumed. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+    "code": "SAVE50"
+  },
+  {
+    "slug": "duplicator-official-license-code",
+    "toolSlug": "duplicator",
+    "title": "Duplicator: official 50% license code",
+    "dealType": "coupon",
+    "discountPercentage": 50,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://duplicator.com/duplicator-coupon/",
+    "destinationUrl": "https://duplicator.com/pricing/",
+    "evidence": [
+      "SAVE50",
+      "50% off any of our plans"
+    ],
+    "terms": "Official license coupon. Match the package, supported storage destinations and site allowance. Separate cloud products and storage-provider charges may apply. Do not assume eligibility for personalized recovery promotions or stacked savings. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+    "code": "SAVE50"
+  },
+  {
+    "slug": "wp-mail-smtp-official-dollar-code",
+    "toolSlug": "wp-mail-smtp",
+    "title": "WP Mail SMTP: official $50-off license code",
+    "dealType": "coupon",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://wpmailsmtp.com/wp-mail-smtp-coupon/",
+    "destinationUrl": "https://wpmailsmtp.com/pricing/",
+    "evidence": [
+      "SAVE50",
+      "$50 off any of our plans"
+    ],
+    "terms": "The coupon body describes a fixed US$50 reduction, not 50% off. Confirm the selected package, introductory invoice and normal renewal. Sending-provider charges and setup scope remain separate; stacking is not assumed. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+    "code": "SAVE50"
+  },
+  {
+    "slug": "aioseo-first-year-published-offer",
+    "toolSlug": "aioseo",
+    "title": "AIOSEO: published first-year license offer",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://aioseo.com/pricing/",
+    "destinationUrl": "https://aioseo.com/pricing/",
+    "evidence": [
+      "50% off your first year",
+      "renewals are at full price"
+    ],
+    "terms": "The public headline describes a first-year offer; actual package pricing can vary. Compare the selected SEO license, sites, credits and regular renewal. Separate Broken Link Checker and other products have their own scope. No ranking gain is implied. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "formidable-forms-intro-license-offers",
+    "toolSlug": "formidable-forms",
+    "title": "Formidable Forms: plan-specific introductory offers",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://formidableforms.com/pricing/",
+    "destinationUrl": "https://formidableforms.com/pricing/",
+    "evidence": [
+      "60%",
+      "introductory pricing",
+      "renewals are at full price"
+    ],
+    "terms": "Displayed introductory reductions depend on license. The largest percentage is not universal. Match Views, integrations and site allowance; compare one accepted offer and the full-price renewal, plus payment-provider charges. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "fluent-forms-first-year-offer",
+    "toolSlug": "fluent-forms",
+    "title": "Fluent Forms: up to 30% on first-year annual licenses",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://fluentforms.com/pricing/",
+    "destinationUrl": "https://fluentforms.com/pricing/",
+    "evidence": [
+      "up to 30%",
+      "first-year license"
+    ],
+    "terms": "Annual first-year promotion with license-dependent displayed amounts. Lifetime purchases have separate pricing and terms. Match domain allowance, check the normal annual renewal and do not combine purchase-link codes without explicit permission. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "fluentcrm-first-year-offer",
+    "toolSlug": "fluentcrm",
+    "title": "FluentCRM: 30% first-year website-license offer",
+    "dealType": "offer",
+    "discountPercentage": 30,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://fluentcrm.com/pricing/",
+    "destinationUrl": "https://fluentcrm.com/pricing/",
+    "evidence": [
+      "Save 30%",
+      "first year"
+    ],
+    "terms": "First-year license offer. Packages are based on websites, not subscriber count. Hosting and email sending are separate costs. Check the selected website allowance, accepted first invoice and normal annual renewal. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "wp-rocket-halloween-first-purchase-2026",
+    "toolSlug": "wp-rocket",
+    "title": "WP Rocket: up to 40% on eligible first-purchase terms",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://wp-rocket.me/pricing/",
+    "destinationUrl": "https://wp-rocket.me/pricing/",
+    "evidence": [
+      "Up to 40% OFF",
+      "November 3, 2026",
+      "1st time"
+    ],
+    "terms": "Dated Halloween campaign for first purchases. The reviewed page distinguishes 20% on one-year configurations from 40% on eligible three-year configurations. Match site allowance and inspect the upfront invoice. Later renewal is at the regular annual price. The page gives November 3 as the deadline; this listing stops at the start of that date conservatively. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+    "expiryDate": "2026-11-03T00:00:00.000Z"
+  },
+  {
+    "slug": "shortpixel-yearly-two-months",
+    "toolSlug": "shortpixel",
+    "title": "ShortPixel: two months free on eligible yearly billing",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://shortpixel.com/pricing",
+    "destinationUrl": "https://shortpixel.com/pricing",
+    "evidence": [
+      "Billed yearly",
+      "2 Months Free"
+    ],
+    "terms": "Compare the same subscription product and allowance against monthly billing. One-time purchases and separate delivery services have their own terms. Include actual image-processing workload and confirm additional usage and renewal. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "imagify-yearly-two-months",
+    "toolSlug": "imagify",
+    "title": "Imagify: two months free with yearly billing",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://imagify.io/pricing/",
+    "destinationUrl": "https://imagify.io/pricing/",
+    "evidence": [
+      "Yearly",
+      "2 months Free",
+      "additional GB"
+    ],
+    "terms": "Compare the same paid plan and complete yearly invoice. The free starter is a separate limited route; Growth overages can add to the cost. Check image workload, required allowance and renewal. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "linguix-annual-pro-offer",
+    "toolSlug": "linguix",
+    "title": "Linguix Pro: published annual billing saving",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://linguix.com/pricing",
+    "destinationUrl": "https://linguix.com/pricing",
+    "evidence": [
+      "Annual Save 61%",
+      "Billed $140 annually"
+    ],
+    "terms": "Annual selector for individual Linguix Pro. Compare the same product with monthly billing and confirm the current full invoice, currency and taxes. Business and API products are separate. Automatic renewal and refund conditions apply; coupon stacking is not assumed. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "jenni-ai-annual-plan-offer",
+    "toolSlug": "jenni-ai",
+    "title": "Jenni AI: published annual plan saving",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://jenni.ai/pricing",
+    "destinationUrl": "https://jenni.ai/pricing",
+    "evidence": [
+      "Save 60%",
+      "Monthly Annual"
+    ],
+    "terms": "Annual pricing offer on the selected paid package. Compare the same allowances for autocomplete, edits, reviews, uploads and export. Confirm the actual yearly invoice and renewal; the headline is not an unrestricted coupon or an unlimited entitlement to every feature. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "socialpilot-annual-plan-offer",
+    "toolSlug": "socialpilot",
+    "title": "SocialPilot: 15% on equivalent annual plans",
+    "dealType": "offer",
+    "discountPercentage": 15,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.socialpilot.co/pricing",
+    "destinationUrl": "https://www.socialpilot.co/pricing",
+    "evidence": [
+      "Save 15%",
+      "Billed annually"
+    ],
+    "terms": "Match the same package, social accounts, users and required approval/reporting features. Add paid extras where applicable. Confirm the full yearly invoice, taxes and renewal; the temporary trial is separate. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "sendible-yearly-plan-offer",
+    "toolSlug": "sendible",
+    "title": "Sendible: 15% on equivalent yearly packages",
+    "dealType": "offer",
+    "discountPercentage": 15,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.sendible.com/pricing",
+    "destinationUrl": "https://www.sendible.com/pricing",
+    "evidence": [
+      "Yearly Save 15%",
+      "Unlimited users"
+    ],
+    "terms": "Current workspace-based packages, not historical seat-based pricing. Match workspace scope and required extras such as white-label services. Unlimited users do not imply unlimited workspaces. Confirm the annual invoice and renewal. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "gravity-forms-nonprofit-license",
+    "toolSlug": "gravity-forms",
+    "title": "Gravity Forms: application-based nonprofit license",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.gravityforms.com/nonprofit-license/",
+    "destinationUrl": "https://www.gravityforms.com/nonprofit-license/",
+    "evidence": [
+      "registered nonprofit organizations",
+      "application process",
+      "3 Sites"
+    ],
+    "terms": "Application and approval for registered nonprofit organizations. The license has its own add-on and three-site scope; the reviewed page excludes multisite. Confirm renewal and feature fit. This is not a general commercial coupon. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "wpforms-nonprofit-application",
+    "toolSlug": "wpforms",
+    "title": "WPForms: separate nonprofit application route",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://wpforms.com/wpforms-coupon-code/",
+    "destinationUrl": "https://wpforms.com/wpforms-coupon-code/",
+    "evidence": [
+      "75%",
+      "qualifying nonprofits",
+      "application"
+    ],
+    "terms": "Separate application-based nonprofit route described on the official coupon page. Confirm organization eligibility, approved license, term and renewal. Approval is not assumed, and the benefit is not added to the public new-license coupon. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "perfmatters-official-code",
+    "toolSlug": "perfmatters",
+    "title": "Perfmatters: vendor-published purchase code",
+    "dealType": "coupon",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://perfmatters.io/pricing/",
+    "destinationUrl": "https://perfmatters.io/pricing/",
+    "evidence": [
+      "PERFMATTERS",
+      "10% off"
+    ],
+    "terms": "Check the selected license and current accepted offer. The direct collector was blocked during research; no current card is published unless this source can actually be checked. Renewal and stacking require their own terms. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+    "code": "PERFMATTERS"
+  },
+  {
+    "slug": "typingmind-client-license-offer",
+    "toolSlug": "typingmind",
+    "title": "TypingMind: client-license offer",
+    "dealType": "offer",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.typingmind.com/",
+    "destinationUrl": "https://www.typingmind.com/",
+    "evidence": [
+      "50% off today",
+      "Bring your own API keys"
+    ],
+    "terms": "The offer concerns the selected client license only. Model-provider API usage and optional services remain separately paid. Insufficient visible source content must not create a refreshed promotion. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing."
+  },
+  {
+    "slug": "paperpal-institutional-trial-enquiry",
+    "toolSlug": "paperpal",
+    "title": "Paperpal: institutional trial enquiry",
+    "dealType": "free_trial",
+    "discountPercentage": 0,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://paperpal.com/pricing",
+    "destinationUrl": "https://paperpal.com/pricing",
+    "evidence": [
+      "institution-wide pricing",
+      "Contact us to start your free trial"
+    ],
+    "terms": "Enquiry route for enterprise or institutional teams. Contact Paperpal to confirm approval, covered users, duration, features and the later paid quote. The source does not establish an unrestricted individual trial. Signup and checkout have not been tested."
   }
 ]

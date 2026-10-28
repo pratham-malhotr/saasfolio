@@ -17,6 +17,22 @@
       "error": "HTTP 403",
       "lastAttemptAt": "2026-10-27T11:07:48.328Z"
     },
+    "reviewed:aioseo-first-year-published-offer": {
+      "toolSlug": "aioseo",
+      "url": "https://aioseo.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:20.643Z",
+      "definitionHash": "2ed37bfeaca57e05c321ee6419f73be6d3370dd3ca229277e61c38cbe4042dfd",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:20.643Z",
+      "contentHash": "413a69369796a710038665e3b1c9818586096faa859ea74fc53aaf74173ff9b9",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
     "reviewed:airtable-nonprofit-team": {
       "toolSlug": "airtable",
       "url": "https://support.airtable.com/articles/4920135568-applying-for-non-profit-education-and-student-airtable-plans",
@@ -161,6 +177,22 @@
       "lastModified": null,
       "error": null
     },
+    "reviewed:duplicator-official-license-code": {
+      "toolSlug": "duplicator",
+      "url": "https://duplicator.com/duplicator-coupon/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:20.306Z",
+      "definitionHash": "ce0493c328b779ea02ef790ac7f11693274da813c6e4ca4dbd43ad8b58d9fbad",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:20.306Z",
+      "contentHash": "c8d221eb446b7a857b625e2adb5cb0e41c98162c627cc58648fcba01d09387f1",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
     "reviewed:fibery-startup-pro-access": {
       "toolSlug": "fibery",
       "url": "https://fibery.com/pricing",
@@ -174,6 +206,54 @@
       "changedAt": "2026-10-27T11:04:08.463Z",
       "contentHash": "ac08b7b9517423e6379d238eddff230b65fd230e203fe16e4824e5f3171278fc",
       "etag": "\"g0afozrbc47qh7\"",
+      "lastModified": null,
+      "error": null
+    },
+    "reviewed:fluent-forms-first-year-offer": {
+      "toolSlug": "fluent-forms",
+      "url": "https://fluentforms.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:20.715Z",
+      "definitionHash": "7e991e1faf5924092d2e327f7ae7e3878cae72b851f6b7f2c44ce1b011e691d7",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:20.715Z",
+      "contentHash": "d57ddec62aeee6f7b56293bc970d2c23c4fd7d909012dbdccf0844366a544e61",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 15:02:47 GMT",
+      "error": null
+    },
+    "reviewed:fluentcrm-first-year-offer": {
+      "toolSlug": "fluentcrm",
+      "url": "https://fluentcrm.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:21.026Z",
+      "definitionHash": "b561774cf729fb12d827166462e15ad056daabe19718770050f7cfdce8e2532f",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:21.026Z",
+      "contentHash": "145be463fc3d001d375f0186ce22403a7094e11e0e0ee2df7204b0bdd8e4e579",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
+    "reviewed:formidable-forms-intro-license-offers": {
+      "toolSlug": "formidable-forms",
+      "url": "https://formidableforms.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:20.646Z",
+      "definitionHash": "9b36db37f3f00f7d8de47666e96eb895f8525b235c9a71710767741a9d0238a2",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:20.646Z",
+      "contentHash": "ffcc8f84cef9baeb20dbe1b7079b49954bcdd69bfdaa33ab44ac1c24dd838ab9",
+      "etag": null,
       "lastModified": null,
       "error": null
     },
@@ -205,6 +285,22 @@
       "httpStatus": 200,
       "changedAt": "2026-10-28T10:40:27.959Z",
       "contentHash": "cffd99bf177248d35a3c2e889d9d19efd5312b6759c56abcdb933a7d238e8a42",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
+    "reviewed:gravity-forms-nonprofit-license": {
+      "toolSlug": "gravity-forms",
+      "url": "https://www.gravityforms.com/nonprofit-license/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:24.176Z",
+      "definitionHash": "c1b28805ccf87e10024a6fd3305e15b8ce82bc7a6a529feadb21314dd6a583e5",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:24.176Z",
+      "contentHash": "fb1a7fe78ac0b00496bdd56e9e52a04edcb71fb4643bca85602203834f16ee0e",
       "etag": null,
       "lastModified": null,
       "error": null
@@ -305,6 +401,22 @@
       "lastModified": "Mon, 26 Oct 2026 07:58:31 GMT",
       "error": null
     },
+    "reviewed:imagify-yearly-two-months": {
+      "toolSlug": "imagify",
+      "url": "https://imagify.io/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:22.506Z",
+      "definitionHash": "6636ecff04230419567742948b03358a337bae065cf738d6d5dfc9ee4ad7eeb3",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:22.506Z",
+      "contentHash": "a119cb6f6b5494d328d15dc6decc8c7ebe01fb8e78b33ca95b78509b52696ddb",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 06:33:55 GMT",
+      "error": null
+    },
     "reviewed:incident-io-annual-team": {
       "toolSlug": "incident-io",
       "url": "https://incident.io/pricing",
@@ -335,6 +447,22 @@
       "contentHash": "6bb857635879e1df5d45807d5c4e5fd22f3ffb87621fb9340e7bf226e94cec75",
       "etag": "W/\"7d39091e5b406d7904956405822c0d04\"",
       "lastModified": null,
+      "error": null
+    },
+    "reviewed:jenni-ai-annual-plan-offer": {
+      "toolSlug": "jenni-ai",
+      "url": "https://jenni.ai/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:23.330Z",
+      "definitionHash": "4c87ad293d00d05a67e6332513509b23cb5eb33d7a3ebd7ea4ce92462f615a9c",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:23.330Z",
+      "contentHash": "15a595915b89c35d4a661c24e792141d9d59517a7b226069746fa25c19c1775b",
+      "etag": "\"db02d06fdc2a13e0a2911c85a8018d28\"",
+      "lastModified": "Wed, 28 Oct 2026 16:35:20 GMT",
       "error": null
     },
     "reviewed:jira-community-cloud": {
@@ -369,6 +497,22 @@
       "lastModified": null,
       "error": null
     },
+    "reviewed:linguix-annual-pro-offer": {
+      "toolSlug": "linguix",
+      "url": "https://linguix.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:22.682Z",
+      "definitionHash": "1da5cb3c59614701aa3b19a1df304d45646a424dd7460a3efa5f6428a018b0c6",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:22.682Z",
+      "contentHash": "c803c7cf01f929c7ac0c2ff2a85c865f9e450b50c05a19a22529099ed51016bd",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
     "reviewed:microsoft-365-nonprofit-program": {
       "toolSlug": "microsoft-365",
       "url": "https://www.microsoft.com/en-us/nonprofits/microsoft-365",
@@ -394,6 +538,22 @@
       "contentHash": "bbcead65652a063d2f4e7f3fb751e8dac16f1a3abe26f2f29df9c8896b3217a5",
       "etag": null,
       "lastModified": "Wed, 28 Oct 2026 06:31:01 GMT",
+      "error": null
+    },
+    "reviewed:monsterinsights-official-intro-code": {
+      "toolSlug": "monsterinsights",
+      "url": "https://www.monsterinsights.com/monsterinsights-coupon-code/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:19.565Z",
+      "definitionHash": "94d566d16f59a2c762ab09693f05142e7a301151a580266d2e864b9020e813df",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:19.565Z",
+      "contentHash": "2b5c89393efa9f8e57bf92818abd68e385f70ad26b36b71bf978aa4ecde7a833",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 17:52:49 GMT",
       "error": null
     },
     "reviewed:namecheap-monthly-coupons": {
@@ -513,6 +673,32 @@
       "lastModified": null,
       "error": null
     },
+    "reviewed:paperpal-institutional-trial-enquiry": {
+      "toolSlug": "paperpal",
+      "url": "https://paperpal.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:15:38.726Z",
+      "definitionHash": "b65214a89a5ddaa8387f8d8f385626da0cf3e398dcc8f1fe685dfa989a139233",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:15:38.726Z",
+      "contentHash": "fc487067cb8ef55b95364baea451dbd242a5b420f4530d71c1a241da5853c1d8",
+      "etag": "W/\"9f22e73677646a4c41804c517705ffa0\"",
+      "lastModified": "Tue, 27 Oct 2026 12:03:46 GMT",
+      "error": null
+    },
+    "reviewed:perfmatters-official-code": {
+      "toolSlug": "perfmatters",
+      "url": "https://perfmatters.io/pricing/",
+      "kind": "vendor",
+      "status": "error",
+      "lastSkippedAt": "2026-10-28T18:13:24.815Z",
+      "nextAttemptAt": "2026-10-29T18:13:16.003Z",
+      "httpStatus": 403,
+      "error": "Host paused after HTTP 403; page request skipped"
+    },
     "reviewed:plutio-yearly-billing": {
       "toolSlug": "plutio",
       "url": "https://www.plutio.com/pricing",
@@ -569,6 +755,38 @@
       "nextAttemptAt": "2026-10-29T10:40:03.288Z",
       "lastSkippedAt": "2026-10-28T10:40:18.701Z"
     },
+    "reviewed:seedprod-official-intro-code": {
+      "toolSlug": "seedprod",
+      "url": "https://www.seedprod.com/seedprod-coupon-code/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:19.876Z",
+      "definitionHash": "febc2f8cf31187695996e3c76bd0c5e61b339a23e2d5017358060feef2e01f60",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:19.876Z",
+      "contentHash": "1d80485d75f160053704ab7f73bc5f855e0fcf4cf0616cd45ae443b79fe22ac6",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 17:52:51 GMT",
+      "error": null
+    },
+    "reviewed:sendible-yearly-plan-offer": {
+      "toolSlug": "sendible",
+      "url": "https://www.sendible.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:23.793Z",
+      "definitionHash": "d37ea9241dfb7465f80841efcde0d1ad6c2d7ace0731f9e0e4daf86cfd1b586e",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:23.793Z",
+      "contentHash": "06b8a4e1135036469a3367dfafce2728a42d754349b918a630574b37d60c1a1e",
+      "etag": null,
+      "lastModified": "Tue, 27 Oct 2026 11:18:09 GMT",
+      "error": null
+    },
     "reviewed:sentry-startup-credits": {
       "toolSlug": "sentry",
       "url": "https://sentry.io/for/startups/apply/",
@@ -581,6 +799,22 @@
       "httpStatus": 200,
       "changedAt": "2026-10-27T11:04:16.869Z",
       "contentHash": "578d686ecf1b88d602066c20cb754b57db98e7f1684509b1dda7739103e4b456",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
+    "reviewed:shortpixel-yearly-two-months": {
+      "toolSlug": "shortpixel",
+      "url": "https://shortpixel.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:22.032Z",
+      "definitionHash": "ebcdc41d1f6ca9f88755e9b14d560d15ffa5a981f9450faa5d9b0f0c46baa99a",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:22.032Z",
+      "contentHash": "eb0321f75aa14e7517d9a553f15715ee671405e7d4ed1021bd7dc61e936560fb",
       "etag": null,
       "lastModified": null,
       "error": null
@@ -598,6 +832,22 @@
       "changedAt": "2026-10-28T10:40:20.345Z",
       "contentHash": "0d65b76e0ce624388bbf5f35b755d0de4285124390cbd40dfb66f2ba57bc1d8a",
       "etag": "W/\"ea18bf3dc6db44eebc8f688bd24f8379\"",
+      "lastModified": null,
+      "error": null
+    },
+    "reviewed:socialpilot-annual-plan-offer": {
+      "toolSlug": "socialpilot",
+      "url": "https://www.socialpilot.co/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:23.789Z",
+      "definitionHash": "45e5025f425072a26af6a540bbc61369ce5bee7b3030764de5f7b346e945193a",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:23.789Z",
+      "contentHash": "33f9623eb29bc07c17b916e86d205eea9ed3ed8856a1ed8ea1b9a9e3a5b38c56",
+      "etag": null,
       "lastModified": null,
       "error": null
     },
@@ -643,6 +893,81 @@
       "httpStatus": 403,
       "nextAttemptAt": "2026-10-28T11:04:18.351Z",
       "error": "HTTP 403"
+    },
+    "reviewed:typingmind-client-license-offer": {
+      "toolSlug": "typingmind",
+      "url": "https://www.typingmind.com/",
+      "kind": "vendor",
+      "status": "error",
+      "lastAttemptAt": "2026-10-28T18:13:24.815Z",
+      "failureCount": 1,
+      "httpStatus": null,
+      "nextAttemptAt": "2026-10-28T18:28:26.063Z",
+      "error": "Insufficient visible source content"
+    },
+    "reviewed:wp-mail-smtp-official-dollar-code": {
+      "toolSlug": "wp-mail-smtp",
+      "url": "https://wpmailsmtp.com/wp-mail-smtp-coupon/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:20.476Z",
+      "definitionHash": "e1c752172339d7e440dfc5b53efb5da17f78045c4fe80466699cc002b281fa1a",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:20.476Z",
+      "contentHash": "1a4ad24d0348d14c1d95a6f9768a52a1e51d70457e1f370f907f1f1c73dacf82",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 17:52:49 GMT",
+      "error": null
+    },
+    "reviewed:wp-rocket-halloween-first-purchase-2026": {
+      "toolSlug": "wp-rocket",
+      "url": "https://wp-rocket.me/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:21.661Z",
+      "definitionHash": "542369b5f8702accba99b30b2a5463a1155ca00b7bb9918a4594cc1c4e5c142d",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:21.661Z",
+      "contentHash": "0625a5ef18616eb1dd030d12b5d18850b38d1515f119937cc8f25faff724a774",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
+    "reviewed:wpforms-nonprofit-application": {
+      "toolSlug": "wpforms",
+      "url": "https://wpforms.com/wpforms-coupon-code/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:24.590Z",
+      "definitionHash": "a607232e592718723871a6885b7e3496d1f51c6df828ba2881a74913683a78e6",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:24.590Z",
+      "contentHash": "4835d8acf753bd9bafaa2cfb9eaa04cbbd6f1f2650dd6084361c837d37174d50",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 18:13:19 GMT",
+      "error": null
+    },
+    "reviewed:wpforms-official-new-license-code": {
+      "toolSlug": "wpforms",
+      "url": "https://wpforms.com/wpforms-coupon-code/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:18.829Z",
+      "definitionHash": "8f069829a6cb31891ae0d40607981e8fc2c4c173b93bc70a3d69547bc37fb9d8",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:18.829Z",
+      "contentHash": "4835d8acf753bd9bafaa2cfb9eaa04cbbd6f1f2650dd6084361c837d37174d50",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 18:13:19 GMT",
+      "error": null
     },
     "reviewed:xtiles-education-year": {
       "toolSlug": "xtiles",
@@ -758,6 +1083,17 @@
       "nextAttemptAt": "2026-10-28T20:46:47.835Z",
       "httpStatus": 403
     },
+    "simplycodes:linguix.com": {
+      "toolSlug": "linguix",
+      "url": "https://simplycodes.com/store/linguix.com",
+      "kind": "coupon-site",
+      "status": "error",
+      "lastAttemptAt": "2026-10-28T18:13:25.507Z",
+      "failureCount": 1,
+      "httpStatus": 403,
+      "nextAttemptAt": "2026-10-29T18:13:25.937Z",
+      "error": "HTTP 403"
+    },
     "simplycodes:quillbot.com": {
       "toolSlug": "quillbot-premium",
       "url": "https://simplycodes.com/store/quillbot.com",
@@ -776,6 +1112,16 @@
       "status": "error",
       "lastSkippedAt": "2026-10-27T20:46:48.713Z",
       "nextAttemptAt": "2026-10-28T20:46:47.835Z",
+      "httpStatus": 403,
+      "error": "Host paused after HTTP 403; page request skipped"
+    },
+    "simplycodes:socialpilot.co": {
+      "toolSlug": "socialpilot",
+      "url": "https://simplycodes.com/store/socialpilot.co",
+      "kind": "coupon-site",
+      "status": "error",
+      "lastSkippedAt": "2026-10-28T18:13:25.937Z",
+      "nextAttemptAt": "2026-10-29T18:13:25.937Z",
       "httpStatus": 403,
       "error": "Host paused after HTTP 403; page request skipped"
     },
@@ -1018,6 +1364,22 @@
       "contentHash": "3a3459328313ad465fcd0978688a00a51a0866224a5ea1a5e3563075d7385b47",
       "etag": null,
       "lastModified": "Wed, 28 Oct 2026 10:30:47 GMT",
+      "error": null
+    },
+    "vendor:aioseo": {
+      "toolSlug": "aioseo",
+      "url": "https://aioseo.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:10.654Z",
+      "definitionHash": "37523a568627ad85de6b61404914687fc8ca6bbbe9f46b5aaa7681410402333a",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:10.654Z",
+      "contentHash": "413a69369796a710038665e3b1c9818586096faa859ea74fc53aaf74173ff9b9",
+      "etag": null,
+      "lastModified": null,
       "error": null
     },
     "vendor:airtable": {
@@ -3537,6 +3899,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:duplicator": {
+      "toolSlug": "duplicator",
+      "url": "https://duplicator.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:10.654Z",
+      "definitionHash": "10cb9426b5bf458538af9cebd38ff445837bd6f760e2a83c8c7f11a242f6809f",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:10.654Z",
+      "contentHash": "c940842b9b6270de4b18d8f6b0325ea130df9d2b0e53e42f6679baa6c3f972c3",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
     "vendor:dust": {
       "toolSlug": "dust",
       "url": "https://dust.tt/home/pricing",
@@ -4173,6 +4551,38 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:fluent-forms": {
+      "toolSlug": "fluent-forms",
+      "url": "https://fluentforms.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:13.605Z",
+      "definitionHash": "757cf8308a83fde3e6380c9ebb66e253d86a53756ae0cc86531d49b89f6d82b7",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:13.605Z",
+      "contentHash": "d57ddec62aeee6f7b56293bc970d2c23c4fd7d909012dbdccf0844366a544e61",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 15:02:47 GMT",
+      "error": null
+    },
+    "vendor:fluentcrm": {
+      "toolSlug": "fluentcrm",
+      "url": "https://fluentcrm.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:14.443Z",
+      "definitionHash": "d6cfa19d345e1c2a76de6925e8b8b0aead246be9c984865186a2fdebebeb0101",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:14.443Z",
+      "contentHash": "145be463fc3d001d375f0186ce22403a7094e11e0e0ee2df7204b0bdd8e4e579",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
     "vendor:fly-io": {
       "toolSlug": "fly-io",
       "url": "https://fly.io",
@@ -4187,6 +4597,22 @@
       "contentHash": "3edd439fffc364d634cc7bc86773592f4b88087a78230fac76faf9d6c2ca6b77",
       "etag": null,
       "lastModified": null,
+      "error": null
+    },
+    "vendor:flyingpress": {
+      "toolSlug": "flyingpress",
+      "url": "https://flyingpress.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:16.668Z",
+      "definitionHash": "36c9781952bd248a05a5ac02d8f67d259be0cb1ec4fdf035dcb909830d81ba12",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:16.668Z",
+      "contentHash": "267621145ae828207e5a5b6a301f9798a334bc0c6015758a66333b9c27f988c2",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 05:30:27 GMT",
       "error": null
     },
     "vendor:folk-crm": {
@@ -4217,6 +4643,22 @@
       "httpStatus": 200,
       "changedAt": "2026-10-27T20:44:36.183Z",
       "contentHash": "04ec0b76057c07bee1281c43ca18d5978665cbe2899d61d80665b49238aed339",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
+    "vendor:formidable-forms": {
+      "toolSlug": "formidable-forms",
+      "url": "https://formidableforms.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:12.394Z",
+      "definitionHash": "ed303d820f5fb5034b5a743a0524c47bd959ded5c7ce533e8203aabf39453191",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:12.394Z",
+      "contentHash": "ffcc8f84cef9baeb20dbe1b7079b49954bcdd69bfdaa33ab44ac1c24dd838ab9",
       "etag": null,
       "lastModified": null,
       "error": null
@@ -4678,6 +5120,22 @@
       "changedAt": "2026-10-23T14:50:11.193Z",
       "contentHash": "a27cf2c59a4ee5ddeaf4acc7c6b6dc9a635c1f33d60f8960df000a30a8e192dd",
       "etag": "W/\"p6velscdgsb4pm\"",
+      "lastModified": null,
+      "error": null
+    },
+    "vendor:gravity-forms": {
+      "toolSlug": "gravity-forms",
+      "url": "https://www.gravityforms.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:12.580Z",
+      "definitionHash": "d96eeb1add6f1e5e0bcb1e562ed1ce9638eefb32bcb9397d4cd5ebd2a9ef8897",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:12.580Z",
+      "contentHash": "0cddf4087318ddeef915ac1679dba4bd793f8ca22abf3f5a58e2ff8411ff50b4",
+      "etag": null,
       "lastModified": null,
       "error": null
     },
@@ -5286,6 +5744,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:imagify": {
+      "toolSlug": "imagify",
+      "url": "https://imagify.io/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:16.003Z",
+      "definitionHash": "5aef1dfb203192519aebb85524bb9798cc1635e5c2738cc3bc71c037941866b4",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:16.003Z",
+      "contentHash": "a119cb6f6b5494d328d15dc6decc8c7ebe01fb8e78b33ca95b78509b52696ddb",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 06:33:55 GMT",
+      "error": null
+    },
     "vendor:incident-io": {
       "toolSlug": "incident-io",
       "url": "https://incident.io/pricing",
@@ -5478,15 +5952,15 @@
       "url": "https://jenni.ai/pricing",
       "kind": "vendor",
       "status": "ok",
-      "checkedAt": "2026-10-28T10:38:59.220Z",
+      "checkedAt": "2026-10-28T18:13:10.651Z",
       "definitionHash": "e8bfb8d77a678231ee9d3d6ae0bd2db5445e07b94bf786e3d1d6569a9e6a8461",
       "failureCount": 0,
       "nextAttemptAt": null,
       "httpStatus": 200,
       "changedAt": "2026-10-28T10:38:59.220Z",
       "contentHash": "15a595915b89c35d4a661c24e792141d9d59517a7b226069746fa25c19c1775b",
-      "etag": "\"ae523463fc4173afdfa9b6afa37ab43f\"",
-      "lastModified": "Wed, 28 Oct 2026 06:51:47 GMT",
+      "etag": "\"db02d06fdc2a13e0a2911c85a8018d28\"",
+      "lastModified": "Wed, 28 Oct 2026 16:35:20 GMT",
       "error": null
     },
     "vendor:jira": {
@@ -6042,6 +6516,22 @@
       "httpStatus": 200,
       "changedAt": "2026-10-23T09:22:25.835Z",
       "contentHash": "e3d83f8ebd33a6af1fe56a6c451af6e2732c0b2305971304f1355f2bd102bd1e",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
+    "vendor:linguix": {
+      "toolSlug": "linguix",
+      "url": "https://linguix.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:17.489Z",
+      "definitionHash": "2c518ae9709605301255d16a0b66d80fb7c43e48f2f7291820226d08359fc374",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:17.489Z",
+      "contentHash": "c803c7cf01f929c7ac0c2ff2a85c865f9e450b50c05a19a22529099ed51016bd",
       "etag": null,
       "lastModified": null,
       "error": null
@@ -6879,6 +7369,22 @@
       "lastModified": "Wed, 28 Oct 2026 07:40:46 GMT",
       "error": null
     },
+    "vendor:monsterinsights": {
+      "toolSlug": "monsterinsights",
+      "url": "https://www.monsterinsights.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:10.654Z",
+      "definitionHash": "e0db2cc523b3b1d509ea5ab69c6404732ef9ca7b5b35a26c56c0376eeb2fdaca",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:10.654Z",
+      "contentHash": "9db8844c8feba64c31bf37f30d26d3f366259cdf755e48fa21bc961ab26dc650",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 17:51:24 GMT",
+      "error": null
+    },
     "vendor:moosend": {
       "toolSlug": "moosend",
       "url": "https://moosend.com",
@@ -7701,6 +8207,22 @@
       "httpStatus": null,
       "nextAttemptAt": "2026-10-28T22:38:03.834Z"
     },
+    "vendor:paperpal": {
+      "toolSlug": "paperpal",
+      "url": "https://paperpal.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:15:38.723Z",
+      "definitionHash": "8556f48aa097ce66b7944260e76209e6690936f89ffc8ca8c931d2003602de03",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 304,
+      "changedAt": "2026-10-28T18:13:17.849Z",
+      "contentHash": "fc487067cb8ef55b95364baea451dbd242a5b420f4530d71c1a241da5853c1d8",
+      "etag": "W/\"9f22e73677646a4c41804c517705ffa0\"",
+      "lastModified": "Tue, 27 Oct 2026 12:03:46 GMT",
+      "error": null
+    },
     "vendor:passbolt": {
       "toolSlug": "passbolt",
       "url": "https://www.passbolt.com/pricing/pro",
@@ -7776,6 +8298,17 @@
       "lastModified": null,
       "error": "Insufficient visible source content",
       "lastAttemptAt": "2026-10-28T10:37:20.037Z"
+    },
+    "vendor:perfmatters": {
+      "toolSlug": "perfmatters",
+      "url": "https://perfmatters.io/pricing/",
+      "kind": "vendor",
+      "status": "error",
+      "lastAttemptAt": "2026-10-28T18:13:15.627Z",
+      "failureCount": 1,
+      "httpStatus": 403,
+      "nextAttemptAt": "2026-10-29T18:13:16.003Z",
+      "error": "HTTP 403"
     },
     "vendor:perplexity-ai": {
       "toolSlug": "perplexity-ai",
@@ -9375,6 +9908,17 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:scholarcy": {
+      "toolSlug": "scholarcy",
+      "url": "https://www.scholarcy.com/pricing",
+      "kind": "vendor",
+      "status": "error",
+      "lastAttemptAt": "2026-10-28T18:13:18.313Z",
+      "failureCount": 1,
+      "httpStatus": 403,
+      "nextAttemptAt": "2026-10-29T18:13:18.829Z",
+      "error": "HTTP 403"
+    },
     "vendor:scispace": {
       "toolSlug": "scispace",
       "url": "https://scispace.com/pricing",
@@ -9537,6 +10081,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:seedprod": {
+      "toolSlug": "seedprod",
+      "url": "https://www.seedprod.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:10.654Z",
+      "definitionHash": "b9dad3c491ebf628c53e91785db051627cc0e095c82b4d9e6ee8bb26db7d45d7",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:10.654Z",
+      "contentHash": "555c0e7551effec7428aff993982334ec8737a52dafe004efe914c97cea4b495",
+      "etag": null,
+      "lastModified": "Wed, 28 Oct 2026 17:51:23 GMT",
+      "error": null
+    },
     "vendor:segment-cdp": {
       "toolSlug": "segment-cdp",
       "url": "https://segment.com",
@@ -9650,6 +10210,22 @@
       "httpStatus": null,
       "nextAttemptAt": "2026-10-28T22:38:22.040Z"
     },
+    "vendor:sendible": {
+      "toolSlug": "sendible",
+      "url": "https://www.sendible.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:18.600Z",
+      "definitionHash": "48439b3607581d7d393e8d66c11f330e9f6800a01165dc4410909e19e8a10cab",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:18.600Z",
+      "contentHash": "06b8a4e1135036469a3367dfafce2728a42d754349b918a630574b37d60c1a1e",
+      "etag": null,
+      "lastModified": "Tue, 27 Oct 2026 11:18:09 GMT",
+      "error": null
+    },
     "vendor:sendlane": {
       "toolSlug": "sendlane",
       "url": "https://www.sendlane.com/pricing",
@@ -9730,6 +10306,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:seopress": {
+      "toolSlug": "seopress",
+      "url": "https://www.seopress.org/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:14.466Z",
+      "definitionHash": "1ab41c1f3296006c4363f8ac7ac64e746979c358b7972415650447adbd79d26b",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:14.466Z",
+      "contentHash": "21a64f2654a6ec620befdfeb28948061b96ee9040754ac741d0237e9fc173ef2",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
     "vendor:serpstat": {
       "toolSlug": "serpstat",
       "url": "https://serpstat.com/page/pricing-plans/",
@@ -9776,6 +10368,22 @@
       "contentHash": "c7815ea3ebb391697d81a213906ce7f88db083b50ed665c4e91532940e1c0f61",
       "etag": null,
       "lastModified": "Wed, 28 Oct 2026 10:31:31 GMT",
+      "error": null
+    },
+    "vendor:shortpixel": {
+      "toolSlug": "shortpixel",
+      "url": "https://shortpixel.com/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:15.639Z",
+      "definitionHash": "a2756d9e56a64c523812f500a96fdceeb98a56432455f51ba15127716a61f74a",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:15.639Z",
+      "contentHash": "eb0321f75aa14e7517d9a553f15715ee671405e7d4ed1021bd7dc61e936560fb",
+      "etag": null,
+      "lastModified": null,
       "error": null
     },
     "vendor:shortwave": {
@@ -10113,6 +10721,22 @@
       "contentHash": "07344805c4a19c27eca20ba32722c2a1d6695722227832c2bb3274eb83b68c58",
       "etag": null,
       "lastModified": "Wed, 28 Oct 2026 10:31:50 GMT",
+      "error": null
+    },
+    "vendor:socialpilot": {
+      "toolSlug": "socialpilot",
+      "url": "https://www.socialpilot.co/pricing",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:18.516Z",
+      "definitionHash": "2bfebb130491f10d8308ea2a6b9ba753171a41fe7a07c79c236938fd2c726b73",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:18.516Z",
+      "contentHash": "33f9623eb29bc07c17b916e86d205eea9ed3ed8856a1ed8ea1b9a9e3a5b38c56",
+      "etag": null,
+      "lastModified": null,
       "error": null
     },
     "vendor:socket": {
@@ -11095,6 +11719,22 @@
       "lastModified": null,
       "error": null
     },
+    "vendor:text-blaze": {
+      "toolSlug": "text-blaze",
+      "url": "https://blaze.today/plans/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:16.688Z",
+      "definitionHash": "ea97d52c3ff24b39cd8efc580b748d3fdc5ef29534ccfe89c11aa2a19d940009",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:16.688Z",
+      "contentHash": "c00bfbd5250308c6a5f06e70629ba78e581534d03cad65714cd478f283e621f1",
+      "etag": "\"ca68ef3bb7eee8fc19558048b140b71b\"",
+      "lastModified": "Thu, 22 Oct 2026 15:44:03 GMT",
+      "error": null
+    },
     "vendor:textcortex": {
       "toolSlug": "textcortex",
       "url": "https://textcortex.com",
@@ -11550,6 +12190,17 @@
       "failureCount": 11,
       "httpStatus": null,
       "nextAttemptAt": "2026-10-28T22:37:18.460Z"
+    },
+    "vendor:typingmind": {
+      "toolSlug": "typingmind",
+      "url": "https://www.typingmind.com/",
+      "kind": "vendor",
+      "status": "error",
+      "lastAttemptAt": "2026-10-28T18:13:18.338Z",
+      "failureCount": 1,
+      "httpStatus": null,
+      "nextAttemptAt": "2026-10-28T18:28:20.475Z",
+      "error": "Insufficient visible source content"
     },
     "vendor:ubersuggest": {
       "toolSlug": "ubersuggest",
@@ -12441,6 +13092,54 @@
       "lastModified": "Wed, 28 Oct 2026 09:51:24 GMT",
       "error": null
     },
+    "vendor:wp-mail-smtp": {
+      "toolSlug": "wp-mail-smtp",
+      "url": "https://wpmailsmtp.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:12.366Z",
+      "definitionHash": "4d1be37aec3b34ff4b89e47dea08f791f31da06ad30200e95888849b68a3aebe",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:12.366Z",
+      "contentHash": "eb57ef864a1e0ea97b24c1573166e2227fe5e4e93efcf2aac8ae07e83e688e53",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
+    "vendor:wp-rocket": {
+      "toolSlug": "wp-rocket",
+      "url": "https://wp-rocket.me/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:14.538Z",
+      "definitionHash": "0eba28f572b15bfe7a1d41405d52e082707e6818a74c89059fb87f8e9fb7a4e5",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:14.538Z",
+      "contentHash": "0625a5ef18616eb1dd030d12b5d18850b38d1515f119937cc8f25faff724a774",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
+    "vendor:wpforms": {
+      "toolSlug": "wpforms",
+      "url": "https://wpforms.com/pricing/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-10-28T18:13:10.654Z",
+      "definitionHash": "1fb82c430004e1b052112e9539572fc1bfa7b2271d380a74da0a883d81838032",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-10-28T18:13:10.654Z",
+      "contentHash": "b0a98ff9183a250dd1c7b04417d9fed5f4799fb5440035d7f1afe13aafc02123",
+      "etag": null,
+      "lastModified": null,
+      "error": null
+    },
     "vendor:wrike-project": {
       "toolSlug": "wrike-project",
       "url": "https://www.wrike.com/",
@@ -12664,6 +13363,68 @@
       "etag": null,
       "lastModified": "Tue, 21 Jul 2026 11:51:44 GMT",
       "error": null
+    },
+    "wethrift:jenni-ai": {
+      "toolSlug": "jenni-ai",
+      "url": "https://www.wethrift.com/jenni-ai",
+      "kind": "coupon-site",
+      "status": "error",
+      "lastSkippedAt": "2026-10-28T18:13:25.770Z",
+      "nextAttemptAt": "2026-10-29T18:13:25.769Z",
+      "httpStatus": 403,
+      "error": "Host paused after HTTP 403; page request skipped"
+    },
+    "wethrift:paperpal.com": {
+      "toolSlug": "paperpal",
+      "url": "https://www.wethrift.com/codes/paperpal.com",
+      "kind": "coupon-site",
+      "status": "error",
+      "lastAttemptAt": "2026-10-28T18:13:25.504Z",
+      "failureCount": 1,
+      "httpStatus": 403,
+      "nextAttemptAt": "2026-10-29T18:13:25.769Z",
+      "error": "HTTP 403"
+    },
+    "wpbeginner:all-in-one-seo-coupon": {
+      "toolSlug": "aioseo",
+      "url": "https://www.wpbeginner.com/deals/all-in-one-seo-coupon/",
+      "kind": "coupon-site",
+      "status": "error",
+      "lastSkippedAt": "2026-10-28T18:13:25.504Z",
+      "nextAttemptAt": "2026-10-29T18:13:25.504Z",
+      "httpStatus": 403,
+      "error": "Host paused after HTTP 403; page request skipped"
+    },
+    "wpbeginner:gravity-forms-coupon": {
+      "toolSlug": "gravity-forms",
+      "url": "https://www.wpbeginner.com/deals/gravity-forms-coupon/",
+      "kind": "coupon-site",
+      "status": "error",
+      "lastSkippedAt": "2026-10-28T18:13:25.505Z",
+      "nextAttemptAt": "2026-10-29T18:13:25.504Z",
+      "httpStatus": 403,
+      "error": "Host paused after HTTP 403; page request skipped"
+    },
+    "wpbeginner:wp-rocket-coupon": {
+      "toolSlug": "wp-rocket",
+      "url": "https://www.wpbeginner.com/deals/wp-rocket-coupon/",
+      "kind": "coupon-site",
+      "status": "error",
+      "lastSkippedAt": "2026-10-28T18:13:25.504Z",
+      "nextAttemptAt": "2026-10-29T18:13:25.504Z",
+      "httpStatus": 403,
+      "error": "Host paused after HTTP 403; page request skipped"
+    },
+    "wpbeginner:wpforms-coupon": {
+      "toolSlug": "wpforms",
+      "url": "https://www.wpbeginner.com/deals/wpforms-coupon/",
+      "kind": "coupon-site",
+      "status": "error",
+      "lastAttemptAt": "2026-10-28T18:13:24.827Z",
+      "failureCount": 1,
+      "httpStatus": 403,
+      "nextAttemptAt": "2026-10-29T18:13:25.504Z",
+      "error": "HTTP 403"
     }
   },
   "offers": [
@@ -12711,6 +13472,21 @@
       "checkedAt": "2026-10-28T10:39:36.730Z",
       "updatedAt": "2026-10-23T09:24:47.852Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "aioseo-first-year-published-offer",
+      "toolSlug": "aioseo",
+      "title": "AIOSEO: published first-year license offer",
+      "dealType": "offer",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://aioseo.com/pricing/",
+      "destinationUrl": "https://aioseo.com/pricing/",
+      "terms": "The public headline describes a first-year offer; actual package pricing can vary. Compare the selected SEO license, sites, credits and regular renewal. Separate Broken Link Checker and other products have their own scope. No ranking gain is implied. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:aioseo-first-year-published-offer",
+      "evidence": "50% off your first year; renewals are at full price",
+      "checkedAt": "2026-10-28T18:13:20.643Z",
+      "updatedAt": "2026-10-28T18:13:20.643Z"
     },
     {
       "slug": "akiflow-free-trial",
@@ -13464,6 +14240,22 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "duplicator-official-license-code",
+      "toolSlug": "duplicator",
+      "title": "Duplicator: official 50% license code",
+      "dealType": "coupon",
+      "discountPercentage": 50,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://duplicator.com/duplicator-coupon/",
+      "destinationUrl": "https://duplicator.com/pricing/",
+      "terms": "Official license coupon. Match the package, supported storage destinations and site allowance. Separate cloud products and storage-provider charges may apply. Do not assume eligibility for personalized recovery promotions or stacked savings. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "code": "SAVE50",
+      "sourceKey": "reviewed:duplicator-official-license-code",
+      "evidence": "SAVE50; 50% off any of our plans",
+      "checkedAt": "2026-10-28T18:13:20.306Z",
+      "updatedAt": "2026-10-28T18:13:20.306Z"
+    },
+    {
       "slug": "dynatrace-free-trial",
       "toolSlug": "dynatrace",
       "title": "Dynatrace free trial",
@@ -13659,6 +14451,66 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "fluent-forms-first-year-offer",
+      "toolSlug": "fluent-forms",
+      "title": "Fluent Forms: up to 30% on first-year annual licenses",
+      "dealType": "offer",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://fluentforms.com/pricing/",
+      "destinationUrl": "https://fluentforms.com/pricing/",
+      "terms": "Annual first-year promotion with license-dependent displayed amounts. Lifetime purchases have separate pricing and terms. Match domain allowance, check the normal annual renewal and do not combine purchase-link codes without explicit permission. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:fluent-forms-first-year-offer",
+      "evidence": "up to 30%; first-year license",
+      "checkedAt": "2026-10-28T18:13:20.715Z",
+      "updatedAt": "2026-10-28T18:13:20.715Z"
+    },
+    {
+      "slug": "fluentcrm-first-year-offer",
+      "toolSlug": "fluentcrm",
+      "title": "FluentCRM: 30% first-year website-license offer",
+      "dealType": "offer",
+      "discountPercentage": 30,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://fluentcrm.com/pricing/",
+      "destinationUrl": "https://fluentcrm.com/pricing/",
+      "terms": "First-year license offer. Packages are based on websites, not subscriber count. Hosting and email sending are separate costs. Check the selected website allowance, accepted first invoice and normal annual renewal. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:fluentcrm-first-year-offer",
+      "evidence": "Save 30%; first year",
+      "checkedAt": "2026-10-28T18:13:21.026Z",
+      "updatedAt": "2026-10-28T18:13:21.026Z"
+    },
+    {
+      "slug": "flyingpress-free-trial",
+      "toolSlug": "flyingpress",
+      "title": "FlyingPress free trial",
+      "dealType": "free_trial",
+      "discountPercentage": 0,
+      "sourceUrl": "https://flyingpress.com/pricing/",
+      "destinationUrl": "https://flyingpress.com/pricing/",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:flyingpress",
+      "evidence": "ngHost Managed WordPress hosting Features Pricing Blog Support Log in Start Free Trial Pricing Simple pricing for faster WordPress websites. Every feature. Every plan. Just choose how many sites you want to speed up. Starter Plan For yo",
+      "checkedAt": "2026-10-28T18:13:16.668Z",
+      "updatedAt": "2026-10-28T18:13:16.668Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "formidable-forms-intro-license-offers",
+      "toolSlug": "formidable-forms",
+      "title": "Formidable Forms: plan-specific introductory offers",
+      "dealType": "offer",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://formidableforms.com/pricing/",
+      "destinationUrl": "https://formidableforms.com/pricing/",
+      "terms": "Displayed introductory reductions depend on license. The largest percentage is not universal. Match Views, integrations and site allowance; compare one accepted offer and the full-price renewal, plus payment-provider charges. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:formidable-forms-intro-license-offers",
+      "evidence": "60%; introductory pricing; renewals are at full price",
+      "checkedAt": "2026-10-28T18:13:20.646Z",
+      "updatedAt": "2026-10-28T18:13:20.646Z"
+    },
+    {
       "slug": "frase-io-free-trial",
       "toolSlug": "frase-io",
       "title": "Frase.io free trial",
@@ -13732,6 +14584,21 @@
       "evidence": "Annual; Save 16%; 1 year commitment",
       "checkedAt": "2026-10-28T10:40:27.959Z",
       "updatedAt": "2026-10-28T10:40:27.959Z"
+    },
+    {
+      "slug": "gravity-forms-nonprofit-license",
+      "toolSlug": "gravity-forms",
+      "title": "Gravity Forms: application-based nonprofit license",
+      "dealType": "offer",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://www.gravityforms.com/nonprofit-license/",
+      "destinationUrl": "https://www.gravityforms.com/nonprofit-license/",
+      "terms": "Application and approval for registered nonprofit organizations. The license has its own add-on and three-site scope; the reviewed page excludes multisite. Confirm renewal and feature fit. This is not a general commercial coupon. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:gravity-forms-nonprofit-license",
+      "evidence": "registered nonprofit organizations; application process; 3 Sites",
+      "checkedAt": "2026-10-28T18:13:24.176Z",
+      "updatedAt": "2026-10-28T18:13:24.176Z"
     },
     {
       "slug": "guidde-free-trial",
@@ -13856,6 +14723,21 @@
       "updatedAt": "2026-10-27T11:04:12.489Z"
     },
     {
+      "slug": "imagify-yearly-two-months",
+      "toolSlug": "imagify",
+      "title": "Imagify: two months free with yearly billing",
+      "dealType": "offer",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://imagify.io/pricing/",
+      "destinationUrl": "https://imagify.io/pricing/",
+      "terms": "Compare the same paid plan and complete yearly invoice. The free starter is a separate limited route; Growth overages can add to the cost. Check image workload, required allowance and renewal. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:imagify-yearly-two-months",
+      "evidence": "Yearly; 2 months Free; additional GB",
+      "checkedAt": "2026-10-28T18:13:22.506Z",
+      "updatedAt": "2026-10-28T18:13:22.506Z"
+    },
+    {
       "slug": "incident-io-annual-team",
       "toolSlug": "incident-io",
       "title": "incident.io annual Team incident-response pricing",
@@ -13944,6 +14826,21 @@
       "checkedAt": "2026-10-28T10:36:49.101Z",
       "updatedAt": "2026-10-24T18:48:48.162Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "jenni-ai-annual-plan-offer",
+      "toolSlug": "jenni-ai",
+      "title": "Jenni AI: published annual plan saving",
+      "dealType": "offer",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://jenni.ai/pricing",
+      "destinationUrl": "https://jenni.ai/pricing",
+      "terms": "Annual pricing offer on the selected paid package. Compare the same allowances for autocomplete, edits, reviews, uploads and export. Confirm the actual yearly invoice and renewal; the headline is not an unrestricted coupon or an unlimited entitlement to every feature. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:jenni-ai-annual-plan-offer",
+      "evidence": "Save 60%; Monthly Annual",
+      "checkedAt": "2026-10-28T18:13:23.330Z",
+      "updatedAt": "2026-10-28T18:13:23.330Z"
     },
     {
       "slug": "jira-community-cloud",
@@ -14079,6 +14976,21 @@
       "evidence": "free access; Business; non-paying; 50 employees",
       "checkedAt": "2026-10-28T10:40:29.040Z",
       "updatedAt": "2026-10-27T20:46:46.061Z"
+    },
+    {
+      "slug": "linguix-annual-pro-offer",
+      "toolSlug": "linguix",
+      "title": "Linguix Pro: published annual billing saving",
+      "dealType": "offer",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://linguix.com/pricing",
+      "destinationUrl": "https://linguix.com/pricing",
+      "terms": "Annual selector for individual Linguix Pro. Compare the same product with monthly billing and confirm the current full invoice, currency and taxes. Business and API products are separate. Automatic renewal and refund conditions apply; coupon stacking is not assumed. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:linguix-annual-pro-offer",
+      "evidence": "Annual Save 61%; Billed $140 annually",
+      "checkedAt": "2026-10-28T18:13:22.682Z",
+      "updatedAt": "2026-10-28T18:13:22.682Z"
     },
     {
       "slug": "litellm-free-plan",
@@ -14244,6 +15156,22 @@
       "evidence": "10 seats free; 70% off additional seats",
       "checkedAt": "2026-10-28T10:40:28.762Z",
       "updatedAt": "2026-10-28T10:40:28.762Z"
+    },
+    {
+      "slug": "monsterinsights-official-intro-code",
+      "toolSlug": "monsterinsights",
+      "title": "MonsterInsights: official 50% introductory code",
+      "dealType": "coupon",
+      "discountPercentage": 50,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://www.monsterinsights.com/monsterinsights-coupon-code/",
+      "destinationUrl": "https://www.monsterinsights.com/pricing/",
+      "terms": "Official introductory coupon. Confirm the selected license, site allowance and included features. Compare any already applied offer once; the vendor describes regular pricing after the introductory term. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "code": "INTRO50",
+      "sourceKey": "reviewed:monsterinsights-official-intro-code",
+      "evidence": "INTRO50; 50% off any of our plans",
+      "checkedAt": "2026-10-28T18:13:19.565Z",
+      "updatedAt": "2026-10-28T18:13:19.565Z"
     },
     {
       "slug": "morgen-calendar-free-trial",
@@ -14476,6 +15404,21 @@
       "checkedAt": "2026-10-28T10:36:59.139Z",
       "updatedAt": "2026-10-27T09:50:51.206Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "paperpal-institutional-trial-enquiry",
+      "toolSlug": "paperpal",
+      "title": "Paperpal: institutional trial enquiry",
+      "dealType": "free_trial",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://paperpal.com/pricing",
+      "destinationUrl": "https://paperpal.com/pricing",
+      "terms": "Enquiry route for enterprise or institutional teams. Contact Paperpal to confirm approval, covered users, duration, features and the later paid quote. The source does not establish an unrestricted individual trial. Signup and checkout have not been tested.",
+      "sourceKey": "reviewed:paperpal-institutional-trial-enquiry",
+      "evidence": "institution-wide pricing; Contact us to start your free trial",
+      "checkedAt": "2026-10-28T18:15:38.726Z",
+      "updatedAt": "2026-10-28T18:15:38.726Z"
     },
     {
       "slug": "passbolt-free-trial",
@@ -14764,6 +15707,22 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "seedprod-official-intro-code",
+      "toolSlug": "seedprod",
+      "title": "SeedProd: official 50% license code",
+      "dealType": "coupon",
+      "discountPercentage": 50,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://www.seedprod.com/seedprod-coupon-code/",
+      "destinationUrl": "https://www.seedprod.com/pricing/",
+      "terms": "Compare the eligible license with the displayed introductory offer. Theme building, integrations and website allowances depend on the package. The reviewed pricing states renewals are at full price; no stacking is assumed. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "code": "SAVE50",
+      "sourceKey": "reviewed:seedprod-official-intro-code",
+      "evidence": "SAVE50; 50% off any of our plans",
+      "checkedAt": "2026-10-28T18:13:19.876Z",
+      "updatedAt": "2026-10-28T18:13:19.876Z"
+    },
+    {
       "slug": "sellfy-free-trial",
       "toolSlug": "sellfy",
       "title": "Sellfy free trial",
@@ -14809,6 +15768,36 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "sendible-free-trial",
+      "toolSlug": "sendible",
+      "title": "Sendible free trial",
+      "dealType": "free_trial",
+      "discountPercentage": 0,
+      "sourceUrl": "https://www.sendible.com/pricing",
+      "destinationUrl": "https://www.sendible.com/pricing",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:sendible",
+      "evidence": " and attract local practice appointments. Pricing Sign in Book a demo Start your free trial Features Features Workspaces Keep client brands separate and scale retainers without chaos. Client connect Never ask a client or another team for the",
+      "checkedAt": "2026-10-28T18:13:18.600Z",
+      "updatedAt": "2026-10-28T18:13:18.600Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "sendible-yearly-plan-offer",
+      "toolSlug": "sendible",
+      "title": "Sendible: 15% on equivalent yearly packages",
+      "dealType": "offer",
+      "discountPercentage": 15,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://www.sendible.com/pricing",
+      "destinationUrl": "https://www.sendible.com/pricing",
+      "terms": "Current workspace-based packages, not historical seat-based pricing. Match workspace scope and required extras such as white-label services. Unlimited users do not imply unlimited workspaces. Confirm the annual invoice and renewal. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:sendible-yearly-plan-offer",
+      "evidence": "Yearly Save 15%; Unlimited users",
+      "checkedAt": "2026-10-28T18:13:23.793Z",
+      "updatedAt": "2026-10-28T18:13:23.793Z"
+    },
+    {
       "slug": "sentry-startup-credits",
       "toolSlug": "sentry",
       "title": "Sentry startup credits up to US$5,000 with twelve-month expiry",
@@ -14837,6 +15826,21 @@
       "checkedAt": "2026-10-28T10:40:02.817Z",
       "updatedAt": "2026-10-27T20:46:28.496Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "shortpixel-yearly-two-months",
+      "toolSlug": "shortpixel",
+      "title": "ShortPixel: two months free on eligible yearly billing",
+      "dealType": "offer",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://shortpixel.com/pricing",
+      "destinationUrl": "https://shortpixel.com/pricing",
+      "terms": "Compare the same subscription product and allowance against monthly billing. One-time purchases and separate delivery services have their own terms. Include actual image-processing workload and confirm additional usage and renewal. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:shortpixel-yearly-two-months",
+      "evidence": "Billed yearly; 2 Months Free",
+      "checkedAt": "2026-10-28T18:13:22.032Z",
+      "updatedAt": "2026-10-28T18:13:22.032Z"
     },
     {
       "slug": "simplybook-me-free-trial",
@@ -14957,6 +15961,21 @@
       "checkedAt": "2026-10-28T10:37:41.663Z",
       "updatedAt": "2026-10-23T09:23:06.634Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "socialpilot-annual-plan-offer",
+      "toolSlug": "socialpilot",
+      "title": "SocialPilot: 15% on equivalent annual plans",
+      "dealType": "offer",
+      "discountPercentage": 15,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://www.socialpilot.co/pricing",
+      "destinationUrl": "https://www.socialpilot.co/pricing",
+      "terms": "Match the same package, social accounts, users and required approval/reporting features. Add paid extras where applicable. Confirm the full yearly invoice, taxes and renewal; the temporary trial is separate. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:socialpilot-annual-plan-offer",
+      "evidence": "Save 15%; Billed annually",
+      "checkedAt": "2026-10-28T18:13:23.789Z",
+      "updatedAt": "2026-10-28T18:13:23.789Z"
     },
     {
       "slug": "sonarcloud-free-trial",
@@ -15166,6 +16185,21 @@
       "evidence": "g to scale team knowledge with AI $8 per user/month - 10 user minimum Try free for 30 days AI features AI bot in Slack Google Workspace integration Usage Analytics API access Enterprise For companies who want hands-on onboarding and top-tie",
       "checkedAt": "2026-10-28T10:39:43.550Z",
       "updatedAt": "2026-10-23T09:24:54.050Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "text-blaze-free-plan",
+      "toolSlug": "text-blaze",
+      "title": "Text Blaze free plan",
+      "dealType": "free_plan",
+      "discountPercentage": 0,
+      "sourceUrl": "https://blaze.today/plans/",
+      "destinationUrl": "https://blaze.today/plans/",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:text-blaze",
+      "evidence": "ree Great to reduce repetitive typing and to trial Text Blaze. $0 USD Free forever Get started for free Get started for free Limited snippets Limited snippet sharing Test form fields Autopilot (in page actions) Data Blaze access Pro",
+      "checkedAt": "2026-10-28T18:13:16.688Z",
+      "updatedAt": "2026-10-28T18:13:16.688Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
@@ -15439,6 +16473,84 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "wp-mail-smtp-official-dollar-code",
+      "toolSlug": "wp-mail-smtp",
+      "title": "WP Mail SMTP: official $50-off license code",
+      "dealType": "coupon",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://wpmailsmtp.com/wp-mail-smtp-coupon/",
+      "destinationUrl": "https://wpmailsmtp.com/pricing/",
+      "terms": "The coupon body describes a fixed US$50 reduction, not 50% off. Confirm the selected package, introductory invoice and normal renewal. Sending-provider charges and setup scope remain separate; stacking is not assumed. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "code": "SAVE50",
+      "sourceKey": "reviewed:wp-mail-smtp-official-dollar-code",
+      "evidence": "SAVE50; $50 off any of our plans",
+      "checkedAt": "2026-10-28T18:13:20.476Z",
+      "updatedAt": "2026-10-28T18:13:20.476Z"
+    },
+    {
+      "slug": "wp-rocket-free-trial",
+      "toolSlug": "wp-rocket",
+      "title": "WP Rocket free trial",
+      "dealType": "free_trial",
+      "discountPercentage": 0,
+      "sourceUrl": "https://wp-rocket.me/pricing/",
+      "destinationUrl": "https://wp-rocket.me/pricing/",
+      "sourceKind": "vendor",
+      "sourceKey": "vendor:wp-rocket",
+      "evidence": "zing fast before you pay for a license. How does the free trial work? Start your free trial, then install and activate WP Rocket and try it for 14 days at no cost. We’ll email you a reminder before your trial ends. If you cancel before your ",
+      "checkedAt": "2026-10-28T18:13:14.538Z",
+      "updatedAt": "2026-10-28T18:13:14.538Z",
+      "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "wp-rocket-halloween-first-purchase-2026",
+      "toolSlug": "wp-rocket",
+      "title": "WP Rocket: up to 40% on eligible first-purchase terms",
+      "dealType": "offer",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://wp-rocket.me/pricing/",
+      "destinationUrl": "https://wp-rocket.me/pricing/",
+      "terms": "Dated Halloween campaign for first purchases. The reviewed page distinguishes 20% on one-year configurations from 40% on eligible three-year configurations. Match site allowance and inspect the upfront invoice. Later renewal is at the regular annual price. The page gives November 3 as the deadline; this listing stops at the start of that date conservatively. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "expiryDate": "2026-11-03T00:00:00.000Z",
+      "sourceKey": "reviewed:wp-rocket-halloween-first-purchase-2026",
+      "evidence": "Up to 40% OFF; November 3, 2026; 1st time",
+      "checkedAt": "2026-10-28T18:13:21.661Z",
+      "updatedAt": "2026-10-28T18:13:21.661Z"
+    },
+    {
+      "slug": "wpforms-nonprofit-application",
+      "toolSlug": "wpforms",
+      "title": "WPForms: separate nonprofit application route",
+      "dealType": "offer",
+      "discountPercentage": 0,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://wpforms.com/wpforms-coupon-code/",
+      "destinationUrl": "https://wpforms.com/wpforms-coupon-code/",
+      "terms": "Separate application-based nonprofit route described on the official coupon page. Confirm organization eligibility, approved license, term and renewal. Approval is not assumed, and the benefit is not added to the public new-license coupon. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "sourceKey": "reviewed:wpforms-nonprofit-application",
+      "evidence": "75%; qualifying nonprofits; application",
+      "checkedAt": "2026-10-28T18:13:24.590Z",
+      "updatedAt": "2026-10-28T18:13:24.590Z"
+    },
+    {
+      "slug": "wpforms-official-new-license-code",
+      "toolSlug": "wpforms",
+      "title": "WPForms: official 50% new-license code",
+      "dealType": "coupon",
+      "discountPercentage": 50,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://wpforms.com/wpforms-coupon-code/",
+      "destinationUrl": "https://wpforms.com/pricing/",
+      "terms": "Applies to a brand-new WPForms license. Compare the same plan with introductory pricing already displayed; stacking is not assumed. Website limits and paid features depend on the license. Pricing states renewals are at full price. Source checked for public evidence only; signup, payment and checkout have not been tested. Confirm the accepted invoice and current terms before purchasing.",
+      "code": "SAVE50",
+      "sourceKey": "reviewed:wpforms-official-new-license-code",
+      "evidence": "SAVE50; 50% off a new license; brand new license",
+      "checkedAt": "2026-10-28T18:13:18.829Z",
+      "updatedAt": "2026-10-28T18:13:18.829Z"
+    },
+    {
       "slug": "xtiles-education-year",
       "toolSlug": "xtiles",
       "title": "xTiles eligible education Plus offer for one year",
@@ -15513,5 +16625,5 @@
       "observedAt": "2026-10-27T11:04:15.209Z"
     }
   ],
-  "lastRun": "2026-10-28T10:40:49.747Z"
+  "lastRun": "2026-10-28T18:15:41.369Z"
 }

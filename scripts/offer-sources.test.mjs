@@ -25,6 +25,12 @@ test("vendor discovery preserves the evidence and distinguishes trials", () => {
   assert.equal(discoverVendorOffer("Starter costs $0. Free forever, with 100 requests per month.").type, "free_plan");
   assert.match(discoverVendorOffer("Try free for 14 days, then choose your plan.").evidence, /14 days/);
 });
+test("institutional sales trials do not become unrestricted individual offers", () => {
+  const text = "Bring your Enterprise/Institution on board. Simplify access management and unlock institution-wide pricing for your teams. Contact us to start your free trial. Get in Touch.";
+  assert.equal(discoverVendorOffer(text), null);
+  assert.equal(discoverVendorOffer("Individual Pro. Start your free trial today.").type, "free_trial");
+  assert.equal(discoverVendorOffer(`${text} Individual Pro: Start your free trial today.`).type, "free_trial");
+});
 test("structured coupon discoveries remain untested review candidates", () => {
   const html = '<script type="application/ld+json">{"@graph":[{"name":"Annual plan","discountCode":"SAVE20","validThrough":"2026-12-31"}]}</script>';
   const [candidate] = extractCouponCandidates(html, "https://simplycodes.com/store/example.com", "example");
