@@ -5,7 +5,7 @@ import { getDealsByTool } from "@/lib/data/deals-data";
 import { ComparisonView } from "@/components/compare/ComparisonView";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import { COMPARISON_SLUGS, comparisonCanonicalSlug } from "@/lib/data/comparisons-data";
+import { COMPARISON_SLUGS, comparisonCanonicalSlug, isCuratedComparison } from "@/lib/data/comparisons-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, webPageSchema, softwareSchema } from "@/lib/structured-data";
 import { getBrandDiscountData, hasBrandDiscountPage } from "@/lib/brand-discounts";
@@ -32,6 +32,7 @@ export async function generateMetadata({
     title: `${toolA.name} vs ${toolB.name}: Pricing, Features & Deals`,
     description: `Compare ${toolA.name} and ${toolB.name}: features, pricing plans, pros and cons, and related software deals. Find the right tool for your needs.`,
     path: `/compare/${comparisonCanonicalSlug(slug)}`,
+    noIndex: !isCuratedComparison(slug) || toolA.providerStatus === "unavailable" || toolB.providerStatus === "unavailable",
   });
 }
 
@@ -60,7 +61,7 @@ export default async function ComparePage({
   const discountBrands = [toolA, toolB].filter(tool => hasBrandDiscountPage(tool.slug) && getBrandDiscountData(tool).indexable);
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div data-comparison-indexing={isCuratedComparison(slug) && toolA.providerStatus !== "unavailable" && toolB.providerStatus !== "unavailable" ? "curated" : "interactive"} className="min-h-screen bg-[#050505]">
       <JsonLd data={{
         "@context": "https://schema.org",
         "@graph": [

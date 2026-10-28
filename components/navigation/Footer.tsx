@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
-import { CATEGORIES } from "@/lib/mock-data";
+import { CATEGORIES } from "@/lib/catalog-categories";
+import { SAVINGS_COLLECTION_LINKS } from "@/lib/data/savings-collections";
 
 export function Footer() {
   return (
@@ -34,6 +35,7 @@ export function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li><Link prefetch={false} href="/discounts" className="hover:text-[#C6FF3D] transition-colors">Discounts by Brand</Link></li>
               <li><Link prefetch={false} href="/brands" className="hover:text-[#C6FF3D] transition-colors">All Brands A–Z</Link></li>
+              {SAVINGS_COLLECTION_LINKS.map(link => <li key={link.href}><Link prefetch={false} href={link.href} className="hover:text-[#C6FF3D] transition-colors">{link.label}</Link></li>)}
               <li><Link prefetch={false} href="/savings-calculator" className="hover:text-[#C6FF3D] transition-colors">Annual Savings Calculator</Link></li>
               <li>
                 <Link prefetch={false} href="/deals" className="hover:text-[#C6FF3D] transition-colors flex items-center justify-between">

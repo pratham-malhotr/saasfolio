@@ -11,6 +11,8 @@ import { SavingsCalculator } from "@/components/deals/SavingsCalculator";
 import { CouponCode } from "@/components/deals/CouponCode";
 import { OfferEvidenceDetails } from "@/components/deals/OfferEvidenceDetails";
 import { OfferReportLink } from "@/components/deals/OfferReportLink";
+import { getBrandCollectionLinks } from "@/lib/savings-collections";
+import { CATEGORY_SEARCH_CONTENT } from "@/lib/data/category-search-content";
 import {
   brandDiscountTitle, brandDiscountDescription, brandDiscountAnswer, brandBestDiscountAnswer, getBrandDiscountData,
   getBrandDiscountFaqs, getIndexableDiscountBrands, hasBrandDiscountPage,
@@ -253,6 +255,15 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
         <p>Sources are attributed on each listing. Offers leave the current catalog when their source check becomes older than 14 days or a published expiry passes. Coupon acceptance is not checkout tested.</p>
         <p>SaaSFolio is independent of {tool.name}. Some provider links may earn a commission; a referral does not by itself establish a discount. <Link href="/affiliate-disclosure" className="underline">Affiliate disclosure</Link> · <Link href="/contact" className="underline">Report an incorrect offer</Link></p>
       </aside>
+
+      <nav aria-label="Explore related software savings" className="space-y-3 rounded-2xl border border-white/10 p-6">
+        <h2 className="font-display text-xl font-bold text-white">Explore related software savings</h2>
+        <ul className="space-y-3 text-sm text-[#C6FF3D]">
+          <li><Link prefetch={false} href={`/deals/category/${tool.categorySlug}`} className="underline">{CATEGORY_SEARCH_CONTENT[tool.categorySlug]?.heading || `${tool.category} deals`}</Link></li>
+          {getBrandCollectionLinks(tool.slug).map(link => <li key={link.href}><Link prefetch={false} href={link.href} className="underline">{link.label}</Link></li>)}
+          <li><Link prefetch={false} href="/discounts" className="underline">All software discounts by brand</Link></li>
+        </ul>
+      </nav>
 
       {related.length > 0 && <nav aria-label="More brand discounts" className="space-y-4">
         <h2 className="font-display text-xl text-white font-bold">Compare more brand discounts</h2>

@@ -5,8 +5,9 @@ import { getIndexableDiscountBrands } from "@/lib/brand-discounts";
 import { getAllDeals } from "@/lib/data/deals-data";
 import { collectionSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
+import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
 
-const title = "SaaS Discounts & Coupon Codes by Brand";
+const title = "Software Discounts by Brand: SaaS Savings Guides";
 const description = "Find SaaS discounts by brand. Compare sourced coupon availability, annual savings and education or nonprofit offers, with eligibility and renewal checks.";
 export const metadata = pageMetadata({ title, description, path: "/discounts" });
 export const revalidate = 3600;
@@ -23,11 +24,12 @@ export default function BrandDiscountsPage() {
     <JsonLd data={collectionSchema(title, description, "/discounts", brands.map(tool => ({ name: `${tool.name} discounts`, path: `/discounts/${tool.slug}` })))} />
     <header className="max-w-3xl space-y-4">
       <p className="text-[#C6FF3D] font-mono text-xs uppercase tracking-widest">Brand savings guides</p>
-      <h1 className="font-display text-4xl sm:text-5xl font-bold text-white">SaaS discounts & coupon codes by brand</h1>
+      <h1 className="font-display text-4xl sm:text-5xl font-bold text-white">Software discounts by brand</h1>
       <p className="text-lg text-zinc-400 leading-relaxed">Find your software brand, compare the eligible ways to save, and check the full cost before subscribing.</p>
       <p className="text-sm text-zinc-400 leading-relaxed">Browse {brands.length} brand guides below. Each explains the available ways to save, links to its sources, and separates paid discounts from free plans and trials.</p>
       <p className="text-sm text-zinc-400">Looking for another tool? <Link href="/brands" className="text-[#C6FF3D] underline">Search all software brands A–Z</Link>. Comparing a yearly commitment? <Link href="/savings-calculator" className="text-[#C6FF3D] underline">Calculate the full annual cost</Link>.</p>
     </header>
+    <SavingsCollectionLinks heading="Choose a code or an eligibility route" />
     <nav aria-label="Discount categories" className="flex flex-wrap gap-3">{categories.map(category => <a key={category.slug} href={`#${category.slug}`} className="rounded-full border border-white/15 px-4 py-2 text-sm text-[#C6FF3D] hover:border-[#C6FF3D]/50">{category.name}</a>)}</nav>
     <nav aria-label="Find a brand discount" className="rounded-2xl border border-white/10 bg-[#09090C] p-5 space-y-3">
       <h2 className="font-display text-xl font-bold text-white">Find your brand, A–Z</h2>
