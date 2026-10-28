@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, MessageSquare, Users } from "lucide-react";
-import { TRENDING_DISCUSSIONS } from "@/lib/mock-data";
+import { DETAILED_THREADS } from "@/lib/data/community-data";
 import { Reveal } from "@/components/animations/Reveal";
+
+const TRENDING_DISCUSSIONS = DETAILED_THREADS.slice(0, 3).map(thread => ({ ...thread, contentSnippet: thread.content, toolTags: thread.toolTags.map(tool => tool.name) }));
 
 export function CommunityTrendingSection() {
   const [upvotedIds, setUpvotedIds] = useState<Record<string, boolean>>({});

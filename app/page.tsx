@@ -16,6 +16,7 @@ import { CommunityTrendingSection } from "@/components/sections/CommunityTrendin
 import { LogoMarqueeSection } from "@/components/sections/LogoMarqueeSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { NewsletterSection } from "@/components/sections/NewsletterSection";
+import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
 
 import { absoluteUrl, pageMetadata, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
 
@@ -29,7 +30,7 @@ export default function HomePage() {
     <div className="relative bg-[#050505] text-[#EDEDED] min-h-screen">
       <JsonLd data={{
         "@context": "https://schema.org",
-        ...webPageSchema("SaaS Discounts & Software Coupon Codes", SITE_DESCRIPTION, "/"),
+        ...webPageSchema("SaaS Discounts & Software Deals", SITE_DESCRIPTION, "/"),
         mainEntity: {
           "@type": "ItemList",
           name: "Featured SaaS brand discounts",
@@ -42,6 +43,10 @@ export default function HomePage() {
       <HeroSection />
 
       <BrandDiscountsSection deals={deals} />
+
+      <section className="home-deferred mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <SavingsCollectionLinks heading="Find software savings for your situation" />
+      </section>
 
       {/* 2. Infinite Marquee Ticker Band */}
       <MarqueeTickerBand />

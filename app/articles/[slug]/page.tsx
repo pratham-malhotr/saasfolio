@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, organizationId, webPageSchema } from "@/lib/structured-data";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { ArticleDetailClient } from "@/components/articles/ArticleDetailClient";
+import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
 
 interface PageProps {
   params: Promise<{
@@ -49,6 +50,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   }
 
   const path = `/articles/${article.slug}`;
+  const relatedArticles = DETAILED_ARTICLES.filter(other => article.relatedArticlesSlugs.includes(other.slug)).map(({ id, slug, title, summary, category, readTime, author, tags, featured }) => ({ id, slug, title, summary, category, readTime, author, tags, featured }));
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -76,7 +78,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <ArticleDetailClient article={article} />
+      <ArticleDetailClient article={article} relatedArticles={relatedArticles} savingsLinks={<SavingsCollectionLinks heading="Find current offers for this buying decision" />} />
     </>
   );
 }

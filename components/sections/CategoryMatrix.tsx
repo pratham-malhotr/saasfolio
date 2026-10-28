@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles, TrendingUp, Users, Code2, Palette, BarChart3, Server, CreditCard, CheckSquare, ShieldCheck, ShoppingBag, Layers } from "lucide-react";
-import type { Category } from "@/lib/mock-data";
+import type { Category } from "@/lib/catalog-categories";
 import { Reveal } from "@/components/animations/Reveal";
 
 // Helper icon resolver

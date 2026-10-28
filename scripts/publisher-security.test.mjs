@@ -16,7 +16,8 @@ test("malformed local discussion data cannot impersonate seeded public activity"
 test("public articles and editorial prompts have references and no invented customer activity", () => {
   const { DETAILED_ARTICLES } = loadCatalogModule("lib/data/articles-data.ts");
   const { DETAILED_THREADS } = loadCatalogModule("lib/data/community-data.ts");
-  assert.equal(DETAILED_ARTICLES.length, 8);
+  assert.ok(DETAILED_ARTICLES.length >= 8, "The established referenced guides are retained");
+  for (const slug of ["find-and-use-saas-coupon-codes", "startup-software-credits-and-renewal-costs", "student-software-discounts-after-graduation"]) assert.ok(DETAILED_ARTICLES.some(article => article.slug === slug), `${slug}: new buying guide is included`);
   for (const article of DETAILED_ARTICLES) {
     assert.equal(article.author.name, "SaaSFolio editorial"); assert.ok(article.sources.length > 0);
     assert.ok(article.sections.length >= 5);

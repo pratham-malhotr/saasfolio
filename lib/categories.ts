@@ -1,4 +1,4 @@
-import { CATEGORIES } from "@/lib/mock-data";
+import { CATEGORIES } from "@/lib/catalog-categories";
 import { getAllTools } from "@/lib/data/tools-data";
 import { getAllDeals } from "@/lib/data/deals-data";
 

@@ -105,7 +105,10 @@ export const COMPARISON_SLUGS = [
   "pulsemail-pro-vs-viralpeak", "vaultguard-security-vs-armorid",
   "vectorcraft-vs-framegen", "metricpulse-vs-insightstream",
   ...POPULAR_COMPARISONS.map((comparison) => comparison.slug),
-].filter((slug) => slug.split("-vs-").every((part) => getToolBySlug(part)));
+].filter((slug) => slug.split("-vs-").every((part) => {
+  const tool = getToolBySlug(part);
+  return tool && tool.providerStatus !== "unavailable";
+}));
 
 export function comparisonCanonicalSlug(slug: string): string {
   const parts = slug.split("-vs-");
@@ -114,4 +117,10 @@ export function comparisonCanonicalSlug(slug: string): string {
   if (COMPARISON_SLUGS.includes(slug)) return slug;
   if (COMPARISON_SLUGS.includes(reverse)) return reverse;
   return [...parts].sort().join("-vs-");
+}
+
+// The selector supports arbitrary pairs for visitors. Only the curated pairs
+// are search landing pages; unreviewed combinations should not inflate indexing.
+export function isCuratedComparison(slug: string): boolean {
+  return COMPARISON_SLUGS.includes(comparisonCanonicalSlug(slug));
 }

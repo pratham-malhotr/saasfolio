@@ -6,6 +6,8 @@ import { COMPARISON_SLUGS } from "@/lib/data/comparisons-data";
 import { getCatalogCategories } from "@/lib/categories";
 import { absoluteUrl, isoDate } from "@/lib/seo";
 import { getIndexableDiscountBrands, getBrandDiscountData } from "@/lib/brand-discounts";
+import { SAVINGS_COLLECTIONS } from "@/lib/data/savings-collections";
+import { CATEGORY_SEARCH_CONTENT } from "@/lib/data/category-search-content";
 
 export const revalidate = 3600;
 
@@ -118,13 +120,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const seen = new Set<string>();
   const combined = [
     ...coreRoutes,
+    ...SAVINGS_COLLECTIONS.map(collection => ({ url: absoluteUrl(`/${collection.slug}`), lastModified: isoDate(collection.updatedAt), changeFrequency: "weekly" as const, priority: 0.8 })),
     ...discountBrands.map(tool => ({
       url: absoluteUrl(`/discounts/${tool.slug}`),
       lastModified: getBrandDiscountData(tool, catalogDeals).modifiedAt,
       changeFrequency: "daily" as const,
       priority: 0.9,
     })),
-    ...getCatalogCategories().map(category => ({ url: absoluteUrl(`/deals/category/${category.slug}`), changeFrequency: "daily" as const, priority: 0.8 })),
+    ...getCatalogCategories().map(category => ({ url: absoluteUrl(`/deals/category/${category.slug}`), lastModified: isoDate(CATEGORY_SEARCH_CONTENT[category.slug]?.updatedAt), changeFrequency: "daily" as const, priority: 0.8 })),
     ...dealsRoutes,
     ...toolsRoutes,
     ...comparisonRoutes,

@@ -31,8 +31,7 @@ export function HeroSection() {
         </div>
 
         {/* Oversized Editorial Clamp Typography */}
-        <h1 className="hero-headline font-display font-bold tracking-[-0.065em] text-white leading-[1.08] mb-6 text-[clamp(2.65rem,7.8vw,6.5rem)]">
-          <span className="sr-only">SaaS discounts & software deals</span>
+        <h1 aria-label="SaaS discounts & software deals" className="hero-headline font-display font-bold tracking-[-0.065em] text-white leading-[1.08] mb-6 text-[clamp(2.65rem,7.8vw,6.5rem)]">
           <span aria-hidden="true" className="block">
             <span className="hero-word-window"><span className="hero-word text-[#C6FF3D]" style={{ "--word-delay": "70ms" } as React.CSSProperties}>SaaS</span></span>{" "}
             <span className="hero-word-window"><span className="hero-word hero-discount-text text-[#C6FF3D]" style={{ "--word-delay": "160ms" } as React.CSSProperties}>discounts</span></span>
