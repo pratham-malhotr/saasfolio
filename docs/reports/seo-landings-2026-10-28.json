@@ -1,0 +1,478 @@
+{
+  "checkedAt": "2026-10-28T17:37:08.374Z",
+  "origin": "http://127.0.0.1:3238",
+  "rankingMeasurement": false,
+  "searchVolumeMeasurement": false,
+  "searchConsoleData": false,
+  "summary": {
+    "pages": 22,
+    "queryCases": 66,
+    "passed": 22,
+    "failures": 0
+  },
+  "failures": [],
+  "pages": [
+    {
+      "path": "/",
+      "title": "SaaS Discounts & Software Deals | SaaSFolio",
+      "primaryQuery": "SaaS discounts",
+      "words": 2175,
+      "queries": [
+        {
+          "query": "SaaS discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "software deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "SaaS savings",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/discounts",
+      "title": "Software Discounts by Brand: SaaS Savings Guides | SaaSFolio",
+      "primaryQuery": "software discounts by brand",
+      "words": 6178,
+      "queries": [
+        {
+          "query": "software discounts by brand",
+          "tokensPresent": true
+        },
+        {
+          "query": "brand SaaS discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "software savings guides",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals",
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "primaryQuery": "SaaS deals",
+      "words": 6817,
+      "queries": [
+        {
+          "query": "SaaS deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "software offers",
+          "tokensPresent": true
+        },
+        {
+          "query": "SaaS free trials",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/coupon-codes",
+      "title": "Software Coupon Codes & SaaS Promo Codes | SaaSFolio",
+      "primaryQuery": "Software coupon codes",
+      "words": 1206,
+      "queries": [
+        {
+          "query": "Software coupon codes",
+          "tokensPresent": true
+        },
+        {
+          "query": "SaaS promo codes",
+          "tokensPresent": true
+        },
+        {
+          "query": "software discount codes",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/startup-deals",
+      "title": "Startup Software Deals, Discounts & Credits | SaaSFolio",
+      "primaryQuery": "Startup software deals",
+      "words": 1664,
+      "queries": [
+        {
+          "query": "Startup software deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "SaaS discounts for startups",
+          "tokensPresent": true
+        },
+        {
+          "query": "startup software credits",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/student-discounts",
+      "title": "Student Software Discounts & Education Offers | SaaSFolio",
+      "primaryQuery": "Student software discounts",
+      "words": 1101,
+      "queries": [
+        {
+          "query": "Student software discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "education software offers",
+          "tokensPresent": true
+        },
+        {
+          "query": "software discounts for students",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/nonprofit-discounts",
+      "title": "Nonprofit Software Discounts & SaaS Programs | SaaSFolio",
+      "primaryQuery": "Nonprofit software discounts",
+      "words": 1762,
+      "queries": [
+        {
+          "query": "Nonprofit software discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "nonprofit SaaS programs",
+          "tokensPresent": true
+        },
+        {
+          "query": "software discounts for nonprofits",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/ai-tools",
+      "title": "AI Tool Discounts, Deals & Free Trials | SaaSFolio",
+      "primaryQuery": "AI tool discounts",
+      "words": 1041,
+      "queries": [
+        {
+          "query": "AI tool discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "AI software deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "AI tool free trials",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/marketing",
+      "title": "Marketing Software Deals & Email Tool Discounts | SaaSFolio",
+      "primaryQuery": "marketing software deals",
+      "words": 1916,
+      "queries": [
+        {
+          "query": "marketing software deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "email marketing software discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "newsletter software deals",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/crm-sales",
+      "title": "CRM Software Discounts & Sales Tool Deals | SaaSFolio",
+      "primaryQuery": "CRM software discounts",
+      "words": 1462,
+      "queries": [
+        {
+          "query": "CRM software discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "sales tool deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "startup CRM offers",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/dev-tools",
+      "title": "Developer Tool Discounts, Credits & Software Deals | SaaSFolio",
+      "primaryQuery": "developer tool discounts",
+      "words": 1574,
+      "queries": [
+        {
+          "query": "developer tool discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "developer software credits",
+          "tokensPresent": true
+        },
+        {
+          "query": "API tool deals",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/design",
+      "title": "Design Software Discounts & Creative Tool Deals | SaaSFolio",
+      "primaryQuery": "design software discounts",
+      "words": 1055,
+      "queries": [
+        {
+          "query": "design software discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "creative tool deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "design software student offers",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/analytics",
+      "title": "Analytics Software Deals & Tracking Tool Discounts | SaaSFolio",
+      "primaryQuery": "analytics software deals",
+      "words": 856,
+      "queries": [
+        {
+          "query": "analytics software deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "tracking tool discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "analytics software free trials",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/hosting",
+      "title": "Web Hosting Deals, Discounts & Promo Codes | SaaSFolio",
+      "primaryQuery": "web hosting deals",
+      "words": 856,
+      "queries": [
+        {
+          "query": "web hosting deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "hosting discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "hosting promo codes",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/finance",
+      "title": "Billing & Invoicing Software Deals and Discounts | SaaSFolio",
+      "primaryQuery": "invoicing software deals",
+      "words": 618,
+      "queries": [
+        {
+          "query": "invoicing software deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "billing software discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "invoicing software free trials",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/productivity",
+      "title": "Productivity Software Discounts & Workspace Deals | SaaSFolio",
+      "primaryQuery": "productivity software discounts",
+      "words": 2263,
+      "queries": [
+        {
+          "query": "productivity software discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "workspace deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "productivity student offers",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/security",
+      "title": "Security Software Deals, VPN & Password Tool Discounts | SaaSFolio",
+      "primaryQuery": "security software deals",
+      "words": 745,
+      "queries": [
+        {
+          "query": "security software deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "VPN offers",
+          "tokensPresent": true
+        },
+        {
+          "query": "password tool discounts",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/ecommerce",
+      "title": "Ecommerce Software Deals & Store Tool Discounts | SaaSFolio",
+      "primaryQuery": "ecommerce software deals",
+      "words": 589,
+      "queries": [
+        {
+          "query": "ecommerce software deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "store tool discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "checkout software free trials",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/deals/category/project-management",
+      "title": "Project Management Software Discounts & Team Deals | SaaSFolio",
+      "primaryQuery": "project management software discounts",
+      "words": 1340,
+      "queries": [
+        {
+          "query": "project management software discounts",
+          "tokensPresent": true
+        },
+        {
+          "query": "team software deals",
+          "tokensPresent": true
+        },
+        {
+          "query": "nonprofit project management offers",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/articles/find-and-use-saas-coupon-codes",
+      "title": "How to Find SaaS Coupon Codes and Check the Real Saving | SaaSFolio",
+      "primaryQuery": "how to find SaaS coupon codes",
+      "words": 1084,
+      "queries": [
+        {
+          "query": "how to find SaaS coupon codes",
+          "tokensPresent": true
+        },
+        {
+          "query": "check a software promo code",
+          "tokensPresent": true
+        },
+        {
+          "query": "compare coupon savings",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/articles/startup-software-credits-and-renewal-costs",
+      "title": "Startup Software Credits: Eligibility, Expiry and Renewal Costs | SaaSFolio",
+      "primaryQuery": "startup software credits",
+      "words": 1078,
+      "queries": [
+        {
+          "query": "startup software credits",
+          "tokensPresent": true
+        },
+        {
+          "query": "startup credit expiry",
+          "tokensPresent": true
+        },
+        {
+          "query": "startup software renewal costs",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "path": "/articles/student-software-discounts-after-graduation",
+      "title": "Student Software Discounts: Verification and Access After Graduation | SaaSFolio",
+      "primaryQuery": "student software discounts after graduation",
+      "words": 1020,
+      "queries": [
+        {
+          "query": "student software discounts after graduation",
+          "tokensPresent": true
+        },
+        {
+          "query": "education account verification",
+          "tokensPresent": true
+        },
+        {
+          "query": "student software account ownership",
+          "tokensPresent": true
+        }
+      ],
+      "status": "pass"
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "checkedAt": "2026-10-28T17:37:23.065Z",
+  "origin": "http://127.0.0.1:3238",
+  "pages": [
+    {
+      "path": "/",
+      "width": 390,
+      "heading": "SaaS discounts & software deals"
+    },
+    {
+      "path": "/discounts",
+      "width": 390,
+      "heading": "Software discounts by brand"
+    },
+    {
+      "path": "/deals",
+      "width": 390,
+      "heading": "SaaS deals & software offers"
+    },
+    {
+      "path": "/coupon-codes",
+      "width": 390,
+      "heading": "Software coupon codes & SaaS promo codes"
+    },
+    {
+      "path": "/startup-deals",
+      "width": 390,
+      "heading": "Startup software deals, discounts & credits"
+    },
+    {
+      "path": "/student-discounts",
+      "width": 390,
+      "heading": "Student software discounts & education offers"
+    },
+    {
+      "path": "/nonprofit-discounts",
+      "width": 390,
+      "heading": "Nonprofit software discounts & SaaS programs"
+    },
+    {
+      "path": "/deals/category/ai-tools",
+      "width": 390,
+      "heading": "AI tool discounts & deals"
+    },
+    {
+      "path": "/deals/category/marketing",
+      "width": 390,
+      "heading": "Marketing software deals & discounts"
+    },
+    {
+      "path": "/deals/category/crm-sales",
+      "width": 390,
+      "heading": "CRM software discounts & sales tool deals"
+    },
+    {
+      "path": "/deals/category/dev-tools",
+      "width": 390,
+      "heading": "Developer tool discounts & credits"
+    },
+    {
+      "path": "/deals/category/design",
+      "width": 390,
+      "heading": "Design software discounts & creative tool deals"
+    },
+    {
+      "path": "/deals/category/analytics",
+      "width": 390,
+      "heading": "Analytics software deals & discounts"
+    },
+    {
+      "path": "/deals/category/hosting",
+      "width": 390,
+      "heading": "Web hosting deals, discounts & promo codes"
+    },
+    {
+      "path": "/deals/category/finance",
+      "width": 390,
+      "heading": "Billing & invoicing software deals"
+    },
+    {
+      "path": "/deals/category/productivity",
+      "width": 390,
+      "heading": "Productivity software discounts & workspace deals"
+    },
+    {
+      "path": "/deals/category/security",
+      "width": 390,
+      "heading": "Security software deals & discounts"
+    },
+    {
+      "path": "/deals/category/ecommerce",
+      "width": 390,
+      "heading": "Ecommerce software deals & store tool discounts"
+    },
+    {
+      "path": "/deals/category/project-management",
+      "width": 390,
+      "heading": "Project management software discounts & team deals"
+    },
+    {
+      "path": "/articles/find-and-use-saas-coupon-codes",
+      "width": 390,
+      "heading": "How to Find SaaS Coupon Codes and Check the Real Saving"
+    },
+    {
+      "path": "/articles/startup-software-credits-and-renewal-costs",
+      "width": 390,
+      "heading": "Startup Software Credits: Eligibility, Expiry and Renewal Costs"
+    },
+    {
+      "path": "/articles/student-software-discounts-after-graduation",
+      "width": 390,
+      "heading": "Student Software Discounts: Verification and Access After Graduation"
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "heading": "SaaS discounts & software deals"
+    },
+    {
+      "path": "/discounts",
+      "width": 1440,
+      "heading": "Software discounts by brand"
+    },
+    {
+      "path": "/deals",
+      "width": 1440,
+      "heading": "SaaS deals & software offers"
+    },
+    {
+      "path": "/coupon-codes",
+      "width": 1440,
+      "heading": "Software coupon codes & SaaS promo codes"
+    },
+    {
+      "path": "/startup-deals",
+      "width": 1440,
+      "heading": "Startup software deals, discounts & credits"
+    },
+    {
+      "path": "/student-discounts",
+      "width": 1440,
+      "heading": "Student software discounts & education offers"
+    },
+    {
+      "path": "/nonprofit-discounts",
+      "width": 1440,
+      "heading": "Nonprofit software discounts & SaaS programs"
+    },
+    {
+      "path": "/deals/category/ai-tools",
+      "width": 1440,
+      "heading": "AI tool discounts & deals"
+    },
+    {
+      "path": "/deals/category/marketing",
+      "width": 1440,
+      "heading": "Marketing software deals & discounts"
+    },
+    {
+      "path": "/deals/category/crm-sales",
+      "width": 1440,
+      "heading": "CRM software discounts & sales tool deals"
+    },
+    {
+      "path": "/deals/category/dev-tools",
+      "width": 1440,
+      "heading": "Developer tool discounts & credits"
+    },
+    {
+      "path": "/deals/category/design",
+      "width": 1440,
+      "heading": "Design software discounts & creative tool deals"
+    },
+    {
+      "path": "/deals/category/analytics",
+      "width": 1440,
+      "heading": "Analytics software deals & discounts"
+    },
+    {
+      "path": "/deals/category/hosting",
+      "width": 1440,
+      "heading": "Web hosting deals, discounts & promo codes"
+    },
+    {
+      "path": "/deals/category/finance",
+      "width": 1440,
+      "heading": "Billing & invoicing software deals"
+    },
+    {
+      "path": "/deals/category/productivity",
+      "width": 1440,
+      "heading": "Productivity software discounts & workspace deals"
+    },
+    {
+      "path": "/deals/category/security",
+      "width": 1440,
+      "heading": "Security software deals & discounts"
+    },
+    {
+      "path": "/deals/category/ecommerce",
+      "width": 1440,
+      "heading": "Ecommerce software deals & store tool discounts"
+    },
+    {
+      "path": "/deals/category/project-management",
+      "width": 1440,
+      "heading": "Project management software discounts & team deals"
+    },
+    {
+      "path": "/articles/find-and-use-saas-coupon-codes",
+      "width": 1440,
+      "heading": "How to Find SaaS Coupon Codes and Check the Real Saving"
+    },
+    {
+      "path": "/articles/startup-software-credits-and-renewal-costs",
+      "width": 1440,
+      "heading": "Startup Software Credits: Eligibility, Expiry and Renewal Costs"
+    },
+    {
+      "path": "/articles/student-software-discounts-after-graduation",
+      "width": 1440,
+      "heading": "Student Software Discounts: Verification and Access After Graduation"
+    }
+  ],
+  "noJavaScriptVisits": 7,
+  "runtimeErrors": [],
+  "failedAssets": [],
+  "writes": []
+}
