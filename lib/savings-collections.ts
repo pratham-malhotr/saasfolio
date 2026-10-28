@@ -12,7 +12,7 @@ const REVIEW_WINDOW = 14 * 24 * 60 * 60 * 1000;
 export const COLLECTION_OFFER_SLUGS: Record<Exclude<SavingsCollectionSlug, "coupon-codes">, readonly string[]> = {
   "startup-deals": ["notion-startup-program", "hubspot-startup-program", "digitalocean-hatch-startup-program", "fibery-startup-pro-access", "linear-partner-startup-business", "sentry-startup-credits", "rootly-startup-program", "intercom-early-stage-year-one"],
   "student-discounts": ["github-student-developer-pack", "adobe-creative-cloud-education-offer"],
-  "nonprofit-discounts": ["asana-nonprofit-program", "airtable-nonprofit-team", "monday-nonprofit-additional-seats", "jira-community-cloud", "confluence-community-cloud", "trello-nonprofit-program", "smartsuite-organization-program", "baserow-organization-program", "dropbox-organization-program", "nifty-nonprofit-education", "microsoft-365-nonprofit-program"],
+  "nonprofit-discounts": ["asana-nonprofit-program", "airtable-nonprofit-team", "monday-nonprofit-additional-seats", "jira-community-cloud", "confluence-community-cloud", "trello-nonprofit-program", "smartsuite-organization-program", "baserow-organization-program", "dropbox-organization-program", "nifty-nonprofit-education", "microsoft-365-nonprofit-program", "wpforms-nonprofit-application", "gravity-forms-nonprofit-license"],
 };
 
 export function getPublishedSavingsOffers(deals: SaaSDeal[] = getAllDeals(), now = Date.now()) {
