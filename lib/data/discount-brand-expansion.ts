@@ -7,6 +7,10 @@ import { DATABASE_WORK_DISCOUNT_ENTRIES } from "@/lib/data/database-work-discoun
 import { ENGINEERING_DISCOUNT_ENTRIES } from "@/lib/data/engineering-discount-guides";
 import { WORKPLACE_DISCOUNT_ENTRIES } from "@/lib/data/workplace-discount-guides";
 import { BUSINESS_PROGRAM_DISCOUNT_ENTRIES } from "@/lib/data/business-program-discount-guides";
+import { WORDPRESS_BUSINESS_DISCOUNT_ENTRIES } from "@/lib/data/wordpress-business-discount-guides";
+import { WORDPRESS_WORKFLOW_DISCOUNT_ENTRIES } from "@/lib/data/wordpress-workflow-discount-guides";
+import { PERFORMANCE_WRITING_DISCOUNT_ENTRIES } from "@/lib/data/performance-writing-discount-guides";
+import { RESEARCH_SOCIAL_DISCOUNT_ENTRIES } from "@/lib/data/research-social-discount-guides";
 
 export const DISCOUNT_EXPANSION_ENTRIES = [
   ...MEETING_DISCOUNT_ENTRIES,
@@ -16,6 +20,10 @@ export const DISCOUNT_EXPANSION_ENTRIES = [
   ...ENGINEERING_DISCOUNT_ENTRIES,
   ...WORKPLACE_DISCOUNT_ENTRIES,
   ...BUSINESS_PROGRAM_DISCOUNT_ENTRIES,
+  ...WORDPRESS_BUSINESS_DISCOUNT_ENTRIES,
+  ...WORDPRESS_WORKFLOW_DISCOUNT_ENTRIES,
+  ...PERFORMANCE_WRITING_DISCOUNT_ENTRIES,
+  ...RESEARCH_SOCIAL_DISCOUNT_ENTRIES,
 ];
 
 export const NEW_DISCOUNT_BRAND_SLUGS = DISCOUNT_EXPANSION_ENTRIES.filter(entry => entry.profile.isNew).map(entry => entry.slug);

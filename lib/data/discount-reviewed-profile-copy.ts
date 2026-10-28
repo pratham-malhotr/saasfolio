@@ -54,6 +54,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Verified-site free access"
     ]
   },
+  "aioseo": {
+    "name": "All in One SEO",
+    "website": "https://aioseo.com",
+    "pricingUrl": "https://aioseo.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "All in One SEO is a WordPress SEO toolkit covering metadata, sitemaps, structured data and plan-dependent search and site-management features.",
+    "description": "All in One SEO is a WordPress SEO toolkit covering metadata, sitemaps, structured data and plan-dependent search and site-management features.",
+    "longDescription": "All in One SEO, commonly called AIOSEO, provides WordPress tools for managing search presentation and technical SEO. Select a license around site count and the specific schema, redirect, local or commerce workflow needed. AI credits and separate products should be evaluated on their own terms. Its savings guide explains introductory pricing, continuing license costs and why purchasing an SEO tool does not establish a search ranking result.",
+    "keyFeatures": [
+      "Metadata management",
+      "XML sitemaps",
+      "Structured data tools",
+      "Redirect management",
+      "Plan-dependent AI credits"
+    ]
+  },
   "airtable": {
     "name": "Airtable",
     "website": "https://airtable.com",
@@ -257,6 +274,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Document collaboration"
     ]
   },
+  "duplicator": {
+    "name": "Duplicator",
+    "website": "https://duplicator.com",
+    "pricingUrl": "https://duplicator.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Duplicator is a WordPress backup and migration tool for creating recoverable site copies, moving installations and managing scheduled backup workflows.",
+    "description": "Duplicator is a WordPress backup and migration tool for creating recoverable site copies, moving installations and managing scheduled backup workflows.",
+    "longDescription": "Duplicator supports WordPress backup and migration with free and licensed editions. A purchase should match site count, automation, storage destinations and the restore process required by the owner. Related cloud services and storage costs are separate purchasing questions. The brand savings guide compares the official coupon and introductory license pricing while explaining renewal, backup retention and recovery ownership.",
+    "keyFeatures": [
+      "WordPress site backups",
+      "Website migration",
+      "Scheduled backups",
+      "Recovery workflows",
+      "Plan-dependent remote storage integrations"
+    ]
+  },
   "elicit": {
     "name": "Elicit",
     "website": "https://elicit.com",
@@ -340,6 +374,74 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Team integrations and AI-credit features"
     ]
   },
+  "fluent-forms": {
+    "name": "Fluent Forms",
+    "website": "https://fluentforms.com",
+    "pricingUrl": "https://fluentforms.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Fluent Forms is a WordPress form builder with conditional fields, payments and integrations, sold through annual and lifetime Pro licenses.",
+    "description": "Fluent Forms is a WordPress form builder with conditional fields, payments and integrations, sold through annual and lifetime Pro licenses.",
+    "longDescription": "Fluent Forms is a WordPress form builder with conditional fields, payments and integrations, sold through annual and lifetime Pro licenses.\n\nCompare visual form builder, conditional fields, payment forms, third-party integrations, annual and lifetime pro licensing against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Visual form builder",
+      "Conditional fields",
+      "Payment forms",
+      "Third-party integrations",
+      "Annual and lifetime Pro licensing"
+    ]
+  },
+  "fluentcrm": {
+    "name": "FluentCRM",
+    "website": "https://fluentcrm.com",
+    "pricingUrl": "https://fluentcrm.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "FluentCRM manages contacts and email automation inside WordPress with website-based licensing and separately configured email delivery.",
+    "description": "FluentCRM manages contacts and email automation inside WordPress with website-based licensing and separately configured email delivery.",
+    "longDescription": "FluentCRM manages contacts and email automation inside WordPress with website-based licensing and separately configured email delivery.\n\nCompare contact management, segmentation, email sequences, marketing automation, wordpress integrations against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Contact management",
+      "Segmentation",
+      "Email sequences",
+      "Marketing automation",
+      "WordPress integrations"
+    ]
+  },
+  "flyingpress": {
+    "name": "FlyingPress",
+    "website": "https://flyingpress.com",
+    "pricingUrl": "https://flyingpress.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "FlyingPress provides WordPress caching and optimization with site-based annual plans, cloud processing and a documented free-trial route.",
+    "description": "FlyingPress provides WordPress caching and optimization with site-based annual plans, cloud processing and a documented free-trial route.",
+    "longDescription": "FlyingPress provides WordPress caching and optimization with site-based annual plans, cloud processing and a documented free-trial route.\n\nCompare page caching, cloud page optimization, image optimization, core web vitals analytics, redis object caching against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Page caching",
+      "Cloud page optimization",
+      "Image optimization",
+      "Core Web Vitals analytics",
+      "Redis object caching"
+    ]
+  },
+  "formidable-forms": {
+    "name": "Formidable Forms",
+    "website": "https://formidableforms.com",
+    "pricingUrl": "https://formidableforms.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Formidable Forms builds WordPress forms and form-driven applications with calculations, data display, payments and plan-dependent integrations.",
+    "description": "Formidable Forms builds WordPress forms and form-driven applications with calculations, data display, payments and plan-dependent integrations.",
+    "longDescription": "Formidable Forms builds WordPress forms and form-driven applications with calculations, data display, payments and plan-dependent integrations.\n\nCompare form builder, calculated fields, form data views, payment integrations, workflow actions against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Form builder",
+      "Calculated fields",
+      "Form data views",
+      "Payment integrations",
+      "Workflow actions"
+    ]
+  },
   "google-workspace": {
     "name": "Google Workspace",
     "website": "https://workspace.google.com",
@@ -355,6 +457,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Shared file storage",
       "Video meetings",
       "Organization administration"
+    ]
+  },
+  "gravity-forms": {
+    "name": "Gravity Forms",
+    "website": "https://www.gravityforms.com",
+    "pricingUrl": "https://www.gravityforms.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Paid",
+    "tagline": "Gravity Forms is a licensed WordPress form builder with conditional logic, payment and marketing add-ons, and an application-based nonprofit license.",
+    "description": "Gravity Forms is a licensed WordPress form builder with conditional logic, payment and marketing add-ons, and an application-based nonprofit license.",
+    "longDescription": "Gravity Forms is a licensed WordPress form builder with conditional logic, payment and marketing add-ons, and an application-based nonprofit license.\n\nCompare wordpress forms, conditional logic, payment add-ons, marketing integrations, plan-dependent workflow extensions against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "WordPress forms",
+      "Conditional logic",
+      "Payment add-ons",
+      "Marketing integrations",
+      "Plan-dependent workflow extensions"
     ]
   },
   "healthchecks-io": {
@@ -408,6 +527,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Log monitoring"
     ]
   },
+  "imagify": {
+    "name": "Imagify",
+    "website": "https://imagify.io",
+    "pricingUrl": "https://imagify.io/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Imagify optimizes website images through a free starter allowance and paid plans, including WordPress integration and annual billing options.",
+    "description": "Imagify optimizes website images through a free starter allowance and paid plans, including WordPress integration and annual billing options.",
+    "longDescription": "Imagify optimizes website images through a free starter allowance and paid plans, including WordPress integration and annual billing options.\n\nCompare image optimization, wordpress integration, bulk processing, modern image formats, plan-dependent processing allowance against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Image optimization",
+      "WordPress integration",
+      "Bulk processing",
+      "Modern image formats",
+      "Plan-dependent processing allowance"
+    ]
+  },
   "incident-io": {
     "name": "incident.io",
     "website": "https://incident.io",
@@ -440,6 +576,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "AI customer service",
       "Knowledge resources",
       "Seat and usage reporting"
+    ]
+  },
+  "jenni-ai": {
+    "name": "Jenni AI",
+    "website": "https://jenni.ai",
+    "pricingUrl": "https://jenni.ai/pricing",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Jenni AI is a research-writing assistant with document editing, autocomplete, citation and PDF-based workflows offered through free and paid plans.",
+    "description": "Jenni AI is a research-writing assistant with document editing, autocomplete, citation and PDF-based workflows offered through free and paid plans.",
+    "longDescription": "Jenni AI is a research-writing assistant with document editing, autocomplete, citation and PDF-based workflows offered through free and paid plans.\n\nCompare writing autocomplete, ai-assisted edits, citation tools, pdf document workflows, plan-dependent reviews and exports against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Writing autocomplete",
+      "AI-assisted edits",
+      "Citation tools",
+      "PDF document workflows",
+      "Plan-dependent reviews and exports"
     ]
   },
   "jira": {
@@ -476,6 +629,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Development integrations"
     ]
   },
+  "linguix": {
+    "name": "Linguix",
+    "website": "https://linguix.com",
+    "pricingUrl": "https://linguix.com/pricing",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Linguix provides grammar, style and rewriting assistance through supported writing apps, with free access and an individual Pro subscription.",
+    "description": "Linguix provides grammar, style and rewriting assistance through supported writing apps, with free access and an individual Pro subscription.",
+    "longDescription": "Linguix provides grammar, style and rewriting assistance through supported writing apps, with free access and an individual Pro subscription.\n\nCompare grammar and spelling checks, style suggestions, rewriting assistance, typing shortcuts, supported writing integrations against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Grammar and spelling checks",
+      "Style suggestions",
+      "Rewriting assistance",
+      "Typing shortcuts",
+      "Supported writing integrations"
+    ]
+  },
   "microsoft-365": {
     "name": "Microsoft 365",
     "website": "https://www.microsoft.com",
@@ -508,6 +678,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Workflow automation",
       "Team collaboration",
       "Distinct business products"
+    ]
+  },
+  "monsterinsights": {
+    "name": "MonsterInsights",
+    "website": "https://www.monsterinsights.com",
+    "pricingUrl": "https://www.monsterinsights.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "MonsterInsights connects WordPress sites with analytics reporting, enhanced tracking and plan-dependent ecommerce and reporting features.",
+    "description": "MonsterInsights connects WordPress sites with analytics reporting, enhanced tracking and plan-dependent ecommerce and reporting features.",
+    "longDescription": "MonsterInsights brings analytics setup and reporting into WordPress with license-dependent tracking and reporting capabilities. Evaluate the measurement plan, existing analytics property and commerce integration before choosing a paid edition. The individual discount guide compares the official introductory coupon with displayed plan pricing and explains site licensing, reporting scope, AI credits and regular-price renewal without asserting that a purchase guarantees complete measurement.",
+    "keyFeatures": [
+      "WordPress analytics dashboard",
+      "Event tracking",
+      "Ecommerce reports",
+      "Custom dimensions",
+      "Plan-dependent AI insights"
     ]
   },
   "morgen-calendar": {
@@ -661,6 +848,40 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "AI Writer"
     ]
   },
+  "paperpal": {
+    "name": "Paperpal",
+    "website": "https://paperpal.com",
+    "pricingUrl": "https://paperpal.com/pricing",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Paperpal supports academic writing and research workflows with language assistance and integrations for supported document-writing applications.",
+    "description": "Paperpal supports academic writing and research workflows with language assistance and integrations for supported document-writing applications.",
+    "longDescription": "Paperpal supports academic writing and research workflows with language assistance and integrations for supported document-writing applications.\n\nCompare academic language assistance, writing and editing tools, document integrations, research workflow support, institutional access enquiries against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Academic language assistance",
+      "Writing and editing tools",
+      "Document integrations",
+      "Research workflow support",
+      "Institutional access enquiries"
+    ]
+  },
+  "perfmatters": {
+    "name": "Perfmatters",
+    "website": "https://perfmatters.io",
+    "pricingUrl": "https://perfmatters.io/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Paid",
+    "tagline": "Perfmatters is a WordPress performance plugin for reducing unnecessary resources and managing optimization settings alongside a site's caching tools.",
+    "description": "Perfmatters is a WordPress performance plugin for reducing unnecessary resources and managing optimization settings alongside a site's caching tools.",
+    "longDescription": "Perfmatters is a WordPress performance plugin for reducing unnecessary resources and managing optimization settings alongside a site's caching tools.\n\nCompare script management, resource optimization, wordpress performance settings, database optimization, caching-plugin compatibility against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Script management",
+      "Resource optimization",
+      "WordPress performance settings",
+      "Database optimization",
+      "Caching-plugin compatibility"
+    ]
+  },
   "plutio": {
     "name": "Plutio",
     "website": "https://www.plutio.com",
@@ -728,6 +949,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "AI-assisted investigation"
     ]
   },
+  "scholarcy": {
+    "name": "Scholarcy",
+    "website": "https://www.scholarcy.com",
+    "pricingUrl": "https://www.scholarcy.com/pricing",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Scholarcy helps organize research reading through article summaries, flashcards and paid library features for saving and reviewing documents.",
+    "description": "Scholarcy helps organize research reading through article summaries, flashcards and paid library features for saving and reviewing documents.",
+    "longDescription": "Scholarcy helps organize research reading through article summaries, flashcards and paid library features for saving and reviewing documents.\n\nCompare article summarization, research flashcards, saved reading library, notes and highlights, plan-dependent exports against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Article summarization",
+      "Research flashcards",
+      "Saved reading library",
+      "Notes and highlights",
+      "Plan-dependent exports"
+    ]
+  },
   "scispace": {
     "name": "SciSpace",
     "website": "https://scispace.com",
@@ -743,6 +981,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Research Agent",
       "Data extraction",
       "Research writing tools"
+    ]
+  },
+  "seedprod": {
+    "name": "SeedProd",
+    "website": "https://www.seedprod.com",
+    "pricingUrl": "https://www.seedprod.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "SeedProd is a WordPress visual builder for landing pages, site themes and plan-dependent commerce and marketing workflows.",
+    "description": "SeedProd is a WordPress visual builder for landing pages, site themes and plan-dependent commerce and marketing workflows.",
+    "longDescription": "SeedProd provides visual WordPress publishing tools for campaign pages and broader website designs. Select the paid edition around theme creation, commerce needs, marketing integrations and the sites being maintained. Its savings guide explains the public vendor coupon and introductory pricing alongside full-price renewal, design ownership and the ongoing maintenance of published pages.",
+    "keyFeatures": [
+      "Landing page builder",
+      "Theme building",
+      "Coming-soon pages",
+      "Visual design blocks",
+      "Plan-dependent marketing integrations"
     ]
   },
   "sembly-ai": {
@@ -778,6 +1033,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Specialist marketing toolkits"
     ]
   },
+  "sendible": {
+    "name": "Sendible",
+    "website": "https://www.sendible.com",
+    "pricingUrl": "https://www.sendible.com/pricing",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "Sendible is a social media publishing and client-management platform with current workspace-based packages, unlimited users and plan-dependent reporting.",
+    "description": "Sendible is a social media publishing and client-management platform with current workspace-based packages, unlimited users and plan-dependent reporting.",
+    "longDescription": "Sendible is a social media publishing and client-management platform with current workspace-based packages, unlimited users and plan-dependent reporting.\n\nCompare social publishing, client workspaces, approvals, reporting, plan-dependent white-label options against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Social publishing",
+      "Client workspaces",
+      "Approvals",
+      "Reporting",
+      "Plan-dependent white-label options"
+    ]
+  },
   "sentry": {
     "name": "Sentry",
     "website": "https://sentry.io",
@@ -793,6 +1065,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Release context",
       "Telemetry usage controls",
       "Developer integrations"
+    ]
+  },
+  "seopress": {
+    "name": "SEOPress",
+    "website": "https://www.seopress.org",
+    "pricingUrl": "https://www.seopress.org/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "SEOPress is a WordPress SEO toolkit with free and PRO editions, separate Insights monitoring and optional AI-related services.",
+    "description": "SEOPress is a WordPress SEO toolkit with free and PRO editions, separate Insights monitoring and optional AI-related services.",
+    "longDescription": "SEOPress is a WordPress SEO toolkit with free and PRO editions, separate Insights monitoring and optional AI-related services.\n\nCompare metadata and sitemaps, structured data, redirect management, local and commerce seo, separate insights monitoring against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Metadata and sitemaps",
+      "Structured data",
+      "Redirect management",
+      "Local and commerce SEO",
+      "Separate Insights monitoring"
     ]
   },
   "serpstat": {
@@ -812,6 +1101,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Team and API options"
     ]
   },
+  "shortpixel": {
+    "name": "ShortPixel",
+    "website": "https://shortpixel.com",
+    "pricingUrl": "https://shortpixel.com/pricing",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "ShortPixel provides image optimization tools with free access, subscription and one-time purchase routes for website image workflows.",
+    "description": "ShortPixel provides image optimization tools with free access, subscription and one-time purchase routes for website image workflows.",
+    "longDescription": "ShortPixel provides image optimization tools with free access, subscription and one-time purchase routes for website image workflows.\n\nCompare image compression, modern image formats, wordpress integration, api access, subscription and one-time options against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Image compression",
+      "Modern image formats",
+      "WordPress integration",
+      "API access",
+      "Subscription and one-time options"
+    ]
+  },
   "smartsuite": {
     "name": "SmartSuite",
     "website": "https://www.smartsuite.com",
@@ -827,6 +1133,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Forms and dashboards",
       "Workflow automation",
       "Workspace permissions"
+    ]
+  },
+  "socialpilot": {
+    "name": "SocialPilot",
+    "website": "https://www.socialpilot.co",
+    "pricingUrl": "https://www.socialpilot.co/pricing",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "SocialPilot manages social publishing, calendars, collaboration and reporting with plan-dependent social accounts, users and client approval features.",
+    "description": "SocialPilot manages social publishing, calendars, collaboration and reporting with plan-dependent social accounts, users and client approval features.",
+    "longDescription": "SocialPilot manages social publishing, calendars, collaboration and reporting with plan-dependent social accounts, users and client approval features.\n\nCompare social publishing calendar, bulk scheduling, social analytics, team collaboration, plan-dependent client approvals against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Social publishing calendar",
+      "Bulk scheduling",
+      "Social analytics",
+      "Team collaboration",
+      "Plan-dependent client approvals"
     ]
   },
   "sourcery": {
@@ -861,6 +1184,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Calendar integrations",
       "Weekly review",
       "Shared workspace billing"
+    ]
+  },
+  "text-blaze": {
+    "name": "Text Blaze",
+    "website": "https://blaze.today",
+    "pricingUrl": "https://blaze.today/plans/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Text Blaze expands reusable snippets and dynamic templates across writing workflows, with free access, individual Pro and team-oriented Business plans.",
+    "description": "Text Blaze expands reusable snippets and dynamic templates across writing workflows, with free access, individual Pro and team-oriented Business plans.",
+    "longDescription": "Text Blaze expands reusable snippets and dynamic templates across writing workflows, with free access, individual Pro and team-oriented Business plans.\n\nCompare text expansion, dynamic templates, form fields, shared snippets, plan-dependent team management against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Text expansion",
+      "Dynamic templates",
+      "Form fields",
+      "Shared snippets",
+      "Plan-dependent team management"
     ]
   },
   "tldv": {
@@ -911,6 +1251,74 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Response workflows",
       "Integrations",
       "Team collaboration"
+    ]
+  },
+  "typingmind": {
+    "name": "TypingMind",
+    "website": "https://www.typingmind.com",
+    "pricingUrl": "https://www.typingmind.com/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Paid",
+    "tagline": "TypingMind is an AI chat client with a one-time license route, multiple model-provider integrations and separately paid model API usage.",
+    "description": "TypingMind is an AI chat client with a one-time license route, multiple model-provider integrations and separately paid model API usage.",
+    "longDescription": "TypingMind is an AI chat client with a one-time license route, multiple model-provider integrations and separately paid model API usage.\n\nCompare multi-model chat interface, bring-your-own api keys, prompt and agent tools, conversation organization, client license options against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Multi-model chat interface",
+      "Bring-your-own API keys",
+      "Prompt and agent tools",
+      "Conversation organization",
+      "Client license options"
+    ]
+  },
+  "wp-mail-smtp": {
+    "name": "WP Mail SMTP",
+    "website": "https://wpmailsmtp.com",
+    "pricingUrl": "https://wpmailsmtp.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "WP Mail SMTP connects WordPress email to supported sending services, with licensed email logging, diagnostics and plan-dependent setup support.",
+    "description": "WP Mail SMTP connects WordPress email to supported sending services, with licensed email logging, diagnostics and plan-dependent setup support.",
+    "longDescription": "WP Mail SMTP routes WordPress email through supported sending services and adds plan-dependent monitoring and administration tools. Compare the required connection, logs, site allowance and support level with the chosen license. The sender's service charges remain separate. The individual savings guide explains the official dollar-off coupon, introductory pricing, setup assistance and continuing renewal without promising inbox placement.",
+    "keyFeatures": [
+      "SMTP and mailer connections",
+      "Email logging",
+      "Delivery failure alerts",
+      "Backup connections",
+      "Plan-dependent setup assistance"
+    ]
+  },
+  "wp-rocket": {
+    "name": "WP Rocket",
+    "website": "https://wp-rocket.me",
+    "pricingUrl": "https://wp-rocket.me/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "WP Rocket is a WordPress caching and performance plugin with term- and site-based licensing, optimization features and a documented evaluation route.",
+    "description": "WP Rocket is a WordPress caching and performance plugin with term- and site-based licensing, optimization features and a documented evaluation route.",
+    "longDescription": "WP Rocket is a WordPress caching and performance plugin with term- and site-based licensing, optimization features and a documented evaluation route.\n\nCompare page caching, css and javascript optimization, lazy loading, performance integrations, site-based license options against the work you need to complete. Evaluate the relevant plan, people and usage before committing to a subscription.\n\nThe original discount guide explains provider-published savings, code availability, eligibility and redemption. Follow the official sources for the current invoice and renewal conditions.",
+    "keyFeatures": [
+      "Page caching",
+      "CSS and JavaScript optimization",
+      "Lazy loading",
+      "Performance integrations",
+      "Site-based license options"
+    ]
+  },
+  "wpforms": {
+    "name": "WPForms",
+    "website": "https://wpforms.com",
+    "pricingUrl": "https://wpforms.com/pricing/",
+    "updatedAt": "2026-10-28T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "WPForms is a WordPress form builder for contact forms, payments, surveys and integrated lead collection, with free and licensed editions.",
+    "description": "WPForms is a WordPress form builder for contact forms, payments, surveys and integrated lead collection, with free and licensed editions.",
+    "longDescription": "WPForms creates forms within WordPress, including contact, registration, survey and payment workflows. A license should match the integrations and websites requiring paid capabilities. Payment-provider charges and any plugin platform fees need their own comparison. The individual savings guide separates the official new-license coupon, existing introductory pricing and approved nonprofit access, with attention to full-price renewal and form ownership.",
+    "keyFeatures": [
+      "Drag-and-drop forms",
+      "Conditional logic",
+      "Payment forms",
+      "Entry management",
+      "Plan-dependent marketing integrations"
     ]
   },
   "xtiles": {
