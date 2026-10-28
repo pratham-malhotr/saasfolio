@@ -1,0 +1,47 @@
+[
+  {
+    "word": "Visit",
+    "start": 0.104166,
+    "end": 0.364582
+  },
+  {
+    "word": "SaaS",
+    "start": 0.377625,
+    "end": 0.729208
+  },
+  {
+    "word": "Folio",
+    "start": 0.742208,
+    "end": 1.171916
+  },
+  {
+    "word": "dot",
+    "start": 1.184916,
+    "end": 1.354207
+  },
+  {
+    "word": "tech",
+    "start": 1.367208,
+    "end": 1.796916
+  },
+  {
+    "word": "Follow",
+    "start": 2.265625,
+    "end": 2.5
+  },
+  {
+    "word": "for",
+    "start": 2.513041,
+    "end": 2.643249
+  },
+  {
+    "word": "smarter",
+    "start": 2.65625,
+    "end": 2.96875
+  },
+  {
+    "word": "software",
+    "start": 2.981791,
+    "end": 3.580749
+  }
+]
