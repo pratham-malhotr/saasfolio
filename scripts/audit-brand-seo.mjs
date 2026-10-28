@@ -56,7 +56,7 @@ const { document: homepage } = await fetchPage("/");
 // React may stream a route's HTML outside <main> before moving the boundary
 // into place. Inspect the actual brand section rather than the loading shell.
 const homeBrands = nodes(homepage, node => attr(node, "aria-labelledby") === "brand-discounts-heading")[0];
-assert.match(contents(elements(homepage, "h1")[0]), /SaaS discounts.*software deals/i, "Homepage heading describes the SaaS discount business");
+assert.match(contents(elements(homepage, "h1")[0]).replace(/\s+/g, " "), /SaaS discounts.*software deals/i, "Homepage heading describes the SaaS discount business");
 assert.match(contents(elements(homepage, "title")[0]), /SaaS Discounts.*(?:Coupon Codes|Software Deals)/i, "Homepage title targets software savings");
 assert.ok(homeBrands && links(homeBrands).includes("/discounts"), "Brand directory is linked from homepage content");
 assertDiscoveryLink(homeBrands, "/discounts", "Homepage content");
@@ -65,7 +65,7 @@ for (const slug of ["beehiiv", "predis-ai", "taplio", "baremetrics"]) {
   assert.ok(links(directory).includes(`/discounts/${slug}`), `${slug}: brand directory links to guide`);
   assertDiscoveryLink(homeBrands, `/discounts/${slug}`, "Homepage priority brands");
 }
-assert.match(contents(elements(directory, "h1")[0]), /SaaS discounts/i, "Brand directory heading has SaaS discount intent");
+assert.match(contents(elements(directory, "h1")[0]), /Software discounts by brand/i, "Brand directory heading describes brand-level software discounts");
 const titles = new Set();
 const descriptions = new Set();
 

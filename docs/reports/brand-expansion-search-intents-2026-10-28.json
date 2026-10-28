@@ -1,0 +1,1697 @@
+{
+  "type": "rendered-content-intent-audit",
+  "rankingMeasurement": false,
+  "origin": "http://127.0.0.1:3238",
+  "checkedAt": "2026-10-28T18:22:55.693Z",
+  "brands": [
+    {
+      "slug": "aioseo",
+      "name": "All in One SEO",
+      "url": "https://saasfolio.tech/discounts/aioseo",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "All in One SEO discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "All in One SEO promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for All in One SEO",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "All in One SEO pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a All in One SEO discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "All in One SEO discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "All in One SEO discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "All in One SEO discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "All in One SEO free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "duplicator",
+      "name": "Duplicator",
+      "url": "https://saasfolio.tech/discounts/duplicator",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Duplicator discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Duplicator promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Duplicator",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Duplicator pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Duplicator discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Duplicator discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Duplicator discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Duplicator discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Duplicator free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "fluent-forms",
+      "name": "Fluent Forms",
+      "url": "https://saasfolio.tech/discounts/fluent-forms",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Fluent Forms discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Fluent Forms promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Fluent Forms",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Fluent Forms pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Fluent Forms discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Fluent Forms discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Fluent Forms discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Fluent Forms discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Fluent Forms free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "fluentcrm",
+      "name": "FluentCRM",
+      "url": "https://saasfolio.tech/discounts/fluentcrm",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "FluentCRM discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "FluentCRM promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for FluentCRM",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "FluentCRM pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a FluentCRM discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "FluentCRM discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "FluentCRM discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "FluentCRM discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "FluentCRM free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "flyingpress",
+      "name": "FlyingPress",
+      "url": "https://saasfolio.tech/discounts/flyingpress",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "FlyingPress discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "FlyingPress promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for FlyingPress",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "FlyingPress pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a FlyingPress discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "FlyingPress discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "FlyingPress discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "FlyingPress discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "FlyingPress free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "formidable-forms",
+      "name": "Formidable Forms",
+      "url": "https://saasfolio.tech/discounts/formidable-forms",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Formidable Forms discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Formidable Forms promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Formidable Forms",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Formidable Forms pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Formidable Forms discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Formidable Forms discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Formidable Forms discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Formidable Forms discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Formidable Forms free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "gravity-forms",
+      "name": "Gravity Forms",
+      "url": "https://saasfolio.tech/discounts/gravity-forms",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Gravity Forms discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Gravity Forms promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Gravity Forms",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Gravity Forms pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Gravity Forms discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Gravity Forms discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Gravity Forms discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Gravity Forms discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Gravity Forms free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "imagify",
+      "name": "Imagify",
+      "url": "https://saasfolio.tech/discounts/imagify",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Imagify discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Imagify promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Imagify",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Imagify annual discount",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Imagify discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Imagify discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Imagify discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Imagify discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Imagify free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "jenni-ai",
+      "name": "Jenni AI",
+      "url": "https://saasfolio.tech/discounts/jenni-ai",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Jenni AI discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Jenni AI promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Jenni AI",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Jenni AI pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Jenni AI discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Jenni AI discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Jenni AI discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Jenni AI discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Jenni AI free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "linguix",
+      "name": "Linguix",
+      "url": "https://saasfolio.tech/discounts/linguix",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Linguix discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Linguix promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Linguix",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Linguix pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Linguix discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Linguix discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Linguix discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Linguix discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Linguix free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "monsterinsights",
+      "name": "MonsterInsights",
+      "url": "https://saasfolio.tech/discounts/monsterinsights",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "MonsterInsights discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "MonsterInsights promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for MonsterInsights",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "MonsterInsights pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a MonsterInsights discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "MonsterInsights discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "MonsterInsights discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "MonsterInsights discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "MonsterInsights free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "paperpal",
+      "name": "Paperpal",
+      "url": "https://saasfolio.tech/discounts/paperpal",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Paperpal discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Paperpal promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Paperpal",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Paperpal pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Paperpal discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Paperpal discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Paperpal discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Paperpal discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Paperpal free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "perfmatters",
+      "name": "Perfmatters",
+      "url": "https://saasfolio.tech/discounts/perfmatters",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Perfmatters discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Perfmatters promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Perfmatters",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Perfmatters pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Perfmatters discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Perfmatters discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Perfmatters discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Perfmatters discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Perfmatters free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "scholarcy",
+      "name": "Scholarcy",
+      "url": "https://saasfolio.tech/discounts/scholarcy",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Scholarcy discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Scholarcy promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Scholarcy",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Scholarcy pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Scholarcy discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Scholarcy discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Scholarcy discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Scholarcy discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Scholarcy free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "seedprod",
+      "name": "SeedProd",
+      "url": "https://saasfolio.tech/discounts/seedprod",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "SeedProd discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "SeedProd promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for SeedProd",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "SeedProd pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a SeedProd discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "SeedProd discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "SeedProd discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "SeedProd discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "SeedProd free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "sendible",
+      "name": "Sendible",
+      "url": "https://saasfolio.tech/discounts/sendible",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Sendible discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Sendible promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Sendible",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Sendible annual discount",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Sendible discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Sendible discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Sendible discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Sendible discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Sendible free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "seopress",
+      "name": "SEOPress",
+      "url": "https://saasfolio.tech/discounts/seopress",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "SEOPress discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "SEOPress promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for SEOPress",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "SEOPress pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a SEOPress discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "SEOPress discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "SEOPress discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "SEOPress discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "SEOPress free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "shortpixel",
+      "name": "ShortPixel",
+      "url": "https://saasfolio.tech/discounts/shortpixel",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "ShortPixel discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "ShortPixel promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for ShortPixel",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "ShortPixel annual discount",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a ShortPixel discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "ShortPixel discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "ShortPixel discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "ShortPixel discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "ShortPixel free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "socialpilot",
+      "name": "SocialPilot",
+      "url": "https://saasfolio.tech/discounts/socialpilot",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "SocialPilot discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "SocialPilot promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for SocialPilot",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "SocialPilot annual discount",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a SocialPilot discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "SocialPilot discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "SocialPilot discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "SocialPilot discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "SocialPilot free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "text-blaze",
+      "name": "Text Blaze",
+      "url": "https://saasfolio.tech/discounts/text-blaze",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "Text Blaze discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "Text Blaze promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for Text Blaze",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "Text Blaze pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a Text Blaze discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "Text Blaze discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "Text Blaze discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "Text Blaze discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "Text Blaze free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "typingmind",
+      "name": "TypingMind",
+      "url": "https://saasfolio.tech/discounts/typingmind",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "TypingMind discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "TypingMind promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for TypingMind",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "TypingMind usage pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a TypingMind discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "TypingMind discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "TypingMind discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "TypingMind ongoing usage costs",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "TypingMind free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "wp-mail-smtp",
+      "name": "WP Mail SMTP",
+      "url": "https://saasfolio.tech/discounts/wp-mail-smtp",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "WP Mail SMTP discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "WP Mail SMTP promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for WP Mail SMTP",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "WP Mail SMTP pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a WP Mail SMTP discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "WP Mail SMTP discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "WP Mail SMTP discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "WP Mail SMTP discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "WP Mail SMTP free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "wp-rocket",
+      "name": "WP Rocket",
+      "url": "https://saasfolio.tech/discounts/wp-rocket",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "WP Rocket discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "WP Rocket promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for WP Rocket",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "WP Rocket pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a WP Rocket discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "WP Rocket discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "WP Rocket discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "WP Rocket discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "WP Rocket free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "slug": "wpforms",
+      "name": "WPForms",
+      "url": "https://saasfolio.tech/discounts/wpforms",
+      "queries": [
+        {
+          "id": "discount-code",
+          "query": "WPForms discount code",
+          "section": "#discount-answer",
+          "expectedSection": "#discount-answer",
+          "status": "pass"
+        },
+        {
+          "id": "promo-code",
+          "query": "WPForms promo code",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        },
+        {
+          "id": "best-discount",
+          "query": "best discount for WPForms",
+          "section": "#best-discount",
+          "expectedSection": "#best-discount",
+          "status": "pass"
+        },
+        {
+          "id": "billing-savings",
+          "query": "WPForms pricing discounts",
+          "section": "#plan-fit",
+          "expectedSection": "#plan-fit",
+          "status": "pass"
+        },
+        {
+          "id": "redemption",
+          "query": "how to get a WPForms discount",
+          "section": "#redemption",
+          "expectedSection": "#redemption",
+          "status": "pass"
+        },
+        {
+          "id": "eligibility",
+          "query": "WPForms discount eligibility",
+          "section": "#eligibility",
+          "expectedSection": "#eligibility",
+          "status": "pass"
+        },
+        {
+          "id": "code-help",
+          "query": "WPForms discount code not working",
+          "section": "#coupon-help",
+          "expectedSection": "#coupon-help",
+          "status": "pass"
+        },
+        {
+          "id": "renewal",
+          "query": "WPForms discount renewal price",
+          "section": "#saving-guide",
+          "expectedSection": "#saving-guide",
+          "status": "pass"
+        },
+        {
+          "id": "free-access",
+          "query": "WPForms free trial vs discount",
+          "section": "#discount-availability",
+          "expectedSection": "#discount-availability",
+          "status": "pass"
+        }
+      ]
+    }
+  ],
+  "status": "passed",
+  "summary": {
+    "guides": 24,
+    "cases": 216,
+    "passed": 216,
+    "failed": 0,
+    "reviewNeeded": 0
+  },
+  "failures": []
+}
