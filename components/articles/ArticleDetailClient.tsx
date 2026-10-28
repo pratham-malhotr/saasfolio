@@ -17,7 +17,7 @@ import {
   Type,
   ChevronUp,
 } from "lucide-react";
-import { DetailedArticle, DETAILED_ARTICLES } from "@/lib/data/articles-data";
+import type { DetailedArticle, ArticlePreview } from "@/lib/data/articles-data";
 import { ReadingProgressBar } from "./ReadingProgressBar";
 import { TableOfContents } from "./TableOfContents";
 import { DealCallout } from "./DealCallout";
@@ -27,6 +27,8 @@ import { FaqAccordion } from "./FaqAccordion";
 
 interface ArticleDetailClientProps {
   article: DetailedArticle;
+  relatedArticles: ArticlePreview[];
+  savingsLinks?: React.ReactNode;
 }
 
 interface ArticleComment {
@@ -39,7 +41,7 @@ interface ArticleComment {
   upvotes: number;
 }
 
-export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
+export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: ArticleDetailClientProps) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
@@ -167,11 +169,6 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
       localStorage.setItem(`saasfolio_article_comments_${article.slug}`, JSON.stringify([newComment, ...list]));
     } catch {}
   };
-
-  // Find related articles
-  const relatedArticles = DETAILED_ARTICLES.filter((a) =>
-    article.relatedArticlesSlugs.includes(a.slug)
-  );
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
@@ -380,6 +377,8 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
                   ))}
                 </div>
 
+                {section.links?.length ? <ul className="mt-5 space-y-3 text-sm text-[#C6FF3D]">{section.links.map(link => <li key={link.href}><Link prefetch={false} href={link.href} className="underline underline-offset-4">{link.label} →</Link></li>)}</ul> : null}
+
                 {/* Optional Code Snippet */}
                 {section.codeSnippet && (
                   <div className="my-6 rounded-2xl overflow-hidden border border-white/10 bg-[#09090C]">
@@ -452,6 +451,7 @@ export function ArticleDetailClient({ article }: ArticleDetailClientProps) {
 
             {/* Author Bio Box */}
             {article.sources?.length ? <section id="references" className="rounded-2xl border border-white/10 p-6 space-y-4"><h2 className="font-display text-2xl font-bold text-white">References and current provider terms</h2><p className="text-sm text-zinc-400">These references support the buying considerations above. Check the live provider terms before paying. This guide is not a hands-on benchmark, customer case study or checkout test.</p><ul className="space-y-3">{article.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="nofollow noopener noreferrer" className="text-[#C6FF3D] underline">{source.title} ↗</a></li>)}</ul></section> : null}
+            {savingsLinks}
             <div className="p-8 rounded-2xl bg-[#09090C] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#C6FF3D] to-[#80B814] flex items-center justify-center font-display font-black text-black text-2xl shrink-0">
                 {article.author.avatarLetter}

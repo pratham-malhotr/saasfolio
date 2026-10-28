@@ -1,4 +1,5 @@
 import type { DetailedArticle } from "./articles-data";
+import { SAVINGS_BUYING_GUIDES } from "./savings-buying-guides";
 
 type Guide = { slug: string; title: string; summary: string; tags: string[]; sections: [string, string][]; sources: { title: string; url: string }[] };
 const guides: Guide[] = [
@@ -100,7 +101,7 @@ const guides: Guide[] = [
   },
 ];
 
-export const EDITORIAL_ARTICLES: DetailedArticle[] = guides.map((guide, index) => ({
+export const EDITORIAL_ARTICLES: DetailedArticle[] = [...guides.map((guide, index): DetailedArticle => ({
   id: `art-${index + 1}`, slug: guide.slug, title: guide.title, subtitle: guide.summary, summary: guide.summary,
   category: index === 1 || index === 4 || index === 6 ? "Comparisons" : "Guides & Stacks",
   readTime: `${Math.max(3, Math.ceil(guide.sections.reduce((total, [, text]) => total + text.split(/\s+/).length, 0) / 180))} min read`,
@@ -109,4 +110,4 @@ export const EDITORIAL_ARTICLES: DetailedArticle[] = guides.map((guide, index) =
   tableOfContents: guide.sections.map(([title], sectionIndex) => ({ id: `check-${sectionIndex + 1}`, title })),
   sections: guide.sections.map(([heading, content], sectionIndex) => ({ id: `check-${sectionIndex + 1}`, heading, content })),
   sources: guide.sources, relatedArticlesSlugs: [guides[(index + 1) % guides.length].slug, guides[(index + 2) % guides.length].slug],
-}));
+})), ...SAVINGS_BUYING_GUIDES];

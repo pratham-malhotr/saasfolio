@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, BookOpen, Search, Clock, ArrowRight } from "lucide-react";
-import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
+import type { ArticlePreview } from "@/lib/data/articles-data";
 
 const CATEGORIES = [
   "All",
@@ -13,11 +13,11 @@ const CATEGORIES = [
   "Tool Roundups",
 ];
 
-export function ArticlesHubClient() {
+export function ArticlesHubClient({ articles, savingsLinks }: { articles: ArticlePreview[]; savingsLinks?: React.ReactNode }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredArticles = DETAILED_ARTICLES.filter((art) => {
+  const filteredArticles = articles.filter((art) => {
     const matchesCategory =
       selectedCategory === "All" || art.category === selectedCategory;
     const matchesQuery =
@@ -28,7 +28,7 @@ export function ArticlesHubClient() {
     return matchesCategory && matchesQuery;
   });
 
-  const featuredLead = DETAILED_ARTICLES.find((a) => a.featured) || DETAILED_ARTICLES[0];
+  const featuredLead = articles.find((a) => a.featured) || articles[0];
   const listArticles = filteredArticles.filter((a) =>
     selectedCategory === "All" && searchQuery === "" ? a.id !== featuredLead.id : true
   );
@@ -90,6 +90,8 @@ export function ArticlesHubClient() {
           />
         </div>
       </div>
+
+      {savingsLinks && <div className="my-10">{savingsLinks}</div>}
 
       {/* Lead Featured Article Card (Shown on default "All" view with empty search) */}
       {selectedCategory === "All" && searchQuery === "" && featuredLead && (

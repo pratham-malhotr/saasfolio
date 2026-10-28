@@ -71,5 +71,5 @@ for (const path of ["/community", ...DETAILED_THREADS.map(thread => `/community/
   assert.ok(attr(nodes(document, "meta").find(node => attr(node, "name") === "robots"), "content").includes("noindex"), `${path}: previews are noindex`);
   assert.ok(content(nodes(document, "main")[0]).toLowerCase().includes("editorial"));
 }
-console.log(`Publisher/security audit passed: ${checkedPages} content and utility responses, ads.txt and ownership metadata, no ad-serving code, private cache headers, privacy choices, 8 referenced guides and permanent redirects, and 9 non-indexed discussion previews.`);
+console.log(`Publisher/security audit passed: ${checkedPages} content and utility responses, ads.txt and ownership metadata, no ad-serving code, private cache headers, privacy choices, ${DETAILED_ARTICLES.length} referenced guides and permanent redirects, and ${DETAILED_THREADS.length + 1} non-indexed discussion previews.`);
 console.log(`Configuration presence only (not provider connectivity): accounts=${payload.checks.accountsConfigured}, forms=${payload.checks.formsConfigured}, newsletter=${payload.checks.newsletterConfigured}. AdSense approval and CMP publication require account-side verification.`);

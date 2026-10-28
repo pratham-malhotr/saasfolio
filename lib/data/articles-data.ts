@@ -2,6 +2,7 @@ export interface ArticleSection {
   id: string;
   heading: string;
   content: string; // Markdown or rich HTML-friendly text
+  links?: { label: string; href: string }[];
   codeSnippet?: {
     language: string;
     code: string;
@@ -9,6 +10,8 @@ export interface ArticleSection {
   };
   dealCalloutSlug?: string; // Slugs matching deals in deals-data.ts
 }
+
+export type ArticlePreview = Pick<DetailedArticle, "id" | "slug" | "title" | "summary" | "category" | "readTime" | "author" | "tags" | "featured">;
 
 export interface DetailedArticle {
   id: string;
