@@ -1,36 +1,22 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { apiRequest } from "@/lib/api-client";
+import { InquiryInbox } from "@/components/admin/InquiryInbox";
+import { CatalogManager } from "@/components/admin/CatalogManager";
+import { OfferOperations } from "@/components/admin/OfferOperations";
+import { StaffManagement, AuditLog } from "@/components/admin/StaffManagement";
+import type { StaffRole } from "@/lib/server/staff";
 
-type Inquiry = { id: string; kind: string; email: string; payload: Record<string, string | number>; status: string; created_at: string };
-export function AdminDashboardClient() {
-  const [items, setItems] = useState<Inquiry[]>([]);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [busy, setBusy] = useState<string | null>(null);
-  const [filter, setFilter] = useState("all");
-  useEffect(() => {
-    let active = true;
-    apiRequest<{ inquiries: Inquiry[] }>("/api/admin/inquiries", undefined, "GET")
-      .then(result => { if (active) setItems(result.inquiries); })
-      .catch(error => { if (active) setError(error.message); })
-      .finally(() => { if (active) setLoading(false); });
-    return () => { active = false; };
-  }, []);
-  async function update(id: string, status: string) {
-    setBusy(id); setError("");
-    try { await apiRequest("/api/admin/inquiries", { id, status }, "PATCH"); setItems(previous => previous.map(item => item.id === id ? { ...item, status } : item)); }
-    catch (error) { setError(error instanceof Error ? error.message : "Please try again."); }
-    finally { setBusy(null); }
-  }
-  return <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-32 pb-24 space-y-7">
-    <header className="space-y-3"><p className="text-[#C6FF3D] text-xs font-mono uppercase tracking-widest">Administration</p><h1 className="font-display text-4xl text-white font-bold">Review inbox</h1><p className="text-sm text-zinc-400">The latest 100 contact messages, partnership inquiries, and vendor submissions. Marking a submission resolved does not publish a catalog offer; source verification and the catalog workflow are required.</p></header>
-    <label className="block text-sm text-zinc-400">Filter by type<select value={filter} onChange={event => setFilter(event.target.value)} className="ml-3 p-2 bg-black text-white border border-white/15 rounded-xl"><option value="all">All</option><option value="contact">Contact</option><option value="advertise">Partnerships</option><option value="submission">Submissions</option></select></label>
-    {error && <p role="alert" className="text-rose-400">{error}</p>}
-    {loading && <p role="status" className="text-zinc-400">Loading the review queue…</p>}
-    {!loading && items.length === 0 && !error && <p className="p-8 rounded-2xl border border-white/10 text-zinc-400">No inquiries have been received yet.</p>}
-    {items.filter(item => filter === "all" || item.kind === filter).map(item => <section key={item.id} className="p-6 rounded-2xl border border-white/10 bg-[#09090C] space-y-4"><div className="flex flex-wrap justify-between gap-3"><div><p className="text-xs text-[#C6FF3D] uppercase">{item.kind} · {item.status}</p><h2 className="text-xl text-white font-bold mt-2">{item.payload.subject || item.payload.toolName || item.payload.companyName || "Inquiry"}</h2><p className="text-sm text-zinc-400 mt-2">{item.email} · <time dateTime={item.created_at}>{new Date(item.created_at).toLocaleString()}</time></p></div><label className="text-sm text-zinc-400">Review status<select value={item.status} disabled={busy === item.id} onChange={event => update(item.id, event.target.value)} className="block mt-2 rounded-xl p-2 bg-black border border-white/15 text-white"><option value="pending">Pending</option><option value="reviewing">Reviewing</option><option value="resolved">Resolved</option><option value="rejected">Rejected</option></select></label></div><dl className="grid sm:grid-cols-2 gap-3">{Object.entries(item.payload).map(([key, value]) => <div key={key} className="break-words"><dt className="text-xs text-zinc-500 capitalize">{key.replace(/([A-Z])/g, " $1")}</dt><dd className="text-sm text-zinc-300 whitespace-pre-wrap mt-1">{String(value)}</dd></div>)}</dl><p className="text-xs text-zinc-500">Reference: {item.id}</p></section>)}
-    <Link href="/profile" className="inline-block text-sm text-[#C6FF3D] underline">Back to your account</Link>
+export function AdminDashboardClient({ role }: { role: StaffRole }) {
+  const [section, setSection] = useState("catalog");
+  const sections = ["catalog", "offers", ...(role !== "editor" ? ["inquiries", "activity"] : []), ...(role === "owner" ? ["team"] : [])];
+  return <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-32 pb-24 space-y-8">
+    <header className="space-y-3"><p className="text-[#C6FF3D] text-xs font-mono uppercase tracking-widest">SaaSFolio publishing · {role}</p><h1 className="font-display text-4xl text-white font-bold">Publishing workspace</h1><p className="text-zinc-400 max-w-3xl">Prepare content, review source evidence and release approved revisions. Editing, review and publication are recorded separately.</p></header>
+    <nav aria-label="Administration sections" className="flex flex-wrap gap-3">{sections.map(value => <button key={value} type="button" aria-pressed={section === value} onClick={() => setSection(value)} className={`px-5 py-3 rounded-xl capitalize border ${section === value ? "bg-[#C6FF3D] text-black border-[#C6FF3D]" : "border-white/20 text-white"}`}>{value}</button>)}</nav>
+    <div hidden={section !== "catalog"}><CatalogManager role={role} /></div>
+    {section === "offers" && <OfferOperations onReports={role !== "editor" ? () => setSection("inquiries") : undefined} />}
+    {role !== "editor" && <><div hidden={section !== "inquiries"}><InquiryInbox /></div><div hidden={section !== "activity"}><AuditLog /></div></>}
+    {role === "owner" && <div hidden={section !== "team"}><StaffManagement /></div>}
+    <Link href="/profile" className="inline-block text-[#C6FF3D] underline">Back to your account</Link>
   </div>;
 }

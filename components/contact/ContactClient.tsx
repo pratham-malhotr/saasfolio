@@ -61,7 +61,7 @@ const FAQS = [
   },
 ];
 
-export default function ContactPage({ initialReport }: { initialReport?: { subject: string; message: string } }) {
+export default function ContactPage({ initialReport }: { initialReport?: { subject: string; message: string; offerSlug?: string; brandSlug?: string } }) {
   const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("formsConfigured");
   const [formData, setFormData] = useState({
     name: "",
@@ -83,7 +83,7 @@ export default function ContactPage({ initialReport }: { initialReport?: { subje
     const honeypot = new FormData(e.currentTarget).get("companyWebsite");
     setBusy(true); setError("");
     try {
-      const result = await apiRequest<{ id: string }>("/api/inquiries", { kind: "contact", ...formData, companyWebsite: honeypot });
+      const result = await apiRequest<{ id: string }>("/api/inquiries", { kind: "contact", ...formData, reportOffer: initialReport?.offerSlug, reportBrand: initialReport?.brandSlug, companyWebsite: honeypot });
       setTicketId(result.id); setSubmitted(true);
     } catch (error) { setError(error instanceof Error ? error.message : "Your message could not be sent."); }
     finally { setBusy(false); }

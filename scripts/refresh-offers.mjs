@@ -7,6 +7,7 @@ import { parseSimplyCodes, compareDiscoveryCandidates } from "./lib/simplycodes.
 import { sourceBackoff, shouldAttemptSource } from "./lib/source-backoff.mjs";
 import { loadCatalogModule } from "./lib/load-catalog.mjs";
 import { rememberOfferIdentifiers, rememberOfferUrls, validateOfferUrlHistory } from "./lib/offer-url-history.mjs";
+import { validateManagedCatalog } from "../lib/managed-catalog.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = async (name, fallback) => { try { return JSON.parse(await fs.readFile(path.join(root, name), "utf8")); } catch { return fallback; } };
@@ -23,7 +24,14 @@ const extra = (await fs.readFile(path.join(root, "lib/data/brand-expansion.txt")
   return { name, slug, categorySlug, url, description, features: features.split(";") };
 });
 const base = await read("lib/data/catalog-seeds.json", []);
-const reviewed = await read("lib/data/reviewed-offers.json", []);
+const managed = validateManagedCatalog(await read("lib/data/managed-catalog.json", {}));
+const managedOffers = managed.entries.filter(entry => entry.kind === "offer");
+const managedOfferSlugs = new Set(managedOffers.map(entry => entry.slug));
+const reviewed = [...(await read("lib/data/reviewed-offers.json", [])).filter(offer => !managedOfferSlugs.has(offer.slug)), ...managedOffers.filter(entry => !entry.retired).map(entry => {
+  const { checkedAt, contentHash, ...payload } = entry.payload;
+  void checkedAt; void contentHash;
+  return { ...payload, slug: entry.slug, managedRevision: entry.revision };
+})];
 const state = await read("lib/data/offer-snapshot.json", { sources: {}, offers: [], candidates: [] });
 const offerUrlHistory = validateOfferUrlHistory(JSON.parse(await fs.readFile(path.join(root, "lib/data/offer-url-history.json"), "utf8")));
 const { getToolBySlug } = loadCatalogModule("lib/data/tools-data.ts");
@@ -33,7 +41,9 @@ rememberOfferIdentifiers(offerUrlHistory, Object.entries(await read("lib/data/le
 rememberOfferUrls(offerUrlHistory, state.offers, canonicalBrand);
 const selected = process.argv.find(a => a.startsWith("--only="))?.slice(7).split(",");
 const providerLinks = await read("lib/data/provider-links.json", {});
-const vendorSeeds = [...base, ...extra].filter((b, i, all) => all.findIndex(t => t.slug === b.slug) === i && (!selected || selected.includes(b.slug)) && providerLinks[b.slug]?.providerStatus !== "unavailable")
+const managedBrands = managed.entries.filter(entry => entry.kind === "brand");
+const retiredBrands = new Set(managedBrands.filter(entry => entry.retired).map(entry => entry.slug));
+const vendorSeeds = [...managedBrands.filter(entry => !entry.retired).map(entry => ({ ...entry.payload, slug: entry.slug, url: entry.payload.pricingUrl })), ...base, ...extra].filter((b, i, all) => all.findIndex(t => t.slug === b.slug) === i && !retiredBrands.has(b.slug) && (!selected || selected.includes(b.slug)) && providerLinks[b.slug]?.providerStatus !== "unavailable")
   .map(seed => ({ ...seed, url: providerLinks[seed.slug]?.pricingUrl || seed.url }));
 const discoveryOnly = process.argv.includes("--discovery-only");
 const jobs = discoveryOnly ? [] : vendorSeeds.map(b => ({ ...b, kind: "vendor", key: `vendor:${b.slug}` }));
@@ -95,7 +105,7 @@ async function run(job) {
     const text = plainText(page.html);
     if (text.length < 100) throw new Error("Insufficient visible source content");
     const contentHash = hash(text);
-    state.sources[job.key] = { toolSlug: job.slug, url: page.url, kind: job.kind, status: "ok", checkedAt: now, definitionHash,
+    state.sources[job.key] = { toolSlug: job.slug, url: page.url, kind: job.kind, status: "ok", checkedAt: now, definitionHash, ...(job.managedRevision ? { managedRevision: job.managedRevision } : {}),
       failureCount: 0, nextAttemptAt: null, httpStatus: 200,
       changedAt: previous?.contentHash === contentHash ? previous.changedAt : now, contentHash, etag: page.etag, lastModified: page.lastModified, error: null };
     state.offers = state.offers.filter(o => o.sourceKey !== job.key);
@@ -138,6 +148,7 @@ await Promise.all(Array.from({ length: 6 }, async () => {
   }
 }));
 state.offers.sort((a, b) => a.slug.localeCompare(b.slug));
+state.offers = state.offers.filter(offer => !retiredBrands.has(offer.toolSlug) && !managedOffers.some(entry => entry.retired && entry.slug === offer.slug));
 state.sources = Object.fromEntries(Object.entries(state.sources).sort(([a], [b]) => a.localeCompare(b)));
 state.candidates = [...new Map(state.candidates.map(c => [`${c.sourceUrl}:${c.candidateId || c.code || c.status}`, c])).values()].slice(-1000);
 state.lastRun = new Date().toISOString();

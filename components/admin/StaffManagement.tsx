@@ -1,0 +1,32 @@
+"use client";
+import { useEffect, useState } from "react";
+import { apiRequest } from "@/lib/api-client";
+
+type Member = { userId: string; email: string; role: string; active: boolean };
+export function StaffManagement() {
+  const [members, setMembers] = useState<Member[]>([]);
+  const [error, setError] = useState(""); const [busy, setBusy] = useState(false); const [loaded, setLoaded] = useState(false);
+  const [email, setEmail] = useState(""); const [role, setRole] = useState("editor"); const [notice, setNotice] = useState("");
+  useEffect(() => { let active = true; apiRequest<{ members: Member[] }>("/api/admin/staff", undefined, "GET").then(result => { if (active) setMembers(result.members); }).catch(error => { if (active) setError(error.message); }).finally(() => { if (active) setLoaded(true); }); return () => { active = false; }; }, []);
+  async function update(address: string, nextRole: string, active: boolean) {
+    setBusy(true); setError(""); setNotice("");
+    try { await apiRequest("/api/admin/staff", { email: address, role: nextRole, active }); const result = await apiRequest<{ members: Member[] }>("/api/admin/staff", undefined, "GET"); setMembers(result.members); setEmail(""); setNotice("Staff access updated and recorded."); }
+    catch (error) { setError(error instanceof Error ? error.message : "Staff access could not be updated."); }
+    finally { setBusy(false); }
+  }
+  return <section className="space-y-6" aria-labelledby="team-heading"><h2 id="team-heading" className="text-2xl font-display text-white font-bold">Team permissions</h2><p className="text-zinc-400 text-sm">Add an existing confirmed account. Editors prepare drafts; reviewers approve independent work; owners publish and manage access. Every staff account must complete authenticator verification. Keep at least one active owner.</p>
+    {error && <p role="alert" className="text-rose-400">{error}</p>}{notice && <p role="status" className="text-[#C6FF3D]">{notice}</p>}{!loaded && <p role="status" className="text-zinc-400">Loading team…</p>}
+    <form onSubmit={event => { event.preventDefault(); void update(email, role, true); }} className="flex flex-wrap items-end gap-4 rounded-2xl border border-white/15 p-5"><label className="text-sm text-zinc-300 flex-1 min-w-48">Confirmed account email<input type="email" required value={email} maxLength={254} onChange={event => setEmail(event.target.value)} className="block w-full mt-2 p-3 rounded-xl bg-black border border-white/20" /></label><label className="text-sm text-zinc-300">Role<select value={role} onChange={event => setRole(event.target.value)} className="block mt-2 p-3 rounded-xl bg-black border border-white/20"><option value="editor">Editor</option><option value="reviewer">Reviewer</option><option value="owner">Owner</option></select></label><button disabled={busy} className="px-5 py-3 rounded-xl bg-[#C6FF3D] text-black font-bold">{busy ? "Saving…" : "Grant access"}</button></form>
+    <ul className="space-y-3">{members.map(member => <li key={member.userId} className="p-5 rounded-xl border border-white/15 flex flex-wrap gap-4 justify-between"><div className="text-zinc-300 break-all">{member.email}<p className="mt-2 text-xs text-zinc-400">{member.role} · {member.active ? "Active" : "Disabled"}</p></div><div className="flex flex-wrap gap-3"><label className="text-sm text-zinc-400">Role<select value={member.role} disabled={busy} onChange={event => update(member.email, event.target.value, member.active)} className="ml-2 p-2 rounded-lg bg-black border border-white/15"><option value="editor">Editor</option><option value="reviewer">Reviewer</option><option value="owner">Owner</option></select></label><button type="button" disabled={busy} onClick={() => update(member.email, member.role, !member.active)} className="text-sm text-white underline">{member.active ? "Disable access" : "Restore access"}</button></div></li>)}</ul>
+  </section>;
+}
+type AuditEvent = { id: number; action: string; entity_type: string; entity_id: string; actor_id: string | null; details: Record<string, unknown>; created_at: string };
+export function AuditLog() {
+  const [events, setEvents] = useState<AuditEvent[]>([]); const [cursor, setCursor] = useState<number | null>(null);
+  const [error, setError] = useState(""); const [busy, setBusy] = useState(false); const [loaded, setLoaded] = useState(false);
+  useEffect(() => { let active = true; apiRequest<{ events: AuditEvent[]; nextCursor: number | null }>("/api/admin/audit", undefined, "GET").then(result => { if (active) { setEvents(result.events); setCursor(result.nextCursor); } }).catch(error => { if (active) setError(error.message); }).finally(() => { if (active) setLoaded(true); }); return () => { active = false; }; }, []);
+  async function more() { setBusy(true); setError(""); try { const result = await apiRequest<{ events: AuditEvent[]; nextCursor: number | null }>(`/api/admin/audit?before=${cursor}`, undefined, "GET"); setEvents(previous => [...previous, ...result.events]); setCursor(result.nextCursor); } catch (error) { setError(error instanceof Error ? error.message : "Activity could not be loaded."); } finally { setBusy(false); } }
+  return <section className="space-y-5" aria-labelledby="audit-heading"><h2 id="audit-heading" className="text-2xl text-white font-display font-bold">Publishing and access history</h2><p className="text-sm text-zinc-400">Records include the action, account identifier and affected revision. Private inquiry messages and authentication secrets are excluded.</p>{error && <p role="alert" className="text-rose-400">{error}</p>}{!loaded && <p role="status" className="text-zinc-400">Loading activity…</p>}{loaded && !events.length && !error && <p className="text-zinc-400">No recorded activity yet.</p>}
+    <ol className="space-y-3">{events.map(item => <li key={item.id} className="rounded-xl border border-white/15 p-5 space-y-2 break-words"><p className="text-white font-semibold">{item.action}</p><p className="text-xs text-zinc-400"><time dateTime={item.created_at}>{new Date(item.created_at).toLocaleString()}</time> · {item.entity_type} · {item.entity_id}</p><p className="text-xs text-zinc-500">Account: {item.actor_id || "Deleted account"}</p><pre className="whitespace-pre-wrap break-all text-xs text-zinc-400">{JSON.stringify(item.details)}</pre></li>)}</ol>{cursor && <button type="button" onClick={more} disabled={busy} className="px-5 py-3 rounded-xl border border-white/20 text-white">{busy ? "Loading…" : "Load earlier activity"}</button>}
+  </section>;
+}

@@ -1,6 +1,8 @@
 import { ADDITIONAL_DISCOUNT_GUIDES } from "@/lib/data/additional-discount-guides";
 import { EXPANSION_DISCOUNT_GUIDES } from "@/lib/data/expansion-discount-guides";
 import { NEW_DISCOUNT_GUIDES } from "@/lib/data/discount-brand-expansion";
+import { MANAGED_GUIDES } from "@/lib/data/managed-guides";
+import { RETIRED_MANAGED_GUIDES } from "@/lib/data/managed-content";
 
 export interface BrandSavingsOption {
   type: "Annual billing" | "Team discount" | "Bundle discount" | "Education offer" | "Nonprofit discount" | "Organization offer";
@@ -30,7 +32,7 @@ export interface BrandDiscountGuide {
 
 // Editorial observations are dated, sourced, and separate from live coupon data.
 // Add an original guide here before indexing a brand without a sourced discount.
-export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
+const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
   ...ADDITIONAL_DISCOUNT_GUIDES,
   ...EXPANSION_DISCOUNT_GUIDES,
   ...NEW_DISCOUNT_GUIDES,
@@ -361,3 +363,7 @@ export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
 };
+
+export const BRAND_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = Object.fromEntries(
+  Object.entries({ ...REPOSITORY_DISCOUNT_GUIDES, ...MANAGED_GUIDES }).filter(([slug]) => !RETIRED_MANAGED_GUIDES.has(slug)),
+);

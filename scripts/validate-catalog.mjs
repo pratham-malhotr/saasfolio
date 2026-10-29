@@ -2,13 +2,19 @@ import fs from "node:fs";
 import assert from "node:assert/strict";
 import { safePublicUrl } from "./lib/offer-sources.mjs";
 import { loadCatalogModule } from "./lib/load-catalog.mjs";
+import { managedPublicIndex } from "../lib/managed-catalog.mjs";
+import { checkedManagedRelease } from "./lib/managed-release.mjs";
 
 const read = name => JSON.parse(fs.readFileSync(new URL(`../lib/data/${name}`, import.meta.url), "utf8"));
 const seeds = read("catalog-seeds.json");
 const tools = read("expanded-tools.json");
 const snapshot = read("offer-snapshot.json");
 const reviewed = read("reviewed-offers.json");
-const all = [...seeds, ...tools];
+const managed = checkedManagedRelease(read("managed-catalog.json"));
+assert.deepEqual(read("managed-public-index.json"), managedPublicIndex(managed), "Generate both managed release files with catalog:export");
+const managedBrands = managed.entries.filter(entry => entry.kind === "brand");
+assert.equal(new Set([...seeds, ...tools].map(tool => tool.slug)).size, seeds.length + tools.length, "Repository brand slugs must be unique");
+const all = [...new Map([...seeds, ...tools, ...managedBrands.map(entry => ({ ...entry.payload, slug: entry.slug }))].map(tool => [tool.slug, tool])).values()];
 const slugs = new Set(all.map(t => t.slug));
 assert.equal(slugs.size, all.length, "New brand slugs must not duplicate existing ones");
 for (const tool of tools) {
@@ -26,7 +32,7 @@ for (const offer of snapshot.offers) {
   assert.ok(Date.parse(offer.checkedAt) <= Date.now(), `${offer.slug}: actual source check date`);
   assert.ok(snapshot.sources[offer.sourceKey]?.contentHash, `${offer.slug}: source evidence fingerprint`);
   assert.ok(offer.discountPercentage >= 0 && offer.discountPercentage <= 100);
-  if (offer.code || offer.discountPercentage > 0) assert.ok(reviewed.some(o => o.slug === offer.slug), `${offer.slug}: monetary claims require an explicit reviewed source`);
+  if (offer.code || offer.discountPercentage > 0) assert.ok(reviewed.some(o => o.slug === offer.slug) || managed.entries.some(entry => entry.kind === "offer" && entry.slug === offer.slug), `${offer.slug}: monetary claims require an explicit reviewed source`);
   if (offer.expiryDate) assert.ok(Number.isFinite(Date.parse(offer.expiryDate)));
 }
 for (const [key, source] of Object.entries(snapshot.sources)) {

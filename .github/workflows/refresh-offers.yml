@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pull-requests: write
 concurrency:
   group: refresh-offers
   cancel-in-progress: false
@@ -12,22 +13,27 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      CATALOG_BRANCH: automation/offer-refresh
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run test:offers
+      - name: Prepare release branch
+        run: |
+          git config user.name "saasfolio-catalog[bot]"
+          git config user.email "saasfolio-catalog[bot]@users.noreply.github.com"
+          node scripts/catalog-release-pr.mjs --prepare
+      - run: npm run test:unit
       - run: npm run catalog:refresh -- --discovery
       - run: npm run validate:catalog
       - run: npm run build
-      - name: Publish checked source snapshot
-        run: |
-          if git diff --quiet -- lib/data/offer-snapshot.json lib/data/offer-url-history.json; then exit 0; fi
-          git config user.name "saasfolio-catalog[bot]"
-          git config user.email "saasfolio-catalog[bot]@users.noreply.github.com"
-          git add lib/data/offer-snapshot.json lib/data/offer-url-history.json
-          git commit -m "Refresh source-backed SaaS offers"
-          git push
+      - name: Open or update the checked release PR
+        run: node scripts/catalog-release-pr.mjs

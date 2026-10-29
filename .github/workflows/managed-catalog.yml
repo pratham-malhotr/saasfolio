@@ -1,0 +1,42 @@
+name: Release approved catalog
+on:
+  schedule:
+    - cron: "43 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: managed-catalog-release
+  cancel-in-progress: false
+jobs:
+  export:
+    if: vars.MANAGED_CATALOG_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      CATALOG_BRANCH: automation/managed-catalog
+      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Prepare release branch
+        run: |
+          git config user.name "saasfolio-catalog[bot]"
+          git config user.email "saasfolio-catalog[bot]@users.noreply.github.com"
+          node scripts/catalog-release-pr.mjs --prepare
+      - run: npm run catalog:export
+      - run: npm run test:unit
+      - run: npm run validate:catalog
+      - run: npm run build
+      - run: node scripts/catalog-release-pr.mjs

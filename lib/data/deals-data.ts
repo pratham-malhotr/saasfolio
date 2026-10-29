@@ -5,9 +5,21 @@ import aliases from "./legacy-deal-aliases.json";
 import offerUrlHistory from "./offer-url-history.json";
 import { publicHttpsUrl } from "@/lib/offer-links";
 import { discoverVendorOffer } from "@/lib/offer-evidence.mjs";
+import { MANAGED_CATALOG, MANAGED_OFFERS, MANAGED_OFFER_IDENTITIES, RETIRED_MANAGED_OFFERS } from "./managed-content";
 
 const MAX_AGE = 14 * 24 * 60 * 60 * 1000;
-const checkedOffers: SaaSDeal[] = snapshot.offers
+type SourceOffer = { slug: string; toolSlug: string; title: string; dealType: string; discountPercentage: number; code?: string; sourceKind: string; sourceUrl: string; destinationUrl: string; sourceKey: string; evidence: string; checkedAt: string; updatedAt?: string; terms: string; expiryDate?: string; discountKind?: string; managedRevision?: number };
+const managedSlugs = new Set(MANAGED_CATALOG.entries.filter(entry => entry.kind === "offer").map(entry => entry.slug));
+const managedSources = snapshot.sources as Record<string, { status: string; checkedAt?: string; managedRevision?: number }>;
+const managedOffers = (MANAGED_OFFERS as SourceOffer[]).flatMap(offer => {
+  const source = managedSources[offer.sourceKey];
+  if (source?.managedRevision === offer.managedRevision && source.status === "ok" && Date.parse(source.checkedAt || "") >= Date.parse(offer.checkedAt)) {
+    return snapshot.offers.filter(item => item.slug === offer.slug) as SourceOffer[];
+  }
+  return [offer];
+});
+const checkedOffers: SaaSDeal[] = ([...snapshot.offers.filter(offer => !managedSlugs.has(offer.slug)), ...managedOffers] as SourceOffer[])
+  .filter(offer => !RETIRED_MANAGED_OFFERS.has(offer.slug))
   .filter(offer => getToolBySlug(offer.toolSlug) && getToolBySlug(offer.toolSlug)?.providerStatus !== "unavailable" &&
     (!offer.sourceKey.startsWith("vendor:") || discoverVendorOffer(offer.evidence)?.type === offer.dealType) &&
     ![404, 410].includes((snapshot.sources as Record<string, { httpStatus?: number | null }>)[offer.sourceKey]?.httpStatus || 0) &&
@@ -53,6 +65,7 @@ export function getAllDeals(): SaaSDeal[] {
 }
 export const DEALS_DATA: SaaSDeal[] = getAllDeals();
 export function getHistoricOfferToolSlug(id: string): string | undefined {
+  if (Object.hasOwn(MANAGED_OFFER_IDENTITIES, id)) return MANAGED_OFFER_IDENTITIES[id];
   if (Object.hasOwn(offerUrlHistory.offers, id)) return (offerUrlHistory.offers as Record<string, string>)[id];
   if (Object.hasOwn(aliases, id)) return (aliases as Record<string, string>)[id];
   return snapshot.offers.find(offer => id === offer.slug || id === `deal-${offer.slug}`)?.toolSlug;

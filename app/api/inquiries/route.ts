@@ -2,6 +2,8 @@ import { email, failure, HttpError, json, readBody, text, website } from "@/lib/
 import { currentUser, enforceLimit, isSupabaseConfigured, publicUser, serviceClient } from "@/lib/server/supabase";
 import { verifyCodeLocally } from "@/lib/code-verification";
 import { saveLocalInquiry } from "@/lib/server/local-auth";
+import { getDealBySlug, getHistoricOfferToolSlug } from "@/lib/data/deals-data";
+import { getToolBySlug } from "@/lib/data/tools-data";
 
 export async function POST(request: Request) {
   try {
@@ -19,6 +21,18 @@ export async function POST(request: Request) {
         subject: text(data, "subject", 3, 200),
         message: text(data, "message", 10, 8000),
       };
+      if (data.reportOffer || data.reportBrand) {
+        const offerSlug = text(data, "reportOffer", 0, 120), brandSlug = text(data, "reportBrand", 0, 120);
+        if ([offerSlug, brandSlug].some(slug => slug && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))) throw new HttpError(400, "Choose a valid listing to report.");
+        const offerBrand = offerSlug ? getHistoricOfferToolSlug(offerSlug) || getDealBySlug(offerSlug)?.toolSlug : undefined;
+        const brand = getToolBySlug(offerBrand || brandSlug);
+        if (!brand || (offerSlug && !offerBrand) || (brandSlug && getToolBySlug(brandSlug)?.slug !== brand.slug)) throw new HttpError(400, "This report does not match a recorded listing.");
+        payload.brandSlug = brand.slug;
+        if (offerSlug) payload.offerSlug = offerSlug;
+        // An unauthenticated visitor report supplies review context, never a
+        // verified failure or an instruction to change the public catalog.
+        payload.reportStatus = "unreviewed";
+      }
     } else if (kind === "advertise") {
       address = email(data, "contactEmail");
       payload = {
