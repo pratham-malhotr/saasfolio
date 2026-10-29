@@ -57,6 +57,7 @@ try {
   };
   await page("Page.enable"); await page("Runtime.enable");
   await page("Network.enable");
+  await page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "no-preference" }] });
   await page("Network.setBlockedURLs", { urls: ["https://*"] });
   await page("Page.addScriptToEvaluateOnNewDocument", { source: "window.open = () => { throw new Error('Popup API disabled for smoke test'); }; Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: () => Promise.reject(new DOMException('Denied', 'NotAllowedError')) } });" });
   await page("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
@@ -217,7 +218,9 @@ try {
   await until(() => evaluate("document.querySelector('main').textContent.includes('Editorial')"), "editorial prompts survive malformed local storage");
   await evaluate("localStorage.removeItem('saasfolio_local_threads'); localStorage.removeItem('saasfolio_community_upvotes')");
   await navigate("/");
-  await until(() => evaluate("!!document.querySelector('[data-home-hero] canvas')"), "hero particles restored for normal motion");
+  const motionCapable = await evaluate("matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches");
+  await until(() => evaluate(`!!document.querySelector('[data-home-hero] canvas') === ${motionCapable}`), "hero follows the device's pointer and motion capabilities");
+  console.log(`Pointer-dependent hero animation: ${motionCapable ? "enabled" : "static fallback for this device"}.`);
   assert.ok(await evaluate("[...document.querySelectorAll('.hero-word')].every(word => getComputedStyle(word).animationName === 'hero-word-enter')"), "headline has a real staggered entrance");
   await evaluate("Promise.all([...document.querySelectorAll('.hero-word')].flatMap(word => word.getAnimations()).map(animation => animation.finished.catch(() => {})))");
   assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth"), "home hero and compact brand cards fit mobile");
@@ -256,14 +259,16 @@ try {
   await page("Network.setCacheDisabled", { cacheDisabled: true });
   await page("Network.setBlockedURLs", { urls: ["https://*", blockedAnimation] });
   await navigate("/");
-  await until(async () => failedRequests.has(blockedAnimation), "optional scroll asset is deliberately blocked");
+  const scrollCapable = await evaluate("matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches");
+  if (scrollCapable) await until(async () => failedRequests.has(blockedAnimation), "optional scroll asset is deliberately blocked");
+  else assert.equal(failedRequests.has(blockedAnimation), false, "Devices without a fine hover pointer do not request the optional scroll asset");
   assert.ok(await evaluate("!document.documentElement.classList.contains('lenis')"), "failed enhancement leaves native scrolling enabled");
   await evaluate("window.scrollTo({ top: 400, behavior: 'instant' })");
   await until(() => evaluate("window.scrollY >= 350"), "native scrolling works without the optional asset");
   await navigate("/discounts/wpforms");
   assert.ok(await evaluate("document.querySelector('main h1').textContent.includes('WPForms')"), "brand navigation works after optional asset failure");
   assert.deepEqual(runtimeErrors, [], "No uncaught browser exceptions across the audited flows");
-  console.log(`Chrome smoke passed: stable cold loads and hard refreshes on mobile/desktop with 4x CPU throttling, ${officialCoupons.length} official coupon copy/source checks, native redirects, denied clipboard, exact current coupon-brand filtering, mobile search and savings, unavailable service forms, malformed local storage, animated homepage, live reduced motion, cold no-JavaScript content and coupon navigation, membership disclosures, and native scrolling when its optional asset is blocked. No reports submitted or checkout attempted.`);
+  console.log(`Chrome smoke passed: stable cold loads and hard refreshes on mobile/desktop with 4x CPU throttling, ${officialCoupons.length} official coupon copy/source checks, native redirects, denied clipboard, exact current coupon-brand filtering, mobile search and savings, unavailable service forms, malformed local storage, capability-dependent hero animation, live reduced motion, cold no-JavaScript content and coupon navigation, membership disclosures, and native scrolling with the optional asset ${scrollCapable ? "blocked" : "unrequested for this device"}. No reports submitted or checkout attempted.`);
 } finally {
   for (const entry of pending.values()) clearTimeout(entry.timer);
   chrome.kill();
