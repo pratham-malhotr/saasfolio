@@ -3,22 +3,26 @@ import { NextResponse } from "next/server";
 import { SITE_URL } from "@/lib/seo";
 import { normalizePublicHttpsUrl } from "@/lib/public-url.mjs";
 import { safeAuthRedirect } from "@/lib/auth-navigation";
+import { randomUUID } from "node:crypto";
+import { recordException } from "@/lib/server/observability";
 
 export class HttpError extends Error {
-  constructor(public status: number, message: string) { super(message); }
+  constructor(public status: number, message: string, public code = `HTTP_${status}`) { super(message); this.name = "HttpError"; }
 }
 
-export function json(data: unknown, status = 200) {
-  return NextResponse.json(data, { status, headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex, nofollow" } });
+export function json(data: unknown, status = 200, requestId = randomUUID()) {
+  return NextResponse.json(data, { status, headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex, nofollow", "X-Request-ID": requestId } });
 }
 
 export function failure(error: unknown) {
-  if (error instanceof HttpError) return json({ error: error.message }, error.status);
-  console.error("[request failed]", error instanceof Error ? error.name : "Unknown error");
-  return json({ error: "We couldn’t complete that request. Please try again shortly." }, 500);
+  const status = error instanceof HttpError ? error.status : 500;
+  const requestId = randomUUID();
+  if (status >= 500) recordException(error, { requestId, status });
+  return json({ error: error instanceof HttpError ? error.message : "We couldn’t complete that request. Please try again shortly.",
+    code: error instanceof HttpError ? error.code : "UNEXPECTED_ERROR", requestId }, status, requestId);
 }
 
-export async function readBody(request: Request): Promise<Record<string, unknown>> {
+export async function readBody(request: Request, maxBytes = 24000): Promise<Record<string, unknown>> {
   const origin = request.headers.get("origin");
   const allowed = new Set([new URL(SITE_URL).origin]);
   const requestUrl = new URL(request.url);
@@ -37,7 +41,7 @@ export async function readBody(request: Request): Promise<Record<string, unknown
     const { done, value } = await reader.read();
     if (done) break;
     bytes += value.byteLength;
-    if (bytes > 24000) { await reader.cancel(); throw new HttpError(413, "The form is too large."); }
+    if (bytes > maxBytes) { await reader.cancel(); throw new HttpError(413, "The form is too large."); }
     chunks.push(value);
   }
   try {

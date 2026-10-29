@@ -1,14 +1,15 @@
 import { NextResponse } from "next/server";
 import { authConfigured, authProviderAvailability, formsConfigured, isSupabaseConfigured } from "@/lib/server/supabase";
 
-/** Public service configuration, with conservative provider readiness. */
+/** Liveness and feature configuration. Dependency readiness is /api/ready. */
 export async function GET() {
   const startTime = Date.now();
   const accountsConfigured = authConfigured();
   const authProviders = await authProviderAvailability();
 
   const healthPayload = {
-    status: "operational",
+    status: "alive",
+    scope: "liveness",
     service: "saasfolio-core",
     version: "0.1.0",
     timestamp: new Date().toISOString(),
@@ -19,7 +20,7 @@ export async function GET() {
       catalog: "available",
       accountsConfigured,
       formsConfigured: formsConfigured(),
-      newsletterConfigured: Boolean(process.env.RESEND_API_KEY && process.env.NEWSLETTER_FROM_EMAIL),
+      newsletterConfigured: Boolean(process.env.RESEND_API_KEY && !process.env.RESEND_API_KEY.includes("your_api") && process.env.NEWSLETTER_FROM_EMAIL),
       responseTimeMs: Math.max(1, Date.now() - startTime),
     },
   };
@@ -28,7 +29,7 @@ export async function GET() {
     status: 200,
     headers: {
       "Cache-Control": "no-cache, no-store, must-revalidate",
-      "X-Health-Status": "HEALTHY",
+      "X-Health-Status": "LIVE",
       "X-Service-Name": "saasfolio",
     },
   });
