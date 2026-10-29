@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { CATEGORIES } from "@/lib/catalog-categories";
 import { SAVINGS_COLLECTION_LINKS } from "@/lib/data/savings-collections";
+import { PrivacyPreferences } from "@/components/privacy/PrivacyPreferences";
 
 export function Footer() {
   return (
@@ -147,6 +148,7 @@ export function Footer() {
             <Link prefetch={false} href="/terms" className="hover:text-zinc-300 transition-colors">
               Terms of Service
             </Link>
+            <PrivacyPreferences />
             <Link prefetch={false} href="/affiliate-disclosure" className="hover:text-zinc-300 transition-colors">
               Affiliate Disclosure
             </Link>

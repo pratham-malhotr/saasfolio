@@ -1,7 +1,8 @@
 "use client";
 import { useDialog } from "@/components/modals/useDialog";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
+import { trackProductEvent } from "@/lib/client-analytics";
 import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight, Layers } from "lucide-react";
 import { CouponCode } from "@/components/deals/CouponCode";
 import { OfferAction } from "@/components/deals/OfferAction";
@@ -134,6 +135,12 @@ export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPalet
     + (filter === "all" || filter === "deals" ? filteredDeals.length : 0)
     + (filter === "all" || filter === "articles" ? filteredArticles.length : 0)
     + (filter === "all" || filter === "community" ? filteredDiscussions.length : 0);
+
+  useEffect(() => {
+    if (!isOpen || query.trim().length < 2) return;
+    const timer = window.setTimeout(() => trackProductEvent("search_results", { scope: filter, resultCount: visibleCount }), 800);
+    return () => window.clearTimeout(timer);
+  }, [isOpen, query, filter, visibleCount]);
 
   if (!isOpen) return null;
 

@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
             SAASFOLIO PRIVACY POLICY
           </h1>
           <p className="font-mono text-xs text-zinc-500">
-            UPDATED: OCTOBER 27, 2026
+            UPDATED: OCTOBER 29, 2026
           </p>
         </div>
 
@@ -71,6 +71,12 @@ export default function PrivacyPolicyPage() {
                 <strong className="text-zinc-200">Technical Device Logs:</strong> Our hosting and authentication providers may process request logs for operation and abuse prevention. Server form limits use a keyed hash derived from the client address supplied by the hosting proxy. We do not claim that provider logs are automatically anonymized after a fixed period.
               </li>
             </ul>
+          </section>
+
+          <section id="analytics" className="scroll-mt-28 space-y-4">
+            <h2 className="font-display font-bold text-xl text-white">Optional analytics</h2>
+            <p>Google Analytics loads only after you allow optional analytics. It measures public page visits, search result counts, coupon-copy outcomes, offer and correction-link clicks, and loading performance. Account, staff, authentication and submission pages are excluded from our analytics events; our events omit search text, coupon values, form contents and URL query strings. Google may process technical device and network information under its own policy. Advertising storage and personalization remain disabled.</p>
+            <p>Change or withdraw your choice using Privacy preferences in the footer. Your choice is stored in this browser for up to 180 days. Browser Do Not Track and Global Privacy Control signals keep optional analytics disabled. Essential authentication and security storage work independently of this choice.</p>
           </section>
 
           <section id="advertising" className="scroll-mt-28 space-y-4">
@@ -119,7 +125,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul className="list-disc pl-5 space-y-2 text-zinc-400">
               <li>Access to or a copy of personal information associated with your account.</li>
-              <li>Review or deletion of your account and associated personal information. Self-service account deletion is not currently available.</li>
+              <li>Signed-in account holders can download account data and request permanent account removal from their profile. Deletion requires a recent sign-in and any required authenticator verification. Linked private submissions are redacted; published editorial content is retained without its deleted-account attribution. Contact support for records that cannot be handled through your account.</li>
               <li>Newsletter cancellation using the unsubscribe link in your signup email or a support request. Newsletter signup is inactive until you confirm your email.</li>
               <li>Corrections to inaccurate contact, profile, or submission information.</li>
             </ul>

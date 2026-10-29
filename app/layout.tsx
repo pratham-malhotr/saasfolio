@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import Script from "next/script";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteSchema } from "@/lib/structured-data";
 import { pageMetadata, SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
@@ -12,6 +11,7 @@ import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
 import { ADSENSE_ACCOUNT } from "@/lib/advertising.mjs";
 import { getDiscountSearchEntries } from "@/lib/brand-discounts";
+import { ConsentAnalytics } from "@/components/privacy/ConsentAnalytics";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-display",
@@ -70,20 +70,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} dark`}
     >
       <body className="min-h-screen bg-[#050505] text-[#EDEDED] antialiased selection:bg-[#C6FF3D] selection:text-black font-body overflow-x-hidden">
-        {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-7G7TJJENC0"
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-7G7TJJENC0');
-          `}
-        </Script>
+        <Suspense fallback={null}><ConsentAnalytics /></Suspense>
         <a href="#main-content" className="skip-link">Skip to content</a>
         <JsonLd data={siteSchema()} />
         {/* Global Custom Follower Cursor */}

@@ -31,7 +31,13 @@ export async function GET() {
       };
     });
 
-    return json({ user: publicUser(user), saved, bio: String(user.user_metadata?.bio || "") });
+    let staff: { role?: string } | null = null;
+    if (isSupabaseConfigured()) {
+      const client = await authClient();
+      const result = await client.rpc("staff_self");
+      if (!result.error && result.data && typeof result.data === "object") staff = result.data;
+    }
+    return json({ user: { ...publicUser(user), isStaff: Boolean(staff?.role) }, saved, bio: String(user.user_metadata?.bio || ""), security: { cloud: isSupabaseConfigured(), mfaEnrolled: user.factors?.some(factor => factor.status === "verified") || false } });
   } catch (error) {
     return failure(error);
   }

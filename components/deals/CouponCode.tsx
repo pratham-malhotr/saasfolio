@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { trackProductEvent } from "@/lib/client-analytics";
 
 export function CouponCode({ code }: { code: string }) {
   const [status, setStatus] = useState<"idle" | "copied" | "manual">("idle");
@@ -9,7 +10,8 @@ export function CouponCode({ code }: { code: string }) {
     try {
       await navigator.clipboard.writeText(code);
       setStatus("copied");
-    } catch { setStatus("manual"); }
+      trackProductEvent("coupon_copy", { result: "copied" });
+    } catch { setStatus("manual"); trackProductEvent("coupon_copy", { result: "manual" }); }
   }
   return <div className="space-y-3">
     <div className="flex flex-wrap items-center justify-center gap-3">

@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { apiRequest, ApiError } from "@/lib/api-client";
+import { MfaSettings } from "@/components/auth/MfaSettings";
+import { AccountDataControls } from "@/components/profile/AccountDataControls";
 
 type SavedItem = { kind: "deal" | "article"; slug: string; title: string; href: string | null; created_at: string };
-type Account = { user: { name: string; email: string; isAdmin: boolean }; saved: SavedItem[]; bio: string };
+type Account = { user: { name: string; email: string; isAdmin: boolean; isStaff?: boolean }; saved: SavedItem[]; bio: string; security?: { cloud: boolean; mfaEnrolled: boolean } };
 
 export function ProfileDashboardClient() {
   const router = useRouter();
@@ -52,7 +54,9 @@ export function ProfileDashboardClient() {
         {account.saved.length === 0 ? <div className="rounded-2xl border border-white/10 p-8 space-y-3 text-zinc-400"><p>You haven’t saved anything yet. Use the Save button on an offer or article.</p><Link href="/deals" className="inline-block text-[#C6FF3D] underline">Explore software offers →</Link></div> : <ul className="space-y-3">{account.saved.map(item => <li key={`${item.kind}:${item.slug}`} className="rounded-2xl border border-white/10 p-5 flex items-center justify-between gap-4"><div><p className="text-xs text-zinc-500 uppercase mb-2">{item.kind}</p>{item.href ? <Link href={item.href} className="text-white hover:text-[#C6FF3D]">{item.title}</Link> : <p className="text-zinc-400">{item.title}</p>}</div><button disabled={busy} onClick={() => remove(item)} className="text-sm text-zinc-400 hover:text-rose-400">Remove<span className="sr-only"> {item.title}</span></button></li>)}</ul>}
       </section>
       <section className="rounded-2xl border border-white/10 p-6 space-y-5"><h2 className="font-display text-2xl text-white font-bold">Profile settings</h2><form onSubmit={save} className="space-y-4 max-w-xl"><label className="block text-sm text-zinc-300">Display name<input value={name} onChange={event => setName(event.target.value)} required minLength={2} maxLength={100} autoComplete="name" className="mt-2 w-full rounded-xl p-3 bg-black border border-white/15 text-white" /></label><label className="block text-sm text-zinc-300">About you<textarea value={bio} onChange={event => setBio(event.target.value)} maxLength={1000} rows={4} className="mt-2 w-full rounded-xl p-3 bg-black border border-white/15 text-white" /></label><button disabled={busy} type="submit" className="px-5 py-3 rounded-xl bg-[#C6FF3D] text-black font-bold disabled:opacity-50">{busy ? "Saving…" : "Save profile"}</button></form><Link href="/reset-password" className="inline-block text-sm text-zinc-400 underline">Change password</Link></section>
-      {account.user.isAdmin && <Link href="/admin" className="inline-block text-[#C6FF3D] underline">Open the review inbox →</Link>}
+      {account.security?.cloud && <MfaSettings onVerified={() => setAccount(previous => previous?.security ? { ...previous, security: { ...previous.security, mfaEnrolled: true } } : previous)} />}
+      <AccountDataControls email={account.user.email} cloud={account.security?.cloud || false} mfaEnrolled={account.security?.mfaEnrolled || false} />
+      {(account.user.isStaff || account.user.isAdmin) && <Link href="/admin" className="inline-block text-[#C6FF3D] underline">Open the publishing workspace →</Link>}
     </>}
   </div>;
 }

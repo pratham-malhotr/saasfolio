@@ -14,19 +14,20 @@ export async function POST(request: Request) {
     }
     await enforceLimit(request, "newsletter", 3);
     const service = serviceClient();
-    const { data: existing, error: readError } = await service.from("newsletter_subscribers").select("id,status").eq("email", address).maybeSingle();
+    const { data: existing, error: readError } = await service.from("newsletter_subscribers").select("id,status,delivery_suppressed").eq("email", address).maybeSingle();
     if (readError) throw new HttpError(503, "Newsletter signup is temporarily unavailable.");
     const message = "If this address needs confirmation, a signup email has been requested. Check your inbox and spam folder.";
-    if (existing?.status === "active") return json({ message });
+    if (existing?.status === "active" || existing?.delivery_suppressed) return json({ message });
     const token = randomBytes(32).toString("hex");
     const unsubscribe = randomBytes(32).toString("hex");
     const hash = createHash("sha256").update(token).digest("hex");
-    const { error } = await service.from("newsletter_subscribers").upsert({
+    const { data: subscription, error } = await service.from("newsletter_subscribers").upsert({
       email: address, status: "pending", confirmation_hash: hash,
       unsubscribe_hash: createHash("sha256").update(unsubscribe).digest("hex"),
-      confirmation_expires_at: new Date(Date.now() + 86400000).toISOString(), consent_version: "2026-10-21",
-    }, { onConflict: "email" });
+      confirmation_expires_at: new Date(Date.now() + 86400000).toISOString(), consent_version: "2026-10-21", updated_at: new Date().toISOString(),
+    }, { onConflict: "email" }).select("delivery_suppressed").single();
     if (error) throw new HttpError(503, "Your signup could not be saved. Please try again.");
+    if (subscription?.delivery_suppressed) return json({ message });
     const result = await fetch("https://api.resend.com/emails", {
       method: "POST", headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": `newsletter-${hash}` },
       body: JSON.stringify({ from: process.env.NEWSLETTER_FROM_EMAIL, to: [address], subject: "Confirm your SaaSFolio newsletter signup",

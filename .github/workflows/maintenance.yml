@@ -1,0 +1,32 @@
+name: Platform maintenance
+on:
+  schedule:
+    - cron: "23 2 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: platform-maintenance
+  cancel-in-progress: false
+jobs:
+  maintenance:
+    if: vars.MAINTENANCE_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      INQUIRY_RETENTION_DAYS: ${{ vars.INQUIRY_RETENTION_DAYS }}
+      PENDING_NEWSLETTER_RETENTION_DAYS: ${{ vars.PENDING_NEWSLETTER_RETENTION_DAYS }}
+      UNSUBSCRIBED_RETENTION_DAYS: ${{ vars.UNSUBSCRIBED_RETENTION_DAYS }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Inspect maintenance counts
+        if: vars.MAINTENANCE_APPLY_ENABLED != 'true'
+        run: node scripts/platform-maintenance.mjs --dry-run
+      - name: Apply the configured policy and repair account-deletion cleanup
+        if: vars.MAINTENANCE_APPLY_ENABLED == 'true'
+        run: node scripts/platform-maintenance.mjs --apply

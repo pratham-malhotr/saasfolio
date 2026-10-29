@@ -46,7 +46,7 @@ export function AuthClient({ initialMode = "login" }: { initialMode?: "login" | 
       ? "Provider sign-in could not be completed. Try again or use your email and password."
       : ""
   );
-  const [notice, setNotice] = useState(params.get("reset") === "success" ? "Your password has been changed. Sign in with your new password." : "");
+  const [notice, setNotice] = useState(params.get("reset") === "success" ? "Your password has been changed. Sign in with your new password." : params.get("account") === "deleted" ? "Your account and linked private records have been removed." : params.get("account") === "cleanup" ? "Account access has been removed. Linked private records are awaiting cleanup; contact support if you need help." : "");
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
