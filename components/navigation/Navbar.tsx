@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
@@ -17,8 +17,15 @@ const CommandPalette = dynamic(() => import("@/components/modals/CommandPalette"
   loading: () => <SearchLoading />,
 });
 
+const subscribeToHydration = () => () => undefined;
+const clientHydrationSnapshot = () => true;
+const serverHydrationSnapshot = () => false;
+
 export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry[] }) {
   const pathname = usePathname();
+  // A route can change while this shared layout is still hydrating. Keep the
+  // initial link markup stable, then decorate the current route after hydration.
+  const hydrated = useSyncExternalStore(subscribeToHydration, clientHydrationSnapshot, serverHydrationSnapshot);
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -143,12 +150,13 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-1 bg-[#0A0A0C]/80 border border-white/[0.08] px-3 py-1.5 rounded-full backdrop-blur-md">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
+              const isActive = hydrated && (pathname === link.href || pathname.startsWith(`${link.href}/`));
               return (
                 <Link
                   key={link.label}
                   href={link.href}
                   prefetch={false}
+                  aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "relative px-2 lg:px-2.5 xl:px-4 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1.5",
                     isActive

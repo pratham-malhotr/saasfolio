@@ -144,6 +144,8 @@ try {
         throw error;
       }
       const heading = await layout(viewport.width, href);
+      const expectedNav = ["/discounts", "/deals", "/brands", "/compare", "/articles", "/community"].find(path => destination.pathname === path || destination.pathname.startsWith(`${path}/`));
+      if (expectedNav) await until(() => evaluate(`document.querySelector('header nav a[aria-current="page"]')?.getAttribute('href') === ${JSON.stringify(expectedNav)}`), `${href}: active navigation updates after hydration`);
       if (destination.hash) assert.ok(await evaluate(`(() => {const target=document.getElementById(${JSON.stringify(decodeURIComponent(destination.hash.slice(1)))});return !!target&&target.getBoundingClientRect().top>=0&&target.getBoundingClientRect().top<innerHeight;})()`), `${href}: anchor scrolls into view`);
       if (destination.searchParams.has("type")) assert.ok(await evaluate(`document.querySelector('main').textContent.includes(${JSON.stringify(`Type: ${destination.searchParams.get("type")}`)})`), `${href}: requested filter is active`);
       results.push({ width: viewport.width, href, heading });
