@@ -97,11 +97,13 @@ treated as evidence of a code's value.
 
 `.github/workflows/refresh-offers.yml` runs twice daily and supports manual runs.
 It refreshes sources, validates data, tests the collector, builds the site, and
-commits the snapshot only after checks pass. It uses the repository's
-`GITHUB_TOKEN` with `contents: write`; it needs no external secrets. Publishing
+opens or updates a release pull request only after checks pass. It uses the repository's
+`GITHUB_TOKEN` with `contents: write` and `pull-requests: write`; it needs no external secrets. Publishing
 this branch to GitHub and enabling Actions are required before it runs.
 
-Connect the host serving saasfolio.tech to deploy catalog commits, or run the
+Review and merge the release PR after required checks. The workflow never pushes directly to main and never force-pushes its release branch. Enable the repository setting that permits Actions to open pull requests. GitHub may require a maintainer to approve checks on token-created PRs. See [the enterprise activation runbook](ENTERPRISE-OPERATIONS.md) for the managed editorial workflow and release setup.
+
+Connect the host serving saasfolio.tech to deploy merged catalog commits, or run the
 same commands in its scheduled deployment pipeline. A snapshot commit alone does
 not certify that the public site has deployed. Workflows triggered by the
 default GitHub token do not start other GitHub push workflows; use a configured
