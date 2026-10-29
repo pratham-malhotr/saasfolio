@@ -61,6 +61,7 @@ try {
   await page("Network.setBlockedURLs", { urls: ["https://*"] });
   await page("Page.addScriptToEvaluateOnNewDocument", { source: "window.open = () => { throw new Error('Popup API disabled for smoke test'); }; Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: () => Promise.reject(new DOMException('Denied', 'NotAllowedError')) } });" });
   await page("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+  if (process.env.BROWSER_TOUCH_MODE === "coarse") await page("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 1 });
   async function navigate(path) {
     await page("Page.navigate", { url: `${origin}${path}` });
     await until(() => evaluate(`location.href === ${JSON.stringify(`${origin}${path}`)} && document.readyState === 'complete'`), path);
@@ -221,7 +222,7 @@ try {
   const motionCapable = await evaluate("matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches");
   await until(() => evaluate(`!!document.querySelector('[data-home-hero] canvas') === ${motionCapable}`), "hero follows the device's pointer and motion capabilities");
   console.log(`Pointer-dependent hero animation: ${motionCapable ? "enabled" : "static fallback for this device"}.`);
-  assert.ok(await evaluate("[...document.querySelectorAll('.hero-word')].every(word => getComputedStyle(word).animationName === 'hero-word-enter')"), "headline has a real staggered entrance");
+  assert.ok(await evaluate(`[...document.querySelectorAll('.hero-word')].every(word => getComputedStyle(word).animationName === ${JSON.stringify(motionCapable ? "hero-word-enter" : "none")})`), "headline animation follows the same pointer and motion condition as its CSS");
   await evaluate("Promise.all([...document.querySelectorAll('.hero-word')].flatMap(word => word.getAnimations()).map(animation => animation.finished.catch(() => {})))");
   assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth"), "home hero and compact brand cards fit mobile");
   const mobileHome = await page("Page.captureScreenshot", { format: "png" });
