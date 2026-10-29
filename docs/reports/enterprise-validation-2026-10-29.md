@@ -24,6 +24,8 @@ The offer-operations queue preserves successful evidence timestamps when request
 
 The scheduled refresh on GitHub advanced during delivery. Its newer snapshot was preserved by rebasing the five implementation commits; catalog/unit/build and affected offer/browser checks were repeated against that snapshot. The earlier complete browser suite also passed before integration.
 
+The first Linux CI run exposed a keyboard-fixture race: a rendered search button did not guarantee that the Navbar's passive keyboard listener had mounted. The fixture now waits for the actual window listener before dispatching Ctrl+K. Both viewport checks passed locally after this adjustment; application behavior and the lazy-search assertion are unchanged.
+
 Browser provider writes and Google requests were intercepted. No real account, provider authorization, inquiry, newsletter, analytics event or checkout was created by these fixtures. The local concurrency timings do not establish production capacity, and simulated device tests do not establish production Core Web Vitals.
 
 Production credentials are absent from this checkout. Supabase migrations/owner enrollment, verified email sender and webhook, hosting configuration, analytics property verification, external alert routing and off-site recovery policy still require the owner-controlled services. Follow [the activation and recovery runbook](../ENTERPRISE-OPERATIONS.md). This report does not claim those services were activated or that the product has an enterprise certification.

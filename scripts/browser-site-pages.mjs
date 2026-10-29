@@ -200,6 +200,12 @@ try {
 
     await navigate("/");
     await until(() => evaluate("Object.keys(document.querySelector('button[aria-label=\"Search SaaS discounts and coupon codes\"]')||{}).some(key=>key.startsWith('__reactProps'))"), "Home hydration");
+    // A committed button can precede the Navbar's passive effect. Sending
+    // Ctrl+K then invokes Chrome's own shortcut on Linux instead of the page.
+    await until(async () => {
+      const result = await page("Runtime.evaluate", { expression: "(getEventListeners(window).keydown || []).length > 0", includeCommandLineAPI: true, returnByValue: true });
+      return result.result.value === true;
+    }, "Search keyboard listener ready");
     const scriptsBefore = await evaluate("performance.getEntriesByType('resource').filter(entry=>entry.initiatorType==='script').map(entry=>entry.name)");
     await press("k", "KeyK", 75, 2);
     await until(() => evaluate("!!document.querySelector('[role=dialog] input[aria-label=\"Search brands, discounts and offers\"]')"), "Keyboard shortcut opens lazy search");
