@@ -10,7 +10,7 @@ const origin = (process.argv[2] || "http://127.0.0.1:3227").replace(/\/$/, "");
 const reportPath = process.argv.find(value => value.startsWith("--report="))?.slice(9) || `docs/reports/browser-site-pages-${new Date().toISOString().slice(0, 10)}.json`;
 const profile = await mkdtemp(join(tmpdir(), "saasfolio-site-pages-"));
 const chrome = spawn(process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", ["--headless=new", "--remote-debugging-pipe", `--user-data-dir=${profile}`, "--no-first-run", "--no-default-browser-check", "about:blank"], { stdio: ["ignore", "ignore", "ignore", "pipe", "pipe"] });
-let sequence = 0, buffer = "", activeSession, inquiryMode = "error";
+let sequence = 0, buffer = "", activeSession, inquiryMode = "error", activeUrl = "about:blank", activeWidth = 0;
 let servicesAvailable = true;
 const pending = new Map();
 const runtimeErrors = [], interceptionErrors = [], mockedWrites = [], failedResources = [], results = [];
@@ -19,7 +19,12 @@ chrome.stdio[4].on("data", chunk => {
   let boundary;
   while ((boundary = buffer.indexOf("\0")) >= 0) {
     const message = JSON.parse(buffer.slice(0, boundary)); buffer = buffer.slice(boundary + 1);
-    if (message.method === "Runtime.exceptionThrown") runtimeErrors.push(message.params.exceptionDetails.exception?.description || message.params.exceptionDetails.text);
+    if (message.method === "Page.frameNavigated" && !message.params.frame.parentId) activeUrl = message.params.frame.url;
+    if (message.method === "Page.navigatedWithinDocument") activeUrl = message.params.url;
+    if (message.method === "Runtime.exceptionThrown") {
+      const error = { url: activeUrl, width: activeWidth, description: message.params.exceptionDetails.exception?.description || message.params.exceptionDetails.text };
+      runtimeErrors.push(error); console.error("Browser runtime exception:", JSON.stringify(error));
+    }
     if (message.method === "Fetch.requestPaused") void intercept(message.params).catch(error => interceptionErrors.push(error.message));
     if (message.method === "Network.responseReceived") {
       const { response, type } = message.params;
@@ -73,6 +78,9 @@ try {
     return result.result.value;
   };
   await page("Page.enable"); await page("Runtime.enable"); await page("Network.enable");
+  const cpuRate = Number(process.env.BROWSER_CPU_RATE || 1);
+  assert.ok(Number.isFinite(cpuRate) && cpuRate >= 1 && cpuRate <= 8, "BROWSER_CPU_RATE must be between 1 and 8");
+  await page("Emulation.setCPUThrottlingRate", { rate: cpuRate });
   await page("Page.addScriptToEvaluateOnNewDocument", { source: "window.auditClicks=[]; for(const type of ['mousedown','mouseup','click']) document.addEventListener(type,event=>auditClicks.push({type,href:event.target.closest('a')?.getAttribute('href'),y:event.clientY,scrollY}),true);" });
   await page("Fetch.enable", { patterns: [{ urlPattern: `${origin}/api/*` }, { urlPattern: "https://*" }] });
   await page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
@@ -118,6 +126,7 @@ try {
     return state.heading;
   }
   for (const viewport of [{ width: 360, height: 800, mobile: true }, { width: 1440, height: 1000, mobile: false }]) {
+    activeWidth = viewport.width;
     await page("Emulation.setDeviceMetricsOverride", { ...viewport, deviceScaleFactor: 1 });
     await page("Emulation.setTouchEmulationEnabled", { enabled: viewport.mobile });
     await navigate("/");
