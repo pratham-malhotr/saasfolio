@@ -1,0 +1,20 @@
+name: Production availability
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  availability:
+    if: vars.MONITORING_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: node scripts/check-production.mjs
+        env:
+          SITE_URL: ${{ vars.PRODUCTION_SITE_URL || 'https://saasfolio.tech' }}

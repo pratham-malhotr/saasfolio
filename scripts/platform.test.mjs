@@ -19,10 +19,18 @@ function platform(options = {}) {
   const cache = new Map();
   const writes = [];
   const limits = [];
+  const rpcCalls = [], authCalls = [];
   const authCookies = new Map();
   let user = options.user || null;
   const database = {
-    rpc: async (_name, args) => { limits.push(args); return { data: options.limited ? false : true, error: options.limitFailure ? {} : null }; },
+    rpc: async (name, args) => {
+      rpcCalls.push({ name, args });
+      if (options.rpc?.[name]) return options.rpc[name];
+      if (name === "staff_self") return { data: user?.email === testUser.email && user?.email_confirmed_at ? { role: "owner", mfaVerified: options.mfa !== false } : null, error: null };
+      if (name === "bootstrap_staff_owner") return { data: false, error: null };
+      if (name === "review_inquiries") return { data: [], error: null };
+      limits.push(args); return { data: options.limited ? false : true, error: options.limitFailure ? {} : null };
+    },
     from(table) {
       const operation = { table, filters: [] };
       const query = {
@@ -32,15 +40,23 @@ function platform(options = {}) {
         delete() { operation.action = "delete"; writes.push(operation); return query; },
         select() { return query; },
         eq(key, value) { operation.filters.push([key, value]); return query; },
-        order() { return query; }, limit() { return query; }, gt() { return query; },
+        order() { return query; }, limit() { return query; }, gt() { return query; }, range() { return query; },
         async single() { return { data: options.writeFailure ? null : { id: "92aa27bf-1b80-4de7-a7dc-6fc50c3af820" }, error: options.writeFailure ? {} : null }; },
         async maybeSingle() { return { data: options.row || null, error: null }; },
-        then(done, fail) { return Promise.resolve({ data: [], error: options.writeFailure ? {} : null }).then(done, fail); },
+        then(done, fail) { return Promise.resolve({ data: options.rows?.[table] || [], error: options.writeFailure ? {} : null }).then(done, fail); },
       };
       return query;
     },
   };
   const auth = {
+    admin: { async deleteUser(id, soft) { authCalls.push({ action: "delete", id, soft }); return { error: options.deleteFailure ? {} : null }; } },
+    mfa: {
+      async listFactors() { return { data: { all: options.factors || [], totp: (options.factors || []).filter(factor => factor.status === "verified") }, error: null }; },
+      async getAuthenticatorAssuranceLevel() { return { data: { currentLevel: options.mfa === false ? "aal1" : "aal2" }, error: null }; },
+      async enroll() { authCalls.push({ action: "enroll" }); return { data: { id: "00000000-0000-4000-8000-000000000010", totp: { qr_code: "data:image/svg+xml;utf8,test", secret: "test-only-secret" } }, error: null }; },
+      async challengeAndVerify(value) { authCalls.push({ action: "verify", ...value }); return { data: {}, error: options.verifyFailure ? {} : null }; },
+      async unenroll(value) { authCalls.push({ action: "unenroll", ...value }); return { error: null }; },
+    },
     async getUser() { return { data: { user }, error: null }; },
     async signInWithPassword(data) {
       if (data.password !== "correct-password") return { data: { user: null }, error: {} };
@@ -60,9 +76,12 @@ function platform(options = {}) {
       delete: name => { authCookies.delete(name); },
     }) },
     "@supabase/ssr": { createServerClient: () => ({ ...database, auth }) },
-    "@supabase/supabase-js": { createClient: () => database },
-    "@/lib/data/deals-data": { getDealBySlug: slug => slug === "valid-offer" ? { slug, title: "Valid offer" } : undefined },
+    "@supabase/supabase-js": { createClient: () => ({ ...database, auth }) },
+    "@/lib/data/deals-data": { getDealBySlug: slug => slug === "valid-offer" ? { slug, toolSlug: "example", title: "Valid offer" } : undefined, getHistoricOfferToolSlug: slug => slug === "historic-offer" ? "example" : undefined },
+    "@/lib/data/tools-data": { getToolBySlug: slug => ["example", "other-brand"].includes(slug) ? { slug, name: slug } : undefined },
+    "@/lib/data/managed-content": { MANAGED_OFFERS: [], RETIRED_MANAGED_OFFERS: new Set() },
     "@/lib/data/articles-data": { getArticleBySlug: slug => slug === "valid-article" ? { slug, title: "Valid article" } : undefined },
+    "@/lib/data/offer-snapshot.json": { lastRun: new Date().toISOString(), sources: {} },
   };
   function load(filename) {
     const file = resolve(root, filename);
@@ -78,7 +97,7 @@ function platform(options = {}) {
     new Function("require", "module", "exports", source)(localRequire, loadedModule, loadedModule.exports);
     return loadedModule.exports;
   }
-  return { load, writes, limits };
+  return { load, writes, limits, rpcCalls, authCalls };
 }
 const request = (path, data, options = {}) => new Request(`https://saasfolio.tech${path}`, {
   method: options.method || "POST", headers: { "Content-Type": "application/json", Origin: options.origin || "https://saasfolio.tech" }, body: options.raw || JSON.stringify(data),
@@ -130,6 +149,59 @@ test("code submissions require authentication and remain pending after input che
   assert.equal(payload.reviewStatus, "pending");
   assert.equal(payload.sourceChecked, false);
   assert.equal(payload.checkoutTested, false);
+});
+test("correction reports retain validated listing identities as unreviewed context", async () => {
+  for (const offerSlug of ["valid-offer", "historic-offer"]) {
+    const app = platform();
+    const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...contact, reportOffer: offerSlug, reportBrand: "example", reportStatus: "verified" }));
+    assert.equal(response.status, 201);
+    assert.equal(app.writes[0].value.payload.offerSlug, offerSlug);
+    assert.equal(app.writes[0].value.payload.brandSlug, "example");
+    assert.equal(app.writes[0].value.payload.reportStatus, "unreviewed");
+  }
+  for (const context of [{ reportOffer: "invented" }, { reportBrand: "invented" }, { reportOffer: "valid-offer", reportBrand: "other-brand" }, { reportOffer: "valid-offer?token=private" }]) {
+    const app = platform();
+    assert.equal((await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...contact, ...context }))).status, 400);
+    assert.equal(app.writes.length, 0);
+  }
+});
+test("offer operations require confirmed MFA staff and validate pagination without provider writes", async () => {
+  const url = "https://saasfolio.tech/api/admin/offers";
+  for (const [options, status] of [[{}, 401], [{ user: testUser, mfa: false }, 403], [{ user: { ...testUser, email: "visitor@example.test" } }, 403], [{ user: testUser }, 200]]) {
+    const app = platform(options);
+    const response = await app.load("app/api/admin/offers/route.ts").GET(new Request(url));
+    assert.equal(response.status, status);
+    assert.equal(response.headers.get("cache-control"), "private, no-store");
+    assert.equal(app.writes.length, 0);
+  }
+  for (const query of ["?reason=invented", "?page=-1", "?page=1.5", "?page=Infinity"]) {
+    assert.equal((await platform({ user: testUser }).load("app/api/admin/offers/route.ts").GET(new Request(url + query))).status, 400);
+  }
+});
+test("product analytics respect current consent, private routes and privacy signals without disrupting user actions", () => {
+  const saved = Object.fromEntries(["window", "location", "navigator", "localStorage"].map(key => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
+  const events = [], browserLocation = { pathname: "/discounts/example", origin: "https://saasfolio.tech", search: "?private=never-send" }, browserNavigator = { doNotTrack: null, globalPrivacyControl: false };
+  let consent = null;
+  try {
+    for (const [key, value] of Object.entries({ window: { gtag: (...args) => events.push(args) }, location: browserLocation, navigator: browserNavigator, localStorage: { getItem: () => consent } })) Object.defineProperty(globalThis, key, { value, configurable: true });
+    const { trackProductEvent } = platform().load("lib/client-analytics.ts");
+    const copy = () => trackProductEvent("coupon_copy", { result: "copied", code: "NEVER-SEND-CODE" });
+    copy(); assert.equal(events.length, 0);
+    consent = JSON.stringify({ version: 1, allowed: true, at: Date.now() });
+    copy(); assert.equal(events.length, 1);
+    assert.equal(events[0][2].page_location, "https://saasfolio.tech/discounts/example");
+    assert.ok(!JSON.stringify(events).includes("NEVER-SEND") && !JSON.stringify(events).includes("private="));
+    browserNavigator.doNotTrack = "1"; copy();
+    browserNavigator.doNotTrack = null; browserNavigator.globalPrivacyControl = true; copy();
+    browserNavigator.globalPrivacyControl = false; browserLocation.pathname = "/profile"; copy();
+    browserLocation.pathname = "/discounts/example"; consent = JSON.stringify({ version: 1, allowed: false, at: Date.now() }); copy();
+    assert.equal(events.length, 1);
+    consent = JSON.stringify({ version: 1, allowed: true, at: Date.now() });
+    globalThis.window.gtag = () => { throw new Error("Third-party fixture failure"); };
+    assert.doesNotThrow(copy);
+  } finally {
+    for (const [key, descriptor] of Object.entries(saved)) { if (descriptor) Object.defineProperty(globalThis, key, descriptor); else delete globalThis[key]; }
+  }
 });
 
 test("preflight of an invented code never claims source or checkout verification or writes a submission", async () => {
@@ -202,13 +274,15 @@ test("password sign-in rejects invented users and signup requires confirmation",
 test("private accounts and admin endpoints require verified authorization", async () => {
   let app = platform();
   assert.equal((await app.load("app/api/account/route.ts").GET()).status, 401);
-  assert.equal((await app.load("app/api/admin/inquiries/route.ts").GET()).status, 401);
+  assert.equal((await app.load("app/api/admin/inquiries/route.ts").GET(new Request("https://saasfolio.tech/api/admin/inquiries"))).status, 401);
   for (const user of [{ ...testUser, email: "other@example.com" }, { ...testUser, email_confirmed_at: null }]) {
     app = platform({ user });
-    assert.equal((await app.load("app/api/admin/inquiries/route.ts").GET()).status, 403);
+    assert.equal((await app.load("app/api/admin/inquiries/route.ts").GET(new Request("https://saasfolio.tech/api/admin/inquiries"))).status, 403);
   }
   app = platform({ user: testUser });
-  assert.equal((await app.load("app/api/admin/inquiries/route.ts").GET()).status, 200);
+  assert.equal((await app.load("app/api/admin/inquiries/route.ts").GET(new Request("https://saasfolio.tech/api/admin/inquiries"))).status, 200);
+  app = platform({ user: testUser, mfa: false });
+  assert.equal((await app.load("app/api/admin/inquiries/route.ts").GET(new Request("https://saasfolio.tech/api/admin/inquiries"))).status, 403);
 });
 
 test("saved items use the authenticated user and reject unknown catalog entries", async () => {
@@ -226,6 +300,84 @@ test("newsletter requires explicit consent and a configured delivery provider", 
   delete process.env.RESEND_API_KEY;
   assert.equal((await newsletter.POST(request("/api/newsletter", { email: "test@example.com", consent: true }))).status, 503);
   assert.equal(app.writes.length, 0);
+});
+
+test("authenticator enrollment recognizes pending factors and never permits verified-factor cancellation", async () => {
+  const id = "00000000-0000-4000-8000-000000000010";
+  let app = platform({ user: testUser, factors: [{ id, factor_type: "totp", status: "unverified" }] });
+  let route = app.load("app/api/auth/mfa/route.ts");
+  assert.equal((await (await route.GET()).json()).factors[0].status, "unverified");
+  assert.equal((await route.POST(request("/api/auth/mfa", { action: "verify", factorId: id, code: "123456" }))).status, 200);
+  assert.equal(app.authCalls[0].action, "verify");
+  assert.equal((await route.POST(request("/api/auth/mfa", { action: "verify", factorId: "00000000-0000-4000-8000-000000000011", code: "123456" }))).status, 400);
+  app = platform({ user: testUser, mfa: false, factors: [{ id, factor_type: "totp", status: "verified" }] }); route = app.load("app/api/auth/mfa/route.ts");
+  assert.equal((await route.POST(request("/api/auth/mfa", { action: "cancel", factorId: id }))).status, 403);
+  assert.equal((await route.POST(request("/api/auth/mfa", { action: "enroll" }))).status, 403);
+  assert.equal(app.authCalls.length, 0);
+});
+test("account deletion verifies the explicit request and database authentication before provider removal", async () => {
+  const input = { email: testUser.email, confirmation: "DELETE MY ACCOUNT" };
+  let app = platform({ user: testUser, rpc: { prepare_account_deletion: { data: null, error: { code: "42501" } } } });
+  assert.equal((await app.load("app/api/account/deletion/route.ts").POST(request("/api/account/deletion", input))).status, 403);
+  assert.equal(app.authCalls.length, 0);
+  app = platform({ user: testUser });
+  assert.equal((await app.load("app/api/account/deletion/route.ts").POST(request("/api/account/deletion", { ...input, email: "other@example.test" }))).status, 400);
+  assert.equal(app.rpcCalls.some(call => call.name === "prepare_account_deletion"), false);
+});
+test("failed account removal does not erase linked records or claim success", async () => {
+  const app = platform({ user: testUser, deleteFailure: true, rpc: { prepare_account_deletion: { data: "request-id", error: null } } });
+  const response = await app.load("app/api/account/deletion/route.ts").POST(request("/api/account/deletion", { email: testUser.email, confirmation: "DELETE MY ACCOUNT" }));
+  assert.equal(response.status, 503); assert.equal((await response.json()).code, "ACCOUNT_DELETION_UNCONFIRMED");
+  assert.equal(app.rpcCalls.some(call => call.name === "complete_account_deletion"), false);
+});
+test("account deletion reports incomplete cleanup honestly and supplies a repair reference", async () => {
+  for (const failed of [false, true]) {
+    const app = platform({ user: testUser, rpc: { prepare_account_deletion: { data: "request-id", error: null }, complete_account_deletion: { data: null, error: failed ? {} : null } } });
+    const response = await app.load("app/api/account/deletion/route.ts").POST(request("/api/account/deletion", { email: testUser.email, confirmation: "DELETE MY ACCOUNT" }));
+    assert.equal(response.status, failed ? 202 : 200);
+    assert.equal((await response.json()).status, failed ? "pending_cleanup" : "deleted");
+    assert.deepEqual(app.authCalls[0], { action: "delete", id: testUser.id, soft: false });
+  }
+});
+test("account export is private and excludes authentication secrets and arbitrary provider metadata", async () => {
+  const app = platform({ user: { ...testUser, user_metadata: { ...testUser.user_metadata, provider_token: "never-export-this-secret" } }, rows: { saved_items: [{ kind: "deal", slug: "valid-offer", created_at: "2026-10-21" }] } });
+  const response = await app.load("app/api/account/export/route.ts").GET(new Request("https://saasfolio.tech/api/account/export"));
+  assert.equal(response.status, 200); assert.match(response.headers.get("cache-control"), /private, no-store/); assert.match(response.headers.get("content-disposition"), /attachment/);
+  const body = await response.json(); assert.equal(body.savedItems.length, 1); assert.ok(!JSON.stringify(body).includes("never-export"));
+});
+test("suppressed newsletter addresses do not receive a new confirmation message", async () => {
+  const app = platform({ row: { id: "subscriber-id", status: "unsubscribed", delivery_suppressed: true } });
+  process.env.RESEND_API_KEY = "test-provider-key"; process.env.NEWSLETTER_FROM_EMAIL = "newsletter@example.test";
+  const response = await app.load("app/api/newsletter/route.ts").POST(request("/api/newsletter", { email: "bounced@example.test", consent: true }));
+  assert.equal(response.status, 200); assert.equal(app.writes.length, 0);
+  delete process.env.RESEND_API_KEY; delete process.env.NEWSLETTER_FROM_EMAIL;
+});
+
+test("readiness requires live dependency probes and the current schema, and caches briefly", async () => {
+  const original = globalThis.fetch;
+  try {
+    for (const [schemaVersion, expected] of [[3, 200], [2, 503]]) {
+      const app = platform(); let requests = 0;
+      globalThis.fetch = async url => { requests++; return new Response(JSON.stringify(String(url).includes("platform_readiness") ? { ready: true, schemaVersion } : {}), { status: 200 }); };
+      const ready = app.load("app/api/ready/route.ts");
+      assert.equal((await ready.GET()).status, expected);
+      assert.equal((await ready.GET()).status, expected); assert.equal(requests, 2);
+      const body = await (await ready.GET()).json(); assert.equal(body.checks, undefined); assert.ok(!JSON.stringify(body).includes("test-service"));
+    }
+    const app = platform(); globalThis.fetch = async () => { throw new Error("provider outage with private credentials"); };
+    assert.equal((await app.load("app/api/ready/route.ts").GET()).status, 503);
+  } finally { globalThis.fetch = original; }
+});
+test("operational status rejects placeholder, missing and incorrect monitoring credentials", async () => {
+  const app = platform(); const { authorizedMonitor } = app.load("lib/server/readiness.ts");
+  try {
+    process.env.MONITORING_TOKEN = "replace-with-a-long-random-monitoring-secret";
+    assert.equal(authorizedMonitor(new Request("https://saasfolio.tech", { headers: { authorization: `Bearer ${process.env.MONITORING_TOKEN}` } })), false);
+    process.env.MONITORING_TOKEN = "a1b2c3d4e5f6".repeat(4);
+    assert.equal(authorizedMonitor(new Request("https://saasfolio.tech")), false);
+    assert.equal(authorizedMonitor(new Request("https://saasfolio.tech", { headers: { authorization: "Bearer incorrect" } })), false);
+    assert.equal(authorizedMonitor(new Request("https://saasfolio.tech", { headers: { authorization: `Bearer ${process.env.MONITORING_TOKEN}` } })), true);
+  } finally { delete process.env.MONITORING_TOKEN; }
 });
 
 test("redirects cannot escape the site", () => {

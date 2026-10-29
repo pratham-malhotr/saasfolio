@@ -1,0 +1,12 @@
+import { mkdir } from "node:fs/promises";
+import { resolve, join } from "node:path";
+import { randomUUID } from "node:crypto";
+import { createDatabaseBackup, databaseEnvironment } from "./lib/encrypted-backup.mjs";
+if (!/^[a-f0-9]{64}$/i.test(process.env.BACKUP_ENCRYPTION_KEY || "")) throw new Error("Set BACKUP_ENCRYPTION_KEY to 64 random hexadecimal characters and retain it separately from backups.");
+const env = databaseEnvironment(process.env.BACKUP_DATABASE_URL);
+const directory = resolve(process.env.BACKUP_DIRECTORY || ".backups");
+await mkdir(directory, { recursive: true, mode: 0o700 });
+const destination = join(directory, `saasfolio-${new Date().toISOString().replace(/[:.]/g, "-")}-${randomUUID()}.sfb`);
+await createDatabaseBackup({ env, destination, key: Buffer.from(process.env.BACKUP_ENCRYPTION_KEY, "hex") });
+console.log(`Encrypted database export verified: ${destination}`);
+console.log("This local export still needs your configured off-site retention and provider recovery policy.");

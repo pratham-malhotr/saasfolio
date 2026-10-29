@@ -1,3 +1,4 @@
+import { emptyManaged } from "./lib/empty-managed-fixture.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
@@ -17,6 +18,7 @@ const root = path.resolve(import.meta.dirname, "..");
 const nativeRequire = createRequire(import.meta.url);
 
 function loadTs(relativePath, dependencies, date = Date) {
+  dependencies = { "./managed-content": emptyManaged, ...dependencies };
   const source = readFileSync(path.join(root, relativePath), "utf8");
   const js = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true } }).outputText;
   const loaded = { exports: {} };
@@ -51,6 +53,8 @@ test("the actual refresh script preserves URL identity after successful offer re
     await fs.mkdir(path.join(fixture, "scripts/lib"), { recursive: true });
     await fs.mkdir(path.join(fixture, "lib/data"), { recursive: true });
     await fs.copyFile(path.join(root, "scripts/refresh-offers.mjs"), path.join(fixture, "scripts/refresh-offers.mjs"));
+    await fs.copyFile(path.join(root, "lib/managed-catalog.mjs"), path.join(fixture, "lib/managed-catalog.mjs"));
+    await fs.copyFile(path.join(root, "lib/public-url.mjs"), path.join(fixture, "lib/public-url.mjs"));
     await fs.copyFile(path.join(root, "scripts/lib/offer-url-history.mjs"), path.join(fixture, "scripts/lib/offer-url-history.mjs"));
     await fs.writeFile(path.join(fixture, "scripts/lib/load-catalog.mjs"), 'export const loadCatalogModule = () => ({ getToolBySlug: slug => ({ slug }) });');
     await fs.writeFile(path.join(fixture, "scripts/lib/source-backoff.mjs"), 'export const shouldAttemptSource = () => true; export const sourceBackoff = (_previous, error) => ({ httpStatus: error.status, failureCount: 1 });');
@@ -74,6 +78,7 @@ test("the actual refresh script preserves URL identity after successful offer re
       { slug: "missing", name: "Missing", url: "https://missing.example/pricing" },
     ]);
     await writeJson("reviewed-offers.json", []);
+    await writeJson("managed-catalog.json", { schemaVersion: 1, revision: 0, publishedAt: null, entries: [] });
     await writeJson("provider-links.json", {});
     await writeJson("legacy-deal-aliases.json", {});
     await writeJson("offer-url-history.json", emptyOfferUrlHistory());

@@ -35,6 +35,9 @@ yarn-error.log*
 !.env.example
 .local-data/
 *.db
+.backups/
+*.sfb
+*.partial
 
 # vercel
 .vercel

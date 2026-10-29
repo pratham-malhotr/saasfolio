@@ -1,0 +1,82 @@
+import assert from "node:assert/strict";
+import { browserSession, until } from "./lib/browser-session.mjs";
+import { loadCatalogModule } from "./lib/load-catalog.mjs";
+const { getAllDeals } = loadCatalogModule("lib/data/deals-data.ts");
+const coupon = getAllDeals().find(offer => offer.code);
+assert.ok(coupon, "The privacy fixture needs a current source-reported coupon");
+const origin = (process.argv[2] || "http://127.0.0.1:3238").replace(/\/$/, "");
+const browser = await browserSession(); const external = [], errors = [], interceptionErrors = [];
+browser.on("Runtime.exceptionThrown", error => errors.push(error.exceptionDetails.exception?.description || error.exceptionDetails.text));
+browser.on("Fetch.requestPaused", event => { void intercept(event).catch(error => interceptionErrors.push(error.message)); });
+async function intercept({ requestId, request }) {
+  const url = new URL(request.url);
+  if (url.origin === origin) return browser.page("Fetch.continueRequest", { requestId });
+  external.push(url.href);
+  if (url.hostname === "www.googletagmanager.com") return browser.page("Fetch.fulfillRequest", { requestId, responseCode: 200, responseHeaders: [{ name: "Content-Type", value: "text/javascript" }], body: Buffer.from("window.__privacyAuditTagLoaded = true;").toString("base64") });
+  return browser.page("Fetch.failRequest", { requestId, errorReason: "BlockedByClient" });
+}
+async function navigate(path, allowLogin = false) { await browser.page("Page.navigate", { url: `${origin}${path}` }); await until(() => browser.evaluate(`(location.href === ${JSON.stringify(`${origin}${path}`)} || ${allowLogin} && location.pathname === '/login') && document.readyState === 'complete'`), path); }
+async function click(label) {
+  await until(() => browser.evaluate(`Array.from(document.querySelectorAll('button')).some(button=>button.textContent===${JSON.stringify(label)} && Object.keys(button).some(key=>key.startsWith('__reactProps')))`), `hydrated ${label}`);
+  await browser.evaluate(`Array.from(document.querySelectorAll('button')).find(button=>button.textContent===${JSON.stringify(label)}).click()`);
+}
+try {
+  await browser.page("Fetch.enable", { patterns: [{ urlPattern: "https://*" }] });
+  await browser.page("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+  await browser.page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
+  await navigate("/?privateQuery=never-send-this");
+  await until(() => browser.evaluate("!!document.querySelector('[aria-label=\"Analytics preferences\"]')"), "initial consent notice");
+  assert.equal(external.filter(url => url.includes("googletagmanager")).length, 0, "Analytics must not load before consent");
+  assert.equal(await browser.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), true);
+  await click("Allow analytics");
+  await until(() => browser.evaluate("!!window.__privacyAuditTagLoaded"), "consented analytics tag");
+  await until(() => browser.evaluate("window.dataLayer?.some(item=>item[0]==='event' && item[1]==='page_view')"), "manual public page event");
+  const data = await browser.evaluate("JSON.stringify(window.dataLayer.map(item=>Array.from(item)))");
+  assert.ok(!data.includes("never-send-this"), "Analytics events must omit URL queries");
+  const measurementId = new URL(external.find(url => url.includes("googletagmanager.com/gtag/js"))).searchParams.get("id");
+  await until(() => browser.evaluate("!!document.querySelector('button[aria-label=\"Search SaaS discounts and coupon codes\"]')"), "search trigger");
+  await browser.evaluate("document.querySelector('button[aria-label=\"Search SaaS discounts and coupon codes\"]').focus();document.activeElement.click()");
+  await until(() => browser.evaluate("!!document.querySelector('[role=dialog] input')"), "lazy search dialog");
+  await browser.evaluate("document.querySelector('[role=dialog] input').focus()");
+  await browser.page("Input.insertText", { text: "privacy-fixture-never-found@example.test" });
+  await until(() => browser.evaluate("window.dataLayer?.some(item=>item[0]==='event' && item[1]==='search_results' && item[2].result_count===0 && item[2].has_results===false)"), "consented failed-search count");
+  assert.equal(await browser.evaluate("JSON.stringify(window.dataLayer.map(item=>Array.from(item))).includes('privacy-fixture-never-found')"), false, "Search text must not enter analytics");
+  const focusTargets = "Array.from(document.querySelector('[role=dialog]').querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),[tabindex=\"0\"]')).filter(element=>element.offsetParent!==null)";
+  await browser.evaluate(`(${focusTargets}).at(-1).focus()`);
+  await browser.page("Input.dispatchKeyEvent", { type: "keyDown", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9 });
+  await browser.page("Input.dispatchKeyEvent", { type: "keyUp", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9 });
+  assert.equal(await browser.evaluate(`document.activeElement===(${focusTargets})[0]`), true, "Tab wraps inside the dialog");
+  await browser.page("Input.dispatchKeyEvent", { type: "keyDown", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9, modifiers: 8 });
+  await browser.page("Input.dispatchKeyEvent", { type: "keyUp", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9, modifiers: 8 });
+  assert.equal(await browser.evaluate(`document.activeElement===(${focusTargets}).at(-1)`), true, "Shift+Tab wraps inside the dialog");
+  await browser.page("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
+  await browser.page("Input.dispatchKeyEvent", { type: "keyUp", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
+  await until(() => browser.evaluate("!document.querySelector('[role=dialog]') && document.activeElement?.getAttribute('aria-label')==='Search SaaS discounts and coupon codes'"), "search restores keyboard focus");
+  await browser.page("Page.addScriptToEvaluateOnNewDocument", { source: "Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:()=>Promise.reject(new Error('Fixture clipboard denial'))}});" });
+  await navigate(`/deals/${coupon.slug}`); await until(() => browser.evaluate("!!window.__privacyAuditTagLoaded"), "consented coupon page");
+  await until(() => browser.evaluate("Object.keys(document.querySelector('button[aria-label=\"Copy coupon code\"]')||{}).some(key=>key.startsWith('__reactProps'))"), "hydrated coupon action");
+  await browser.evaluate("document.querySelector('button[aria-label=\"Copy coupon code\"]').click()");
+  await until(() => browser.evaluate("window.dataLayer?.some(item=>item[0]==='event' && item[1]==='coupon_copy' && item[2].copy_result==='manual')"), "honest clipboard-fallback measurement");
+  const couponEvents = await browser.evaluate("window.dataLayer.filter(item=>item[0]==='event' && item[1]==='coupon_copy').map(item=>item[2])");
+  assert.ok(couponEvents.every(fields => !Object.hasOwn(fields, "code") && !Object.hasOwn(fields, "coupon")), "Coupon values must not enter copy events");
+  const beforePrivate = external.length;
+  await navigate("/profile", true);
+  await until(() => browser.evaluate("location.pathname === '/login' && !!document.querySelector('input[type=email]')"), "signed-out profile redirects to sign-in");
+  assert.equal(external.length, beforePrivate, "Private routes must not load analytics");
+  await navigate("/"); await until(() => browser.evaluate("!!window.__privacyAuditTagLoaded"), "analytics on an eligible return visit");
+  await click("Privacy preferences"); await until(() => browser.evaluate("!!document.querySelector('dialog[open]')"), "preferences dialog");
+  await browser.page("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
+  await browser.page("Input.dispatchKeyEvent", { type: "keyUp", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
+  await until(() => browser.evaluate("!document.querySelector('dialog[open]')"), "keyboard dismissal");
+  await click("Privacy preferences"); await click("Decline analytics");
+  assert.equal(await browser.evaluate(`window[${JSON.stringify(`ga-disable-${measurementId}`)}]`), true);
+  const beforeReload = external.length; await navigate("/discounts");
+  await until(() => browser.evaluate("localStorage.getItem('saasfolio.analytics-consent.v1')?.includes('false')"), "persisted decline");
+  assert.equal(external.length, beforeReload, "Declining must persist across navigations");
+  await browser.evaluate("localStorage.setItem('saasfolio.analytics-consent.v1',JSON.stringify({version:1,allowed:true,at:Date.now()}))");
+  await browser.page("Page.addScriptToEvaluateOnNewDocument", { source: "Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>true});" });
+  await navigate("/about"); await until(() => browser.evaluate("navigator.globalPrivacyControl===true"), "browser privacy signal");
+  assert.equal(external.length, beforeReload, "Global Privacy Control must override saved consent");
+  assert.deepEqual(interceptionErrors, []); assert.deepEqual(errors, []);
+  console.log("Mobile privacy checks passed: default-off, opt-in, sanitized failed-search and copy events, search focus restoration, query omission, private-route exclusion, keyboard preferences, revocation, persistence and GPC. Google requests were intercepted; no analytics event was delivered.");
+} finally { await browser.close(); }

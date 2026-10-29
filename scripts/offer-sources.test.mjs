@@ -1,3 +1,4 @@
+import { emptyManaged } from "./lib/empty-managed-fixture.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -66,6 +67,7 @@ test("conditional fetches preserve 304 without fabricating new evidence", async 
 });
 
 function loadTs(relativePath, dependencies = {}, date = Date) {
+  dependencies = { "./managed-content": emptyManaged, "@/lib/data/managed-guides": emptyManaged, "@/lib/data/managed-content": emptyManaged, ...dependencies };
   const source = fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
   const js = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, esModuleInterop: true } }).outputText;
   const testModule = { exports: {} };

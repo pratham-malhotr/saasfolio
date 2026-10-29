@@ -38,7 +38,15 @@
     "test:search": "node --test scripts/discount-search.test.mjs",
     "test:auth": "node --test scripts/auth-oauth.test.mjs scripts/local-auth-security.test.mjs scripts/auth-proxy.test.mjs",
     "test:auth:http": "node scripts/auth-http-smoke.mjs",
-    "coupons:inspect": "node scripts/inspect-simplycodes.mjs"
+    "coupons:inspect": "node scripts/inspect-simplycodes.mjs",
+    "test:unit": "node --test scripts/*.test.mjs",
+    "check:production-build": "node scripts/run-production-checks.mjs",
+    "monitor:production": "node scripts/check-production.mjs",
+    "catalog:export": "node scripts/export-managed-catalog.mjs",
+    "test:database": "node scripts/test-database.mjs",
+    "ops:maintenance": "node scripts/platform-maintenance.mjs",
+    "ops:backup": "node scripts/backup-database.mjs",
+    "ops:restore-drill": "node scripts/restore-drill.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -68,5 +76,8 @@
     "parse5": "8.0.1",
     "sharp": "0.35.5",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=22.12.0 <27"
   }
 }

@@ -1,0 +1,66 @@
+name: Website checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: website-checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  database-permissions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: saasfolio_test
+          POSTGRES_PASSWORD: disposable-test-password
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_TEST_URL: postgresql://postgres:disposable-test-password@127.0.0.1:5432/saasfolio_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: node scripts/test-database.mjs
+  application:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      NEXT_PUBLIC_SITE_URL: https://saasfolio.tech
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test:unit
+      - run: npm run validate:catalog
+      - run: npm run build
+      - run: npm run check:production-build
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: production-check-logs
+          path: /tmp/saasfolio-production-checks.log
+          retention-days: 7
+  dependency-security:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm audit --omit=dev --audit-level=high
