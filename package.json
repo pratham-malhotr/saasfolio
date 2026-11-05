@@ -46,7 +46,10 @@
     "test:database": "node scripts/test-database.mjs",
     "ops:maintenance": "node scripts/platform-maintenance.mjs",
     "ops:backup": "node scripts/backup-database.mjs",
-    "ops:restore-drill": "node scripts/restore-drill.mjs"
+    "ops:restore-drill": "node scripts/restore-drill.mjs",
+    "audit:publisher:content": "node scripts/audit-publisher-content.mjs",
+    "test:browser:publisher": "node scripts/browser-publisher-content.mjs",
+    "validate:publisher": "node scripts/validate-publisher-content.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
