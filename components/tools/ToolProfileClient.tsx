@@ -22,9 +22,10 @@ interface ToolProfileClientProps {
   deals: SaaSDeal[];
   comparisonLinks: Record<string, string>;
   discountSummary: React.ReactNode;
+  buyingNotes?: React.ReactNode;
 }
 
-export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummary }: ToolProfileClientProps) {
+export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummary, buyingNotes }: ToolProfileClientProps) {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("yearly");
   const [selectedDeal, setSelectedDeal] = useState<SaaSDeal | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -55,15 +56,15 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
                   {tool.category}
                 </span>
                 <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                <span className="font-mono text-xs px-2 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-300">
+                {tool.pricingVerified && <span className="font-mono text-xs px-2 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-300">
                   {tool.pricingModel}
-                </span>
-                {tool.tier === "indie-budget" && (
+                </span>}
+                {tool.pricingVerified && tool.tier === "indie-budget" && (
                   <span className="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold">
                     🌱 INDIE GEM
                   </span>
                 )}
-                {tool.tier === "mid-tier" && (
+                {tool.pricingVerified && tool.tier === "mid-tier" && (
                   <span className="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-bold">
                     ⚡ MID-TIER
                   </span>
@@ -110,12 +111,11 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
           </p>
 
           <div className="flex items-center gap-6 font-mono text-xs text-zinc-400 shrink-0">
-            <div className="flex items-center gap-1.5 text-white">
+            {tool.reviewCount > 0 && <div className="flex items-center gap-1.5 text-white">
               <Star className="w-4 h-4 fill-[#C6FF3D] text-[#C6FF3D]" />
               <span className="font-bold text-sm">{tool.reviewCount ? tool.rating : "Unrated"}</span>
               <span className="text-zinc-500">({tool.reviewCount} reviews)</span>
-            </div>
-            <span>✦</span>
+            </div>}
             <div>
               {tool.pricingVerified ? <>Starts at <strong className="text-[#C6FF3D]">${tool.pricingStart}</strong>/mo</> : "See official pricing"}
             </div>
@@ -124,6 +124,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
       </div>
 
       {tool.providerStatus === "unavailable" ? <section data-provider-unavailable="true" className="mb-10 rounded-2xl border border-amber-400/20 p-6 space-y-3"><h2 className="text-xl text-white">No current provider offer</h2><p className="text-sm text-zinc-400">{tool.providerNote}</p><Link href="/tools" className="text-[#C6FF3D] underline">Browse available alternatives</Link></section> : discountSummary}
+      {buyingNotes}
 
       {/* Active Deals Banner (if tool has live coupons) */}
       {deals.length > 0 && (
@@ -323,7 +324,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
               <span>HEAD-TO-HEAD COMPARISONS</span>
             </div>
             <p className="text-xs text-zinc-400">
-              Evaluate real architectural trade-offs between {tool.name} and top alternatives:
+              Compare the requirements of {tool.name} with other published software profiles:
             </p>
 
             <div className="space-y-2">

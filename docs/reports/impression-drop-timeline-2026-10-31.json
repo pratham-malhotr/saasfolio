@@ -1,0 +1,738 @@
+{
+  "generatedAt": "2026-10-31T01:37:04.923Z",
+  "ownerReportedPattern": {
+    "October29": "good performance; earlier owner statement around 1,000+ daily impressions",
+    "October30": "decline",
+    "October31Start": "very low impressions",
+    "verifiedInReportingAccount": false,
+    "dashboard": "Not yet confirmed"
+  },
+  "scope": "Read-only GitHub history, existing live audit evidence and timezone conversion. No authenticated Search Console data or Hostinger deployment/access logs available.",
+  "mainCommits": [
+    {
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "dateUTC": "2026-10-29T08:21:26Z",
+      "message": "fix(nav): stabilize active links during shared-layout hydration"
+    },
+    {
+      "sha": "0aeaa8c082b329371ab18b920f175ca3ddfe8762",
+      "dateUTC": "2026-10-29T08:07:19Z",
+      "message": "test(browser): cover coarse pointer rendering and CSS motion"
+    },
+    {
+      "sha": "31a06bff4d10f47758369acc2070318e4af909b2",
+      "dateUTC": "2026-10-29T07:12:48Z",
+      "message": "fix(ci): respect pointer capabilities in animation checks"
+    },
+    {
+      "sha": "d824f249711ca0aa6db7441029ae4afd4884a0ef",
+      "dateUTC": "2026-10-29T04:14:10Z",
+      "message": "test(browser): identify runtime error routes and support CPU throttling"
+    },
+    {
+      "sha": "8e19028e415bf6accb283296868a24376f41a545",
+      "dateUTC": "2026-10-29T04:06:00Z",
+      "message": "fix(ci): wait for keyboard shortcut listener before dispatch"
+    },
+    {
+      "sha": "e18f1f6f85549232d6abb19f3cb1d5021b1ff8a9",
+      "dateUTC": "2026-10-29T03:59:07Z",
+      "message": "docs(ops): document activation and verified release evidence"
+    },
+    {
+      "sha": "36eb20860df001a87d778438df908e7b26932b73",
+      "dateUTC": "2026-10-29T03:56:27Z",
+      "message": "test(ops): gate releases with recovery and browser checks"
+    },
+    {
+      "sha": "227765b19e05644371b369a30d3aa9ab40aad3b2",
+      "dateUTC": "2026-10-29T03:56:27Z",
+      "message": "feat(privacy): add account lifecycle and consented measurement"
+    },
+    {
+      "sha": "3d85ccab614667acec97337eeb1a8462ceef6dcf",
+      "dateUTC": "2026-10-29T03:56:27Z",
+      "message": "feat(admin): secure publishing and offer review operations"
+    },
+    {
+      "sha": "28c0dc7abc5c76f1c042cccd912a5c9ea20172a1",
+      "dateUTC": "2026-10-29T03:56:27Z",
+      "message": "feat(ops): add dependency readiness and sanitized diagnostics"
+    },
+    {
+      "sha": "9d9342af9a717457847de01bfb1aa005b07aa3e2",
+      "dateUTC": "2026-10-28T21:12:10Z",
+      "message": "Refresh source-backed SaaS offers"
+    },
+    {
+      "sha": "dda801607ec5c292ffb224638ffd860b4c5a4db3",
+      "dateUTC": "2026-10-28T18:36:47Z",
+      "message": "test(seo): record brand expansion and coupon validation evidence"
+    },
+    {
+      "sha": "71532958c61b06a551732ac876f0ba28cb50aa0b",
+      "dateUTC": "2026-10-28T18:36:46Z",
+      "message": "fix(site): retain native scrolling when animation assets fail"
+    },
+    {
+      "sha": "d0019a0efeb131febf0ed0645a80dcd8a97d477b",
+      "dateUTC": "2026-10-28T18:31:55Z",
+      "message": "feat(seo): connect new brand guides and canonical name variants"
+    },
+    {
+      "sha": "de84700ea4b51e33f2c4afb8bd114c9b1a88a535",
+      "dateUTC": "2026-10-28T18:31:53Z",
+      "message": "feat(offers): add sourced coupons and preserve offer eligibility"
+    }
+  ],
+  "relevantPullRequests": [
+    {
+      "number": 9,
+      "title": "Refresh sourced SaaS offers",
+      "state": "open",
+      "createdUTC": "2026-10-29T11:00:09Z",
+      "updatedUTC": "2026-10-30T20:55:14Z",
+      "mergedUTC": null,
+      "head": "automation/offer-refresh",
+      "base": "main",
+      "url": "https://github.com/pratham-malhotr/saasfolio/pull/9"
+    },
+    {
+      "number": 4,
+      "title": "build(deps-dev): bump the development group across 1 directory with 4 updates",
+      "state": "open",
+      "createdUTC": "2026-10-29T04:00:58Z",
+      "updatedUTC": "2026-10-29T19:26:17Z",
+      "mergedUTC": null,
+      "head": "dependabot/npm_and_yarn/development-9c8514ee2a",
+      "base": "main",
+      "url": "https://github.com/pratham-malhotr/saasfolio/pull/4"
+    },
+    {
+      "number": 8,
+      "title": "build(deps): bump lucide-react from 1.59.0 to 1.61.0",
+      "state": "open",
+      "createdUTC": "2026-10-29T04:01:28Z",
+      "updatedUTC": "2026-10-29T05:03:09Z",
+      "mergedUTC": null,
+      "head": "dependabot/npm_and_yarn/lucide-react-1.61.0",
+      "base": "main",
+      "url": "https://github.com/pratham-malhotr/saasfolio/pull/8"
+    },
+    {
+      "number": 5,
+      "title": "build(deps): bump postcss from 8.5.23 to 8.5.31",
+      "state": "open",
+      "createdUTC": "2026-10-29T04:01:08Z",
+      "updatedUTC": "2026-10-29T04:39:59Z",
+      "mergedUTC": null,
+      "head": "dependabot/npm_and_yarn/postcss-8.5.31",
+      "base": "main",
+      "url": "https://github.com/pratham-malhotr/saasfolio/pull/5"
+    },
+    {
+      "number": 3,
+      "title": "build(deps): bump actions/upload-artifact from 4 to 7",
+      "state": "open",
+      "createdUTC": "2026-10-29T04:00:07Z",
+      "updatedUTC": "2026-10-29T04:19:45Z",
+      "mergedUTC": null,
+      "head": "dependabot/github_actions/actions/upload-artifact-7",
+      "base": "main",
+      "url": "https://github.com/pratham-malhotr/saasfolio/pull/3"
+    },
+    {
+      "number": 2,
+      "title": "build(deps): bump actions/setup-node from 4 to 7",
+      "state": "open",
+      "createdUTC": "2026-10-29T03:59:59Z",
+      "updatedUTC": "2026-10-29T04:09:30Z",
+      "mergedUTC": null,
+      "head": "dependabot/github_actions/actions/setup-node-7",
+      "base": "main",
+      "url": "https://github.com/pratham-malhotr/saasfolio/pull/2"
+    },
+    {
+      "number": 7,
+      "title": "build(deps): bump react-dom from 19.3.0 to 19.3.1",
+      "state": "open",
+      "createdUTC": "2026-10-29T04:01:25Z",
+      "updatedUTC": "2026-10-29T04:01:29Z",
+      "mergedUTC": null,
+      "head": "dependabot/npm_and_yarn/react-dom-19.3.1",
+      "base": "main",
+      "url": "https://github.com/pratham-malhotr/saasfolio/pull/7"
+    },
+    {
+      "number": 6,
+      "title": "build(deps): bump react from 19.3.0 to 19.3.1",
+      "state": "open",
+      "createdUTC": "2026-10-29T04:01:19Z",
+      "updatedUTC": "2026-10-29T04:01:23Z",
+      "mergedUTC": null,
+      "head": "dependabot/npm_and_yarn/react-19.3.1",
+      "base": "main",
+      "url": "https://github.com/pratham-malhotr/saasfolio/pull/6"
+    },
+    {
+      "number": 1,
+      "title": "build(deps): bump actions/checkout from 4 to 7",
+      "state": "open",
+      "createdUTC": "2026-10-29T03:59:52Z",
+      "updatedUTC": "2026-10-29T03:59:57Z",
+      "mergedUTC": null,
+      "head": "dependabot/github_actions/actions/checkout-7",
+      "base": "main",
+      "url": "https://github.com/pratham-malhotr/saasfolio/pull/1"
+    }
+  ],
+  "repositoryRuns": [
+    {
+      "id": 41153317004,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-31T01:02:09Z",
+      "updated": "2026-10-31T01:02:18Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41153317004"
+    },
+    {
+      "id": 41143137841,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-30T23:13:18Z",
+      "updated": "2026-10-30T23:13:28Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41143137841"
+    },
+    {
+      "id": 41127879623,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-30T21:02:00Z",
+      "updated": "2026-10-30T21:02:01Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41127879623"
+    },
+    {
+      "id": 41127008095,
+      "name": "Website checks",
+      "sha": "3520fdbeaff30054cbe81ae38d08585ea6b2f149",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "action_required",
+      "created": "2026-10-30T20:55:18Z",
+      "updated": "2026-10-30T20:55:18Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41127008095"
+    },
+    {
+      "id": 41126271579,
+      "name": "Refresh SaaS offers",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created": "2026-10-30T20:49:40Z",
+      "updated": "2026-10-30T20:55:17Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41126271579"
+    },
+    {
+      "id": 41116140137,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-30T19:32:56Z",
+      "updated": "2026-10-30T19:32:57Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41116140137"
+    },
+    {
+      "id": 41087849158,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-30T16:13:08Z",
+      "updated": "2026-10-30T16:13:09Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41087849158"
+    },
+    {
+      "id": 41071451505,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-30T14:25:24Z",
+      "updated": "2026-10-30T14:25:25Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41071451505"
+    },
+    {
+      "id": 41044023905,
+      "name": "Refresh SaaS offers",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-30T10:53:13Z",
+      "updated": "2026-10-30T10:57:24Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41044023905"
+    },
+    {
+      "id": 41030079097,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-30T08:58:44Z",
+      "updated": "2026-10-30T08:58:45Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41030079097"
+    },
+    {
+      "id": 41028737729,
+      "name": "Platform maintenance",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-30T08:46:40Z",
+      "updated": "2026-10-30T08:46:42Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41028737729"
+    },
+    {
+      "id": 41020128104,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-30T07:26:43Z",
+      "updated": "2026-10-30T07:26:44Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41020128104"
+    },
+    {
+      "id": 40989933338,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-30T02:08:27Z",
+      "updated": "2026-10-30T02:08:27Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40989933338"
+    },
+    {
+      "id": 40985844165,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-30T01:26:15Z",
+      "updated": "2026-10-30T01:26:16Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40985844165"
+    },
+    {
+      "id": 40962394271,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-29T22:00:10Z",
+      "updated": "2026-10-29T22:00:11Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40962394271"
+    },
+    {
+      "id": 40960807935,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-29T21:48:10Z",
+      "updated": "2026-10-29T21:48:17Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40960807935"
+    },
+    {
+      "id": 40956011308,
+      "name": "Website checks",
+      "sha": "210abb214f4b3b9fede5531bf08a3cdd7ac36957",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "action_required",
+      "created": "2026-10-29T21:14:01Z",
+      "updated": "2026-10-29T21:14:01Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40956011308"
+    },
+    {
+      "id": 40955211469,
+      "name": "Refresh SaaS offers",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created": "2026-10-29T21:08:35Z",
+      "updated": "2026-10-29T21:14:01Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40955211469"
+    },
+    {
+      "id": 40940089657,
+      "name": "Website checks",
+      "sha": "f352de76066f6a8b9cb297347728db337f2834d9",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T19:26:21Z",
+      "updated": "2026-10-29T19:26:47Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40940089657"
+    },
+    {
+      "id": 40939827100,
+      "name": "npm_and_yarn in / for @types/node, eslint, eslint-config-next, typescript - Update #1663867774",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "dynamic",
+      "status": "completed",
+      "conclusion": "success",
+      "created": "2026-10-29T19:24:37Z",
+      "updated": "2026-10-29T19:26:16Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40939827100"
+    },
+    {
+      "id": 40939821924,
+      "name": "github_actions in /. - Update #1663867609",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "dynamic",
+      "status": "completed",
+      "conclusion": "success",
+      "created": "2026-10-29T19:24:35Z",
+      "updated": "2026-10-29T19:25:22Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40939821924"
+    },
+    {
+      "id": 40922201312,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-29T17:31:51Z",
+      "updated": "2026-10-29T17:32:01Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40922201312"
+    },
+    {
+      "id": 40918944732,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-29T17:11:37Z",
+      "updated": "2026-10-29T17:11:38Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40918944732"
+    },
+    {
+      "id": 40862659466,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-29T11:05:25Z",
+      "updated": "2026-10-29T11:05:26Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40862659466"
+    },
+    {
+      "id": 40861950645,
+      "name": "Website checks",
+      "sha": "ec642a470123dacf8678f299d84fa641403fed0b",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "action_required",
+      "created": "2026-10-29T11:00:11Z",
+      "updated": "2026-10-29T11:00:11Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40861950645"
+    },
+    {
+      "id": 40861263880,
+      "name": "Refresh SaaS offers",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created": "2026-10-29T10:54:46Z",
+      "updated": "2026-10-29T11:00:12Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40861263880"
+    },
+    {
+      "id": 40860059931,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created": "2026-10-29T10:45:27Z",
+      "updated": "2026-10-29T10:45:27Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40860059931"
+    },
+    {
+      "id": 40841552459,
+      "name": "Website checks",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "created": "2026-10-29T08:21:31Z",
+      "updated": "2026-10-29T08:26:46Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40841552459"
+    },
+    {
+      "id": 40839889446,
+      "name": "Website checks",
+      "sha": "0aeaa8c082b329371ab18b920f175ca3ddfe8762",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T08:07:24Z",
+      "updated": "2026-10-29T08:10:24Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40839889446"
+    },
+    {
+      "id": 40833987645,
+      "name": "Website checks",
+      "sha": "31a06bff4d10f47758369acc2070318e4af909b2",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T07:12:53Z",
+      "updated": "2026-10-29T07:16:48Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40833987645"
+    },
+    {
+      "id": 40816607882,
+      "name": "Website checks",
+      "sha": "d824f249711ca0aa6db7441029ae4afd4884a0ef",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T04:14:14Z",
+      "updated": "2026-10-29T04:19:19Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40816607882"
+    },
+    {
+      "id": 40815823804,
+      "name": "Website checks",
+      "sha": "8e19028e415bf6accb283296868a24376f41a545",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T04:06:05Z",
+      "updated": "2026-10-29T04:10:02Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815823804"
+    },
+    {
+      "id": 40815393871,
+      "name": "Website checks",
+      "sha": "2803c002455a2abc117d0c57e2c8db5aadda6255",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T04:01:34Z",
+      "updated": "2026-10-29T04:06:21Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815393871"
+    },
+    {
+      "id": 40815389435,
+      "name": "Website checks",
+      "sha": "d64075109306582178c1d256a0512d092ac3e10b",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T04:01:31Z",
+      "updated": "2026-10-29T04:01:59Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815389435"
+    },
+    {
+      "id": 40815378812,
+      "name": "Website checks",
+      "sha": "8bf43d313090f0ec16157a7035155304f8972cbf",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T04:01:24Z",
+      "updated": "2026-10-29T04:02:15Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815378812"
+    },
+    {
+      "id": 40815361435,
+      "name": "Website checks",
+      "sha": "7ca237c4928d0d52e9e62e32688a6f0d8533c361",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T04:01:13Z",
+      "updated": "2026-10-29T04:05:01Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815361435"
+    },
+    {
+      "id": 40815346521,
+      "name": "Website checks",
+      "sha": "273525fcf536cddc32d17aff963eacc42c64cd25",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T04:01:04Z",
+      "updated": "2026-10-29T04:01:35Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815346521"
+    },
+    {
+      "id": 40815260641,
+      "name": "Website checks",
+      "sha": "98ac8c8acd7145732162feddcb99b8dcbca5e3ef",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T04:00:13Z",
+      "updated": "2026-10-29T04:04:34Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815260641"
+    },
+    {
+      "id": 40815245538,
+      "name": "Website checks",
+      "sha": "ad75b409802b1c780d29427b0eb7194f3db3b434",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T04:00:04Z",
+      "updated": "2026-10-29T04:04:36Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815245538"
+    },
+    {
+      "id": 40815232969,
+      "name": "Website checks",
+      "sha": "91d8c21885837d4b7b0e3df51da6f4cb4e535b40",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T03:59:57Z",
+      "updated": "2026-10-29T04:03:15Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815232969"
+    },
+    {
+      "id": 40815179868,
+      "name": "npm_and_yarn in /. - Update #1662202497",
+      "sha": "e18f1f6f85549232d6abb19f3cb1d5021b1ff8a9",
+      "event": "dynamic",
+      "status": "completed",
+      "conclusion": "success",
+      "created": "2026-10-29T03:59:18Z",
+      "updated": "2026-10-29T04:02:17Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815179868"
+    },
+    {
+      "id": 40815179631,
+      "name": "github_actions in /. - Update #1662202501",
+      "sha": "e18f1f6f85549232d6abb19f3cb1d5021b1ff8a9",
+      "event": "dynamic",
+      "status": "completed",
+      "conclusion": "success",
+      "created": "2026-10-29T03:59:18Z",
+      "updated": "2026-10-29T04:00:10Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815179631"
+    },
+    {
+      "id": 40815179200,
+      "name": "npm_and_yarn in /. - Update #1662202479",
+      "sha": "e18f1f6f85549232d6abb19f3cb1d5021b1ff8a9",
+      "event": "dynamic",
+      "status": "completed",
+      "conclusion": "success",
+      "created": "2026-10-29T03:59:17Z",
+      "updated": "2026-10-29T04:02:08Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815179200"
+    },
+    {
+      "id": 40815177996,
+      "name": "github_actions in /. - Update #1662202481",
+      "sha": "e18f1f6f85549232d6abb19f3cb1d5021b1ff8a9",
+      "event": "dynamic",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T03:59:16Z",
+      "updated": "2026-10-29T04:00:10Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815177996"
+    },
+    {
+      "id": 40815171445,
+      "name": "Website checks",
+      "sha": "e18f1f6f85549232d6abb19f3cb1d5021b1ff8a9",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "failure",
+      "created": "2026-10-29T03:59:12Z",
+      "updated": "2026-10-29T04:02:56Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40815171445"
+    },
+    {
+      "id": 40769213228,
+      "name": "Refresh SaaS offers",
+      "sha": "dda801607ec5c292ffb224638ffd860b4c5a4db3",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created": "2026-10-28T21:07:02Z",
+      "updated": "2026-10-28T21:12:16Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40769213228"
+    }
+  ],
+  "syntheticTimezoneWindows": [
+    {
+      "label": "2026-10-29",
+      "timezone": "America/Los_Angeles",
+      "startsInIndia": "2026-10-29T12:30:00+05:30",
+      "endsInIndia": "2026-10-30T12:30:00+05:30"
+    },
+    {
+      "label": "2026-10-30",
+      "timezone": "America/Los_Angeles",
+      "startsInIndia": "2026-10-30T12:30:00+05:30",
+      "endsInIndia": "2026-10-31T12:30:00+05:30"
+    },
+    {
+      "label": "2026-10-31",
+      "timezone": "America/Los_Angeles",
+      "startsInIndia": "2026-10-31T12:30:00+05:30",
+      "endsInIndia": "2026-11-01T12:30:00+05:30"
+    }
+  ],
+  "liveAssetObservation": {
+    "url": "https://saasfolio.tech/_next/static/chunks/app/layout-95ef6cca5038bd28.js",
+    "responseDateUTC": "2026-10-31T01:23:34Z",
+    "lastModifiedUTC": "2026-10-28T10:43:00Z",
+    "interpretation": "One observed file timestamp, not deployment history or proof of when this build first became live."
+  },
+  "conclusions": [
+    "No main-branch commits dated October 30 or early October 31 were found in this history.",
+    "The source refresh changes remain in open, unmerged PR #9; repository automation does not directly deploy.",
+    "The October 30 failed GitHub build is not evidence of a production outage.",
+    "The current deployment differs from main, but available evidence cannot distinguish an older deployment from an intervening rollback or partial deployment.",
+    "Both incomplete reporting and a real decline remain possible; finalized performance rows and verified Google crawl results are required."
+  ],
+  "referenceURLs": [
+    "https://github.com/pratham-malhotr/saasfolio/pull/9",
+    "https://github.com/pratham-malhotr/saasfolio/actions/runs/41044023905",
+    "https://github.com/pratham-malhotr/saasfolio/actions/runs/41126271579",
+    "https://support.google.com/webmasters/answer/17011364?hl=en",
+    "https://support.google.com/webmasters/answer/17011259?hl=en",
+    "https://status.search.google.com/"
+  ]
+}

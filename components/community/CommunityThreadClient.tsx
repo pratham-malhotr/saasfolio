@@ -18,16 +18,16 @@ import {
   DetailedCommunityThread,
   ThreadComment,
 } from "@/lib/data/community-data";
-import { DEALS_DATA } from "@/lib/data/deals-data";
 import { SaaSDeal } from "@/lib/types";
 import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
 
 interface CommunityThreadClientProps {
   thread: DetailedCommunityThread;
   toolLinks?: Record<string, string>;
+  relatedDeals?: SaaSDeal[];
 }
 
-export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClientProps) {
+export function CommunityThreadClient({ thread, toolLinks, relatedDeals = [] }: CommunityThreadClientProps) {
   const [upvotes, setUpvotes] = useState(thread.upvotes);
   const [hasUpvoted, setHasUpvoted] = useState(false);
   const [comments, setComments] = useState<ThreadComment[]>(thread.comments);
@@ -164,15 +164,6 @@ export function CommunityThreadClient({ thread, toolLinks }: CommunityThreadClie
       setTimeout(() => setCopiedLink(false), 2000);
     }
   };
-
-  // Find deals related to the tool tags mentioned in this thread
-  const relatedDeals = DEALS_DATA.filter((d: SaaSDeal) =>
-    thread.toolTags.some(
-      (t) =>
-        d.toolSlug.toLowerCase().includes(t.slug) ||
-        t.slug.includes(d.toolSlug.toLowerCase())
-    )
-  );
 
   return (
     <div className="min-h-screen bg-[#050505] pt-28 pb-24 text-white">

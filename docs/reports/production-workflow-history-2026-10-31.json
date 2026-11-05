@@ -1,0 +1,321 @@
+{
+  "retrievedAt": "2026-10-31T01:26:35.197Z",
+  "totalCount": 61,
+  "runs": [
+    {
+      "id": 41153317004,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-31T01:02:09Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41153317004"
+    },
+    {
+      "id": 41143137841,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-30T23:13:18Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41143137841"
+    },
+    {
+      "id": 41127879623,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-30T21:02:00Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41127879623"
+    },
+    {
+      "id": 41127008095,
+      "name": "Website checks",
+      "sha": "3520fdbeaff30054cbe81ae38d08585ea6b2f149",
+      "status": "completed",
+      "conclusion": "action_required",
+      "event": "pull_request",
+      "createdAt": "2026-10-30T20:55:18Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41127008095"
+    },
+    {
+      "id": 41126271579,
+      "name": "Refresh SaaS offers",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "schedule",
+      "createdAt": "2026-10-30T20:49:40Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41126271579"
+    },
+    {
+      "id": 41116140137,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-30T19:32:56Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41116140137"
+    },
+    {
+      "id": 41087849158,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-30T16:13:08Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41087849158"
+    },
+    {
+      "id": 41071451505,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-30T14:25:24Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41071451505"
+    },
+    {
+      "id": 41044023905,
+      "name": "Refresh SaaS offers",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "failure",
+      "event": "schedule",
+      "createdAt": "2026-10-30T10:53:13Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41044023905"
+    },
+    {
+      "id": 41030079097,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-30T08:58:44Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41030079097"
+    },
+    {
+      "id": 41028737729,
+      "name": "Platform maintenance",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-30T08:46:40Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41028737729"
+    },
+    {
+      "id": 41020128104,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-30T07:26:43Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/41020128104"
+    },
+    {
+      "id": 40989933338,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-30T02:08:27Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40989933338"
+    },
+    {
+      "id": 40985844165,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-30T01:26:15Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40985844165"
+    },
+    {
+      "id": 40962394271,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-29T22:00:10Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40962394271"
+    },
+    {
+      "id": 40960807935,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-29T21:48:10Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40960807935"
+    },
+    {
+      "id": 40956011308,
+      "name": "Website checks",
+      "sha": "210abb214f4b3b9fede5531bf08a3cdd7ac36957",
+      "status": "completed",
+      "conclusion": "action_required",
+      "event": "pull_request",
+      "createdAt": "2026-10-29T21:14:01Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40956011308"
+    },
+    {
+      "id": 40955211469,
+      "name": "Refresh SaaS offers",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "schedule",
+      "createdAt": "2026-10-29T21:08:35Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40955211469"
+    },
+    {
+      "id": 40940089657,
+      "name": "Website checks",
+      "sha": "f352de76066f6a8b9cb297347728db337f2834d9",
+      "status": "completed",
+      "conclusion": "failure",
+      "event": "pull_request",
+      "createdAt": "2026-10-29T19:26:21Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40940089657"
+    },
+    {
+      "id": 40939827100,
+      "name": "npm_and_yarn in / for @types/node, eslint, eslint-config-next, typescript - Update #1663867774",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "dynamic",
+      "createdAt": "2026-10-29T19:24:37Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40939827100"
+    },
+    {
+      "id": 40939821924,
+      "name": "github_actions in /. - Update #1663867609",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "dynamic",
+      "createdAt": "2026-10-29T19:24:35Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40939821924"
+    },
+    {
+      "id": 40922201312,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-29T17:31:51Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40922201312"
+    },
+    {
+      "id": 40918944732,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-29T17:11:37Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40918944732"
+    },
+    {
+      "id": 40862659466,
+      "name": "Release approved catalog",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-29T11:05:25Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40862659466"
+    },
+    {
+      "id": 40861950645,
+      "name": "Website checks",
+      "sha": "ec642a470123dacf8678f299d84fa641403fed0b",
+      "status": "completed",
+      "conclusion": "action_required",
+      "event": "pull_request",
+      "createdAt": "2026-10-29T11:00:11Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40861950645"
+    },
+    {
+      "id": 40861263880,
+      "name": "Refresh SaaS offers",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "schedule",
+      "createdAt": "2026-10-29T10:54:46Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40861263880"
+    },
+    {
+      "id": 40860059931,
+      "name": "Production availability",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "skipped",
+      "event": "schedule",
+      "createdAt": "2026-10-29T10:45:27Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40860059931"
+    },
+    {
+      "id": 40841552459,
+      "name": "Website checks",
+      "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "createdAt": "2026-10-29T08:21:31Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40841552459"
+    },
+    {
+      "id": 40839889446,
+      "name": "Website checks",
+      "sha": "0aeaa8c082b329371ab18b920f175ca3ddfe8762",
+      "status": "completed",
+      "conclusion": "failure",
+      "event": "push",
+      "createdAt": "2026-10-29T08:07:24Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40839889446"
+    },
+    {
+      "id": 40833987645,
+      "name": "Website checks",
+      "sha": "31a06bff4d10f47758369acc2070318e4af909b2",
+      "status": "completed",
+      "conclusion": "failure",
+      "event": "push",
+      "createdAt": "2026-10-29T07:12:53Z",
+      "url": "https://github.com/pratham-malhotr/saasfolio/actions/runs/40833987645"
+    }
+  ],
+  "scope": "Read-only GitHub Actions observations; these are repository runs, not Hostinger deployment logs. Skipped monitors do not establish historical production uptime.",
+  "failedRefresh": {
+    "runId": 41044023905,
+    "jobId": 124023524381,
+    "failedStep": "npm run build",
+    "error": "next/font Google loader: TypeError: Cannot read properties of null (reading '1')",
+    "laterRefreshRunId": 41126271579,
+    "laterRefreshConclusion": "success"
+  },
+  "latestMainChecks": {
+    "runId": 40841552459,
+    "sha": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+    "conclusion": "success"
+  },
+  "monitorGate": "The production availability job runs only when repository variable MONITORING_ENABLED equals the string true."
+}

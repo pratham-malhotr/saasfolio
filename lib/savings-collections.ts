@@ -1,5 +1,6 @@
 import { getAllDeals } from "@/lib/data/deals-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
+import { hasPublishedToolProfile, getPublishedOffers } from "@/lib/published-catalog";
 import { getIndexableDiscountBrands } from "@/lib/brand-discounts";
 import { publicHttpsUrl } from "@/lib/offer-links";
 import { SAVINGS_COLLECTIONS, type SavingsCollectionSlug } from "@/lib/data/savings-collections";
@@ -26,7 +27,7 @@ export function getPublishedSavingsOffers(deals: SaaSDeal[] = getAllDeals(), now
   });
 }
 
-export function getCollectionOffers(slug: SavingsCollectionSlug, deals: SaaSDeal[] = getAllDeals(), now = Date.now()) {
+export function getCollectionOffers(slug: SavingsCollectionSlug, deals: SaaSDeal[] = getPublishedOffers(), now = Date.now()) {
   const current = getPublishedSavingsOffers(deals, now);
   if (slug === "coupon-codes") return current.filter(deal => Boolean(deal.code?.trim()));
   const included = new Set(COLLECTION_OFFER_SLUGS[slug]);
@@ -38,7 +39,8 @@ export function getCollectionPrograms(slug: SavingsCollectionSlug) {
   return (SAVINGS_COLLECTIONS.find(collection => collection.slug === slug)?.programs || []).flatMap(program => {
     const tool = getToolBySlug(program.brandSlug);
     if (!tool || tool.providerStatus === "unavailable") return [];
-    return [{ ...program, path: `/${guideSlugs.has(tool.slug) ? "discounts" : "tools"}/${tool.slug}`, hasGuide: guideSlugs.has(tool.slug) }];
+    const hasGuide = guideSlugs.has(tool.slug), hasProfile = hasPublishedToolProfile(tool.slug);
+    return [{ ...program, path: hasGuide ? `/discounts/${tool.slug}` : hasProfile ? `/tools/${tool.slug}` : program.sourceUrl, hasGuide, hasProfile }];
   });
 }
 

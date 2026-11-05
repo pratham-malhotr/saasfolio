@@ -1,6 +1,11 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
+import { getToolBySlug } from "@/lib/data/tools-data";
+import { getPublishedTools, getPublishedTool } from "@/lib/published-catalog";
+import { COMPARISON_GUIDES } from "@/lib/data/comparison-guides";
+import { ComparisonBuyingGuide } from "@/components/seo/ComparisonBuyingGuide";
+import CompareHubClient from "@/components/compare/CompareHubClient";
+import { POPULAR_COMPARISONS } from "@/lib/data/comparisons-data";
 import { getDealsByTool } from "@/lib/data/deals-data";
 import { ComparisonView } from "@/components/compare/ComparisonView";
 import type { Metadata } from "next";
@@ -24,8 +29,8 @@ export async function generateMetadata({
   const parts = slug.split("-vs-");
 
   if (parts.length !== 2 || parts[0] === parts[1]) notFound();
-  const toolA = getToolBySlug(parts[0]);
-  const toolB = getToolBySlug(parts[1]);
+  const toolA = getPublishedTool(parts[0]) || getToolBySlug(parts[0]);
+  const toolB = getPublishedTool(parts[1]) || getToolBySlug(parts[1]);
   if (!toolA || !toolB) notFound();
 
   return pageMetadata({
@@ -48,16 +53,21 @@ export default async function ComparePage({
     notFound();
   }
 
-  const toolA = getToolBySlug(parts[0]);
-  const toolB = getToolBySlug(parts[1]);
+  const toolA = getPublishedTool(parts[0]) || getToolBySlug(parts[0]);
+  const toolB = getPublishedTool(parts[1]) || getToolBySlug(parts[1]);
 
   if (!toolA || !toolB) {
     notFound();
   }
+  if (!getPublishedTool(toolA.slug) || !getPublishedTool(toolB.slug)) {
+    const tools = getPublishedTools().map(({ id, slug, name, category }) => ({ id, slug, name, category }));
+    return <div data-comparison-indexing="interactive"><CompareHubClient tools={tools} comparisons={POPULAR_COMPARISONS} /></div>;
+  }
 
   const dealsA = getDealsByTool(toolA.slug);
   const dealsB = getDealsByTool(toolB.slug);
-  const allTools = getAllTools().map(({ id, slug, name }) => ({ id, slug, name }));
+  const allTools = getPublishedTools().map(({ id, slug, name }) => ({ id, slug, name }));
+  const guide = COMPARISON_GUIDES[comparisonCanonicalSlug(slug)];
   const discountBrands = [toolA, toolB].filter(tool => hasBrandDiscountPage(tool.slug) && getBrandDiscountData(tool).indexable);
 
   return (
@@ -77,6 +87,7 @@ export default async function ComparePage({
         dealsB={dealsB}
         allTools={allTools}
         discountGuides={<RelatedDiscountGuides brands={discountBrands} deals={[...dealsA, ...dealsB]} heading="Compare discounts before subscribing" />}
+        editorialGuide={guide ? <ComparisonBuyingGuide guide={guide} /> : undefined}
       />
     </div>
   );

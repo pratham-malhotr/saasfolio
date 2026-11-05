@@ -4,7 +4,8 @@ import React, { useState, useEffect, useRef, useSyncExternalStore } from "react"
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
-import { Search, Menu, X, ArrowUpRight, Tag, Layers, FileText, Users, User, LogOut, ShieldCheck, Scale } from "lucide-react";
+import type { PublicSearchCatalog } from "@/lib/search-catalog-types";
+import { Search, Menu, X, ArrowUpRight, Tag, Layers, FileText, User, LogOut, ShieldCheck, Scale } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { SearchLoading } from "@/components/modals/SearchLoading";
@@ -21,7 +22,7 @@ const subscribeToHydration = () => () => undefined;
 const clientHydrationSnapshot = () => true;
 const serverHydrationSnapshot = () => false;
 
-export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry[] }) {
+export function Navbar({ discountBrands, searchCatalog }: { discountBrands: DiscountSearchEntry[]; searchCatalog: PublicSearchCatalog }) {
   const pathname = usePathname();
   // A route can change while this shared layout is still hydrating. Keep the
   // initial link markup stable, then decorate the current route after hydration.
@@ -129,7 +130,7 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
     { label: "Brands", href: "/brands", icon: Layers },
     { label: "Compare", href: "/compare", icon: Scale },
     { label: "Guides", href: "/articles", icon: FileText },
-    { label: "Community", href: "/community", icon: Users },
+    { label: "Our method", href: "/editorial-policy", icon: FileText },
   ];
 
   return (
@@ -415,7 +416,7 @@ export function Navbar({ discountBrands }: { discountBrands: DiscountSearchEntry
         <p className="flex-1">{signOutError}</p>
         <button type="button" onClick={() => setSignOutError("")} aria-label="Dismiss sign-out error" className="p-1"><X className="h-4 w-4" /></button>
       </div>}
-      {searchOpen && <CommandPalette isOpen onClose={() => setSearchOpen(false)} discountBrands={discountBrands} />}
+      {searchOpen && <CommandPalette isOpen onClose={() => setSearchOpen(false)} discountBrands={discountBrands} searchCatalog={searchCatalog} />}
     </>
   );
 }

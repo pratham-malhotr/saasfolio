@@ -1,0 +1,12 @@
+import Link from "next/link";
+import type { ComparisonGuide } from "@/lib/data/comparison-guides";
+
+export function ComparisonBuyingGuide({ guide }: { guide: ComparisonGuide }) {
+  return <section data-editorial-comparison="true" className="space-y-8 mb-12 rounded-2xl border border-white/10 bg-[#09090C] p-6 sm:p-8">
+    <header className="space-y-3"><p className="font-mono text-xs text-[#C6FF3D]">SaaSFolio editorial · Documentation reviewed {guide.reviewedAt}</p><h2 className="font-display text-3xl text-white font-bold">Which approach fits your work?</h2><p className="text-zinc-300 leading-relaxed">{guide.summary}</p><p className="text-zinc-300 leading-relaxed">{guide.decision}</p></header>
+    <div className="overflow-x-auto"><table className="w-full text-left text-sm"><caption className="sr-only">Decision scenarios and their trade-offs</caption><thead><tr className="border-b border-white/20 text-white">{["Your situation", "A useful starting point", "Why it matters"].map(title => <th key={title} scope="col" className="py-3 pr-5">{title}</th>)}</tr></thead><tbody>{guide.rows.map(row => <tr key={row.situation} className="border-b border-white/10 text-zinc-300"><th scope="row" className="py-4 pr-5 font-medium">{row.situation}</th><td className="py-4 pr-5">{row.approach}</td><td className="py-4">{row.reason}</td></tr>)}</tbody></table></div>
+    {guide.sections.map(section => <section key={section.heading} className="space-y-3"><h3 className="text-xl text-white font-semibold">{section.heading}</h3><p className="text-zinc-300 leading-relaxed">{section.text}</p></section>)}
+    <section className="space-y-3"><h3 className="text-xl text-white font-semibold">A practical evaluation to run</h3><ol className="list-decimal pl-5 space-y-3 text-zinc-300">{guide.exercise.map(step => <li key={step}>{step}</li>)}</ol></section>
+    <section className="space-y-3"><h3 className="text-xl text-white font-semibold">Sources and scope</h3><p className="text-sm text-zinc-400">The comparison interprets these official documents. It does not claim benchmark results, a security certification or checkout testing. Prices and package limits must be checked at purchase. <Link href="/editorial-policy" className="text-[#C6FF3D] underline">Editorial method and corrections</Link>.</p><ul className="space-y-2">{guide.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">{source.label} ↗</a></li>)}</ul></section>
+  </section>;
+}

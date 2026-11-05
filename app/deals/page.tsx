@@ -3,7 +3,7 @@ import { collectionSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import { DealsExplorer } from "@/components/deals/DealsExplorer";
-import { getAllDeals } from "@/lib/data/deals-data";
+import { getPublishedOffers } from "@/lib/published-catalog";
 import Link from "next/link";
 import { getPublishedSavingsOffers } from "@/lib/savings-collections";
 import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
@@ -20,7 +20,7 @@ export default async function DealsPage({
   searchParams: Promise<{ category?: string; type?: string }>;
 }) {
   const params = await searchParams;
-  const allDeals = getPublishedSavingsOffers(getAllDeals());
+  const allDeals = getPublishedSavingsOffers(getPublishedOffers());
 
   return (
     <div className="min-h-screen bg-[#050505]">

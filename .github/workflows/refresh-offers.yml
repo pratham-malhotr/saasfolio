@@ -34,6 +34,7 @@ jobs:
       - run: npm run test:unit
       - run: npm run catalog:refresh -- --discovery
       - run: npm run validate:catalog
+      - run: npm run validate:publisher
       - run: npm run build
       - name: Open or update the checked release PR
         run: node scripts/catalog-release-pr.mjs

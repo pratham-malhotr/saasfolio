@@ -1,0 +1,196 @@
+{
+  "generatedAt": "2026-10-31T01:26:54.811Z",
+  "origin": "https://saasfolio.tech",
+  "method": "Fresh headless Chrome profile; mobile width; JavaScript enabled and disabled; measurement endpoints blocked; no clicks or form submissions",
+  "visits": [
+    {
+      "path": "/",
+      "javascript": true,
+      "title": "SaaS Discounts, Software Deals & Reviews | SaaSFolio",
+      "canonical": "https://saasfolio.tech/",
+      "h1": "SaaS discounts & software deals\nSaaS discounts\n& software deals.",
+      "headingVisible": true,
+      "mainTextLength": 1912,
+      "pageWidth": 390,
+      "viewportWidth": 390,
+      "googleAnalyticsInitialized": true,
+      "gaConfigPresent": true,
+      "consentPromptPresent": false,
+      "nativeLinks": 62,
+      "navigation": [
+        {
+          "ttfb": 254,
+          "domContentLoaded": 558,
+          "load": 898
+        }
+      ]
+    },
+    {
+      "path": "/discounts",
+      "javascript": true,
+      "title": "SaaS Discounts & Coupon Codes by Brand | SaaSFolio",
+      "canonical": "https://saasfolio.tech/discounts",
+      "h1": "SaaS discounts & coupon codes by brand",
+      "headingVisible": true,
+      "mainTextLength": 39704,
+      "pageWidth": 390,
+      "viewportWidth": 390,
+      "googleAnalyticsInitialized": true,
+      "gaConfigPresent": true,
+      "consentPromptPresent": false,
+      "nativeLinks": 220,
+      "navigation": [
+        {
+          "ttfb": 260,
+          "domContentLoaded": 624,
+          "load": 912
+        }
+      ]
+    },
+    {
+      "path": "/discounts/notion",
+      "javascript": true,
+      "title": "Notion Discounts: Annual, Student & Nonprofit Offers | SaaSFolio",
+      "canonical": "https://saasfolio.tech/discounts/notion",
+      "h1": "Notion Discounts: Annual, Student & Nonprofit Offers",
+      "headingVisible": true,
+      "mainTextLength": 10689,
+      "pageWidth": 390,
+      "viewportWidth": 390,
+      "googleAnalyticsInitialized": true,
+      "gaConfigPresent": true,
+      "consentPromptPresent": false,
+      "nativeLinks": 42,
+      "navigation": [
+        {
+          "ttfb": 247,
+          "domContentLoaded": 613,
+          "load": 892
+        }
+      ]
+    },
+    {
+      "path": "/tools/semrush",
+      "javascript": true,
+      "title": "Semrush Pricing, Features & Alternatives | SaaSFolio",
+      "canonical": "https://saasfolio.tech/tools/semrush",
+      "h1": "Semrush",
+      "headingVisible": true,
+      "mainTextLength": 2707,
+      "pageWidth": 390,
+      "viewportWidth": 390,
+      "googleAnalyticsInitialized": true,
+      "gaConfigPresent": true,
+      "consentPromptPresent": false,
+      "nativeLinks": 16,
+      "navigation": [
+        {
+          "ttfb": 246,
+          "domContentLoaded": 605,
+          "load": 1197
+        }
+      ]
+    },
+    {
+      "path": "/",
+      "javascript": false,
+      "title": "SaaS Discounts, Software Deals & Reviews | SaaSFolio",
+      "canonical": "https://saasfolio.tech/",
+      "h1": "SaaS discounts & software deals\nSaaS discounts\n& software deals.",
+      "headingVisible": true,
+      "mainTextLength": 1912,
+      "pageWidth": 390,
+      "viewportWidth": 390,
+      "googleAnalyticsInitialized": false,
+      "gaConfigPresent": false,
+      "consentPromptPresent": false,
+      "nativeLinks": 61,
+      "navigation": [
+        {
+          "ttfb": 310,
+          "domContentLoaded": 335,
+          "load": 589
+        }
+      ]
+    },
+    {
+      "path": "/discounts",
+      "javascript": false,
+      "title": "SaaS Discounts & Coupon Codes by Brand | SaaSFolio",
+      "canonical": "https://saasfolio.tech/discounts",
+      "h1": "SaaS discounts & coupon codes by brand",
+      "headingVisible": true,
+      "mainTextLength": 39704,
+      "pageWidth": 390,
+      "viewportWidth": 390,
+      "googleAnalyticsInitialized": false,
+      "gaConfigPresent": false,
+      "consentPromptPresent": false,
+      "nativeLinks": 220,
+      "navigation": [
+        {
+          "ttfb": 256,
+          "domContentLoaded": 270,
+          "load": 527
+        }
+      ]
+    },
+    {
+      "path": "/discounts/notion",
+      "javascript": false,
+      "title": "Notion Discounts: Annual, Student & Nonprofit Offers | SaaSFolio",
+      "canonical": "https://saasfolio.tech/discounts/notion",
+      "h1": "Notion Discounts: Annual, Student & Nonprofit Offers",
+      "headingVisible": true,
+      "mainTextLength": 10689,
+      "pageWidth": 390,
+      "viewportWidth": 390,
+      "googleAnalyticsInitialized": false,
+      "gaConfigPresent": false,
+      "consentPromptPresent": false,
+      "nativeLinks": 42,
+      "navigation": [
+        {
+          "ttfb": 247,
+          "domContentLoaded": 301,
+          "load": 592
+        }
+      ]
+    },
+    {
+      "path": "/tools/semrush",
+      "javascript": false,
+      "title": "Semrush Pricing, Features & Alternatives | SaaSFolio",
+      "canonical": "https://saasfolio.tech/tools/semrush",
+      "h1": "Semrush",
+      "headingVisible": true,
+      "mainTextLength": 2707,
+      "pageWidth": 390,
+      "viewportWidth": 390,
+      "googleAnalyticsInitialized": false,
+      "gaConfigPresent": false,
+      "consentPromptPresent": false,
+      "nativeLinks": 16,
+      "navigation": [
+        {
+          "ttfb": 250,
+          "domContentLoaded": 270,
+          "load": 607
+        }
+      ]
+    }
+  ],
+  "runtimeErrors": [],
+  "failedAssets": [
+    {
+      "url": "https://saasfolio.tech/",
+      "status": 403
+    }
+  ],
+  "writes": [
+    {
+      "url": "https://saasfolio.tech/hcdn-cgi/jschallenge-validate",
+      "method": "POST"
+    }
+  ]
+}

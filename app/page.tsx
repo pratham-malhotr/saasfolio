@@ -1,7 +1,6 @@
 import React from "react";
 import { getCatalogCategories } from "@/lib/categories";
-import { getAllTools } from "@/lib/data/tools-data";
-import { getAllDeals } from "@/lib/data/deals-data";
+import { getPublishedTools, getPublishedOffers } from "@/lib/published-catalog";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { BrandDiscountsSection } from "@/components/sections/BrandDiscountsSection";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -12,7 +11,7 @@ import { StatsCounters } from "@/components/sections/StatsCounters";
 import { HotDealsSection } from "@/components/sections/HotDealsSection";
 import { CategoryMatrix } from "@/components/sections/CategoryMatrix";
 import { FeaturedArticlesSection } from "@/components/sections/FeaturedArticlesSection";
-import { CommunityTrendingSection } from "@/components/sections/CommunityTrendingSection";
+import { BuyingDecisionSection } from "@/components/sections/BuyingDecisionSection";
 import { LogoMarqueeSection } from "@/components/sections/LogoMarqueeSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { NewsletterSection } from "@/components/sections/NewsletterSection";
@@ -25,7 +24,7 @@ export const metadata = pageMetadata({ title: SITE_TITLE, description: SITE_DESC
 export const revalidate = 3600;
 
 export default function HomePage() {
-  const deals = getAllDeals();
+  const deals = getPublishedOffers();
   return (
     <div className="relative bg-[#050505] text-[#EDEDED] min-h-screen">
       <JsonLd data={{
@@ -41,6 +40,7 @@ export default function HomePage() {
       }} />
       {/* 1. Hero Section */}
       <HeroSection />
+      <BuyingDecisionSection />
 
       <BrandDiscountsSection deals={deals} />
 
@@ -52,7 +52,7 @@ export default function HomePage() {
       <MarqueeTickerBand />
 
       {/* 3. Animated Viewport Stats Counters */}
-      <StatsCounters toolCount={getAllTools().length} offerCount={deals.filter(deal => deal.dealType !== "pricing").length} couponCount={deals.filter(deal => deal.code).length} categoryCount={getCatalogCategories().length} />
+      <StatsCounters toolCount={getPublishedTools().length} offerCount={deals.length} couponCount={deals.filter(deal => deal.code).length} categoryCount={getCatalogCategories().length} />
 
       {/* 4. Hot Deals This Week (Horizontal Shelf + Countdown + Instant Coupon Reveal) */}
       <HotDealsSection deals={deals.filter(d => d.dealType !== "pricing").slice(0, 10)} totalDeals={deals.filter(deal => deal.dealType !== "pricing").length} />
@@ -64,7 +64,6 @@ export default function HomePage() {
       <FeaturedArticlesSection />
 
       {/* 7. Trending in Community (Discussions & Upvotes) */}
-      <CommunityTrendingSection />
 
       {/* 8. Logo Marquee of Featured Tools */}
       <LogoMarqueeSection />

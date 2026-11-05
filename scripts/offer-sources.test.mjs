@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import ts from "typescript";
 import { normalizePublicHttpsUrl } from "../lib/public-url.mjs";
+import { editorialGuideIssues } from "../lib/editorial-quality.mjs";
 import { plainText, discoverVendorOffer, extractCouponCandidates, safePublicUrl, robotsAllows, fetchPublicPage } from "./lib/offer-sources.mjs";
 
 test("hidden payloads and unrelated percentage banners do not become offers", () => {
@@ -179,6 +180,7 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
     "@/lib/data/brand-purchase-checks": loadTs("lib/data/brand-purchase-checks.ts", { "@/lib/data/expansion-discount-guides": expansion, "@/lib/data/discount-brand-expansion": { NEW_DISCOUNT_PURCHASE_CHECKS: {} } }),
     "@/lib/seo": loadTs("lib/seo.ts"),
     "@/lib/data/brand-discount-aliases.mjs": { DISCOUNT_BRAND_ALIASES: {} },
+    "@/lib/editorial-quality.mjs": { editorialGuideIssues: guide => editorialGuideIssues(guide, clock.now) },
   }, TestDate);
   assert.equal(catalog.getBrandDiscountData(tool).savingsOptions.length, 1);
   assert.match(catalog.brandSavingsSummary(tool), /20%/);

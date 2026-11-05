@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { DealsExplorer } from "@/components/deals/DealsExplorer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getCatalogCategories } from "@/lib/categories";
-import { getAllDeals } from "@/lib/data/deals-data";
+import { getPublishedOffers } from "@/lib/published-catalog";
 import { pageMetadata } from "@/lib/seo";
 import { collectionSchema } from "@/lib/structured-data";
 import { getIndexableDiscountBrands } from "@/lib/brand-discounts";
@@ -31,7 +31,7 @@ export default async function CategoryDealsPage({ params }: { params: Promise<{ 
   const { slug } = await params;
   const category = getCatalogCategories().find(item => item.slug === slug);
   if (!category) notFound();
-  const deals = getPublishedSavingsOffers(getAllDeals());
+  const deals = getPublishedSavingsOffers(getPublishedOffers());
   const categoryDeals = deals.filter(deal => deal.categorySlug === slug);
   const content = CATEGORY_SEARCH_CONTENT[slug];
   const discountBrands = getIndexableDiscountBrands().filter(tool => tool.categorySlug === slug);

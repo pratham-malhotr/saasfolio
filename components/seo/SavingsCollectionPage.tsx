@@ -52,7 +52,7 @@ export function SavingsCollectionPage({ slug }: { slug: SavingsCollectionSlug })
         <dl className="space-y-3 text-sm leading-relaxed"><div><dt className="text-zinc-500">Who should check</dt><dd className="text-zinc-300">{program.audience}</dd></div><div><dt className="text-zinc-500">Before applying</dt><dd className="text-zinc-400">{program.check}</dd></div></dl>
         <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-[#C6FF3D]">
           <a href={program.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline">Official program source ↗</a>
-          <Link prefetch={false} href={program.path} className="underline">{program.hasGuide ? "Brand discount guide" : "Software profile and current offers"}</Link>
+          {(program.hasGuide || program.hasProfile) && <Link prefetch={false} href={program.path} className="underline">{program.hasGuide ? "Brand discount guide" : "Software buying notes"}</Link>}
         </div>
       </article>)}</div>
     </section>}

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllDeals } from "@/lib/data/deals-data";
-import { TOOLS_DATA } from "@/lib/data/tools-data";
+import { getPublishedTools, getPublishedOffers } from "@/lib/published-catalog";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { COMPARISON_SLUGS } from "@/lib/data/comparisons-data";
 import { getCatalogCategories } from "@/lib/categories";
@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Core navigation pages
   const coreRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/brands"), changeFrequency: "daily", priority: 0.8 },
+    { url: absoluteUrl("/editorial-policy"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/savings-calculator"), changeFrequency: "monthly", priority: 0.6 },
     {
       url: absoluteUrl("/"),
@@ -84,7 +85,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Sourced offers; ordinary pricing links are excluded.
-  const dealsRoutes: MetadataRoute.Sitemap = catalogDeals.filter(deal => deal.dealType !== "pricing").map((deal) => ({
+  const dealsRoutes: MetadataRoute.Sitemap = getPublishedOffers(catalogDeals).map((deal) => ({
     url: absoluteUrl(`/deals/${deal.slug}`),
     lastModified: deal.updatedAt || deal.checkedAt,
     changeFrequency: "daily",
@@ -92,7 +93,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Software Catalog Tools
-  const toolsRoutes: MetadataRoute.Sitemap = TOOLS_DATA.filter(tool => tool.providerStatus !== "unavailable").map((tool) => ({
+  const toolsRoutes: MetadataRoute.Sitemap = getPublishedTools().map((tool) => ({
     url: absoluteUrl(`/tools/${tool.slug}`),
     lastModified: tool.updatedAt,
     changeFrequency: "weekly",

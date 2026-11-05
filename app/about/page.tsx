@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
-import { getAllTools } from "@/lib/data/tools-data";
-import { getAllDeals } from "@/lib/data/deals-data";
+import { getPublishedTools, getPublishedOffers } from "@/lib/published-catalog";
 
 export const metadata = pageMetadata({
   title: "About SaaSFolio: Offer Sources & Editorial Standards",
@@ -18,8 +17,8 @@ const standards = [
 ];
 
 export default function AboutPage() {
-  const tools = getAllTools();
-  const offers = getAllDeals().filter(deal => deal.dealType !== "pricing");
+  const tools = getPublishedTools();
+  const offers = getPublishedOffers();
   return <article className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 space-y-12">
     <header className="max-w-3xl space-y-5">
       <p className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D]">About SaaSFolio</p>
@@ -27,13 +26,14 @@ export default function AboutPage() {
       <p className="text-lg text-zinc-400 leading-relaxed">SaaSFolio is a SaaS discount and software deals directory for founders, creators and teams. Our <Link href="/discounts" className="text-[#C6FF3D] underline">brand discount guides</Link> help you compare savings on beehiiv, Predis.ai, Taplio, Baremetrics and other subscriptions. Each guide explains offer status, eligibility and renewal terms before you visit a provider.</p>
     </header>
     <div className="grid sm:grid-cols-2 gap-4">
-      {[{ count: tools.length, label: "Software profiles in the catalog" }, { count: offers.length, label: "Currently sourced offers, free plans & trials" }].map(item => <div key={item.label} className="rounded-2xl border border-white/10 p-6 bg-[#09090C]">
+      {[{ count: tools.length, label: "Software profiles with published buying guidance" }, { count: offers.length, label: "Sourced offers for those software profiles" }].map(item => <div key={item.label} className="rounded-2xl border border-white/10 p-6 bg-[#09090C]">
         <p className="font-display text-4xl font-bold text-[#C6FF3D]">{item.count}</p>
         <p className="text-sm text-zinc-400 mt-2">{item.label}</p>
       </div>)}
     </div>
     <section id="standards" className="space-y-6 scroll-mt-28">
       <h2 className="font-display text-3xl font-bold text-white">Our sourcing and editorial standards</h2>
+      <p className="text-zinc-400 leading-relaxed">The published collection requires original buying guidance and identifiable sources. A generated catalog record or an automatically fetched offer does not qualify a brand for publication. Read the complete <Link href="/editorial-policy" className="text-[#C6FF3D] underline">editorial method, authorship and correction policy</Link>.</p>
       <div className="grid md:grid-cols-2 gap-5">{standards.map(item => <div key={item.title} className="rounded-2xl border border-white/10 p-6 bg-[#09090C] space-y-3">
         <h3 className="font-display text-xl font-bold text-white">{item.title}</h3>
         <p className="text-sm text-zinc-400 leading-relaxed">{item.text}</p>

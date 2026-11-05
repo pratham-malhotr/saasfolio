@@ -3,18 +3,17 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
-import { getDealBySlug } from "@/lib/data/deals-data";
+import type { SaaSDeal } from "@/lib/types";
 import { offerStatus } from "@/lib/offer-links";
 import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
 import { CouponCode } from "@/components/deals/CouponCode";
 import { OfferAction } from "@/components/deals/OfferAction";
 
 interface DealCalloutProps {
-  dealSlug: string;
+  deal?: SaaSDeal;
 }
 
-export function DealCallout({ dealSlug }: DealCalloutProps) {
-  const deal = getDealBySlug(dealSlug);
+export function DealCallout({ deal }: DealCalloutProps) {
   const [modalOpen, setModalOpen] = useState(false);
 
   if (!deal) return null;

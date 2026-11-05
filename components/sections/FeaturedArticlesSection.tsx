@@ -16,7 +16,7 @@ export function FeaturedArticlesSection() {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-                EDITORIAL & REVIEWS // HANDS-ON
+                BUYING GUIDES // EXAMPLES & SOURCES
               </span>
             </div>
             <h2 className="font-display font-black tracking-tighter uppercase text-4xl sm:text-5xl lg:text-6xl text-white">
@@ -98,7 +98,7 @@ export function FeaturedArticlesSection() {
                       </div>
 
                       <div className="flex items-center gap-1.5 text-[#C6FF3D] font-mono text-xs font-bold uppercase tracking-wider group-hover:translate-x-1 transition-transform">
-                        <span>Read Review</span>
+                        <span>Read Guide</span>
                         <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>

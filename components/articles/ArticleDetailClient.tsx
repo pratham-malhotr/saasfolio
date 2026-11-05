@@ -18,6 +18,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import type { DetailedArticle, ArticlePreview } from "@/lib/data/articles-data";
+import type { SaaSDeal } from "@/lib/types";
 import { ReadingProgressBar } from "./ReadingProgressBar";
 import { TableOfContents } from "./TableOfContents";
 import { DealCallout } from "./DealCallout";
@@ -29,6 +30,7 @@ interface ArticleDetailClientProps {
   article: DetailedArticle;
   relatedArticles: ArticlePreview[];
   savingsLinks?: React.ReactNode;
+  sectionDeals?: Record<string, SaaSDeal>;
 }
 
 interface ArticleComment {
@@ -41,7 +43,7 @@ interface ArticleComment {
   upvotes: number;
 }
 
-export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: ArticleDetailClientProps) {
+export function ArticleDetailClient({ article, relatedArticles, savingsLinks, sectionDeals = {} }: ArticleDetailClientProps) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
@@ -105,8 +107,7 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: 
         window.speechSynthesis.speak(utterance);
         setIsPlayingAudio(true);
       } else {
-        setIsPlayingAudio(true);
-        setTimeout(() => setIsPlayingAudio(false), 6000);
+        setIsPlayingAudio(false);
       }
     }
   };
@@ -147,15 +148,15 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: 
     e.preventDefault();
     if (!commentText.trim()) return;
 
-    const authorName = commentAuthor.trim() || "Verified Engineer";
+    const authorName = commentAuthor.trim() || "Reader";
     const newComment: ArticleComment = {
       id: `ac-${Date.now()}`,
       name: authorName,
-      role: "Community Member",
+      role: "Local reader note",
       avatarLetter: authorName.charAt(0).toUpperCase(),
       time: "Just now",
       text: commentText.trim(),
-      upvotes: 1,
+      upvotes: 0,
     };
 
     const updated = [newComment, ...comments];
@@ -201,7 +202,7 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: 
           <span className="text-zinc-600">✦</span>
           <span className="flex items-center gap-1 text-zinc-400">
             <Calendar className="w-3.5 h-3.5" />
-            Published {article.publishedAt}
+            Published {article.publishedAt}{article.updatedAt !== article.publishedAt ? ` · Updated ${article.updatedAt}` : ""}
           </span>
         </div>
 
@@ -313,13 +314,13 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: 
               <div className="font-display font-bold text-xs sm:text-sm text-white flex items-center gap-2">
                 <span>Listen to this buying guide</span>
                 <span className="font-mono text-[10px] text-[#C6FF3D] px-2 py-0.5 rounded bg-[#C6FF3D]/10 border border-[#C6FF3D]/20 uppercase font-bold">
-                  AI AUDIO • {article.readTime}
+                  BROWSER NARRATION
                 </span>
               </div>
               <div className="font-mono text-[11px] text-zinc-400">
                 {isPlayingAudio
                   ? "Playing synthesized speech narration (Web Speech API)..."
-                  : "Generated with SaaSFolio Studio AI Voice Engine"}
+                  : "Uses your browser’s speech synthesis. Reads a short overview."}
               </div>
             </div>
           </div>
@@ -417,7 +418,7 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: 
 
                 {/* Optional Deal Callout */}
                 {section.dealCalloutSlug && (
-                  <DealCallout dealSlug={section.dealCalloutSlug} />
+                  <DealCallout deal={sectionDeals[section.dealCalloutSlug]} />
                 )}
               </section>
             ))}
@@ -458,8 +459,9 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: 
               </div>
               <div>
                 <h4 className="font-display font-bold text-lg text-white mb-1">
-                  Written by {article.author.name}
+                  Published by {article.author.name}
                 </h4>
+                <Link href="/editorial-policy" className="inline-block text-sm text-[#C6FF3D] underline mb-3">Editorial method, sources and corrections</Link>
                 <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed mb-3">
                   {article.author.bio}
                 </p>
@@ -496,7 +498,7 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: 
               <div className="flex items-center gap-2 mb-6">
                 <MessageSquare className="w-4 h-4 text-[#C6FF3D]" />
                 <h3 className="font-display font-bold text-xl text-white">
-                  Discussion ({comments.length})
+                  Your private notes ({comments.length})
                 </h3>
               </div>
 
@@ -516,7 +518,7 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: 
                 </div>
                 <div className="mb-3">
                   <label className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Your question or feedback *
+                    Your reading note *
                   </label>
                   <textarea
                     value={commentText}
@@ -528,13 +530,13 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: 
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[11px] text-zinc-500">
-                    Browser-local comment preview; not publicly submitted
+                    Stored in this browser; not sent to SaaSFolio
                   </span>
                   <button
                     type="submit"
                     className="px-5 py-2 rounded-xl bg-[#C6FF3D] text-black font-display font-bold text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-colors"
                   >
-                    Post Comment
+                    Save private note
                   </button>
                 </div>
               </form>
@@ -557,11 +559,11 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks }: 
                               {comment.name}
                             </span>
                             <span className="px-1.5 py-0.5 rounded bg-[#C6FF3D]/10 text-[#C6FF3D] text-[9px] font-mono font-bold">
-                              {comment.role}
+                              Private note
                             </span>
                           </div>
                           <span className="font-mono text-[10px] text-zinc-500">
-                            Verified Reader
+                            Stored only in this browser
                           </span>
                         </div>
                       </div>

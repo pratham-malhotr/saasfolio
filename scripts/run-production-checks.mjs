@@ -9,7 +9,7 @@ const port = Number(process.env.AUDIT_PORT || 3238);
 assert.ok(Number.isInteger(port) && port >= 1024 && port <= 65535, "AUDIT_PORT must be an unprivileged port");
 const origin = `http://127.0.0.1:${port}`;
 const log = join(tmpdir(), "saasfolio-production-checks.log");
-const checks = ["audit-seo", "audit-brand-seo", "audit-offer-flows", "http-reliability-smoke", "browser-site-pages", "browser-offer-smoke", "browser-auth-smoke", "browser-privacy-smoke"];
+const checks = ["audit-publisher-content", "audit-publisher-readiness", "audit-brand-identity", "audit-seo", "audit-brand-seo", "audit-offer-flows", "http-reliability-smoke", "browser-publisher-content", "browser-site-pages", "browser-offer-smoke", "browser-auth-smoke", "browser-privacy-smoke"];
 const selected = process.argv.find(value => value.startsWith("--only="))?.slice(7).split(",") || checks;
 assert.ok(selected.length && selected.every(script => checks.includes(script)), "--only must name existing production checks");
 const env = { ...process.env };

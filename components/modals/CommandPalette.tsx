@@ -3,12 +3,11 @@ import { useDialog } from "@/components/modals/useDialog";
 
 import React, { useState, useMemo, useEffect } from "react";
 import { trackProductEvent } from "@/lib/client-analytics";
-import { Search, Tag, FileText, MessageSquare, ExternalLink, X, Sparkles, ArrowRight, Layers } from "lucide-react";
+import { Search, Tag, FileText, ExternalLink, X, Sparkles, ArrowRight, Layers } from "lucide-react";
 import { CouponCode } from "@/components/deals/CouponCode";
 import { OfferAction } from "@/components/deals/OfferAction";
-import { FEATURED_ARTICLES, TRENDING_DISCUSSIONS, CATEGORIES } from "@/lib/mock-data";
-import { TOOLS_DATA } from "@/lib/data/tools-data";
-import { DEALS_DATA } from "@/lib/data/deals-data";
+import { CATEGORIES } from "@/lib/catalog-categories";
+import type { PublicSearchCatalog } from "@/lib/search-catalog-types";
 import { getOfferHref, offerLabel, offerStatus } from "@/lib/offer-links";
 import type { SaaSDeal } from "@/lib/types";
 import Link from "next/link";
@@ -20,12 +19,14 @@ interface CommandPaletteProps {
   isOpen: boolean;
   onClose: () => void;
   discountBrands: DiscountSearchEntry[];
+  searchCatalog: PublicSearchCatalog;
 }
 
-export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPaletteProps) {
+export function CommandPalette({ isOpen, onClose, discountBrands, searchCatalog }: CommandPaletteProps) {
+  const { tools, offers, articles } = searchCatalog;
   const router = useRouter();
   const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState<"all" | "brands" | "tools" | "deals" | "articles" | "community">("all");
+  const [filter, setFilter] = useState<"all" | "brands" | "tools" | "deals" | "articles">("all");
   const filteredBrands = useMemo(() => searchDiscountBrands(discountBrands, query), [discountBrands, query]);
   const [revealedNotice, setRevealedNotice] = useState<{
     code: string;
@@ -35,31 +36,31 @@ export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPalet
 
   // Tokenized tools matching
   const filteredTools = useMemo(() => {
-    if (!query) return TOOLS_DATA.filter(tool => tool.providerStatus !== "unavailable").slice(0, 4);
+    if (!query) return tools.slice(0, 4);
     const q = query.toLowerCase().trim();
     const tokens = q.split(/\s+/).filter(Boolean);
     const intentWords = ["reveal", "coupon", "code", "voucher", "promo", "discount", "deal"];
     const coreTokens = tokens.filter((t) => !intentWords.includes(t));
 
-    return TOOLS_DATA.filter(t => t.providerStatus !== "unavailable").filter((t) => {
+    return tools.filter((t) => {
       const target = `${t.name} ${t.slug} ${t.tagline} ${t.category} ${t.bestFor}`.toLowerCase();
       if (coreTokens.length > 0) {
         return coreTokens.every((tok) => target.includes(tok));
       }
       return target.includes(q);
     }).slice(0, 5);
-  }, [query]);
+  }, [query, tools]);
 
   // Tokenized deals matching with intent recognition
   const filteredDeals = useMemo(() => {
-    if (!query) return DEALS_DATA.filter((d) => d.featured).slice(0, 4);
+    if (!query) return offers.filter((d) => d.featured).slice(0, 4);
     const q = query.toLowerCase().trim();
     const tokens = q.split(/\s+/).filter(Boolean);
     const intentWords = ["reveal", "coupon", "code", "voucher", "promo", "discount", "deal"];
     const hasIntent = tokens.some((t) => intentWords.includes(t));
     const coreTokens = tokens.filter((t) => !intentWords.includes(t));
 
-    return DEALS_DATA.filter((d) => {
+    return offers.filter((d) => {
       const target = `${d.toolName} ${d.toolSlug} ${d.title} ${d.description} ${d.code || ""} ${d.category}`.toLowerCase();
       if (coreTokens.length > 0) {
         return coreTokens.every((tok) => target.includes(tok));
@@ -77,7 +78,7 @@ export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPalet
       }
       return (b.revealsCount || 0) - (a.revealsCount || 0);
     }).slice(0, 6);
-  }, [query]);
+  }, [query, offers]);
 
   // Top coupon deal for high-intent instant reveal
   const topCouponDeal = useMemo(() => {
@@ -109,32 +110,21 @@ export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPalet
   };
 
   const filteredArticles = useMemo(() => {
-    if (!query) return FEATURED_ARTICLES.slice(0, 2);
+    if (!query) return articles.slice(0, 2);
     const q = query.toLowerCase();
-    return FEATURED_ARTICLES.filter(
+    return articles.filter(
       (a) =>
         a.title.toLowerCase().includes(q) ||
         a.category.toLowerCase().includes(q) ||
         a.tags.some((t) => t.toLowerCase().includes(q))
     );
-  }, [query]);
-
-  const filteredDiscussions = useMemo(() => {
-    if (!query) return TRENDING_DISCUSSIONS.slice(0, 2);
-    const q = query.toLowerCase();
-    return TRENDING_DISCUSSIONS.filter(
-      (t) =>
-        t.title.toLowerCase().includes(q) ||
-        t.toolTags.some((tag) => tag.toLowerCase().includes(q))
-    );
-  }, [query]);
+  }, [query, articles]);
 
   const dialogRef = useDialog(isOpen, onClose);
   const visibleCount = (filter === "all" || filter === "brands" ? filteredBrands.length : 0)
     + (filter === "all" || filter === "tools" ? filteredTools.length : 0)
     + (filter === "all" || filter === "deals" ? filteredDeals.length : 0)
-    + (filter === "all" || filter === "articles" ? filteredArticles.length : 0)
-    + (filter === "all" || filter === "community" ? filteredDiscussions.length : 0);
+    + (filter === "all" || filter === "articles" ? filteredArticles.length : 0);
 
   useEffect(() => {
     if (!isOpen || query.trim().length < 2) return;
@@ -200,7 +190,7 @@ export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPalet
           {/* Filter Pills */}
           <div className="flex items-center gap-2 px-5 py-2.5 border-b border-white/5 bg-[#0A0A0C] text-xs overflow-x-auto">
             <span className="text-zinc-500 font-mono text-[11px] uppercase mr-1">FILTER:</span>
-            {(["all", "brands", "tools", "deals", "articles", "community"] as const).map((tab) => (
+            {(["all", "brands", "tools", "deals", "articles"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setFilter(tab)}
@@ -287,15 +277,6 @@ export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPalet
                         <div>
                           <div className="text-sm font-semibold text-white group-hover:text-[#C6FF3D] transition-colors flex items-center gap-2">
                             <span>{tool.name}</span>
-                            {tool.tier === "indie-budget" ? (
-                              <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">
-                                INDIE GEM
-                              </span>
-                            ) : tool.tier === "mid-tier" ? (
-                              <span className="text-[9px] px-1.5 py-0.2 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-mono">
-                                MID-TIER
-                              </span>
-                            ) : null}
                           </div>
                           <div className="text-xs text-zinc-400 line-clamp-1 mt-0.5">
                             {tool.tagline}
@@ -304,7 +285,7 @@ export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPalet
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="font-mono text-xs px-2 py-0.5 rounded bg-white/5 text-zinc-300 border border-white/10">
-                          {tool.pricingVerified ? `$${tool.pricingStart}/mo` : "See pricing"}
+                          Buying notes
                         </span>
                         <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
                       </div>
@@ -385,7 +366,7 @@ export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPalet
                 <div className="flex items-center justify-between text-xs font-mono uppercase text-zinc-500 mb-2 px-2">
                   <span className="flex items-center gap-1.5 text-white">
                     <FileText className="w-3.5 h-3.5 text-[#7C5CFF]" />
-                    In-Depth Articles & Reviews
+                    Software Buying Guides
                   </span>
                   <Link
                     href="/articles"
@@ -414,47 +395,6 @@ export function CommandPalette({ isOpen, onClose, discountBrands }: CommandPalet
                         </div>
                       </div>
                       <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Community Section */}
-            {(filter === "all" || filter === "community") && filteredDiscussions.length > 0 && (
-              <div>
-                <div className="flex items-center justify-between text-xs font-mono uppercase text-zinc-500 mb-2 px-2">
-                  <span className="flex items-center gap-1.5 text-zinc-400">
-                    <MessageSquare className="w-3.5 h-3.5 text-[#C6FF3D]" />
-                    Community Discussions
-                  </span>
-                  <Link
-                    href="/community"
-                    onClick={onClose}
-                    className="hover:text-white transition-colors flex items-center gap-1 text-[11px]"
-                  >
-                    View Forum <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </div>
-                <div className="space-y-1.5">
-                  {filteredDiscussions.map((disc) => (
-                    <Link
-                      key={disc.id}
-                      href={`/community/${disc.slug}`}
-                      onClick={onClose}
-                      className="group flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.07] hover:border-white/20 transition-all"
-                    >
-                      <div>
-                        <div className="text-sm font-semibold text-white group-hover:text-[#C6FF3D] transition-colors">
-                          {disc.title}
-                        </div>
-                        <div className="text-xs text-zinc-400 flex items-center gap-2 mt-0.5">
-                          <span className="text-[#C6FF3D] font-mono font-medium">▲ {disc.upvotes} upvotes</span>
-                          <span>✦</span>
-                          <span>{disc.commentCount} comments</span>
-                        </div>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
                     </Link>
                   ))}
                 </div>
