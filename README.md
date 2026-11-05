@@ -42,6 +42,7 @@ See [catalog and offer documentation](docs/CATALOG-AND-OFFERS.md) for evidence, 
 npm run lint
 npm run test:unit
 npm run validate:catalog
+npm run validate:publisher
 npm run test:database
 npm run build
 npm run check:production-build
@@ -51,6 +52,8 @@ npm audit --omit=dev --audit-level=high
 Database checks require PostgreSQL client/server binaries on `PATH`, or an explicitly named empty local test database. They exercise actual permissions, RLS and workflow transitions, then perform an encrypted dump/restore drill. They refuse production database targets. Browser checks require Chrome (`CHROME_PATH` on hosts where it is not found automatically), run against the production build, intercept provider writes and analytics, and include modest local concurrency checks.
 
 GitHub Actions run application, database and dependency checks. Scheduled offer and editorial releases open reviewable PRs. Monitoring, managed exports and maintenance need the repository variables described in the operations guide; committing workflows does not activate those integrations or branch protection.
+
+Public software profiles require an original, sourced brand guide or documented editorial notes in `lib/published-catalog.ts`. Importing a catalog record or fetching an offer does not publish a profile or an indexable discount guide. Keep review dates accurate and add original comparison analysis before including a pair in the sitemap. `validate:publisher` checks editorial completeness, source URLs, placeholders and repeated substantive paragraphs; editorial judgment is still required. The production checks crawl every sitemap page, check legacy references, enforce HTML and script size budgets, and exercise mobile and no-JavaScript reading. Evidence is saved under `docs/reports/publisher-content-*.json` and `docs/reports/browser-publisher-content-*.json`. These internal checks do not guarantee Google indexing or AdSense approval.
 
 ## Hosting
 

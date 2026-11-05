@@ -1,0 +1,152 @@
+{
+  "generatedAt": "2026-11-05T04:29:29.032Z",
+  "origin": "http://127.0.0.1:3238",
+  "scope": "Production build in Chrome at 390 and 1440 pixels; JavaScript and no-JavaScript visits; external HTTPS/measurement blocked; no form submissions",
+  "visits": [
+    {
+      "path": "/",
+      "width": 390,
+      "javascript": true,
+      "heading": "SaaS discounts& software deals.",
+      "canonical": "https://saasfolio.tech/"
+    },
+    {
+      "path": "/editorial-policy",
+      "width": 390,
+      "javascript": true,
+      "heading": "How our software buying guidance is made",
+      "canonical": "https://saasfolio.tech/editorial-policy"
+    },
+    {
+      "path": "/tools",
+      "width": 390,
+      "javascript": true,
+      "heading": "Choose software around the work you need to do.",
+      "canonical": "https://saasfolio.tech/tools"
+    },
+    {
+      "path": "/tools?page=2",
+      "width": 390,
+      "javascript": true,
+      "heading": "Choose software around the work you need to do.",
+      "canonical": "https://saasfolio.tech/tools?page=2"
+    },
+    {
+      "path": "/tools/notion",
+      "width": 390,
+      "javascript": true,
+      "heading": "Notion",
+      "canonical": "https://saasfolio.tech/tools/notion"
+    },
+    {
+      "path": "/compare/obsidian-vs-notion",
+      "width": 390,
+      "javascript": true,
+      "heading": "Obsidian VS Notion",
+      "canonical": "https://saasfolio.tech/compare/obsidian-vs-notion"
+    },
+    {
+      "path": "/articles/build-a-saas-budget-before-buying",
+      "width": 390,
+      "javascript": true,
+      "heading": "Build a SaaS budget before choosing discounts",
+      "canonical": "https://saasfolio.tech/articles/build-a-saas-budget-before-buying"
+    },
+    {
+      "path": "/tools/cogniflow-ai",
+      "width": 390,
+      "javascript": true,
+      "heading": "CogniFlow AI",
+      "canonical": "https://saasfolio.tech/tools/cogniflow-ai"
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "javascript": true,
+      "heading": "SaaS discounts& software deals.",
+      "canonical": "https://saasfolio.tech/"
+    },
+    {
+      "path": "/editorial-policy",
+      "width": 1440,
+      "javascript": true,
+      "heading": "How our software buying guidance is made",
+      "canonical": "https://saasfolio.tech/editorial-policy"
+    },
+    {
+      "path": "/tools",
+      "width": 1440,
+      "javascript": true,
+      "heading": "Choose software around the work you need to do.",
+      "canonical": "https://saasfolio.tech/tools"
+    },
+    {
+      "path": "/tools?page=2",
+      "width": 1440,
+      "javascript": true,
+      "heading": "Choose software around the work you need to do.",
+      "canonical": "https://saasfolio.tech/tools?page=2"
+    },
+    {
+      "path": "/tools/notion",
+      "width": 1440,
+      "javascript": true,
+      "heading": "Notion",
+      "canonical": "https://saasfolio.tech/tools/notion"
+    },
+    {
+      "path": "/compare/obsidian-vs-notion",
+      "width": 1440,
+      "javascript": true,
+      "heading": "Obsidian VS Notion",
+      "canonical": "https://saasfolio.tech/compare/obsidian-vs-notion"
+    },
+    {
+      "path": "/articles/build-a-saas-budget-before-buying",
+      "width": 1440,
+      "javascript": true,
+      "heading": "Build a SaaS budget before choosing discounts",
+      "canonical": "https://saasfolio.tech/articles/build-a-saas-budget-before-buying"
+    },
+    {
+      "path": "/tools/cogniflow-ai",
+      "width": 1440,
+      "javascript": true,
+      "heading": "CogniFlow AI",
+      "canonical": "https://saasfolio.tech/tools/cogniflow-ai"
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "javascript": false,
+      "heading": "SaaS discounts& software deals."
+    },
+    {
+      "path": "/tools?page=2",
+      "width": 1440,
+      "javascript": false,
+      "heading": "Choose software around the work you need to do."
+    },
+    {
+      "path": "/editorial-policy",
+      "width": 1440,
+      "javascript": false,
+      "heading": "How our software buying guidance is made"
+    },
+    {
+      "path": "/compare/pocketbase-vs-supabase",
+      "width": 1440,
+      "javascript": false,
+      "heading": "PocketBase VS Supabase"
+    },
+    {
+      "path": "/articles/saas-coupon-renewal-price-checklist",
+      "width": 1440,
+      "javascript": false,
+      "heading": "Check SaaS renewal prices before redeeming a coupon"
+    }
+  ],
+  "runtimeErrors": [],
+  "failedAssets": [],
+  "writes": []
+}

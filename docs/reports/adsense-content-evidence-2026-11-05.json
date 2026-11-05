@@ -1,0 +1,222 @@
+{
+  "generatedAt": "2026-11-05T04:31:30.005456+00:00",
+  "scope": "Public live GET observations and local production-build evidence; not AdSense account access, deployment verification, approval or historical traffic attribution",
+  "repository": {
+    "baseHead": "b49702b74a858a34a45ed47321b7cdc5f80cd520",
+    "source": "Uncommitted workspace changes",
+    "buildId": "Etif6YD2zyLZcz-uluw-v"
+  },
+  "liveBefore": {
+    "origin": "https://saasfolio.tech",
+    "pages": [
+      {
+        "path": "/",
+        "observedStatus": 200,
+        "snapshotModifiedAt": "2026-11-05T04:00:25.812Z",
+        "uncompressedBodyBytes": 334585,
+        "sha256": "6d513fc1e7193bb3485ae61ea6d6449975fc19100f1db3aa36ea787bc1863483",
+        "title": "SaaS Discounts, Software Deals & Reviews | SaaSFolio"
+      },
+      {
+        "path": "/tools",
+        "observedStatus": 200,
+        "snapshotModifiedAt": "2026-11-05T04:16:57.773Z",
+        "uncompressedBodyBytes": 4276965,
+        "sha256": "4cc7658c1bf942a849f3dac0374adc98101bfbf21fa1a626d965b721711fb413"
+      },
+      {
+        "path": "/deals",
+        "observedStatus": 200,
+        "snapshotModifiedAt": "2026-11-05T04:16:58.575Z",
+        "uncompressedBodyBytes": 4294889,
+        "sha256": "6fb20b4b7f93625a4fde55aeb377323fd374211778242e8a2209e15177827c4b"
+      },
+      {
+        "path": "/tools/cogniflow-ai",
+        "observedStatus": 200,
+        "snapshotModifiedAt": "2026-11-05T04:00:26.777Z",
+        "uncompressedBodyBytes": 90333,
+        "sha256": "b839cff36b1f4eb3fdb5ef97bfa39497246aa6fdcb3a29b2626aab7a4574e188",
+        "robots": "index, follow",
+        "unsupportedRenderedClaims": [
+          "2,400 engineering teams",
+          "SOC2 Type II",
+          "HIPAA",
+          "Zero-latency streaming trace telemetry and audit logs"
+        ],
+        "renderedClaimExcerpts": [
+          "Over 2,400 engineering teams use CogniFlow to safely run user-facing AI agents.",
+          "Zero-latency streaming trace telemetry and audit logs",
+          "Enterprise SOC2 Type II and HIPAA compliance guarantees"
+        ]
+      },
+      {
+        "path": "/editorial-policy",
+        "observedStatus": 404,
+        "snapshotModifiedAt": "2026-11-05T04:00:27.204Z",
+        "uncompressedBodyBytes": 67000,
+        "sha256": "8503ce332157de67da67ae2803b9178b4c5ef88c61809f6619ff39e4137dd537"
+      },
+      {
+        "path": "/sitemap.xml",
+        "observedStatus": 200,
+        "snapshotModifiedAt": "2026-11-05T04:00:26.241Z",
+        "uncompressedBodyBytes": 160265,
+        "sha256": "15b8cf55a5684cf24d0a49f2c2aac02a3f85a651590454511634c35c6a4e44cf",
+        "urls": 1096
+      },
+      {
+        "path": "/ads.txt",
+        "observedStatus": 200,
+        "snapshotModifiedAt": "2026-11-05T04:00:27.482Z",
+        "uncompressedBodyBytes": 59,
+        "sha256": "1d9dd5b311158c2810d743eafd8541ef6c1b2aba5a9f31e827634b2177ec6bc1",
+        "sellerRecord": "google.com, pub-4529948026803680, DIRECT, f08c47fec0942fa0"
+      }
+    ]
+  },
+  "liveDeploymentRecheck": {
+    "path": "/editorial-policy",
+    "status": 404,
+    "bytes": 67000,
+    "sha256": "8503ce332157de67da67ae2803b9178b4c5ef88c61809f6619ff39e4137dd537",
+    "snapshotModifiedAt": "2026-11-05T04:29:17.836Z",
+    "result": "Corrected route is still absent on production"
+  },
+  "localAfter": {
+    "contentReportGeneratedAt": "2026-11-05T04:28:52.711Z",
+    "contentSummary": {
+      "publishedTools": 136,
+      "excludedLegacyTools": 650,
+      "publishedOffers": 89,
+      "originalComparisons": 6,
+      "sitemapPages": 399,
+      "contentPages": 399,
+      "largestHtmlBytes": 700131,
+      "scriptAssets": 42,
+      "largestScriptBytes": 243176,
+      "indexingErrors": 0,
+      "errors": 0
+    },
+    "pageChanges": [
+      {
+        "path": "/tools",
+        "liveBeforeBytes": 4276965,
+        "localBuildAfterBytes": 409050,
+        "reductionPercent": 90.44
+      },
+      {
+        "path": "/deals",
+        "liveBeforeBytes": 4294889,
+        "localBuildAfterBytes": 700131,
+        "reductionPercent": 83.7
+      }
+    ],
+    "probes": [
+      {
+        "path": "/tools/cogniflow-ai",
+        "status": 200,
+        "noindex": true,
+        "findings": []
+      },
+      {
+        "path": "/tools/claude-ai",
+        "status": 200,
+        "noindex": true,
+        "findings": []
+      },
+      {
+        "path": "/tools/metricpulse",
+        "status": 200,
+        "noindex": true,
+        "findings": []
+      },
+      {
+        "path": "/tools?page=2",
+        "status": 200,
+        "noindex": false,
+        "findings": []
+      },
+      {
+        "path": "/tools?page=9999",
+        "status": 404,
+        "noindex": true,
+        "findings": []
+      },
+      {
+        "path": "/tools/publisher-nonexistent",
+        "status": 404,
+        "noindex": true,
+        "findings": []
+      },
+      {
+        "path": "/editorial-policy",
+        "status": 200,
+        "noindex": false,
+        "findings": []
+      }
+    ],
+    "browserReportGeneratedAt": "2026-11-05T04:29:29.032Z",
+    "browserVisits": 21,
+    "runtimeErrors": [],
+    "failedAssets": [],
+    "writes": []
+  },
+  "limitations": [
+    "Live before and local after are different deployment states, not a production improvement measurement.",
+    "No Search Console or AdSense account data was accessible.",
+    "No external checkout acceptance, real provider delivery, contact-mailbox delivery or consent-platform publication was established.",
+    "Structural checks and duplicated-paragraph detection do not establish Google content quality or guarantee approval."
+  ],
+  "verification": {
+    "unitTests": {
+      "command": "node --test --test-reporter=dot scripts/*.test.mjs",
+      "passed": 149,
+      "failed": 0
+    },
+    "publisherSourceValidation": {
+      "passed": true,
+      "brandGuides": 126,
+      "comparisons": 6,
+      "documentedProfiles": 10,
+      "articles": 11
+    },
+    "catalogValidation": {
+      "passed": true,
+      "canonicalBrands": 794,
+      "sourceOffers": 210,
+      "sourceRecords": 889
+    },
+    "typeScript": {
+      "passed": true
+    },
+    "lint": {
+      "errors": 0,
+      "preexistingUnrelatedMarketingWarnings": 12
+    },
+    "productionBuild": {
+      "passed": true,
+      "staticPages": 586
+    },
+    "productionChecks": {
+      "passed": true,
+      "checks": [
+        "audit-publisher-content",
+        "audit-publisher-readiness",
+        "audit-brand-identity",
+        "audit-seo",
+        "audit-brand-seo",
+        "audit-offer-flows",
+        "http-reliability-smoke",
+        "browser-publisher-content",
+        "browser-site-pages",
+        "browser-offer-smoke",
+        "browser-auth-smoke",
+        "browser-privacy-smoke"
+      ]
+    },
+    "adSenseAccountAccess": false,
+    "deploymentPerformed": false,
+    "reviewRequested": false
+  }
+}
