@@ -48,13 +48,13 @@ jobs:
       - run: npm run validate:publisher
       - run: npm run build
       - run: npm run check:production-build
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: production-check-logs
           path: /tmp/saasfolio-production-checks.log
           retention-days: 7
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: publisher-content-evidence
