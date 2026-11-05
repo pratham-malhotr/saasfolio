@@ -1,6 +1,9 @@
 import React from "react";
 import { notFound, permanentRedirect } from "next/navigation";
-import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
+import { getToolBySlug } from "@/lib/data/tools-data";
+import { getPublishedTools, getPublishedTool, hasPublishedToolProfile } from "@/lib/published-catalog";
+import { ToolBuyingNotes } from "@/components/seo/ToolBuyingNotes";
+import { CatalogReference } from "@/components/tools/CatalogReference";
 import { getDealsByTool } from "@/lib/data/deals-data";
 import { ToolProfileClient } from "@/components/tools/ToolProfileClient";
 import type { Metadata } from "next";
@@ -15,7 +18,7 @@ import { getComparisonHref } from "@/lib/catalog-links";
 import { BrandDiscountSummary } from "@/components/seo/BrandDiscountSummary";
 
 export async function generateStaticParams() {
-  const tools = getAllTools();
+  const tools = getPublishedTools();
   return tools.map((tool) => ({
     slug: tool.slug,
   }));
@@ -27,15 +30,16 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const tool = getToolBySlug(slug);
+  const tool = getPublishedTool(slug) || getToolBySlug(slug);
 
   if (!tool) notFound();
+  const published = hasPublishedToolProfile(tool.slug);
 
   return pageMetadata({
-    title: toolSearchTitle(tool.name),
-    description: toolMetaDescription(tool.name, tool.description),
+    title: published ? toolSearchTitle(tool.name) : `${tool.name}: Directory Reference`,
+    description: published ? toolMetaDescription(tool.name, tool.description) : `An older ${tool.name} directory reference. Explore published software buying guides and current provider terms before choosing a subscription.`,
     path: `/tools/${tool.slug}`,
-    noIndex: tool.providerStatus === "unavailable",
+    noIndex: !published,
   });
 }
 
@@ -47,12 +51,13 @@ export default async function ToolDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const tool = getToolBySlug(slug);
+  const tool = getPublishedTool(slug) || getToolBySlug(slug);
 
   if (!tool) {
     notFound();
   }
   if (slug !== tool.slug) permanentRedirect(`/tools/${tool.slug}`);
+  if (tool.providerStatus !== "unavailable" && !hasPublishedToolProfile(tool.slug)) return <CatalogReference tool={tool} />;
 
   const deals = getDealsByTool(tool.slug);
 
@@ -82,6 +87,7 @@ export default async function ToolDetailPage({
         tool={tool}
         deals={deals}
         discountSummary={<BrandDiscountSummary tool={tool} deals={deals} />}
+        buyingNotes={hasPublishedToolProfile(tool.slug) ? <ToolBuyingNotes tool={tool} /> : undefined}
         comparisonLinks={Object.fromEntries(
           tool.alternatives.map((alternative) => [
             alternative.slug,

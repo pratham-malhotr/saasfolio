@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
+import { getPublishedTool } from "@/lib/published-catalog";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata, absoluteUrl } from "@/lib/seo";
 import { breadcrumbSchema, softwareSchema, webPageSchema } from "@/lib/structured-data";
@@ -26,7 +27,7 @@ export function generateStaticParams() {
 
 async function resolveBrand(params: Promise<{ slug: string }>) {
   const { slug } = await params;
-  const tool = getToolBySlug(slug);
+  const tool = getPublishedTool(slug) || getToolBySlug(slug);
   if (!tool || !hasBrandDiscountPage(tool.slug)) notFound();
   return { tool, slug };
 }

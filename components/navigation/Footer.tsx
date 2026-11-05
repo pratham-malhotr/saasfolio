@@ -70,7 +70,7 @@ export function Footer() {
           {/* Column: Editorial & Guides */}
           <div className="space-y-4">
             <div className="font-mono text-xs uppercase tracking-widest text-white font-semibold">
-              Knowledge & Community
+              Buying Guidance
             </div>
             <ul className="space-y-2.5 text-sm">
               <li>
@@ -83,12 +83,7 @@ export function Footer() {
                   Build a Software Budget
                 </Link>
               </li>
-              <li>
-                <Link prefetch={false} href="/community" className="hover:text-[#C6FF3D] transition-colors flex items-center gap-1.5">
-                  <span>Community Q&A</span>
-                  <span className="font-mono text-[9px] px-1.5 py-0.2 rounded bg-white/10 text-zinc-300">NEW</span>
-                </Link>
-              </li>
+              <li><Link prefetch={false} href="/editorial-policy" className="hover:text-[#C6FF3D] transition-colors">Editorial Method & Corrections</Link></li>
               <li>
                 <Link prefetch={false} href="/about#standards" className="hover:text-[#C6FF3D] transition-colors">
                   How We Check Offers

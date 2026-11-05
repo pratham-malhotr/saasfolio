@@ -18,15 +18,15 @@ import { apiRequest } from "@/lib/api-client";
 const CHANNELS = [
   {
     icon: Mail,
-    title: "Member & Community Support",
+    title: "Reader & Account Support",
     email: "support@saasfolio.tech",
-    description: "Account credentials, passport reputation, saved bookmarks, and general inquiry.",
+    description: "Questions about saved items, site access, published guides and general inquiries.",
   },
   {
     icon: Sparkles,
     title: "Vendor Deals & Sponsorships",
     email: "partners@saasfolio.tech",
-    description: "Submit exclusive coupons, lifetime offers, and homepage featured tool placements.",
+    description: "Suggest a sourced offer or ask about a potential commercial relationship.",
   },
   {
     icon: MessageSquare,
@@ -49,14 +49,14 @@ const FAQS = [
   },
   {
     q: "Does SaaSFolio charge founders for basic directory listings?",
-    a: "No! Standard tool inclusion in the Software Directory is 100% free for legitimate SaaS products. Paid packages only apply to featured hero placements, newsletter sponsorships, and sponsored deep-dive guides.",
+    a: "There is no charge to suggest a product. A submission does not guarantee publication: the published collection requires original guidance and identifiable sources. Commercial inquiries are considered separately.",
   },
   {
     q: "What should I do if a coupon code didn't work for me?",
     a: "Send us the offer URL, the code, and the provider’s current terms using this form so the listing can be reviewed. Do not include payment details or passwords.",
   },
   {
-    q: "Can I contribute an architectural stack review as a guest engineer?",
+    q: "Can I suggest a software buying guide?",
     a: "Send an outline, sources and a clear account of what you tested to editorial@saasfolio.tech. We review submissions before considering publication.",
   },
 ];
@@ -115,7 +115,7 @@ export default function ContactPage({ initialReport }: { initialReport?: { subje
           </h1>
 
           <p className="text-base sm:text-xl text-zinc-400 font-sans leading-relaxed">
-            Have a question about a discount code, want to submit your software, or need help with your Member Passport? Send us a message or contact our team directly.
+            Have a question about a discount code, want to submit your software, or need help with your account? Send us a message or contact our team directly.
           </p>
         </div>
 
@@ -228,10 +228,10 @@ export default function ContactPage({ initialReport }: { initialReport?: { subje
                         onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
                       >
-                        <option value="support">Member Support & Passports</option>
+                        <option value="support">Reader & Account Support</option>
                         <option value="partners">Vendor Partnerships & Deals</option>
                         <option value="editorial">Editorial & Buying Guides</option>
-                        <option value="security">Security & Bug Bounty</option>
+                        <option value="security">Security Reports</option>
                       </select>
                     </div>
                     <div>

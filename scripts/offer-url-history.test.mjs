@@ -145,6 +145,7 @@ function loadDealPage(catalog, getToolBySlug, guide) {
     "next/navigation": { permanentRedirect: redirect, notFound },
     "@/lib/data/deals-data": catalog,
     "@/lib/data/tools-data": { getToolBySlug },
+    "@/lib/published-catalog": { getPublishedOffers: () => catalog.getAllDeals().filter(deal => deal.dealType !== "pricing"), hasPublishedToolProfile: () => true },
     "@/components/deals/DealDetailClient": {},
     "@/lib/seo": {
       pageMetadata: value => value, dealSearchTitle: deal => deal.title, dealMetaDescription: () => "Current offer terms",

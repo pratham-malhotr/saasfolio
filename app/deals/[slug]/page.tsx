@@ -1,6 +1,6 @@
 import React from "react";
 import { notFound, permanentRedirect } from "next/navigation";
-import { getAllDeals, getDealBySlug, getRetiredOfferToolSlug } from "@/lib/data/deals-data";
+import { getDealBySlug, getRetiredOfferToolSlug } from "@/lib/data/deals-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { DealDetailClient } from "@/components/deals/DealDetailClient";
 import type { Metadata } from "next";
@@ -15,10 +15,11 @@ import {
   getDealFaqs,
 } from "@/lib/structured-data";
 import { getComparisonHref } from "@/lib/catalog-links";
+import { getPublishedOffers, getPublishedTool, hasPublishedToolProfile } from "@/lib/published-catalog";
 import { hasBrandDiscountPage, getBrandDiscountData, brandDiscountTitle, brandDiscountDescription } from "@/lib/brand-discounts";
 
 export async function generateStaticParams() {
-  const deals = getAllDeals();
+  const deals = getPublishedOffers();
   return deals.map((deal) => ({
     slug: deal.slug,
   }));
@@ -66,7 +67,7 @@ export async function generateMetadata({
     title: dealSearchTitle(deal),
     description: dealMetaDescription(deal),
     path: target.path,
-    noIndex: deal.dealType === "pricing",
+    noIndex: deal.dealType === "pricing" || !hasPublishedToolProfile(deal.toolSlug),
   });
 }
 
@@ -82,8 +83,8 @@ export default async function DealDetailPage({
   if (target.kind === "retired" || slug !== target.deal.slug) permanentRedirect(target.path);
   const { deal } = target;
 
-  const tool = getToolBySlug(deal.toolSlug);
-  const allDeals = getAllDeals();
+  const tool = getPublishedTool(deal.toolSlug);
+  const allDeals = getPublishedOffers();
   const relatedDeals = allDeals.filter(
     (d) => d.categorySlug === deal.categorySlug && d.id !== deal.id
   );

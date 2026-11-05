@@ -6,6 +6,7 @@ import { breadcrumbSchema, webPageSchema } from "@/lib/structured-data";
 import { getToolHref } from "@/lib/catalog-links";
 import { DETAILED_THREADS } from "@/lib/data/community-data";
 import { CommunityThreadClient } from "@/components/community/CommunityThreadClient";
+import { getPublishedOffers } from "@/lib/published-catalog";
 
 interface PageProps {
   params: Promise<{
@@ -55,7 +56,7 @@ export default async function CommunityThreadPage({ params }: PageProps) {
   return (
     <div data-community-preview="true">
       <JsonLd data={jsonLd} />
-      <CommunityThreadClient thread={thread} toolLinks={Object.fromEntries(thread.toolTags.map((tag) => [tag.slug, getToolHref(tag.slug)]))} />
+      <CommunityThreadClient thread={thread} relatedDeals={getPublishedOffers().filter(deal => thread.toolTags.some(tag => tag.slug === deal.toolSlug))} toolLinks={Object.fromEntries(thread.toolTags.map((tag) => [tag.slug, getToolHref(tag.slug)]))} />
     </div>
   );
 }

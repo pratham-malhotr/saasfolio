@@ -19,6 +19,7 @@ interface ComparisonViewProps {
   dealsA: SaaSDeal[];
   dealsB: SaaSDeal[];
   allTools: Pick<DetailedTool, "id" | "slug" | "name">[];
+  editorialGuide?: React.ReactNode;
   discountGuides?: React.ReactNode;
 }
 
@@ -28,6 +29,7 @@ export function ComparisonView({
   dealsA,
   dealsB,
   allTools,
+  editorialGuide,
   discountGuides,
 }: ComparisonViewProps) {
   const router = useRouter();
@@ -72,6 +74,7 @@ export function ComparisonView({
         </p>
       </div>
 
+      {editorialGuide}
       {discountGuides}
 
       {/* Interactive Tool Selector Bar */}

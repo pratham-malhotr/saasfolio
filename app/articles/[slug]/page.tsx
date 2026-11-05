@@ -7,6 +7,7 @@ import { breadcrumbSchema, organizationId, webPageSchema } from "@/lib/structure
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { ArticleDetailClient } from "@/components/articles/ArticleDetailClient";
 import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
+import { getPublishedOffers } from "@/lib/published-catalog";
 
 interface PageProps {
   params: Promise<{
@@ -50,6 +51,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   }
 
   const path = `/articles/${article.slug}`;
+  const sectionDeals = Object.fromEntries(getPublishedOffers().filter(deal => article.sections.some(section => section.dealCalloutSlug === deal.slug)).map(deal => [deal.slug, deal]));
   const relatedArticles = DETAILED_ARTICLES.filter(other => article.relatedArticlesSlugs.includes(other.slug)).map(({ id, slug, title, summary, category, readTime, author, tags, featured }) => ({ id, slug, title, summary, category, readTime, author, tags, featured }));
   const jsonLd = {
     "@context": "https://schema.org",
@@ -78,7 +80,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <ArticleDetailClient article={article} relatedArticles={relatedArticles} savingsLinks={<SavingsCollectionLinks heading="Find current offers for this buying decision" />} />
+      <ArticleDetailClient article={article} relatedArticles={relatedArticles} sectionDeals={sectionDeals} savingsLinks={<SavingsCollectionLinks heading="Find current offers for this buying decision" />} />
     </>
   );
 }
