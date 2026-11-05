@@ -41,7 +41,8 @@ test("program directory entries resolve to available brand guidance without requ
     const programs = getCollectionPrograms(collection.slug);
     assert.equal(programs.length, collection.programs.length, `${collection.slug}: no missing or unavailable brand`);
     for (const program of programs) {
-      assert.match(program.path, /^\/(discounts|tools)\/[a-z0-9-]+$/);
+      if (program.hasGuide || program.hasProfile) assert.match(program.path, /^\/(discounts|tools)\/[a-z0-9-]+$/);
+      else assert.equal(program.path, program.sourceUrl, "Unreviewed profiles link to the official program rather than a thin directory entry");
       assert.equal(new URL(program.sourceUrl).protocol, "https:");
     }
     assert.ok(existsSync(`app/${collection.slug}/page.tsx`));

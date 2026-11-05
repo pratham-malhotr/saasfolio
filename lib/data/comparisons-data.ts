@@ -1,4 +1,5 @@
 import { getToolBySlug } from "@/lib/data/tools-data";
+import { COMPARISON_GUIDES } from "@/lib/data/comparison-guides";
 
 export const POPULAR_COMPARISONS = [
   {
@@ -97,13 +98,10 @@ export const POPULAR_COMPARISONS = [
     toolA: "Moosend",
     toolB: "MailerLite",
   },
-];
+].filter(comparison => Boolean(COMPARISON_GUIDES[comparison.slug]));
 
 
 export const COMPARISON_SLUGS = [
-  "cogniflow-ai-vs-syntaxai", "edgebase-cloud-vs-deployjet",
-  "pulsemail-pro-vs-viralpeak", "vaultguard-security-vs-armorid",
-  "vectorcraft-vs-framegen", "metricpulse-vs-insightstream",
   ...POPULAR_COMPARISONS.map((comparison) => comparison.slug),
 ].filter((slug) => slug.split("-vs-").every((part) => {
   const tool = getToolBySlug(part);

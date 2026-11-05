@@ -7,6 +7,7 @@ import { summarize } from "@/lib/seo";
 import type { DetailedTool, SaaSDeal } from "@/lib/types";
 import type { DiscountSearchEntry } from "@/lib/discount-search";
 import { DISCOUNT_BRAND_ALIASES } from "@/lib/data/brand-discount-aliases.mjs";
+import { editorialGuideIssues } from "@/lib/editorial-quality.mjs";
 
 const establishedBrands = new Set(snapshot.offers.filter(offer =>
   (offer.discountPercentage > 0 || ("code" in offer && offer.code)) && offer.sourceUrl && offer.evidence
@@ -21,7 +22,8 @@ export function getBrandDiscountData(tool: DetailedTool, catalogDeals = getAllDe
   const coupons = offers.filter(offer => offer.code);
   const savings = offers.filter(offer => offer.discountPercentage > 0);
   const guide = BRAND_DISCOUNT_GUIDES[tool.slug];
-  const indexable = Boolean(guide || coupons.length || savings.length);
+  // A fetched code does not create a new editorial landing page by itself.
+  const indexable = Boolean(guide && editorialGuideIssues(guide).length === 0);
   const dates = [guide?.reviewedAt ? `${guide.reviewedAt}T00:00:00.000Z` : undefined,
     ...offers.map(offer => offer.updatedAt || offer.checkedAt)].filter((date): date is string =>
     Boolean(date && Number.isFinite(Date.parse(date)) && Date.parse(date) <= Date.now()));
