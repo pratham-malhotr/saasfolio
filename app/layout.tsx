@@ -13,6 +13,7 @@ import { ADSENSE_ACCOUNT } from "@/lib/advertising.mjs";
 import { getDiscountSearchEntries } from "@/lib/brand-discounts";
 import { getPublicSearchCatalog } from "@/lib/published-catalog";
 import { ConsentAnalytics } from "@/components/privacy/ConsentAnalytics";
+import { authConfigured } from "@/lib/server/supabase";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-display",
@@ -83,7 +84,7 @@ export default function RootLayout({
             {/* Sticky Translucent Navbar */}
             {/* The header is fixed; a flow-height fallback shifts the page on hydration. */}
             <Suspense fallback={null}>
-              <Navbar discountBrands={getDiscountSearchEntries()} searchCatalog={getPublicSearchCatalog()} />
+              <Navbar discountBrands={getDiscountSearchEntries()} searchCatalog={getPublicSearchCatalog()} accountsAvailable={authConfigured()} />
             </Suspense>
 
             {/* Main Content Area */}

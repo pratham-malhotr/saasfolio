@@ -30,7 +30,7 @@ const indexing = await auditIndexing(options, {
       const findings = [];
       if (Buffer.byteLength(raw) >= 1900000) findings.push("HTML exceeds the internal 1.9 MB crawl budget");
       if (nodes(main, node => node.tagName === "h1").length !== 1) findings.push("Expected one meaningful primary heading");
-      if (/HANDS-ON|SaaSFolio Studio AI Voice Engine|Verified Engineer|Verified Reader|Over 2,400 engineering teams/.test(text)) findings.push("Unsupported testing, identity or activity claim");
+      if (/HANDS-ON|SaaSFolio Studio AI Voice Engine|Verified Engineer|Verified Reader|Over 2,400 engineering teams|120,000\+ FOUNDERS|zero vanity traffic/.test(text)) findings.push("Unsupported testing, identity, audience or activity claim");
       if (/^\/tools\/[^/]+$/.test(path) && !nodes(main, node => attr(node, "data-editorial-profile") === "true").length) findings.push("Published software profile lacks its buying guidance");
       if (/^\/tools\/[^/]+$/.test(path)) {
         const tool = publishedTools.get(path.split("/").pop());

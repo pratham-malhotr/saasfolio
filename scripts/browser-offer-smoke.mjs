@@ -8,6 +8,7 @@ import { loadCatalogModule } from "./lib/load-catalog.mjs";
 // A dependency-free Chrome smoke test. Set CHROME_PATH on non-macOS hosts.
 const origin = (process.argv[2] || "http://127.0.0.1:3210").replace(/\/$/, "");
 const { getAllDeals } = loadCatalogModule("lib/data/deals-data.ts");
+const { SUPPORT_EMAIL } = loadCatalogModule("lib/site-contact.ts");
 const currentCoupons = getAllDeals().filter(deal => deal.code);
 const couponBrands = [...new Set(currentCoupons.map(deal => deal.toolSlug))].sort();
 const officialCoupons = currentCoupons.filter(deal => deal.sourceKind === "vendor");
@@ -202,18 +203,57 @@ try {
   assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth"), "calculator fits mobile viewport");
   const screenshot = await page("Page.captureScreenshot", { format: "png" });
   await writeFile(join(tmpdir(), "saasfolio-savings-mobile.png"), Buffer.from(screenshot.data, "base64"));
+  await page("Emulation.setScriptExecutionDisabled", { value: true });
   await navigate("/contact?offer=hostinger-couponspage-code#contact-form");
-  assert.ok(await evaluate("document.querySelector('#form-subject').value.includes('Hostinger') && document.querySelector('#form-message').value.includes('COUPONSPAGE') && document.querySelector('#form-message').value.includes('https://saasfolio.tech/deals/hostinger-couponspage-code')"), "correction form retains the affected offer and code");
+  const correctionDraft = new URL(await evaluate("document.querySelector('[data-contact-email-draft]').href"));
+  assert.equal(correctionDraft.protocol, "mailto:");
+  assert.equal(correctionDraft.pathname, SUPPORT_EMAIL);
+  assert.equal(correctionDraft.searchParams.get("subject"), "Hostinger: offer or link correction");
+  assert.ok(correctionDraft.searchParams.get("body").includes("COUPONSPAGE") && correctionDraft.searchParams.get("body").includes("https://saasfolio.tech/deals/hostinger-couponspage-code"), "the native correction email retains the affected offer and code without JavaScript");
+  for (const [path, kind, subject, fields] of [
+    ["/submit", "submission", "Software or offer submission for editorial review", ["Product or brand name", "Official website URL", "Official offer or pricing source URL", "Eligibility", "Billing period and renewal terms"]],
+    ["/advertise", "partnership", "SaaSFolio partnership proposal", ["Company or product name", "Official website URL", "Partnership proposal"]],
+  ]) {
+    await navigate(path);
+    const inquiryDraft = new URL(await evaluate(`document.querySelector('[data-inquiry-email-draft=${kind}]').href`));
+    assert.equal(inquiryDraft.protocol, "mailto:");
+    assert.equal(inquiryDraft.pathname, SUPPORT_EMAIL);
+    assert.equal(inquiryDraft.searchParams.get("subject"), subject);
+    for (const field of fields) assert.ok(inquiryDraft.searchParams.get("body").includes(field), `${path}: email draft includes ${field} without JavaScript`);
+    assert.ok(await evaluate("!document.querySelector('main form') && document.documentElement.scrollWidth <= innerWidth"), `${path}: native email route is usable without JavaScript and fits mobile`);
+  }
+  await page("Emulation.setScriptExecutionDisabled", { value: false });
   const health = await (await fetch(`${origin}/api/health`)).json();
   for (const [path, flag] of [["/contact", "formsConfigured"], ["/advertise", "formsConfigured"], ["/login", "accountsConfigured"]]) {
     if (health.checks[flag]) continue;
     await navigate(path);
+    if (path === "/contact") {
+      await until(() => evaluate("!!document.querySelector('[data-contact-email-draft]')"), "Contact offers a native email draft");
+      assert.ok(await evaluate("!document.querySelector('form#contact-form') && !document.querySelector('#form-email')"), "Contact does not expose an unavailable web form");
+      continue;
+    }
+    if (path === "/advertise") {
+      await until(() => evaluate("!!document.querySelector('[data-inquiry-email-draft=partnership]') && !document.querySelector('main form')"), "Partnership proposals have a native email route");
+      const partnershipDraft = new URL(await evaluate("document.querySelector('[data-inquiry-email-draft=partnership]').href"));
+      assert.equal(partnershipDraft.pathname, SUPPORT_EMAIL);
+      assert.equal(partnershipDraft.searchParams.get("subject"), "SaaSFolio partnership proposal");
+      assert.doesNotMatch(await evaluate("document.querySelector('main').textContent"), /120,000|zero vanity traffic|Sole primary sponsor|Pinned on trending deals ticker/);
+      continue;
+    }
     await until(() => evaluate("[...document.querySelectorAll('main [role=status]')].some(node => node.textContent.includes('temporarily unavailable'))"), `${path}: unavailable service notice`);
     assert.ok(await evaluate("!!document.querySelector('main fieldset[disabled]') && !!document.querySelector('main a[href^=\"mailto:\"]')"), `${path}: disabled form and email alternative`);
   }
   await navigate("/submit");
-  await until(() => evaluate("document.querySelector('main').textContent.includes('AUTHENTICATION REQUIRED')"), "anonymous submission requires authentication");
-  assert.ok(await evaluate("!!document.querySelector('main a[href=\"/login?redirect=/submit\"]') && !document.querySelector('main form')"), "anonymous submission has a recoverable sign-in link and cannot expose the contributor form");
+  if (health.checks.formsConfigured) {
+    await until(() => evaluate("document.querySelector('main').textContent.includes('AUTHENTICATION REQUIRED')"), "anonymous submission requires authentication when the web service is configured");
+    assert.ok(await evaluate("!!document.querySelector('main a[href=\"/login?redirect=/submit\"]') && !document.querySelector('main form')"), "anonymous submission cannot expose the configured contributor form");
+  } else {
+    await until(() => evaluate("!!document.querySelector('[data-inquiry-email-draft=submission]')"), "Unconfigured submissions have a native editorial email route");
+    const submissionDraft = new URL(await evaluate("document.querySelector('[data-inquiry-email-draft=submission]').href"));
+    assert.equal(submissionDraft.pathname, SUPPORT_EMAIL);
+    assert.equal(submissionDraft.searchParams.get("subject"), "Software or offer submission for editorial review");
+    assert.ok(await evaluate("!document.querySelector('main form') && !document.querySelector('main a[href^=\"/login\"]') && !document.querySelector('main a[href^=\"/signup\"]')"), "Unconfigured submissions do not lead readers to unavailable registration or web forms");
+  }
   await evaluate("localStorage.setItem('saasfolio_local_threads', '[null,{\"id\":\"bad\"}]'); localStorage.setItem('saasfolio_community_upvotes', 'null')");
   await navigate("/community");
   await until(() => evaluate("document.querySelector('main').textContent.includes('Editorial')"), "editorial prompts survive malformed local storage");
