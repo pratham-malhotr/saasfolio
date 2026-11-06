@@ -1,6 +1,6 @@
 "use client";
 import { useServiceAvailability } from "@/lib/use-service-availability";
-import { ServiceNotice } from "@/components/forms/ServiceNotice";
+import { SUPPORT_EMAIL, SUPPORT_EMAIL_HREF } from "@/lib/site-contact";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -19,25 +19,25 @@ const CHANNELS = [
   {
     icon: Mail,
     title: "Reader & Account Support",
-    email: "support@saasfolio.tech",
+    email: SUPPORT_EMAIL,
     description: "Questions about saved items, site access, published guides and general inquiries.",
   },
   {
     icon: Sparkles,
     title: "Vendor Deals & Sponsorships",
-    email: "partners@saasfolio.tech",
+    email: SUPPORT_EMAIL,
     description: "Suggest a sourced offer or ask about a potential commercial relationship.",
   },
   {
     icon: MessageSquare,
     title: "Editorial & Buying Guides",
-    email: "editorial@saasfolio.tech",
+    email: SUPPORT_EMAIL,
     description: "Suggest a sourced buying guide, correction or comparison of software costs.",
   },
   {
     icon: ShieldCheck,
     title: "Security Reports",
-    email: "security@saasfolio.tech",
+    email: SUPPORT_EMAIL,
     description: "Report a reproducible security issue without including private credentials or other users’ data.",
   },
 ];
@@ -45,7 +45,7 @@ const CHANNELS = [
 const FAQS = [
   {
     q: "How quickly do you verify coupon submissions?",
-    a: "Submissions enter a review queue. We check the recorded source and terms before considering publication. Source checks are separate from checkout testing; publication and response times are not guaranteed.",
+    a: "We check submitted sources and terms before considering publication. Source checks are separate from checkout testing; publication and response times are not guaranteed.",
   },
   {
     q: "Does SaaSFolio charge founders for basic directory listings?",
@@ -53,16 +53,17 @@ const FAQS = [
   },
   {
     q: "What should I do if a coupon code didn't work for me?",
-    a: "Send us the offer URL, the code, and the provider’s current terms using this form so the listing can be reviewed. Do not include payment details or passwords.",
+    a: "Email us the offer URL, the code, and the provider’s current terms so the listing can be reviewed. Do not include payment details or passwords.",
   },
   {
     q: "Can I suggest a software buying guide?",
-    a: "Send an outline, sources and a clear account of what you tested to editorial@saasfolio.tech. We review submissions before considering publication.",
+    a: `Send an outline, sources and a clear account of what you tested to ${SUPPORT_EMAIL}. We review submissions before considering publication.`,
   },
 ];
 
 export default function ContactPage({ initialReport }: { initialReport?: { subject: string; message: string; offerSlug?: string; brandSlug?: string } }) {
-  const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("formsConfigured");
+  const { available: serviceAvailable } = useServiceAvailability("formsConfigured");
+  const contactEmailHref = `${SUPPORT_EMAIL_HREF}?subject=${encodeURIComponent(initialReport?.subject || "SaaSFolio support")}&body=${encodeURIComponent(initialReport?.message || "")}`;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -137,7 +138,7 @@ export default function ContactPage({ initialReport }: { initialReport?: { subje
                   </h3>
                   <a
                     href={`mailto:${ch.email}`}
-                    className="font-mono text-xs text-[#C6FF3D] hover:underline block mb-3"
+                    className="font-mono text-xs text-[#C6FF3D] hover:underline block mb-3 break-all"
                   >
                     {ch.email}
                   </a>
@@ -181,10 +182,9 @@ export default function ContactPage({ initialReport }: { initialReport?: { subje
                   Send Another Message
                 </button>
               </div>
-            ) : (
+            ) : serviceAvailable ? (
               <form id="contact-form" onSubmit={handleSubmit} className="space-y-5 scroll-mt-28" aria-busy={busy}>
-                <ServiceNotice status={serviceStatus} emailHref={`mailto:support@saasfolio.tech?subject=${encodeURIComponent(initialReport?.subject || "SaaSFolio support")}&body=${encodeURIComponent(initialReport?.message || "")}`} />
-                <fieldset disabled={!serviceAvailable} className="contents">
+                <fieldset className="contents">
                   <legend className="sr-only">Form details</legend>
                   {initialReport && <p className="rounded-xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/5 p-4 text-sm text-zinc-300">The listing details are included below. Describe what happened and add your contact details. Do not include passwords, card numbers or payment screenshots.</p>}
                   {error && <p role="alert" className="text-sm text-rose-400">{error}</p>}
@@ -271,6 +271,26 @@ export default function ContactPage({ initialReport }: { initialReport?: { subje
                   </button>
                 </fieldset>
               </form>
+            ) : (
+              <div id="contact-form" data-contact-email-fallback="" className="space-y-5 scroll-mt-28">
+                <p className="text-sm text-zinc-300 leading-relaxed">
+                  Email questions, corrections and software suggestions to{" "}
+                  <a href={contactEmailHref} className="break-all text-[#C6FF3D] underline">{SUPPORT_EMAIL}</a>.
+                  Include the page URL and the provider’s current terms when reporting an offer.
+                </p>
+                {initialReport && <div className="rounded-xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/5 p-4 space-y-3 text-sm text-zinc-300">
+                  <p>The email draft includes the affected listing. Add what happened before sending.</p>
+                  <p className="font-semibold text-white">{initialReport.subject}</p>
+                  <pre className="whitespace-pre-wrap break-words font-sans text-xs leading-relaxed">{initialReport.message}</pre>
+                </div>}
+                <a href={contactEmailHref} data-contact-email-draft="" className="inline-flex items-center gap-2 rounded-xl bg-[#C6FF3D] px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-black hover:bg-[#D6FF66]">
+                  <Mail className="h-4 w-4" />
+                  Open email draft
+                </a>
+                <p className="text-xs leading-relaxed text-zinc-400">
+                  Review and send the draft in your email app. You can also copy the address above into your preferred email service.
+                </p>
+              </div>
             )}
           </div>
 

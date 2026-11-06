@@ -1,6 +1,6 @@
 "use client";
 import { useServiceAvailability } from "@/lib/use-service-availability";
-import { ServiceNotice } from "@/components/forms/ServiceNotice";
+import { EmailInquiry } from "@/components/forms/EmailInquiry";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -16,73 +16,55 @@ const PACKAGES = [
   {
     id: "featured-tool",
     name: "Featured Tool Spotlight",
-    price: "$499",
-    period: "per 30 days",
+    price: "Scope to agree",
+    period: "by written agreement",
     badge: "PROPOSED PLACEMENT",
-    description: "Maximum discovery across the homepage hero banner, category leaderboards, and directory search suggestions.",
+    description: "Propose a clearly disclosed software placement. Location, duration and pricing require a written agreement before publication.",
     features: [
-      "Top sticky placement on /tools directory",
-      "Homepage 'Featured SaaS' card inclusion",
-      "Direct outbound /go/[id] provider link",
-      "Clearly labeled sponsored placement",
-      "Social mention on Twitter & LinkedIn channels",
+      "Official product and source review",
+      "Current offer terms and eligibility",
+      "Sponsorship and commercial links disclosed",
+      "Placement and duration discussed before publication",
     ],
   },
   {
     id: "deal-showcase",
-    name: "Exclusive Deal Launch",
-    price: "$349",
-    period: "per deal campaign",
+    name: "Software Offer Proposal",
+    price: "Scope to agree",
+    period: "by written agreement",
     badge: "PROPOSED CAMPAIGN",
     description: "Discuss a sourced coupon or software offer placement with clear eligibility, expiry information and redemption steps.",
     features: [
-      "Top slot in /deals hub filter grid",
-      "Interactive coupon reveal modal + clipboard copy",
-      "Offer terms and source attribution",
-      "Pinned on trending deals ticker for 14 days",
-      "Campaign links with agreed tracking parameters",
+      "Offer source and eligibility details",
+      "Expiry and billing-period conditions",
+      "Checkout testing status identified separately",
+      "Campaign scope and pricing agreed in writing",
     ],
   },
   {
     id: "editorial-deepdive",
-    name: "Architectural Deep Dive",
-    price: "$899",
-    period: "permanent article",
+    name: "Sponsored Buying Guide",
+    price: "Scope to agree",
+    period: "subject to editorial review",
     badge: "EDITORIAL OPTION",
     description: "A proposed sponsored buying guide with clear sponsorship disclosure, current references and scope agreed before publication. No positive review or measured result is guaranteed.",
     features: [
-      "Permanent longform article on /articles/[slug]",
-      "Browser text-to-speech on supported devices",
-      "Feature comparison matrix vs top 2 competitors",
-      "Sponsored links disclosed and qualified appropriately",
-      "Full Table of Contents and in-article deal callout",
-    ],
-  },
-  {
-    id: "newsletter-takeover",
-    name: "Tuesday SaaS Brief Sponsor",
-    price: "$599",
-    period: "per edition",
-    badge: "DIRECT INBOX",
-    description: "Discuss newsletter sponsorship availability and the audience details for a proposed edition.",
-    features: [
-      "Sole primary sponsor header banner (no competition)",
-      "150-word founder problem-solution paragraph",
-      "Trackable CTA button with custom UTM tags",
-      "Request current campaign reporting details",
-      "Permanent mention in our newsletter web archive",
+      "Original decision guidance and identifiable sources",
+      "Sponsorship and commercial links disclosed",
+      "Editorial review before publication",
+      "No guaranteed publication or favorable assessment",
     ],
   },
 ];
 
 export default function AdvertisePage() {
-  const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("formsConfigured");
+  const { available: serviceAvailable } = useServiceAvailability("formsConfigured");
   const [formData, setFormData] = useState({
     companyName: "",
     toolUrl: "",
     contactEmail: "",
     packageSelected: "featured-tool",
-    budget: "$500 - $1,500",
+    budget: "Not yet decided",
     message: "",
   });
 
@@ -103,6 +85,19 @@ export default function AdvertisePage() {
     finally { setBusy(false); }
   };
 
+  if (!serviceAvailable) return <EmailInquiry
+    kind="partnership"
+    title="Discuss a software partnership"
+    description="Send SaaSFolio a proposal with your company, product and intended scope. Any commercial arrangement requires editorial review and a written agreement before publication."
+    subject="SaaSFolio partnership proposal"
+    body={"Company or product name:\n\nOfficial website URL:\n\nYour role and contact details:\n\nPartnership proposal:\n\nRelevant product sources or offer terms:\n\nPreferred timing:\n\nScope and budget (optional):\n"}
+    details={[
+      { heading: "Company and product", text: "Include your company or product name, official website, your role and a reply address." },
+      { heading: "Proposal and sources", text: "Explain the proposed relationship and share current product documentation or offer terms. Identify any commercial or affiliate relationship." },
+      { heading: "Scope to discuss", text: "Describe the audience, format and timing you have in mind. Availability, pricing and deliverables must be agreed before a placement is booked." },
+    ]}
+  />;
+
   return (
     <div className="min-h-screen bg-[#050505] text-white pt-28 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,15 +117,14 @@ export default function AdvertisePage() {
           </div>
 
           <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tighter uppercase leading-[0.95] mb-8">
-            PUT YOUR SAAS IN FRONT OF <br />
+            DISCUSS YOUR SOFTWARE <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-[#C6FF3D]">
-              120,000+ FOUNDERS & DEVS.
+              PARTNERSHIP WITH SAASFOLIO.
             </span>
           </h1>
 
           <p className="text-base sm:text-xl text-zinc-400 font-sans leading-relaxed">
-            Our audience consists of serious builders, bootstrapped founders, software architects, and growth leaders looking for reliable software to power their products. 
-            We offer premium placements with transparent metrics and zero vanity traffic.
+            Share a proposal for a clearly disclosed software placement or buying guide. Request current audience information and agree the scope before booking.
           </p>
         </div>
 
@@ -147,7 +141,7 @@ export default function AdvertisePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PACKAGES.map((pkg) => (
               <div
                 key={pkg.id}
@@ -206,7 +200,7 @@ export default function AdvertisePage() {
               GET IN TOUCH // SALES DESK
             </span>
             <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight mt-2 text-white">
-              RESERVE YOUR SPONSORSHIP SLOT
+              DISCUSS A PARTNERSHIP PROPOSAL
             </h2>
             <p className="text-sm text-zinc-400 mt-2 font-sans">
               Fill out your company details below. Our team reviews inquiries before confirming availability, scope, and pricing.
@@ -234,8 +228,7 @@ export default function AdvertisePage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6" aria-busy={busy}>
-              <ServiceNotice status={serviceStatus} />
-              <fieldset disabled={!serviceAvailable} className="contents">
+              <fieldset className="contents">
                 <legend className="sr-only">Form details</legend>
                 {error && <p role="alert" className="text-sm text-rose-400">{error}</p>}
                 <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
@@ -291,10 +284,7 @@ export default function AdvertisePage() {
                       onChange={(e) => setFormData({ ...formData, packageSelected: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
                     >
-                      <option value="featured-tool">Featured Tool Spotlight ($499)</option>
-                      <option value="deal-showcase">Exclusive Deal Launch ($349)</option>
-                      <option value="editorial-deepdive">Architectural Deep Dive ($899)</option>
-                      <option value="newsletter-takeover">Tuesday SaaS Brief ($599)</option>
+                      {PACKAGES.map(pkg => <option key={pkg.id} value={pkg.id}>{pkg.name}</option>)}
                     </select>
                   </div>
                   <div>
@@ -306,6 +296,7 @@ export default function AdvertisePage() {
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-[#060608] border border-white/10 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
                     >
+                      <option value="Not yet decided">Not yet decided</option>
                       <option value="Under $500">Under $500</option>
                       <option value="$500 - $1,500">$500 - $1,500</option>
                       <option value="$1,500 - $5,000">$1,500 - $5,000</option>

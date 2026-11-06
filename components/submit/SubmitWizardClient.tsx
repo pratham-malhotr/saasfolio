@@ -1,7 +1,7 @@
 "use client";
 
 import { useServiceAvailability } from "@/lib/use-service-availability";
-import { ServiceNotice } from "@/components/forms/ServiceNotice";
+import { EmailInquiry } from "@/components/forms/EmailInquiry";
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import {
@@ -32,7 +32,7 @@ interface AuthUser {
 }
 
 export function SubmitWizardClient() {
-  const { status: serviceStatus, available: serviceAvailable } = useServiceAvailability("formsConfigured");
+  const { available: serviceAvailable } = useServiceAvailability("formsConfigured");
 
   // User Authentication State
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
@@ -187,6 +187,19 @@ export function SubmitWizardClient() {
     const discount = formData.discountPercentage ? `${formData.discountPercentage}% Off` : "Discount on";
     return `${discount} ${brand}`;
   }, [formData.toolName, formData.discountPercentage]);
+
+  if (!serviceAvailable || authLoading) return <EmailInquiry
+    kind="submission"
+    title="Suggest software or a sourced offer"
+    description="Share a product, coupon or software offer for editorial consideration. Submitting an offer does not verify that it works at checkout. Include the official sources and conditions so the suggestion can be reviewed."
+    subject="Software or offer submission for editorial review"
+    body={"Product or brand name:\n\nOfficial website URL:\n\nOfficial offer or pricing source URL:\n\nSuggested listing or coupon code:\n\nEligibility (new or existing users, region, plan):\n\nBilling period and renewal terms:\n\nExpiry or source observation date:\n\nYour relationship to the product or offer:\n"}
+    details={[
+      { heading: "Product and official source", text: "Name the product and include its official website plus the source page describing the offer or pricing. Identify a third-party coupon report separately." },
+      { heading: "Eligibility and billing", text: "Explain the eligible customers, region, plan and billing period. Include expiry, renewal conditions and any access fee shown by the source." },
+      { heading: "What you verified", text: "Distinguish a reported code from a checkout test. Describe the account, plan and date of any test without sharing credentials or personal payment information." },
+    ]}
+  />;
 
   return (
     <div className="min-h-screen bg-[#050505] text-white pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
@@ -351,8 +364,7 @@ export function SubmitWizardClient() {
       ) : (
         /* The Code Submission Form */
         <form onSubmit={handleSubmit} className="space-y-8" aria-busy={busy}>
-          <ServiceNotice status={serviceStatus} />
-          <fieldset disabled={!serviceAvailable} className="contents">
+          <fieldset className="contents">
             <legend className="sr-only">Code submission details</legend>
             <input name="companyWebsite" aria-label="Leave this field empty" tabIndex={-1} autoComplete="off" className="hidden" />
 

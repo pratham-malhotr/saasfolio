@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { getCatalogCategories } from "@/lib/categories";
 import { getPublishedTools, getPublishedOffers } from "@/lib/published-catalog";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -25,6 +26,7 @@ export const revalidate = 3600;
 
 export default function HomePage() {
   const deals = getPublishedOffers();
+  const newsletterAvailable = Boolean(process.env.RESEND_API_KEY && !process.env.RESEND_API_KEY.includes("your_api") && process.env.NEWSLETTER_FROM_EMAIL);
   return (
     <div className="relative bg-[#050505] text-[#EDEDED] min-h-screen">
       <JsonLd data={{
@@ -71,8 +73,17 @@ export default function HomePage() {
       {/* 9. How SaaSFolio Works (3-Step Process) */}
       <HowItWorksSection />
 
-      {/* 10. VIP Newsletter Subscription */}
-      <NewsletterSection />
+      {newsletterAvailable ? <NewsletterSection /> : <section id="newsletter" data-newsletter-fallback="" className="home-deferred mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-white/15 bg-[#09090C] p-8 sm:p-12 space-y-6">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">Make your next software decision with clear terms.</h2>
+          <p className="max-w-3xl text-zinc-400 leading-relaxed">Read practical buying guides, compare subscription costs and check the conditions behind an offer. Have a question or found an outdated detail? Contact SaaSFolio with the page and its current source.</p>
+          <div className="flex flex-wrap gap-5 text-sm text-[#C6FF3D]">
+            <Link href="/articles" className="underline">Read the buying guides</Link>
+            <Link href="/editorial-policy" className="underline">How we review sources</Link>
+            <Link href="/contact" className="underline">Contact SaaSFolio</Link>
+          </div>
+        </div>
+      </section>}
     </div>
   );
 }

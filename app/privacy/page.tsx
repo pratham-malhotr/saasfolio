@@ -2,6 +2,7 @@ import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import Link from "next/link";
 import { Lock, Mail } from "lucide-react";
+import { SUPPORT_EMAIL, SUPPORT_EMAIL_HREF } from "@/lib/site-contact";
 
 export const metadata = pageMetadata({
   title: 'Privacy Policy',
@@ -31,7 +32,7 @@ export default function PrivacyPolicyPage() {
             SAASFOLIO PRIVACY POLICY
           </h1>
           <p className="font-mono text-xs text-zinc-500">
-            UPDATED: OCTOBER 29, 2026
+            UPDATED: NOVEMBER 6, 2026
           </p>
         </div>
 
@@ -137,11 +138,11 @@ export default function PrivacyPolicyPage() {
               <span>Contact Us About Privacy</span>
             </h2>
             <p className="mb-4">
-              If you have any questions regarding this policy, wish to execute a deletion request, or report a security concern, contact our data privacy desk:
+              If you have any questions regarding this policy, wish to execute a deletion request, or report a security concern, email SaaSFolio:
             </p>
             <div className="p-4 rounded-xl bg-[#09090C] border border-white/10 flex items-center gap-3">
-              <Mail className="w-5 h-5 text-[#C6FF3D]" />
-              <a href="mailto:privacy@saasfolio.tech" className="font-mono text-sm text-white hover:text-[#C6FF3D] underline">privacy@saasfolio.tech</a>
+              <Mail className="w-5 h-5 shrink-0 text-[#C6FF3D]" />
+              <a href={SUPPORT_EMAIL_HREF} className="min-w-0 break-all font-mono text-sm text-white hover:text-[#C6FF3D] underline">{SUPPORT_EMAIL}</a>
             </div>
           </section>
 

@@ -22,7 +22,7 @@ const subscribeToHydration = () => () => undefined;
 const clientHydrationSnapshot = () => true;
 const serverHydrationSnapshot = () => false;
 
-export function Navbar({ discountBrands, searchCatalog }: { discountBrands: DiscountSearchEntry[]; searchCatalog: PublicSearchCatalog }) {
+export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { discountBrands: DiscountSearchEntry[]; searchCatalog: PublicSearchCatalog; accountsAvailable: boolean }) {
   const pathname = usePathname();
   // A route can change while this shared layout is still hydrating. Keep the
   // initial link markup stable, then decorate the current route after hydration.
@@ -259,12 +259,16 @@ export function Navbar({ discountBrands, searchCatalog }: { discountBrands: Disc
                   </div>
                 )}
               </div>
-            ) : (
+            ) : accountsAvailable ? (
               <Link
                 href="/login"
                 className="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-colors"
               >
                 Sign In
+              </Link>
+            ) : (
+              <Link href="/contact" className="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-colors">
+                Contact
               </Link>
             )}
 
@@ -355,7 +359,7 @@ export function Navbar({ discountBrands, searchCatalog }: { discountBrands: Disc
                       <span className="font-mono text-xs">EXIT →</span>
                     </button>
                   </>
-                ) : (
+                ) : accountsAvailable ? (
                   <>
                     <Link
                       href="/login"
@@ -374,6 +378,11 @@ export function Navbar({ discountBrands, searchCatalog }: { discountBrands: Disc
                       <span className="font-mono text-xs text-[#C6FF3D]">REGISTER →</span>
                     </Link>
                   </>
+                ) : (
+                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between py-2 text-sm text-zinc-300 hover:text-white">
+                    <span>Contact SaaSFolio</span>
+                    <ArrowUpRight className="h-4 w-4 text-[#C6FF3D]" />
+                  </Link>
                 )}
                 <Link
                   href="/submit"
@@ -383,14 +392,14 @@ export function Navbar({ discountBrands, searchCatalog }: { discountBrands: Disc
                   <span>Submit a Tool / Deal</span>
                   <span className="font-mono text-xs text-[#C6FF3D]">SUBMIT →</span>
                 </Link>
-                <Link
+                {currentUser?.isAdmin && <Link
                   href="/admin"
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-between py-2 text-sm text-zinc-400 hover:text-white"
                 >
                   <span>Admin Mission Control</span>
                   <span className="font-mono text-xs text-[#C6FF3D]">ADMIN →</span>
-                </Link>
+                </Link>}
               </div>
             </div>
 
