@@ -2,6 +2,7 @@ import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import Link from "next/link";
 import { Scale, Mail } from "lucide-react";
+import { SUPPORT_EMAIL, SUPPORT_EMAIL_HREF } from "@/lib/site-contact";
 
 export const metadata = pageMetadata({
   title: 'Terms of Service',
@@ -31,7 +32,7 @@ export default function TermsOfServicePage() {
             SAASFOLIO TERMS OF SERVICE
           </h1>
           <p className="font-mono text-xs text-zinc-500">
-            LAST MODIFIED: OCTOBER 18, 2026 // VERSION 3.1
+            LAST MODIFIED: NOVEMBER 6, 2026 // VERSION 3.1
           </p>
         </div>
 
@@ -122,11 +123,11 @@ export default function TermsOfServicePage() {
               <span>Legal Inquiries</span>
             </h2>
             <p className="mb-4">
-              For legal notifications, copyright inquiries, or trademark requests, contact our legal counsel:
+              For legal notifications, copyright inquiries, or trademark requests, email SaaSFolio:
             </p>
             <div className="p-4 rounded-xl bg-[#09090C] border border-white/10 flex items-center gap-3">
-              <Mail className="w-5 h-5 text-[#C6FF3D]" />
-              <a href="mailto:legal@saasfolio.tech" className="font-mono text-sm text-white hover:text-[#C6FF3D] underline">legal@saasfolio.tech</a>
+              <Mail className="w-5 h-5 shrink-0 text-[#C6FF3D]" />
+              <a href={SUPPORT_EMAIL_HREF} className="min-w-0 break-all font-mono text-sm text-white hover:text-[#C6FF3D] underline">{SUPPORT_EMAIL}</a>
             </div>
           </section>
 

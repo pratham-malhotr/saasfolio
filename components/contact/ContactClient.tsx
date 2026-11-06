@@ -1,6 +1,7 @@
 "use client";
 import { useServiceAvailability } from "@/lib/use-service-availability";
 import { ServiceNotice } from "@/components/forms/ServiceNotice";
+import { SUPPORT_EMAIL, SUPPORT_EMAIL_HREF } from "@/lib/site-contact";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -19,25 +20,25 @@ const CHANNELS = [
   {
     icon: Mail,
     title: "Reader & Account Support",
-    email: "support@saasfolio.tech",
+    email: SUPPORT_EMAIL,
     description: "Questions about saved items, site access, published guides and general inquiries.",
   },
   {
     icon: Sparkles,
     title: "Vendor Deals & Sponsorships",
-    email: "partners@saasfolio.tech",
+    email: SUPPORT_EMAIL,
     description: "Suggest a sourced offer or ask about a potential commercial relationship.",
   },
   {
     icon: MessageSquare,
     title: "Editorial & Buying Guides",
-    email: "editorial@saasfolio.tech",
+    email: SUPPORT_EMAIL,
     description: "Suggest a sourced buying guide, correction or comparison of software costs.",
   },
   {
     icon: ShieldCheck,
     title: "Security Reports",
-    email: "security@saasfolio.tech",
+    email: SUPPORT_EMAIL,
     description: "Report a reproducible security issue without including private credentials or other users’ data.",
   },
 ];
@@ -57,7 +58,7 @@ const FAQS = [
   },
   {
     q: "Can I suggest a software buying guide?",
-    a: "Send an outline, sources and a clear account of what you tested to editorial@saasfolio.tech. We review submissions before considering publication.",
+    a: `Send an outline, sources and a clear account of what you tested to ${SUPPORT_EMAIL}. We review submissions before considering publication.`,
   },
 ];
 
@@ -137,7 +138,7 @@ export default function ContactPage({ initialReport }: { initialReport?: { subje
                   </h3>
                   <a
                     href={`mailto:${ch.email}`}
-                    className="font-mono text-xs text-[#C6FF3D] hover:underline block mb-3"
+                    className="font-mono text-xs text-[#C6FF3D] hover:underline block mb-3 break-all"
                   >
                     {ch.email}
                   </a>
@@ -183,7 +184,7 @@ export default function ContactPage({ initialReport }: { initialReport?: { subje
               </div>
             ) : (
               <form id="contact-form" onSubmit={handleSubmit} className="space-y-5 scroll-mt-28" aria-busy={busy}>
-                <ServiceNotice status={serviceStatus} emailHref={`mailto:support@saasfolio.tech?subject=${encodeURIComponent(initialReport?.subject || "SaaSFolio support")}&body=${encodeURIComponent(initialReport?.message || "")}`} />
+                <ServiceNotice status={serviceStatus} emailHref={`${SUPPORT_EMAIL_HREF}?subject=${encodeURIComponent(initialReport?.subject || "SaaSFolio support")}&body=${encodeURIComponent(initialReport?.message || "")}`} />
                 <fieldset disabled={!serviceAvailable} className="contents">
                   <legend className="sr-only">Form details</legend>
                   {initialReport && <p className="rounded-xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/5 p-4 text-sm text-zinc-300">The listing details are included below. Describe what happened and add your contact details. Do not include passwords, card numbers or payment screenshots.</p>}
