@@ -3,11 +3,14 @@ import { spawn } from "node:child_process";
 import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { loadCatalogModule } from "./lib/load-catalog.mjs";
 
 // Real footer clicks and UI behavior. API writes are intercepted fixtures; no
 // email, account, inquiry or newsletter record is created by this browser test.
 const origin = (process.argv[2] || "http://127.0.0.1:3227").replace(/\/$/, "");
 const reportPath = process.argv.find(value => value.startsWith("--report="))?.slice(9) || `docs/reports/browser-site-pages-${new Date().toISOString().slice(0, 10)}.json`;
+const { SUPPORT_EMAIL } = loadCatalogModule("lib/site-contact.ts");
+const deployedServices = (await (await fetch(`${origin}/api/health`)).json()).checks;
 const profile = await mkdtemp(join(tmpdir(), "saasfolio-site-pages-"));
 const chrome = spawn(process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", ["--headless=new", "--remote-debugging-pipe", `--user-data-dir=${profile}`, "--no-first-run", "--no-default-browser-check", "about:blank"], { stdio: ["ignore", "ignore", "ignore", "pipe", "pipe"] });
 let sequence = 0, buffer = "", activeSession, inquiryMode = "error", activeUrl = "about:blank", activeWidth = 0;
@@ -91,15 +94,22 @@ try {
   async function click(selector) {
     await until(() => evaluate(`!!document.querySelector(${JSON.stringify(selector)})`), selector);
     await evaluate("document.fonts.ready.then(()=>true)");
-    await evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'center',behavior:'instant'})`);
     let previous, stable = 0;
-    await until(async () => {
-      const rect = await evaluate(`(() => { const r=document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect(); return [r.x,r.y,r.width,r.height]; })()`);
-      stable = JSON.stringify(rect) === JSON.stringify(previous) ? stable + 1 : 0;
-      previous = rect;
-      return stable >= 2;
-    }, `Stable ${selector}`);
-    await until(() => evaluate(`(() => { const element=document.querySelector(${JSON.stringify(selector)}); const r=element.getBoundingClientRect(); return r.width>0 && element.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)); })()`), `Clickable ${selector}`);
+    try {
+      await until(async () => {
+        // Deferred sections can replace their estimated height after a jump.
+        // Recenter against the settled layout before sending a real click.
+        const state = await evaluate(`(() => {const e=document.querySelector(${JSON.stringify(selector)});e.scrollIntoView({block:'center',behavior:'instant'});const r=e.getBoundingClientRect();return {rect:[r.x,r.y,r.width,r.height],clickable:r.width>0&&r.height>0&&e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})()`);
+        stable = JSON.stringify(state.rect) === JSON.stringify(previous) ? stable + 1 : 0;
+        previous = state.rect;
+        return stable >= 2 && state.clickable;
+      }, `Stable and clickable ${selector}`);
+    } catch (error) {
+      console.error("Unclickable target", await evaluate(`(() => {const e=document.querySelector(${JSON.stringify(selector)}),r=e.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return {selector:${JSON.stringify(selector)},url:location.href,width:innerWidth,height:innerHeight,scrollY,rect:{x:r.x,y:r.y,width:r.width,height:r.height},hit:hit?.outerHTML.slice(0,600)};})()`));
+      const shot = await page("Page.captureScreenshot", { format: "png" });
+      await writeFile(join(tmpdir(), "saasfolio-page-click-failure.png"), Buffer.from(shot.data, "base64"));
+      throw error;
+    }
     const point = await evaluate(`(() => { const r=document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2}; })()`);
     await page("Input.dispatchMouseEvent", { type: "mouseMoved", ...point });
     await page("Input.dispatchMouseEvent", { type: "mousePressed", button: "left", clickCount: 1, ...point });
@@ -130,6 +140,19 @@ try {
     await page("Emulation.setDeviceMetricsOverride", { ...viewport, deviceScaleFactor: 1 });
     await page("Emulation.setTouchEmulationEnabled", { enabled: viewport.mobile });
     await navigate("/");
+    if (!deployedServices.newsletterConfigured) {
+      assert.ok(await evaluate("!!document.querySelector('#newsletter a[href=\"/articles\"]') && !!document.querySelector('#newsletter a[href=\"/contact\"]') && !document.querySelector('#newsletter form')"), "An unconfigured newsletter offers usable reading and contact links");
+    }
+    if (!deployedServices.accountsConfigured) {
+      assert.ok(await evaluate("!document.querySelector('header a[href=\"/login\"]') && !!document.querySelector('header a[href=\"/contact\"]')"), "Unavailable accounts are replaced by a public contact link");
+      if (viewport.mobile) {
+        await click('button[aria-label="Toggle menu"]');
+        await until(() => evaluate("document.body.textContent.includes('DISCOVER SOFTWARE & DISCOUNTS')"), "Mobile navigation opens");
+        assert.ok(await evaluate("!document.querySelector('a[href=\"/login\"]') && !document.querySelector('a[href=\"/signup\"]') && !document.querySelector('a[href=\"/admin\"]')"), "The public mobile menu does not advertise unavailable accounts or staff access");
+        await click('button[aria-label="Toggle menu"]');
+        await until(() => evaluate("!document.body.textContent.includes('DISCOVER SOFTWARE & DISCOUNTS')"), "Mobile navigation closes");
+      }
+    }
     const links = await evaluate("[...new Set([...document.querySelectorAll('footer a[href]')].map(link=>link.getAttribute('href')).filter(href=>href.startsWith('/')))]");
     for (const href of links) {
       const html = await (await fetch(new URL(href, origin))).text();
@@ -226,9 +249,28 @@ try {
     await until(() => evaluate("!document.querySelector('[role=dialog]') && document.body.style.overflow!=='hidden'"), "Search closes and restores scrolling");
 
     servicesAvailable = false;
-    await navigate("/contact");
-    await until(() => evaluate("document.querySelector('main [role=status]')?.textContent.includes('temporarily unavailable')"), "Unavailable forms provide fallback");
-    assert.ok(await evaluate("document.querySelector('#contact-form fieldset').disabled && !!document.querySelector('main a[href^=\"mailto:\"]')"), "Unavailable form disables submission and exposes email");
+    await navigate("/contact?brand=notion#contact-form");
+    await until(() => evaluate("!!document.querySelector('[data-contact-email-draft]') && !document.querySelector('form#contact-form')"), "Unavailable contact service provides a native email draft");
+    const draft = new URL(await evaluate("document.querySelector('[data-contact-email-draft]').href"));
+    assert.equal(draft.protocol, "mailto:");
+    assert.equal(draft.pathname, SUPPORT_EMAIL, "Contact draft addresses the publisher's public mailbox");
+    assert.equal(draft.searchParams.get("subject"), "Notion: offer or link correction");
+    assert.match(draft.searchParams.get("body"), /https:\/\/saasfolio\.tech\/(?:discounts|tools)\/notion/, "The brand correction retains the affected listing");
+    assert.ok(await evaluate("!document.querySelector('#form-email') && !document.querySelector('#contact-form button[type=submit]')"), "The email contact route contains no unusable submission fields");
+    await layout(viewport.width, "/contact?brand=notion#contact-form");
+    for (const [path, kind, subject, fields] of [
+      ["/submit", "submission", "Software or offer submission for editorial review", ["Official website URL", "Official offer or pricing source URL", "Eligibility", "Billing period and renewal terms"]],
+      ["/advertise", "partnership", "SaaSFolio partnership proposal", ["Company or product name", "Official website URL", "Partnership proposal"]],
+    ]) {
+      await navigate(path);
+      await until(() => evaluate(`!!document.querySelector('[data-inquiry-email-draft=${kind}]') && !document.querySelector('main form')`), `${path}: unavailable web service provides email`);
+      const inquiry = new URL(await evaluate(`document.querySelector('[data-inquiry-email-draft=${kind}]').href`));
+      assert.equal(inquiry.protocol, "mailto:");
+      assert.equal(inquiry.pathname, SUPPORT_EMAIL);
+      assert.equal(inquiry.searchParams.get("subject"), subject);
+      for (const field of fields) assert.ok(inquiry.searchParams.get("body").includes(field), `${path}: draft requests ${field}`);
+      await layout(viewport.width, path);
+    }
     servicesAvailable = true;
     console.log(`Passed ${viewport.width}px: ${links.length} footer destinations, same-route filters, FAQ keyboard, form validation/error/retry fixtures, package selection, calculator, comparison and lazy keyboard search.`);
   }

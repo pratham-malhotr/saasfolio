@@ -8,8 +8,9 @@ import { BRAND_MARK } from "../lib/brand-mark.mjs";
 const origin = (process.argv[2] || "http://127.0.0.1:3210").replace(/\/$/, "");
 const { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } = loadCatalogModule("lib/seo.ts");
 const { getBrandDirectory } = loadCatalogModule("lib/brand-directory.ts");
+const { SUPPORT_EMAIL } = loadCatalogModule("lib/site-contact.ts");
 const brands = getBrandDirectory();
-function attr(node, name) { return node.attrs?.find(attribute => attribute.name === name)?.value; }
+function attr(node, name) { return node?.attrs?.find(attribute => attribute.name === name)?.value; }
 function elements(node, tag) { return [...(node.tagName === tag ? [node] : []), ...(node.childNodes || []).flatMap(child => elements(child, tag))]; }
 function content(node) { return node.value || (node.childNodes || []).map(content).join(""); }
 async function page(path, agent = "Googlebot") {
@@ -68,17 +69,25 @@ for (const brand of brands) assert.equal(brand.codeCount, offers.filter(offer =>
 
 const reported = offers.find(offer => offer.code) || offers[0];
 const report = await page(`/contact?offer=${reported.slug}`);
-assert.ok(attr(elements(report, "input").find(node => attr(node, "id") === "form-subject"), "value").includes(reported.toolName));
-const message = content(elements(report, "textarea").find(node => attr(node, "id") === "form-message"));
+const draftLink = elements(report, "a").find(node => attr(node, "data-contact-email-draft") !== undefined);
+assert.ok(draftLink, "Corrections have a usable native email route before JavaScript");
+const draft = new URL(attr(draftLink, "href"));
+assert.equal(draft.protocol, "mailto:");
+assert.equal(draft.pathname, SUPPORT_EMAIL);
+assert.equal(draft.searchParams.get("subject"), `${reported.toolName}: offer or link correction`);
+const message = draft.searchParams.get("body");
 assert.ok(message.includes(`${SITE_URL}/deals/${reported.slug}`));
 if (reported.code) assert.ok(message.includes(reported.code));
-assert.ok(elements(report, "form").some(node => attr(node, "id") === "contact-form"));
+assert.ok(!elements(report, "form").some(node => attr(node, "id") === "contact-form"), "Server-rendered contact does not advertise an unavailable form");
 const invalid = await page("/contact?offer=https%3A%2F%2Fevil.example%2F");
-assert.equal(attr(elements(invalid, "input").find(node => attr(node, "id") === "form-subject"), "value"), "");
+const invalidDraft = new URL(attr(elements(invalid, "a").find(node => attr(node, "data-contact-email-draft") !== undefined), "href"));
+assert.equal(invalidDraft.pathname, SUPPORT_EMAIL);
+assert.equal(invalidDraft.searchParams.get("subject"), "SaaSFolio support");
+assert.equal(invalidDraft.searchParams.get("body"), "", "Unknown external offer input cannot enter a publisher correction draft");
 for (const slug of ["beehiiv", "predis-ai"]) {
   const guide = await page(`/discounts/${slug}`);
   assert.ok(content(guide).includes("Paid membership required in reviewed listing"));
   assert.ok(elements(guide, "section").some(node => attr(node, "id") === "compare-costs"));
   assert.ok(elements(guide, "a").some(node => attr(node, "href") === `/contact?brand=${slug}#contact-form`));
 }
-console.log(`Brand identity audit passed: custom favicon and logo assets, Apple icon, manifest, matching browser/bot metadata, ${brands.length} directory brands, accurate coupon counts, source access disclosures and contextual correction forms.`);
+console.log(`Brand identity audit passed: custom favicon and logo assets, Apple icon, manifest, matching browser/bot metadata, ${brands.length} directory brands, accurate coupon counts, source access disclosures and native contextual correction emails.`);
