@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import { writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { openChromePage } from "./lib/chrome-page.mjs";
 
 const origin = process.argv[2] || "http://127.0.0.1:3245";
@@ -32,7 +34,7 @@ try {
       visits.push({ path, width, ...state });
       if (["/", "/submit"].includes(path)) {
         const screenshot = await page("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
-        await writeFile(`/private/tmp/saasfolio-${path === "/" ? "directory" : "submission"}-${width}.png`, Buffer.from(screenshot.data, "base64"));
+        await writeFile(join(tmpdir(), `saasfolio-${path === "/" ? "directory" : "submission"}-${width}.png`), Buffer.from(screenshot.data, "base64"));
       }
     }
   }

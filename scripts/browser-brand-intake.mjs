@@ -72,7 +72,7 @@ try {
   const report = { generatedAt: new Date().toISOString(), scope: "Real browser form to real API with isolated development-only persistence; no production writes or email", savedRecords: 1, status: "pending", receiptMatchesStoredId: true, survivesReload: true, runtimeErrors: browser.runtimeErrors };
   await writeFile(`docs/reports/brand-intake-e2e-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(report, null, 2) + "\n");
   console.log("Brand intake passed: real form → API → durable local record → matching receipt; reload retains the saved record.");
-} catch (error) { await writeFile("/private/tmp/saasfolio-intake-server.log", output); console.error(output.slice(-2000)); throw error; }
+} catch (error) { await writeFile(join(tmpdir(), "saasfolio-intake-server.log"), output); console.error(output.slice(-2000)); throw error; }
 finally {
   if (browser) await browser.close();
   const stopped = new Promise(resolve => server.once("exit", resolve));
