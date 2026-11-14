@@ -7,9 +7,9 @@ export const SITE_URL = new URL(
   process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech"
 ).origin;
 export const SITE_NAME = "SaaSFolio";
-export const SITE_TITLE = "SaaS Discounts & Software Deals | SaaSFolio";
+export const SITE_TITLE = "Software Brands, Reviews & SaaS Deals | SaaSFolio";
 export const SITE_DESCRIPTION =
-  "Find SaaS discounts and software deals with clear terms, source links and check dates. Compare coupon codes, annual savings and trials before you subscribe.";
+  "Discover SaaS brands and hosting services. Read sourced reviews, compare software alternatives and find discounts before your next subscription.";
 
 export function absoluteUrl(path = "/"): string {
   return new URL(path, `${SITE_URL}/`).toString().replace(/\/$/, "");

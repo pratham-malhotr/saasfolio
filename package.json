@@ -49,6 +49,8 @@
     "ops:restore-drill": "node scripts/restore-drill.mjs",
     "audit:publisher:content": "node scripts/audit-publisher-content.mjs",
     "test:browser:publisher": "node scripts/browser-publisher-content.mjs",
+    "test:browser:brands": "node scripts/browser-brand-submission.mjs",
+    "test:browser:intake": "node scripts/browser-brand-intake.mjs",
     "validate:publisher": "node scripts/validate-publisher-content.mjs"
   },
   "dependencies": {

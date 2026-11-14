@@ -1,0 +1,155 @@
+{
+  "origin": "http://127.0.0.1:3238",
+  "generatedAt": "2026-11-14T14:28:10.147Z",
+  "visits": [
+    {
+      "path": "/",
+      "width": 390,
+      "h1": "Good software.Better decisions.",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/",
+      "broken": []
+    },
+    {
+      "path": "/brands",
+      "width": 390,
+      "h1": "Software brands, A–Z",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/brands",
+      "broken": []
+    },
+    {
+      "path": "/brands?category=hosting",
+      "width": 390,
+      "h1": "Software brands, A–Z",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/brands",
+      "broken": []
+    },
+    {
+      "path": "/brands?q=notion",
+      "width": 390,
+      "h1": "Software brands, A–Z",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/brands",
+      "broken": []
+    },
+    {
+      "path": "/submit",
+      "width": 390,
+      "h1": "Your next users couldfind you here.",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/submit",
+      "broken": []
+    },
+    {
+      "path": "/articles/hostinger-hosting-review",
+      "width": 390,
+      "h1": "Hostinger hosting review: renewal costs and launch checks",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/articles/hostinger-hosting-review",
+      "broken": []
+    },
+    {
+      "path": "/articles/cloudflare-pages-review",
+      "width": 390,
+      "h1": "Cloudflare Pages review: static sites, functions and storage",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/articles/cloudflare-pages-review",
+      "broken": []
+    },
+    {
+      "path": "/articles/digitalocean-app-platform-review",
+      "width": 390,
+      "h1": "DigitalOcean App Platform review: deployment without losing data",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/articles/digitalocean-app-platform-review",
+      "broken": []
+    },
+    {
+      "path": "/",
+      "width": 1434,
+      "h1": "Good software.Better decisions.",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/",
+      "broken": []
+    },
+    {
+      "path": "/brands",
+      "width": 1434,
+      "h1": "Software brands, A–Z",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/brands",
+      "broken": []
+    },
+    {
+      "path": "/brands?category=hosting",
+      "width": 1434,
+      "h1": "Software brands, A–Z",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/brands",
+      "broken": []
+    },
+    {
+      "path": "/brands?q=notion",
+      "width": 1434,
+      "h1": "Software brands, A–Z",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/brands",
+      "broken": []
+    },
+    {
+      "path": "/submit",
+      "width": 1434,
+      "h1": "Your next users couldfind you here.",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/submit",
+      "broken": []
+    },
+    {
+      "path": "/articles/hostinger-hosting-review",
+      "width": 1434,
+      "h1": "Hostinger hosting review: renewal costs and launch checks",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/articles/hostinger-hosting-review",
+      "broken": []
+    },
+    {
+      "path": "/articles/cloudflare-pages-review",
+      "width": 1434,
+      "h1": "Cloudflare Pages review: static sites, functions and storage",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/articles/cloudflare-pages-review",
+      "broken": []
+    },
+    {
+      "path": "/articles/digitalocean-app-platform-review",
+      "width": 1434,
+      "h1": "DigitalOcean App Platform review: deployment without losing data",
+      "headings": 1,
+      "canonical": "https://saasfolio.tech/articles/digitalocean-app-platform-review",
+      "broken": []
+    },
+    {
+      "interaction": "live preview and required fields",
+      "existingDomainMatch": [
+        "/tools/hostinger"
+      ]
+    },
+    {
+      "path": "/",
+      "javascript": false
+    },
+    {
+      "path": "/brands?category=hosting",
+      "javascript": false
+    },
+    {
+      "path": "/submit",
+      "javascript": false
+    }
+  ],
+  "runtimeErrors": [],
+  "failedAssets": [],
+  "writes": []
+}

@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-11-14T10:40:36.326Z",
+  "scope": "Real browser form to real API with isolated development-only persistence; no production writes or email",
+  "savedRecords": 1,
+  "status": "pending",
+  "receiptMatchesStoredId": true,
+  "survivesReload": true,
+  "runtimeErrors": []
+}

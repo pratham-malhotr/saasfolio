@@ -52,10 +52,10 @@ export function ArticlesHubClient({ articles, savingsLinks }: { articles: Articl
           </span>
         </div>
         <h1 className="font-display font-black tracking-tighter uppercase text-4xl sm:text-6xl text-white mb-4">
-          SAAS EDITORIAL MAGAZINE
+          SOFTWARE REVIEWS & GUIDES
         </h1>
         <p className="text-zinc-400 max-w-2xl text-base">
-          Original guides to software costs, coupon conditions, trial evaluation and renewal decisions, with references you can inspect.
+          Documentation-based software and hosting reviews, practical comparisons and buying guides, with references you can inspect.
         </p>
       </div>
 

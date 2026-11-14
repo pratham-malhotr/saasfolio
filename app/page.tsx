@@ -1,89 +1,70 @@
-import React from "react";
 import Link from "next/link";
-import { getCatalogCategories } from "@/lib/categories";
+import { ArrowRight, ArrowUpRight, BookOpen, Search, Server, Sparkles, Layers, Code2, Palette, TrendingUp } from "lucide-react";
 import { getPublishedTools, getPublishedOffers } from "@/lib/published-catalog";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { BrandDiscountsSection } from "@/components/sections/BrandDiscountsSection";
+import { getCatalogCategories } from "@/lib/categories";
+import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getFeaturedDiscountBrands } from "@/lib/brand-discounts";
-import { webPageSchema } from "@/lib/structured-data";
-import { MarqueeTickerBand } from "@/components/sections/MarqueeTickerBand";
-import { StatsCounters } from "@/components/sections/StatsCounters";
-import { HotDealsSection } from "@/components/sections/HotDealsSection";
-import { CategoryMatrix } from "@/components/sections/CategoryMatrix";
-import { FeaturedArticlesSection } from "@/components/sections/FeaturedArticlesSection";
-import { BuyingDecisionSection } from "@/components/sections/BuyingDecisionSection";
-import { LogoMarqueeSection } from "@/components/sections/LogoMarqueeSection";
-import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
-import { NewsletterSection } from "@/components/sections/NewsletterSection";
-import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
-
-import { absoluteUrl, pageMetadata, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
+import { collectionSchema } from "@/lib/structured-data";
+import { pageMetadata, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
+import { BrandDiscountsSection } from "@/components/sections/BrandDiscountsSection";
 
 export const metadata = pageMetadata({ title: SITE_TITLE, description: SITE_DESCRIPTION, path: "/" });
-
 export const revalidate = 3600;
+const picks = ["notion", "beehiiv", "hostinger", "framer", "supabase", "predis-ai", "vercel", "semrush", "clickup", "canva", "cloudflare", "digitalocean", "obsidian", "plausible", "carrd", "bitwarden", "coolify", "linear"];
+const categoryPicks = [
+  { slug: "ai-tools", label: "AI tools", icon: Sparkles }, { slug: "hosting", label: "Hosting & cloud", icon: Server },
+  { slug: "marketing", label: "Marketing", icon: TrendingUp }, { slug: "dev-tools", label: "Developer tools", icon: Code2 },
+  { slug: "productivity", label: "Productivity", icon: Layers }, { slug: "design", label: "Design & creative", icon: Palette },
+];
 
 export default function HomePage() {
-  const deals = getPublishedOffers();
-  const newsletterAvailable = Boolean(process.env.RESEND_API_KEY && !process.env.RESEND_API_KEY.includes("your_api") && process.env.NEWSLETTER_FROM_EMAIL);
-  return (
-    <div className="relative bg-[#050505] text-[#EDEDED] min-h-screen">
-      <JsonLd data={{
-        "@context": "https://schema.org",
-        ...webPageSchema("SaaS Discounts & Software Deals", SITE_DESCRIPTION, "/"),
-        mainEntity: {
-          "@type": "ItemList",
-          name: "Featured SaaS brand discounts",
-          itemListElement: getFeaturedDiscountBrands().map((tool, index) => ({
-            "@type": "ListItem", position: index + 1, name: `${tool.name} discounts`, url: absoluteUrl(`/discounts/${tool.slug}`),
-          })),
-        },
-      }} />
-      {/* 1. Hero Section */}
-      <HeroSection />
-      <BuyingDecisionSection />
-
-      <BrandDiscountsSection deals={deals} />
-
-      <section className="home-deferred mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <SavingsCollectionLinks heading="Find software savings for your situation" />
-      </section>
-
-      {/* 2. Infinite Marquee Ticker Band */}
-      <MarqueeTickerBand />
-
-      {/* 3. Animated Viewport Stats Counters */}
-      <StatsCounters toolCount={getPublishedTools().length} offerCount={deals.length} couponCount={deals.filter(deal => deal.code).length} categoryCount={getCatalogCategories().length} />
-
-      {/* 4. Hot Deals This Week (Horizontal Shelf + Countdown + Instant Coupon Reveal) */}
-      <HotDealsSection deals={deals.filter(d => d.dealType !== "pricing").slice(0, 10)} totalDeals={deals.filter(deal => deal.dealType !== "pricing").length} />
-
-      {/* 5. Minimalist 12-Category Grid */}
-      <CategoryMatrix categories={getCatalogCategories()} />
-
-      {/* 6. Featured In-Depth Editorial Articles & Reviews */}
-      <FeaturedArticlesSection />
-
-      {/* 7. Trending in Community (Discussions & Upvotes) */}
-
-      {/* 8. Logo Marquee of Featured Tools */}
-      <LogoMarqueeSection />
-
-      {/* 9. How SaaSFolio Works (3-Step Process) */}
-      <HowItWorksSection />
-
-      {newsletterAvailable ? <NewsletterSection /> : <section id="newsletter" data-newsletter-fallback="" className="home-deferred mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-white/15 bg-[#09090C] p-8 sm:p-12 space-y-6">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">Make your next software decision with clear terms.</h2>
-          <p className="max-w-3xl text-zinc-400 leading-relaxed">Read practical buying guides, compare subscription costs and check the conditions behind an offer. Have a question or found an outdated detail? Contact SaaSFolio with the page and its current source.</p>
-          <div className="flex flex-wrap gap-5 text-sm text-[#C6FF3D]">
-            <Link href="/articles" className="underline">Read the buying guides</Link>
-            <Link href="/editorial-policy" className="underline">How we review sources</Link>
-            <Link href="/contact" className="underline">Contact SaaSFolio</Link>
+  const tools = getPublishedTools(), categories = getCatalogCategories(), offers = getPublishedOffers();
+  const ordered = [...tools].sort((a, b) => (picks.indexOf(a.slug) === -1 ? 999 : picks.indexOf(a.slug)) - (picks.indexOf(b.slug) === -1 ? 999 : picks.indexOf(b.slug)));
+  const articles = [...DETAILED_ARTICLES].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0, 3);
+  return <div className="directory-home min-h-screen bg-[#08090b] text-[#ededeb]">
+    <JsonLd data={collectionSchema(SITE_TITLE, SITE_DESCRIPTION, "/", ordered.slice(0, 18).map(tool => ({ name: tool.name, path: `/tools/${tool.slug}` })))} />
+    <section className="relative overflow-hidden border-b border-white/10">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_85%_15%,rgba(198,255,61,0.06),transparent_55%)]" />
+      <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-32 sm:px-6 sm:pt-40 lg:px-8">
+        <div className="grid items-start gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-20">
+          <div>
+            <p className="mb-7 flex items-center gap-2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.15em] text-zinc-400 sm:text-[11px] sm:tracking-[0.2em]"><span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#C6FF3D]" />A considered software collection</p>
+            <h1 className="font-display text-[clamp(2.8rem,6vw,5.8rem)] font-semibold leading-[1.03] tracking-[-0.055em]">Good software.<br /><span className="text-[#C6FF3D]">Better decisions.</span></h1>
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">Find your next tool among {tools.length} software brands. Explore features, compare the trade-offs, and read the fine print before you subscribe.</p>
+            <form action="/brands" method="get" role="search" className="mt-8 flex max-w-xl items-center gap-3 rounded-xl border border-white/20 bg-[#111216] p-2 pl-4">
+              <Search className="h-5 w-5 shrink-0 text-zinc-500" aria-hidden="true" /><label htmlFor="home-brand-search" className="sr-only">Search software brands</label><input id="home-brand-search" name="q" type="search" placeholder="Find a brand, tool, or category…" maxLength={100} className="min-w-0 flex-1 bg-transparent py-2 text-sm text-white outline-none" /><button className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#C6FF3D] text-black hover:bg-[#d7ff77]" aria-label="Search the directory"><ArrowRight className="h-5 w-5" /></button>
+            </form>
+            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-zinc-500"><span>{tools.length} published brands</span><span>{categories.filter(category => category.toolCount > 0).length} categories</span><Link href="/editorial-policy" className="text-zinc-400 underline underline-offset-4">How we research</Link></div>
           </div>
+          <aside className="rounded-2xl border border-white/10 bg-[#101114] p-6 sm:p-7">
+            <div className="mb-6 flex items-center justify-between"><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">A few places to start</p><span className="text-[#C6FF3D]">↗</span></div>
+            {[{ href: "/brands?category=hosting", number: "01", title: "Find a home for your next project", text: "Hosting, deployment & infrastructure", icon: Server }, { href: "/articles", number: "02", title: "Make sense of the options", text: "Reviews, research & buying guides", icon: BookOpen }, { href: "/brands?category=ai-tools", number: "03", title: "Put AI to useful work", text: "Tools for the work you actually do", icon: Sparkles }].map((item, index) => <Link key={item.number} href={item.href} className={`group flex items-start gap-4 py-5 ${index < 2 ? "border-b border-white/10" : "pb-0"}`}><span className="mt-1 font-mono text-[10px] text-zinc-600">{item.number}</span><div className="flex-1"><h2 className="text-sm font-medium text-zinc-100 group-hover:text-[#C6FF3D]">{item.title}</h2><p className="mt-2 text-xs text-zinc-500">{item.text}</p></div><item.icon className="mt-1 h-4 w-4 text-zinc-500 group-hover:text-[#C6FF3D]" /></Link>)}
+            <div className="mt-7 border-t border-white/10 pt-5"><Link href="/submit" className="flex items-center justify-between text-sm text-[#C6FF3D]">Building something? Add your brand <ArrowUpRight className="h-4 w-4" /></Link></div>
+          </aside>
         </div>
-      </section>}
-    </div>
-  );
+        <nav aria-label="Popular software categories" className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">{categoryPicks.map(({ slug, label, icon: Icon }) => <Link key={slug} href={`/brands?category=${slug}`} className="group flex items-center gap-3 rounded-xl border border-white/10 px-4 py-4 hover:border-[#C6FF3D]/40 hover:bg-white/[0.02]"><Icon className="h-4 w-4 shrink-0 text-zinc-500 group-hover:text-[#C6FF3D]" /><span className="text-xs text-zinc-300">{label}<span className="mt-1 block text-[10px] text-zinc-600">{categories.find(category => category.slug === slug)?.toolCount || 0} brands</span></span></Link>)}</nav>
+      </div>
+    </section>
+    <BrandDiscountsSection deals={offers} />
+    <section id="explore" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-5"><div><p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[#C6FF3D]">The directory</p><h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Find what fits your workflow.</h2><p className="mt-3 text-sm text-zinc-500">Product context, official sources, and the details worth checking.</p></div><Link href="/brands" className="inline-flex items-center gap-2 text-sm text-zinc-300 hover:text-[#C6FF3D]">All {tools.length} brands <ArrowRight className="h-4 w-4" /></Link></div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{ordered.slice(0, 18).map(tool => <article key={tool.slug} className="group flex flex-col rounded-2xl border border-white/10 bg-[#101114] p-5 transition duration-200 hover:-translate-y-0.5 hover:border-white/25">
+        <div className="mb-4 flex items-start justify-between"><span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] font-display text-lg font-semibold text-[#C6FF3D]">{tool.name.slice(0, 1).toUpperCase()}</span><span className="rounded-md border border-white/5 px-2 py-1 text-[10px] text-zinc-500">{tool.pricingModel}</span></div>
+        <h3 className="font-display text-lg font-semibold text-white"><Link prefetch={false} href={`/tools/${tool.slug}`} className="flex items-center justify-between gap-3 hover:text-[#C6FF3D]">{tool.name}<ArrowUpRight className="h-4 w-4 text-zinc-600 group-hover:text-[#C6FF3D]" /></Link></h3><p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-400">{tool.description}</p><p className="mt-auto pt-5 text-[10px] text-zinc-500">{tool.category}</p>
+      </article>)}</div>
+      <div className="mt-7 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-dashed border-white/15 px-5 py-4 text-sm"><p className="text-zinc-500">Something useful missing from the collection?</p><Link href="/submit" className="inline-flex items-center gap-2 text-[#C6FF3D]">Add your brand <ArrowRight className="h-4 w-4" /></Link></div>
+    </section>
+    <section className="border-y border-white/10 bg-[#0d0f11]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+        <div><p className="mb-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[#C6FF3D]"><Server className="h-4 w-4" />Hosting & infrastructure</p><h2 className="max-w-sm font-display text-3xl font-semibold tracking-tight">A place to launch.<br />A plan to grow.</h2><p className="mt-5 max-w-md text-sm leading-relaxed text-zinc-400">A WordPress site, a static portfolio and an application with a database need different kinds of hosting. Start with the workload, then compare the total cost and responsibilities.</p><Link href="/brands?category=hosting" className="mt-6 inline-flex items-center gap-2 text-sm text-[#C6FF3D]">Explore hosting brands <ArrowRight className="h-4 w-4" /></Link></div>
+        <div className="grid gap-3">{[{ title: "Hostinger: look beyond the first term", text: "A practical review of renewal costs and launch checks.", slug: "hostinger-hosting-review" }, { title: "Cloudflare Pages: start with the runtime", text: "Static delivery, dynamic functions and where data lives.", slug: "cloudflare-pages-review" }, { title: "DigitalOcean App Platform: plan for state", text: "Managed deployment, persistent data and operating costs.", slug: "digitalocean-app-platform-review" }].map(item => <Link key={item.slug} href={`/articles/${item.slug}`} className="group flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-[#111316] p-5 hover:border-[#C6FF3D]/35"><div><h3 className="text-sm font-semibold text-white group-hover:text-[#C6FF3D]">{item.title}</h3><p className="mt-2 text-xs leading-relaxed text-zinc-500">{item.text}</p></div><ArrowUpRight className="h-4 w-4 shrink-0 text-zinc-500" /></Link>)}</div>
+      </div>
+    </section>
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-4"><div><p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[#C6FF3D]">From the editorial desk</p><h2 className="font-display text-3xl font-semibold tracking-tight">Read before you commit.</h2></div><Link href="/articles" className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-[#C6FF3D]">All reviews & guides <ArrowRight className="h-4 w-4" /></Link></div>
+      <div className="grid gap-5 md:grid-cols-3">{articles.map((article, index) => <article key={article.slug} className="flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#101114]"><div aria-hidden="true" className={`flex h-32 items-center justify-between border-b border-white/10 px-7 ${index === 1 ? "bg-[#1b2028]" : index === 2 ? "bg-[#202317]" : "bg-[#1d1c25]"}`}><BookOpen className="h-9 w-9 text-white/30" /><span className="font-mono text-5xl text-white/10">0{index + 1}</span></div><div className="flex flex-1 flex-col p-6"><p className="mb-4 text-[10px] uppercase tracking-wider text-zinc-500">{article.tags[0]} · {article.readTime}</p><h3 className="font-display text-xl font-semibold leading-snug text-white"><Link href={`/articles/${article.slug}`} className="hover:text-[#C6FF3D]">{article.title}</Link></h3><p className="mb-6 mt-3 text-sm leading-relaxed text-zinc-400">{article.summary}</p><Link href={`/articles/${article.slug}`} className="mt-auto inline-flex items-center gap-2 text-xs text-[#C6FF3D]">Read the guide <ArrowRight className="h-3 w-3" /></Link></div></article>)}</div>
+    </section>
+    {offers.length > 0 && <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8"><div className="mb-6 flex flex-wrap items-center justify-between gap-4"><h2 className="font-display text-2xl font-semibold">Explore software savings</h2><Link href="/discounts" className="text-sm text-[#C6FF3D]">Discounts by brand →</Link></div><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{offers.slice(0, 4).map(offer => <Link key={offer.slug} prefetch={false} href={`/deals/${offer.slug}`} className="rounded-xl border border-white/10 bg-[#101114] p-5 hover:border-white/25"><p className="text-[10px] uppercase tracking-wider text-[#C6FF3D]">{offer.code ? "Reported coupon" : offer.dealType === "free_plan" ? "Free plan" : offer.dealType === "free_trial" ? "Free trial" : "Sourced offer"}</p><h3 className="mt-3 text-sm font-semibold text-white">{offer.title}</h3><p className="mt-3 text-xs text-zinc-500">View source, terms & eligibility ↗</p></Link>)}</div><p className="mt-4 text-xs text-zinc-500">Offer availability can change. Check the current provider terms; reported codes are not proof of checkout acceptance.</p></section>}
+    <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8"><div className="grid items-center gap-7 rounded-2xl border border-[#C6FF3D]/20 bg-[#13170e] p-7 sm:p-10 md:grid-cols-[1fr_auto]"><div><p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-[#C6FF3D]">Built something worth finding?</p><h2 className="font-display text-3xl font-semibold tracking-tight">Make your brand part of the collection.</h2><p className="mt-3 max-w-xl text-sm leading-relaxed text-zinc-400">Share your product with our editorial team. SaaS tools, hosting services and software that solve real problems belong here.</p></div><Link href="/submit" className="inline-flex items-center justify-center gap-3 rounded-xl bg-[#C6FF3D] px-6 py-4 text-sm font-semibold text-black hover:bg-[#d7ff77]">Add your brand <ArrowUpRight className="h-4 w-4" /></Link></div><div className="mt-8 flex flex-wrap gap-5 text-xs text-zinc-500"><Link href="/editorial-policy" className="hover:text-white">Editorial policy</Link><Link href="/affiliate-disclosure" className="hover:text-white">How SaaSFolio is funded</Link><a href="#explore" className="hover:text-white">Back to the collection ↑</a></div></section>
+  </div>;
 }

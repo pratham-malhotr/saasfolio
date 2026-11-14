@@ -4,6 +4,7 @@ import { verifyCodeLocally } from "@/lib/code-verification";
 import { saveLocalInquiry } from "@/lib/server/local-auth";
 import { getDealBySlug, getHistoricOfferToolSlug } from "@/lib/data/deals-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
+import { readBrandSubmission } from "@/lib/server/brand-submission";
 
 export async function POST(request: Request) {
   try {
@@ -44,14 +45,16 @@ export async function POST(request: Request) {
       };
     } else if (kind === "submission") {
       const submissionType = text(data, "submissionType", 1, 20);
-      if (!["code", "deal", "tool", "review"].includes(submissionType)) {
+      if (!["brand", "code", "deal", "tool", "review"].includes(submissionType)) {
         throw new HttpError(400, "Choose a valid submission type.");
       }
 
       // Check for authenticated user
-      const user = await currentUser();
+      const user = submissionType === "brand" ? null : await currentUser();
 
-      if (submissionType === "code") {
+      if (submissionType === "brand") {
+        ({ address, payload } = readBrandSubmission(data));
+      } else if (submissionType === "code") {
         // Enforce: User MUST be logged in to submit a promo or referral code
         if (!user) {
           throw new HttpError(401, "You must be signed in to submit a promo or referral code.");

@@ -37,7 +37,7 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
   ...EXPANSION_DISCOUNT_GUIDES,
   ...NEW_DISCOUNT_GUIDES,
   "predis-ai": {
-    reviewedAt: "2026-10-26",
+    reviewedAt: "2026-11-14",
     sourceUrl: "https://predis.ai/pricing/",
     searchTitle: "Predis.ai Discounts & Coupon Codes",
     metaDescription: "Compare Predis.ai discounts and coupon availability, plan-specific annual savings, the 3-day trial and promo renewal terms before subscribing.",
@@ -54,8 +54,9 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     savingsOptions: [
       { type: "Annual billing", saving: "Plan-specific yearly savings", terms: "The pricing page shows different annual reductions for Core, Rise and Enterprise+. Select the same plan on both billing periods and compare the full yearly invoice. No separate coupon is required for the displayed billing price.", sourceUrl: "https://predis.ai/pricing/" },
     ],
-    sources: [{ label: "Trial charges, promotional renewals and cancellation", url: "https://help.predis.ai/knowledgebase/en/article/why-was-i-charged-understanding-auto-renewal-on-predis" }],
+    sources: [{ label: "Automatic renewal, cancellation and trial charges", url: "https://help.predis.ai/knowledgebase/en/article/why-was-i-charged-understanding-auto-renewal-on-predis" }],
     sections: [
+      { heading: "Price the brands and publishing work together", text: "The reviewed comparison gives Core one brand without automatic posting, while Rise includes several brands and automatic posting. Write down whether your team needs to generate content, schedule it, or both. A cheaper creative plan may still require a separate scheduling subscription. Conversely, paying for unused brand capacity is not a saving. Compare one real month of finished content and publishing work before treating the larger annual reduction as the better deal." },
       { heading: "Predis.ai annual billing versus a promo code", text: "An annual billing reduction is a plan price, rather than a separate coupon. Compare the full yearly invoice with twelve monthly payments for the same plan. A lower monthly equivalent can still require a larger payment today." },
       { heading: "Choose a plan around your content workflow", text: "For a single brand, compare generation credits and connected channels first. Agencies should also check brand limits and whether automatic posting is included. Add the cost of extra credits and channels before deciding which plan offers better value." },
       { heading: "Check the trial before paying", text: "Use a trial to create the formats you intend to publish: social posts, ads, carousels, or video. Check export quality, generation usage, and publishing permissions. Set a reminder before the billing deadline shown at signup." },
@@ -64,18 +65,19 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     sourceNotes: [
       "The pricing page displayed annual reductions that varied by plan. This is a billing offer, not evidence of a universal promo code.",
-      "The pricing page listed a three-day trial requiring a card. The billing help describes automatic renewal, a regular-price renewal after a promotion, and case-by-case refund requests; a refund is not guaranteed.",
+      "The pricing page requires a card for its three-day trial. The current billing help describes recurring charges, cancellation deadlines and individual refund assessment. It does not establish that every introductory promotion renews at a different standard price.",
     ],
     faqs: [
+      { question: "Does the biggest Predis.ai annual saving apply to every plan?", answer: "No. The reviewed pricing page displays different annual reductions for Core, Rise and Enterprise+. Compare your chosen plan on both billing periods and include the add-ons needed for your workflow; a headline percentage is not a universal checkout code." },
       { question: "How can I get a discount on Predis.ai?", answer: "Compare the annual and monthly options on the official pricing page. Review the full annual charge, plan limits, add-ons, and renewal terms. Any separately sourced coupons appear in the current offers section above." },
       { question: "Does a Predis referral link automatically apply a discount?", answer: "A referral parameter alone does not establish a saving. Confirm the actual plan price or accepted code in Predis.ai checkout before paying." },
       { question: "Is annual Predis billing right for a new user?", answer: "Test your content workflow first. Compare the upfront annual cost with the flexibility of monthly billing, especially if your generation needs or number of client brands may change." },
-      { question: "Does a Predis.ai promo discount continue at renewal?", answer: "The provider's billing help says promotional plans renew at the regular listed price after the promotional period. Check Pricing & Account Settings → Billing Plan for your renewal amount before comparing an introductory discount with annual billing." },
+      { question: "Does a Predis.ai promo discount continue at renewal?", answer: "Check the upcoming charge in Pricing & Account Settings → Billing Plan and the terms attached to your own offer. The current billing help describes automatic recurring billing; it does not establish a universal renewal rule for every promotion. Keep the confirmed amount and billing date before subscribing." },
       { question: "How do I avoid a charge after the Predis.ai free trial?", answer: "Check the trial deadline in Billing Plan and cancel in advance. The billing help recommends at least 24 hours before the next billing date. App Store and Google Play subscriptions must be cancelled through those stores; direct subscriptions use the Predis dashboard." },
     ],
   },
   beehiiv: {
-    reviewedAt: "2026-10-26",
+    reviewedAt: "2026-11-14",
     sourceUrl: "https://www.beehiiv.com/pricing",
     searchTitle: "Beehiiv Discounts & Promo Codes",
     metaDescription: "Find beehiiv discount and promo code guidance. Compare annual savings, subscriber tiers, free access and renewal terms before upgrading your newsletter.",
@@ -94,6 +96,7 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     sources: [{ label: "Subscriber tiers, trials and how to apply a promo code", url: "https://www.beehiiv.com/support/article/23874462928663-plan-types-and-subscriber-plan-tier-pricing" }],
     sections: [
+      { heading: "Count newsletters within the same billing account", text: "beehiiv's billing help says the tier uses active subscribers across the account's publications. Do not give every newsletter an independent allowance in your budget. For example, two distinct audiences of 1,200 and 1,600 active subscribers create a 2,800-subscriber planning case, rather than two separate small lists. Check the total in your account, then compare the paid features you need at that size. A code that reduces an entry tier may not describe your actual invoice." },
       { heading: "Start with the free plan when it fits", text: "A free plan can be more useful than a short introductory promotion for a new newsletter. Check whether your publication fits its audience limit and whether you need paid features immediately. A free subscription is a separate option from a percentage-off coupon." },
       { heading: "Compare the cost as your newsletter grows", text: "Compare plans using your present audience and your next growth milestone. Check publication limits, team access, automation, and monetization requirements alongside the subscription charge. Your cheapest starting plan may differ from the best choice after growth." },
       { heading: "Evaluate trials and introductory promotions", text: "Use a trial to test your publishing and migration workflow. For a promotion, record the eligible plan, discounted billing periods, and the price afterwards. Compare total spending across the period you expect to use the service." },
@@ -106,6 +109,7 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
       "The provider listed Free, Lite, Pro and Enterprise plans and advertised yearly savings of up to 20%. Older Scale or Max coupon descriptions may refer to previous plans.",
     ],
     faqs: [
+      { question: "Do multiple beehiiv publications have separate subscriber pricing?", answer: "The official billing help bases the tier on the account's combined active subscribers. Check the total across your publications before comparing a promotion, rather than assuming each newsletter gets its own full allowance." },
       { question: "How do I find a discount on beehiiv?", answer: "Check the sourced offers above, then compare the official free and paid plans for your subscriber count. Confirm any promotion in signup, including the length of the reduction and the renewal price." },
       { question: "Is beehiiv's free plan a discount code?", answer: "No. A free plan is an ongoing plan with its own limits. A coupon changes the price of an eligible paid subscription. This page labels free plans and coupons separately." },
       { question: "Will a beehiiv affiliate link guarantee a lower price?", answer: "Only an explicit promotion and the price shown by beehiiv establish a saving. A referral link by itself does not guarantee a discount or an extended trial." },
@@ -177,13 +181,13 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   taplio: {
-    reviewedAt: "2026-10-26",
+    reviewedAt: "2026-11-14",
     sourceUrl: "https://taplio.com/pricing",
     searchTitle: "Taplio Discounts & Coupon Codes",
     metaDescription: "Compare Taplio discounts, yearly billing, team-seat offers and coupon rules. Check LinkedIn workflow needs and eligible savings before choosing a plan.",
     intro: "A useful Taplio discount starts with the LinkedIn accounts and writing workflow you need. Compare the eligible yearly, team or bundle options for your account, then check whether an additional promo code would actually improve the invoice.",
     summary: "Choose a plan around the work you will use: preparing posts, publishing consistently or managing a larger engagement routine. Compare eligible savings on the next invoice and include every account you need to license.",
-    bestDiscountAnswer: "Compare Taplio yearly billing with an eligible organization-seat or Tweet Hunter bundle offer. Only one discount applies, so compare final invoices rather than adding percentages. A solo LinkedIn user should include the cost of the second subscription before choosing a bundle; a team should count every account it needs to license.",
+    bestDiscountAnswer: "Taplio lists yearly billing, organization-seat savings and a 25% Taplio plus Tweet Hunter bundle. Its policy allows one discount at a time. Compare the final invoice for the route your account qualifies for; a bundle only helps your budget when you need both subscriptions. Campaign codes have separate eligibility and should be checked against the same invoice.",
     decisionRows: [
       { option: "Consistent solo posting", bestFor: "A creator who already writes most of their content", check: "Scheduling and analytics needs before paying for additional AI usage" },
       { option: "AI-assisted writing", bestFor: "A regular workflow that benefits from draft assistance", check: "Actual monthly writing and comment usage" },
@@ -193,11 +197,13 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     relatedSlugs: ["ocoya", "predis-ai", "snov-io"],
     savingsOptions: [
       { type: "Annual billing", saving: "Lower yearly subscription prices", terms: "Compare the yearly total for your selected plan with twelve monthly payments. The reduction varies by plan; the provider's discount policy lists each billing option.", sourceUrl: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" },
-      { type: "Team discount", saving: "10–20% for eligible organization seats", terms: "The provider lists 10% for 2+ seats, 15% for 11+ and 20% for 51+. Changes apply to future billing. Discounts cannot be combined; check your upcoming invoice.", sourceUrl: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" },
+      { type: "Team discount", saving: "Organization-seat savings; confirm the current quote", terms: "The help center lists seat thresholds, while the public pricing page uses a higher maximum team-saving headline. Confirm the rate for your actual organization and future invoice before committing. Only one discount applies.", sourceUrl: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" },
       { type: "Bundle discount", saving: "25% on an eligible Tweet Hunter bundle", terms: "Connect eligible Taplio and Tweet Hunter accounts. The policy describes a reduction on future invoices for both subscriptions. Only one discount applies at a time; include both subscriptions in your budget.", sourceUrl: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" },
     ],
-    sources: [{ label: "Official discount and coupon rules", url: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" }, { label: "Plans, credits and yearly prices", url: "https://intercom.help/taplio/en/articles/17357650-taplio-plans-and-pricing-starter-growth-and-pro-compared" }],
+    sources: [{ label: "Public team-pricing headline", url: "https://taplio.com/pricing" }, { label: "Aware transition campaign and its advertised code", url: "https://taplio.com/taplio-vs-aware" }, { label: "Affiliate commission terms", url: "https://taplio.com/affiliates" }, { label: "Official discount and coupon rules", url: "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio" }, { label: "Plans, credits and yearly prices", url: "https://intercom.help/taplio/en/articles/17357650-taplio-plans-and-pricing-starter-growth-and-pro-compared" }],
     sections: [
+      { heading: "Resolve the team-pricing headline before counting a saving", text: "The public pricing page advertises team savings of up to 30%, while the linked discount policy lists thresholds reaching 20%. Those statements do not establish the same price for every organization. Ask Taplio to confirm your seat count and applicable rate, then compare that invoice with yearly billing or a bundle. Keep the answer with your billing record; do not multiply the larger headline by an assumed base price or combine it with another discount." },
+      { heading: "Distinguish migration campaigns from general coupons", text: "Taplio maintains a separate page for people moving from Aware and advertises a campaign code there. A transition campaign is not evidence that every existing or new account qualifies. Read that page and request eligibility confirmation if the written conditions do not cover your situation. No checkout test is implied by a publicly displayed code. Also distinguish the affiliate program: its referral commission pays the partner and does not itself reduce the customer's invoice." },
       { heading: "Buy for your actual LinkedIn routine", text: "Write down a realistic week: research, drafts, edits, scheduling and replies. Test the tasks where you expect the tool to save time. If you already have a strong writing process, compare the value of publishing support separately from AI assistance. Avoid paying for a larger workflow because its headline percentage saving is higher." },
       { heading: "Compare yearly, team and bundle eligibility", text: "Use the provider's discount policy to establish the options available to your account. List the final invoice for each eligible option rather than adding percentages together. For a team, include every licensed person and check when a changed seat count affects billing. For a bundle, include the second subscription in your total spending." },
       { heading: "Check usage before upgrading", text: "Track how often you use assisted drafting and engagement during your evaluation. Review whether the finished writing still sounds like you and how much editing it needs. The useful comparison is the cost of work you keep, not the number of generated suggestions or a promise of audience growth." },
@@ -205,6 +211,7 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
     sourceNotes: ["Taplio's official help center listed Starter, Growth and Pro plans with monthly and yearly prices, plus a seven-day trial.", "Its discount policy said discounts cannot be combined and apply to future invoices. It described organization-seat and Taplio plus Tweet Hunter offers, subject to eligibility."],
     faqs: [
+      { question: "Is Taplio's affiliate commission a customer discount?", answer: "No. The official affiliate page describes commission earned by the referring partner. A buyer needs a separate eligible promotion or billing reduction and a lower final invoice; a referral link by itself does not establish one." },
       { question: "Can I combine a Taplio coupon with another discount?", answer: "The official discount policy says only one discount applies at a time. Check the upcoming invoice for the applicable offer and ask support which eligible option gives the better final price." },
       { question: "How does a current Taplio user apply a code?", answer: "The provider directs existing subscribers to contact its chat with the code for an eligibility check. Ask which future invoice it can affect, and keep the confirmed terms before changing your subscription." },
       { question: "Does Taplio offer a student or nonprofit discount?", answer: "The reviewed official discount policy says Taplio does not currently offer student, academic or nonprofit discounts. Compare its published yearly, organization-seat and bundle options instead, and recheck the policy before subscribing." },

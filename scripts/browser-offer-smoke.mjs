@@ -73,8 +73,8 @@ try {
     const { identifier } = await page("Page.addScriptToEvaluateOnNewDocument", { source: `
       window.homeRefresh = { frames: [], done: false };
       function sampleHome() {
-        const heading = document.querySelector('.hero-headline');
-        const words = [...document.querySelectorAll('.hero-word')];
+        const heading = document.querySelector('main h1');
+        const words = [...document.querySelectorAll('main h1 span')];
         if (heading && words.length) {
           window.homeRefresh.frames.push({ top: heading.getBoundingClientRect().top, time: performance.now(), fontStatus: document.fonts.status, height: heading.getBoundingClientRect().height,
             wordTops: words.map(word => word.getBoundingClientRect().top),
@@ -211,7 +211,7 @@ try {
   assert.equal(correctionDraft.searchParams.get("subject"), "Hostinger: offer or link correction");
   assert.ok(correctionDraft.searchParams.get("body").includes("COUPONSPAGE") && correctionDraft.searchParams.get("body").includes("https://saasfolio.tech/deals/hostinger-couponspage-code"), "the native correction email retains the affected offer and code without JavaScript");
   for (const [path, kind, subject, fields] of [
-    ["/submit", "submission", "Software or offer submission for editorial review", ["Product or brand name", "Official website URL", "Official offer or pricing source URL", "Eligibility", "Billing period and renewal terms"]],
+    ["/submit", "submission", "Brand submission: My brand", ["Brand:", "Official website", "Pricing or documentation URL", "Product use case and limitations", "Contact email"]],
     ["/advertise", "partnership", "SaaSFolio partnership proposal", ["Company or product name", "Official website URL", "Partnership proposal"]],
   ]) {
     await navigate(path);
@@ -220,7 +220,7 @@ try {
     assert.equal(inquiryDraft.pathname, SUPPORT_EMAIL);
     assert.equal(inquiryDraft.searchParams.get("subject"), subject);
     for (const field of fields) assert.ok(inquiryDraft.searchParams.get("body").includes(field), `${path}: email draft includes ${field} without JavaScript`);
-    assert.ok(await evaluate("!document.querySelector('main form') && document.documentElement.scrollWidth <= innerWidth"), `${path}: native email route is usable without JavaScript and fits mobile`);
+    assert.ok(await evaluate("(!document.querySelector('main form') || !document.querySelector('main form').checkVisibility({checkVisibilityCSS:true})) && document.documentElement.scrollWidth <= innerWidth"), `${path}: native email route is usable without JavaScript and fits mobile`);
   }
   await page("Emulation.setScriptExecutionDisabled", { value: false });
   const health = await (await fetch(`${origin}/api/health`)).json();
@@ -244,32 +244,26 @@ try {
     assert.ok(await evaluate("!!document.querySelector('main fieldset[disabled]') && !!document.querySelector('main a[href^=\"mailto:\"]')"), `${path}: disabled form and email alternative`);
   }
   await navigate("/submit");
-  if (health.checks.formsConfigured) {
-    await until(() => evaluate("document.querySelector('main').textContent.includes('AUTHENTICATION REQUIRED')"), "anonymous submission requires authentication when the web service is configured");
-    assert.ok(await evaluate("!!document.querySelector('main a[href=\"/login?redirect=/submit\"]') && !document.querySelector('main form')"), "anonymous submission cannot expose the configured contributor form");
-  } else {
-    await until(() => evaluate("!!document.querySelector('[data-inquiry-email-draft=submission]')"), "Unconfigured submissions have a native editorial email route");
+  await until(() => evaluate("!!document.querySelector('#brand-name') && !!document.querySelector('main form')"), "Anonymous brand intake is available without an account");
+  assert.ok(await evaluate("!document.querySelector('main a[href^=\"/login\"]') && !document.querySelector('main a[href^=\"/signup\"]')"), "Brand owners do not need registration");
+  if (!health.checks.formsConfigured) {
     const submissionDraft = new URL(await evaluate("document.querySelector('[data-inquiry-email-draft=submission]').href"));
     assert.equal(submissionDraft.pathname, SUPPORT_EMAIL);
-    assert.equal(submissionDraft.searchParams.get("subject"), "Software or offer submission for editorial review");
-    assert.ok(await evaluate("!document.querySelector('main form') && !document.querySelector('main a[href^=\"/login\"]') && !document.querySelector('main a[href^=\"/signup\"]')"), "Unconfigured submissions do not lead readers to unavailable registration or web forms");
+    assert.equal(submissionDraft.searchParams.get("subject"), "Brand submission: My brand");
+    assert.ok(await evaluate("document.querySelector('button[type=submit]').textContent.includes('Open submission email') && document.querySelector('main').textContent.includes('will not create a submission reference')"), "Unavailable online intake clearly prepares a manual email");
   }
   await evaluate("localStorage.setItem('saasfolio_local_threads', '[null,{\"id\":\"bad\"}]'); localStorage.setItem('saasfolio_community_upvotes', 'null')");
   await navigate("/community");
   await until(() => evaluate("document.querySelector('main').textContent.includes('Editorial')"), "editorial prompts survive malformed local storage");
   await evaluate("localStorage.removeItem('saasfolio_local_threads'); localStorage.removeItem('saasfolio_community_upvotes')");
   await navigate("/");
-  const motionCapable = await evaluate("matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches");
-  await until(() => evaluate(`!!document.querySelector('[data-home-hero] canvas') === ${motionCapable}`), "hero follows the device's pointer and motion capabilities");
-  console.log(`Pointer-dependent hero animation: ${motionCapable ? "enabled" : "static fallback for this device"}.`);
-  assert.ok(await evaluate(`[...document.querySelectorAll('.hero-word')].every(word => getComputedStyle(word).animationName === ${JSON.stringify(motionCapable ? "hero-word-enter" : "none")})`), "headline animation follows the same pointer and motion condition as its CSS");
-  await evaluate("Promise.all([...document.querySelectorAll('.hero-word')].flatMap(word => word.getAnimations()).map(animation => animation.finished.catch(() => {})))");
+  assert.ok(await evaluate("!!document.querySelector('#home-brand-search') && !document.querySelector('main canvas')"), "Directory hero provides a native search without a canvas dependency");
   assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth"), "home hero and compact brand cards fit mobile");
   const mobileHome = await page("Page.captureScreenshot", { format: "png" });
   await writeFile(join(tmpdir(), "saasfolio-home-mobile.png"), Buffer.from(mobileHome.data, "base64"));
   await page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
   await until(() => evaluate("!document.querySelector('[data-home-hero] canvas') && !document.documentElement.classList.contains('lenis')"), "live reduced-motion preference removes canvas and smooth scrolling");
-  assert.ok(await evaluate("[...document.querySelectorAll('.hero-word')].every(word => getComputedStyle(word).animationName === 'none')"), "headline respects reduced motion");
+  assert.ok(await evaluate("[...document.querySelectorAll('main h1 span')].every(word => getComputedStyle(word).animationName === 'none')"), "headline respects reduced motion");
   await page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "no-preference" }] });
   // Start a fresh navigation with JavaScript disabled, before any hydration.
   await page("Emulation.setScriptExecutionDisabled", { value: true });
@@ -280,7 +274,7 @@ try {
   await page("Emulation.setScriptExecutionDisabled", { value: false });
   await page("Emulation.setDeviceMetricsOverride", { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await navigate("/");
-  await evaluate("Promise.all([...document.querySelectorAll('.hero-word')].flatMap(word => word.getAnimations()).map(animation => animation.finished.catch(() => {})))");
+  await evaluate("Promise.all([...document.querySelectorAll('main h1 span')].flatMap(word => word.getAnimations()).map(animation => animation.finished.catch(() => {})))");
   const desktopHome = await page("Page.captureScreenshot", { format: "png" });
   await writeFile(join(tmpdir(), "saasfolio-home-desktop.png"), Buffer.from(desktopHome.data, "base64"));
   await navigate("/discounts/beehiiv");
@@ -309,7 +303,7 @@ try {
   await navigate("/discounts/wpforms");
   assert.ok(await evaluate("document.querySelector('main h1').textContent.includes('WPForms')"), "brand navigation works after optional asset failure");
   assert.deepEqual(runtimeErrors, [], "No uncaught browser exceptions across the audited flows");
-  console.log(`Chrome smoke passed: stable cold loads and hard refreshes on mobile/desktop with 4x CPU throttling, ${officialCoupons.length} official coupon copy/source checks, native redirects, denied clipboard, exact current coupon-brand filtering, mobile search and savings, unavailable service forms, malformed local storage, capability-dependent hero animation, live reduced motion, cold no-JavaScript content and coupon navigation, membership disclosures, and native scrolling with the optional asset ${scrollCapable ? "blocked" : "unrequested for this device"}. No reports submitted or checkout attempted.`);
+  console.log(`Chrome smoke passed: stable cold loads and hard refreshes on mobile/desktop with 4x CPU throttling, ${officialCoupons.length} official coupon copy/source checks, native redirects, denied clipboard, exact current coupon-brand filtering, mobile search and savings, unavailable service forms, malformed local storage, native directory search, live reduced motion, cold no-JavaScript content and coupon navigation, membership disclosures, and native scrolling with the optional asset ${scrollCapable ? "blocked" : "unrequested for this device"}. No reports submitted or checkout attempted.`);
 } finally {
   for (const entry of pending.values()) clearTimeout(entry.timer);
   chrome.kill();

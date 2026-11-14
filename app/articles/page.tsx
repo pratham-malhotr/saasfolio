@@ -7,8 +7,8 @@ import { ArticlesHubClient } from "@/components/articles/ArticlesHubClient";
 import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
 
 export const metadata = pageMetadata({
-  title: 'SaaS Buying Guides: Coupons, Pricing & Renewal Costs',
-  description: 'Read original SaaS buying guides with references. Compare coupon terms, usage limits, access fees and renewal costs before choosing a software subscription.',
+  title: 'Software Reviews, Hosting Research & SaaS Buying Guides',
+  description: 'Read sourced software and hosting reviews, compare product trade-offs and evaluate pricing, renewal costs and operating responsibilities before subscribing.',
   path: "/articles",
 });
 

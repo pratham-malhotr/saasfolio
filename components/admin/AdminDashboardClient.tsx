@@ -15,7 +15,10 @@ export function AdminDashboardClient({ role }: { role: StaffRole }) {
     <nav aria-label="Administration sections" className="flex flex-wrap gap-3">{sections.map(value => <button key={value} type="button" aria-pressed={section === value} onClick={() => setSection(value)} className={`px-5 py-3 rounded-xl capitalize border ${section === value ? "bg-[#C6FF3D] text-black border-[#C6FF3D]" : "border-white/20 text-white"}`}>{value}</button>)}</nav>
     <div hidden={section !== "catalog"}><CatalogManager role={role} /></div>
     {section === "offers" && <OfferOperations onReports={role !== "editor" ? () => setSection("inquiries") : undefined} />}
-    {role !== "editor" && <><div hidden={section !== "inquiries"}><InquiryInbox /></div><div hidden={section !== "activity"}><AuditLog /></div></>}
+    {role !== "editor" && <><div hidden={section !== "inquiries"}><InquiryInbox canPrepareBrand={role === "owner"} onPrepareBrand={payload => {
+      const event = new CustomEvent("saasfolio_prepare_brand", { detail: payload, cancelable: true });
+      if (window.dispatchEvent(event)) setSection("catalog");
+    }} /></div><div hidden={section !== "activity"}><AuditLog /></div></>}
     {role === "owner" && <div hidden={section !== "team"}><StaffManagement /></div>}
     <Link href="/profile" className="inline-block text-[#C6FF3D] underline">Back to your account</Link>
   </div>;

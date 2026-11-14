@@ -5,7 +5,7 @@ import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
 import { getPublishedTool } from "@/lib/published-catalog";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata, absoluteUrl } from "@/lib/seo";
-import { breadcrumbSchema, softwareSchema, webPageSchema } from "@/lib/structured-data";
+import { breadcrumbSchema, softwareSchema, webPageSchema, organizationId } from "@/lib/structured-data";
 import { offerLabel } from "@/lib/offer-links";
 import { BrandSourcePanel } from "@/components/seo/BrandSourcePanel";
 import { SavingsCalculator } from "@/components/deals/SavingsCalculator";
@@ -68,18 +68,28 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
         "@context": "https://schema.org",
         "@graph": [
           {
-            ...webPageSchema(title, brandDiscountDescription(tool, offers), path, "CollectionPage"),
+            ...webPageSchema(title, brandDiscountDescription(tool, offers), path, guide ? "WebPage" : "CollectionPage"),
             ...(modifiedAt ? { dateModified: modifiedAt } : {}),
             about: { "@id": softwareSchema(tool)["@id"] },
             ...(guide ? { citation: [guide.sourceUrl, ...(guide.sources || []).map(source => source.url)] } : {}),
             relatedLink: related.map(other => absoluteUrl(`/discounts/${other.slug}`)),
-            mainEntity: {
+            mainEntity: guide ? { "@id": absoluteUrl(`${path}#guide`) } : {
               "@type": "ItemList", numberOfItems: offers.length,
               itemListElement: offers.map((offer, index) => ({
                 "@type": "ListItem", position: index + 1, name: offer.title, url: absoluteUrl(`/deals/${offer.slug}`),
               })),
             },
           },
+          ...(guide ? [{
+            "@type": "Article", "@id": absoluteUrl(`${path}#guide`),
+            headline: title, description: brandDiscountDescription(tool, offers),
+            mainEntityOfPage: { "@id": absoluteUrl(`${path}#webpage`) },
+            author: { "@id": organizationId }, publisher: { "@id": organizationId },
+            about: { "@id": softwareSchema(tool)["@id"] },
+            dateModified: modifiedAt, inLanguage: "en",
+            image: absoluteUrl(`${path}/opengraph-image`),
+            citation: [guide.sourceUrl, ...(guide.sources || []).map(source => source.url)],
+          }] : []),
           softwareSchema(tool),
           breadcrumbSchema([{ name: "Brand discounts", path: "/discounts" }, { name: `${tool.name} discounts`, path }]),
         ],
@@ -94,6 +104,11 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
       <header className="rounded-3xl border border-white/15 bg-[#09090C] p-6 sm:p-10 space-y-5">
         <p className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D]">{tool.category} · Savings guide</p>
         <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white">{title}</h1>
+        <div aria-label={`${tool.name} discount summary`} className="rounded-2xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/[0.04] p-5 space-y-3">
+          <p className="font-mono text-xs uppercase tracking-wider text-[#C6FF3D]">The short answer</p>
+          <p id="discount-answer" className="max-w-3xl text-base leading-relaxed text-zinc-200">{brandDiscountAnswer(tool, offers)}</p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-zinc-400"><span>{couponOffers.length} recorded {couponOffers.length === 1 ? "code" : "codes"}</span><span>{freeOptions.length} free-access {freeOptions.length === 1 ? "listing" : "listings"}</span>{guide && <span>Guide review: <time dateTime={guide.reviewedAt}>{guide.reviewedAt}</time></span>}{offers.length > 0 && <span>Latest source check: <time dateTime={offers.map(offer => offer.checkedAt || "").sort().at(-1)}>{offers.map(offer => offer.checkedAt || "").sort().at(-1)?.slice(0, 10)}</time></span>}</div>
+        </div>
         <p className="text-zinc-300 text-lg leading-relaxed max-w-3xl">
           {guide?.intro || `Compare sourced ${tool.name} coupons and offers for ${tool.bestFor.charAt(0).toLowerCase() + tool.bestFor.slice(1)}. Review the code requirements, eligible plans, and renewal terms before choosing an offer.`}
         </p>
@@ -115,7 +130,6 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
 
       <section id="current-offers" className="space-y-5 scroll-mt-28">
         <h2 className="font-display text-2xl font-bold text-white">Current {tool.name} discount codes & offers</h2>
-        <p id="discount-answer" className="max-w-3xl text-zinc-300 leading-relaxed">{brandDiscountAnswer(tool, offers)}</p>
         <dl id="discount-availability" aria-label={`${tool.name} discount availability`} className="grid gap-3 sm:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-[#09090C] p-5 space-y-2">
             <dt className="text-xs font-mono uppercase tracking-wide text-zinc-500">Coupon & promo codes</dt>
@@ -186,7 +200,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           <dt className="font-display text-lg font-bold text-white">{check.label}</dt>
           <dd className="text-sm text-zinc-400 leading-relaxed">{check.detail}</dd>
         </div>)}</dl>
-        <p className="text-xs text-zinc-500">Guide reviewed <time dateTime={guide!.reviewedAt}>{guide!.reviewedAt}</time>. <a href={pricingUrl} target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">Check {tool.name}’s official terms ↗</a></p>
+        <p className="text-xs text-zinc-500">{sourceNotesCurrent ? "Guide reviewed" : "Earlier guide reviewed"} <time dateTime={guide!.reviewedAt}>{guide!.reviewedAt}</time>. {!sourceNotesCurrent && "These are questions to resolve with the provider, not current eligibility claims. "}<a href={pricingUrl} target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">Check {tool.name}’s official terms ↗</a></p>
       </section>}
 
       {guide && <section id="plan-fit" className="space-y-5 scroll-mt-28">

@@ -125,12 +125,11 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
   }, [pathname]);
 
   const navLinks = [
-    { label: "Discounts", href: "/discounts", icon: Tag },
-    { label: "Deals", href: "/deals", icon: Tag, badge: "HOT" },
     { label: "Brands", href: "/brands", icon: Layers },
+    { label: "Hosting", href: "/brands?category=hosting", icon: Layers },
+    { label: "Discounts", href: "/discounts", icon: Tag, badge: "" },
     { label: "Compare", href: "/compare", icon: Scale },
-    { label: "Guides", href: "/articles", icon: FileText },
-    { label: "Our method", href: "/editorial-policy", icon: FileText },
+    { label: "Reviews & guides", href: "/articles", icon: FileText },
   ];
 
   return (
@@ -236,7 +235,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                       className="flex items-center gap-2 px-3 py-2 rounded-xl text-zinc-300 hover:text-[#C6FF3D] hover:bg-white/5 transition-colors"
                     >
                       <Tag className="w-3.5 h-3.5" />
-                      <span>Submit Tool / Deal</span>
+                      <span>Add your brand</span>
                     </Link>
 
                     {currentUser.isAdmin && <Link
@@ -273,13 +272,13 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
             )}
 
             {/* Glowing CTA */}
-            <Link href="/deals">
+            <Link href="/submit">
               <MagneticButton
                 variant="primary"
                 size="sm"
                 className="font-bold tracking-tight text-xs flex items-center gap-1"
               >
-                <span>Get Deals</span>
+                <span>Add your brand</span>
                 <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
               </MagneticButton>
             </Link>
@@ -339,7 +338,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                 })}
               </div>
 
-              <div className="pt-4 space-y-2 border-t border-white/10">
+              <div className="pt-4 space-y-2 border-t border-white/10"><Link href="/submit" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between rounded-xl bg-[#C6FF3D] px-4 py-3 text-sm font-semibold text-black">Add your brand <ArrowUpRight className="h-4 w-4" /></Link>
                 {currentUser ? (
                   <>
                     <Link

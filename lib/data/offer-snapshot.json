@@ -326,13 +326,13 @@
       "url": "https://www.hostinger.com/coupons",
       "kind": "vendor",
       "status": "ok",
-      "checkedAt": "2026-10-28T21:10:29.991Z",
+      "checkedAt": "2026-11-14T10:22:35.677Z",
       "definitionHash": "a2df24caf8d568254ff4541be03547bd0f2b47eb523e5521c836c1ae50d1396c",
       "failureCount": 0,
       "nextAttemptAt": null,
       "httpStatus": 200,
-      "changedAt": "2026-10-26T21:04:49.948Z",
-      "contentHash": "14054a89c5232e33eb12f036e640862de2ca3d664a0bab5b29a10e8960af522a",
+      "changedAt": "2026-11-14T10:22:35.677Z",
+      "contentHash": "37c61e768355e1a70fd014eebbf461acac67eac5a5e3df9a34f0f618c4fa21ed",
       "etag": null,
       "lastModified": null,
       "error": null
@@ -342,13 +342,13 @@
       "url": "https://www.hostinger.com/coupons",
       "kind": "vendor",
       "status": "ok",
-      "checkedAt": "2026-10-28T21:10:29.648Z",
+      "checkedAt": "2026-11-14T10:22:35.616Z",
       "definitionHash": "205c5a055e185e30ccd4cc776821cf569be9c1a49e9df4401c45a2c8339691d3",
       "failureCount": 0,
       "nextAttemptAt": null,
       "httpStatus": 200,
-      "changedAt": "2026-10-26T21:04:49.888Z",
-      "contentHash": "14054a89c5232e33eb12f036e640862de2ca3d664a0bab5b29a10e8960af522a",
+      "changedAt": "2026-11-14T10:22:35.616Z",
+      "contentHash": "37c61e768355e1a70fd014eebbf461acac67eac5a5e3df9a34f0f618c4fa21ed",
       "etag": null,
       "lastModified": null,
       "error": null
@@ -358,15 +358,15 @@
       "url": "https://www.techradar.com/pro/website-building/building-a-business-in-2026-launch-your-website-for-less-with-this-huge-hostinger-discount-exclusive-to-techradar",
       "kind": "coupon-site",
       "status": "ok",
-      "checkedAt": "2026-10-28T21:10:29.900Z",
+      "checkedAt": "2026-11-14T10:22:35.661Z",
       "definitionHash": "3d1db5abc39bb9a7866aa5b8fcbbfceb71edc9d392387d7e96cfd8413a6a3d7d",
       "failureCount": 0,
       "nextAttemptAt": null,
-      "httpStatus": 304,
-      "changedAt": "2026-10-28T10:40:16.563Z",
-      "contentHash": "fc19860a577a2e071f4ddefd0372ebb2f3889e837fedc6c3b17c5e2e1f952821",
+      "httpStatus": 200,
+      "changedAt": "2026-11-14T10:22:35.661Z",
+      "contentHash": "e59e8ba0a474e04b45f1ece4732feb1df09114e74503527609a5609f2899c7e4",
       "etag": null,
-      "lastModified": "Wed, 28 Oct 2026 10:40:22 GMT",
+      "lastModified": "Thu, 12 Nov 2026 22:19:08 GMT",
       "error": null
     },
     "reviewed:hubspot-startup-program": {
@@ -662,7 +662,7 @@
       "url": "https://www.notion.com/startups",
       "kind": "vendor",
       "status": "ok",
-      "checkedAt": "2026-10-28T21:10:28.063Z",
+      "checkedAt": "2026-11-14T10:22:34.292Z",
       "definitionHash": "3fb536ad0a228367e31afdc1c125f44c9c8f59793143c6de7e608aa2142855d0",
       "failureCount": 0,
       "nextAttemptAt": null,
@@ -865,6 +865,22 @@
       "contentHash": "3969641f1995425a9572818ca2d848677435d133bdacbf7473a8d262f032b2e2",
       "etag": "W/\"2edff4cd9dfa34b99ddc34cdbfd51bdd\"",
       "lastModified": "Tue, 27 Oct 2026 09:03:37 GMT",
+      "error": null
+    },
+    "reviewed:taplio-aware-transition": {
+      "toolSlug": "taplio",
+      "url": "https://taplio.com/taplio-vs-aware",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-11-14T10:22:35.866Z",
+      "definitionHash": "9e1095675e6774057f0b2b24f99e70315d2e595e8ca5ec8c9175dd4b2457e518",
+      "failureCount": 0,
+      "nextAttemptAt": null,
+      "httpStatus": 200,
+      "changedAt": "2026-11-14T10:22:35.866Z",
+      "contentHash": "c469660f4522f777cabfb1140256ab674db59fb9615d969b18be1481fe703a43",
+      "etag": null,
+      "lastModified": "Fri, 13 Nov 2026 17:28:08 GMT",
       "error": null
     },
     "reviewed:trello-nonprofit-program": {
@@ -2008,13 +2024,13 @@
       "url": "https://www.beehiiv.com/pricing",
       "kind": "vendor",
       "status": "ok",
-      "checkedAt": "2026-10-28T21:07:31.919Z",
+      "checkedAt": "2026-11-14T10:22:33.683Z",
       "definitionHash": "c3aa11f7ee4cca6589939029a06e064c70cde80e978f91c0a2add5f30f547ee7",
       "failureCount": 0,
       "nextAttemptAt": null,
       "httpStatus": 200,
-      "changedAt": "2026-10-27T09:50:43.742Z",
-      "contentHash": "6a237572971c5b29f567ad3accb4b6b5f4ccd0c74f613d4bc6749d15d2b38f56",
+      "changedAt": "2026-11-14T10:22:33.683Z",
+      "contentHash": "65084e4bbd191bcc086b7f9e0928241884ed2dfc2508949ffe7e8def7bd7393b",
       "etag": null,
       "lastModified": null,
       "error": null
@@ -4681,15 +4697,15 @@
       "url": "https://www.framer.com/",
       "kind": "vendor",
       "status": "ok",
-      "checkedAt": "2026-10-28T21:07:34.806Z",
+      "checkedAt": "2026-11-14T10:22:33.684Z",
       "definitionHash": "f64f1dee678cc2b5e25620789163762801e966518bb76f3761b0c9965ca8edad",
       "failureCount": 0,
       "nextAttemptAt": null,
       "httpStatus": 200,
-      "changedAt": "2026-10-28T21:07:34.806Z",
-      "contentHash": "f6d79600d911c4b8355312244411c5474c61140fd83d2b5bdb804d50cac4ac1d",
-      "etag": "\"8a2aef8d5e4bb001c14b04dfa12b9228\"",
-      "lastModified": "Wed, 28 Oct 2026 16:29:16 GMT",
+      "changedAt": "2026-11-14T10:22:33.684Z",
+      "contentHash": "23fcaa46ca66bb5c45b19b486f59a49a95091033e33a211e66655a8977559d1d",
+      "etag": "\"9d8a8d36ca98f957fc62e95928cbe9aa\"",
+      "lastModified": "Fri, 13 Nov 2026 15:29:43 GMT",
       "error": null
     },
     "vendor:frase-io": {
@@ -5521,13 +5537,13 @@
       "url": "https://www.hostinger.com/",
       "kind": "vendor",
       "status": "ok",
-      "checkedAt": "2026-10-28T21:07:35.389Z",
+      "checkedAt": "2026-11-14T10:22:33.684Z",
       "definitionHash": "e2042ce5642ad1632579428d1f40541ac7aad2c21ea01c28fc9df55ca87d666c",
       "failureCount": 0,
       "nextAttemptAt": null,
       "httpStatus": 200,
-      "changedAt": "2026-10-26T21:02:07.162Z",
-      "contentHash": "d7e5de3bdfa67ef3dce8cb22ca020a4955ebee72dceee80914d72ac598af6f9a",
+      "changedAt": "2026-11-14T10:22:33.684Z",
+      "contentHash": "d24fc6bb6857235e0d0382660f31ba34e1ec3748c8f955cab2ec1ca31000cb88",
       "etag": null,
       "lastModified": null,
       "error": null
@@ -7791,11 +7807,11 @@
       "url": "https://www.notion.so",
       "kind": "vendor",
       "status": "error",
-      "lastAttemptAt": "2026-10-28T10:36:51.883Z",
+      "lastAttemptAt": "2026-11-14T10:22:33.684Z",
       "error": "Source redirected outside its allowed hosts",
-      "failureCount": 11,
+      "failureCount": 12,
       "httpStatus": null,
-      "nextAttemptAt": "2026-10-28T22:36:52.042Z"
+      "nextAttemptAt": "2026-11-14T22:22:34.292Z"
     },
     "vendor:notion-ai-pro": {
       "toolSlug": "notion-ai-pro",
@@ -8855,15 +8871,15 @@
       "url": "https://predis.ai/pricing/",
       "kind": "vendor",
       "status": "ok",
-      "checkedAt": "2026-10-28T21:08:27.261Z",
+      "checkedAt": "2026-11-14T10:22:33.684Z",
       "definitionHash": "b22f4d1039626c61e8bfc26e44cbf3619045b10f532e4d73c2941bc1ed501a76",
       "failureCount": 0,
       "nextAttemptAt": null,
-      "httpStatus": 304,
+      "httpStatus": 200,
       "changedAt": "2026-10-23T09:23:25.634Z",
       "contentHash": "d9a3fe557e61a25e8da00255c5f4e6cbcf997d5a904fc110dc6ebbaeba48e9d5",
       "etag": null,
-      "lastModified": "Tue, 27 Oct 2026 10:05:16 GMT",
+      "lastModified": "Fri, 13 Nov 2026 08:30:10 GMT",
       "error": null
     },
     "vendor:previewed": {
@@ -11578,15 +11594,15 @@
       "url": "https://taplio.com/pricing",
       "kind": "vendor",
       "status": "ok",
-      "checkedAt": "2026-10-28T21:08:25.571Z",
+      "checkedAt": "2026-11-14T10:22:33.684Z",
       "definitionHash": "0aa6b5d32fee4a0f93e25de882886bf8efeca9ac73805e8dde0d3bdaeb178232",
       "failureCount": 0,
       "nextAttemptAt": null,
       "httpStatus": 200,
-      "changedAt": "2026-10-27T09:51:36.689Z",
-      "contentHash": "1a7bcda767eec76da17eeb99c3f1ede248ec00985f120482d63d84ab7fedf3d9",
+      "changedAt": "2026-11-14T10:22:33.684Z",
+      "contentHash": "546d7c9e4de7a4fd84a49fb86e0e415e214c311369cee8203b378cc3d0e815b0",
       "etag": null,
-      "lastModified": "Tue, 27 Oct 2026 15:51:31 GMT",
+      "lastModified": "Fri, 13 Nov 2026 19:33:19 GMT",
       "error": null
     },
     "vendor:tars": {
@@ -13654,8 +13670,8 @@
       "sourceKind": "vendor",
       "sourceKey": "vendor:beehiiv",
       "evidence": "d save) Monthly Free The basics for creators just getting started. $0 Free forever Start for free Upgrade anytime What’s included... Unlimited email sends Industry-leading deliverability Email templates Landing pages Recommendation ",
-      "checkedAt": "2026-10-28T21:07:31.919Z",
-      "updatedAt": "2026-10-27T09:50:43.742Z",
+      "checkedAt": "2026-11-14T10:22:33.683Z",
+      "updatedAt": "2026-11-14T10:22:33.683Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
@@ -14633,8 +14649,8 @@
       "terms": "Vendor-published code for selected hosting plans. Displayed monthly prices may require a 48-month upfront payment. Eligibility, regional prices, and renewal rates differ by plan. Not checkout tested.",
       "sourceKey": "reviewed:hostinger-couponspage-code",
       "evidence": "COUPONSPAGE; coupon applied",
-      "checkedAt": "2026-10-28T21:10:29.991Z",
-      "updatedAt": "2026-10-26T21:04:49.948Z"
+      "checkedAt": "2026-11-14T10:22:35.677Z",
+      "updatedAt": "2026-11-14T10:22:35.677Z"
     },
     {
       "slug": "hostinger-official-coupon",
@@ -14648,8 +14664,8 @@
       "terms": "Discounts depend on the selected product, country, and subscription term. Review initial charges and renewal rates on Hostinger before paying.",
       "sourceKey": "reviewed:hostinger-official-coupon",
       "evidence": "coupon; hosting",
-      "checkedAt": "2026-10-28T21:10:29.648Z",
-      "updatedAt": "2026-10-26T21:04:49.888Z"
+      "checkedAt": "2026-11-14T10:22:35.616Z",
+      "updatedAt": "2026-11-14T10:22:35.616Z"
     },
     {
       "slug": "hostinger-techradar-reported-code",
@@ -14664,8 +14680,8 @@
       "terms": "TechRadar reports this code; SaaSFolio has not tested it at checkout. Product, term, and regional restrictions may apply. Confirm the discount at the vendor before purchasing.",
       "sourceKey": "reviewed:hostinger-techradar-reported-code",
       "evidence": "TECHRADAR; 10%",
-      "checkedAt": "2026-10-28T21:10:29.900Z",
-      "updatedAt": "2026-10-28T10:40:16.563Z"
+      "checkedAt": "2026-11-14T10:22:35.661Z",
+      "updatedAt": "2026-11-14T10:22:35.661Z"
     },
     {
       "slug": "hubspot-startup-program",
@@ -15347,7 +15363,7 @@
       "terms": "Startup application and eligibility requirements apply. The duration depends on the startup program and partner status. Apply through Notion; this is not a general public coupon. Checkout has not been tested.",
       "sourceKey": "reviewed:notion-startup-program",
       "evidence": "6 months; Business; startup",
-      "checkedAt": "2026-10-28T21:10:28.063Z",
+      "checkedAt": "2026-11-14T10:22:34.292Z",
       "updatedAt": "2026-10-23T09:25:02.796Z"
     },
     {
@@ -16103,6 +16119,22 @@
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
+      "slug": "taplio-aware-transition",
+      "toolSlug": "taplio",
+      "title": "Taplio Aware-transition campaign: 20% with code AWARE",
+      "dealType": "coupon",
+      "code": "AWARE",
+      "discountPercentage": 20,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://taplio.com/taplio-vs-aware",
+      "destinationUrl": "https://taplio.com/taplio-vs-aware",
+      "terms": "Taplio advertises this code on its Aware-transition campaign page. Confirm that your account qualifies and check the eligible plan, billing period, discount duration and renewal total with Taplio before paying. No expiry is stated on that page. This is a campaign-specific source observation, not a sitewide guarantee; checkout acceptance has not been tested.",
+      "sourceKey": "reviewed:taplio-aware-transition",
+      "evidence": "20% discount; AWARE; Aware is shutting down",
+      "checkedAt": "2026-11-14T10:22:35.866Z",
+      "updatedAt": "2026-11-14T10:22:35.866Z"
+    },
+    {
       "slug": "taplio-free-trial",
       "toolSlug": "taplio",
       "title": "Taplio free trial",
@@ -16113,8 +16145,8 @@
       "sourceKind": "vendor",
       "sourceKey": "vendor:taplio",
       "evidence": "o creators For Employee Advocacy Turn your team into advocates Log In Start free trial Log In Start free trial AI writer Taplio MCP V2 New: Engage tools Taplio MCP V2 now available, try it out Your AI can now comment and reply for you. ",
-      "checkedAt": "2026-10-28T21:08:25.571Z",
-      "updatedAt": "2026-10-27T09:51:36.689Z",
+      "checkedAt": "2026-11-14T10:22:33.684Z",
+      "updatedAt": "2026-11-14T10:22:33.684Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
     },
     {
@@ -16600,5 +16632,5 @@
       "observedAt": "2026-10-27T11:04:15.209Z"
     }
   ],
-  "lastRun": "2026-10-28T21:10:54.917Z"
+  "lastRun": "2026-11-14T10:22:38.207Z"
 }

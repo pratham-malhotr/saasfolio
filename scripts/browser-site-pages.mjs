@@ -141,7 +141,7 @@ try {
     await page("Emulation.setTouchEmulationEnabled", { enabled: viewport.mobile });
     await navigate("/");
     if (!deployedServices.newsletterConfigured) {
-      assert.ok(await evaluate("!!document.querySelector('#newsletter a[href=\"/articles\"]') && !!document.querySelector('#newsletter a[href=\"/contact\"]') && !document.querySelector('#newsletter form')"), "An unconfigured newsletter offers usable reading and contact links");
+      assert.ok(await evaluate("!!document.querySelector('main a[href=\"/articles\"]') && !!document.querySelector('main a[href=\"/submit\"]') && !document.querySelector('#newsletter form')"), "Discovery offers usable articles and brand submissions without advertising an unavailable newsletter");
     }
     if (!deployedServices.accountsConfigured) {
       assert.ok(await evaluate("!document.querySelector('header a[href=\"/login\"]') && !!document.querySelector('header a[href=\"/contact\"]')"), "Unavailable accounts are replaced by a public contact link");
@@ -167,7 +167,8 @@ try {
         throw error;
       }
       const heading = await layout(viewport.width, href);
-      const expectedNav = ["/discounts", "/deals", "/brands", "/compare", "/articles", "/community"].find(path => destination.pathname === path || destination.pathname.startsWith(`${path}/`));
+      const navDestinations = await evaluate("[...document.querySelectorAll('header nav a[href]')].map(link=>link.getAttribute('href')).filter(href=>href.startsWith('/')&&!href.includes('?'))");
+      const expectedNav = navDestinations.find(path => destination.pathname === path || destination.pathname.startsWith(`${path}/`));
       if (expectedNav) await until(() => evaluate(`document.querySelector('header nav a[aria-current="page"]')?.getAttribute('href') === ${JSON.stringify(expectedNav)}`), `${href}: active navigation updates after hydration`);
       if (destination.hash) assert.ok(await evaluate(`(() => {const target=document.getElementById(${JSON.stringify(decodeURIComponent(destination.hash.slice(1)))});return !!target&&target.getBoundingClientRect().top>=0&&target.getBoundingClientRect().top<innerHeight;})()`), `${href}: anchor scrolls into view`);
       if (destination.searchParams.has("type")) assert.ok(await evaluate(`document.querySelector('main').textContent.includes(${JSON.stringify(`Type: ${destination.searchParams.get("type")}`)})`), `${href}: requested filter is active`);
@@ -233,7 +234,7 @@ try {
     await until(() => evaluate("location.pathname==='/compare/notion-vs-asana' && document.querySelector('main h1')?.textContent.toLowerCase().includes('asana') && document.querySelector('#comparison-switch-b')?.value==='asana'"), "Comparison switcher navigation refreshes its controls");
 
     await navigate("/");
-    await until(() => evaluate("Object.keys(document.querySelector('button[aria-label=\"Search SaaS discounts and coupon codes\"]')||{}).some(key=>key.startsWith('__reactProps'))"), "Home hydration");
+    await until(() => evaluate("Object.keys(document.querySelector('button[aria-label=\"Search deals and tools\"]')||{}).some(key=>key.startsWith('__reactProps'))"), "Home hydration");
     // A committed button can precede the Navbar's passive effect. Sending
     // Ctrl+K then invokes Chrome's own shortcut on Linux instead of the page.
     await until(async () => {
@@ -259,11 +260,11 @@ try {
     assert.ok(await evaluate("!document.querySelector('#form-email') && !document.querySelector('#contact-form button[type=submit]')"), "The email contact route contains no unusable submission fields");
     await layout(viewport.width, "/contact?brand=notion#contact-form");
     for (const [path, kind, subject, fields] of [
-      ["/submit", "submission", "Software or offer submission for editorial review", ["Official website URL", "Official offer or pricing source URL", "Eligibility", "Billing period and renewal terms"]],
+      ["/submit", "submission", "Brand submission: My brand", ["Official website", "Pricing or documentation URL", "Product use case and limitations", "Contact email"]],
       ["/advertise", "partnership", "SaaSFolio partnership proposal", ["Company or product name", "Official website URL", "Partnership proposal"]],
     ]) {
       await navigate(path);
-      await until(() => evaluate(`!!document.querySelector('[data-inquiry-email-draft=${kind}]') && !document.querySelector('main form')`), `${path}: unavailable web service provides email`);
+      await until(() => evaluate(`!!document.querySelector('[data-inquiry-email-draft=${kind}]') && ${path === "/submit" ? "!!document.querySelector('main form')" : "!document.querySelector('main form')"}`), `${path}: unavailable web service provides email`);
       const inquiry = new URL(await evaluate(`document.querySelector('[data-inquiry-email-draft=${kind}]').href`));
       assert.equal(inquiry.protocol, "mailto:");
       assert.equal(inquiry.pathname, SUPPORT_EMAIL);

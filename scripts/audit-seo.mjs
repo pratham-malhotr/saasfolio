@@ -1,4 +1,9 @@
 import assert from "node:assert/strict";
+import { loadCatalogModule } from "./lib/load-catalog.mjs";
+
+const { getDealBySlug, getHistoricOfferToolSlug } = loadCatalogModule("lib/data/deals-data.ts");
+const { getToolBySlug } = loadCatalogModule("lib/data/tools-data.ts");
+const { publicHttpsUrl } = loadCatalogModule("lib/offer-links.ts");
 
 // Validate the actual production responses rather than implementation details.
 // Usage: npm run seo:audit -- http://localhost:3210
@@ -137,7 +142,17 @@ for (const path of ["/admin", "/profile", "/login", "/signup", "/submit", "/u/se
 for (const path of ["/go/notion", "/go/hostinger-couponspage-code", "/go/deal-hostinger-couponspage-code", "/go/hostinger-cloud-79-off"]) {
   const result = await fetch(`${origin}${path}`, { redirect: "manual", signal: AbortSignal.timeout(30000) });
   if (result.status !== 302 || !result.headers.get("location")?.startsWith("https://") || !result.headers.get("x-robots-tag")?.includes("noindex")) failures.push(`Invalid server offer redirect: ${path}`);
-  if (path.includes("couponspage") && result.headers.get("location") !== "https://www.hostinger.com/coupons") failures.push(`Lost offer-specific destination: ${path}`);
+  if (path.includes("couponspage")) {
+    const id = path.split("/").at(-1);
+    const deal = getDealBySlug(id);
+    const provider = getToolBySlug(deal?.toolSlug || getHistoricOfferToolSlug(id) || "");
+    // Live coupons retain their exact destination. An expired historic offer
+    // deliberately falls back to the provider's current official pricing page.
+    const destination = deal && [deal.slug, deal.id].includes(id)
+      ? publicHttpsUrl(deal.destinationUrl) || publicHttpsUrl(deal.affiliateUrl)
+      : publicHttpsUrl(provider?.pricingUrl) || publicHttpsUrl(provider?.website);
+    if (result.headers.get("location") !== destination) failures.push(`Lost offer-specific or historic provider destination: ${path}`);
+  }
 }
 for (const path of ["/go/unknown-brand", "/go/https%3A%2F%2Fevil.example"]) {
   const result = await fetch(`${origin}${path}`, { redirect: "manual", signal: AbortSignal.timeout(30000) });
