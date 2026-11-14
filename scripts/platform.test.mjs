@@ -405,3 +405,77 @@ test("submitted websites reject private addresses, credentials and local-name by
   for (const url of ["https://127.0.0.1", "https://[::ffff:127.0.0.1]", "https://admin:secret@example.com", "https://example.internal.", "https://x.localhost", "https://host.home.arpa"]) assert.throws(() => website({ url }, "url"));
   assert.equal(website({ url: "https://example.com./pricing?coupon=SAVE" }, "url"), "https://example.com/pricing?coupon=SAVE");
 });
+
+const brandSubmission = {
+  kind: "submission", submissionType: "brand", toolName: "Example Studio",
+  websiteUrl: "https://example.com", pricingUrl: "https://example.com/pricing",
+  tagline: "A collaborative publishing workspace for small teams planning and reviewing their next website.",
+  differentiator: "Example Studio helps a small publishing team collect website ideas, assign a reviewer and keep a record of launch decisions. Teams can use a shared project to prepare content and export their work. It requires an internet connection and does not replace the team's hosting provider.",
+  categorySlug: "productivity", pricingModel: "Freemium",
+  keyFeatures: ["Shared editorial planning", "Project review assignments", "Exportable launch records"],
+  contactName: "Example Founder", founderEmail: "founder@example.com", relationship: "Founder / owner", consent: true,
+};
+
+test("brand submission needs no account and persists an editorial intake, never a publication", async () => {
+  const app = platform();
+  const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", {
+    ...brandSubmission, verified: true, reviewStatus: "published", rating: 5,
+  }));
+  assert.equal(response.status, 201);
+  assert.ok((await response.json()).id);
+  assert.equal(app.writes.length, 1);
+  const saved = app.writes[0];
+  assert.equal(saved.table, "inquiries");
+  assert.equal(saved.value.email, "founder@example.com");
+  assert.equal(saved.value.payload.submissionType, "brand");
+  assert.equal(saved.value.payload.reviewStatus, "pending");
+  assert.equal(saved.value.payload.category, "Productivity & Knowledge Hubs");
+  assert.deepEqual(saved.value.payload.keyFeatures, brandSubmission.keyFeatures);
+  assert.equal(saved.value.payload.verified, undefined);
+  assert.equal(saved.value.payload.rating, undefined);
+});
+
+test("brand intake keeps the supplied contact separate from an unrelated signed-in account", async () => {
+  const app = platform({ user: testUser });
+  assert.equal((await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", brandSubmission))).status, 201);
+  assert.equal(app.writes[0].value.email, brandSubmission.founderEmail);
+});
+
+test("brand intake rejects missing consent, unsafe links and incomplete or fabricated product fields", async () => {
+  for (const fields of [
+    { consent: false }, { consent: "true" }, { categorySlug: "made-up" }, { pricingModel: "Unlimited" },
+    { relationship: "Verified founder" }, { founderEmail: "invalid" }, { contactName: "" },
+    { websiteUrl: "https://127.0.0.1" }, { pricingUrl: "javascript:alert(1)" },
+    { tagline: "Too short" }, { differentiator: "Not enough context" },
+    { keyFeatures: ["One feature"] }, { keyFeatures: ["Same feature", "same feature", "Another feature"] },
+    { keyFeatures: ["Short", "Valid feature", { evil: "object" }] },
+  ]) {
+    const app = platform();
+    const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...brandSubmission, ...fields }));
+    assert.equal(response.status, 400, JSON.stringify(fields));
+    assert.equal(app.writes.length, 0);
+  }
+});
+
+test("brand intake reports spam, rate-limit and persistence failures without false success", async () => {
+  for (const [options, fields, status] of [
+    [{}, { companyWebsite: "spam" }, 400], [{ limited: true }, {}, 429],
+    [{ limitFailure: true }, {}, 503], [{ writeFailure: true }, {}, 503],
+  ]) {
+    const app = platform(options);
+    const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...brandSubmission, ...fields }));
+    assert.equal(response.status, status);
+    assert.equal((await response.json()).id, undefined);
+  }
+});
+
+test("preparing a brand draft excludes personal data and leaves the editorial review date blank", () => {
+  const { brandDraftFromSubmission } = platform().load("lib/brand-submission.ts");
+  const draft = brandDraftFromSubmission(brandSubmission);
+  assert.equal(draft.slug, "example-studio");
+  assert.equal(draft.payload.description, brandSubmission.tagline);
+  assert.equal(draft.payload.longDescription, brandSubmission.differentiator);
+  assert.equal(draft.payload.reviewedAt, "");
+  assert.equal(draft.payload.founderEmail, undefined);
+  assert.equal(draft.payload.contactName, undefined);
+});

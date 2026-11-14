@@ -1051,5 +1051,22 @@
       "Contact us to start your free trial"
     ],
     "terms": "Enquiry route for enterprise or institutional teams. Contact Paperpal to confirm approval, covered users, duration, features and the later paid quote. The source does not establish an unrestricted individual trial. Signup and checkout have not been tested."
+  },
+  {
+    "slug": "taplio-aware-transition",
+    "toolSlug": "taplio",
+    "title": "Taplio Aware-transition campaign: 20% with code AWARE",
+    "dealType": "coupon",
+    "code": "AWARE",
+    "discountPercentage": 20,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://taplio.com/taplio-vs-aware",
+    "destinationUrl": "https://taplio.com/taplio-vs-aware",
+    "evidence": [
+      "20% discount",
+      "AWARE",
+      "Aware is shutting down"
+    ],
+    "terms": "Taplio advertises this code on its Aware-transition campaign page. Confirm that your account qualifies and check the eligible plan, billing period, discount duration and renewal total with Taplio before paying. No expiry is stated on that page. This is a campaign-specific source observation, not a sitewide guarantee; checkout acceptance has not been tested."
   }
 ]

@@ -56,8 +56,8 @@ const { document: homepage } = await fetchPage("/");
 // React may stream a route's HTML outside <main> before moving the boundary
 // into place. Inspect the actual brand section rather than the loading shell.
 const homeBrands = nodes(homepage, node => attr(node, "aria-labelledby") === "brand-discounts-heading")[0];
-assert.match(contents(elements(homepage, "h1")[0]).replace(/\s+/g, " "), /SaaS discounts.*software deals/i, "Homepage heading describes the SaaS discount business");
-assert.match(contents(elements(homepage, "title")[0]), /SaaS Discounts.*(?:Coupon Codes|Software Deals)/i, "Homepage title targets software savings");
+assert.match(contents(elements(homepage, "h1")[0]).replace(/\s+/g, " "), /Good software.*Better decisions/i, "Homepage heading describes the discovery experience");
+assert.match(contents(elements(homepage, "title")[0]), /Software Brands.*Reviews.*SaaS Deals/i, "Homepage title describes discovery and savings");
 assert.ok(homeBrands && links(homeBrands).includes("/discounts"), "Brand directory is linked from homepage content");
 assertDiscoveryLink(homeBrands, "/discounts", "Homepage content");
 assert.ok(links(homeBrands).filter(href => /^\/discounts\/[^/]+$/.test(href)).length >= 6, "Homepage offers varied direct brand discovery");
@@ -129,7 +129,10 @@ for (const tool of brands) {
   const text = contents(document);
   {
     const currentOffers = nodes(document, node => attr(node, "id") === "current-offers")[0];
-    const answer = nodes(currentOffers, node => attr(node, "id") === "discount-answer")[0];
+    const answers = nodes(document, node => attr(node, "id") === "discount-answer");
+    assert.equal(answers.length, 1, `${path}: one direct answer`);
+    const answer = answers[0];
+    assert.ok(nodes(elements(document, "header").find(header => elements(header, "h1").length === 1), node => attr(node, "id") === "discount-answer").length, `${path}: the direct answer is near the brand heading`);
     assert.ok(answer && contents(answer).includes(name) && contents(answer).length > 100, `${path}: useful direct answer about sourced discount availability`);
     const best = nodes(currentOffers, node => attr(node, "id") === "best-discount")[0];
     assert.ok(best && /best.*discount/i.test(contents(elements(best, "h3")[0])) && contents(best).includes(name) && contents(best).length > 150, `${path}: useful answer to brand best-discount intent`);
@@ -169,11 +172,16 @@ for (const tool of brands) {
 
   const schemas = elements(document, "script").filter(node => attr(node, "type") === "application/ld+json")
     .flatMap(node => JSON.parse(node.childNodes.map(child => child.value || "").join(""))["@graph"] || []);
-  const page = schemas.find(node => node["@type"] === "CollectionPage");
+  const page = schemas.find(node => ["WebPage", "CollectionPage"].includes(node["@type"]));
   assert.equal(page?.url, canonical(document), `${path}: page entity URL`);
   assert.ok(schemas.some(node => node["@type"] === "BreadcrumbList"), `${path}: breadcrumb schema`);
   assert.ok(page.citation?.length && page.citation.every(url => links(document).includes(url)), `${path}: structured citations match visible provider links`);
-  const itemLinks = page.mainEntity.itemListElement.map(item => new URL(item.url).pathname);
+  const article = schemas.find(node => node["@type"] === "Article");
+  assert.ok(article && article.about?.["@id"]?.includes(`/tools/${slug}#software`), `${path}: editorial guide identifies its software subject`);
+  assert.equal(page.mainEntity["@id"], article["@id"], `${path}: the sourced guide is the page's main entity`);
+  assert.ok(article.citation.every(url => links(document).includes(url)), `${path}: article citations are visible`);
+  assert.equal(article.author["@id"], `${canonicalOrigin}/#organization`, `${path}: editorial attribution`);
+  const itemLinks = expected.offers.map(offer => `/deals/${offer.slug}`);
   assert.ok(itemLinks.every(href => links(document).includes(href)), `${path}: schema describes visible linked offers`);
   for (const offerPath of itemLinks) {
     const { document: offer } = await fetchPage(offerPath);

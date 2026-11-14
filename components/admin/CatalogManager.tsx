@@ -4,6 +4,7 @@ import { apiRequest, ApiError } from "@/lib/api-client";
 import { CATEGORIES } from "@/lib/catalog-categories";
 import { blankCatalogEntry, EDITOR_FIELDS, type EditorField } from "@/lib/catalog-editor";
 import type { StaffRole } from "@/lib/server/staff";
+import { brandDraftFromSubmission } from "@/lib/brand-submission";
 
 type Entry = { id: string; slug: string; kind: string; state: string; revision: number; payload: Record<string, unknown>; updated_at: string; hasPublication?: boolean };
 type Release = { entries: Entry[]; deployedRevision: number; releaseRevision: number; nextCursor: string | null };
@@ -20,6 +21,16 @@ export function CatalogManager({ role }: { role: StaffRole }) {
   const [dirty, setDirty] = useState(false), [preview, setPreview] = useState(false);
   const canEdit = role === "owner" || role === "editor";
   const editable = canEdit && !busy;
+  useEffect(() => {
+    const prepare = (event: Event) => {
+      if (!canEdit || busy || (dirty && !window.confirm("Replace the unsaved catalog draft with this brand submission?"))) { event.preventDefault(); return; }
+      const draft = brandDraftFromSubmission((event as CustomEvent<Record<string, unknown>>).detail);
+      setSelected(null); setKind("brand"); setSlug(draft.slug); setPayload(draft.payload); setDirty(true); setHistory([]); setError("");
+      setNotice("Submission loaded as an unsaved draft. Check the official sources, revise the copy and enter the actual review date before saving. Keep an existing brand on its established URL.");
+    };
+    window.addEventListener("saasfolio_prepare_brand", prepare);
+    return () => window.removeEventListener("saasfolio_prepare_brand", prepare);
+  }, [canEdit, busy, dirty]);
   useEffect(() => { let active = true; apiRequest<Release>("/api/admin/catalog", undefined, "GET").then(result => { if (active) setRelease(result); }).catch(error => { if (active) setError(error.message); }); return () => { active = false; }; }, []);
   useEffect(() => { const guard = (event: BeforeUnloadEvent) => { if (dirty) event.preventDefault(); }; window.addEventListener("beforeunload", guard); return () => window.removeEventListener("beforeunload", guard); }, [dirty]);
   function change(key: string, value: unknown) { setPayload(previous => ({ ...previous, [key]: value })); setDirty(true); }

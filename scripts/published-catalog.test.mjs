@@ -26,6 +26,18 @@ test("existing original brand guides retain their published software profiles", 
   assert.equal(published.getPublishedTool("kit-convertkit")?.slug, "convertkit");
 });
 
+test("approved managed brand profiles enter the public directory while retired brands stay excluded", () => {
+  const managed = loadCatalogModule("lib/data/managed-content.ts");
+  const template = published.getPublishedTool("notion");
+  const approved = { ...template, id: "tool-intake-fixture", name: "Intake Fixture", slug: "intake-fixture", providerStatus: undefined, alternatives: [] };
+  const retired = { ...approved, id: "tool-retired-intake-fixture", name: "Retired Fixture", slug: "retired-intake-fixture", providerStatus: "unavailable" };
+  const catalog = loadCatalogModule("lib/published-catalog.ts", { "lib/data/managed-content.ts": { ...managed, MANAGED_BRANDS: [approved, retired] } });
+  assert.equal(catalog.getPublishedTool(approved.slug)?.slug, approved.slug);
+  assert.ok(catalog.getPublishedTools().some(tool => tool.slug === approved.slug));
+  assert.equal(catalog.getPublishedTool(retired.slug), undefined);
+  assert.ok(!catalog.getPublishedTools().some(tool => tool.slug === retired.slug));
+});
+
 test("new documented profiles replace legacy claims without mutating source records", () => {
   const before = JSON.stringify(getToolBySlug("pocketbase"));
   const tool = published.getPublishedTool("pocketbase");
@@ -79,7 +91,9 @@ test("article decision exercises have unique anchors and matching navigation", (
     assert.equal(new Set(ids).size, ids.length, article.slug);
     assert.deepEqual(article.tableOfContents.map(item => item.id), ids);
     assert.ok(ids.includes("worked-example") && ids.includes("decision-record") && ids.includes("common-mistake"), article.slug);
-    assert.equal(article.updatedAt, "2026-11-05");
+    assert.match(article.updatedAt, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(article.updatedAt >= article.publishedAt, `${article.slug}: update follows publication`);
+    assert.ok(Date.parse(article.updatedAt) <= Date.now(), `${article.slug}: no future review date`);
     assert.ok(article.sources.length);
   }
 });

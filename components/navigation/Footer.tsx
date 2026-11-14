@@ -61,7 +61,7 @@ export function Footer() {
               </li>
               <li>
                 <Link prefetch={false} href="/submit" className="hover:text-[#C6FF3D] transition-colors text-white font-medium">
-                  Submit a SaaS Deal →
+                  Add Your Brand →
                 </Link>
               </li>
             </ul>

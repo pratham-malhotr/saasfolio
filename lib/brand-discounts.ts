@@ -8,6 +8,7 @@ import type { DetailedTool, SaaSDeal } from "@/lib/types";
 import type { DiscountSearchEntry } from "@/lib/discount-search";
 import { DISCOUNT_BRAND_ALIASES } from "@/lib/data/brand-discount-aliases.mjs";
 import { editorialGuideIssues } from "@/lib/editorial-quality.mjs";
+import { evergreenPurchaseChecks } from "@/lib/brand-purchase-guidance";
 
 const establishedBrands = new Set(snapshot.offers.filter(offer =>
   (offer.discountPercentage > 0 || ("code" in offer && offer.code)) && offer.sourceUrl && offer.evidence
@@ -31,7 +32,8 @@ export function getBrandDiscountData(tool: DetailedTool, catalogDeals = getAllDe
   const reviewAge = guide ? Date.now() - Date.parse(`${guide.reviewedAt}T00:00:00Z`) : NaN;
   const sourceNotesCurrent = reviewAge >= 0 && reviewAge <= 30 * 86400000;
   const savingsOptions = sourceNotesCurrent ? guide?.savingsOptions || [] : [];
-  const purchaseChecks = sourceNotesCurrent ? BRAND_PURCHASE_CHECKS[tool.slug] : undefined;
+  const purchaseChecks = sourceNotesCurrent && BRAND_PURCHASE_CHECKS[tool.slug]
+    ? BRAND_PURCHASE_CHECKS[tool.slug] : guide ? evergreenPurchaseChecks(tool, guide) : undefined;
   return { offers, coupons, savings, savingsOptions, purchaseChecks, guide, indexable, modifiedAt, sourceNotesCurrent };
 }
 
@@ -94,6 +96,7 @@ export function brandDiscountTitle(tool: DetailedTool): string {
 
 export function brandBestDiscountAnswer(tool: DetailedTool, catalogDeals = getAllDeals()): string {
   const { guide, sourceNotesCurrent, coupons, savingsOptions } = getBrandDiscountData(tool, catalogDeals);
+  if (coupons.length) return `Compare ${coupons.length === 1 ? "the sourced code" : "the sourced codes"} below with ${tool.name}'s direct billing options for the same package. ${coupons.map(offer => `${offer.code}: ${offer.terms}`).join(" ")} Choose by the final eligible invoice and continuing cost; the largest headline percentage is not automatically the best offer for your account.`;
   if (sourceNotesCurrent && guide?.bestDiscountAnswer) return guide.bestDiscountAnswer;
   if (guide?.summary) return guide.summary;
   const options = coupons.length || savingsOptions.length ? "Compare the sourced options above" : "Check the provider's current options";

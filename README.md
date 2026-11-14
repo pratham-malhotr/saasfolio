@@ -53,7 +53,7 @@ Database checks require PostgreSQL client/server binaries on `PATH`, or an expli
 
 GitHub Actions run application, database and dependency checks. Scheduled offer and editorial releases open reviewable PRs. Monitoring, managed exports and maintenance need the repository variables described in the operations guide; committing workflows does not activate those integrations or branch protection.
 
-Public software profiles require an original, sourced brand guide or documented editorial notes in `lib/published-catalog.ts`. Importing a catalog record or fetching an offer does not publish a profile or an indexable discount guide. Keep review dates accurate and add original comparison analysis before including a pair in the sitemap. `validate:publisher` checks editorial completeness, source URLs, placeholders and repeated substantive paragraphs; editorial judgment is still required. The production checks crawl every sitemap page, check legacy references, enforce HTML and script size budgets, and exercise mobile and no-JavaScript reading. Evidence is saved under `docs/reports/publisher-content-*.json` and `docs/reports/browser-publisher-content-*.json`. These internal checks do not guarantee Google indexing or AdSense approval.
+Public software profiles require an original, sourced brand guide, documented editorial notes, or an approved managed brand publication in `lib/published-catalog.ts`. Importing a catalog record or fetching an offer does not publish a profile or an indexable discount guide. Keep review dates accurate and add original comparison analysis before including a pair in the sitemap. `validate:publisher` checks editorial completeness, source URLs, placeholders and repeated substantive paragraphs; editorial judgment is still required. The production checks crawl every sitemap page, check legacy references, enforce HTML and script size budgets, and exercise mobile and no-JavaScript reading. Evidence is saved under `docs/reports/publisher-content-*.json` and `docs/reports/browser-publisher-content-*.json`. These internal checks do not guarantee Google indexing or AdSense approval.
 
 ## Hosting
 
@@ -63,3 +63,7 @@ npm start
 ```
 
 Use a Node-capable host behind HTTPS. Authentication, private APIs, redirects and administration require a server runtime. Keep staging separate from production and complete the activation steps in the operations guide before enabling staff publishing or scheduled maintenance.
+
+Brand owners can use `/submit` without an account. See [brand submission setup and review](docs/BRAND-SUBMISSIONS.md) for the database connection, editorial intake, publication workflow and isolated browser test.
+
+See [the individual-brand SEO review](docs/BRAND-SEO-2026-11-14.md) for source updates, competitor observations and release validation.

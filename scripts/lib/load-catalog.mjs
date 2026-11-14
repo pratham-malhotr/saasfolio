@@ -4,10 +4,10 @@ import { createRequire } from "node:module";
 import ts from "typescript";
 
 // Run the actual TypeScript catalog in maintenance scripts without another CLI.
-export function loadCatalogModule(relativePath) {
+export function loadCatalogModule(relativePath, overrides = {}) {
   const root = resolve(import.meta.dirname, "../..");
   const nativeRequire = createRequire(import.meta.url);
-  const cache = new Map();
+  const cache = new Map(Object.entries(overrides).map(([path, exports]) => [resolve(root, path), { exports }]));
   function load(file) {
     if (!extname(file)) file += existsSync(`${file}.ts`) ? ".ts" : ".json";
     if (cache.has(file)) return cache.get(file).exports;

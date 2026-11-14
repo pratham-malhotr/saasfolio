@@ -53,6 +53,8 @@ for (const tool of brands) {
     try {
       if (!data.sourceNotesCurrent && ["eligibility", "code-help"].includes(intent.id)) {
       assert.match(contents(document), /previous savings amounts are hidden/i, `${label}: expired observations are disclosed`);
+      assert.ok(section, `${label}: evergreen guidance remains after the price review expires`);
+      assert.ok(words(section) >= 30, `${label}: a source expiry cannot erase useful buying guidance`);
       status = "review-needed";
     } else {
       assert.ok(section, `${label}: answer section #${intent.section} is in initial HTML`);
