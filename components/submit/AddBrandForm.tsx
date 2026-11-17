@@ -6,6 +6,7 @@ import { ArrowRight, CheckCircle2, Copy, ExternalLink, Globe2, Loader2 } from "l
 import { apiRequest } from "@/lib/api-client";
 import { CATEGORIES } from "@/lib/catalog-categories";
 import { BRAND_PRICING_MODELS, BRAND_RELATIONSHIPS } from "@/lib/brand-submission";
+import { downloadJson } from "@/lib/browser-download";
 import { SUPPORT_EMAIL_HREF } from "@/lib/site-contact";
 
 type ExistingBrand = { name: string; slug: string; website: string };
@@ -19,16 +20,16 @@ export function AddBrandForm({ available, existingBrands }: { available: boolean
   const [name, setName] = useState(""), [url, setUrl] = useState(""), [tagline, setTagline] = useState("");
   const [category, setCategory] = useState(""), [pricing, setPricing] = useState("Paid");
   const [busy, setBusy] = useState(false), [error, setError] = useState("");
-  const [receipt, setReceipt] = useState<{ id: string; name: string } | null>(null), [copied, setCopied] = useState(false);
+  const [receipt, setReceipt] = useState<{ id: string; name: string; details: Record<string, unknown> } | null>(null), [copied, setCopied] = useState(false);
   const pending = useRef(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const attempt = useRef<{ identity: string; key: string } | null>(null);
   const match = url.trim() ? existingBrands.find(brand => hostname(brand.website) === hostname(url) && hostname(url)) : undefined;
   const emailHref = `${SUPPORT_EMAIL_HREF}?subject=${encodeURIComponent(`Brand submission: ${name || "My brand"}`)}&body=${encodeURIComponent(`Brand: ${name}\nOfficial website: ${url}\nDescription: ${tagline}\n\nPricing or documentation URL:\nCategory:\nProduct use case and limitations:\nThree key features:\nYour name and relationship to the brand:\nContact email:\n\nPlease consider this brand under the SaaSFolio editorial policy.`)}`;
 
-  async function submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (pending.current) return;
-    const data = new FormData(event.currentTarget);
-    const payload = {
+  function readSubmission(form: HTMLFormElement) {
+    const data = new FormData(form);
+    return {
       kind: "submission", submissionType: "brand", toolName: name, websiteUrl: url,
       tagline, categorySlug: category, pricingModel: pricing,
       pricingUrl: data.get("pricingUrl"), differentiator: data.get("differentiator"),
@@ -36,6 +37,18 @@ export function AddBrandForm({ available, existingBrands }: { available: boolean
       contactName: data.get("contactName"), founderEmail: data.get("founderEmail"),
       relationship: data.get("relationship"), consent: data.get("consent") === "on", companyWebsite: data.get("companyWebsite"),
     };
+  }
+
+  function downloadDetails() {
+    if (!formRef.current) return;
+    try { downloadJson("saasfolio-brand-submission-draft.json", { status: "draft-not-submitted", exportedAt: new Date().toISOString(), details: readSubmission(formRef.current) }); }
+    catch { setError("Your browser could not download the draft. Keep this page open and copy your details before leaving."); }
+  }
+
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (pending.current) return;
+    const payload = readSubmission(event.currentTarget);
     if (payload.keyFeatures.length < 3 || payload.keyFeatures.length > 8 || payload.keyFeatures.some(value => value.length < 5 || value.length > 160)) {
       setError("Include 3–8 features on separate lines, with 5–160 characters per feature."); return;
     }
@@ -49,8 +62,11 @@ export function AddBrandForm({ available, existingBrands }: { available: boolean
     }
     pending.current = true; setBusy(true);
     try {
-      const result = await apiRequest<{ id: string }>("/api/inquiries", payload);
-      setReceipt({ id: result.id, name });
+      const identity = JSON.stringify(payload);
+      if (!attempt.current || attempt.current.identity !== identity) attempt.current = { identity, key: crypto.randomUUID() };
+      const result = await apiRequest<{ id: string }>("/api/inquiries", { ...payload, submissionKey: attempt.current.key });
+      if (!result.id) throw new Error("A saved reference was not returned. Keep your details and try again.");
+      setReceipt({ id: result.id, name, details: payload });
     } catch (failure) { setError(failure instanceof Error ? failure.message : "Your brand could not be saved. Please try again."); }
     finally { pending.current = false; setBusy(false); }
   }
@@ -61,12 +77,12 @@ export function AddBrandForm({ available, existingBrands }: { available: boolean
     <p className="mt-4 leading-relaxed text-zinc-400">Your submission has been saved. Keep this reference if you need to contact us about it. Your listing will appear after editorial acceptance and publication.</p>
     <div className="mt-6 rounded-xl border border-white/15 bg-black/30 p-4"><p className="text-xs text-zinc-400">Submission reference</p><p className="mt-2 break-all font-mono text-sm text-white">{receipt.id}</p><button type="button" onClick={async () => { try { await navigator.clipboard.writeText(receipt.id); setCopied(true); } catch { setError("Copy the reference above manually."); } }} className="mt-3 inline-flex items-center gap-2 text-sm text-[#C6FF3D]"><Copy className="h-4 w-4" />{copied ? "Copied" : "Copy reference"}</button></div>
     {error && <p role="alert" className="mt-4 text-sm text-rose-300">{error}</p>}
-    <div className="mt-7 flex flex-wrap gap-5 text-sm text-[#C6FF3D]"><Link href="/brands">Explore the directory →</Link><Link href="/contact">Contact the editorial team</Link></div>
+    <div className="mt-7 flex flex-wrap gap-5 text-sm text-[#C6FF3D]"><button type="button" onClick={() => { try { downloadJson("saasfolio-brand-submission-receipt.json", { id: receipt.id, status: "pending-editorial-review", details: receipt.details }); } catch { setError("Your browser could not download the receipt. Keep the reference above."); } }}>Download submission and receipt</button><Link href="/brands">Explore the directory →</Link><Link href="/contact">Contact the editorial team</Link></div>
   </section>;
 
   return <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
     <noscript className="hidden"><style>{`.brand-submission-form { display: none !important; }`}</style></noscript>
-    <form method="post" action="/api/inquiries" onSubmit={submit} className="brand-submission-form min-w-0 space-y-6" aria-label="Add your brand">
+    <form ref={formRef} method="post" action="/api/inquiries" onSubmit={submit} className="brand-submission-form min-w-0 space-y-6" aria-label="Add your brand">
       <fieldset disabled={busy} className="space-y-6 rounded-2xl border border-white/10 bg-[#0d0e11] p-6 sm:p-8">
         <legend className="px-2 font-display text-xl font-semibold text-white"><span className="mr-3 font-mono text-sm text-[#C6FF3D]">01</span>The essentials</legend>
         <div className="grid gap-5 sm:grid-cols-2">
@@ -99,6 +115,7 @@ export function AddBrandForm({ available, existingBrands }: { available: boolean
       {!available && <p className="rounded-xl border border-amber-300/20 bg-amber-300/5 p-4 text-sm leading-relaxed text-amber-100">Online submissions are temporarily unavailable. This form prepares a complete email for review. You will need to send it from your email app; it will not create a submission reference here.</p>}
       {error && <p role="alert" className="rounded-xl border border-rose-400/30 p-4 text-sm text-rose-300">{error}</p>}
       <button type="submit" disabled={busy} className="inline-flex min-h-12 items-center justify-center gap-3 rounded-xl bg-[#C6FF3D] px-7 py-4 font-semibold text-black transition hover:bg-[#d7ff77] disabled:opacity-60">{busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}{busy ? "Saving your submission…" : available ? "Submit brand for review" : "Open submission email"}</button>
+      <div className="space-y-2"><button type="button" onClick={downloadDetails} className="min-h-11 rounded-xl border border-white/20 px-5 py-3 text-sm text-zinc-200">Download a copy of your details</button><p className="text-xs leading-6 text-zinc-500">This saves a file on your device, including the contact details you entered. It does not send the submission. Use it as a backup if your email app cannot carry the full message.</p></div>
       <p className="text-xs text-zinc-500">All fields are required. A standard submission is free. <a href={emailHref} data-inquiry-email-draft="submission" className="text-zinc-300 underline">Prefer to email the details?</a></p>
     </form>
     <aside className="space-y-5 lg:sticky lg:top-28">

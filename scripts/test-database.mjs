@@ -4,7 +4,7 @@ import { mkdtemp, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import assert from "node:assert/strict";
-import { randomBytes } from "node:crypto";
+import { randomBytes, randomUUID } from "node:crypto";
 import { createDatabaseBackup, restoreDatabaseBackup } from "./lib/encrypted-backup.mjs";
 const exec = promisify(execFile);
 let directory, started = false;
@@ -32,6 +32,14 @@ try {
   await sqlFile("supabase/tests/bootstrap.sql");
   for (const name of (await readdir("supabase/migrations")).filter(name => name.endsWith(".sql")).sort()) await sqlFile(`supabase/migrations/${name}`);
   for (const name of (await readdir("supabase/tests")).filter(name => name.endsWith(".sql") && name !== "bootstrap.sql").sort()) { await sqlFile(`supabase/tests/${name}`); console.log(`${name}: database checks passed`); }
+  const submissionKey = randomUUID();
+  const intakeSql = `set role service_role; select public.save_brand_submission('${submissionKey}','test@example.com','{"submissionType":"brand","toolName":"Concurrent disposable test"}','${"c".repeat(64)}')`;
+  const receipts = await Promise.all(Array.from({ length: 8 }, () => run("psql", ["-X", "-qAt", "-v", "ON_ERROR_STOP=1", "-c", intakeSql])));
+  assert.equal(new Set(receipts.map(result => result.stdout.trim())).size, 1, "Concurrent retries must return one saved reference");
+  const count = await run("psql", ["-X", "-qAt", "-c", `select count(*) from public.inquiries where submission_key='${submissionKey}'`]);
+  assert.equal(count.stdout.trim(), "1", "Concurrent retries must store exactly one record");
+  await run("psql", ["-X", "-q", "-c", `delete from public.inquiries where submission_key='${submissionKey}'`]);
+  console.log("Eight concurrent brand submission retries returned one receipt and retained one private record.");
   const backupDirectory = await mkdtemp(join(tmpdir(), "saasfolio-backup-test-"));
   const restoreName = `saasfolio_restore_test_${randomBytes(6).toString("hex")}`;
   let restoreCreated = false;

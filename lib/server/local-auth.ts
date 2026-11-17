@@ -28,6 +28,8 @@ export interface LocalUser {
 }
 
 export interface LocalInquiry {
+  submissionKey?: string;
+  submissionFingerprint?: string;
   id: string;
   kind: string;
   email: string;
@@ -330,11 +332,16 @@ export function revokeAllLocalSessions(userId: string): void {
   });
 }
 
-export function saveLocalInquiry(kind: string, email: string, payload: Record<string, unknown>): { id: string } {
+export function saveLocalInquiry(kind: string, email: string, payload: Record<string, unknown>, submission?: { key: string; fingerprint: string }): { id: string } {
   return transaction("inquiries.json", rows => {
     if (rows.some(row => !row || typeof row !== "object" || Array.isArray(row))) storageError();
+    const previous = submission && (rows as LocalInquiry[]).find(row => row.submissionKey === submission.key);
+    if (previous) {
+      if (previous.submissionFingerprint !== submission!.fingerprint) throw new HttpError(409, "This submission reference was already used for different details.");
+      return { value: { id: previous.id }, rows };
+    }
     const id = `inq-${randomBytes(16).toString("hex")}`;
-    const inquiry: LocalInquiry = { id, kind, email, payload, status: "pending", createdAt: new Date().toISOString() };
+    const inquiry: LocalInquiry = { id, kind, email, payload, status: "pending", createdAt: new Date().toISOString(), ...(submission ? { submissionKey: submission.key, submissionFingerprint: submission.fingerprint } : {}) };
     return { value: { id }, rows: [inquiry, ...rows] };
   });
 }

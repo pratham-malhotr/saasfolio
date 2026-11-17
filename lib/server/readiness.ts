@@ -25,7 +25,7 @@ async function inspect() {
           const response = await fetch(`${config.url}/rest/v1/rpc/platform_readiness`, { method: "POST", headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json" }, body: "{}", cache: "no-store", redirect: "error", signal: AbortSignal.timeout(3500) });
           if (!response.ok) { checks.database = "unavailable"; checks.schema = "unavailable"; return; }
           const result = await response.json();
-          checks.database = "ok"; checks.schema = result?.ready === true && result.schemaVersion >= 3 ? "ok" : "unavailable";
+          checks.database = "ok"; checks.schema = result?.ready === true && result.schemaVersion >= 4 ? "ok" : "unavailable";
         } catch { checks.database = "unavailable"; checks.schema = "unavailable"; }
       })(),
     ]);
