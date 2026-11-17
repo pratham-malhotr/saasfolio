@@ -2,13 +2,14 @@ import { readFile, writeFile, rename, rm } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { managedPublicIndex } from "../lib/managed-catalog.mjs";
 import { checkedManagedRelease } from "./lib/managed-release.mjs";
+import { databaseSchema } from "../lib/database-schema.mjs";
 
 // This endpoint exposes only approved publications and uses the public key.
 // A CI publisher never needs the Supabase service-role key.
 const endpoint = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL || "https://missing.invalid");
 const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 if (endpoint.protocol !== "https:" || endpoint.pathname !== "/" || endpoint.search || endpoint.hash || endpoint.username || endpoint.password || !key || endpoint.hostname === "missing.invalid") throw new Error("Configure the production Supabase HTTPS URL and public key.");
-const response = await fetch(new URL("/rest/v1/rpc/public_catalog_snapshot", endpoint), { method: "POST", headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json" }, body: "{}", redirect: "error", signal: AbortSignal.timeout(15000) });
+const response = await fetch(new URL("/rest/v1/rpc/public_catalog_snapshot", endpoint), { method: "POST", headers: { apikey: key, ...(key.startsWith("sb_") ? {} : { Authorization: `Bearer ${key}` }), "Content-Type": "application/json", "Content-Profile": databaseSchema() }, body: "{}", redirect: "error", signal: AbortSignal.timeout(15000) });
 if (!response.ok) throw new Error(`Public catalog export failed (HTTP ${response.status}). Existing files were preserved.`);
 if (Number(response.headers.get("content-length")) > 25000000) throw new Error("Catalog export exceeds the release limit.");
 let length = 0; const parts = [];
