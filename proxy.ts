@@ -16,6 +16,7 @@ function privateResponse(response: NextResponse) {
 // Refresh here, where cookies can reach both the browser and the render request.
 // This does not grant access: the page and its APIs perform authorization.
 export async function proxy(request: NextRequest) {
+  if (process.env.SUPABASE_AUTH_ENABLED === "false") return privateResponse(NextResponse.next());
   const config = supabasePublicConfig();
   if (!config) return privateResponse(NextResponse.next());
   const prefix = `sb-${new URL(config.url).hostname.split(".")[0]}-auth-token`;

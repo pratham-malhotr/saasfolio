@@ -1,10 +1,10 @@
 import "server-only";
-import type { SupabaseClient, User } from "@supabase/supabase-js";
+import type { User } from "@supabase/supabase-js";
 import { authClient, currentUser, isAdmin, serviceClient } from "@/lib/server/supabase";
 import { HttpError } from "@/lib/server/http";
 
 export type StaffRole = "owner" | "editor" | "reviewer";
-export type StaffAccess = { user: User; client: SupabaseClient; role: StaffRole; mfaVerified: boolean };
+export type StaffAccess = { user: User; client: Awaited<ReturnType<typeof authClient>>; role: StaffRole; mfaVerified: boolean };
 
 export function rpcValue<T>(result: { data: T; error: { code?: string } | null }): T {
   if (!result.error) return result.data;

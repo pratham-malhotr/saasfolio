@@ -29,6 +29,15 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: node scripts/test-database.mjs
+      - name: Create isolated-schema disposable test database
+        run: createdb -h 127.0.0.1 -U postgres saasfolio_test_isolated
+        env:
+          PGPASSWORD: disposable-test-password
+      - name: Verify shared-project schema isolation
+        run: node scripts/test-database.mjs
+        env:
+          DATABASE_TEST_URL: postgresql://postgres:disposable-test-password@127.0.0.1:5432/saasfolio_test_isolated
+          DATABASE_TEST_SCHEMA: saasfolio
   application:
     runs-on: ubuntu-24.04
     timeout-minutes: 25

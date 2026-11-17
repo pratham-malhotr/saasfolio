@@ -14,6 +14,7 @@ const context = action => ({ params: Promise.resolve({ action }) });
 
 function app(options = {}) {
   process.env.NODE_ENV = options.production ? "production" : "test";
+  process.env.SUPABASE_AUTH_ENABLED = options.formsOnly ? "false" : "true";
   process.env.NEXT_PUBLIC_SITE_URL = "https://saasfolio.tech";
   if (options.unconfigured) { delete process.env.NEXT_PUBLIC_SUPABASE_URL; delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY; }
   else { process.env.NEXT_PUBLIC_SUPABASE_URL = "https://test-project.supabase.co"; process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = "test-public-key"; }
@@ -297,4 +298,24 @@ test("public config rejects secret keys and supports the current publishable-key
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = "sb_secret_do-not-use-publicly";
   assert.equal(supabasePublicConfig(), null);
   delete process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+});
+
+test("intake-only shared project never authenticates or modifies the other site's users", async () => {
+  const instance = app({ formsOnly: true, user });
+  const service = instance.load("lib/server/supabase.ts");
+  assert.equal(service.formsConfigured(), true);
+  assert.equal(service.authConfigured(), false);
+  assert.equal(await service.currentUser(), null);
+  await assert.rejects(service.authClient(), /Account services are unavailable/);
+  assert.deepEqual(await service.authProviderAvailability(), { google: false, apple: false });
+  const handlers = instance.load("app/api/auth/[action]/route.ts");
+  for (const action of ["login", "signup", "reset", "password"]) {
+    const response = await handlers.POST(request(action, { email: user.email, password: "long-enough-password" }), context(action));
+    assert.equal(response.status, 503, action);
+  }
+  assert.equal(instance.calls.clientSettings, undefined);
+  assert.equal(instance.calls.settings.length, 0);
+  assert.equal(instance.calls.signIn.length, 0);
+  assert.equal(instance.calls.signup.length, 0);
+  assert.equal(instance.calls.password.length, 0);
 });
