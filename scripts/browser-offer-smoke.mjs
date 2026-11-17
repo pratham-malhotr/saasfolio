@@ -63,9 +63,9 @@ try {
   await page("Page.addScriptToEvaluateOnNewDocument", { source: "window.open = () => { throw new Error('Popup API disabled for smoke test'); }; Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: () => Promise.reject(new DOMException('Denied', 'NotAllowedError')) } });" });
   await page("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
   if (process.env.BROWSER_TOUCH_MODE === "coarse") await page("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 1 });
-  async function navigate(path) {
+  async function navigate(path, destination = path) {
     await page("Page.navigate", { url: `${origin}${path}` });
-    await until(() => evaluate(`location.href === ${JSON.stringify(`${origin}${path}`)} && document.readyState === 'complete'`), path);
+    await until(() => evaluate(`location.href === ${JSON.stringify(`${origin}${destination}`)} && document.readyState === 'complete'`), path);
   }
   async function auditHomeRefresh() {
     // Measure the first painted content, before hydration, as well as refreshes.
@@ -212,7 +212,6 @@ try {
   assert.ok(correctionDraft.searchParams.get("body").includes("COUPONSPAGE") && correctionDraft.searchParams.get("body").includes("https://saasfolio.tech/deals/hostinger-couponspage-code"), "the native correction email retains the affected offer and code without JavaScript");
   for (const [path, kind, subject, fields] of [
     ["/submit", "submission", "Brand submission: My brand", ["Brand:", "Official website", "Pricing or documentation URL", "Product use case and limitations", "Contact email"]],
-    ["/advertise", "partnership", "SaaSFolio partnership proposal", ["Company or product name", "Official website URL", "Partnership proposal"]],
   ]) {
     await navigate(path);
     const inquiryDraft = new URL(await evaluate(`document.querySelector('[data-inquiry-email-draft=${kind}]').href`));
@@ -222,22 +221,16 @@ try {
     for (const field of fields) assert.ok(inquiryDraft.searchParams.get("body").includes(field), `${path}: email draft includes ${field} without JavaScript`);
     assert.ok(await evaluate("(!document.querySelector('main form') || !document.querySelector('main form').checkVisibility({checkVisibilityCSS:true})) && document.documentElement.scrollWidth <= innerWidth"), `${path}: native email route is usable without JavaScript and fits mobile`);
   }
+  await navigate("/advertise", "/affiliate-disclosure");
+  assert.ok(await evaluate("document.querySelector('main').textContent.includes('does not serve display ads') && !document.querySelector('main form')"), "Legacy advertising links reach the affiliate disclosure without JavaScript");
   await page("Emulation.setScriptExecutionDisabled", { value: false });
   const health = await (await fetch(`${origin}/api/health`)).json();
-  for (const [path, flag] of [["/contact", "formsConfigured"], ["/advertise", "formsConfigured"], ["/login", "accountsConfigured"]]) {
+  for (const [path, flag] of [["/contact", "formsConfigured"], ["/login", "accountsConfigured"]]) {
     if (health.checks[flag]) continue;
     await navigate(path);
     if (path === "/contact") {
       await until(() => evaluate("!!document.querySelector('[data-contact-email-draft]')"), "Contact offers a native email draft");
       assert.ok(await evaluate("!document.querySelector('form#contact-form') && !document.querySelector('#form-email')"), "Contact does not expose an unavailable web form");
-      continue;
-    }
-    if (path === "/advertise") {
-      await until(() => evaluate("!!document.querySelector('[data-inquiry-email-draft=partnership]') && !document.querySelector('main form')"), "Partnership proposals have a native email route");
-      const partnershipDraft = new URL(await evaluate("document.querySelector('[data-inquiry-email-draft=partnership]').href"));
-      assert.equal(partnershipDraft.pathname, SUPPORT_EMAIL);
-      assert.equal(partnershipDraft.searchParams.get("subject"), "SaaSFolio partnership proposal");
-      assert.doesNotMatch(await evaluate("document.querySelector('main').textContent"), /120,000|zero vanity traffic|Sole primary sponsor|Pinned on trending deals ticker/);
       continue;
     }
     await until(() => evaluate("[...document.querySelectorAll('main [role=status]')].some(node => node.textContent.includes('temporarily unavailable'))"), `${path}: unavailable service notice`);

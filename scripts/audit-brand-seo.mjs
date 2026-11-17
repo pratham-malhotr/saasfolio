@@ -57,7 +57,10 @@ const { document: homepage } = await fetchPage("/");
 // into place. Inspect the actual brand section rather than the loading shell.
 const homeBrands = nodes(homepage, node => attr(node, "aria-labelledby") === "brand-discounts-heading")[0];
 assert.match(contents(elements(homepage, "h1")[0]).replace(/\s+/g, " "), /Good software.*Better decisions/i, "Homepage heading describes the discovery experience");
-assert.match(contents(elements(homepage, "title")[0]), /Software Brands.*Reviews.*SaaS Deals/i, "Homepage title describes discovery and savings");
+const homeTitle = contents(elements(homepage, "title")[0]);
+for (const intent of [/Hosting Comparisons/i, /Software Brands/i, /Deals/i, /SaaSFolio/]) {
+  assert.match(homeTitle, intent, "Homepage title describes its hosting, brand discovery and savings content");
+}
 assert.ok(homeBrands && links(homeBrands).includes("/discounts"), "Brand directory is linked from homepage content");
 assertDiscoveryLink(homeBrands, "/discounts", "Homepage content");
 assert.ok(links(homeBrands).filter(href => /^\/discounts\/[^/]+$/.test(href)).length >= 6, "Homepage offers varied direct brand discovery");
