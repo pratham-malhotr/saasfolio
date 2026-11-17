@@ -23,6 +23,13 @@ revoke public access to inquiries and permit `save_brand_submission` only for
 the server's service role. Do not use blanket table/function grants from setup
 examples or enable automatic exposure of new tables.
 
+On this project's initial activation, the dashboard saved the schema list but
+PostgREST still returned `PGRST106`. The live `authenticator` role therefore
+explicitly retains `public, graphql_public, saasfolio` in `pgrst.db_schemas`.
+Future exposed-schema changes must update that complete list as well, then
+notify PostgREST to reload its configuration and schema cache. Never replace
+the list with only `saasfolio`; CircleOfIRA still uses `public`.
+
 Set these variables on **SaaSFolio's** Hostinger deployment:
 
 ```dotenv

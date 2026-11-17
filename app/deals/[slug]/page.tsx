@@ -119,7 +119,7 @@ export default async function DealDetailPage({
       />
       <DealDetailClient
         deal={deal}
-        discountHref={hasBrandDiscountPage(deal.toolSlug) ? `/discounts/${deal.toolSlug}` : undefined}
+        discountHref={tool && getBrandDiscountData(tool).indexable ? `/discounts/${deal.toolSlug}` : undefined}
         tool={tool}
         faqs={faqs}
         siblingDeals={siblingDeals}
