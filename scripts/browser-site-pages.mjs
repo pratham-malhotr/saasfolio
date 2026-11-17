@@ -87,9 +87,9 @@ try {
   await page("Page.addScriptToEvaluateOnNewDocument", { source: "window.auditClicks=[]; for(const type of ['mousedown','mouseup','click']) document.addEventListener(type,event=>auditClicks.push({type,href:event.target.closest('a')?.getAttribute('href'),y:event.clientY,scrollY}),true);" });
   await page("Fetch.enable", { patterns: [{ urlPattern: `${origin}/api/*` }, { urlPattern: "https://*" }] });
   await page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
-  async function navigate(path) {
+  async function navigate(path, destination = path) {
     await page("Page.navigate", { url: `${origin}${path}` });
-    await until(() => evaluate(`location.href === ${JSON.stringify(`${origin}${path}`)} && document.readyState === 'complete' && !!document.querySelector('main')`), path);
+    await until(() => evaluate(`location.href === ${JSON.stringify(`${origin}${destination}`)} && document.readyState === 'complete' && !!document.querySelector('main')`), path);
   }
   async function click(selector) {
     await until(() => evaluate(`!!document.querySelector(${JSON.stringify(selector)})`), selector);
@@ -141,7 +141,7 @@ try {
     await page("Emulation.setTouchEmulationEnabled", { enabled: viewport.mobile });
     await navigate("/");
     if (!deployedServices.newsletterConfigured) {
-      assert.ok(await evaluate("!!document.querySelector('#newsletter a[href=\"/articles\"]') && !!document.querySelector('#newsletter a[href=\"/contact\"]') && !document.querySelector('#newsletter form')"), "An unconfigured newsletter offers usable reading and contact links");
+      assert.ok(await evaluate("!!document.querySelector('main a[href=\"/articles\"]') && !!document.querySelector('main a[href=\"/submit\"]') && !document.querySelector('#newsletter form')"), "Discovery offers usable articles and brand submissions without advertising an unavailable newsletter");
     }
     if (!deployedServices.accountsConfigured) {
       assert.ok(await evaluate("!document.querySelector('header a[href=\"/login\"]') && !!document.querySelector('header a[href=\"/contact\"]')"), "Unavailable accounts are replaced by a public contact link");
@@ -167,7 +167,8 @@ try {
         throw error;
       }
       const heading = await layout(viewport.width, href);
-      const expectedNav = ["/discounts", "/deals", "/brands", "/compare", "/articles", "/community"].find(path => destination.pathname === path || destination.pathname.startsWith(`${path}/`));
+      const navDestinations = await evaluate("[...document.querySelectorAll('header nav a[href]')].map(link=>link.getAttribute('href')).filter(href=>href.startsWith('/')&&!href.includes('?'))");
+      const expectedNav = navDestinations.find(path => destination.pathname === path || destination.pathname.startsWith(`${path}/`));
       if (expectedNav) await until(() => evaluate(`document.querySelector('header nav a[aria-current="page"]')?.getAttribute('href') === ${JSON.stringify(expectedNav)}`), `${href}: active navigation updates after hydration`);
       if (destination.hash) assert.ok(await evaluate(`(() => {const target=document.getElementById(${JSON.stringify(decodeURIComponent(destination.hash.slice(1)))});return !!target&&target.getBoundingClientRect().top>=0&&target.getBoundingClientRect().top<innerHeight;})()`), `${href}: anchor scrolls into view`);
       if (destination.searchParams.has("type")) assert.ok(await evaluate(`document.querySelector('main').textContent.includes(${JSON.stringify(`Type: ${destination.searchParams.get("type")}`)})`), `${href}: requested filter is active`);
@@ -199,15 +200,10 @@ try {
     await press(" ", "Space", 32);
     await until(() => evaluate(`document.querySelector(${JSON.stringify(faq)}).getAttribute('aria-expanded')==='false'`), "FAQ closes with keyboard");
 
-    await navigate("/advertise");
-    await until(() => evaluate("document.querySelector('#form-packageSelected')?.disabled === false && !document.querySelector('fieldset').disabled"), "Available partnership form");
-    await click('main button[type="button"]');
-    assert.equal(await evaluate("document.querySelector('#form-packageSelected').value"), "featured-tool", "Package CTA selects the corresponding form option");
-    await enter("#form-companyName", "UI Audit"); await enter("#form-toolUrl", "https://example.test/");
-    await enter("#form-contactEmail", "ui-audit@example.test");
-    inquiryMode = "success";
-    await evaluate("document.querySelector('#partner-inquiry-form form').requestSubmit()");
-    await until(() => evaluate("document.querySelector('main').textContent.includes('UI-AUDIT-ONLY')"), "Partnership form confirmation");
+    const beforeDisclosure = mockedWrites.length;
+    await navigate("/advertise", "/affiliate-disclosure");
+    assert.ok(await evaluate("document.querySelector('main').textContent.includes('does not serve display ads') && !document.querySelector('main form')"), "Retired advertising route explains affiliate funding without an ad sales form");
+    assert.equal(mockedWrites.length, beforeDisclosure, "Reading the disclosure does not send a partnership inquiry");
 
     await navigate("/savings-calculator");
     await enter('input[name="monthly"]', "20"); await enter('input[name="annual"]', "200"); await enter('input[name="fee"]', "10");
@@ -233,7 +229,7 @@ try {
     await until(() => evaluate("location.pathname==='/compare/notion-vs-asana' && document.querySelector('main h1')?.textContent.toLowerCase().includes('asana') && document.querySelector('#comparison-switch-b')?.value==='asana'"), "Comparison switcher navigation refreshes its controls");
 
     await navigate("/");
-    await until(() => evaluate("Object.keys(document.querySelector('button[aria-label=\"Search SaaS discounts and coupon codes\"]')||{}).some(key=>key.startsWith('__reactProps'))"), "Home hydration");
+    await until(() => evaluate("Object.keys(document.querySelector('button[aria-label=\"Search deals and tools\"]')||{}).some(key=>key.startsWith('__reactProps'))"), "Home hydration");
     // A committed button can precede the Navbar's passive effect. Sending
     // Ctrl+K then invokes Chrome's own shortcut on Linux instead of the page.
     await until(async () => {
@@ -259,11 +255,10 @@ try {
     assert.ok(await evaluate("!document.querySelector('#form-email') && !document.querySelector('#contact-form button[type=submit]')"), "The email contact route contains no unusable submission fields");
     await layout(viewport.width, "/contact?brand=notion#contact-form");
     for (const [path, kind, subject, fields] of [
-      ["/submit", "submission", "Software or offer submission for editorial review", ["Official website URL", "Official offer or pricing source URL", "Eligibility", "Billing period and renewal terms"]],
-      ["/advertise", "partnership", "SaaSFolio partnership proposal", ["Company or product name", "Official website URL", "Partnership proposal"]],
+      ["/submit", "submission", "Brand submission: My brand", ["Official website", "Pricing or documentation URL", "Product use case and limitations", "Contact email"]],
     ]) {
       await navigate(path);
-      await until(() => evaluate(`!!document.querySelector('[data-inquiry-email-draft=${kind}]') && !document.querySelector('main form')`), `${path}: unavailable web service provides email`);
+      await until(() => evaluate(`!!document.querySelector('[data-inquiry-email-draft=${kind}]') && ${path === "/submit" ? "!!document.querySelector('main form')" : "!document.querySelector('main form')"}`), `${path}: unavailable web service provides email`);
       const inquiry = new URL(await evaluate(`document.querySelector('[data-inquiry-email-draft=${kind}]').href`));
       assert.equal(inquiry.protocol, "mailto:");
       assert.equal(inquiry.pathname, SUPPORT_EMAIL);
@@ -272,7 +267,7 @@ try {
       await layout(viewport.width, path);
     }
     servicesAvailable = true;
-    console.log(`Passed ${viewport.width}px: ${links.length} footer destinations, same-route filters, FAQ keyboard, form validation/error/retry fixtures, package selection, calculator, comparison and lazy keyboard search.`);
+    console.log(`Passed ${viewport.width}px: ${links.length} footer destinations, same-route filters, FAQ keyboard, form validation/error/retry fixtures, affiliate disclosure redirect, calculator, comparison and lazy keyboard search.`);
   }
   assert.deepEqual(runtimeErrors, [], "No uncaught browser errors");
   assert.deepEqual(interceptionErrors, [], "No interception failures");

@@ -1051,5 +1051,83 @@
       "Contact us to start your free trial"
     ],
     "terms": "Enquiry route for enterprise or institutional teams. Contact Paperpal to confirm approval, covered users, duration, features and the later paid quote. The source does not establish an unrestricted individual trial. Signup and checkout have not been tested."
+  },
+  {
+    "slug": "taplio-aware-transition",
+    "toolSlug": "taplio",
+    "title": "Taplio Aware-transition campaign: 20% with code AWARE",
+    "dealType": "coupon",
+    "code": "AWARE",
+    "discountPercentage": 20,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://taplio.com/taplio-vs-aware",
+    "destinationUrl": "https://taplio.com/taplio-vs-aware",
+    "evidence": [
+      "20% discount",
+      "AWARE",
+      "Aware is shutting down"
+    ],
+    "terms": "Taplio advertises this code on its Aware-transition campaign page. Confirm that your account qualifies and check the eligible plan, billing period, discount duration and renewal total with Taplio before paying. No expiry is stated on that page. This is a campaign-specific source observation, not a sitewide guarantee; checkout acceptance has not been tested."
+  },
+  {
+    "slug": "hostinger-vps-introductory-offer",
+    "toolSlug": "hostinger",
+    "title": "Hostinger VPS: up to 70% off the introductory term",
+    "dealType": "offer",
+    "discountPercentage": 70,
+    "discountKind": "up-to",
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.hostinger.com/vps-hosting",
+    "destinationUrl": "https://www.hostinger.com/vps-hosting",
+    "evidence": [
+      "Up to 70% off",
+      "24 months"
+    ],
+    "terms": "Introductory VPS promotion; discount varies by plan. The observed KVM 4 quote required 24 months prepaid and displayed a higher renewal. Currency, tax, location, eligibility and account conditions may change the quote. No public coupon is asserted. Check the full payment and current renewal at checkout; not checkout tested."
+  },
+  {
+    "slug": "siteground-startup-first-term-offer",
+    "toolSlug": "siteground",
+    "title": "SiteGround StartUp: advertised 88% off the first term",
+    "dealType": "offer",
+    "discountPercentage": 88,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.siteground.com/web-hosting.htm",
+    "destinationUrl": "https://www.siteground.com/web-hosting.htm",
+    "evidence": [
+      "Save 88%",
+      "Prepaid for 12 months"
+    ],
+    "terms": "Observed StartUp introductory web-hosting offer, prepaid for 12 months. The source displayed $1.99 per month initially and $17.99 per month on renewal in its USD view. Confirm currency, tax, eligibility, included services and the complete invoice in your checkout. This is not a permanent renewal discount or a coupon code; not checkout tested."
+  },
+  {
+    "slug": "cloudways-two-month-introductory-offer",
+    "toolSlug": "cloudways",
+    "title": "Cloudways: 80% off two introductory months, subject to cap",
+    "dealType": "offer",
+    "discountPercentage": 80,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.cloudways.com/en/pricing.php",
+    "destinationUrl": "https://www.cloudways.com/en/pricing.php",
+    "evidence": [
+      "80% OFF for 2 months",
+      "Up to $200 off per month"
+    ],
+    "terms": "Short introductory promotion advertised on the provider pricing page, capped at up to $200 off per month. Confirm eligible product, account, activation method, exclusions, later recurring price and offer availability. An 80% reduction for two months is not an 80% annual saving. No checkout or code has been tested."
+  },
+  {
+    "slug": "kinsta-three-month-introductory-offer",
+    "toolSlug": "kinsta",
+    "title": "Kinsta: 50% off three introductory paid months",
+    "dealType": "offer",
+    "discountPercentage": 50,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://kinsta.com/wordpress-hosting/",
+    "destinationUrl": "https://kinsta.com/wordpress-hosting/",
+    "evidence": [
+      "50% off for 3 months",
+      "renews at $35"
+    ],
+    "terms": "Observed promotion on selected monthly WordPress configurations; the source described three discounted paid months after a separate introductory first month. Annual billing has a different offer. Confirm plan, account eligibility, usage limits, extras, currency and the post-promotion price. This is not a lifetime or full-year 50% reduction; not checkout tested."
   }
 ]

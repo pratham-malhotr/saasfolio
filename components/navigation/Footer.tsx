@@ -34,10 +34,12 @@ export function Footer() {
               Discover SaaS
             </div>
             <ul className="space-y-2.5 text-sm">
-              <li><Link prefetch={false} href="/discounts" className="hover:text-[#C6FF3D] transition-colors">Discounts by Brand</Link></li>
-              <li><Link prefetch={false} href="/brands" className="hover:text-[#C6FF3D] transition-colors">All Brands A–Z</Link></li>
-              {SAVINGS_COLLECTION_LINKS.map(link => <li key={link.href}><Link prefetch={false} href={link.href} className="hover:text-[#C6FF3D] transition-colors">{link.label}</Link></li>)}
-              <li><Link prefetch={false} href="/savings-calculator" className="hover:text-[#C6FF3D] transition-colors">Annual Savings Calculator</Link></li>
+              <li><Link prefetch={false} href="/hosting" className="inline-block hover:text-[#C6FF3D] transition-colors">Hosting Research & Provider Finder</Link></li>
+              <li><Link prefetch={false} href="/hosting#cost-calculator" className="inline-block hover:text-[#C6FF3D] transition-colors">Hosting Renewal Cost Calculator</Link></li>
+              <li><Link prefetch={false} href="/discounts" className="inline-block hover:text-[#C6FF3D] transition-colors">Discounts by Brand</Link></li>
+              <li><Link prefetch={false} href="/brands" className="inline-block hover:text-[#C6FF3D] transition-colors">All Brands A–Z</Link></li>
+              {SAVINGS_COLLECTION_LINKS.map(link => <li key={link.href}><Link prefetch={false} href={link.href} className="inline-block hover:text-[#C6FF3D] transition-colors">{link.label}</Link></li>)}
+              <li><Link prefetch={false} href="/savings-calculator" className="inline-block hover:text-[#C6FF3D] transition-colors">Annual Savings Calculator</Link></li>
               <li>
                 <Link prefetch={false} href="/deals" className="hover:text-[#C6FF3D] transition-colors flex items-center justify-between">
                   <span>Hot Deals This Week</span>
@@ -45,23 +47,23 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/deals?type=lifetime" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/deals?type=lifetime" className="inline-block hover:text-[#C6FF3D] transition-colors">
                   Lifetime Deals (LTDs)
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/deals?type=free_trial" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/deals?type=free_trial" className="inline-block hover:text-[#C6FF3D] transition-colors">
                   Free Trials
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/tools" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/tools" className="inline-block hover:text-[#C6FF3D] transition-colors">
                   Software Directory
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/submit" className="hover:text-[#C6FF3D] transition-colors text-white font-medium">
-                  Submit a SaaS Deal →
+                <Link prefetch={false} href="/submit" className="inline-block hover:text-[#C6FF3D] transition-colors text-white font-medium">
+                  Add Your Brand →
                 </Link>
               </li>
             </ul>
@@ -74,33 +76,33 @@ export function Footer() {
             </div>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link prefetch={false} href="/articles" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/articles" className="inline-block hover:text-[#C6FF3D] transition-colors">
                   Software Buying Guides
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/articles/build-a-saas-budget-before-buying" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/articles/build-a-saas-budget-before-buying" className="inline-block hover:text-[#C6FF3D] transition-colors">
                   Build a Software Budget
                 </Link>
               </li>
-              <li><Link prefetch={false} href="/editorial-policy" className="hover:text-[#C6FF3D] transition-colors">Editorial Method & Corrections</Link></li>
+              <li><Link prefetch={false} href="/editorial-policy" className="inline-block hover:text-[#C6FF3D] transition-colors">Editorial Method & Corrections</Link></li>
               <li>
-                <Link prefetch={false} href="/about#standards" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/about#standards" className="inline-block hover:text-[#C6FF3D] transition-colors">
                   How We Check Offers
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/compare" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/compare" className="inline-block hover:text-[#C6FF3D] transition-colors">
                   Compare Tools Side-by-Side
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/advertise" className="hover:text-[#C6FF3D] transition-colors">
-                  Partner / Advertise
+                <Link prefetch={false} href="/affiliate-disclosure" className="inline-block hover:text-[#C6FF3D] transition-colors">
+                  Affiliate Funding
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/contact" className="hover:text-[#C6FF3D] transition-colors">
+                <Link prefetch={false} href="/contact" className="inline-block hover:text-[#C6FF3D] transition-colors">
                   Contact & Support
                 </Link>
               </li>

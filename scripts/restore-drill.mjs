@@ -13,7 +13,7 @@ let created = false;
 try {
   await exec("createdb", [name], { env }); created = true;
   await restoreDatabaseBackup({ file, key: Buffer.from(process.env.BACKUP_ENCRYPTION_KEY, "hex"), env: { ...env, PGDATABASE: name } });
-  const checks = await exec("psql", ["-X", "-At", "-v", "ON_ERROR_STOP=1", "-c", "select (public.platform_readiness()->>'schemaVersion')::integer>=3 and (public.platform_readiness()->>'ready')::boolean and (select relrowsecurity from pg_class where oid='public.saved_items'::regclass) and not has_table_privilege('anon','public.inquiries','SELECT')"], { env: { ...env, PGDATABASE: name } });
+  const checks = await exec("psql", ["-X", "-At", "-v", "ON_ERROR_STOP=1", "-c", "select (public.platform_readiness()->>'schemaVersion')::integer>=4 and (public.platform_readiness()->>'ready')::boolean and (select relrowsecurity from pg_class where oid='public.saved_items'::regclass) and not has_table_privilege('anon','public.inquiries','SELECT')"], { env: { ...env, PGDATABASE: name } });
   assert.equal(checks.stdout.trim(), "t", "Restored schema, RLS and inquiry privileges must be valid");
   console.log("Local restore drill passed: authenticated archive, schema readiness, RLS and private-table privileges.");
 } finally { if (created) await exec("dropdb", ["--if-exists", name], { env }); }

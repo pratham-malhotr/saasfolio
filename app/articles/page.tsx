@@ -7,12 +7,12 @@ import { ArticlesHubClient } from "@/components/articles/ArticlesHubClient";
 import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
 
 export const metadata = pageMetadata({
-  title: 'SaaS Buying Guides: Coupons, Pricing & Renewal Costs',
-  description: 'Read original SaaS buying guides with references. Compare coupon terms, usage limits, access fees and renewal costs before choosing a software subscription.',
+  title: 'Software Reviews, Hosting Research & SaaS Buying Guides',
+  description: 'Read sourced software and hosting reviews, compare product trade-offs and evaluate pricing, renewal costs and operating responsibilities before subscribing.',
   path: "/articles",
 });
 
 export default function ArticlesPage() {
-  const articles = DETAILED_ARTICLES.map(({ id, slug, title, summary, category, readTime, author, tags, featured }) => ({ id, slug, title, summary, category, readTime, author, tags, featured }));
+  const articles = [...DETAILED_ARTICLES].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).map(({ id, slug, title, summary, category, readTime, author, tags, featured, coverImage }) => ({ id, slug, title, summary, category, readTime, author, tags, featured, coverImage }));
   return <><JsonLd data={collectionSchema('SaaS Buying Guides', 'Original buying guides about coupon terms, pricing limits, subscription budgets and renewal costs.', "/articles", DETAILED_ARTICLES.map((article) => ({ name: article.title, path: `/articles/${article.slug}` })))} /><ArticlesHubClient articles={articles} savingsLinks={<SavingsCollectionLinks heading="Put the buying guide into practice" />} /></>;
 }

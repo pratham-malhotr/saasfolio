@@ -34,8 +34,8 @@ try {
   const data = await browser.evaluate("JSON.stringify(window.dataLayer.map(item=>Array.from(item)))");
   assert.ok(!data.includes("never-send-this"), "Analytics events must omit URL queries");
   const measurementId = new URL(external.find(url => url.includes("googletagmanager.com/gtag/js"))).searchParams.get("id");
-  await until(() => browser.evaluate("!!document.querySelector('button[aria-label=\"Search SaaS discounts and coupon codes\"]')"), "search trigger");
-  await browser.evaluate("document.querySelector('button[aria-label=\"Search SaaS discounts and coupon codes\"]').focus();document.activeElement.click()");
+  await until(() => browser.evaluate("!!document.querySelector('button[aria-label=\"Open search\"]')"), "search trigger");
+  await browser.evaluate("document.querySelector('button[aria-label=\"Open search\"]').focus();document.activeElement.click()");
   await until(() => browser.evaluate("!!document.querySelector('[role=dialog] input')"), "lazy search dialog");
   await browser.evaluate("document.querySelector('[role=dialog] input').focus()");
   await browser.page("Input.insertText", { text: "privacy-fixture-never-found@example.test" });
@@ -51,7 +51,7 @@ try {
   assert.equal(await browser.evaluate(`document.activeElement===(${focusTargets}).at(-1)`), true, "Shift+Tab wraps inside the dialog");
   await browser.page("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
   await browser.page("Input.dispatchKeyEvent", { type: "keyUp", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
-  await until(() => browser.evaluate("!document.querySelector('[role=dialog]') && document.activeElement?.getAttribute('aria-label')==='Search SaaS discounts and coupon codes'"), "search restores keyboard focus");
+  await until(() => browser.evaluate("!document.querySelector('[role=dialog]') && document.activeElement?.getAttribute('aria-label')==='Open search'"), "search restores keyboard focus");
   await browser.page("Page.addScriptToEvaluateOnNewDocument", { source: "Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:()=>Promise.reject(new Error('Fixture clipboard denial'))}});" });
   await navigate(`/deals/${coupon.slug}`); await until(() => browser.evaluate("!!window.__privacyAuditTagLoaded"), "consented coupon page");
   await until(() => browser.evaluate("Object.keys(document.querySelector('button[aria-label=\"Copy coupon code\"]')||{}).some(key=>key.startsWith('__reactProps'))"), "hydrated coupon action");

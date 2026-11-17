@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { parse } from "parse5";
-import { ADSENSE_ACCOUNT, ADSENSE_SELLER } from "../lib/advertising.mjs";
+import { DISPLAY_ADVERTISING_ENABLED } from "../lib/advertising.mjs";
 import { ARTICLE_ALIASES } from "../lib/data/article-aliases.mjs";
 import { loadCatalogModule } from "./lib/load-catalog.mjs";
 
@@ -17,13 +17,14 @@ async function get(path, redirect = "follow") {
 const { response: adsResponse, raw: ads } = await get("/ads.txt");
 assert.equal(adsResponse.status, 200, "ads.txt is reachable");
 assert.match(adsResponse.headers.get("content-type"), /text\/plain/);
-assert.equal(ads.trim(), `google.com, ${ADSENSE_SELLER}, DIRECT, f08c47fec0942fa0`);
+assert.equal(DISPLAY_ADVERTISING_ENABLED, false);
+assert.ok(!ads.split("\n").some(line => line.trim() && !line.startsWith("#")), "No advertising sellers are authorized");
 let checkedPages = 0;
 for (const path of ["/", "/discounts", "/discounts/hostinger", "/articles", "/privacy", "/terms", "/about", "/contact", "/affiliate-disclosure", "/login", "/publisher-audit-missing-page"]) {
   const { response, document } = await get(path);
   assert.equal(response.status, path.endsWith("missing-page") ? 404 : 200, path);
   const head = nodes(document, "head")[0];
-  assert.equal(attr(nodes(head, "meta").find(node => attr(node, "name") === "google-adsense-account"), "content"), ADSENSE_ACCOUNT, `${path}: publisher ownership metadata`);
+  assert.ok(!nodes(head, "meta").some(node => attr(node, "name") === "google-adsense-account"), `${path}: no advertising ownership metadata`);
   assert.ok(!nodes(document, "script").some(node => /adsbygoogle|googlesyndication|doubleclick/.test(attr(node, "src") || "")), `${path}: verification does not load ad-serving scripts`);
   const csp = response.headers.get("content-security-policy") || "";
   for (const directive of ["base-uri 'self'", "object-src 'none'", "frame-ancestors 'self'", "form-action 'self'"]) assert.ok(csp.includes(directive), `${path}: ${directive}`);
@@ -43,9 +44,7 @@ assert.ok(payload.checks && typeof payload.checks.accountsConfigured === "boolea
 assert.ok(!payload.systemSpecs && !payload.uptime && !payload.environment, "Public health omits process and framework details");
 const { document: privacy } = await get("/privacy");
 const privacyText = content(nodes(privacy, "main")[0]);
-for (const phrase of [/cookies/i, /IP addresses/, /personalize ads/, /verification only/, /consent management/]) assert.match(privacyText, phrase);
-assert.ok(nodes(privacy, "a").some(node => attr(node, "href") === "https://myadcenter.google.com/"));
-assert.ok(nodes(privacy, "a").some(node => attr(node, "href") === "https://policies.google.com/technologies/partner-sites"));
+for (const phrase of [/cookies/i, /affiliate funded/i, /does not serve display advertising/i, /referral commission/i]) assert.match(privacyText, phrase);
 const { DETAILED_ARTICLES } = loadCatalogModule("lib/data/articles-data.ts");
 for (const article of DETAILED_ARTICLES) {
   const { response, document } = await get(`/articles/${article.slug}`);
@@ -71,5 +70,5 @@ for (const path of ["/community", ...DETAILED_THREADS.map(thread => `/community/
   assert.ok(attr(nodes(document, "meta").find(node => attr(node, "name") === "robots"), "content").includes("noindex"), `${path}: previews are noindex`);
   assert.ok(content(nodes(document, "main")[0]).toLowerCase().includes("editorial"));
 }
-console.log(`Publisher/security audit passed: ${checkedPages} content and utility responses, ads.txt and ownership metadata, no ad-serving code, private cache headers, privacy choices, ${DETAILED_ARTICLES.length} referenced guides and permanent redirects, and ${DETAILED_THREADS.length + 1} non-indexed discussion previews.`);
-console.log(`Configuration presence only (not provider connectivity): accounts=${payload.checks.accountsConfigured}, forms=${payload.checks.formsConfigured}, newsletter=${payload.checks.newsletterConfigured}. AdSense approval and CMP publication require account-side verification.`);
+console.log(`Publisher/security audit passed: ${checkedPages} content and utility responses, ads.txt without authorized sellers, no advertising metadata or ad-serving code, private cache headers, privacy choices, ${DETAILED_ARTICLES.length} referenced guides and permanent redirects, and ${DETAILED_THREADS.length + 1} non-indexed discussion previews.`);
+console.log(`Configuration presence only (not provider connectivity): accounts=${payload.checks.accountsConfigured}, forms=${payload.checks.formsConfigured}, newsletter=${payload.checks.newsletterConfigured}. Provider connectivity still requires configured credentials.`);

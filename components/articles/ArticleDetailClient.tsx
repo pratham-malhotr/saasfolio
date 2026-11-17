@@ -4,6 +4,7 @@ import { SaveItemButton } from "@/components/profile/SaveItemButton";
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Clock,
   Calendar,
@@ -30,6 +31,7 @@ interface ArticleDetailClientProps {
   article: DetailedArticle;
   relatedArticles: ArticlePreview[];
   savingsLinks?: React.ReactNode;
+  hostingActions?: React.ReactNode;
   sectionDeals?: Record<string, SaaSDeal>;
 }
 
@@ -43,7 +45,7 @@ interface ArticleComment {
   upvotes: number;
 }
 
-export function ArticleDetailClient({ article, relatedArticles, savingsLinks, sectionDeals = {} }: ArticleDetailClientProps) {
+export function ArticleDetailClient({ article, relatedArticles, savingsLinks, hostingActions, sectionDeals = {} }: ArticleDetailClientProps) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
@@ -292,6 +294,8 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, se
           </div>
         </div>
 
+        {article.coverImage && <figure className="mt-8 overflow-hidden rounded-2xl border border-white/10"><Image src={article.coverImage.src} alt={article.coverImage.alt} width={1440} height={810} priority sizes="(max-width: 1280px) 100vw, 1216px" className="aspect-video w-full object-cover" /><figcaption className="bg-[#101216] px-5 py-3 text-xs leading-6 text-zinc-500">Editorial illustration · {article.subtitle}</figcaption></figure>}
+
         {/* Audio Overview Player */}
         <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-[#09090C] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
@@ -337,7 +341,7 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, se
             ) : (
               <div className="flex items-center gap-1.5 font-mono text-[11px] text-zinc-500">
                 <Volume2 className="w-3.5 h-3.5 text-zinc-400" />
-                <span>Lossless 48kHz Audio</span>
+                <span>Browser speech synthesis</span>
               </div>
             )}
           </div>
@@ -358,6 +362,8 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, se
                 {article.summary}
               </p>
             </div>
+
+            {hostingActions && <p className="text-xs leading-6 text-zinc-500">Affiliate disclosure: some provider links may earn SaaSFolio a commission. Recommendations follow the workload and operating criteria described below. <Link href="/affiliate-disclosure" className="text-[#C6FF3D] underline">Read the disclosure</Link>.</p>}
 
             {/* Render Each Article Section */}
             {article.sections.map((section) => (
@@ -422,6 +428,8 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, se
                 )}
               </section>
             ))}
+
+            {hostingActions}
 
             {/* Optional Pros & Cons Box */}
             {article.prosCons && (

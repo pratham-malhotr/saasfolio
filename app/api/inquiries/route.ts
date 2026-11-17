@@ -4,14 +4,17 @@ import { verifyCodeLocally } from "@/lib/code-verification";
 import { saveLocalInquiry } from "@/lib/server/local-auth";
 import { getDealBySlug, getHistoricOfferToolSlug } from "@/lib/data/deals-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
+import { readBrandSubmission } from "@/lib/server/brand-submission";
+import { createHash } from "node:crypto";
 
 export async function POST(request: Request) {
   try {
-    const data = await readBody(request);
+    const data = await readBody(request, 64000);
     if (data.companyWebsite) return json({ error: "Please try again." }, 400);
     const kind = text(data, "kind", 1, 20);
     let address: string;
     let payload: Record<string, unknown>;
+    let submissionKey: string | undefined;
 
     if (kind === "contact") {
       address = email(data);
@@ -44,14 +47,20 @@ export async function POST(request: Request) {
       };
     } else if (kind === "submission") {
       const submissionType = text(data, "submissionType", 1, 20);
-      if (!["code", "deal", "tool", "review"].includes(submissionType)) {
+      if (!["brand", "code", "deal", "tool", "review"].includes(submissionType)) {
         throw new HttpError(400, "Choose a valid submission type.");
       }
 
       // Check for authenticated user
-      const user = await currentUser();
+      const user = submissionType === "brand" ? null : await currentUser();
 
-      if (submissionType === "code") {
+      if (submissionType === "brand") {
+        ({ address, payload } = readBrandSubmission(data));
+        if (data.submissionKey !== undefined) {
+          submissionKey = text(data, "submissionKey", 36, 36).toLowerCase();
+          if (!/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(submissionKey)) throw new HttpError(400, "The submission reference is invalid. Reload the form and try again.");
+        }
+      } else if (submissionType === "code") {
         // Enforce: User MUST be logged in to submit a promo or referral code
         if (!user) {
           throw new HttpError(401, "You must be signed in to submit a promo or referral code.");
@@ -159,6 +168,9 @@ export async function POST(request: Request) {
     }
 
     await enforceLimit(request, `inquiry:${kind}`);
+    const { submittedAt: submissionTimestamp, ...stablePayload } = payload;
+    void submissionTimestamp;
+    const fingerprint = submissionKey ? createHash("sha256").update(JSON.stringify({ address, payload: stablePayload })).digest("hex") : undefined;
     let recordId: string;
     if (
       isSupabaseConfigured() &&
@@ -166,6 +178,12 @@ export async function POST(request: Request) {
       !process.env.SUPABASE_SERVICE_ROLE_KEY.includes("your-service")
     ) {
       const service = serviceClient();
+      if (submissionKey) {
+        const { data: savedId, error } = await service.rpc("save_brand_submission", { request_key: submissionKey, request_email: address, request_payload: payload, request_fingerprint: fingerprint });
+        if (error?.code === "23505") throw new HttpError(409, "This submission reference was already used for different details. Reload the form before submitting a different product.");
+        if (error || typeof savedId !== "string" || !/^[a-f0-9-]{36}$/i.test(savedId)) throw new HttpError(503, "Your submission could not be confirmed. Retry with the same details or download a copy and contact us.");
+        return json({ id: savedId, message: "Your submission has been saved for review." }, 201);
+      }
       const { data: record, error } = await service
         .from("inquiries")
         .insert({ kind, email: address, payload })
@@ -184,7 +202,7 @@ export async function POST(request: Request) {
         // A missing private-service key must not redirect cloud data to local storage.
         serviceClient();
       }
-      const localRecord = saveLocalInquiry(kind, address, payload);
+      const localRecord = saveLocalInquiry(kind, address, payload, submissionKey ? { key: submissionKey, fingerprint: fingerprint! } : undefined);
       recordId = localRecord.id;
     }
 

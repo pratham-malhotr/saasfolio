@@ -5,6 +5,7 @@ import { createClient, type User } from "@supabase/supabase-js";
 import { createHmac } from "node:crypto";
 import { HttpError } from "@/lib/server/http";
 import { supabasePublicConfig } from "@/lib/auth-config";
+import { databaseSchema } from "@/lib/database-schema.mjs";
 import {
   getLocalUserById,
   localAuthConfigured,
@@ -16,7 +17,7 @@ export function isSupabaseConfigured(): boolean {
 }
 
 export function authConfigured(): boolean {
-  return isSupabaseConfigured() || localAuthConfigured();
+  return (process.env.SUPABASE_AUTH_ENABLED !== "false" && isSupabaseConfigured()) || localAuthConfigured();
 }
 
 export function formsConfigured(): boolean {
@@ -24,6 +25,7 @@ export function formsConfigured(): boolean {
 }
 
 export async function authProviderAvailability(): Promise<{ google: boolean; apple: boolean }> {
+  if (process.env.SUPABASE_AUTH_ENABLED === "false") return { google: false, apple: false };
   const config = supabasePublicConfig();
   if (!config) return { google: false, apple: false };
   try {
@@ -37,12 +39,16 @@ export async function authProviderAvailability(): Promise<{ google: boolean; app
 }
 
 export async function authClient({ writable = true }: { writable?: boolean } = {}) {
+  if (process.env.SUPABASE_AUTH_ENABLED === "false") {
+    throw new HttpError(503, "Account services are unavailable for this website.");
+  }
   const config = supabasePublicConfig();
   if (!config) {
     throw new HttpError(503, "Account services are temporarily unavailable. Please try again later.");
   }
   const store = await cookies();
   return createServerClient(config.url, config.key, {
+    db: { schema: databaseSchema() },
     auth: { flowType: "pkce" },
     cookieOptions: { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/" },
     cookies: {
@@ -68,6 +74,7 @@ export function serviceClient() {
     throw new HttpError(503, "This service is temporarily unavailable. Please try again later or use our contact email.");
   }
   return createClient(supabasePublicConfig()!.url, process.env.SUPABASE_SERVICE_ROLE_KEY, {
+    db: { schema: databaseSchema() },
     auth: { persistSession: false, autoRefreshToken: false },
   });
 }
@@ -78,6 +85,7 @@ export function isAdmin(user: User | null): boolean {
 }
 
 export async function currentUser({ writable = true }: { writable?: boolean } = {}): Promise<User | null> {
+  if (process.env.SUPABASE_AUTH_ENABLED === "false") return null;
   // 1. If Supabase is configured, check Supabase session
   if (isSupabaseConfigured()) {
     try {

@@ -4,6 +4,7 @@ import sourceSnapshot from "./offer-snapshot.json";
 import { REVIEWED_BRAND_TOOLS, REVIEWED_BRAND_COPY } from "./reviewed-brand-tools";
 import providerLinks from "./provider-links.json";
 import { MANAGED_BRANDS } from "./managed-content";
+import { HOSTING_BRAND_TOOLS } from "./hosting-providers";
 
 const LEGACY_TOOLS_DATA: DetailedTool[] = [
   {
@@ -49920,7 +49921,7 @@ const LEGACY_TOOLS_DATA: DetailedTool[] = [
 // the existing profiles and routes, but do not publish unsupported social proof.
 const categoryAliases: Record<string, string> = { ai: "ai-tools", dev: "dev-tools", crm: "crm-sales", pm: "project-management", devtools: "dev-tools", infrastructure: "hosting", sales: "crm-sales", support: "crm-sales" };
 const managedBrandsBySlug = new Map(MANAGED_BRANDS.map(tool => [tool.slug, tool]));
-const COMBINED_TOOLS_DATA: DetailedTool[] = [...MANAGED_BRANDS, ...REVIEWED_BRAND_TOOLS, ...LEGACY_TOOLS_DATA, ...(expandedTools as DetailedTool[])]
+const COMBINED_TOOLS_DATA: DetailedTool[] = [...MANAGED_BRANDS, ...HOSTING_BRAND_TOOLS, ...REVIEWED_BRAND_TOOLS, ...LEGACY_TOOLS_DATA, ...(expandedTools as DetailedTool[])]
   .filter((tool, index, all) => all.findIndex(other => other.slug === tool.slug) === index)
   .map(tool => ({ ...tool, categorySlug: categoryAliases[tool.categorySlug] || tool.categorySlug,
     ...(/^Save \d+%/.test(tool.description) ? {

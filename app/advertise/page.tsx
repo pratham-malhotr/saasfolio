@@ -1,12 +1,6 @@
-import AdvertiseClient from "@/components/advertise/AdvertiseClient";
-import { pageMetadata } from "@/lib/seo";
+import { permanentRedirect } from "next/navigation";
 
-export const metadata = pageMetadata({
-  title: 'Advertise Your SaaS on SaaSFolio',
-  description: 'Explore SaaSFolio advertising, featured software listings and sponsorship opportunities for reaching people researching SaaS tools and discounts.',
-  path: "/advertise",
-});
-
+// Preserve old inbound links after switching to affiliate-funded publishing.
 export default function Page() {
-  return <AdvertiseClient />;
+  permanentRedirect("/affiliate-disclosure");
 }

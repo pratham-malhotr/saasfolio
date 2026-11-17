@@ -11,9 +11,11 @@ export interface ArticleSection {
   dealCalloutSlug?: string; // Slugs matching deals in deals-data.ts
 }
 
-export type ArticlePreview = Pick<DetailedArticle, "id" | "slug" | "title" | "summary" | "category" | "readTime" | "author" | "tags" | "featured">;
+export type ArticlePreview = Pick<DetailedArticle, "id" | "slug" | "title" | "summary" | "category" | "readTime" | "author" | "tags" | "featured" | "coverImage">;
 
 export interface DetailedArticle {
+  coverImage?: { src: string; alt: string };
+  providerSlugs?: string[];
   id: string;
   title: string;
   slug: string;

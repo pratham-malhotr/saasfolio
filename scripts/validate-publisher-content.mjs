@@ -26,4 +26,4 @@ const duplicates = duplicatedEditorialParagraphs(entries, getAllTools().map(tool
 for (const duplicate of duplicates) errors.push(`Repeated editorial paragraph across ${duplicate.slugs.join(", ")}`);
 assert.deepEqual(errors, [], "Resolve incomplete, placeholder, unsourced or duplicated editorial content before release");
 console.log(`Publisher source validation passed: ${Object.keys(BRAND_DISCOUNT_GUIDES).length} brand guides, ${Object.keys(COMPARISON_GUIDES).length} original comparisons, ${Object.keys(EDITORIAL_TOOL_NOTES).length} documented profiles and ${DETAILED_ARTICLES.length} articles; no duplicated substantive editorial paragraphs.`);
-console.log("These publication checks do not predict or guarantee AdSense approval; original value still requires editorial judgment.");
+console.log("These checks validate publication inputs; original value and search performance still require editorial judgment.");

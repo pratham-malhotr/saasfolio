@@ -1,0 +1,48 @@
+{
+  "tool": "built-in image_gen",
+  "createdAt": "2026-11-17",
+  "briefs": [
+    [
+      "vps-comparison",
+      "Use case: stylized-concept. Asset type: wide editorial website article cover, landscape 1536x1024. Create a sophisticated cinematic 3D still life of two distinct dark graphite server towers on separate stone plinths, connected by fine luminous lime green data paths, precise brushed metal textures, black background with subtle volumetric haze, restrained violet accent on one tower. SaaSFolio hosting research visual direction: premium technology editorial, sculptural, calm and architectural. No text, letters, brand logos, UI, charts, watermarks, or fabricated benchmarks. This is conceptual illustration, not a real provider data center."
+    ],
+    [
+      "publisher-workflow",
+      "Use case: illustration-story. Asset type: wide editorial article cover, landscape 1536x1024. A beautifully art-directed isometric miniature publisher's workspace: a charcoal laptop with abstract blank page blocks, organized printed page cards, a small dark server cube and a plant, thin lime green lines connecting the content to the server. Rich tactile paper and anodized metal, dark navy almost black backdrop, soft warm task lighting, restrained violet highlights. Premium magazine illustration for SaaSFolio about a solo publisher operating a website. No readable text, logos, people, numbers, watermark, or interface claims."
+    ],
+    [
+      "hosting-migration",
+      "Use case: stylized-concept. Asset type: wide landscape editorial article cover 1536x1024. Two graphite architectural server islands connected by an elegant translucent bridge; small luminous lime green cubes traveling safely across it, a separate violet backup vault beside the destination, black-blue background, subtle reflected light, museum-quality 3D render, meticulous materials and dramatic but restrained composition. Conceptual illustration for a website migration and recovery guide at SaaSFolio. No text, logos, numbers, watermarks or pseudo dashboard."
+    ],
+    [
+      "hosting-costs",
+      "Use case: stylized-concept. Asset type: landscape editorial article cover 1536x1024. A sculptural transparent glass calendar-like stepped grid beside a dark miniature server, a few lime-green and soft violet translucent tokens arranged across its steps to suggest introductory cost versus future renewal. Deep charcoal background, architectural studio lighting, tactile graphite and frosted glass, luxurious editorial 3D illustration for SaaSFolio hosting cost guides. Pure visual metaphor. No text, digits, currency symbols, logos, watermarks, charts with fabricated data or UI."
+    ],
+    [
+      "application-deployment",
+      "Use case: stylized-concept. Asset type: wide editorial article cover, landscape 1536x1024. A meticulous cinematic 3D still life of three charcoal modular application blocks suspended above a dark graphite server foundation, one slim luminous lime deployment path descending through the blocks, small violet glass connectors. Architectural studio lighting, tactile brushed aluminum, deep black-blue background. Premium technology editorial for SaaSFolio about app deployment platforms. Wide clean composition, beautiful restrained materials. No text, digits, logos, watermark, real UI, fake metrics or fabricated screenshots. Conceptual illustration only."
+    ],
+    [
+      "database-recovery",
+      "Use case: stylized-concept. Asset type: landscape editorial cover 1536x1024. A graphite cylindrical database sculpture with layered metal disks beside a separate frosted violet glass backup vault, a precise luminous lime green data bridge connecting them. Distinct physical separation, serene dark technology editorial still life, premium materials, subtle fog, deliberate negative space, tactile stone plinth. SaaSFolio visual palette charcoal, lime and restrained violet. No letters, numbers, logos, watermark, diagrams with claims, or interface. Conceptual art for database placement and recovery articles."
+    ],
+    [
+      "wordpress-store",
+      "Use case: illustration-story. Asset type: landscape editorial cover 1536x1024. A premium isometric miniature online shop built from charcoal website page cards and small matte parcels, two lime green routes connecting a storefront card to a dark server cube, a soft violet translucent checkout card. Sophisticated magazine illustration rendered in 3D, subtle warm light on graphite and paper textures, almost-black navy backdrop, calm precise composition. SaaSFolio articles about WordPress stores, freelancers and hosting work. No text, letters, currency, numbers, brand logos, watermark, people, fake dashboards or invented performance charts."
+    ],
+    [
+      "hosting-network",
+      "Use case: stylized-concept. Asset type: landscape editorial article cover 1536x1024. Sculptural dark network with three miniature graphite server towers on a low obsidian circular stage, connected by elegant lime green fiber-like lines carrying a few frosted glass data cubes, violet rim lighting, cinematic high-end 3D editorial render. Visual metaphor for bandwidth, queues and multiple hosted websites, not a literal diagram. Carefully balanced composition, premium metal textures, deep charcoal background. No text, numbers, logos, watermark, or fabricated network map."
+    ]
+  ],
+  "assets": {
+    "vps-comparison": "public/images/hosting/vps-comparison.webp",
+    "publisher-workflow": "public/images/hosting/publisher-workflow.webp",
+    "hosting-migration": "public/images/hosting/hosting-migration.webp",
+    "hosting-costs": "public/images/hosting/hosting-costs.webp",
+    "application-deployment": "public/images/hosting/application-deployment.webp",
+    "database-recovery": "public/images/hosting/database-recovery.webp",
+    "wordpress-store": "public/images/hosting/wordpress-store.webp",
+    "hosting-network": "public/images/hosting/hosting-network.webp"
+  }
+}

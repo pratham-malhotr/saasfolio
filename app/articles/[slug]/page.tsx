@@ -8,6 +8,7 @@ import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { ArticleDetailClient } from "@/components/articles/ArticleDetailClient";
 import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
 import { getPublishedOffers } from "@/lib/published-catalog";
+import { HostingArticleActions } from "@/components/hosting/HostingArticleActions";
 
 interface PageProps {
   params: Promise<{
@@ -68,7 +69,9 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         citation: article.sources?.map(source => source.url),
         publisher: { "@id": organizationId },
         mainEntityOfPage: { "@id": absoluteUrl(`${path}#webpage`) },
-        image: absoluteUrl(`${path}/opengraph-image`),
+        image: article.coverImage ? { "@type": "ImageObject", url: absoluteUrl(article.coverImage.src), width: 1440, height: 810, caption: article.coverImage.alt } : absoluteUrl(`${path}/opengraph-image`),
+        wordCount: article.sections.reduce((total, section) => total + section.content.split(/\s+/).length, 0),
+        about: article.tags.map(name => ({ "@type": "Thing", name })),
         articleSection: article.category,
         keywords: article.tags,
         inLanguage: "en",
@@ -80,7 +83,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <ArticleDetailClient article={article} relatedArticles={relatedArticles} sectionDeals={sectionDeals} savingsLinks={<SavingsCollectionLinks heading="Find current offers for this buying decision" />} />
+      <ArticleDetailClient article={article} relatedArticles={relatedArticles} sectionDeals={sectionDeals} hostingActions={article.providerSlugs ? <HostingArticleActions slugs={article.providerSlugs} /> : undefined} savingsLinks={article.providerSlugs ? undefined : <SavingsCollectionLinks heading="Find current offers for this buying decision" />} />
     </>
   );
 }

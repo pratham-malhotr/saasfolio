@@ -209,6 +209,7 @@ test("outbound redirects for deleted known codes use current provider pricing an
   const route = loadTs("app/go/[id]/route.ts", {
     "@/lib/data/deals-data": catalog,
     "@/lib/data/tools-data": { getToolBySlug },
+    "@/lib/server/hosting-affiliates": { getHostingAffiliateUrl: () => undefined },
     "@/lib/data/affiliate-links": { getCustomAffiliateUrl: () => "https://example.com/?ref=saasfolio" },
     "@/lib/offer-links": { publicHttpsUrl: url => url?.startsWith("https://") ? url : undefined },
   });

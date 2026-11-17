@@ -117,6 +117,7 @@ test("server redirects retain campaign queries, expire safely and reject unavail
   const { GET } = loadTs("app/go/[id]/route.ts", {
     "@/lib/data/deals-data": { getDealBySlug: id => [coupon.slug, coupon.id, "old-code"].includes(id) ? coupon : undefined, getHistoricOfferToolSlug: id => ["expired-code", "old-code"].includes(id) ? "example" : undefined },
     "@/lib/data/tools-data": { getToolBySlug: slug => slug === "example" ? available : slug === "gone" ? unavailable : undefined },
+    "@/lib/server/hosting-affiliates": { getHostingAffiliateUrl: () => undefined },
     "@/lib/data/affiliate-links": { getCustomAffiliateUrl: () => "https://example.com/?ref=saasfolio" },
     "@/lib/offer-links": { publicHttpsUrl },
   });
@@ -177,6 +178,7 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
     "@/lib/data/deals-data": { getAllDeals: () => [] },
     "@/lib/data/offer-snapshot.json": { offers: [] },
     "@/lib/data/brand-discount-guides": { BRAND_DISCOUNT_GUIDES: guides },
+    "@/lib/brand-purchase-guidance": loadTs("lib/brand-purchase-guidance.ts"),
     "@/lib/data/brand-purchase-checks": loadTs("lib/data/brand-purchase-checks.ts", { "@/lib/data/expansion-discount-guides": expansion, "@/lib/data/discount-brand-expansion": { NEW_DISCOUNT_PURCHASE_CHECKS: {} } }),
     "@/lib/seo": loadTs("lib/seo.ts"),
     "@/lib/data/brand-discount-aliases.mjs": { DISCOUNT_BRAND_ALIASES: {} },
@@ -198,16 +200,18 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
   assert.doesNotMatch(catalog.brandSavingsSummary(tool), /20%/);
   assert.ok(catalog.getBrandDiscountFaqs(tool, []).every(faq => !/20%/.test(faq.answer)));
   assert.doesNotMatch(catalog.brandDiscountAnswer(tool), /20%/);
-  assert.equal(catalog.getBrandDiscountData(tool).purchaseChecks, undefined);
+  assert.equal(catalog.getBrandDiscountData(tool).purchaseChecks.eligibility.length, 3);
+  assert.doesNotMatch(JSON.stringify(catalog.getBrandDiscountData(tool).purchaseChecks), /20%|Lite|Pro/, "Expired plan claims become evaluation questions");
   assert.equal(catalog.getBrandDiscountData(tool).indexable, true);
   assert.doesNotMatch(catalog.brandBestDiscountAnswer(addedBrand), /yearly quote/);
   assert.ok(catalog.getBrandDiscountFaqs(analyticsBrand, []).every(faq => !/35%/.test(faq.answer)), "Expired source amounts must also leave editorial FAQs");
   assert.doesNotMatch(catalog.brandDiscountDescription(contentBrand, []), /3-day/, "Expired trial terms must leave search descriptions");
-  assert.equal(catalog.getBrandDiscountData(addedBrand).purchaseChecks, undefined);
+  assert.equal(catalog.getBrandDiscountData(addedBrand).purchaseChecks.troubleshooting.length, 2);
   assert.equal(catalog.getIndexableDiscountBrands()[0].slug, "beehiiv");
   // Future-dated observations must never appear as reviewed savings.
   clock.now = Math.min(...reviewDates) - 86400000;
   assert.deepEqual(catalog.getBrandDiscountData(tool).savingsOptions, []);
-  assert.equal(catalog.getBrandDiscountData(tool).purchaseChecks, undefined);
+  assert.equal(catalog.getBrandDiscountData(tool).purchaseChecks.eligibility.length, 3);
+  assert.doesNotMatch(JSON.stringify(catalog.getBrandDiscountData(tool).purchaseChecks), /20%|Lite|Pro/, "Expired plan claims become evaluation questions");
   assert.doesNotMatch(catalog.brandBestDiscountAnswer(addedBrand), /yearly quote/);
 });

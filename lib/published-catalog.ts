@@ -7,6 +7,7 @@ import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import type { PublicSearchCatalog } from "@/lib/search-catalog-types";
 import { editorialGuideIssues } from "@/lib/editorial-quality.mjs";
 import type { DetailedTool, SaaSDeal } from "@/lib/types";
+import { MANAGED_BRANDS } from "@/lib/data/managed-content";
 
 // Publication is an editorial decision, independent of word count, commissions
 // and the existence of a generated record or an automatically fetched offer.
@@ -14,7 +15,7 @@ export function hasPublishedToolProfile(slug: string): boolean {
   const tool = getToolBySlug(slug);
   if (!tool || tool.providerStatus === "unavailable") return false;
   const guide = BRAND_DISCOUNT_GUIDES[tool.slug];
-  return Boolean(EDITORIAL_TOOL_NOTES[tool.slug] || guide && editorialGuideIssues(guide).length === 0);
+  return Boolean(MANAGED_BRANDS.some(brand => brand.slug === tool.slug && brand.providerStatus !== "unavailable") || EDITORIAL_TOOL_NOTES[tool.slug] || guide && editorialGuideIssues(guide).length === 0);
 }
 
 export function getPublishedTool(slug: string): DetailedTool | undefined {

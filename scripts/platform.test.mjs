@@ -243,7 +243,7 @@ test("invalid, cross-origin, oversized, malformed and honeypot forms do not writ
   for (const [data, options, status] of [
     [{ ...contact, email: "invalid" }, {}, 400],
     [contact, { origin: "https://attacker.example" }, 403],
-    [contact, { raw: "x".repeat(24001) }, 413],
+    [contact, { raw: "x".repeat(64001) }, 413],
     [contact, { raw: "{" }, 400],
     [{ ...contact, companyWebsite: "spam" }, {}, 400],
     [{ ...contact, kind: "unknown" }, {}, 400],
@@ -356,7 +356,7 @@ test("suppressed newsletter addresses do not receive a new confirmation message"
 test("readiness requires live dependency probes and the current schema, and caches briefly", async () => {
   const original = globalThis.fetch;
   try {
-    for (const [schemaVersion, expected] of [[3, 200], [2, 503]]) {
+    for (const [schemaVersion, expected] of [[4, 200], [3, 503]]) {
       const app = platform(); let requests = 0;
       globalThis.fetch = async url => { requests++; return new Response(JSON.stringify(String(url).includes("platform_readiness") ? { ready: true, schemaVersion } : {}), { status: 200 }); };
       const ready = app.load("app/api/ready/route.ts");
@@ -404,4 +404,115 @@ test("submitted websites reject private addresses, credentials and local-name by
   const { website } = platform().load("lib/server/http.ts");
   for (const url of ["https://127.0.0.1", "https://[::ffff:127.0.0.1]", "https://admin:secret@example.com", "https://example.internal.", "https://x.localhost", "https://host.home.arpa"]) assert.throws(() => website({ url }, "url"));
   assert.equal(website({ url: "https://example.com./pricing?coupon=SAVE" }, "url"), "https://example.com/pricing?coupon=SAVE");
+});
+
+const brandSubmission = {
+  kind: "submission", submissionType: "brand", toolName: "Example Studio",
+  websiteUrl: "https://example.com", pricingUrl: "https://example.com/pricing",
+  tagline: "A collaborative publishing workspace for small teams planning and reviewing their next website.",
+  differentiator: "Example Studio helps a small publishing team collect website ideas, assign a reviewer and keep a record of launch decisions. Teams can use a shared project to prepare content and export their work. It requires an internet connection and does not replace the team's hosting provider.",
+  categorySlug: "productivity", pricingModel: "Freemium",
+  keyFeatures: ["Shared editorial planning", "Project review assignments", "Exportable launch records"],
+  contactName: "Example Founder", founderEmail: "founder@example.com", relationship: "Founder / owner", consent: true,
+};
+
+test("brand submission needs no account and persists an editorial intake, never a publication", async () => {
+  const app = platform();
+  const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", {
+    ...brandSubmission, verified: true, reviewStatus: "published", rating: 5,
+  }));
+  assert.equal(response.status, 201);
+  assert.ok((await response.json()).id);
+  assert.equal(app.writes.length, 1);
+  const saved = app.writes[0];
+  assert.equal(saved.table, "inquiries");
+  assert.equal(saved.value.email, "founder@example.com");
+  assert.equal(saved.value.payload.submissionType, "brand");
+  assert.equal(saved.value.payload.reviewStatus, "pending");
+  assert.equal(saved.value.payload.category, "Productivity & Knowledge Hubs");
+  assert.deepEqual(saved.value.payload.keyFeatures, brandSubmission.keyFeatures);
+  assert.equal(saved.value.payload.verified, undefined);
+  assert.equal(saved.value.payload.rating, undefined);
+});
+
+test("brand intake keeps the supplied contact separate from an unrelated signed-in account", async () => {
+  const app = platform({ user: testUser });
+  assert.equal((await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", brandSubmission))).status, 201);
+  assert.equal(app.writes[0].value.email, brandSubmission.founderEmail);
+});
+
+test("brand intake rejects missing consent, unsafe links and incomplete or fabricated product fields", async () => {
+  for (const fields of [
+    { consent: false }, { consent: "true" }, { categorySlug: "made-up" }, { pricingModel: "Unlimited" },
+    { relationship: "Verified founder" }, { founderEmail: "invalid" }, { contactName: "" },
+    { websiteUrl: "https://127.0.0.1" }, { pricingUrl: "javascript:alert(1)" },
+    { tagline: "Too short" }, { differentiator: "Not enough context" },
+    { keyFeatures: ["One feature"] }, { keyFeatures: ["Same feature", "same feature", "Another feature"] },
+    { keyFeatures: ["Short", "Valid feature", { evil: "object" }] },
+  ]) {
+    const app = platform();
+    const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...brandSubmission, ...fields }));
+    assert.equal(response.status, 400, JSON.stringify(fields));
+    assert.equal(app.writes.length, 0);
+  }
+});
+
+test("brand intake reports spam, rate-limit and persistence failures without false success", async () => {
+  for (const [options, fields, status] of [
+    [{}, { companyWebsite: "spam" }, 400], [{ limited: true }, {}, 429],
+    [{ limitFailure: true }, {}, 503], [{ writeFailure: true }, {}, 503],
+  ]) {
+    const app = platform(options);
+    const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...brandSubmission, ...fields }));
+    assert.equal(response.status, status);
+    assert.equal((await response.json()).id, undefined);
+  }
+});
+
+test("preparing a brand draft excludes personal data and leaves the editorial review date blank", () => {
+  const { brandDraftFromSubmission } = platform().load("lib/brand-submission.ts");
+  const draft = brandDraftFromSubmission(brandSubmission);
+  assert.equal(draft.slug, "example-studio");
+  assert.equal(draft.payload.description, brandSubmission.tagline);
+  assert.equal(draft.payload.longDescription, brandSubmission.differentiator);
+  assert.equal(draft.payload.reviewedAt, "");
+  assert.equal(draft.payload.founderEmail, undefined);
+  assert.equal(draft.payload.contactName, undefined);
+});
+
+test("brand request retries use one private RPC receipt and a stable normalized fingerprint", async () => {
+  const id = "92aa27bf-1b80-4de7-a7dc-6fc50c3af820";
+  const app = platform({ rpc: { save_brand_submission: { data: id, error: null } } });
+  const route = app.load("app/api/inquiries/route.ts");
+  const payload = { ...brandSubmission, submissionKey: "6d69cf02-f8c1-4b43-a2ad-1322f266499c" };
+  for (let i = 0; i < 2; i++) {
+    const response = await route.POST(request("/api/inquiries", payload));
+    assert.equal(response.status, 201);
+    assert.equal((await response.json()).id, id);
+  }
+  const writes = app.rpcCalls.filter(call => call.name === "save_brand_submission");
+  assert.equal(writes.length, 2);
+  assert.equal(writes[0].args.request_fingerprint, writes[1].args.request_fingerprint);
+  assert.equal(writes[0].args.request_email, brandSubmission.founderEmail);
+  assert.equal(writes[0].args.request_payload.reviewStatus, "pending");
+  assert.equal(app.writes.length, 0, "The keyed route does not also insert a second inquiry");
+});
+test("keyed brand intake rejects malformed keys, storage failures and conflicting reuse", async () => {
+  for (const value of ["not-a-uuid", "00000000-0000-0000-0000-000000000000", ""]) {
+    const app = platform();
+    assert.equal((await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...brandSubmission, submissionKey: value }))).status, 400);
+    assert.equal(app.writes.length, 0);
+  }
+  for (const [rpc, status] of [[{ data: null, error: { code: "23505" } }, 409], [{ data: null, error: { code: "PGRST202" } }, 503], [{ data: true, error: null }, 503]]) {
+    const app = platform({ rpc: { save_brand_submission: rpc } });
+    const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...brandSubmission, submissionKey: "6d69cf02-f8c1-4b43-a2ad-1322f266499c" }));
+    assert.equal(response.status, status);
+    assert.equal((await response.json()).id, undefined, "Unconfirmed persistence never produces a receipt");
+  }
+});
+test("valid multilingual brand details fit the documented form limits", async () => {
+  const app = platform();
+  const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...brandSubmission, differentiator: "界".repeat(8000) }));
+  assert.equal(response.status, 201);
+  assert.equal(app.writes[0].value.payload.differentiator.length, 8000);
 });
