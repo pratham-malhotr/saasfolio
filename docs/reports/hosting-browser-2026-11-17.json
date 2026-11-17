@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-17T08:22:25.288Z",
-  "origin": "http://127.0.0.1:3245",
-  "articleMetadataChecks": 22,
+  "generatedAt": "2026-11-17T17:46:02.718Z",
+  "origin": "http://127.0.0.1:3249",
+  "articleMetadataChecks": 36,
   "visits": [
     {
       "path": "/hosting",
@@ -10,7 +10,7 @@
       "broken": []
     },
     {
-      "path": "/articles/render-vs-railway-nodejs-side-project",
+      "path": "/articles/hostinger-vs-siteground-wordpress-renewal",
       "width": 390,
       "headings": 1,
       "broken": []
@@ -22,7 +22,7 @@
       "broken": []
     },
     {
-      "path": "/articles/render-vs-railway-nodejs-side-project",
+      "path": "/articles/hostinger-vs-siteground-wordpress-renewal",
       "width": 1434,
       "headings": 1,
       "broken": []
@@ -32,7 +32,7 @@
       "javascript": false
     },
     {
-      "path": "/articles/render-vs-railway-nodejs-side-project",
+      "path": "/articles/hostinger-vs-siteground-wordpress-renewal",
       "javascript": false
     }
   ],

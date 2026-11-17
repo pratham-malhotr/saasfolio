@@ -33,6 +33,22 @@
     [
       "hosting-network",
       "Use case: stylized-concept. Asset type: landscape editorial article cover 1536x1024. Sculptural dark network with three miniature graphite server towers on a low obsidian circular stage, connected by elegant lime green fiber-like lines carrying a few frosted glass data cubes, violet rim lighting, cinematic high-end 3D editorial render. Visual metaphor for bandwidth, queues and multiple hosted websites, not a literal diagram. Carefully balanced composition, premium metal textures, deep charcoal background. No text, numbers, logos, watermark, or fabricated network map."
+    ],
+    [
+      "cloud-location",
+      "Use case: stylized-concept. Asset type: wide editorial cover, landscape 1536x1024. Two beautifully crafted miniature graphite cloud server pavilions on separate dark stone platforms, connected by an elegant lime green fiber bridge, abstract frosted violet compass rings hovering behind them. Premium cinematic technology magazine illustration for SaaSFolio hosting location and provider comparison guides. Brushed metal textures, dark charcoal backdrop, restrained color, architectural calm. No maps with named places, flags, text, numbers, logos, charts, watermark or real provider buildings. Conceptual illustration only."
+    ],
+    [
+      "editorial-publishing",
+      "Use case: illustration-story. Asset type: wide landscape editorial cover 1536x1024. A refined dark desktop publishing still life with sculptural blank editorial page cards, a small graphite server, a folded paper newsletter and a soft violet glass membership card, connected by one thin luminous lime line. Warm task lighting, tactile paper and anodized metal, near-black navy background, premium 3D magazine style matching SaaSFolio. No text, readable letters, logos, people, watermarks, fabricated interfaces or performance claims."
+    ],
+    [
+      "page-performance",
+      "Use case: stylized-concept. Asset type: landscape editorial website article cover 1536x1024. A sculptural charcoal browser-like blank panel in front of a graphite server, two elegant data paths one direct lime green and one looping violet passing through frosted glass cache tiles. Cinematic precision, tactile brushed metal, very dark background with a restrained glow, sophisticated technical editorial art for SaaSFolio page performance and caching guides. No text, numbers, logos, fake charts, watermark, real interface or before/after speed claims. Pure conceptual visual."
+    ],
+    [
+      "hosting-reliability",
+      "Use case: stylized-concept. Asset type: landscape editorial article cover 1536x1024. A quiet architectural still life of a graphite server tower, a separate translucent violet protective vault and a small frosted glass clock-like ring without marks, connected by a precise lime green data line. Dark charcoal background, premium brushed metal, subtle shadows and studio light, sophisticated technology magazine art for SaaSFolio explaining hosting uptime versus real recovery. No text, clock digits, letters, logos, watermark, shields with badges, real dashboards or reliability statistics."
     ]
   ],
   "assets": {
@@ -43,6 +59,10 @@
     "application-deployment": "public/images/hosting/application-deployment.webp",
     "database-recovery": "public/images/hosting/database-recovery.webp",
     "wordpress-store": "public/images/hosting/wordpress-store.webp",
-    "hosting-network": "public/images/hosting/hosting-network.webp"
+    "hosting-network": "public/images/hosting/hosting-network.webp",
+    "cloud-location": "public/images/hosting/cloud-location.webp",
+    "editorial-publishing": "public/images/hosting/editorial-publishing.webp",
+    "page-performance": "public/images/hosting/page-performance.webp",
+    "hosting-reliability": "public/images/hosting/hosting-reliability.webp"
   }
 }
