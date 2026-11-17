@@ -1,0 +1,25 @@
+{
+  "fonts": [
+    {
+      "family": "space-grotesk",
+      "file": "space-grotesk-latin.woff2",
+      "bytes": 22320,
+      "sha256": "a0d054c4af557de20afd6ca59f47ab353bcaec49c63ff04b6c9d39d0f8910557",
+      "source": "Unmodified Latin variable font asset from the successful next/font/google production build on 2026-11-17."
+    },
+    {
+      "family": "inter",
+      "file": "inter-latin.woff2",
+      "bytes": 48432,
+      "sha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4",
+      "source": "Unmodified Latin variable font asset from the successful next/font/google production build on 2026-11-17."
+    },
+    {
+      "family": "jetbrains-mono",
+      "file": "jetbrains-mono-latin.woff2",
+      "bytes": 31340,
+      "sha256": "2c32b9b3ee358c119e210f6f5195f9bd34894d78a785ff2e95d60e718e400af4",
+      "source": "Unmodified Latin variable font asset from the successful next/font/google production build on 2026-11-17."
+    }
+  ]
+}
