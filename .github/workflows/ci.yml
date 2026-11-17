@@ -70,6 +70,9 @@ jobs:
           path: |
             docs/reports/publisher-content-*.json
             docs/reports/browser-publisher-content-*.json
+            docs/reports/article-seo-*.json
+            docs/reports/article-seo-*.csv
+            docs/reports/article-seo-*.md
           if-no-files-found: ignore
           retention-days: 14
   dependency-security:

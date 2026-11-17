@@ -7,6 +7,7 @@ import { openChromePage } from './lib/chrome-page.mjs';
 import { loadCatalogModule } from './lib/load-catalog.mjs';
 const origin = (process.argv[2] || 'http://127.0.0.1:3245').replace(/\/$/,'');
 const { HOSTING_ARTICLES } = loadCatalogModule('lib/data/hosting-articles.ts');
+const { HOSTING_PROVIDERS } = loadCatalogModule('lib/data/hosting-providers.ts');
 const nodes = (node, tag) => [...(node.tagName === tag ? [node] : []), ...(node.childNodes || []).flatMap(child => nodes(child, tag))];
 const attr = (node, name) => node.attrs?.find(a => a.name === name)?.value;
 const content = node => node?.value || (node?.childNodes || []).map(content).join('');
@@ -59,12 +60,12 @@ try {
  }
  await visit('/hosting');
  await until(()=>evaluate("Object.keys(document.querySelector('#finder input[type=search]')).some(k=>k.startsWith('__reactProps'))"),'finder hydration');
- assert.equal(await evaluate("document.querySelectorAll('#finder article').length"),20);
+ assert.equal(await evaluate("document.querySelectorAll('#finder article').length"),HOSTING_PROVIDERS.length);
  await setValue('#finder input[type=search]','hetzner');
  await until(()=>evaluate("document.querySelectorAll('#finder article').length===1"),'provider search');
  assert.ok(await evaluate("document.querySelector('#finder article').innerText.includes('Hetzner')"));
  await setValue('#finder input[type=search]','');
- await until(()=>evaluate("document.querySelectorAll('#finder article').length===20"),'search reset');
+ await until(()=>evaluate(`document.querySelectorAll('#finder article').length===${HOSTING_PROVIDERS.length}`),'search reset');
  await evaluate("[...document.querySelectorAll('#finder article input[type=checkbox]')].slice(0,3).forEach(el=>el.click())");
  await until(()=>evaluate("document.querySelectorAll('#shortlist thead th').length===4"),'three provider shortlist');
  await evaluate("document.querySelectorAll('#finder article input[type=checkbox]')[3].click()");
