@@ -252,5 +252,5 @@ try {
 } finally {
   for (const entry of pending.values()) clearTimeout(entry.timer);
   chrome.kill(); await new Promise(resolve => chrome.once("exit", resolve));
-  await rm(profile, { recursive: true, force: true });
+  await rm(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
 }
