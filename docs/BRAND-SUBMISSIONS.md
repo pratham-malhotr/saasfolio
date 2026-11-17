@@ -31,9 +31,9 @@ The repository has no usable production database credentials. The previous live-
 
 The homepage puts brand discovery first, with search, category shortcuts, eighteen product cards, hosting research and editorial articles. `/brands?q=...&category=...` renders the chosen results on the server and provides interactive search, category, letter and offer filters. Existing canonical profile URLs remain in place.
 
-Four documentation-based profiles were added to the published collection: Cloudflare, DigitalOcean, Render and Fly.io. There are now 140 published brand profiles, including seven hosting brands. Three new hosting articles cover Hostinger, Cloudflare Pages and DigitalOcean App Platform, with original examples, decision records, limitations and linked official sources. These are documentation reviews, not hands-on benchmarks. No ratings, audience numbers or current prices were invented.
+Four documentation-based profiles were added to the published collection: Cloudflare, DigitalOcean, Render and Fly.io. That earlier release contained 140 published brand profiles, including seven hosting brands; the November 17 release adds twelve documented profiles and a dedicated 20-provider hosting desk. Three new hosting articles cover Hostinger, Cloudflare Pages and DigitalOcean App Platform, with original examples, decision records, limitations and linked official sources. These are documentation reviews, not hands-on benchmarks. No ratings, audience numbers or current prices were invented.
 
-Individual profiles and articles retain their existing metadata and structured-data pipeline. The new articles enter the sitemap automatically. Submission forms remain `noindex`. Existing privacy, editorial and affiliate disclosures stay accessible. Google decides AdSense approval; these changes do not establish an approval outcome.
+Individual profiles and articles retain their existing metadata and structured-data pipeline. The new articles enter the sitemap automatically. Submission forms remain `noindex`. Existing privacy, editorial and affiliate disclosures stay accessible. The November 17 release switches the site to affiliate funding and removes advertising verification and sales pages. Search traffic is measured after release; it is not guaranteed by these changes.
 
 ## Verification
 
@@ -44,3 +44,17 @@ Individual profiles and articles retain their existing metadata and structured-d
 - `npm run test:browser:intake` starts its own isolated development server on port 3246 and uses the real form and API to save one synthetic record, match its receipt and confirm retention after reload. It removes its temporary store and shuts down the test server. It does not connect to Supabase or send email. Chrome must be installed or selected with `CHROME_PATH`.
 
 Run the existing SEO and publisher HTTP audits against the final production build before release. Browser reports and release-specific limits are recorded in `docs/reports/`.
+
+## November 17, 2026 intake hardening
+
+New browser submissions include a random request key. Apply `supabase/migrations/202611170001_brand_submission_receipts.sql` before deploying this release. The service-only `save_brand_submission` function stores the contact email, full validated product context, consent and pending status atomically. Identical retries return the same reference, including concurrent requests. Reusing a key for changed content returns a conflict and does not overwrite a saved submission. Existing clients without a key retain their original insert path.
+
+The private inquiries table now holds `submission_key` and `submission_fingerprint` alongside the existing product payload. Neither anonymous visitors nor ordinary signed-in accounts can read it or invoke the intake RPC. Owner/reviewer access continues through the staff workflow. Privacy redaction clears the retry metadata with the private payload. The readiness endpoint now requires schema version 4.
+
+The form can download a complete JSON draft before sending, and a saved receipt with the submitted details after success. Downloads happen only when the visitor clicks; no personal form data is automatically placed in browser storage. A draft download is explicitly labeled as not submitted. It is also a backup for long messages that email applications may truncate.
+
+The admin inbox supports brand-specific and status filters, search by brand/domain/contact/reference, refresh and JSON export of matching loaded records. Pagination and export scope are labeled so a filtered first page is not confused with the entire database. Private exports should be stored securely. Preparing public catalog copy still excludes the contact details and does not publish automatically.
+
+The inquiry body limit is 64,000 bytes so valid multilingual descriptions accepted by the form can reach validation; oversized requests remain rejected. Product field limits, unsafe-URL checks, consent, honeypot, origin checks, rate limits, staff MFA and optimistic status updates remain in effect.
+
+Validation used the real browser form/API with a temporary development store and a separate disposable PostgreSQL database. Checks covered persistence, contact fields, receipt matching, identical retries, conflicting retries, draft/receipt downloads, table/function privileges, eight concurrent PostgreSQL requests, privacy cleanup and an encrypted backup/restore. No real submissions were created or emails sent. This checkout contains no production provider credentials; production storage and actual existing submissions were not accessed or activated.

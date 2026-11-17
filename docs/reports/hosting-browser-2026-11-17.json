@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-11-17T08:22:25.288Z",
+  "origin": "http://127.0.0.1:3245",
+  "articleMetadataChecks": 22,
+  "visits": [
+    {
+      "path": "/hosting",
+      "width": 390,
+      "headings": 1,
+      "broken": []
+    },
+    {
+      "path": "/articles/render-vs-railway-nodejs-side-project",
+      "width": 390,
+      "headings": 1,
+      "broken": []
+    },
+    {
+      "path": "/hosting",
+      "width": 1434,
+      "headings": 1,
+      "broken": []
+    },
+    {
+      "path": "/articles/render-vs-railway-nodejs-side-project",
+      "width": 1434,
+      "headings": 1,
+      "broken": []
+    },
+    {
+      "path": "/hosting",
+      "javascript": false
+    },
+    {
+      "path": "/articles/render-vs-railway-nodejs-side-project",
+      "javascript": false
+    }
+  ],
+  "interactionChecks": [
+    "search",
+    "empty state",
+    "three-provider cap",
+    "shortlist retains selection",
+    "renewal math",
+    "invalid inputs"
+  ],
+  "runtimeErrors": [],
+  "failedAssets": []
+}

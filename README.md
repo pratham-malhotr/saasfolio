@@ -53,7 +53,7 @@ Database checks require PostgreSQL client/server binaries on `PATH`, or an expli
 
 GitHub Actions run application, database and dependency checks. Scheduled offer and editorial releases open reviewable PRs. Monitoring, managed exports and maintenance need the repository variables described in the operations guide; committing workflows does not activate those integrations or branch protection.
 
-Public software profiles require an original, sourced brand guide, documented editorial notes, or an approved managed brand publication in `lib/published-catalog.ts`. Importing a catalog record or fetching an offer does not publish a profile or an indexable discount guide. Keep review dates accurate and add original comparison analysis before including a pair in the sitemap. `validate:publisher` checks editorial completeness, source URLs, placeholders and repeated substantive paragraphs; editorial judgment is still required. The production checks crawl every sitemap page, check legacy references, enforce HTML and script size budgets, and exercise mobile and no-JavaScript reading. Evidence is saved under `docs/reports/publisher-content-*.json` and `docs/reports/browser-publisher-content-*.json`. These internal checks do not guarantee Google indexing or AdSense approval.
+Public software profiles require an original, sourced brand guide, documented editorial notes, or an approved managed brand publication in `lib/published-catalog.ts`. Importing a catalog record or fetching an offer does not publish a profile or an indexable discount guide. Keep review dates accurate and add original comparison analysis before including a pair in the sitemap. `validate:publisher` checks editorial completeness, source URLs, placeholders and repeated substantive paragraphs; editorial judgment is still required. The production checks crawl every sitemap page, check legacy references, enforce HTML and script size budgets, and exercise mobile and no-JavaScript reading. Evidence is saved under `docs/reports/publisher-content-*.json` and `docs/reports/browser-publisher-content-*.json`. These internal checks do not guarantee Google indexing or traffic.
 
 ## Hosting
 
@@ -67,3 +67,9 @@ Use a Node-capable host behind HTTPS. Authentication, private APIs, redirects an
 Brand owners can use `/submit` without an account. See [brand submission setup and review](docs/BRAND-SUBMISSIONS.md) for the database connection, editorial intake, publication workflow and isolated browser test.
 
 See [the individual-brand SEO review](docs/BRAND-SEO-2026-11-14.md) for source updates, competitor observations and release validation.
+
+## Hosting research desk
+
+`/hosting` brings together 20 provider profiles, workload filters, a three-provider shortlist, a renewal cost calculator and 22 original long-tail hosting guides. Twelve additional hosting profiles are published through documented editorial notes. Eight original AI-generated cover illustrations are stored as optimized WebP assets in `public/images/hosting/`; prompts and source observations are in `docs/research/hosting/`. Hosting articles have canonical metadata, article-specific Open Graph images, Article structured data, visible references and relevant provider links.
+
+The site is affiliate funded. Display ads and AdSense ownership metadata are disabled, `/ads.txt` authorizes no sellers and the old `/advertise` route redirects to the affiliate disclosure. Provider prices and offer observations remain separate from editorial recommendations. Run `node --test scripts/hosting.test.mjs` for the calculator and filtering edge cases, and `node scripts/browser-hosting.mjs <local-origin>` for browser interaction checks.
