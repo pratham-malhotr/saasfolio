@@ -104,6 +104,23 @@ const guides: Guide[] = [
   },
 ];
 
+const additionalArticleArt: Record<string, [string, string]> = {
+  "build-a-saas-budget-before-buying": ["hosting-costs", "Conceptual server and calendar illustrating costs across a subscription period"],
+  "compare-saas-pricing-limits": ["cloud-location", "Conceptual service configurations on separate platforms connected by a data path"],
+  "saas-coupon-renewal-price-checklist": ["hosting-costs", "Conceptual billing timeline illustrating initial and continuing costs"],
+  "evaluate-ai-software-free-trials": ["application-deployment", "Conceptual application components prepared for a controlled evaluation"],
+  "compare-saas-team-seat-costs": ["hosting-costs", "Conceptual stepped timeline for comparing a recurring software budget"],
+  "lifetime-software-deal-checklist": ["hosting-reliability", "Conceptual software service, independent data vault and time indicator"],
+  "compare-saas-deal-membership-fees": ["hosting-costs", "Conceptual arrangement of service costs across a billing timeline"],
+  "verify-software-privacy-claims": ["hosting-reliability", "Conceptual service separated from a protected data vault"],
+  "find-and-use-saas-coupon-codes": ["hosting-costs", "Conceptual billing timeline for evaluating a software offer"],
+  "startup-software-credits-and-renewal-costs": ["hosting-costs", "Conceptual timeline for comparing introductory credits and continuing costs"],
+  "student-software-discounts-after-graduation": ["editorial-publishing", "Illustrative publishing desk with blank pages, a service and a membership card"],
+  "hostinger-hosting-review": ["vps-comparison", "Conceptual server configurations for evaluating a hosting product"],
+  "cloudflare-pages-review": ["hosting-network", "Conceptual network of application and content-delivery paths"],
+  "digitalocean-app-platform-review": ["application-deployment", "Conceptual application deployment with separate data and runtime components"],
+};
+
 export const EDITORIAL_ARTICLES: DetailedArticle[] = [...guides.map((guide, index): DetailedArticle => ({
   id: `art-${index + 1}`, slug: guide.slug, title: guide.title, subtitle: guide.summary, summary: guide.summary,
   category: index === 1 || index === 4 || index === 6 ? "Comparisons" : "Guides & Stacks",
@@ -116,8 +133,10 @@ export const EDITORIAL_ARTICLES: DetailedArticle[] = [...guides.map((guide, inde
 })), ...SAVINGS_BUYING_GUIDES, ...HOSTING_REVIEWS, ...HOSTING_ARTICLES].map(article => {
   const workbook = getArticleWorkbook(article.slug);
   const sections = [...article.sections, ...workbook];
+  const art = additionalArticleArt[article.slug];
   return {
     ...article,
+    coverImage: article.coverImage || (art ? { src: `/images/hosting/${art[0]}.webp`, alt: art[1] } : undefined),
     sections,
     updatedAt: workbook.length && article.updatedAt < "2026-11-05" ? "2026-11-05" : article.updatedAt,
     readTime: `${Math.max(3, Math.ceil(sections.reduce((total, section) => total + section.content.split(/\s+/).length, 0) / 180))} min read`,

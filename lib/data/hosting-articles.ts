@@ -1,6 +1,7 @@
 import type { DetailedArticle } from "./articles-data";
 import { HOSTING_WORKBOOKS } from "./hosting-workbooks";
 import { HOSTING_RESEARCH_EXPANSION } from "./hosting-research-expansion";
+import { HOSTING_DECISION_GUIDES } from "./hosting-decision-guides";
 
 type HostingGuide = {
   slug: string; title: string; summary: string; audience: string; image: string;
@@ -215,6 +216,17 @@ const relatedExpansion: Record<string, string[]> = {
   "website-migration-seo-checklist": ["vps-snapshots-vs-wordpress-backups", "cloudflare-pages-vs-netlify-affiliate-blog"],
   "solo-publisher-wordpress-operating-plan": ["wordpress-hosting-email-vs-transactional-email", "vps-snapshots-vs-wordpress-backups"],
 };
-export const HOSTING_ARTICLES: DetailedArticle[] = [...HOSTING_RESEARCH_EXPANSION, ...FOUNDATION_HOSTING_ARTICLES.map(article => ({
+const decisionReadingPaths: Record<string, string[]> = {
+  "hetzner-vs-digitalocean-small-business-vps": ["hetzner-vs-ovhcloud-european-vps", "upcloud-vs-digitalocean-vps-application"],
+  "vps-hosting-india-region-latency": ["scaleway-vs-hetzner-european-saas"],
+  "hostinger-vps-vs-managed-wordpress-solo-blogger": ["hostinger-vs-siteground-wordpress-renewal", "ghost-self-hosted-vs-managed-publishing"],
+  "render-vs-railway-nodejs-side-project": ["flyio-vs-render-stateful-docker-app", "railway-vs-digitalocean-app-platform-storage"],
+  "cloudflare-pages-vs-netlify-affiliate-blog": ["cloudflare-workers-vs-vps-upload-api", "staging-noindex-production-launch-checklist"],
+  "woocommerce-hosting-php-workers-vs-ram": ["wordpress-cache-vs-hosting-upgrade-ttfb"],
+  "vps-snapshots-vs-wordpress-backups": ["object-storage-vs-vps-disk-uploads", "hosting-sla-vs-application-uptime-recovery"],
+  "website-migration-seo-checklist": ["change-web-host-without-domain-transfer", "staging-noindex-production-launch-checklist"],
+  "hosting-introductory-discount-vs-renewal-cost": ["annual-vps-vs-hourly-cloud-staging"],
+};
+export const HOSTING_ARTICLES: DetailedArticle[] = [...HOSTING_DECISION_GUIDES, ...HOSTING_RESEARCH_EXPANSION, ...FOUNDATION_HOSTING_ARTICLES.map(article => ({
   ...article, relatedArticlesSlugs: [...new Set([...(relatedExpansion[article.slug] || []), ...article.relatedArticlesSlugs])].slice(0, 5),
-}))];
+}))].map(article => ({ ...article, relatedArticlesSlugs: [...new Set([...(decisionReadingPaths[article.slug] || []), ...article.relatedArticlesSlugs])].slice(0, 5) }));
