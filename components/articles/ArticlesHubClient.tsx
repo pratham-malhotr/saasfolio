@@ -2,11 +2,13 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, BookOpen, Search, Clock, ArrowRight } from "lucide-react";
 import type { ArticlePreview } from "@/lib/data/articles-data";
 
 const CATEGORIES = [
   "All",
+  "Hosting",
   "Guides & Stacks",
   "Comparisons",
   "Case Studies",
@@ -19,7 +21,7 @@ export function ArticlesHubClient({ articles, savingsLinks }: { articles: Articl
 
   const filteredArticles = articles.filter((art) => {
     const matchesCategory =
-      selectedCategory === "All" || art.category === selectedCategory;
+      selectedCategory === "All" || (selectedCategory === "Hosting" ? art.tags.includes("Hosting") : art.category === selectedCategory);
     const matchesQuery =
       art.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       art.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -102,6 +104,7 @@ export function ArticlesHubClient({ articles, savingsLinks }: { articles: Articl
           >
             <div className="absolute top-0 right-0 w-80 h-80 bg-[#C6FF3D]/10 rounded-full blur-3xl pointer-events-none" />
 
+            {featuredLead.coverImage && <Image src={featuredLead.coverImage.src} alt="" width={1440} height={810} sizes="(max-width: 1280px) 100vw, 1200px" className="relative mb-8 aspect-[3/1] w-full rounded-xl object-cover" />}
             <div className="relative z-10 max-w-3xl">
               <div className="flex items-center gap-3 mb-4 font-mono text-xs">
                 <span className="px-3 py-1 rounded-full bg-[#C6FF3D] text-black font-bold uppercase tracking-wider">
@@ -162,6 +165,7 @@ export function ArticlesHubClient({ articles, savingsLinks }: { articles: Articl
             className="group p-6 sm:p-8 rounded-2xl bg-[#09090C] border border-white/10 hover:border-[#C6FF3D]/50 hover:bg-[#0D0D10] transition-all flex flex-col justify-between"
           >
             <div>
+              {article.coverImage && <Image src={article.coverImage.src} alt="" width={1440} height={810} sizes="(max-width: 768px) 100vw, 33vw" className="mb-5 aspect-video w-full rounded-xl object-cover" />}
               <div className="flex items-center gap-3 mb-4 font-mono text-xs text-zinc-500">
                 <span className="text-[#C6FF3D] font-bold">{article.category}</span>
                 <span>✦</span>

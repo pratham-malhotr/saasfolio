@@ -34,6 +34,8 @@ export function Footer() {
               Discover SaaS
             </div>
             <ul className="space-y-2.5 text-sm">
+              <li><Link prefetch={false} href="/hosting" className="hover:text-[#C6FF3D] transition-colors">Hosting Research & Provider Finder</Link></li>
+              <li><Link prefetch={false} href="/hosting#cost-calculator" className="hover:text-[#C6FF3D] transition-colors">Hosting Renewal Cost Calculator</Link></li>
               <li><Link prefetch={false} href="/discounts" className="hover:text-[#C6FF3D] transition-colors">Discounts by Brand</Link></li>
               <li><Link prefetch={false} href="/brands" className="hover:text-[#C6FF3D] transition-colors">All Brands A–Z</Link></li>
               {SAVINGS_COLLECTION_LINKS.map(link => <li key={link.href}><Link prefetch={false} href={link.href} className="hover:text-[#C6FF3D] transition-colors">{link.label}</Link></li>)}
@@ -95,8 +97,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/advertise" className="hover:text-[#C6FF3D] transition-colors">
-                  Partner / Advertise
+                <Link prefetch={false} href="/affiliate-disclosure" className="hover:text-[#C6FF3D] transition-colors">
+                  Affiliate Funding
                 </Link>
               </li>
               <li>

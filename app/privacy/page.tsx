@@ -46,7 +46,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p>
               SaaSFolio (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) operates the software-discount directory at{" "}
-              <strong className="text-white">saasfolio.tech</strong>. This policy explains account and form data, browser storage, affiliate links and advertising services. The providers named below may process information under their own policies when their services are enabled.
+              <strong className="text-white">saasfolio.tech</strong>. This policy explains account and form data, browser storage, optional analytics and affiliate links. The providers named below may process information under their own policies when their services are enabled.
             </p>
           </section>
 
@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
                 <strong className="text-zinc-200">Account Credentials:</strong> Account signup uses Supabase Auth to process your email address and password. When enabled, Google or Apple sign-in provides identity details such as your provider-confirmed email and available profile name; Apple may provide a private relay address. Your Google or Apple password is entered with that provider. Profile settings contain your display name and optional biography. Supabase stores salted password hashes for email/password accounts.
               </li>
               <li>
-                <strong className="text-zinc-200">Messages and Submissions:</strong> Contact, advertising and software-submission forms collect the details you enter when the online submission service is configured. Community and article drafts, comments and session feedback are browser-local previews and are not shared publicly by the current implementation.
+                <strong className="text-zinc-200">Messages and Submissions:</strong> Contact and software-submission forms collect the details you enter when the online submission service is configured. Community and article drafts, comments and session feedback are browser-local previews and are not shared publicly by the current implementation.
               </li>
               <li>
                 <strong className="text-zinc-200">Newsletter Subscription:</strong> If you opt-in to the Tuesday SaaS Brief, we securely store your email address for newsletter dispatch.
@@ -81,11 +81,10 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="advertising" className="scroll-mt-28 space-y-4">
-            <h2 className="font-display font-bold text-xl text-white">Google advertising and your choices</h2>
-            <p>We have applied to Google AdSense. Our publisher verification tag identifies this site to Google. This release uses verification only and does not load Google ad-serving code. Advertising can be introduced after account approval and consent configuration. A verification tag is not an advertisement or a promise that the site has been approved.</p>
-            <p>When Google advertising is enabled, third-party vendors, including Google, may place or read cookies and use web beacons, device information and IP addresses to serve and measure ads. Google’s advertising cookies can enable Google and its partners to personalize ads using visits to this site and other sites. Contextual or non-personalized advertising can also involve data processing for security and measurement.</p>
-            <p>You can manage Google’s personalized advertising choices through <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">My Ad Center</a>. Read <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">how Google uses information from partner sites</a> and <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">Google’s advertising technologies policy</a>. Some other advertising vendors offer choices through <a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">the Digital Advertising Alliance</a>.</p>
-            <p>Where required, advertising must use a Google-certified consent management platform. Its message provides choices about consent, vendors and changing preferences. Browser settings can remove or block cookies, but do not replace that consent process. Essential account and security functions may use storage separately from advertising choices.</p>
+            <h2 className="font-display font-bold text-xl text-white">Affiliate funding and external links</h2>
+            <p>SaaSFolio is affiliate funded and does not serve display advertising. We do not load Google AdSense scripts or publish an AdSense verification tag. Some provider links may earn a referral commission when a reader makes an eligible purchase.</p>
+            <p>When you follow a provider link, the destination may use referral parameters, cookies or other attribution technologies under its own privacy policy. Review that policy and the provider’s choices before sharing information or purchasing. Optional analytics on SaaSFolio remain controlled separately through Privacy preferences.</p>
+            <p>Read our <Link href="/affiliate-disclosure" className="text-[#C6FF3D] underline">affiliate disclosure</Link> for how recommendations and provider links are funded.</p>
           </section>
 
           <section>

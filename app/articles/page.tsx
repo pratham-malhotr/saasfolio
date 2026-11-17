@@ -13,6 +13,6 @@ export const metadata = pageMetadata({
 });
 
 export default function ArticlesPage() {
-  const articles = DETAILED_ARTICLES.map(({ id, slug, title, summary, category, readTime, author, tags, featured }) => ({ id, slug, title, summary, category, readTime, author, tags, featured }));
+  const articles = [...DETAILED_ARTICLES].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).map(({ id, slug, title, summary, category, readTime, author, tags, featured, coverImage }) => ({ id, slug, title, summary, category, readTime, author, tags, featured, coverImage }));
   return <><JsonLd data={collectionSchema('SaaS Buying Guides', 'Original buying guides about coupon terms, pricing limits, subscription budgets and renewal costs.', "/articles", DETAILED_ARTICLES.map((article) => ({ name: article.title, path: `/articles/${article.slug}` })))} /><ArticlesHubClient articles={articles} savingsLinks={<SavingsCollectionLinks heading="Put the buying guide into practice" />} /></>;
 }

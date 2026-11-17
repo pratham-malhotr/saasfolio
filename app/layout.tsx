@@ -9,7 +9,6 @@ import { SmoothScroll } from "@/components/animations/SmoothScroll";
 import { CustomCursor } from "@/components/animations/CustomCursor";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
-import { ADSENSE_ACCOUNT } from "@/lib/advertising.mjs";
 import { getDiscountSearchEntries } from "@/lib/brand-discounts";
 import { getPublicSearchCatalog } from "@/lib/published-catalog";
 import { ConsentAnalytics } from "@/components/privacy/ConsentAnalytics";
@@ -44,7 +43,6 @@ export const metadata: Metadata = {
   alternates: undefined,
   title: { default: SITE_TITLE, template: "%s | SaaSFolio" },
   applicationName: "SaaSFolio",
-  other: { "google-adsense-account": ADSENSE_ACCOUNT },
   icons: {
     icon: [
       { url: "/brand/icon-48.png", sizes: "48x48", type: "image/png" },

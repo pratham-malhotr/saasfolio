@@ -51,11 +51,13 @@ test("program directory entries resolve to available brand guidance without requ
 
 test("category and article links form complete, distinct buying paths", () => {
   const articleSlugs = new Set(DETAILED_ARTICLES.map(article => article.slug));
-  const knownPaths = new Set(["/", "/deals", "/discounts", "/contact", "/savings-calculator", ...SAVINGS_COLLECTIONS.map(collection => `/${collection.slug}`), ...getCatalogCategories().map(category => `/deals/category/${category.slug}`), ...DETAILED_ARTICLES.map(article => `/articles/${article.slug}`), ...getIndexableDiscountBrands().map(tool => `/discounts/${tool.slug}`)]);
+  const knownPaths = new Set(["/", "/deals", "/discounts", "/contact", "/savings-calculator", "/hosting", ...SAVINGS_COLLECTIONS.map(collection => `/${collection.slug}`), ...getCatalogCategories().map(category => `/deals/category/${category.slug}`), ...DETAILED_ARTICLES.map(article => `/articles/${article.slug}`), ...getIndexableDiscountBrands().map(tool => `/discounts/${tool.slug}`)]);
   assert.deepEqual(Object.keys(CATEGORY_SEARCH_CONTENT).sort(), getCatalogCategories().map(category => category.slug).sort());
   for (const content of [...Object.values(CATEGORY_SEARCH_CONTENT), ...SAVINGS_COLLECTIONS]) for (const slug of content.articleSlugs) assert.ok(articleSlugs.has(slug), `Missing article: ${slug}`);
   for (const article of DETAILED_ARTICLES) for (const section of article.sections) for (const link of section.links || []) {
-    assert.ok(knownPaths.has(link.href), `Broken editorial route: ${link.href}`);
+    const [pathname, fragment] = link.href.split("#");
+    assert.ok(knownPaths.has(pathname), `Broken editorial route: ${link.href}`);
+    if (pathname === "/hosting" && fragment) assert.ok(["finder", "cost-calculator", "shortlist", "guides", "offers"].includes(fragment), `Unknown hosting anchor: ${fragment}`);
   }
   assert.equal(new Set(SEARCH_LANDING_TARGETS.map(target => target.path)).size, SEARCH_LANDING_TARGETS.length);
   assert.equal(new Set(SEARCH_LANDING_TARGETS.map(target => target.primaryQuery.toLowerCase())).size, SEARCH_LANDING_TARGETS.length);

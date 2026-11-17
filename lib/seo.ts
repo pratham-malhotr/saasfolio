@@ -7,7 +7,7 @@ export const SITE_URL = new URL(
   process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech"
 ).origin;
 export const SITE_NAME = "SaaSFolio";
-export const SITE_TITLE = "Software Brands, Reviews & SaaS Deals | SaaSFolio";
+export const SITE_TITLE = "Hosting Comparisons, Software Brands & Deals | SaaSFolio";
 export const SITE_DESCRIPTION =
   "Discover SaaS brands and hosting services. Read sourced reviews, compare software alternatives and find discounts before your next subscription.";
 

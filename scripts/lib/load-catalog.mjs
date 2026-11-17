@@ -15,7 +15,7 @@ export function loadCatalogModule(relativePath, overrides = {}) {
     if (file.endsWith(".json")) loaded.exports = JSON.parse(readFileSync(file, "utf8"));
     else {
       const source = ts.transpileModule(readFileSync(file, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true } }).outputText;
-      const localRequire = name => name.startsWith("@/") ? load(resolve(root, name.slice(2))) : name.startsWith(".") ? load(resolve(dirname(file), name)) : nativeRequire(name);
+      const localRequire = name => Object.hasOwn(overrides, name) ? overrides[name] : name.startsWith("@/") ? load(resolve(root, name.slice(2))) : name.startsWith(".") ? load(resolve(dirname(file), name)) : nativeRequire(name);
       new Function("require", "module", "exports", source)(localRequire, loaded, loaded.exports);
     }
     return loaded.exports;

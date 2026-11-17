@@ -255,3 +255,23 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Hosting research desk: readable without scripts, motion follows preferences. */
+.hosting-eyebrow { font-family: var(--font-mono), monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .18em; color: #c6ff3d; }
+.hosting-input { display: block; width: 100%; min-height: 44px; border: 1px solid rgb(255 255 255 / .14); border-radius: 10px; padding: 10px 12px; background: #0b0d10; color: #ededeb; font-size: 13px; outline-offset: 3px; }
+.hosting-input.pl-10 { padding-left: 40px; }
+.hosting-input:focus-visible, .hosting-hub button:focus-visible, .hosting-hub a:focus-visible { outline: 2px solid #c6ff3d; outline-offset: 4px; }
+.hosting-primary, .hosting-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; padding: 14px 20px; border-radius: 12px; font-size: 13px; font-weight: 600; transition: transform .2s, background-color .2s; }
+.hosting-primary { background: #c6ff3d; color: #080a0c; }
+.hosting-secondary { border: 1px solid rgb(255 255 255 / .2); color: #ededeb; }
+.hosting-provider-card { transition: border-color .25s, transform .25s, box-shadow .25s; }
+.hosting-orbit { pointer-events: none; position: absolute; top: -30%; right: -15%; width: 75%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(ellipse, rgb(198 255 61 / .06), transparent 65%); }
+@media (prefers-reduced-motion: no-preference) {
+  .hosting-enter { animation: hosting-arrive .7s both; }
+  .hosting-provider-card { animation: hosting-arrive .45s both; }
+  .hosting-orbit { animation: hosting-breathe 9s ease-in-out infinite alternate; }
+  .hosting-provider-card:hover { transform: translateY(-4px); border-color: rgb(198 255 61 / .35); box-shadow: 0 15px 40px rgb(0 0 0 / .2); }
+  .hosting-primary:hover, .hosting-secondary:hover { transform: translateY(-2px); }
+}
+@keyframes hosting-arrive { from { transform: translateY(12px); opacity: .65; } to { transform: translateY(0); opacity: 1; } }
+@keyframes hosting-breathe { from { transform: scale(.9); opacity: .5; } to { transform: scale(1.1); opacity: 1; } }

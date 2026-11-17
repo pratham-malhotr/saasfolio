@@ -35,7 +35,7 @@ export default function AffiliateDisclosurePage() {
 
         <h2 className="text-xl font-bold text-white pt-4">How We Fund Our Platform</h2>
         <p>
-          Some of the outbound links pointing to SaaS products and checkout pages are affiliate links. This means that if you click through and purchase a plan or lifetime license, SaaSFolio may earn a referral commission from the vendor.
+          SaaSFolio is funded through affiliate referrals and does not serve display ads. Some of the outbound links pointing to software and hosting providers are affiliate links. This means that if you click through and purchase a plan or lifetime license, SaaSFolio may earn a referral commission from the vendor.
         </p>
 
         <h2 className="text-xl font-bold text-white pt-4">What This Means For You</h2>
@@ -46,7 +46,7 @@ export default function AffiliateDisclosurePage() {
         </ul>
 
         <div className="pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-zinc-500">
-          <span>LAST UPDATED: OCTOBER 2026</span>
+          <span>LAST UPDATED: NOVEMBER 17, 2026</span>
           <span className="text-[#C6FF3D]">SOURCES & CLEAR TERMS</span>
         </div>
       </div>

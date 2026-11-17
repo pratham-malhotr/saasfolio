@@ -13431,6 +13431,54 @@
       "httpStatus": 403,
       "nextAttemptAt": "2026-10-29T18:13:25.504Z",
       "error": "HTTP 403"
+    },
+    "reviewed:hostinger-vps-introductory-offer": {
+      "toolSlug": "hostinger",
+      "url": "https://www.hostinger.com/vps-hosting",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-11-17T06:53:01.964Z",
+      "contentHash": "eed813643c43620ab877b7d8308eb60fbe9afc02aee889ba5a94f0a72922dc9e",
+      "hashBasis": "source excerpt captured through web research; not full HTML",
+      "captureMethod": "web tool official provider page",
+      "failureCount": 0,
+      "error": null
+    },
+    "reviewed:siteground-startup-first-term-offer": {
+      "toolSlug": "siteground",
+      "url": "https://www.siteground.com/web-hosting.htm",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-11-17T06:53:01.964Z",
+      "contentHash": "ebf0586e5b9f41597b0f8525a44d08a043bf785ada95cd633d9ee51cc0f9ae16",
+      "hashBasis": "source excerpt captured through web research; not full HTML",
+      "captureMethod": "web tool official provider page",
+      "failureCount": 0,
+      "error": null
+    },
+    "reviewed:cloudways-two-month-introductory-offer": {
+      "toolSlug": "cloudways",
+      "url": "https://www.cloudways.com/en/pricing.php",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-11-17T06:53:01.964Z",
+      "contentHash": "f044bb0b2cd91b712846bdf0f4ec280aed6b74e870a4ec1862f5e84ec3330653",
+      "hashBasis": "source excerpt captured through web research; not full HTML",
+      "captureMethod": "web tool official provider page",
+      "failureCount": 0,
+      "error": null
+    },
+    "reviewed:kinsta-three-month-introductory-offer": {
+      "toolSlug": "kinsta",
+      "url": "https://kinsta.com/wordpress-hosting/",
+      "kind": "vendor",
+      "status": "ok",
+      "checkedAt": "2026-11-17T06:53:01.964Z",
+      "contentHash": "144cc20aeba2152d5f49c36b0e541ec183f7c37089ddaf35ea446e4a5b2d9d4e",
+      "hashBasis": "source excerpt captured through web research; not full HTML",
+      "captureMethod": "web tool official provider page",
+      "failureCount": 0,
+      "error": null
     }
   },
   "offers": [
@@ -16616,6 +16664,67 @@
       "checkedAt": "2026-10-28T21:09:36.740Z",
       "updatedAt": "2026-10-21T03:32:26.493Z",
       "terms": "See the provider for eligible plans, usage limits, regional availability, billing requirements, and current terms. Source checked; signup and checkout have not been tested."
+    },
+    {
+      "slug": "hostinger-vps-introductory-offer",
+      "toolSlug": "hostinger",
+      "title": "Hostinger VPS: up to 70% off the introductory term",
+      "dealType": "offer",
+      "discountPercentage": 70,
+      "discountKind": "up-to",
+      "sourceKind": "vendor",
+      "sourceUrl": "https://www.hostinger.com/vps-hosting",
+      "destinationUrl": "https://www.hostinger.com/vps-hosting",
+      "evidence": "Up to 70% off. KVM 4: $12.99/mo. Today you pay $311.76 for 24 months. Renews at $28.99/mo.",
+      "terms": "Introductory VPS promotion; discount varies by plan. The observed KVM 4 quote required 24 months prepaid and displayed a higher renewal. Currency, tax, location, eligibility and account conditions may change the quote. No public coupon is asserted. Check the full payment and current renewal at checkout; not checkout tested.",
+      "sourceKey": "reviewed:hostinger-vps-introductory-offer",
+      "checkedAt": "2026-11-17T06:53:01.964Z",
+      "updatedAt": "2026-11-17T06:53:01.964Z"
+    },
+    {
+      "slug": "siteground-startup-first-term-offer",
+      "toolSlug": "siteground",
+      "title": "SiteGround StartUp: advertised 88% off the first term",
+      "dealType": "offer",
+      "discountPercentage": 88,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://www.siteground.com/web-hosting.htm",
+      "destinationUrl": "https://www.siteground.com/web-hosting.htm",
+      "evidence": "StartUp. Save 88%. $1.99/mo. Renews at $17.99/mo. Prepaid for 12 months.",
+      "terms": "Observed StartUp introductory web-hosting offer, prepaid for 12 months. The source displayed $1.99 per month initially and $17.99 per month on renewal in its USD view. Confirm currency, tax, eligibility, included services and the complete invoice in your checkout. This is not a permanent renewal discount or a coupon code; not checkout tested.",
+      "sourceKey": "reviewed:siteground-startup-first-term-offer",
+      "checkedAt": "2026-11-17T06:53:01.964Z",
+      "updatedAt": "2026-11-17T06:53:01.964Z"
+    },
+    {
+      "slug": "cloudways-two-month-introductory-offer",
+      "toolSlug": "cloudways",
+      "title": "Cloudways: 80% off two introductory months, subject to cap",
+      "dealType": "offer",
+      "discountPercentage": 80,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://www.cloudways.com/en/pricing.php",
+      "destinationUrl": "https://www.cloudways.com/en/pricing.php",
+      "evidence": "80% OFF for 2 months. Up to $200 off per month.",
+      "terms": "Short introductory promotion advertised on the provider pricing page, capped at up to $200 off per month. Confirm eligible product, account, activation method, exclusions, later recurring price and offer availability. An 80% reduction for two months is not an 80% annual saving. No checkout or code has been tested.",
+      "sourceKey": "reviewed:cloudways-two-month-introductory-offer",
+      "checkedAt": "2026-11-17T06:53:01.964Z",
+      "updatedAt": "2026-11-17T06:53:01.964Z"
+    },
+    {
+      "slug": "kinsta-three-month-introductory-offer",
+      "toolSlug": "kinsta",
+      "title": "Kinsta: 50% off three introductory paid months",
+      "dealType": "offer",
+      "discountPercentage": 50,
+      "sourceKind": "vendor",
+      "sourceUrl": "https://kinsta.com/wordpress-hosting/",
+      "destinationUrl": "https://kinsta.com/wordpress-hosting/",
+      "evidence": "Black Friday: 50% off for 3 months. Pay $17.50 for 3 months after the first month, renews at $35.",
+      "terms": "Observed promotion on selected monthly WordPress configurations; the source described three discounted paid months after a separate introductory first month. Annual billing has a different offer. Confirm plan, account eligibility, usage limits, extras, currency and the post-promotion price. This is not a lifetime or full-year 50% reduction; not checkout tested.",
+      "sourceKey": "reviewed:kinsta-three-month-introductory-offer",
+      "checkedAt": "2026-11-17T06:53:01.964Z",
+      "updatedAt": "2026-11-17T06:53:01.964Z"
     }
   ],
   "candidates": [

@@ -11,10 +11,11 @@ const tools = read("expanded-tools.json");
 const snapshot = read("offer-snapshot.json");
 const reviewed = read("reviewed-offers.json");
 const managed = checkedManagedRelease(read("managed-catalog.json"));
+const { HOSTING_BRAND_TOOLS } = loadCatalogModule("lib/data/hosting-providers.ts");
 assert.deepEqual(read("managed-public-index.json"), managedPublicIndex(managed), "Generate both managed release files with catalog:export");
 const managedBrands = managed.entries.filter(entry => entry.kind === "brand");
 assert.equal(new Set([...seeds, ...tools].map(tool => tool.slug)).size, seeds.length + tools.length, "Repository brand slugs must be unique");
-const all = [...new Map([...seeds, ...tools, ...managedBrands.map(entry => ({ ...entry.payload, slug: entry.slug }))].map(tool => [tool.slug, tool])).values()];
+const all = [...new Map([...seeds, ...tools, ...HOSTING_BRAND_TOOLS, ...managedBrands.map(entry => ({ ...entry.payload, slug: entry.slug }))].map(tool => [tool.slug, tool])).values()];
 const slugs = new Set(all.map(t => t.slug));
 assert.equal(slugs.size, all.length, "New brand slugs must not duplicate existing ones");
 for (const tool of tools) {

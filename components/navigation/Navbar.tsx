@@ -126,7 +126,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
 
   const navLinks = [
     { label: "Brands", href: "/brands", icon: Layers },
-    { label: "Hosting", href: "/brands?category=hosting", icon: Layers },
+    { label: "Hosting", href: "/hosting", icon: Layers },
     { label: "Discounts", href: "/discounts", icon: Tag, badge: "" },
     { label: "Compare", href: "/compare", icon: Scale },
     { label: "Reviews & guides", href: "/articles", icon: FileText },

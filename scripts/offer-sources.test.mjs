@@ -117,6 +117,7 @@ test("server redirects retain campaign queries, expire safely and reject unavail
   const { GET } = loadTs("app/go/[id]/route.ts", {
     "@/lib/data/deals-data": { getDealBySlug: id => [coupon.slug, coupon.id, "old-code"].includes(id) ? coupon : undefined, getHistoricOfferToolSlug: id => ["expired-code", "old-code"].includes(id) ? "example" : undefined },
     "@/lib/data/tools-data": { getToolBySlug: slug => slug === "example" ? available : slug === "gone" ? unavailable : undefined },
+    "@/lib/server/hosting-affiliates": { getHostingAffiliateUrl: () => undefined },
     "@/lib/data/affiliate-links": { getCustomAffiliateUrl: () => "https://example.com/?ref=saasfolio" },
     "@/lib/offer-links": { publicHttpsUrl },
   });
