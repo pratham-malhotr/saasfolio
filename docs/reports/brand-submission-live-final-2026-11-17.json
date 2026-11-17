@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-11-17T10:23:11.083Z",
+  "scope": "Live HTTPS mobile browser form → production API → isolated Supabase schema → matching receipt; no email sent or listing published",
+  "origin": "https://saasfolio.tech",
+  "schema": "saasfolio",
+  "formsConfigured": true,
+  "accountsConfigured": false,
+  "httpStatus": 201,
+  "finalFormPageStatus": 200,
+  "receipt": "832bad8e-0617-4c90-bbe2-15719ddb9a11",
+  "receiptMatchesStoredId": true,
+  "allSubmissionFieldsMatch": true,
+  "pendingReviewStatus": true,
+  "receiptDownloadMatches": true,
+  "retryReturnsSameReceipt": true,
+  "conflictingReuseStatus": 409,
+  "recordsForRetryKey": 1,
+  "anonymousReadDenied": true,
+  "survivesPageReload": true,
+  "testRecordRemoved": true,
+  "existingWebsiteTablesModified": false,
+  "runtimeErrors": [],
+  "recoveredDocumentResponses": [
+    {
+      "url": "https://saasfolio.tech/submit",
+      "status": 403
+    }
+  ],
+  "failedAssets": [
+    {
+      "url": "https://saasfolio.tech/submit",
+      "status": 403
+    }
+  ]
+}

@@ -32,3 +32,33 @@ Twelve more guides now cover Render versus Railway, Vercel versus a VPS, Cloudfl
 Four additional built-in image_gen illustrations cover application deployment, database recovery, WordPress storefronts and hosting networks. The same prompt manifest records all eight optimized project assets. New articles appear first in the hosting collection and the latest-article lists, while the foundational guides link back to relevant new material.
 
 The additional primary-source review used Render deployment and disk documentation; Railway volumes and pricing; Next.js self-hosting; Vercel function limits; Docker multi-platform builds; Hetzner architecture constraints; PostgreSQL backup methods; DigitalOcean PostgreSQL, snapshot and bandwidth documentation; n8n installation and queue-mode guidance; WooCommerce server recommendations; Kinsta PHP performance; SiteGround collaboration and backup documentation; WordPress wp_mail behavior and hardening; Gmail sender requirements; and the Cloudflare/Netlify function references. No keyword-volume estimates, support experiences, performance measurements, client results or prices were fabricated.
+
+## Fourteen additional decision guides
+
+The latest expansion brings the dedicated hosting collection to 36 guides and
+the full article catalog to 50. It covers WordPress renewal comparisons,
+European VPS choices, stateful application platforms, upload APIs, Ghost
+publishing, cache diagnosis, object storage, staging index controls, domain
+ownership during a hosting move, recovery objectives and staging billing.
+The machine-readable inventory records the current word counts and source URLs.
+
+Each new guide has nine substantive sections, a comparison table, two FAQs,
+related reading and a specific audience. Concrete documented constraints include
+Render's single-instance persistent disks and deployment limitations, Railway's
+volume replica restrictions, Workers' isolate memory and request-body boundaries,
+and the difference between Ghost's publishing plans. Recommendations are
+conditional editorial judgments. Numerical exercises and publisher scenarios are
+explicitly fictional; they do not imply provider benchmarks or customer results.
+
+Ghost joins the directory as the 21st hosting provider, with managed publishing
+and self-hosting responsibilities distinguished. Four additional original
+illustrations cover location, publishing, performance and reliability. The prompt
+manifest now records 12 assets. All 50 articles have a cover and an individual
+sharing image, including the older non-hosting articles.
+
+The public article audit measures a reproducible twenty-check on-page checklist.
+Its 100/100 results do not assert Google rankings or measured keyword difficulty.
+Actual dated Search Console observations and query mappings remain in private,
+gitignored owner reports. New guides are explicitly unmeasured when the captured
+search reporting period predates their publication. See
+[the scoring methodology](../../ARTICLE-SEO-SCORING.md).

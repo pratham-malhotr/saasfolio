@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seo:audit": "node scripts/audit-seo.mjs",
+    "seo:audit:articles": "node scripts/audit-article-seo.mjs",
     "seo:audit:indexing": "node scripts/audit-indexing.mjs",
     "seo:audit:brands": "node scripts/audit-brand-seo.mjs",
     "seo:audit:queries": "node scripts/audit-brand-search-intents.mjs",
