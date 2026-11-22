@@ -1,0 +1,6716 @@
+{
+  "checkedAt": "2026-11-06T04:29:46.396Z",
+  "origin": "https://saasfolio.tech",
+  "summary": {
+    "pages": 658,
+    "footerDestinations": 31,
+    "internalLinkTargets": 2985,
+    "providerRedirects": 284,
+    "localAssets": 58,
+    "followedInternalRedirects": 0,
+    "failures": 0
+  },
+  "footer": [
+    {
+      "target": "/",
+      "status": 200
+    },
+    {
+      "target": "/discounts",
+      "status": 200
+    },
+    {
+      "target": "/brands",
+      "status": 200
+    },
+    {
+      "target": "/coupon-codes",
+      "status": 200
+    },
+    {
+      "target": "/startup-deals",
+      "status": 200
+    },
+    {
+      "target": "/student-discounts",
+      "status": 200
+    },
+    {
+      "target": "/nonprofit-discounts",
+      "status": 200
+    },
+    {
+      "target": "/savings-calculator",
+      "status": 200
+    },
+    {
+      "target": "/deals",
+      "status": 200
+    },
+    {
+      "target": "/deals?type=lifetime",
+      "status": 200
+    },
+    {
+      "target": "/deals?type=free_trial",
+      "status": 200
+    },
+    {
+      "target": "/tools",
+      "status": 200
+    },
+    {
+      "target": "/submit",
+      "status": 200
+    },
+    {
+      "target": "/articles",
+      "status": 200
+    },
+    {
+      "target": "/articles/build-a-saas-budget-before-buying",
+      "status": 200
+    },
+    {
+      "target": "/editorial-policy",
+      "status": 200
+    },
+    {
+      "target": "/about#standards",
+      "status": 200
+    },
+    {
+      "target": "/compare",
+      "status": 200
+    },
+    {
+      "target": "/advertise",
+      "status": 200
+    },
+    {
+      "target": "/contact",
+      "status": 200
+    },
+    {
+      "target": "/deals/category/ai-tools",
+      "status": 200
+    },
+    {
+      "target": "/deals/category/marketing",
+      "status": 200
+    },
+    {
+      "target": "/deals/category/crm-sales",
+      "status": 200
+    },
+    {
+      "target": "/deals/category/dev-tools",
+      "status": 200
+    },
+    {
+      "target": "/deals/category/design",
+      "status": 200
+    },
+    {
+      "target": "/deals/category/analytics",
+      "status": 200
+    },
+    {
+      "target": "/deals/category/hosting",
+      "status": 200
+    },
+    {
+      "target": "/deals/category/finance",
+      "status": 200
+    },
+    {
+      "target": "/privacy",
+      "status": 200
+    },
+    {
+      "target": "/terms",
+      "status": 200
+    },
+    {
+      "target": "/affiliate-disclosure",
+      "status": 200
+    }
+  ],
+  "failures": [],
+  "pages": [
+    {
+      "path": "/contact",
+      "finalPath": "/contact",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/",
+      "finalPath": "/",
+      "status": 200,
+      "title": "SaaS Discounts & Software Deals | SaaSFolio",
+      "h1": [
+        "SaaS discounts& software deals."
+      ],
+      "fragments": 10
+    },
+    {
+      "path": "/deals",
+      "finalPath": "/deals",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/newsletter",
+      "finalPath": "/newsletter",
+      "status": 200,
+      "title": "Newsletter signup confirmation | SaaSFolio",
+      "h1": [
+        "Newsletter confirmation"
+      ],
+      "fragments": 5
+    },
+    {
+      "path": "/newsletter/unsubscribe",
+      "finalPath": "/newsletter/unsubscribe",
+      "status": 200,
+      "title": "Unsubscribe from the newsletter | SaaSFolio",
+      "h1": [
+        "Unsubscribe from SaaSFolio"
+      ],
+      "fragments": 5
+    },
+    {
+      "path": "/advertise",
+      "finalPath": "/advertise",
+      "status": 200,
+      "title": "Advertise Your SaaS on SaaSFolio",
+      "h1": [
+        "PUT YOUR SAAS IN FRONT OF 120,000+ FOUNDERS & DEVS."
+      ],
+      "fragments": 14
+    },
+    {
+      "path": "/about",
+      "finalPath": "/about",
+      "status": 200,
+      "title": "About SaaSFolio: Offer Sources & Editorial Standards",
+      "h1": [
+        "SaaS discounts with sources you can check."
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/affiliate-disclosure",
+      "finalPath": "/affiliate-disclosure",
+      "status": 200,
+      "title": "Affiliate Disclosure | SaaSFolio",
+      "h1": [
+        "AFFILIATE & EDITORIAL DISCLOSURE"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/articles/build-a-saas-budget-before-buying",
+      "finalPath": "/articles/build-a-saas-budget-before-buying",
+      "status": 200,
+      "title": "Build a SaaS budget before choosing discounts | SaaSFolio",
+      "h1": [
+        "Build a SaaS budget before choosing discounts"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/articles",
+      "finalPath": "/articles",
+      "status": 200,
+      "title": "SaaS Buying Guides: Coupons, Pricing & Renewal Costs | SaaSFolio",
+      "h1": [
+        "SAAS EDITORIAL MAGAZINE"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/articles/compare-saas-deal-membership-fees",
+      "finalPath": "/articles/compare-saas-deal-membership-fees",
+      "status": 200,
+      "title": "Compare direct pricing with membership-gated SaaS offers | SaaSFolio",
+      "h1": [
+        "Compare direct pricing with membership-gated SaaS offers"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/articles/compare-saas-pricing-limits",
+      "finalPath": "/articles/compare-saas-pricing-limits",
+      "status": 200,
+      "title": "Compare SaaS usage limits, add-ons and total cost | SaaSFolio",
+      "h1": [
+        "Compare SaaS usage limits, add-ons and total cost"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/articles/compare-saas-team-seat-costs",
+      "finalPath": "/articles/compare-saas-team-seat-costs",
+      "status": 200,
+      "title": "Compare SaaS subscriptions at the same team size | SaaSFolio",
+      "h1": [
+        "Compare SaaS subscriptions at the same team size"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/articles/evaluate-ai-software-free-trials",
+      "finalPath": "/articles/evaluate-ai-software-free-trials",
+      "status": 200,
+      "title": "Evaluate an AI software tool during a free trial | SaaSFolio",
+      "h1": [
+        "Evaluate an AI software tool during a free trial"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/articles/find-and-use-saas-coupon-codes",
+      "finalPath": "/articles/find-and-use-saas-coupon-codes",
+      "status": 200,
+      "title": "How to Find SaaS Coupon Codes and Check the Real Saving | SaaSFolio",
+      "h1": [
+        "How to Find SaaS Coupon Codes and Check the Real Saving"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/articles/lifetime-software-deal-checklist",
+      "finalPath": "/articles/lifetime-software-deal-checklist",
+      "status": 200,
+      "title": "Evaluate a lifetime software deal before buying | SaaSFolio",
+      "h1": [
+        "Evaluate a lifetime software deal before buying"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/articles/startup-software-credits-and-renewal-costs",
+      "finalPath": "/articles/startup-software-credits-and-renewal-costs",
+      "status": 200,
+      "title": "Startup Software Credits: Eligibility, Expiry and Renewal Costs | SaaSFolio",
+      "h1": [
+        "Startup Software Credits: Eligibility, Expiry and Renewal Costs"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/articles/saas-coupon-renewal-price-checklist",
+      "finalPath": "/articles/saas-coupon-renewal-price-checklist",
+      "status": 200,
+      "title": "Check SaaS renewal prices before redeeming a coupon | SaaSFolio",
+      "h1": [
+        "Check SaaS renewal prices before redeeming a coupon"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/articles/student-software-discounts-after-graduation",
+      "finalPath": "/articles/student-software-discounts-after-graduation",
+      "status": 200,
+      "title": "Student Software Discounts: Verification and Access After Graduation | SaaSFolio",
+      "h1": [
+        "Student Software Discounts: Verification and Access After Graduation"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/articles/verify-software-privacy-claims",
+      "finalPath": "/articles/verify-software-privacy-claims",
+      "status": 200,
+      "title": "Check software privacy claims before starting a trial | SaaSFolio",
+      "h1": [
+        "Check software privacy claims before starting a trial"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/brands",
+      "finalPath": "/brands",
+      "status": 200,
+      "title": "Software Brands A–Z: SaaS Discounts & Coupon Availability | SaaSFolio",
+      "h1": [
+        "Software brands, A–Z"
+      ],
+      "fragments": 34
+    },
+    {
+      "path": "/community",
+      "finalPath": "/community",
+      "status": 200,
+      "title": "SaaS Community: Software Discussions & Deals | SaaSFolio",
+      "h1": [
+        "SAAS COMMUNITY FORUM"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/community/ai-agents-in-production-real-world-failures",
+      "finalPath": "/community/ai-agents-in-production-real-world-failures",
+      "status": 200,
+      "title": "How do you budget for usage beyond a software plan's allowance? | SaaSFolio",
+      "h1": [
+        "How do you budget for usage beyond a software plan's allowance?"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/community/ai-code-reviewer-security-concurrency-2026",
+      "finalPath": "/community/ai-code-reviewer-security-concurrency-2026",
+      "status": 200,
+      "title": "How would you evaluate an AI tool during a trial? | SaaSFolio",
+      "h1": [
+        "How would you evaluate an AI tool during a trial?"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/community/how-we-negotiate-saas-enterprise-contracts",
+      "finalPath": "/community/how-we-negotiate-saas-enterprise-contracts",
+      "status": 200,
+      "title": "Which renewal terms should be checked before an annual commitment? | SaaSFolio",
+      "h1": [
+        "Which renewal terms should be checked before an annual commitment?"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/community/email-deliverability-open-rate-collapse",
+      "finalPath": "/community/email-deliverability-open-rate-collapse",
+      "status": 200,
+      "title": "What should a newsletter trial help you verify? | SaaSFolio",
+      "h1": [
+        "What should a newsletter trial help you verify?"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/community/indispensable-developer-tool-2026",
+      "finalPath": "/community/indispensable-developer-tool-2026",
+      "status": 200,
+      "title": "Which software subscription earns its place in your budget? | SaaSFolio",
+      "h1": [
+        "Which software subscription earns its place in your budget?"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/community/lifetime-deals-vs-subscriptions-worth-it",
+      "finalPath": "/community/lifetime-deals-vs-subscriptions-worth-it",
+      "status": 200,
+      "title": "How do you evaluate a lifetime deal against a subscription? | SaaSFolio",
+      "h1": [
+        "How do you evaluate a lifetime deal against a subscription?"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/community/self-hosted-auth-in-2026-clerk-vs-armorid",
+      "finalPath": "/community/self-hosted-auth-in-2026-clerk-vs-armorid",
+      "status": 200,
+      "title": "What team-access costs belong in a software comparison? | SaaSFolio",
+      "h1": [
+        "What team-access costs belong in a software comparison?"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/community/transitioning-ga4-to-cookieless-analytics",
+      "finalPath": "/community/transitioning-ga4-to-cookieless-analytics",
+      "status": 200,
+      "title": "What do you check before choosing an analytics plan? | SaaSFolio",
+      "h1": [
+        "What do you check before choosing an analytics plan?"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/compare",
+      "finalPath": "/compare",
+      "status": 200,
+      "title": "Compare SaaS Tools: Pricing, Features & Deals | SaaSFolio",
+      "h1": [
+        "COMPARE SAAS TOOLS SIDE BY SIDE."
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/compare/carrd-vs-framer",
+      "finalPath": "/compare/carrd-vs-framer",
+      "status": 200,
+      "title": "Carrd vs Framer: Pricing, Features & Deals | SaaSFolio",
+      "h1": [
+        "Carrd VS Framer"
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/compare/coolify-vs-vercel",
+      "finalPath": "/compare/coolify-vs-vercel",
+      "status": 200,
+      "title": "Coolify vs Vercel: Pricing, Features & Deals | SaaSFolio",
+      "h1": [
+        "Coolify VS Vercel"
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/compare/pocketbase-vs-supabase",
+      "finalPath": "/compare/pocketbase-vs-supabase",
+      "status": 200,
+      "title": "PocketBase vs Supabase: Pricing, Features & Deals | SaaSFolio",
+      "h1": [
+        "PocketBase VS Supabase"
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/compare/obsidian-vs-notion",
+      "finalPath": "/compare/obsidian-vs-notion",
+      "status": 200,
+      "title": "Obsidian vs Notion: Pricing, Features & Deals | SaaSFolio",
+      "h1": [
+        "Obsidian VS Notion"
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/compare/umami-vs-plausible",
+      "finalPath": "/compare/umami-vs-plausible",
+      "status": 200,
+      "title": "Umami vs Plausible Analytics: Pricing, Features & Deals | SaaSFolio",
+      "h1": [
+        "Umami VS Plausible Analytics"
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/compare/vaultwarden-vs-bitwarden",
+      "finalPath": "/compare/vaultwarden-vs-bitwarden",
+      "status": 200,
+      "title": "Vaultwarden vs Bitwarden: Pricing, Features & Deals | SaaSFolio",
+      "h1": [
+        "Vaultwarden VS Bitwarden"
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/coupon-codes",
+      "finalPath": "/coupon-codes",
+      "status": 200,
+      "title": "Software Coupon Codes & SaaS Promo Codes | SaaSFolio",
+      "h1": [
+        "Software coupon codes & SaaS promo codes"
+      ],
+      "fragments": 11
+    },
+    {
+      "path": "/deals/aioseo-first-year-published-offer",
+      "finalPath": "/deals/aioseo-first-year-published-offer",
+      "status": 200,
+      "title": "All in One SEO: AIOSEO: published first-year license offer | SaaSFolio",
+      "h1": [
+        "AIOSEO: published first-year license offer"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/akiflow-free-trial",
+      "finalPath": "/deals/akiflow-free-trial",
+      "status": 200,
+      "title": "Akiflow Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Akiflow free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/anytrack-free-trial",
+      "finalPath": "/deals/anytrack-free-trial",
+      "status": 200,
+      "title": "AnyTrack Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "AnyTrack free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/asana-nonprofit-program",
+      "finalPath": "/deals/asana-nonprofit-program",
+      "status": 200,
+      "title": "Asana 50% nonprofit Starter or Advanced offer | SaaSFolio",
+      "h1": [
+        "Asana 50% nonprofit Starter or Advanced offer"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/baserow-free-plan",
+      "finalPath": "/deals/baserow-free-plan",
+      "status": 200,
+      "title": "Baserow Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Baserow free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/baserow-organization-program",
+      "finalPath": "/deals/baserow-organization-program",
+      "status": 200,
+      "title": "Baserow nonprofit and education pricing enquiries | SaaSFolio",
+      "h1": [
+        "Baserow nonprofit and education pricing enquiries"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/beehiiv-free-plan",
+      "finalPath": "/deals/beehiiv-free-plan",
+      "status": 200,
+      "title": "Beehiiv Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Beehiiv free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/bigin-free-trial",
+      "finalPath": "/deals/bigin-free-trial",
+      "status": 200,
+      "title": "Bigin Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Bigin free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/bitwarden-free-trial",
+      "finalPath": "/deals/bitwarden-free-trial",
+      "status": 200,
+      "title": "Bitwarden Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Bitwarden free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/ai-tools",
+      "finalPath": "/deals/category/ai-tools",
+      "status": 200,
+      "title": "AI Tool Discounts, Deals & Free Trials | SaaSFolio",
+      "h1": [
+        "AI tool discounts & deals"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/analytics",
+      "finalPath": "/deals/category/analytics",
+      "status": 200,
+      "title": "Analytics Software Deals & Tracking Tool Discounts | SaaSFolio",
+      "h1": [
+        "Analytics software deals & discounts"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/crm-sales",
+      "finalPath": "/deals/category/crm-sales",
+      "status": 200,
+      "title": "CRM Software Discounts & Sales Tool Deals | SaaSFolio",
+      "h1": [
+        "CRM software discounts & sales tool deals"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/design",
+      "finalPath": "/deals/category/design",
+      "status": 200,
+      "title": "Design Software Discounts & Creative Tool Deals | SaaSFolio",
+      "h1": [
+        "Design software discounts & creative tool deals"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/dev-tools",
+      "finalPath": "/deals/category/dev-tools",
+      "status": 200,
+      "title": "Developer Tool Discounts, Credits & Software Deals | SaaSFolio",
+      "h1": [
+        "Developer tool discounts & credits"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/ecommerce",
+      "finalPath": "/deals/category/ecommerce",
+      "status": 200,
+      "title": "Ecommerce Software Deals & Store Tool Discounts | SaaSFolio",
+      "h1": [
+        "Ecommerce software deals & store tool discounts"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/finance",
+      "finalPath": "/deals/category/finance",
+      "status": 200,
+      "title": "Billing & Invoicing Software Deals and Discounts | SaaSFolio",
+      "h1": [
+        "Billing & invoicing software deals"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/hosting",
+      "finalPath": "/deals/category/hosting",
+      "status": 200,
+      "title": "Web Hosting Deals, Discounts & Promo Codes | SaaSFolio",
+      "h1": [
+        "Web hosting deals, discounts & promo codes"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/marketing",
+      "finalPath": "/deals/category/marketing",
+      "status": 200,
+      "title": "Marketing Software Deals & Email Tool Discounts | SaaSFolio",
+      "h1": [
+        "Marketing software deals & discounts"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/productivity",
+      "finalPath": "/deals/category/productivity",
+      "status": 200,
+      "title": "Productivity Software Discounts & Workspace Deals | SaaSFolio",
+      "h1": [
+        "Productivity software discounts & workspace deals"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/project-management",
+      "finalPath": "/deals/category/project-management",
+      "status": 200,
+      "title": "Project Management Software Discounts & Team Deals | SaaSFolio",
+      "h1": [
+        "Project management software discounts & team deals"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/category/security",
+      "finalPath": "/deals/category/security",
+      "status": 200,
+      "title": "Security Software Deals, VPN & Password Tool Discounts | SaaSFolio",
+      "h1": [
+        "Security software deals & discounts"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/checkly-annual-billing",
+      "finalPath": "/deals/checkly-annual-billing",
+      "status": 200,
+      "title": "Checkly annual savings up to 20% on eligible configurations | SaaSFolio",
+      "h1": [
+        "Checkly annual savings up to 20% on eligible configurations"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/coderabbit-annual-billing",
+      "finalPath": "/deals/coderabbit-annual-billing",
+      "status": 200,
+      "title": "CodeRabbit 20% annual plan savings | SaaSFolio",
+      "h1": [
+        "CodeRabbit 20% annual plan savings"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/coderabbit-free-trial",
+      "finalPath": "/deals/coderabbit-free-trial",
+      "status": 200,
+      "title": "CodeRabbit Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "CodeRabbit free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/colossyan-free-plan",
+      "finalPath": "/deals/colossyan-free-plan",
+      "status": 200,
+      "title": "Colossyan Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Colossyan free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/confluence-community-cloud",
+      "finalPath": "/deals/confluence-community-cloud",
+      "status": 200,
+      "title": "Confluence eligible nonprofit Community cloud offer | SaaSFolio",
+      "h1": [
+        "Confluence eligible nonprofit Community cloud offer"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/creatify-free-plan",
+      "finalPath": "/deals/creatify-free-plan",
+      "status": 200,
+      "title": "Creatify Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Creatify free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/dropbox-organization-program",
+      "finalPath": "/deals/dropbox-organization-program",
+      "status": 200,
+      "title": "Dropbox team nonprofit and education pricing enquiries | SaaSFolio",
+      "h1": [
+        "Dropbox team nonprofit and education pricing enquiries"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/duplicator-official-license-code",
+      "finalPath": "/deals/duplicator-official-license-code",
+      "status": 200,
+      "title": "Duplicator Coupon Code: SAVE50 | SaaSFolio",
+      "h1": [
+        "Duplicator: official 50% license code"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/fathom-free-trial",
+      "finalPath": "/deals/fathom-free-trial",
+      "status": 200,
+      "title": "Fathom Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Fathom free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/fellow-free-plan",
+      "finalPath": "/deals/fellow-free-plan",
+      "status": 200,
+      "title": "Fellow Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Fellow free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/fibery-free-trial",
+      "finalPath": "/deals/fibery-free-trial",
+      "status": 200,
+      "title": "Fibery Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Fibery free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/fibery-startup-pro-access",
+      "finalPath": "/deals/fibery-startup-pro-access",
+      "status": 200,
+      "title": "Fibery six-month Pro startup program | SaaSFolio",
+      "h1": [
+        "Fibery six-month Pro startup program"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/fireflies-ai-free-plan",
+      "finalPath": "/deals/fireflies-ai-free-plan",
+      "status": 200,
+      "title": "Fireflies.ai Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Fireflies AI free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/fluent-forms-first-year-offer",
+      "finalPath": "/deals/fluent-forms-first-year-offer",
+      "status": 200,
+      "title": "Fluent Forms: up to 30% on first-year annual licenses | SaaSFolio",
+      "h1": [
+        "Fluent Forms: up to 30% on first-year annual licenses"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/fluentcrm-first-year-offer",
+      "finalPath": "/deals/fluentcrm-first-year-offer",
+      "status": 200,
+      "title": "FluentCRM: 30% first-year website-license offer | SaaSFolio",
+      "h1": [
+        "FluentCRM: 30% first-year website-license offer"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/flyingpress-free-trial",
+      "finalPath": "/deals/flyingpress-free-trial",
+      "status": 200,
+      "title": "FlyingPress Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "FlyingPress free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/formidable-forms-intro-license-offers",
+      "finalPath": "/deals/formidable-forms-intro-license-offers",
+      "status": 200,
+      "title": "Formidable Forms: plan-specific introductory offers | SaaSFolio",
+      "h1": [
+        "Formidable Forms: plan-specific introductory offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/google-workspace-annual-commitment",
+      "finalPath": "/deals/google-workspace-annual-commitment",
+      "status": 200,
+      "title": "Google Workspace annual commitment pricing with 16% savings | SaaSFolio",
+      "h1": [
+        "Google Workspace annual commitment pricing with 16% savings"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/gravity-forms-nonprofit-license",
+      "finalPath": "/deals/gravity-forms-nonprofit-license",
+      "status": 200,
+      "title": "Gravity Forms: application-based nonprofit license | SaaSFolio",
+      "h1": [
+        "Gravity Forms: application-based nonprofit license"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/healthchecks-io-annual-business",
+      "finalPath": "/deals/healthchecks-io-annual-business",
+      "status": 200,
+      "title": "Healthchecks.io 20% annual Business plan savings | SaaSFolio",
+      "h1": [
+        "Healthchecks.io 20% annual Business plan savings"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/hiver-free-trial",
+      "finalPath": "/deals/hiver-free-trial",
+      "status": 200,
+      "title": "Hiver Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Hiver free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/hostinger-couponspage-code",
+      "finalPath": "/deals/hostinger-couponspage-code",
+      "status": 200,
+      "title": "Hostinger Coupon Code: COUPONSPAGE | SaaSFolio",
+      "h1": [
+        "Hostinger official COUPONSPAGE hosting code"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/hostinger-official-coupon",
+      "finalPath": "/deals/hostinger-official-coupon",
+      "status": 200,
+      "title": "Hostinger's official hosting coupon offers | SaaSFolio",
+      "h1": [
+        "Hostinger's official hosting coupon offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/hostinger-techradar-reported-code",
+      "finalPath": "/deals/hostinger-techradar-reported-code",
+      "status": 200,
+      "title": "Hostinger Coupon Code: TECHRADAR | SaaSFolio",
+      "h1": [
+        "TechRadar's reported Hostinger discount code"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/hyperping-yearly-billing",
+      "finalPath": "/deals/hyperping-yearly-billing",
+      "status": 200,
+      "title": "Hyperping yearly billing with two months free | SaaSFolio",
+      "h1": [
+        "Hyperping yearly billing with two months free"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/imagify-yearly-two-months",
+      "finalPath": "/deals/imagify-yearly-two-months",
+      "status": 200,
+      "title": "Imagify: two months free with yearly billing | SaaSFolio",
+      "h1": [
+        "Imagify: two months free with yearly billing"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/incident-io-annual-team",
+      "finalPath": "/deals/incident-io-annual-team",
+      "status": 200,
+      "title": "incident.io annual Team incident-response pricing | SaaSFolio",
+      "h1": [
+        "incident.io annual Team incident-response pricing"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/intercom-early-stage-year-one",
+      "finalPath": "/deals/intercom-early-stage-year-one",
+      "status": 200,
+      "title": "Intercom Early Stage first-year offer on eligible configuration | SaaSFolio",
+      "h1": [
+        "Intercom Early Stage first-year offer on eligible configuration"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/intercom-free-trial",
+      "finalPath": "/deals/intercom-free-trial",
+      "status": 200,
+      "title": "Intercom Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Intercom free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/jenni-ai-annual-plan-offer",
+      "finalPath": "/deals/jenni-ai-annual-plan-offer",
+      "status": 200,
+      "title": "Jenni AI: published annual plan saving | SaaSFolio",
+      "h1": [
+        "Jenni AI: published annual plan saving"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/jira-community-cloud",
+      "finalPath": "/deals/jira-community-cloud",
+      "status": 200,
+      "title": "Jira eligible nonprofit Community cloud offer | SaaSFolio",
+      "h1": [
+        "Jira eligible nonprofit Community cloud offer"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/linear-partner-startup-business",
+      "finalPath": "/deals/linear-partner-startup-business",
+      "status": 200,
+      "title": "Linear Business access for eligible partner-affiliated startups | SaaSFolio",
+      "h1": [
+        "Linear Business access for eligible partner-affiliated startups"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/linguix-annual-pro-offer",
+      "finalPath": "/deals/linguix-annual-pro-offer",
+      "status": 200,
+      "title": "Linguix Pro: published annual billing saving | SaaSFolio",
+      "h1": [
+        "Linguix Pro: published annual billing saving"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/loom-free-trial",
+      "finalPath": "/deals/loom-free-trial",
+      "status": 200,
+      "title": "Loom Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Loom free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/monday-nonprofit-additional-seats",
+      "finalPath": "/deals/monday-nonprofit-additional-seats",
+      "status": 200,
+      "title": "monday.com 70% off eligible additional nonprofit seats | SaaSFolio",
+      "h1": [
+        "monday.com 70% off eligible additional nonprofit seats"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/monsterinsights-official-intro-code",
+      "finalPath": "/deals/monsterinsights-official-intro-code",
+      "status": 200,
+      "title": "MonsterInsights Coupon Code: INTRO50 | SaaSFolio",
+      "h1": [
+        "MonsterInsights: official 50% introductory code"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/morgen-calendar-free-trial",
+      "finalPath": "/deals/morgen-calendar-free-trial",
+      "status": 200,
+      "title": "Morgen Calendar Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Morgen Calendar free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/motion-calendar-free-trial",
+      "finalPath": "/deals/motion-calendar-free-trial",
+      "status": 200,
+      "title": "Motion Calendar Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Motion Calendar free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/nocodb-annual-billing",
+      "finalPath": "/deals/nocodb-annual-billing",
+      "status": 200,
+      "title": "NocoDB 20% yearly billing option | SaaSFolio",
+      "h1": [
+        "NocoDB 20% yearly billing option"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/nifty-nonprofit-education",
+      "finalPath": "/deals/nifty-nonprofit-education",
+      "status": 200,
+      "title": "Nifty 50% eligible nonprofit and education Pro or Business offer | SaaSFolio",
+      "h1": [
+        "Nifty 50% eligible nonprofit and education Pro or Business offer"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/notesnook-education-year",
+      "finalPath": "/deals/notesnook-education-year",
+      "status": 200,
+      "title": "Notesnook Pro education access at US$19.99 for one year | SaaSFolio",
+      "h1": [
+        "Notesnook Pro education access at US$19.99 for one year"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/notesnook-free-trial",
+      "finalPath": "/deals/notesnook-free-trial",
+      "status": 200,
+      "title": "Notesnook Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Notesnook free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/notion-startup-program",
+      "finalPath": "/deals/notion-startup-program",
+      "status": 200,
+      "title": "Notion Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Up to 6 months of Notion Business for eligible startups"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/otter-ai-free-plan",
+      "finalPath": "/deals/otter-ai-free-plan",
+      "status": 200,
+      "title": "Otter.ai Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Otter.ai free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/paperpal-institutional-trial-enquiry",
+      "finalPath": "/deals/paperpal-institutional-trial-enquiry",
+      "status": 200,
+      "title": "Paperpal Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Paperpal: institutional trial enquiry"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/photoroom-free-trial",
+      "finalPath": "/deals/photoroom-free-trial",
+      "status": 200,
+      "title": "Photoroom Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Photoroom free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/plausible-analytics-free-trial",
+      "finalPath": "/deals/plausible-analytics-free-trial",
+      "status": 200,
+      "title": "Plausible Analytics Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Plausible Analytics free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/plutio-free-trial",
+      "finalPath": "/deals/plutio-free-trial",
+      "status": 200,
+      "title": "Plutio Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Plutio free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/plutio-yearly-billing",
+      "finalPath": "/deals/plutio-yearly-billing",
+      "status": 200,
+      "title": "Plutio yearly billing with two months free | SaaSFolio",
+      "h1": [
+        "Plutio yearly billing with two months free"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/reclaim-ai-free-plan",
+      "finalPath": "/deals/reclaim-ai-free-plan",
+      "status": 200,
+      "title": "Reclaim.ai Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Reclaim.ai free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/rootly-startup-program",
+      "finalPath": "/deals/rootly-startup-program",
+      "status": 200,
+      "title": "Rootly startup program with savings up to 50% | SaaSFolio",
+      "h1": [
+        "Rootly startup program with savings up to 50%"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/seedprod-official-intro-code",
+      "finalPath": "/deals/seedprod-official-intro-code",
+      "status": 200,
+      "title": "SeedProd Coupon Code: SAVE50 | SaaSFolio",
+      "h1": [
+        "SeedProd: official 50% license code"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/sembly-ai-free-trial",
+      "finalPath": "/deals/sembly-ai-free-trial",
+      "status": 200,
+      "title": "Sembly AI Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Sembly AI free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/semrush-free-trial",
+      "finalPath": "/deals/semrush-free-trial",
+      "status": 200,
+      "title": "Semrush Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Semrush free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/sendible-free-trial",
+      "finalPath": "/deals/sendible-free-trial",
+      "status": 200,
+      "title": "Sendible Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Sendible free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/sendible-yearly-plan-offer",
+      "finalPath": "/deals/sendible-yearly-plan-offer",
+      "status": 200,
+      "title": "Sendible: 15% on equivalent yearly packages | SaaSFolio",
+      "h1": [
+        "Sendible: 15% on equivalent yearly packages"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/sentry-startup-credits",
+      "finalPath": "/deals/sentry-startup-credits",
+      "status": 200,
+      "title": "Sentry startup credits up to US$5,000 with twelve-month expiry | SaaSFolio",
+      "h1": [
+        "Sentry startup credits up to US$5,000 with twelve-month expiry"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/serpstat-free-trial",
+      "finalPath": "/deals/serpstat-free-trial",
+      "status": 200,
+      "title": "Serpstat Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Serpstat free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/shortpixel-yearly-two-months",
+      "finalPath": "/deals/shortpixel-yearly-two-months",
+      "status": 200,
+      "title": "ShortPixel: two months free on eligible yearly billing | SaaSFolio",
+      "h1": [
+        "ShortPixel: two months free on eligible yearly billing"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/slack-free-plan",
+      "finalPath": "/deals/slack-free-plan",
+      "status": 200,
+      "title": "Slack Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Slack free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/smartlead-free-trial",
+      "finalPath": "/deals/smartlead-free-trial",
+      "status": 200,
+      "title": "Smartlead.ai Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Smartlead.ai free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/smartsuite-free-trial",
+      "finalPath": "/deals/smartsuite-free-trial",
+      "status": 200,
+      "title": "SmartSuite Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "SmartSuite free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/smartsuite-organization-program",
+      "finalPath": "/deals/smartsuite-organization-program",
+      "status": 200,
+      "title": "SmartSuite nonprofit and education application | SaaSFolio",
+      "h1": [
+        "SmartSuite nonprofit and education application"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/snov-io-free-trial",
+      "finalPath": "/deals/snov-io-free-trial",
+      "status": 200,
+      "title": "Snov.io Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Snov.io free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/socialpilot-annual-plan-offer",
+      "finalPath": "/deals/socialpilot-annual-plan-offer",
+      "status": 200,
+      "title": "SocialPilot: 15% on equivalent annual plans | SaaSFolio",
+      "h1": [
+        "SocialPilot: 15% on equivalent annual plans"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/sourcery-annual-billing",
+      "finalPath": "/deals/sourcery-annual-billing",
+      "status": 200,
+      "title": "Sourcery 20% annual Pro and Team billing | SaaSFolio",
+      "h1": [
+        "Sourcery 20% annual Pro and Team billing"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/sourcery-free-trial",
+      "finalPath": "/deals/sourcery-free-trial",
+      "status": 200,
+      "title": "Sourcery Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Sourcery free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/streamyard-free-trial",
+      "finalPath": "/deals/streamyard-free-trial",
+      "status": 200,
+      "title": "StreamYard Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "StreamYard free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/tactiq-free-plan",
+      "finalPath": "/deals/tactiq-free-plan",
+      "status": 200,
+      "title": "Tactiq Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Tactiq free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/taplio-free-trial",
+      "finalPath": "/deals/taplio-free-trial",
+      "status": 200,
+      "title": "Taplio Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Taplio free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/text-blaze-free-plan",
+      "finalPath": "/deals/text-blaze-free-plan",
+      "status": 200,
+      "title": "Text Blaze Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Text Blaze free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/trello-nonprofit-program",
+      "finalPath": "/deals/trello-nonprofit-program",
+      "status": 200,
+      "title": "Trello 75% offer for eligible nonprofit workspaces | SaaSFolio",
+      "h1": [
+        "Trello 75% offer for eligible nonprofit workspaces"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/trupeer-free-trial",
+      "finalPath": "/deals/trupeer-free-trial",
+      "status": 200,
+      "title": "Trupeer Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "Trupeer free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/wispr-flow-free-plan",
+      "finalPath": "/deals/wispr-flow-free-plan",
+      "status": 200,
+      "title": "Wispr Flow Free Plan: Limits & Eligibility | SaaSFolio",
+      "h1": [
+        "Wispr Flow free plan"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/wp-mail-smtp-official-dollar-code",
+      "finalPath": "/deals/wp-mail-smtp-official-dollar-code",
+      "status": 200,
+      "title": "WP Mail SMTP Coupon Code: SAVE50 | SaaSFolio",
+      "h1": [
+        "WP Mail SMTP: official $50-off license code"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/wp-rocket-free-trial",
+      "finalPath": "/deals/wp-rocket-free-trial",
+      "status": 200,
+      "title": "WP Rocket Free Trial: Terms & How to Start | SaaSFolio",
+      "h1": [
+        "WP Rocket free trial"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/wpforms-nonprofit-application",
+      "finalPath": "/deals/wpforms-nonprofit-application",
+      "status": 200,
+      "title": "WPForms: separate nonprofit application route | SaaSFolio",
+      "h1": [
+        "WPForms: separate nonprofit application route"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/wpforms-official-new-license-code",
+      "finalPath": "/deals/wpforms-official-new-license-code",
+      "status": 200,
+      "title": "WPForms Coupon Code: SAVE50 | SaaSFolio",
+      "h1": [
+        "WPForms: official 50% new-license code"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/xtiles-education-year",
+      "finalPath": "/deals/xtiles-education-year",
+      "status": 200,
+      "title": "xTiles eligible education Plus offer for one year | SaaSFolio",
+      "h1": [
+        "xTiles eligible education Plus offer for one year"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals/zapier-annual-billing",
+      "finalPath": "/deals/zapier-annual-billing",
+      "status": 200,
+      "title": "Zapier 33% annual prepaid plan savings | SaaSFolio",
+      "h1": [
+        "Zapier 33% annual prepaid plan savings"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/discounts",
+      "finalPath": "/discounts",
+      "status": 200,
+      "title": "Software Discounts by Brand: SaaS Savings Guides | SaaSFolio",
+      "h1": [
+        "Software discounts by brand"
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/discounts/adobe-creative-cloud",
+      "finalPath": "/discounts/adobe-creative-cloud",
+      "status": 200,
+      "title": "Adobe Creative Cloud Discounts & Student Terms | SaaSFolio",
+      "h1": [
+        "Adobe Creative Cloud Discounts & Student Terms"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/affine",
+      "finalPath": "/discounts/affine",
+      "status": 200,
+      "title": "AFFiNE Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "AFFiNE Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/ahrefs",
+      "finalPath": "/discounts/ahrefs",
+      "status": 200,
+      "title": "Ahrefs Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Ahrefs Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/aioseo",
+      "finalPath": "/discounts/aioseo",
+      "status": 200,
+      "title": "All in One SEO (AIOSEO) Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "All in One SEO (AIOSEO) Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/airtable",
+      "finalPath": "/discounts/airtable",
+      "status": 200,
+      "title": "Airtable Discounts & Nonprofit Team Plan Terms | SaaSFolio",
+      "h1": [
+        "Airtable Discounts & Nonprofit Team Plan Terms"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/akiflow",
+      "finalPath": "/discounts/akiflow",
+      "status": 200,
+      "title": "Akiflow Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Akiflow Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/alitu",
+      "finalPath": "/discounts/alitu",
+      "status": 200,
+      "title": "Alitu Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Alitu Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/anytrack",
+      "finalPath": "/discounts/anytrack",
+      "status": 200,
+      "title": "AnyTrack Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "AnyTrack Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/asana",
+      "finalPath": "/discounts/asana",
+      "status": 200,
+      "title": "Asana Discounts & Nonprofit Plan Requirements | SaaSFolio",
+      "h1": [
+        "Asana Discounts & Nonprofit Plan Requirements"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/baremetrics",
+      "finalPath": "/discounts/baremetrics",
+      "status": 200,
+      "title": "Baremetrics Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Baremetrics Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/baserow",
+      "finalPath": "/discounts/baserow",
+      "status": 200,
+      "title": "Baserow Discounts: Nonprofit & Education Offers | SaaSFolio",
+      "h1": [
+        "Baserow Discounts: Nonprofit & Education Offers"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/beehiiv",
+      "finalPath": "/discounts/beehiiv",
+      "status": 200,
+      "title": "Beehiiv Discounts & Promo Codes | SaaSFolio",
+      "h1": [
+        "Beehiiv Discounts & Promo Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/bigin",
+      "finalPath": "/discounts/bigin",
+      "status": 200,
+      "title": "Bigin Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Bigin Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/box",
+      "finalPath": "/discounts/box",
+      "status": 200,
+      "title": "Box Discounts & Nonprofit Content Plans | SaaSFolio",
+      "h1": [
+        "Box Discounts & Nonprofit Content Plans"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/browserstack",
+      "finalPath": "/discounts/browserstack",
+      "status": 200,
+      "title": "BrowserStack Discounts & Annual Testing Plans | SaaSFolio",
+      "h1": [
+        "BrowserStack Discounts & Annual Testing Plans"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/buttondown",
+      "finalPath": "/discounts/buttondown",
+      "status": 200,
+      "title": "Buttondown Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Buttondown Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/canva",
+      "finalPath": "/discounts/canva",
+      "status": 200,
+      "title": "Canva Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Canva Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/castmagic",
+      "finalPath": "/discounts/castmagic",
+      "status": 200,
+      "title": "Castmagic Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Castmagic Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/checkly",
+      "finalPath": "/discounts/checkly",
+      "status": 200,
+      "title": "Checkly Discounts & Annual Monitoring Savings | SaaSFolio",
+      "h1": [
+        "Checkly Discounts & Annual Monitoring Savings"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/clickup",
+      "finalPath": "/discounts/clickup",
+      "status": 200,
+      "title": "ClickUp Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "ClickUp Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/clueso",
+      "finalPath": "/discounts/clueso",
+      "status": 200,
+      "title": "Clueso Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Clueso Discounts & Coupon Codes"
+      ],
+      "fragments": 24
+    },
+    {
+      "path": "/discounts/coderabbit",
+      "finalPath": "/discounts/coderabbit",
+      "status": 200,
+      "title": "CodeRabbit Discounts & Annual Plan Savings | SaaSFolio",
+      "h1": [
+        "CodeRabbit Discounts & Annual Plan Savings"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/colossyan",
+      "finalPath": "/discounts/colossyan",
+      "status": 200,
+      "title": "Colossyan Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Colossyan Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/confluence",
+      "finalPath": "/discounts/confluence",
+      "status": 200,
+      "title": "Confluence Discounts & Organization Cloud Pricing | SaaSFolio",
+      "h1": [
+        "Confluence Discounts & Organization Cloud Pricing"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/consensus",
+      "finalPath": "/discounts/consensus",
+      "status": 200,
+      "title": "Consensus Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Consensus Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/convertkit",
+      "finalPath": "/discounts/convertkit",
+      "status": 200,
+      "title": "Kit (ConvertKit) Discounts & Promo Codes | SaaSFolio",
+      "h1": [
+        "Kit (ConvertKit) Discounts & Promo Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/creatify",
+      "finalPath": "/discounts/creatify",
+      "status": 200,
+      "title": "Creatify Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Creatify Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/descript",
+      "finalPath": "/discounts/descript",
+      "status": 200,
+      "title": "Descript Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Descript Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/dropbox",
+      "finalPath": "/discounts/dropbox",
+      "status": 200,
+      "title": "Dropbox Discounts & Nonprofit Team Eligibility | SaaSFolio",
+      "h1": [
+        "Dropbox Discounts & Nonprofit Team Eligibility"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/dubble",
+      "finalPath": "/discounts/dubble",
+      "status": 200,
+      "title": "Dubble Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Dubble Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/duplicator",
+      "finalPath": "/discounts/duplicator",
+      "status": 200,
+      "title": "Duplicator Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Duplicator Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/elicit",
+      "finalPath": "/discounts/elicit",
+      "status": 200,
+      "title": "Elicit Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Elicit Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/fabric",
+      "finalPath": "/discounts/fabric",
+      "status": 200,
+      "title": "Fabric Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Fabric Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/famewall",
+      "finalPath": "/discounts/famewall",
+      "status": 200,
+      "title": "Famewall Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Famewall Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/fathom",
+      "finalPath": "/discounts/fathom",
+      "status": 200,
+      "title": "Fathom Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Fathom Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/fellow",
+      "finalPath": "/discounts/fellow",
+      "status": 200,
+      "title": "Fellow Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Fellow Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/fibery",
+      "finalPath": "/discounts/fibery",
+      "status": 200,
+      "title": "Fibery Discounts & Startup Program Eligibility | SaaSFolio",
+      "h1": [
+        "Fibery Discounts & Startup Program Eligibility"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/figma",
+      "finalPath": "/discounts/figma",
+      "status": 200,
+      "title": "Figma Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Figma Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/fireflies-ai",
+      "finalPath": "/discounts/fireflies-ai",
+      "status": 200,
+      "title": "Fireflies.ai Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Fireflies.ai Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/fluent-forms",
+      "finalPath": "/discounts/fluent-forms",
+      "status": 200,
+      "title": "Fluent Forms Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Fluent Forms Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/fluentcrm",
+      "finalPath": "/discounts/fluentcrm",
+      "status": 200,
+      "title": "FluentCRM Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "FluentCRM Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/flyingpress",
+      "finalPath": "/discounts/flyingpress",
+      "status": 200,
+      "title": "FlyingPress Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "FlyingPress Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/formidable-forms",
+      "finalPath": "/discounts/formidable-forms",
+      "status": 200,
+      "title": "Formidable Forms Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Formidable Forms Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/framer",
+      "finalPath": "/discounts/framer",
+      "status": 200,
+      "title": "Framer Discounts & Student Offers: Coupon Guide | SaaSFolio",
+      "h1": [
+        "Framer Discounts & Student Offers: Coupon Guide"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/google-workspace",
+      "finalPath": "/discounts/google-workspace",
+      "status": 200,
+      "title": "Google Workspace Discounts & Nonprofit Offers | SaaSFolio",
+      "h1": [
+        "Google Workspace Discounts & Nonprofit Offers"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/granola",
+      "finalPath": "/discounts/granola",
+      "status": 200,
+      "title": "Granola Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Granola Discounts & Coupon Codes"
+      ],
+      "fragments": 24
+    },
+    {
+      "path": "/discounts/gravity-forms",
+      "finalPath": "/discounts/gravity-forms",
+      "status": 200,
+      "title": "Gravity Forms Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Gravity Forms Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/guideflow",
+      "finalPath": "/discounts/guideflow",
+      "status": 200,
+      "title": "Guideflow Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Guideflow Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/healthchecks-io",
+      "finalPath": "/discounts/healthchecks-io",
+      "status": 200,
+      "title": "Healthchecks.io Discounts & Annual Monitoring Plans | SaaSFolio",
+      "h1": [
+        "Healthchecks.io Discounts & Annual Monitoring Plans"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/hedra",
+      "finalPath": "/discounts/hedra",
+      "status": 200,
+      "title": "Hedra Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Hedra Discounts & Coupon Codes"
+      ],
+      "fragments": 18
+    },
+    {
+      "path": "/discounts/hiver",
+      "finalPath": "/discounts/hiver",
+      "status": 200,
+      "title": "Hiver Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Hiver Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/hostinger",
+      "finalPath": "/discounts/hostinger",
+      "status": 200,
+      "title": "Hostinger Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Hostinger Discounts & Coupon Codes"
+      ],
+      "fragments": 28
+    },
+    {
+      "path": "/discounts/huly",
+      "finalPath": "/discounts/huly",
+      "status": 200,
+      "title": "Huly Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Huly Discounts & Coupon Codes"
+      ],
+      "fragments": 18
+    },
+    {
+      "path": "/discounts/hyperping",
+      "finalPath": "/discounts/hyperping",
+      "status": 200,
+      "title": "Hyperping Discounts & Yearly Billing Terms | SaaSFolio",
+      "h1": [
+        "Hyperping Discounts & Yearly Billing Terms"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/imagify",
+      "finalPath": "/discounts/imagify",
+      "status": 200,
+      "title": "Imagify Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Imagify Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/incident-io",
+      "finalPath": "/discounts/incident-io",
+      "status": 200,
+      "title": "incident.io Discounts & Annual Response Plan Pricing | SaaSFolio",
+      "h1": [
+        "incident.io Discounts & Annual Response Plan Pricing"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/intercom",
+      "finalPath": "/discounts/intercom",
+      "status": 200,
+      "title": "Intercom Discounts & Early Stage Startup Terms | SaaSFolio",
+      "h1": [
+        "Intercom Discounts & Early Stage Startup Terms"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/jenni-ai",
+      "finalPath": "/discounts/jenni-ai",
+      "status": 200,
+      "title": "Jenni AI Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Jenni AI Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/jira",
+      "finalPath": "/discounts/jira",
+      "status": 200,
+      "title": "Jira Discounts & Nonprofit Cloud Eligibility | SaaSFolio",
+      "h1": [
+        "Jira Discounts & Nonprofit Cloud Eligibility"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/linear",
+      "finalPath": "/discounts/linear",
+      "status": 200,
+      "title": "Linear Discounts & Partner Startup Eligibility | SaaSFolio",
+      "h1": [
+        "Linear Discounts & Partner Startup Eligibility"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/linguix",
+      "finalPath": "/discounts/linguix",
+      "status": 200,
+      "title": "Linguix Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Linguix Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/loom",
+      "finalPath": "/discounts/loom",
+      "status": 200,
+      "title": "Loom Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Loom Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/mailerlite",
+      "finalPath": "/discounts/mailerlite",
+      "status": 200,
+      "title": "MailerLite Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "MailerLite Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/meetgeek",
+      "finalPath": "/discounts/meetgeek",
+      "status": 200,
+      "title": "MeetGeek Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "MeetGeek Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/microsoft-365",
+      "finalPath": "/discounts/microsoft-365",
+      "status": 200,
+      "title": "Microsoft 365 Discounts & Nonprofit Plan Eligibility | SaaSFolio",
+      "h1": [
+        "Microsoft 365 Discounts & Nonprofit Plan Eligibility"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/miro",
+      "finalPath": "/discounts/miro",
+      "status": 200,
+      "title": "Miro Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Miro Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/monday",
+      "finalPath": "/discounts/monday",
+      "status": 200,
+      "title": "monday.com Discounts & Nonprofit Seat Eligibility | SaaSFolio",
+      "h1": [
+        "monday.com Discounts & Nonprofit Seat Eligibility"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/monsterinsights",
+      "finalPath": "/discounts/monsterinsights",
+      "status": 200,
+      "title": "MonsterInsights Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "MonsterInsights Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/morgen-calendar",
+      "finalPath": "/discounts/morgen-calendar",
+      "status": 200,
+      "title": "Morgen Calendar Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Morgen Calendar Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/motion-calendar",
+      "finalPath": "/discounts/motion-calendar",
+      "status": 200,
+      "title": "Motion Calendar Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Motion Calendar Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/mymind",
+      "finalPath": "/discounts/mymind",
+      "status": 200,
+      "title": "mymind Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "mymind Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/namecheap",
+      "finalPath": "/discounts/namecheap",
+      "status": 200,
+      "title": "Namecheap Discounts & Promo Codes | SaaSFolio",
+      "h1": [
+        "Namecheap Discounts & Promo Codes"
+      ],
+      "fragments": 24
+    },
+    {
+      "path": "/discounts/nifty",
+      "finalPath": "/discounts/nifty",
+      "status": 200,
+      "title": "Nifty Discounts & Nonprofit Plan Eligibility | SaaSFolio",
+      "h1": [
+        "Nifty Discounts & Nonprofit Plan Eligibility"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/nocodb",
+      "finalPath": "/discounts/nocodb",
+      "status": 200,
+      "title": "NocoDB Discounts & Annual Billing Savings | SaaSFolio",
+      "h1": [
+        "NocoDB Discounts & Annual Billing Savings"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/notesnook",
+      "finalPath": "/discounts/notesnook",
+      "status": 200,
+      "title": "Notesnook Discounts & Education Offer Terms | SaaSFolio",
+      "h1": [
+        "Notesnook Discounts & Education Offer Terms"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/notion",
+      "finalPath": "/discounts/notion",
+      "status": 200,
+      "title": "Notion Discounts: Annual, Student & Nonprofit Offers | SaaSFolio",
+      "h1": [
+        "Notion Discounts: Annual, Student & Nonprofit Offers"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/notta",
+      "finalPath": "/discounts/notta",
+      "status": 200,
+      "title": "Notta Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Notta Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/ocoya",
+      "finalPath": "/discounts/ocoya",
+      "status": 200,
+      "title": "Ocoya Discounts & Promo Codes | SaaSFolio",
+      "h1": [
+        "Ocoya Discounts & Promo Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/otter-ai",
+      "finalPath": "/discounts/otter-ai",
+      "status": 200,
+      "title": "Otter.ai Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Otter.ai Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/paperguide",
+      "finalPath": "/discounts/paperguide",
+      "status": 200,
+      "title": "Paperguide Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Paperguide Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/paperpal",
+      "finalPath": "/discounts/paperpal",
+      "status": 200,
+      "title": "Paperpal Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Paperpal Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/perfmatters",
+      "finalPath": "/discounts/perfmatters",
+      "status": 200,
+      "title": "Perfmatters Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Perfmatters Discounts & Coupon Codes"
+      ],
+      "fragments": 24
+    },
+    {
+      "path": "/discounts/photoroom",
+      "finalPath": "/discounts/photoroom",
+      "status": 200,
+      "title": "Photoroom Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Photoroom Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/pixelcut",
+      "finalPath": "/discounts/pixelcut",
+      "status": 200,
+      "title": "Pixelcut Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Pixelcut Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/plutio",
+      "finalPath": "/discounts/plutio",
+      "status": 200,
+      "title": "Plutio Discounts & Yearly Billing Savings | SaaSFolio",
+      "h1": [
+        "Plutio Discounts & Yearly Billing Savings"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/predis-ai",
+      "finalPath": "/discounts/predis-ai",
+      "status": 200,
+      "title": "Predis.ai Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Predis.ai Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/ranktracker",
+      "finalPath": "/discounts/ranktracker",
+      "status": 200,
+      "title": "Ranktracker Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Ranktracker Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/reclaim-ai",
+      "finalPath": "/discounts/reclaim-ai",
+      "status": 200,
+      "title": "Reclaim.ai Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Reclaim.ai Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/riverside-fm",
+      "finalPath": "/discounts/riverside-fm",
+      "status": 200,
+      "title": "Riverside Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Riverside Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/rootly",
+      "finalPath": "/discounts/rootly",
+      "status": 200,
+      "title": "Rootly Discounts & Startup Program Requirements | SaaSFolio",
+      "h1": [
+        "Rootly Discounts & Startup Program Requirements"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/scholarcy",
+      "finalPath": "/discounts/scholarcy",
+      "status": 200,
+      "title": "Scholarcy Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Scholarcy Discounts & Coupon Codes"
+      ],
+      "fragments": 24
+    },
+    {
+      "path": "/discounts/scispace",
+      "finalPath": "/discounts/scispace",
+      "status": 200,
+      "title": "SciSpace Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "SciSpace Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/seedprod",
+      "finalPath": "/discounts/seedprod",
+      "status": 200,
+      "title": "SeedProd Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "SeedProd Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/sembly-ai",
+      "finalPath": "/discounts/sembly-ai",
+      "status": 200,
+      "title": "Sembly AI Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Sembly AI Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/semrush",
+      "finalPath": "/discounts/semrush",
+      "status": 200,
+      "title": "Semrush Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Semrush Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/sendible",
+      "finalPath": "/discounts/sendible",
+      "status": 200,
+      "title": "Sendible Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Sendible Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/sentry",
+      "finalPath": "/discounts/sentry",
+      "status": 200,
+      "title": "Sentry Discounts & Startup Credit Eligibility | SaaSFolio",
+      "h1": [
+        "Sentry Discounts & Startup Credit Eligibility"
+      ],
+      "fragments": 21
+    },
+    {
+      "path": "/discounts/seopress",
+      "finalPath": "/discounts/seopress",
+      "status": 200,
+      "title": "SEOPress Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "SEOPress Discounts & Coupon Codes"
+      ],
+      "fragments": 24
+    },
+    {
+      "path": "/discounts/serpstat",
+      "finalPath": "/discounts/serpstat",
+      "status": 200,
+      "title": "Serpstat Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Serpstat Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/shortpixel",
+      "finalPath": "/discounts/shortpixel",
+      "status": 200,
+      "title": "ShortPixel Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "ShortPixel Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/slack",
+      "finalPath": "/discounts/slack",
+      "status": 200,
+      "title": "Slack Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Slack Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/smartlead",
+      "finalPath": "/discounts/smartlead",
+      "status": 200,
+      "title": "Smartlead.ai Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Smartlead.ai Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/smartsuite",
+      "finalPath": "/discounts/smartsuite",
+      "status": 200,
+      "title": "SmartSuite Discounts: Nonprofit & Education Plans | SaaSFolio",
+      "h1": [
+        "SmartSuite Discounts: Nonprofit & Education Plans"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/snov-io",
+      "finalPath": "/discounts/snov-io",
+      "status": 200,
+      "title": "Snov.io Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Snov.io Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/socialpilot",
+      "finalPath": "/discounts/socialpilot",
+      "status": 200,
+      "title": "SocialPilot Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "SocialPilot Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/sourcery",
+      "finalPath": "/discounts/sourcery",
+      "status": 200,
+      "title": "Sourcery Discounts & Annual Review Plan Savings | SaaSFolio",
+      "h1": [
+        "Sourcery Discounts & Annual Review Plan Savings"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/streamyard",
+      "finalPath": "/discounts/streamyard",
+      "status": 200,
+      "title": "StreamYard Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "StreamYard Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/sunsama",
+      "finalPath": "/discounts/sunsama",
+      "status": 200,
+      "title": "Sunsama Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Sunsama Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/superwhisper",
+      "finalPath": "/discounts/superwhisper",
+      "status": 200,
+      "title": "Superwhisper Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Superwhisper Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/systeme-io",
+      "finalPath": "/discounts/systeme-io",
+      "status": 200,
+      "title": "Systeme.io Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Systeme.io Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/tactiq",
+      "finalPath": "/discounts/tactiq",
+      "status": 200,
+      "title": "Tactiq Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Tactiq Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/taplio",
+      "finalPath": "/discounts/taplio",
+      "status": 200,
+      "title": "Taplio Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Taplio Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/text-blaze",
+      "finalPath": "/discounts/text-blaze",
+      "status": 200,
+      "title": "Text Blaze Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Text Blaze Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/tldv",
+      "finalPath": "/discounts/tldv",
+      "status": 200,
+      "title": "tl;dv Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "tl;dv Discounts & Coupon Codes"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/trello",
+      "finalPath": "/discounts/trello",
+      "status": 200,
+      "title": "Trello Discounts: Nonprofit & Annual Plan Options | SaaSFolio",
+      "h1": [
+        "Trello Discounts: Nonprofit & Annual Plan Options"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/trupeer",
+      "finalPath": "/discounts/trupeer",
+      "status": 200,
+      "title": "Trupeer Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Trupeer Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/trustmary",
+      "finalPath": "/discounts/trustmary",
+      "status": 200,
+      "title": "Trustmary Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Trustmary Discounts & Coupon Codes"
+      ],
+      "fragments": 24
+    },
+    {
+      "path": "/discounts/typeform",
+      "finalPath": "/discounts/typeform",
+      "status": 200,
+      "title": "Typeform Discounts: Startup, Student & NGO Offers | SaaSFolio",
+      "h1": [
+        "Typeform Discounts: Startup, Student & NGO Offers"
+      ],
+      "fragments": 25
+    },
+    {
+      "path": "/discounts/typingmind",
+      "finalPath": "/discounts/typingmind",
+      "status": 200,
+      "title": "TypingMind Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "TypingMind Discounts & Coupon Codes"
+      ],
+      "fragments": 18
+    },
+    {
+      "path": "/discounts/wispr-flow",
+      "finalPath": "/discounts/wispr-flow",
+      "status": 200,
+      "title": "Wispr Flow Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Wispr Flow Discounts & Coupon Codes"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/wp-mail-smtp",
+      "finalPath": "/discounts/wp-mail-smtp",
+      "status": 200,
+      "title": "WP Mail SMTP Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "WP Mail SMTP Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/wp-rocket",
+      "finalPath": "/discounts/wp-rocket",
+      "status": 200,
+      "title": "WP Rocket Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "WP Rocket Discounts & Coupon Codes"
+      ],
+      "fragments": 26
+    },
+    {
+      "path": "/discounts/wpforms",
+      "finalPath": "/discounts/wpforms",
+      "status": 200,
+      "title": "WPForms Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "WPForms Discounts & Coupon Codes"
+      ],
+      "fragments": 28
+    },
+    {
+      "path": "/discounts/xtiles",
+      "finalPath": "/discounts/xtiles",
+      "status": 200,
+      "title": "xTiles Discounts: Student & Nonprofit Eligibility | SaaSFolio",
+      "h1": [
+        "xTiles Discounts: Student & Nonprofit Eligibility"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/zapier",
+      "finalPath": "/discounts/zapier",
+      "status": 200,
+      "title": "Zapier Discounts & Nonprofit Automation Pricing | SaaSFolio",
+      "h1": [
+        "Zapier Discounts & Nonprofit Automation Pricing"
+      ],
+      "fragments": 27
+    },
+    {
+      "path": "/discounts/zencastr",
+      "finalPath": "/discounts/zencastr",
+      "status": 200,
+      "title": "Zencastr Discounts & Coupon Codes | SaaSFolio",
+      "h1": [
+        "Zencastr Discounts & Coupon Codes"
+      ],
+      "fragments": 24
+    },
+    {
+      "path": "/editorial-policy",
+      "finalPath": "/editorial-policy",
+      "status": 200,
+      "title": "Editorial Method, Sources & Corrections | SaaSFolio",
+      "h1": [
+        "How our software buying guidance is made"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/login",
+      "finalPath": "/login",
+      "status": 200,
+      "title": "Sign In | SaaSFolio",
+      "h1": [],
+      "fragments": 5
+    },
+    {
+      "path": "/nonprofit-discounts",
+      "finalPath": "/nonprofit-discounts",
+      "status": 200,
+      "title": "Nonprofit Software Discounts & SaaS Programs | SaaSFolio",
+      "h1": [
+        "Nonprofit software discounts & SaaS programs"
+      ],
+      "fragments": 12
+    },
+    {
+      "path": "/privacy",
+      "finalPath": "/privacy",
+      "status": 200,
+      "title": "Privacy Policy | SaaSFolio",
+      "h1": [
+        "SAASFOLIO PRIVACY POLICY"
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/profile",
+      "finalPath": "/profile",
+      "status": 200,
+      "title": "My Profile & Saved Deals | SaaSFolio",
+      "h1": [
+        "Your saved software"
+      ],
+      "fragments": 5
+    },
+    {
+      "path": "/reset-password",
+      "finalPath": "/reset-password",
+      "status": 200,
+      "title": "Reset your password | SaaSFolio",
+      "h1": [],
+      "fragments": 5
+    },
+    {
+      "path": "/savings-calculator",
+      "finalPath": "/savings-calculator",
+      "status": 200,
+      "title": "SaaS Savings Calculator: Monthly vs Annual Billing | SaaSFolio",
+      "h1": [
+        "SaaS savings calculator"
+      ],
+      "fragments": 13
+    },
+    {
+      "path": "/signup",
+      "finalPath": "/signup",
+      "status": 200,
+      "title": "Create an Account | SaaSFolio",
+      "h1": [],
+      "fragments": 5
+    },
+    {
+      "path": "/startup-deals",
+      "finalPath": "/startup-deals",
+      "status": 200,
+      "title": "Startup Software Deals, Discounts & Credits | SaaSFolio",
+      "h1": [
+        "Startup software deals, discounts & credits"
+      ],
+      "fragments": 12
+    },
+    {
+      "path": "/student-discounts",
+      "finalPath": "/student-discounts",
+      "status": 200,
+      "title": "Student Software Discounts & Education Offers | SaaSFolio",
+      "h1": [
+        "Student software discounts & education offers"
+      ],
+      "fragments": 12
+    },
+    {
+      "path": "/submit",
+      "finalPath": "/submit",
+      "status": 200,
+      "title": "Submit a SaaS Tool or Deal | SaaSFolio",
+      "h1": [
+        "SUBMIT A CODE OR SAAS DEAL"
+      ],
+      "fragments": 16
+    },
+    {
+      "path": "/terms",
+      "finalPath": "/terms",
+      "status": 200,
+      "title": "Terms of Service | SaaSFolio",
+      "h1": [
+        "SAASFOLIO TERMS OF SERVICE"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/tools/adobe-creative-cloud",
+      "finalPath": "/tools/adobe-creative-cloud",
+      "status": 200,
+      "title": "Adobe Creative Cloud Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Adobe Creative Cloud"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/affine",
+      "finalPath": "/tools/affine",
+      "status": 200,
+      "title": "AFFiNE Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "AFFiNE"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/ahrefs",
+      "finalPath": "/tools/ahrefs",
+      "status": 200,
+      "title": "Ahrefs Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Ahrefs"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/aioseo",
+      "finalPath": "/tools/aioseo",
+      "status": 200,
+      "title": "All in One SEO Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "All in One SEO"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/airtable",
+      "finalPath": "/tools/airtable",
+      "status": 200,
+      "title": "Airtable Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Airtable"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/akiflow",
+      "finalPath": "/tools/akiflow",
+      "status": 200,
+      "title": "Akiflow Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Akiflow"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/alitu",
+      "finalPath": "/tools/alitu",
+      "status": 200,
+      "title": "Alitu Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Alitu"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/anytrack",
+      "finalPath": "/tools/anytrack",
+      "status": 200,
+      "title": "AnyTrack Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "AnyTrack"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/asana",
+      "finalPath": "/tools/asana",
+      "status": 200,
+      "title": "Asana Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Asana"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/baremetrics",
+      "finalPath": "/tools/baremetrics",
+      "status": 200,
+      "title": "Baremetrics Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Baremetrics"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/baserow",
+      "finalPath": "/tools/baserow",
+      "status": 200,
+      "title": "Baserow Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Baserow"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/beehiiv",
+      "finalPath": "/tools/beehiiv",
+      "status": 200,
+      "title": "Beehiiv Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Beehiiv"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/bigin",
+      "finalPath": "/tools/bigin",
+      "status": 200,
+      "title": "Bigin Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Bigin"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/bitwarden",
+      "finalPath": "/tools/bitwarden",
+      "status": 200,
+      "title": "Bitwarden Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Bitwarden"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/box",
+      "finalPath": "/tools/box",
+      "status": 200,
+      "title": "Box Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Box"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/browserstack",
+      "finalPath": "/tools/browserstack",
+      "status": 200,
+      "title": "BrowserStack Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "BrowserStack"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/buttondown",
+      "finalPath": "/tools/buttondown",
+      "status": 200,
+      "title": "Buttondown Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Buttondown"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/canva",
+      "finalPath": "/tools/canva",
+      "status": 200,
+      "title": "Canva Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Canva"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/carrd",
+      "finalPath": "/tools/carrd",
+      "status": 200,
+      "title": "Carrd Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Carrd"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/castmagic",
+      "finalPath": "/tools/castmagic",
+      "status": 200,
+      "title": "Castmagic Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Castmagic"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/checkly",
+      "finalPath": "/tools/checkly",
+      "status": 200,
+      "title": "Checkly Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Checkly"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/clickup",
+      "finalPath": "/tools/clickup",
+      "status": 200,
+      "title": "ClickUp Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "ClickUp"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/clueso",
+      "finalPath": "/tools/clueso",
+      "status": 200,
+      "title": "Clueso Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Clueso"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/coderabbit",
+      "finalPath": "/tools/coderabbit",
+      "status": 200,
+      "title": "CodeRabbit Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "CodeRabbit"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/colossyan",
+      "finalPath": "/tools/colossyan",
+      "status": 200,
+      "title": "Colossyan Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Colossyan"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/confluence",
+      "finalPath": "/tools/confluence",
+      "status": 200,
+      "title": "Confluence Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Confluence"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/consensus",
+      "finalPath": "/tools/consensus",
+      "status": 200,
+      "title": "Consensus Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Consensus"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/convertkit",
+      "finalPath": "/tools/convertkit",
+      "status": 200,
+      "title": "Kit (ConvertKit) Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Kit (ConvertKit)"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/coolify",
+      "finalPath": "/tools/coolify",
+      "status": 200,
+      "title": "Coolify Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Coolify"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/creatify",
+      "finalPath": "/tools/creatify",
+      "status": 200,
+      "title": "Creatify Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Creatify"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/descript",
+      "finalPath": "/tools/descript",
+      "status": 200,
+      "title": "Descript Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Descript"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/dropbox",
+      "finalPath": "/tools/dropbox",
+      "status": 200,
+      "title": "Dropbox Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Dropbox"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/dubble",
+      "finalPath": "/tools/dubble",
+      "status": 200,
+      "title": "Dubble Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Dubble"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/duplicator",
+      "finalPath": "/tools/duplicator",
+      "status": 200,
+      "title": "Duplicator Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Duplicator"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/elicit",
+      "finalPath": "/tools/elicit",
+      "status": 200,
+      "title": "Elicit Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Elicit"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/fabric",
+      "finalPath": "/tools/fabric",
+      "status": 200,
+      "title": "Fabric Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Fabric"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/famewall",
+      "finalPath": "/tools/famewall",
+      "status": 200,
+      "title": "Famewall Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Famewall"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/fathom",
+      "finalPath": "/tools/fathom",
+      "status": 200,
+      "title": "Fathom Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Fathom"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/fellow",
+      "finalPath": "/tools/fellow",
+      "status": 200,
+      "title": "Fellow Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Fellow"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/fibery",
+      "finalPath": "/tools/fibery",
+      "status": 200,
+      "title": "Fibery Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Fibery"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/figma",
+      "finalPath": "/tools/figma",
+      "status": 200,
+      "title": "Figma Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Figma"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/fireflies-ai",
+      "finalPath": "/tools/fireflies-ai",
+      "status": 200,
+      "title": "Fireflies.ai Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Fireflies.ai"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/fluent-forms",
+      "finalPath": "/tools/fluent-forms",
+      "status": 200,
+      "title": "Fluent Forms Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Fluent Forms"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/fluentcrm",
+      "finalPath": "/tools/fluentcrm",
+      "status": 200,
+      "title": "FluentCRM Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "FluentCRM"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/flyingpress",
+      "finalPath": "/tools/flyingpress",
+      "status": 200,
+      "title": "FlyingPress Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "FlyingPress"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/formidable-forms",
+      "finalPath": "/tools/formidable-forms",
+      "status": 200,
+      "title": "Formidable Forms Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Formidable Forms"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/framer",
+      "finalPath": "/tools/framer",
+      "status": 200,
+      "title": "Framer Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Framer"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/google-workspace",
+      "finalPath": "/tools/google-workspace",
+      "status": 200,
+      "title": "Google Workspace Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Google Workspace"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/granola",
+      "finalPath": "/tools/granola",
+      "status": 200,
+      "title": "Granola Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Granola"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/gravity-forms",
+      "finalPath": "/tools/gravity-forms",
+      "status": 200,
+      "title": "Gravity Forms Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Gravity Forms"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/guideflow",
+      "finalPath": "/tools/guideflow",
+      "status": 200,
+      "title": "Guideflow Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Guideflow"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/healthchecks-io",
+      "finalPath": "/tools/healthchecks-io",
+      "status": 200,
+      "title": "Healthchecks.io Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Healthchecks.io"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/hedra",
+      "finalPath": "/tools/hedra",
+      "status": 200,
+      "title": "Hedra Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Hedra"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/hiver",
+      "finalPath": "/tools/hiver",
+      "status": 200,
+      "title": "Hiver Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Hiver"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/hostinger",
+      "finalPath": "/tools/hostinger",
+      "status": 200,
+      "title": "Hostinger Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Hostinger"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/huly",
+      "finalPath": "/tools/huly",
+      "status": 200,
+      "title": "Huly Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Huly"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/hyperping",
+      "finalPath": "/tools/hyperping",
+      "status": 200,
+      "title": "Hyperping Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Hyperping"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/imagify",
+      "finalPath": "/tools/imagify",
+      "status": 200,
+      "title": "Imagify Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Imagify"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/incident-io",
+      "finalPath": "/tools/incident-io",
+      "status": 200,
+      "title": "incident.io Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "incident.io"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/intercom",
+      "finalPath": "/tools/intercom",
+      "status": 200,
+      "title": "Intercom Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Intercom"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/jenni-ai",
+      "finalPath": "/tools/jenni-ai",
+      "status": 200,
+      "title": "Jenni AI Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Jenni AI"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/jira",
+      "finalPath": "/tools/jira",
+      "status": 200,
+      "title": "Jira Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Jira"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/linear",
+      "finalPath": "/tools/linear",
+      "status": 200,
+      "title": "Linear Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Linear"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/linguix",
+      "finalPath": "/tools/linguix",
+      "status": 200,
+      "title": "Linguix Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Linguix"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/loom",
+      "finalPath": "/tools/loom",
+      "status": 200,
+      "title": "Loom Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Loom"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/mailerlite",
+      "finalPath": "/tools/mailerlite",
+      "status": 200,
+      "title": "MailerLite Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "MailerLite"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/meetgeek",
+      "finalPath": "/tools/meetgeek",
+      "status": 200,
+      "title": "MeetGeek Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "MeetGeek"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/microsoft-365",
+      "finalPath": "/tools/microsoft-365",
+      "status": 200,
+      "title": "Microsoft 365 Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Microsoft 365"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/miro",
+      "finalPath": "/tools/miro",
+      "status": 200,
+      "title": "Miro Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Miro"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/monday",
+      "finalPath": "/tools/monday",
+      "status": 200,
+      "title": "monday.com Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "monday.com"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/monsterinsights",
+      "finalPath": "/tools/monsterinsights",
+      "status": 200,
+      "title": "MonsterInsights Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "MonsterInsights"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/morgen-calendar",
+      "finalPath": "/tools/morgen-calendar",
+      "status": 200,
+      "title": "Morgen Calendar Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Morgen Calendar"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/motion-calendar",
+      "finalPath": "/tools/motion-calendar",
+      "status": 200,
+      "title": "Motion Calendar Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Motion Calendar"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/mymind",
+      "finalPath": "/tools/mymind",
+      "status": 200,
+      "title": "mymind Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "mymind"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/namecheap",
+      "finalPath": "/tools/namecheap",
+      "status": 200,
+      "title": "Namecheap Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Namecheap"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/nifty",
+      "finalPath": "/tools/nifty",
+      "status": 200,
+      "title": "Nifty Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Nifty"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/nocodb",
+      "finalPath": "/tools/nocodb",
+      "status": 200,
+      "title": "NocoDB Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "NocoDB"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/notesnook",
+      "finalPath": "/tools/notesnook",
+      "status": 200,
+      "title": "Notesnook Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Notesnook"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/notion",
+      "finalPath": "/tools/notion",
+      "status": 200,
+      "title": "Notion Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Notion"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/notta",
+      "finalPath": "/tools/notta",
+      "status": 200,
+      "title": "Notta Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Notta"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/obsidian",
+      "finalPath": "/tools/obsidian",
+      "status": 200,
+      "title": "Obsidian Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Obsidian"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/ocoya",
+      "finalPath": "/tools/ocoya",
+      "status": 200,
+      "title": "Ocoya Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Ocoya"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/otter-ai",
+      "finalPath": "/tools/otter-ai",
+      "status": 200,
+      "title": "Otter.ai Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Otter.ai"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/paperguide",
+      "finalPath": "/tools/paperguide",
+      "status": 200,
+      "title": "Paperguide Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Paperguide"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/paperpal",
+      "finalPath": "/tools/paperpal",
+      "status": 200,
+      "title": "Paperpal Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Paperpal"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/perfmatters",
+      "finalPath": "/tools/perfmatters",
+      "status": 200,
+      "title": "Perfmatters Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Perfmatters"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/photoroom",
+      "finalPath": "/tools/photoroom",
+      "status": 200,
+      "title": "Photoroom Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Photoroom"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/pixelcut",
+      "finalPath": "/tools/pixelcut",
+      "status": 200,
+      "title": "Pixelcut Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Pixelcut"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/plausible",
+      "finalPath": "/tools/plausible",
+      "status": 200,
+      "title": "Plausible Analytics Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Plausible Analytics"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/plutio",
+      "finalPath": "/tools/plutio",
+      "status": 200,
+      "title": "Plutio Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Plutio"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/pocketbase",
+      "finalPath": "/tools/pocketbase",
+      "status": 200,
+      "title": "PocketBase Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "PocketBase"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/predis-ai",
+      "finalPath": "/tools/predis-ai",
+      "status": 200,
+      "title": "Predis.ai Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Predis.ai"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/ranktracker",
+      "finalPath": "/tools/ranktracker",
+      "status": 200,
+      "title": "Ranktracker Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Ranktracker"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/reclaim-ai",
+      "finalPath": "/tools/reclaim-ai",
+      "status": 200,
+      "title": "Reclaim.ai Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Reclaim.ai"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/riverside-fm",
+      "finalPath": "/tools/riverside-fm",
+      "status": 200,
+      "title": "Riverside Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Riverside"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/rootly",
+      "finalPath": "/tools/rootly",
+      "status": 200,
+      "title": "Rootly Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Rootly"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/scholarcy",
+      "finalPath": "/tools/scholarcy",
+      "status": 200,
+      "title": "Scholarcy Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Scholarcy"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/scispace",
+      "finalPath": "/tools/scispace",
+      "status": 200,
+      "title": "SciSpace Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "SciSpace"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/seedprod",
+      "finalPath": "/tools/seedprod",
+      "status": 200,
+      "title": "SeedProd Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "SeedProd"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/sembly-ai",
+      "finalPath": "/tools/sembly-ai",
+      "status": 200,
+      "title": "Sembly AI Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Sembly AI"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/semrush",
+      "finalPath": "/tools/semrush",
+      "status": 200,
+      "title": "Semrush Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Semrush"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/sendible",
+      "finalPath": "/tools/sendible",
+      "status": 200,
+      "title": "Sendible Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Sendible"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/sentry",
+      "finalPath": "/tools/sentry",
+      "status": 200,
+      "title": "Sentry Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Sentry"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/seopress",
+      "finalPath": "/tools/seopress",
+      "status": 200,
+      "title": "SEOPress Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "SEOPress"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/serpstat",
+      "finalPath": "/tools/serpstat",
+      "status": 200,
+      "title": "Serpstat Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Serpstat"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/shortpixel",
+      "finalPath": "/tools/shortpixel",
+      "status": 200,
+      "title": "ShortPixel Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "ShortPixel"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/slack",
+      "finalPath": "/tools/slack",
+      "status": 200,
+      "title": "Slack Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Slack"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/smartlead",
+      "finalPath": "/tools/smartlead",
+      "status": 200,
+      "title": "Smartlead.ai Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Smartlead.ai"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/smartsuite",
+      "finalPath": "/tools/smartsuite",
+      "status": 200,
+      "title": "SmartSuite Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "SmartSuite"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/snov-io",
+      "finalPath": "/tools/snov-io",
+      "status": 200,
+      "title": "Snov.io Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Snov.io"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/socialpilot",
+      "finalPath": "/tools/socialpilot",
+      "status": 200,
+      "title": "SocialPilot Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "SocialPilot"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/sourcery",
+      "finalPath": "/tools/sourcery",
+      "status": 200,
+      "title": "Sourcery Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Sourcery"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/streamyard",
+      "finalPath": "/tools/streamyard",
+      "status": 200,
+      "title": "StreamYard Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "StreamYard"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/sunsama",
+      "finalPath": "/tools/sunsama",
+      "status": 200,
+      "title": "Sunsama Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Sunsama"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/supabase",
+      "finalPath": "/tools/supabase",
+      "status": 200,
+      "title": "Supabase Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Supabase"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/superwhisper",
+      "finalPath": "/tools/superwhisper",
+      "status": 200,
+      "title": "Superwhisper Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Superwhisper"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/systeme-io",
+      "finalPath": "/tools/systeme-io",
+      "status": 200,
+      "title": "Systeme.io Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Systeme.io"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/tactiq",
+      "finalPath": "/tools/tactiq",
+      "status": 200,
+      "title": "Tactiq Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Tactiq"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/taplio",
+      "finalPath": "/tools/taplio",
+      "status": 200,
+      "title": "Taplio Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Taplio"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/text-blaze",
+      "finalPath": "/tools/text-blaze",
+      "status": 200,
+      "title": "Text Blaze Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Text Blaze"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/tldv",
+      "finalPath": "/tools/tldv",
+      "status": 200,
+      "title": "tl;dv Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "tl;dv"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/trello",
+      "finalPath": "/tools/trello",
+      "status": 200,
+      "title": "Trello Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Trello"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/trupeer",
+      "finalPath": "/tools/trupeer",
+      "status": 200,
+      "title": "Trupeer Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Trupeer"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/trustmary",
+      "finalPath": "/tools/trustmary",
+      "status": 200,
+      "title": "Trustmary Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Trustmary"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/typeform",
+      "finalPath": "/tools/typeform",
+      "status": 200,
+      "title": "Typeform Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Typeform"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/typingmind",
+      "finalPath": "/tools/typingmind",
+      "status": 200,
+      "title": "TypingMind Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "TypingMind"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/umami",
+      "finalPath": "/tools/umami",
+      "status": 200,
+      "title": "Umami Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Umami"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/vaultwarden",
+      "finalPath": "/tools/vaultwarden",
+      "status": 200,
+      "title": "Vaultwarden Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Vaultwarden"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/vercel",
+      "finalPath": "/tools/vercel",
+      "status": 200,
+      "title": "Vercel Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Vercel"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/wispr-flow",
+      "finalPath": "/tools/wispr-flow",
+      "status": 200,
+      "title": "Wispr Flow Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Wispr Flow"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/wp-mail-smtp",
+      "finalPath": "/tools/wp-mail-smtp",
+      "status": 200,
+      "title": "WP Mail SMTP Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "WP Mail SMTP"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/wp-rocket",
+      "finalPath": "/tools/wp-rocket",
+      "status": 200,
+      "title": "WP Rocket Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "WP Rocket"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/wpforms",
+      "finalPath": "/tools/wpforms",
+      "status": 200,
+      "title": "WPForms Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "WPForms"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/xtiles",
+      "finalPath": "/tools/xtiles",
+      "status": 200,
+      "title": "xTiles Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "xTiles"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/zapier",
+      "finalPath": "/tools/zapier",
+      "status": 200,
+      "title": "Zapier Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Zapier"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools/zencastr",
+      "finalPath": "/tools/zencastr",
+      "status": 200,
+      "title": "Zencastr Pricing, Features & Alternatives | SaaSFolio",
+      "h1": [
+        "Zencastr"
+      ],
+      "fragments": 8
+    },
+    {
+      "path": "/tools",
+      "finalPath": "/tools",
+      "status": 200,
+      "title": "Software Buying Guides & Product Profiles | SaaSFolio",
+      "h1": [
+        "Choose software around the work you need to do."
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/deals?type=lifetime",
+      "finalPath": "/deals?type=lifetime",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals?type=free_trial",
+      "finalPath": "/deals?type=free_trial",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/deals?category=marketing",
+      "finalPath": "/deals?category=marketing",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/contact?offer=aioseo-first-year-published-offer",
+      "finalPath": "/contact?offer=aioseo-first-year-published-offer",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/deals?category=productivity",
+      "finalPath": "/deals?category=productivity",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/contact?offer=akiflow-free-trial",
+      "finalPath": "/contact?offer=akiflow-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/deals?category=analytics",
+      "finalPath": "/deals?category=analytics",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/contact?offer=anytrack-free-trial",
+      "finalPath": "/contact?offer=anytrack-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/deals?category=project-management",
+      "finalPath": "/deals?category=project-management",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/contact?offer=asana-nonprofit-program",
+      "finalPath": "/contact?offer=asana-nonprofit-program",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=baserow-free-plan",
+      "finalPath": "/contact?offer=baserow-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=baserow-organization-program",
+      "finalPath": "/contact?offer=baserow-organization-program",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=beehiiv-free-plan",
+      "finalPath": "/contact?offer=beehiiv-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/deals?category=crm-sales",
+      "finalPath": "/deals?category=crm-sales",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/contact?offer=bigin-free-trial",
+      "finalPath": "/contact?offer=bigin-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/deals?category=security",
+      "finalPath": "/deals?category=security",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/contact?offer=bitwarden-free-trial",
+      "finalPath": "/contact?offer=bitwarden-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/deals?category=dev-tools",
+      "finalPath": "/deals?category=dev-tools",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/contact?offer=checkly-annual-billing",
+      "finalPath": "/contact?offer=checkly-annual-billing",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=coderabbit-annual-billing",
+      "finalPath": "/contact?offer=coderabbit-annual-billing",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=coderabbit-free-trial",
+      "finalPath": "/contact?offer=coderabbit-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/deals?category=design",
+      "finalPath": "/deals?category=design",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/contact?offer=colossyan-free-plan",
+      "finalPath": "/contact?offer=colossyan-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=confluence-community-cloud",
+      "finalPath": "/contact?offer=confluence-community-cloud",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=creatify-free-plan",
+      "finalPath": "/contact?offer=creatify-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=dropbox-organization-program",
+      "finalPath": "/contact?offer=dropbox-organization-program",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=duplicator-official-license-code",
+      "finalPath": "/contact?offer=duplicator-official-license-code",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=fathom-free-trial",
+      "finalPath": "/contact?offer=fathom-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=fellow-free-plan",
+      "finalPath": "/contact?offer=fellow-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=fibery-free-trial",
+      "finalPath": "/contact?offer=fibery-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=fibery-startup-pro-access",
+      "finalPath": "/contact?offer=fibery-startup-pro-access",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/deals?category=ai-tools",
+      "finalPath": "/deals?category=ai-tools",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/contact?offer=fireflies-ai-free-plan",
+      "finalPath": "/contact?offer=fireflies-ai-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=fluent-forms-first-year-offer",
+      "finalPath": "/contact?offer=fluent-forms-first-year-offer",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=fluentcrm-first-year-offer",
+      "finalPath": "/contact?offer=fluentcrm-first-year-offer",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=flyingpress-free-trial",
+      "finalPath": "/contact?offer=flyingpress-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=formidable-forms-intro-license-offers",
+      "finalPath": "/contact?offer=formidable-forms-intro-license-offers",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=google-workspace-annual-commitment",
+      "finalPath": "/contact?offer=google-workspace-annual-commitment",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=gravity-forms-nonprofit-license",
+      "finalPath": "/contact?offer=gravity-forms-nonprofit-license",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=healthchecks-io-annual-business",
+      "finalPath": "/contact?offer=healthchecks-io-annual-business",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=hiver-free-trial",
+      "finalPath": "/contact?offer=hiver-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/deals?category=hosting",
+      "finalPath": "/deals?category=hosting",
+      "status": 200,
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "h1": [
+        "SaaS deals & software offers"
+      ],
+      "fragments": 7
+    },
+    {
+      "path": "/contact?offer=hostinger-couponspage-code",
+      "finalPath": "/contact?offer=hostinger-couponspage-code",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=hostinger-official-coupon",
+      "finalPath": "/contact?offer=hostinger-official-coupon",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=hostinger-techradar-reported-code",
+      "finalPath": "/contact?offer=hostinger-techradar-reported-code",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=hyperping-yearly-billing",
+      "finalPath": "/contact?offer=hyperping-yearly-billing",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=imagify-yearly-two-months",
+      "finalPath": "/contact?offer=imagify-yearly-two-months",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=incident-io-annual-team",
+      "finalPath": "/contact?offer=incident-io-annual-team",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=intercom-early-stage-year-one",
+      "finalPath": "/contact?offer=intercom-early-stage-year-one",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=intercom-free-trial",
+      "finalPath": "/contact?offer=intercom-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=jenni-ai-annual-plan-offer",
+      "finalPath": "/contact?offer=jenni-ai-annual-plan-offer",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=jira-community-cloud",
+      "finalPath": "/contact?offer=jira-community-cloud",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=linear-partner-startup-business",
+      "finalPath": "/contact?offer=linear-partner-startup-business",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=linguix-annual-pro-offer",
+      "finalPath": "/contact?offer=linguix-annual-pro-offer",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=loom-free-trial",
+      "finalPath": "/contact?offer=loom-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=monday-nonprofit-additional-seats",
+      "finalPath": "/contact?offer=monday-nonprofit-additional-seats",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=monsterinsights-official-intro-code",
+      "finalPath": "/contact?offer=monsterinsights-official-intro-code",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=morgen-calendar-free-trial",
+      "finalPath": "/contact?offer=morgen-calendar-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=motion-calendar-free-trial",
+      "finalPath": "/contact?offer=motion-calendar-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=nocodb-annual-billing",
+      "finalPath": "/contact?offer=nocodb-annual-billing",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=nifty-nonprofit-education",
+      "finalPath": "/contact?offer=nifty-nonprofit-education",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=notesnook-education-year",
+      "finalPath": "/contact?offer=notesnook-education-year",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=notesnook-free-trial",
+      "finalPath": "/contact?offer=notesnook-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=notion-startup-program",
+      "finalPath": "/contact?offer=notion-startup-program",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=otter-ai-free-plan",
+      "finalPath": "/contact?offer=otter-ai-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=paperpal-institutional-trial-enquiry",
+      "finalPath": "/contact?offer=paperpal-institutional-trial-enquiry",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=photoroom-free-trial",
+      "finalPath": "/contact?offer=photoroom-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=plausible-analytics-free-trial",
+      "finalPath": "/contact?offer=plausible-analytics-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=plutio-free-trial",
+      "finalPath": "/contact?offer=plutio-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=plutio-yearly-billing",
+      "finalPath": "/contact?offer=plutio-yearly-billing",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=reclaim-ai-free-plan",
+      "finalPath": "/contact?offer=reclaim-ai-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=rootly-startup-program",
+      "finalPath": "/contact?offer=rootly-startup-program",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=seedprod-official-intro-code",
+      "finalPath": "/contact?offer=seedprod-official-intro-code",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=sembly-ai-free-trial",
+      "finalPath": "/contact?offer=sembly-ai-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=semrush-free-trial",
+      "finalPath": "/contact?offer=semrush-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=sendible-free-trial",
+      "finalPath": "/contact?offer=sendible-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=sendible-yearly-plan-offer",
+      "finalPath": "/contact?offer=sendible-yearly-plan-offer",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=sentry-startup-credits",
+      "finalPath": "/contact?offer=sentry-startup-credits",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=serpstat-free-trial",
+      "finalPath": "/contact?offer=serpstat-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=shortpixel-yearly-two-months",
+      "finalPath": "/contact?offer=shortpixel-yearly-two-months",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=slack-free-plan",
+      "finalPath": "/contact?offer=slack-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=smartlead-free-trial",
+      "finalPath": "/contact?offer=smartlead-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=smartsuite-free-trial",
+      "finalPath": "/contact?offer=smartsuite-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=smartsuite-organization-program",
+      "finalPath": "/contact?offer=smartsuite-organization-program",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=snov-io-free-trial",
+      "finalPath": "/contact?offer=snov-io-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=socialpilot-annual-plan-offer",
+      "finalPath": "/contact?offer=socialpilot-annual-plan-offer",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=sourcery-annual-billing",
+      "finalPath": "/contact?offer=sourcery-annual-billing",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=sourcery-free-trial",
+      "finalPath": "/contact?offer=sourcery-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=streamyard-free-trial",
+      "finalPath": "/contact?offer=streamyard-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=tactiq-free-plan",
+      "finalPath": "/contact?offer=tactiq-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=taplio-free-trial",
+      "finalPath": "/contact?offer=taplio-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=text-blaze-free-plan",
+      "finalPath": "/contact?offer=text-blaze-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=trello-nonprofit-program",
+      "finalPath": "/contact?offer=trello-nonprofit-program",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=trupeer-free-trial",
+      "finalPath": "/contact?offer=trupeer-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=wispr-flow-free-plan",
+      "finalPath": "/contact?offer=wispr-flow-free-plan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=wp-mail-smtp-official-dollar-code",
+      "finalPath": "/contact?offer=wp-mail-smtp-official-dollar-code",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=wp-rocket-free-trial",
+      "finalPath": "/contact?offer=wp-rocket-free-trial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=wpforms-nonprofit-application",
+      "finalPath": "/contact?offer=wpforms-nonprofit-application",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=wpforms-official-new-license-code",
+      "finalPath": "/contact?offer=wpforms-official-new-license-code",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=xtiles-education-year",
+      "finalPath": "/contact?offer=xtiles-education-year",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?offer=zapier-annual-billing",
+      "finalPath": "/contact?offer=zapier-annual-billing",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=adobe-creative-cloud",
+      "finalPath": "/contact?brand=adobe-creative-cloud",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=affine",
+      "finalPath": "/contact?brand=affine",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=ahrefs",
+      "finalPath": "/contact?brand=ahrefs",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=aioseo",
+      "finalPath": "/contact?brand=aioseo",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=airtable",
+      "finalPath": "/contact?brand=airtable",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=akiflow",
+      "finalPath": "/contact?brand=akiflow",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=alitu",
+      "finalPath": "/contact?brand=alitu",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=anytrack",
+      "finalPath": "/contact?brand=anytrack",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=asana",
+      "finalPath": "/contact?brand=asana",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=baremetrics",
+      "finalPath": "/contact?brand=baremetrics",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=baserow",
+      "finalPath": "/contact?brand=baserow",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=beehiiv",
+      "finalPath": "/contact?brand=beehiiv",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=bigin",
+      "finalPath": "/contact?brand=bigin",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=box",
+      "finalPath": "/contact?brand=box",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=browserstack",
+      "finalPath": "/contact?brand=browserstack",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=buttondown",
+      "finalPath": "/contact?brand=buttondown",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=canva",
+      "finalPath": "/contact?brand=canva",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=castmagic",
+      "finalPath": "/contact?brand=castmagic",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=checkly",
+      "finalPath": "/contact?brand=checkly",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=clickup",
+      "finalPath": "/contact?brand=clickup",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=clueso",
+      "finalPath": "/contact?brand=clueso",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=coderabbit",
+      "finalPath": "/contact?brand=coderabbit",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=colossyan",
+      "finalPath": "/contact?brand=colossyan",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=confluence",
+      "finalPath": "/contact?brand=confluence",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=consensus",
+      "finalPath": "/contact?brand=consensus",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=convertkit",
+      "finalPath": "/contact?brand=convertkit",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=creatify",
+      "finalPath": "/contact?brand=creatify",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=descript",
+      "finalPath": "/contact?brand=descript",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=dropbox",
+      "finalPath": "/contact?brand=dropbox",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=dubble",
+      "finalPath": "/contact?brand=dubble",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=duplicator",
+      "finalPath": "/contact?brand=duplicator",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=elicit",
+      "finalPath": "/contact?brand=elicit",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=fabric",
+      "finalPath": "/contact?brand=fabric",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=famewall",
+      "finalPath": "/contact?brand=famewall",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=fathom",
+      "finalPath": "/contact?brand=fathom",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=fellow",
+      "finalPath": "/contact?brand=fellow",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=fibery",
+      "finalPath": "/contact?brand=fibery",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=figma",
+      "finalPath": "/contact?brand=figma",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=fireflies-ai",
+      "finalPath": "/contact?brand=fireflies-ai",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=fluent-forms",
+      "finalPath": "/contact?brand=fluent-forms",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=fluentcrm",
+      "finalPath": "/contact?brand=fluentcrm",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=flyingpress",
+      "finalPath": "/contact?brand=flyingpress",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=formidable-forms",
+      "finalPath": "/contact?brand=formidable-forms",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=framer",
+      "finalPath": "/contact?brand=framer",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=google-workspace",
+      "finalPath": "/contact?brand=google-workspace",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=granola",
+      "finalPath": "/contact?brand=granola",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=gravity-forms",
+      "finalPath": "/contact?brand=gravity-forms",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=guideflow",
+      "finalPath": "/contact?brand=guideflow",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=healthchecks-io",
+      "finalPath": "/contact?brand=healthchecks-io",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=hedra",
+      "finalPath": "/contact?brand=hedra",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=hiver",
+      "finalPath": "/contact?brand=hiver",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=hostinger",
+      "finalPath": "/contact?brand=hostinger",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=huly",
+      "finalPath": "/contact?brand=huly",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=hyperping",
+      "finalPath": "/contact?brand=hyperping",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=imagify",
+      "finalPath": "/contact?brand=imagify",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=incident-io",
+      "finalPath": "/contact?brand=incident-io",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=intercom",
+      "finalPath": "/contact?brand=intercom",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=jenni-ai",
+      "finalPath": "/contact?brand=jenni-ai",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=jira",
+      "finalPath": "/contact?brand=jira",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=linear",
+      "finalPath": "/contact?brand=linear",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=linguix",
+      "finalPath": "/contact?brand=linguix",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=loom",
+      "finalPath": "/contact?brand=loom",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=mailerlite",
+      "finalPath": "/contact?brand=mailerlite",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=meetgeek",
+      "finalPath": "/contact?brand=meetgeek",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=microsoft-365",
+      "finalPath": "/contact?brand=microsoft-365",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=miro",
+      "finalPath": "/contact?brand=miro",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=monday",
+      "finalPath": "/contact?brand=monday",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=monsterinsights",
+      "finalPath": "/contact?brand=monsterinsights",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=morgen-calendar",
+      "finalPath": "/contact?brand=morgen-calendar",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=motion-calendar",
+      "finalPath": "/contact?brand=motion-calendar",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=mymind",
+      "finalPath": "/contact?brand=mymind",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=namecheap",
+      "finalPath": "/contact?brand=namecheap",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=nifty",
+      "finalPath": "/contact?brand=nifty",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=nocodb",
+      "finalPath": "/contact?brand=nocodb",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=notesnook",
+      "finalPath": "/contact?brand=notesnook",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=notion",
+      "finalPath": "/contact?brand=notion",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=notta",
+      "finalPath": "/contact?brand=notta",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=ocoya",
+      "finalPath": "/contact?brand=ocoya",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=otter-ai",
+      "finalPath": "/contact?brand=otter-ai",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=paperguide",
+      "finalPath": "/contact?brand=paperguide",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=paperpal",
+      "finalPath": "/contact?brand=paperpal",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=perfmatters",
+      "finalPath": "/contact?brand=perfmatters",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=photoroom",
+      "finalPath": "/contact?brand=photoroom",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=pixelcut",
+      "finalPath": "/contact?brand=pixelcut",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=plutio",
+      "finalPath": "/contact?brand=plutio",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=predis-ai",
+      "finalPath": "/contact?brand=predis-ai",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=ranktracker",
+      "finalPath": "/contact?brand=ranktracker",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=reclaim-ai",
+      "finalPath": "/contact?brand=reclaim-ai",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=riverside-fm",
+      "finalPath": "/contact?brand=riverside-fm",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=rootly",
+      "finalPath": "/contact?brand=rootly",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=scholarcy",
+      "finalPath": "/contact?brand=scholarcy",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=scispace",
+      "finalPath": "/contact?brand=scispace",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=seedprod",
+      "finalPath": "/contact?brand=seedprod",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=sembly-ai",
+      "finalPath": "/contact?brand=sembly-ai",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=semrush",
+      "finalPath": "/contact?brand=semrush",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=sendible",
+      "finalPath": "/contact?brand=sendible",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=sentry",
+      "finalPath": "/contact?brand=sentry",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=seopress",
+      "finalPath": "/contact?brand=seopress",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=serpstat",
+      "finalPath": "/contact?brand=serpstat",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=shortpixel",
+      "finalPath": "/contact?brand=shortpixel",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=slack",
+      "finalPath": "/contact?brand=slack",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=smartlead",
+      "finalPath": "/contact?brand=smartlead",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=smartsuite",
+      "finalPath": "/contact?brand=smartsuite",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=snov-io",
+      "finalPath": "/contact?brand=snov-io",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=socialpilot",
+      "finalPath": "/contact?brand=socialpilot",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=sourcery",
+      "finalPath": "/contact?brand=sourcery",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=streamyard",
+      "finalPath": "/contact?brand=streamyard",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=sunsama",
+      "finalPath": "/contact?brand=sunsama",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=superwhisper",
+      "finalPath": "/contact?brand=superwhisper",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=systeme-io",
+      "finalPath": "/contact?brand=systeme-io",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=tactiq",
+      "finalPath": "/contact?brand=tactiq",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=taplio",
+      "finalPath": "/contact?brand=taplio",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=text-blaze",
+      "finalPath": "/contact?brand=text-blaze",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=tldv",
+      "finalPath": "/contact?brand=tldv",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=trello",
+      "finalPath": "/contact?brand=trello",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=trupeer",
+      "finalPath": "/contact?brand=trupeer",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=trustmary",
+      "finalPath": "/contact?brand=trustmary",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=typeform",
+      "finalPath": "/contact?brand=typeform",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=typingmind",
+      "finalPath": "/contact?brand=typingmind",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=wispr-flow",
+      "finalPath": "/contact?brand=wispr-flow",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=wp-mail-smtp",
+      "finalPath": "/contact?brand=wp-mail-smtp",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=wp-rocket",
+      "finalPath": "/contact?brand=wp-rocket",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=wpforms",
+      "finalPath": "/contact?brand=wpforms",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=xtiles",
+      "finalPath": "/contact?brand=xtiles",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=zapier",
+      "finalPath": "/contact?brand=zapier",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=zencastr",
+      "finalPath": "/contact?brand=zencastr",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?department=editorial",
+      "finalPath": "/contact?department=editorial",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=bitwarden",
+      "finalPath": "/contact?brand=bitwarden",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=carrd",
+      "finalPath": "/contact?brand=carrd",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=coolify",
+      "finalPath": "/contact?brand=coolify",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=obsidian",
+      "finalPath": "/contact?brand=obsidian",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=plausible",
+      "finalPath": "/contact?brand=plausible",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=pocketbase",
+      "finalPath": "/contact?brand=pocketbase",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=supabase",
+      "finalPath": "/contact?brand=supabase",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=umami",
+      "finalPath": "/contact?brand=umami",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=vaultwarden",
+      "finalPath": "/contact?brand=vaultwarden",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/contact?brand=vercel",
+      "finalPath": "/contact?brand=vercel",
+      "status": 200,
+      "title": "Contact SaaSFolio",
+      "h1": [
+        "WE'RE HERE TO HELP SCALE YOUR SOFTWARE STACK."
+      ],
+      "fragments": 17
+    },
+    {
+      "path": "/tools?page=2",
+      "finalPath": "/tools?page=2",
+      "status": 200,
+      "title": "Software Buying Guides & Product Profiles: Page 2 | SaaSFolio",
+      "h1": [
+        "Choose software around the work you need to do."
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/tools?page=3",
+      "finalPath": "/tools?page=3",
+      "status": 200,
+      "title": "Software Buying Guides & Product Profiles: Page 3 | SaaSFolio",
+      "h1": [
+        "Choose software around the work you need to do."
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/tools?page=4",
+      "finalPath": "/tools?page=4",
+      "status": 200,
+      "title": "Software Buying Guides & Product Profiles: Page 4 | SaaSFolio",
+      "h1": [
+        "Choose software around the work you need to do."
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/tools?page=5",
+      "finalPath": "/tools?page=5",
+      "status": 200,
+      "title": "Software Buying Guides & Product Profiles: Page 5 | SaaSFolio",
+      "h1": [
+        "Choose software around the work you need to do."
+      ],
+      "fragments": 9
+    },
+    {
+      "path": "/tools?page=6",
+      "finalPath": "/tools?page=6",
+      "status": 200,
+      "title": "Software Buying Guides & Product Profiles: Page 6 | SaaSFolio",
+      "h1": [
+        "Choose software around the work you need to do."
+      ],
+      "fragments": 9
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-11-06T04:31:57.048Z",
+  "scope": "Live UI interactions and retries; only public browsing; external measurement and site form writes blocked; automatic Hostinger validation allowed",
+  "responses": [
+    {
+      "url": "https://saasfolio.tech/",
+      "status": 403,
+      "type": "Document"
+    },
+    {
+      "url": "https://saasfolio.tech/",
+      "status": 200,
+      "type": "Document"
+    },
+    {
+      "url": "https://saasfolio.tech/privacy",
+      "status": 200,
+      "type": "Document"
+    },
+    {
+      "url": "https://saasfolio.tech/contact",
+      "status": 200,
+      "type": "Document"
+    },
+    {
+      "url": "https://saasfolio.tech/savings-calculator",
+      "status": 200,
+      "type": "Document"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Global search and result navigation",
+      "passed": true,
+      "url": "https://saasfolio.tech/discounts/beehiiv"
+    },
+    {
+      "name": "Desktop follow-up /privacy",
+      "passed": true,
+      "title": "Privacy Policy | SaaSFolio",
+      "heading": "SAASFOLIO PRIVACY POLICY",
+      "width": 1434,
+      "innerWidth": 1440,
+      "headingVisible": true
+    },
+    {
+      "name": "Desktop follow-up /contact",
+      "passed": true,
+      "title": "Contact SaaSFolio",
+      "heading": "WE'RE HERE TO HELP\nSCALE YOUR SOFTWARE STACK.",
+      "width": 1434,
+      "innerWidth": 1440,
+      "headingVisible": true
+    },
+    {
+      "name": "Mobile calculator follow-up",
+      "passed": true,
+      "result": "12 monthly payments\n$240.00\nAnnual payment + access fee\n$210.00\nAnnual effective monthly cost\n$17.50\n\nAnnual billing saves $30.00 (12.5%) over 12 months after the access fee."
+    }
+  ],
+  "runtimeErrors": [],
+  "blockedWrites": [],
+  "completedAt": "2026-11-06T04:32:19.311Z"
+}
