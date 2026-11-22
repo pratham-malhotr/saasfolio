@@ -23,9 +23,11 @@ reports, and the deployment/Search Console validation steps.
 - Canonical URLs use `NEXT_PUBLIC_SITE_URL` (default `https://saasfolio.tech`).
   Duplicate brand names resolve to one profile; legacy profile and offer URLs
   permanently redirect to current canonical pages. Filter/tracking query strings
-  canonicalize to their hub, and reversed comparisons resolve to a curated pair.
+  canonicalize to their hub. Search and filter results on `/brands` and `/deals`
+  also use `noindex, follow`. Tracking parameters alone do not change indexing.
+  Reversed curated comparisons permanently redirect to the published pair.
 - Category pages publish real catalog counts and filtered collections using the
-  existing deals UI. Homepage category cards link to these crawlable URLs.
+  existing deals UI. The deals hub links to the 12 category pages in HTML.
 - `Organization`, `WebSite`, `WebPage`, `CollectionPage`, `ItemList`,
   `SoftwareApplication`, `Article`, and `BreadcrumbList` JSON-LD is rendered in
   HTML. Software entities describe features and official URLs without invented
@@ -47,6 +49,14 @@ reports, and the deployment/Search Console validation steps.
 - Open Graph and Twitter previews, the shared 1200 × 630 image, article images,
   and optional Google/Bing verification metadata are preserved.
 
+The [search intent map](../lib/data/search-intent-map.ts) records the primary
+query each landing page addresses. The homepage covers SaaS discovery, while
+the brand directory, product profiles, comparisons and deals each answer a
+more specific task. The hosting calculator has its own page for renewal-cost
+queries. The articles hub and matching categories link to the Taplio pricing,
+LinkedIn publishing and newsletter platform guides. The query targets describe
+editorial intent. Use Search Console exports to measure impressions and clicks.
+
 ## Validate locally
 
 ```sh
@@ -56,6 +66,7 @@ npm run build
 npm run start -- --hostname 127.0.0.1 --port 3210
 # In another terminal:
 npm run seo:audit -- http://127.0.0.1:3210
+npm run seo:audit:landings -- http://127.0.0.1:3210 --report=/tmp/saasfolio-seo-landings.json
 ```
 
 The production-response audit checks every sitemap page, JSON-LD, headings,

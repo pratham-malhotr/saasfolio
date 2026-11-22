@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata, absoluteUrl } from "@/lib/seo";
 import { breadcrumbSchema, softwareSchema, webPageSchema, organizationId } from "@/lib/structured-data";
 import { offerLabel } from "@/lib/offer-links";
+import { BrandBuyingGuides } from "@/components/articles/BrandBuyingGuides";
 import { BrandSourcePanel } from "@/components/seo/BrandSourcePanel";
 import { SavingsCalculator } from "@/components/deals/SavingsCalculator";
 import { CouponCode } from "@/components/deals/CouponCode";
@@ -257,6 +258,8 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
         </div>)}</div>
         <p className="text-sm text-zinc-400">If a listed offer is inaccurate, <Link href="/contact" className="text-[#C6FF3D] underline">report the {tool.name} offer to SaaSFolio</Link> with the listing and the provider’s response.</p>
       </section>}
+
+      <BrandBuyingGuides slug={tool.slug} />
 
       <section id="questions" className="space-y-4 scroll-mt-28">
         <h2 className="font-display text-2xl font-bold text-white">{tool.name} discount questions</h2>

@@ -2,6 +2,7 @@ import React from "react";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { getPublishedTools, getPublishedTool, hasPublishedToolProfile } from "@/lib/published-catalog";
+import { BrandBuyingGuides } from "@/components/articles/BrandBuyingGuides";
 import { ToolBuyingNotes } from "@/components/seo/ToolBuyingNotes";
 import { CatalogReference } from "@/components/tools/CatalogReference";
 import { getDealsByTool } from "@/lib/data/deals-data";
@@ -36,8 +37,8 @@ export async function generateMetadata({
   const published = hasPublishedToolProfile(tool.slug);
 
   return pageMetadata({
-    title: published ? toolSearchTitle(tool.name) : `${tool.name}: Directory Reference`,
-    description: published ? toolMetaDescription(tool.name, tool.description) : `An older ${tool.name} directory reference. Explore published software buying guides and current provider terms before choosing a subscription.`,
+    title: published ? toolSearchTitle(tool) : `${tool.name}: Directory Reference`,
+    description: published ? toolMetaDescription(tool) : `An older ${tool.name} directory reference. Explore published software buying guides and current provider terms before choosing a subscription.`,
     path: `/tools/${tool.slug}`,
     noIndex: !published,
   });
@@ -69,8 +70,8 @@ export default async function ToolDetailPage({
           "@graph": [
             {
               ...webPageSchema(
-                toolSearchTitle(tool.name),
-                toolMetaDescription(tool.name, tool.description),
+                toolSearchTitle(tool),
+                toolMetaDescription(tool),
                 `/tools/${tool.slug}`
               ),
               mainEntity: { "@id": softwareSchema(tool)["@id"] },
@@ -87,7 +88,7 @@ export default async function ToolDetailPage({
         tool={tool}
         deals={deals}
         discountSummary={<BrandDiscountSummary tool={tool} deals={deals} />}
-        buyingNotes={hasPublishedToolProfile(tool.slug) ? <ToolBuyingNotes tool={tool} /> : undefined}
+        buyingNotes={hasPublishedToolProfile(tool.slug) ? <><ToolBuyingNotes tool={tool} /><BrandBuyingGuides slug={tool.slug} /></> : undefined}
         comparisonLinks={Object.fromEntries(
           tool.alternatives.map((alternative) => [
             alternative.slug,

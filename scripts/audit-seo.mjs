@@ -162,10 +162,21 @@ for (const path of ["/tools/seo-missing", "/deals/seo-missing", "/articles/seo-m
   const { result, html } = await response(path);
   if (result.status !== 404 && !metaTags(html).some((tag) => tag.name === "robots" && tag.content?.includes("noindex"))) failures.push(`Missing page remains indexable: ${path}`);
 }
-const { html: filtered } = await response("/deals?category=ai-tools&type=coupon&utm_source=seo-audit");
-if (!filtered.includes(`rel="canonical" href="${expectedOrigin}/deals"`)) failures.push("Filtered/tracking URLs must canonicalize to /deals");
-const { html: reverse } = await response("/compare/vercel-vs-coolify");
-if (!reverse.includes(`rel="canonical" href="${expectedOrigin}/compare/coolify-vs-vercel"`)) failures.push("Reversed comparison must canonicalize to the curated comparison");
+for (const [path, canonical, indexable] of [
+  ["/deals?category=ai-tools&type=coupon&utm_source=seo-audit", "/deals", false],
+  ["/deals?category=hosting&category=marketing", "/deals", false],
+  ["/deals?utm_source=seo-audit", "/deals", true],
+  ["/brands?q=taplio", "/brands", false],
+  ["/brands?category=hosting", "/brands", false],
+  ["/brands?utm_source=seo-audit", "/brands", true],
+  ["/tools?page=2&utm_source=seo-audit", "/tools?page=2", true],
+]) {
+  const { result, html } = await response(path);
+  const noindex = metaTags(html).some(tag => tag.name === "robots" && tag.content?.includes("noindex"));
+  if (result.status !== 200 || !html.includes(`rel="canonical" href="${expectedOrigin}${canonical}"`) || noindex === indexable) failures.push(`Unexpected query URL indexing: ${path}`);
+}
+const reverse = await fetch(`${origin}/compare/vercel-vs-coolify`, { redirect: "manual", headers, signal: AbortSignal.timeout(30000) });
+if (reverse.status !== 308 || reverse.headers.get("location") !== "/compare/coolify-vs-vercel") failures.push("Reversed comparison must permanently redirect to the curated comparison");
 
 if (failures.length) {
   console.error(`${failures.length} SEO checks failed:\n${failures.map((message) => `- ${message}`).join("\n")}`);

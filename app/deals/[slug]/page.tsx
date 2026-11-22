@@ -54,10 +54,10 @@ export async function generateMetadata({
   // parallel; redirecting from both can append duplicate Location headers.
   if (target.kind === "retired") {
     return pageMetadata({
-      title: target.discountData ? brandDiscountTitle(target.tool) : toolSearchTitle(target.tool.name),
+      title: target.discountData ? brandDiscountTitle(target.tool) : toolSearchTitle(target.tool),
       description: target.discountData
         ? brandDiscountDescription(target.tool, target.discountData.offers)
-        : toolMetaDescription(target.tool.name, target.tool.description),
+        : toolMetaDescription(target.tool),
       path: target.path,
     });
   }

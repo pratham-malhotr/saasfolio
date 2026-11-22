@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { SaaSDeal } from "@/lib/types";
+import type { DetailedTool, SaaSDeal } from "@/lib/types";
 
 // One origin for canonicals, the sitemap, social previews, and entity identifiers.
 // Never derive this from a request host (which may be a staging/preview domain).
@@ -7,9 +7,9 @@ export const SITE_URL = new URL(
   process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech"
 ).origin;
 export const SITE_NAME = "SaaSFolio";
-export const SITE_TITLE = "Hosting Comparisons, Software Brands & Deals | SaaSFolio";
+export const SITE_TITLE = "Find SaaS Tools, Software Reviews & Deals | SaaSFolio";
 export const SITE_DESCRIPTION =
-  "Discover SaaS brands and hosting services. Read sourced reviews, compare software alternatives and find discounts before your next subscription.";
+  "Find SaaS tools, compare software and web hosting, and check sourced deals, subscription prices and renewal costs before you buy.";
 
 export function absoluteUrl(path = "/"): string {
   return new URL(path, `${SITE_URL}/`).toString().replace(/\/$/, "");
@@ -85,10 +85,25 @@ export function dealMetaDescription(deal: SaaSDeal): string {
   return summarize(`${type} Check eligibility, redemption steps and source details. ${deal.terms}`, 155);
 }
 
-export function toolSearchTitle(toolName: string): string {
-  return `${toolName} Pricing, Features & Alternatives`;
+const profileSearchCopy: Record<string, { topic: string; description: string }> = {
+  taplio: { topic: "LinkedIn Scheduling & Analytics", description: "Explore Taplio for LinkedIn scheduling, post drafting and analytics. Compare how the workflow fits a personal profile, a team or a native LinkedIn setup." },
+  beehiiv: { topic: "Newsletter Publishing & Monetization", description: "Explore beehiiv for newsletter publishing, subscriber growth and paid subscriptions. Compare its workflow, portability and alternatives for your publication." },
+  convertkit: { topic: "Email Marketing & Automations", description: "Explore Kit, formerly ConvertKit, for newsletters, email sequences and digital products. Compare automation needs and what changes as your list grows." },
+  "systeme-io": { topic: "Sales Funnels, Email & Courses", description: "See how Systeme.io fits a sales funnel, email sequence or online course. Compare the publishing workflow, limits and subscription options before you switch." },
+  "snov-io": { topic: "Email Finder, Verification & Outreach", description: "Explore Snov.io for email finding, verification and outreach. Compare credit usage, mailbox requirements and the scope of the workflow you need." },
+  smartlead: { topic: "Cold Email Sequences & Mailboxes", description: "Explore Smartlead for cold email sequences and mailbox management. Compare pricing by usage, required sending infrastructure and alternative workflows." },
+  streamyard: { topic: "Live Streaming & Multistreaming", description: "Explore StreamYard for browser-based live streams and recordings. Compare guest workflows, destinations, recording requirements and plan limits." },
+  "predis-ai": { topic: "AI Social Media Content & Scheduling", description: "Explore Predis.ai for AI social media assets and scheduling. Compare generation allowances, publishing workflows and alternative tools." },
+  baremetrics: { topic: "SaaS MRR, Churn & Subscription Analytics", description: "Explore Baremetrics for SaaS subscription analytics. Compare MRR, churn reporting, billing integrations and the plan requirements for your revenue data." },
+  anytrack: { topic: "Conversion Tracking & Attribution", description: "Explore AnyTrack for conversion tracking and attribution. Compare event allowances, integrations and the sources you need to connect before purchasing." },
+};
+
+export function toolSearchTitle(tool: Pick<DetailedTool, "slug" | "name">): string {
+  const topic = profileSearchCopy[tool.slug]?.topic;
+  return topic ? `${tool.name}: ${topic}` : `${tool.name} Pricing, Features & Alternatives`;
 }
 
-export function toolMetaDescription(toolName: string, description?: string): string {
-  return summarize(`${toolName} pricing, features, alternatives and discount availability. ${description || "Compare software options and check current provider plans."}`, 155);
+export function toolMetaDescription(tool: Pick<DetailedTool, "slug" | "name" | "description">): string {
+  return summarize(profileSearchCopy[tool.slug]?.description ||
+    `${tool.description} Review ${tool.name} features, provider pricing and alternatives.`, 155);
 }

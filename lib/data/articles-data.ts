@@ -2,7 +2,7 @@ export interface ArticleSection {
   id: string;
   heading: string;
   content: string; // Markdown or rich HTML-friendly text
-  links?: { label: string; href: string }[];
+  links?: { label: string; href: string; affiliate?: boolean }[];
   codeSnippet?: {
     language: string;
     code: string;
@@ -44,6 +44,7 @@ export interface DetailedArticle {
     cons: string[];
   };
   comparisonTable?: {
+    afterSection?: string;
     headers: string[];
     rows: { feature: string; values: string[] }[];
   };

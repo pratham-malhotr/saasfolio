@@ -173,6 +173,8 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
     } catch {}
   };
 
+  const comparison = article.comparisonTable && <FeatureComparisonTable headers={article.comparisonTable.headers} rows={article.comparisonTable.rows} />;
+
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <ReadingProgressBar />
@@ -352,7 +354,7 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Article Body Column (8 cols) */}
-          <div className="lg:col-span-8 space-y-12">
+          <div className="min-w-0 space-y-12 lg:col-span-8">
             {/* Executive Summary Card */}
             <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/10 relative">
               <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold block mb-2">
@@ -367,66 +369,78 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
 
             {/* Render Each Article Section */}
             {article.sections.map((section) => (
-              <section key={section.id} id={section.id} className="scroll-mt-28">
-                <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mb-4">
-                  {section.heading}
-                </h2>
+              <React.Fragment key={section.id}>
+                <section id={section.id} className="scroll-mt-28">
+                  <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mb-4">
+                    {section.heading}
+                  </h2>
 
-                <div
-                  className={`prose prose-invert max-w-none text-zinc-300 leading-relaxed space-y-4 ${
-                    isReadingMode ? "text-base sm:text-lg" : "text-sm sm:text-base"
-                  }`}
-                >
-                  {section.content.split("\n\n").map((para, pIdx) => (
-                    <p key={pIdx} className="leading-relaxed">
-                      {para}
-                    </p>
-                  ))}
-                </div>
-
-                {section.links?.length ? <ul className="mt-5 space-y-3 text-sm text-[#C6FF3D]">{section.links.map(link => <li key={link.href}><Link prefetch={false} href={link.href} className="underline underline-offset-4">{link.label} →</Link></li>)}</ul> : null}
-
-                {/* Optional Code Snippet */}
-                {section.codeSnippet && (
-                  <div className="my-6 rounded-2xl overflow-hidden border border-white/10 bg-[#09090C]">
-                    <div className="px-4 py-2.5 bg-black/60 border-b border-white/5 flex items-center justify-between font-mono text-[11px] text-zinc-400">
-                      <div className="flex items-center gap-2">
-                        <span className="uppercase text-[#C6FF3D] font-bold">
-                          {section.codeSnippet.language}
-                        </span>
-                        {section.codeSnippet.caption && (
-                          <span className="text-zinc-500">| {section.codeSnippet.caption}</span>
-                        )}
-                      </div>
-
-                      <button
-                        onClick={() => handleCopyCode(section.codeSnippet!.code, section.id)}
-                        className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-colors text-xs font-mono"
-                      >
-                        {copiedSnippetId === section.id ? (
-                          <>
-                            <Check className="w-3.5 h-3.5 text-[#C6FF3D]" />
-                            <span className="text-[#C6FF3D] font-bold">Copied!</span>
-                          </>
-                        ) : (
-                          <>
-                            <Copy className="w-3.5 h-3.5" />
-                            <span>Copy Code</span>
-                          </>
-                        )}
-                      </button>
-                    </div>
-                    <pre className="p-4 sm:p-6 text-xs sm:text-sm font-mono text-zinc-200 overflow-x-auto">
-                      <code>{section.codeSnippet.code}</code>
-                    </pre>
+                  <div
+                    className={`prose prose-invert max-w-none text-zinc-300 leading-relaxed space-y-4 ${
+                      isReadingMode ? "text-base sm:text-lg" : "text-sm sm:text-base"
+                    }`}
+                  >
+                    {section.content.split("\n\n").map((para, pIdx) => (
+                      <p key={pIdx} className="leading-relaxed">
+                        {para}
+                      </p>
+                    ))}
                   </div>
-                )}
 
-                {/* Optional Deal Callout */}
-                {section.dealCalloutSlug && (
-                  <DealCallout deal={sectionDeals[section.dealCalloutSlug]} />
-                )}
-              </section>
+                  {section.links?.length ? <ul className="mt-5 space-y-3 text-sm text-[#C6FF3D]">{section.links.map(link => (
+                    <li key={link.href}>
+                      {link.affiliate ? (
+                        <>
+                          <p className="mb-2 text-zinc-400">SaaSFolio may earn a commission if you subscribe through this link. <Link href="/affiliate-disclosure" className="underline underline-offset-4">Affiliate disclosure</Link></p>
+                          <a href={link.href} rel="sponsored nofollow" className="inline-flex min-h-11 items-center rounded-lg bg-[#C6FF3D] px-4 font-semibold text-black hover:bg-[#d8ff83]">{link.label}</a>
+                        </>
+                      ) : <Link prefetch={false} href={link.href} className="underline underline-offset-4">{link.label}</Link>}
+                    </li>
+                  ))}</ul> : null}
+
+                  {/* Optional Code Snippet */}
+                  {section.codeSnippet && (
+                    <div className="my-6 rounded-2xl overflow-hidden border border-white/10 bg-[#09090C]">
+                      <div className="px-4 py-2.5 bg-black/60 border-b border-white/5 flex items-center justify-between font-mono text-[11px] text-zinc-400">
+                        <div className="flex items-center gap-2">
+                          <span className="uppercase text-[#C6FF3D] font-bold">
+                            {section.codeSnippet.language}
+                          </span>
+                          {section.codeSnippet.caption && (
+                            <span className="text-zinc-500">| {section.codeSnippet.caption}</span>
+                          )}
+                        </div>
+
+                        <button
+                          onClick={() => handleCopyCode(section.codeSnippet!.code, section.id)}
+                          className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-colors text-xs font-mono"
+                        >
+                          {copiedSnippetId === section.id ? (
+                            <>
+                              <Check className="w-3.5 h-3.5 text-[#C6FF3D]" />
+                              <span className="text-[#C6FF3D] font-bold">Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5" />
+                              <span>Copy Code</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                      <pre className="p-4 sm:p-6 text-xs sm:text-sm font-mono text-zinc-200 overflow-x-auto">
+                        <code>{section.codeSnippet.code}</code>
+                      </pre>
+                    </div>
+                  )}
+
+                  {/* Optional Deal Callout */}
+                  {section.dealCalloutSlug && (
+                    <DealCallout deal={sectionDeals[section.dealCalloutSlug]} />
+                  )}
+                </section>
+                {article.comparisonTable?.afterSection === section.id && comparison}
+              </React.Fragment>
             ))}
 
             {hostingActions}
@@ -441,12 +455,7 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
             )}
 
             {/* Optional Feature Comparison Table */}
-            {article.comparisonTable && (
-              <FeatureComparisonTable
-                headers={article.comparisonTable.headers}
-                rows={article.comparisonTable.rows}
-              />
-            )}
+            {!article.comparisonTable?.afterSection && comparison}
 
             {/* Optional FAQ Section */}
             {article.faqs && article.faqs.length > 0 && (

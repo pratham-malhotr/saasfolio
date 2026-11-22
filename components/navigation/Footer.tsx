@@ -35,7 +35,7 @@ export function Footer() {
             </div>
             <ul className="space-y-2.5 text-sm">
               <li><Link prefetch={false} href="/hosting" className="inline-block hover:text-[#C6FF3D] transition-colors">Hosting Research & Provider Finder</Link></li>
-              <li><Link prefetch={false} href="/hosting#cost-calculator" className="inline-block hover:text-[#C6FF3D] transition-colors">Hosting Renewal Cost Calculator</Link></li>
+              <li><Link prefetch={false} href="/hosting-cost-calculator" className="inline-block hover:text-[#C6FF3D] transition-colors">Hosting Renewal Cost Calculator</Link></li>
               <li><Link prefetch={false} href="/discounts" className="inline-block hover:text-[#C6FF3D] transition-colors">Discounts by Brand</Link></li>
               <li><Link prefetch={false} href="/brands" className="inline-block hover:text-[#C6FF3D] transition-colors">All Brands A–Z</Link></li>
               {SAVINGS_COLLECTION_LINKS.map(link => <li key={link.href}><Link prefetch={false} href={link.href} className="inline-block hover:text-[#C6FF3D] transition-colors">{link.label}</Link></li>)}

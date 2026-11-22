@@ -19,9 +19,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Core navigation pages
   const coreRoutes: MetadataRoute.Sitemap = [
-    { url: absoluteUrl("/hosting"), lastModified: new Date("2026-11-17T00:00:00Z"), changeFrequency: "weekly", priority: 0.9 },
+    { url: absoluteUrl("/hosting"), lastModified: isoDate("2026-11-22"), changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/brands"), changeFrequency: "daily", priority: 0.8 },
     { url: absoluteUrl("/editorial-policy"), changeFrequency: "monthly", priority: 0.5 },
+    { url: absoluteUrl("/hosting-cost-calculator"), lastModified: isoDate("2026-11-22") },
     { url: absoluteUrl("/savings-calculator"), changeFrequency: "monthly", priority: 0.6 },
     {
       url: absoluteUrl("/"),

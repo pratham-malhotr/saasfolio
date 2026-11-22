@@ -7,11 +7,12 @@ import React from "react";
 import { ToolsDirectoryClient } from "@/components/tools/ToolsDirectoryClient";
 import { getPublishedTools } from "@/lib/published-catalog";
 
-const description = "Explore software with original buying guidance and linked sources. Compare workflows, billing requirements and operating responsibilities before subscribing.";
+const title = "SaaS Product Profiles & Software Alternatives";
+const description = "Explore SaaS product profiles with features, software alternatives, official pricing links and workflow guidance for choosing business software.";
 const pageNumber = (value?: string | string[]) => typeof value === "string" && /^[1-9]\d{0,3}$/.test(value) ? Number(value) : 1;
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string | string[] }> }) {
   const page = pageNumber((await searchParams).page);
-  return pageMetadata({ title: `Software Buying Guides & Product Profiles${page > 1 ? `: Page ${page}` : ""}`, description, path: page > 1 ? `/tools?page=${page}` : "/tools" });
+  return pageMetadata({ title: `${title}${page > 1 ? `: Page ${page}` : ""}`, description, path: page > 1 ? `/tools?page=${page}` : "/tools" });
 }
 
 export const revalidate = 3600;
@@ -24,7 +25,7 @@ export default async function ToolsPage({ searchParams }: { searchParams: Promis
 
   return (
     <div className="min-h-screen bg-[#050505]">
-      <JsonLd data={collectionSchema('Software Buying Guides & Product Profiles', description, page > 1 ? `/tools?page=${page}` : "/tools", listedTools.map((tool) => ({ name: tool.name, path: `/tools/${tool.slug}` })))} />
+      <JsonLd data={collectionSchema(title, description, page > 1 ? `/tools?page=${page}` : "/tools", listedTools.map((tool) => ({ name: tool.name, path: `/tools/${tool.slug}` })))} />
       <ToolsDirectoryClient key={page} initialPage={page} initialTools={allTools.map(({ id, slug, name, category, categorySlug, tagline, description, logoLetter, keyFeatures }) => ({ id, slug, name, category, categorySlug, tagline, description, logoLetter, keyFeatures }))} comparisonLinks={Object.fromEntries(allTools.map((tool) => [tool.slug, getComparisonHref(tool.slug, tool.alternatives[0]?.slug)]))} />
     </div>
   );

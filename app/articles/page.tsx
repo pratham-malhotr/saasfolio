@@ -5,14 +5,36 @@ import { pageMetadata } from "@/lib/seo";
 import React from "react";
 import { ArticlesHubClient } from "@/components/articles/ArticlesHubClient";
 import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
+import Link from "next/link";
 
-export const metadata = pageMetadata({
-  title: 'Software Reviews, Hosting Research & SaaS Buying Guides',
-  description: 'Read sourced software and hosting reviews, compare product trade-offs and evaluate pricing, renewal costs and operating responsibilities before subscribing.',
-  path: "/articles",
-});
+const title = "Software Buying Guides, Reviews & Comparisons";
+const description = "Read software buying guides for LinkedIn tools, newsletters, course sales, video podcasts and web hosting. Compare plan limits and renewal costs.";
+export const metadata = pageMetadata({ title, description, path: "/articles" });
+
+const readingTopics = [
+  { heading: "LinkedIn tools and newsletter platforms", slugs: ["taplio-pricing-starter-vs-growth-vs-pro", "taplio-vs-authoredup", "beehiiv-vs-kit-newsletter"] },
+  { heading: "Course launches and video podcasts", slugs: ["systeme-io-free-plan-limits", "streamyard-vs-riverside-video-podcast"] },
+  { heading: "VPS, WordPress and hosting renewal costs", slugs: ["hetzner-vs-digitalocean-small-business-vps", "hostinger-vps-vs-managed-wordpress-solo-blogger", "hosting-introductory-discount-vs-renewal-cost"] },
+  { heading: "SaaS budgets, trial checklists and plan limits", slugs: ["build-a-saas-budget-before-buying", "evaluate-ai-software-free-trials", "compare-saas-pricing-limits"] },
+];
 
 export default function ArticlesPage() {
   const articles = [...DETAILED_ARTICLES].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).map(({ id, slug, title, summary, category, readTime, author, tags, featured, coverImage }) => ({ id, slug, title, summary, category, readTime, author, tags, featured, coverImage }));
-  return <><JsonLd data={collectionSchema('SaaS Buying Guides', 'Original buying guides about coupon terms, pricing limits, subscription budgets and renewal costs.', "/articles", DETAILED_ARTICLES.map((article) => ({ name: article.title, path: `/articles/${article.slug}` })))} /><ArticlesHubClient articles={articles} savingsLinks={<SavingsCollectionLinks heading="Put the buying guide into practice" />} /></>;
+  const articleTitles = new Map(articles.map(article => [article.slug, article.title]));
+  return <>
+    <JsonLd data={collectionSchema(title, description, "/articles", articles.map(article => ({ name: article.title, path: `/articles/${article.slug}` })))} />
+    <ArticlesHubClient articles={articles} savingsLinks={<div className="space-y-8">
+      <nav aria-label="Software buying guides by topic" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {readingTopics.map(topic => (
+          <section key={topic.heading} className="rounded-2xl border border-white/10 bg-[#101416] p-5">
+            <h2 className="font-display text-lg font-semibold text-white">{topic.heading}</h2>
+            <ul className="mt-3 space-y-2">
+              {topic.slugs.map(slug => <li key={slug}><Link prefetch={false} href={`/articles/${slug}`} className="inline-block py-1.5 text-sm leading-relaxed text-[#C6FF3D] underline underline-offset-4">{articleTitles.get(slug)}</Link></li>)}
+            </ul>
+          </section>
+        ))}
+      </nav>
+      <SavingsCollectionLinks heading="Put the buying guide into practice" />
+    </div>} />
+  </>;
 }

@@ -8,6 +8,9 @@ const { SAVINGS_COLLECTIONS } = loadCatalogModule("lib/data/savings-collections.
 const { CATEGORY_SEARCH_CONTENT } = loadCatalogModule("lib/data/category-search-content.ts");
 const { SEARCH_LANDING_TARGETS } = loadCatalogModule("lib/data/search-intent-map.ts");
 const { getAllDeals } = loadCatalogModule("lib/data/deals-data.ts");
+const { getToolBySlug } = loadCatalogModule("lib/data/tools-data.ts");
+const { getCustomAffiliateUrl } = loadCatalogModule("lib/data/affiliate-links.ts");
+const { publicHttpsUrl } = loadCatalogModule("lib/offer-links.ts");
 const { getIndexableDiscountBrands } = loadCatalogModule("lib/brand-discounts.ts");
 const { getCatalogCategories } = loadCatalogModule("lib/categories.ts");
 const { DETAILED_ARTICLES } = loadCatalogModule("lib/data/articles-data.ts");
@@ -51,17 +54,28 @@ test("program directory entries resolve to available brand guidance without requ
 
 test("category and article links form complete, distinct buying paths", () => {
   const articleSlugs = new Set(DETAILED_ARTICLES.map(article => article.slug));
-  const knownPaths = new Set(["/", "/deals", "/discounts", "/contact", "/savings-calculator", "/hosting", ...SAVINGS_COLLECTIONS.map(collection => `/${collection.slug}`), ...getCatalogCategories().map(category => `/deals/category/${category.slug}`), ...DETAILED_ARTICLES.map(article => `/articles/${article.slug}`), ...getIndexableDiscountBrands().map(tool => `/discounts/${tool.slug}`)]);
+  const knownPaths = new Set(["/", "/deals", "/discounts", "/contact", "/savings-calculator", "/hosting", "/hosting-cost-calculator", ...SAVINGS_COLLECTIONS.map(collection => `/${collection.slug}`), ...getCatalogCategories().map(category => `/deals/category/${category.slug}`), ...DETAILED_ARTICLES.map(article => `/articles/${article.slug}`), ...getIndexableDiscountBrands().map(tool => `/discounts/${tool.slug}`)]);
   assert.deepEqual(Object.keys(CATEGORY_SEARCH_CONTENT).sort(), getCatalogCategories().map(category => category.slug).sort());
   for (const content of [...Object.values(CATEGORY_SEARCH_CONTENT), ...SAVINGS_COLLECTIONS]) for (const slug of content.articleSlugs) assert.ok(articleSlugs.has(slug), `Missing article: ${slug}`);
   for (const article of DETAILED_ARTICLES) for (const section of article.sections) for (const link of section.links || []) {
+    if (link.affiliate) {
+      assert.match(link.href, /^\/go\/[a-z0-9-]+$/);
+      const slug = link.href.slice(4);
+      assert.ok(getToolBySlug(slug) && publicHttpsUrl(getCustomAffiliateUrl(slug)), `Missing affiliate destination: ${link.href}`);
+      continue;
+    }
+    if (!link.href.startsWith("/")) {
+      assert.ok(publicHttpsUrl(link.href) && article.sources?.some(source => source.url === link.href), `Unreferenced source link: ${link.href}`);
+      continue;
+    }
     const [pathname, fragment] = link.href.split("#");
     assert.ok(knownPaths.has(pathname), `Broken editorial route: ${link.href}`);
     if (pathname === "/hosting" && fragment) assert.ok(["finder", "cost-calculator", "shortlist", "guides", "offers"].includes(fragment), `Unknown hosting anchor: ${fragment}`);
   }
   assert.equal(new Set(SEARCH_LANDING_TARGETS.map(target => target.path)).size, SEARCH_LANDING_TARGETS.length);
   assert.equal(new Set(SEARCH_LANDING_TARGETS.map(target => target.primaryQuery.toLowerCase())).size, SEARCH_LANDING_TARGETS.length);
-  for (const target of SEARCH_LANDING_TARGETS) assert.ok(knownPaths.has(target.path));
+  const sitemap = new Set(loadCatalogModule("app/sitemap.ts").default().map(entry => new URL(entry.url).pathname));
+  for (const target of SEARCH_LANDING_TARGETS) assert.ok(sitemap.has(target.path), `Search target missing from sitemap: ${target.path}`);
 });
 
 test("current savings views retain every eligible sourced offer while rejecting pricing fallbacks", () => {
