@@ -3,9 +3,9 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-export async function openChromePage(origin) {
+export async function openChromePage(origin, chromeFlags = []) {
   const profile = await mkdtemp(join(tmpdir(), "saasfolio-seo-browser-"));
-  const chrome = spawn(process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", ["--headless=new", "--remote-debugging-pipe", `--user-data-dir=${profile}`, "--no-first-run", "--no-default-browser-check", "about:blank"], { stdio: ["ignore", "ignore", "ignore", "pipe", "pipe"] });
+  const chrome = spawn(process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", ["--headless=new", "--remote-debugging-pipe", `--user-data-dir=${profile}`, "--no-first-run", "--no-default-browser-check", ...chromeFlags, "about:blank"], { stdio: ["ignore", "ignore", "ignore", "pipe", "pipe"] });
   let sequence = 0, buffer = "";
   const pending = new Map(), runtimeErrors = [], failedAssets = [], writes = [];
   chrome.stdio[4].on("data", chunk => {

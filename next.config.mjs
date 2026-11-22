@@ -1,5 +1,6 @@
 import { DISCOUNT_BRAND_ALIASES } from "./lib/data/brand-discount-aliases.mjs";
 import { ARTICLE_ALIASES } from "./lib/data/article-aliases.mjs";
+import { CURATED_COMPARISON_SLUGS } from "./lib/data/curated-comparison-slugs.mjs";
 
 const canonicalSite = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech");
 
@@ -24,6 +25,11 @@ const nextConfig = {
       }] : []),
       ...discountRedirects,
       ...Object.entries(ARTICLE_ALIASES).map(([alias, canonical]) => ({ source: `/articles/${alias}/:path*`, destination: `/articles/${canonical}/:path*`, permanent: true })),
+      ...CURATED_COMPARISON_SLUGS.map(slug => ({
+        source: `/compare/${slug.split("-vs-").reverse().join("-vs-")}`,
+        destination: `/compare/${slug}`,
+        permanent: true,
+      })),
       { source: "/tools/kit-convertkit/:path*", destination: "/tools/convertkit/:path*", permanent: true },
       { source: "/deals/kit-convertkit-pricing", destination: "/deals/convertkit-pricing", permanent: true },
     ];

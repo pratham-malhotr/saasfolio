@@ -1,5 +1,6 @@
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { COMPARISON_GUIDES } from "@/lib/data/comparison-guides";
+import { CURATED_COMPARISON_SLUGS } from "@/lib/data/curated-comparison-slugs.mjs";
 
 export const POPULAR_COMPARISONS = [
   {
@@ -98,7 +99,7 @@ export const POPULAR_COMPARISONS = [
     toolA: "Moosend",
     toolB: "MailerLite",
   },
-].filter(comparison => Boolean(COMPARISON_GUIDES[comparison.slug]));
+].filter(comparison => CURATED_COMPARISON_SLUGS.includes(comparison.slug) && Boolean(COMPARISON_GUIDES[comparison.slug]));
 
 
 export const COMPARISON_SLUGS = [

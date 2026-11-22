@@ -34,6 +34,17 @@ try {
       assert.equal(state.mainCount, 1, `${target.path}: one main landmark`);
       assert.ok(state.heading.length > 5);
       assert.deepEqual(state.brokenFragments, [], `${target.path}: complete section navigation`);
+      if (target.path === "/hosting-cost-calculator") {
+        const calculator = "#cost-calculator";
+        await until(() => evaluate(`document.querySelector('${calculator} [aria-live]')?.textContent.includes('$48.00 less')`), "Default hosting comparison");
+        await until(() => evaluate(`Object.keys(document.querySelector('${calculator} select')).some(key => key.startsWith('__reactProps'))`), "Hosting calculator hydration");
+        await evaluate(`(() => {
+          const term = document.querySelector('${calculator} select');
+          term.value = '12';
+          term.dispatchEvent(new Event('change', { bubbles: true }));
+        })()`);
+        await until(() => evaluate(`document.querySelector('${calculator} [aria-live]')?.textContent.includes('Plan A costs $48.00 less')`), "Hosting budget responds to the selected term");
+      }
       if (["/coupon-codes", "/startup-deals", "/student-discounts", "/nonprofit-discounts"].includes(target.path)) {
         assert.ok(await evaluate("[...document.querySelectorAll('main a[href^=\"/go/\"]')].every(link=>link.target==='_blank'&&['sponsored','nofollow','noopener','noreferrer'].every(value=>link.rel.split(' ').includes(value)))"), "Provider links preserve sponsorship and safe new-tab attributes");
         await evaluate("document.querySelector('main details summary').click()");
@@ -54,7 +65,8 @@ try {
   // Cold, script-disabled visits prove that discoverability and eligibility
   // content are present before hydration, including the new article links.
   await page("Emulation.setScriptExecutionDisabled", { value: true });
-  for (const path of ["/", "/coupon-codes", "/startup-deals", "/student-discounts", "/nonprofit-discounts", "/deals/category/ai-tools", "/articles/find-and-use-saas-coupon-codes"]) {
+  const noJavaScriptPaths = ["/", "/coupon-codes", "/startup-deals", "/student-discounts", "/nonprofit-discounts", "/deals/category/ai-tools", "/hosting-cost-calculator", "/articles/find-and-use-saas-coupon-codes"];
+  for (const path of noJavaScriptPaths) {
     await navigate(path);
     assert.ok(await evaluate("document.querySelector('main h1').checkVisibility({checkVisibilityCSS:true})"), `${path}: visible without JavaScript`);
     assert.ok(await evaluate("document.querySelector('main a[href]')?.checkVisibility({checkVisibilityCSS:true})"), `${path}: crawlable native links without JavaScript`);
@@ -62,7 +74,7 @@ try {
   assert.deepEqual(browser.runtimeErrors, [], "No uncaught browser exceptions");
   assert.deepEqual(browser.failedAssets, [], "No broken document, script, stylesheet or image responses");
   assert.deepEqual(browser.writes, [], "The audit never submits a form or changes an account");
-  const report = { checkedAt: new Date().toISOString(), origin, pages: results, noJavaScriptVisits: 7, runtimeErrors: browser.runtimeErrors, failedAssets: browser.failedAssets, writes: browser.writes };
+  const report = { checkedAt: new Date().toISOString(), origin, pages: results, noJavaScriptVisits: noJavaScriptPaths.length, runtimeErrors: browser.runtimeErrors, failedAssets: browser.failedAssets, writes: browser.writes };
   const reportPath = process.argv.find(value => value.startsWith("--report="))?.slice(9) || `docs/reports/browser-seo-landings-${new Date().toISOString().slice(0, 10)}.json`;
   await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`);
   console.log(`Search landing Chrome audit passed. Report: ${reportPath}. No provider checkout or form submission was opened.`);

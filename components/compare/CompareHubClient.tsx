@@ -8,7 +8,7 @@ import type { DetailedTool } from "@/lib/types";
 
 type Comparison = { slug: string; title: string; category: string; summary: string; toolA: string; toolB: string };
 
-export default function CompareHubPage({ tools, comparisons }: { tools: Pick<DetailedTool, "id" | "slug" | "name" | "category">[]; comparisons: Comparison[] }) {
+export default function CompareHubPage({ tools, comparisons, illustration }: { tools: Pick<DetailedTool, "id" | "slug" | "name" | "category">[]; comparisons: Comparison[]; illustration?: React.ReactNode }) {
   const router = useRouter();
   const [toolASlug, setToolASlug] = useState(tools[0]?.slug || "");
   const [toolBSlug, setToolBSlug] = useState(tools[1]?.slug || "");
@@ -24,37 +24,31 @@ export default function CompareHubPage({ tools, comparisons }: { tools: Pick<Det
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white pt-28 pb-24">
+    <div className={`min-h-screen pb-24 pt-28 text-white ${illustration ? "bg-[#090c10] bg-[radial-gradient(ellipse_at_76%_12%,#273345,transparent_60%)]" : "bg-[#050505]"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 font-mono text-xs text-zinc-500 uppercase tracking-widest mb-6">
           <Link href="/" className="hover:text-[#C6FF3D] transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-zinc-300">Software Comparison Engine</span>
+          <span className="text-zinc-300">Compare</span>
         </div>
 
-        {/* Header */}
-        <div className="max-w-4xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 mb-6 font-mono text-xs text-[#C6FF3D]">
-            <ArrowLeftRight className="w-3.5 h-3.5" />
-            <span>SOFTWARE COMPARISONS</span>
+        <div className={illustration ? "mb-12 grid items-center gap-6 md:grid-cols-[1.08fr_.92fr] lg:mb-16 lg:gap-10" : "mb-16 max-w-4xl"}>
+          <div>
+            <h1 className="mb-5 font-display text-[clamp(2.3rem,4.55vw,4.8rem)] font-semibold leading-[.99] tracking-[-0.055em]">
+              Compare SaaS tools<br /><span className="text-[#C6FF3D]">side by side.</span>
+            </h1>
+            <p className="max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+              Compare software features, pricing models and workflow limits for two SaaS tools. Check who owns the data, how teammates collaborate and what changes at renewal.
+            </p>
+            {illustration && <a href="#pick-tools" className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl bg-[#C6FF3D] px-4 text-sm font-semibold text-black hover:bg-[#d8ff80]">Start a comparison</a>}
           </div>
-
-          <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tighter uppercase leading-[0.95] mb-6">
-            COMPARE SAAS TOOLS <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-[#C6FF3D]">
-              SIDE BY SIDE.
-            </span>
-          </h1>
-
-          <p className="text-base sm:text-xl text-zinc-400 font-sans leading-relaxed">
-            Compare published features, billing options and sourced offers. Confirm current plan limits and renewal terms with each provider.
-          </p>
+          {illustration}
         </div>
 
         {/* Interactive Dual-Tool Generator */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#09090C] border border-[#C6FF3D]/40 mb-20 shadow-[0_0_35px_rgba(198,255,61,0.08)]">
+        <div id="pick-tools" data-motion="" className="scroll-mt-28 p-8 sm:p-12 rounded-3xl bg-[#09090C] border border-[#C6FF3D]/40 mb-20 shadow-[0_0_35px_rgba(198,255,61,0.08)]">
           <div className="max-w-3xl mb-8">
             <span className="font-mono text-xs text-[#C6FF3D] uppercase tracking-widest font-bold">
               INTERACTIVE SELECTOR
@@ -132,18 +126,19 @@ export default function CompareHubPage({ tools, comparisons }: { tools: Pick<Det
                 POPULAR MATCH-UPS
               </span>
               <h2 className="font-display font-black text-3xl uppercase tracking-tight text-white mt-1">
-                TRENDING HEAD-TO-HEAD GUIDES
+                Software comparisons by workflow
               </h2>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {comparisons.map((comp) => (
+            {comparisons.map((comp, index) => (
               <Link
                 key={comp.slug}
+                data-motion={index % 3}
                 href={`/compare/${comp.slug}`}
                 prefetch={false}
-                className="group p-6 rounded-2xl bg-[#09090C] border border-white/10 hover:border-[#C6FF3D]/50 hover:bg-[#0E0E12] transition-all flex flex-col justify-between"
+                className="motion-card group p-6 rounded-2xl bg-[#09090C] border border-white/10 hover:border-[#C6FF3D]/50 hover:bg-[#0E0E12] transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">

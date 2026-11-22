@@ -3,6 +3,7 @@ import { SAVINGS_BUYING_GUIDES } from "./savings-buying-guides";
 import { getArticleWorkbook } from "./article-workbooks";
 import { HOSTING_REVIEWS } from "./hosting-reviews";
 import { HOSTING_ARTICLES } from "./hosting-articles";
+import { CREATOR_BUYING_GUIDES } from "./creator-buying-guides";
 
 type Guide = { slug: string; title: string; summary: string; tags: string[]; sections: [string, string][]; sources: { title: string; url: string }[] };
 const guides: Guide[] = [
@@ -130,7 +131,7 @@ export const EDITORIAL_ARTICLES: DetailedArticle[] = [...guides.map((guide, inde
   tableOfContents: guide.sections.map(([title], sectionIndex) => ({ id: `check-${sectionIndex + 1}`, title })),
   sections: guide.sections.map(([heading, content], sectionIndex) => ({ id: `check-${sectionIndex + 1}`, heading, content })),
   sources: guide.sources, relatedArticlesSlugs: [guides[(index + 1) % guides.length].slug, guides[(index + 2) % guides.length].slug],
-})), ...SAVINGS_BUYING_GUIDES, ...HOSTING_REVIEWS, ...HOSTING_ARTICLES].map(article => {
+})), ...SAVINGS_BUYING_GUIDES, ...HOSTING_REVIEWS, ...HOSTING_ARTICLES, ...CREATOR_BUYING_GUIDES].map(article => {
   const workbook = getArticleWorkbook(article.slug);
   const sections = [...article.sections, ...workbook];
   const art = additionalArticleArt[article.slug];

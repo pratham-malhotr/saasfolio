@@ -11,7 +11,7 @@ export function siteSchema() {
       { "@type": "Organization", "@id": organizationId, name: SITE_NAME, url: absoluteUrl(), description: SITE_DESCRIPTION,
         logo: { "@type": "ImageObject", "@id": absoluteUrl("/#logo"), url: absoluteUrl("/brand/icon-512.png"), contentUrl: absoluteUrl("/brand/icon-512.png"), width: 512, height: 512, caption: SITE_NAME },
       },
-      { "@type": "WebSite", "@id": websiteId, name: SITE_NAME, alternateName: "saasfolio.tech", url: absoluteUrl(), description: SITE_DESCRIPTION, inLanguage: "en", about: [{ "@type": "Thing", name: "SaaS discounts" }, { "@type": "Thing", name: "Software coupon codes" }], publisher: { "@id": organizationId } },
+      { "@type": "WebSite", "@id": websiteId, name: SITE_NAME, alternateName: "saasfolio.tech", url: absoluteUrl(), description: SITE_DESCRIPTION, inLanguage: "en", about: [{ "@type": "Thing", name: "SaaS tools" }, { "@type": "Thing", name: "Software buying guides" }, { "@type": "Thing", name: "Web hosting comparisons" }], publisher: { "@id": organizationId } },
     ],
   };
 }

@@ -35,7 +35,7 @@ const indexing = await auditIndexing(options, {
       if (/^\/tools\/[^/]+$/.test(path)) {
         const tool = publishedTools.get(path.split("/").pop());
         const description = nodes(document, node => node.tagName === "meta" && attr(node, "name") === "description")[0];
-        if (tool && attr(description, "content") !== toolMetaDescription(tool.name, tool.description)) findings.push("Search description differs from reviewed public copy");
+        if (tool && attr(description, "content") !== toolMetaDescription(tool)) findings.push("Search description differs from reviewed public copy");
       }
       if (/^\/compare\/[^/]+$/.test(path) && !nodes(main, node => attr(node, "data-editorial-comparison") === "true").length) findings.push("Published comparison lacks its original decision analysis");
       if (/^\/articles\/[^/]+$/.test(path)) for (const id of ["worked-example", "decision-record", "common-mistake", "references"]) {

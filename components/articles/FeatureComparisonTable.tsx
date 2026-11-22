@@ -1,5 +1,3 @@
-import React from "react";
-
 interface FeatureComparisonTableProps {
   headers: string[];
   rows: { feature: string; values: string[] }[];
@@ -7,47 +5,25 @@ interface FeatureComparisonTableProps {
 
 export function FeatureComparisonTable({ headers, rows }: FeatureComparisonTableProps) {
   return (
-    <div className="my-8 overflow-x-auto rounded-2xl border border-white/10 bg-[#09090C]">
-      <table className="w-full text-left border-collapse min-w-[500px]">
-        <thead>
-          <tr className="border-b border-white/10 bg-white/[0.03]">
-            {headers.map((header, idx) => (
-              <th
-                key={idx}
-                className={`py-4 px-6 text-xs font-mono uppercase tracking-wider ${
-                  idx === 0 ? "text-zinc-400 font-medium" : "text-white font-bold"
-                }`}
-              >
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-white/5 font-mono text-xs">
-          {rows.map((row, rIdx) => (
-            <tr key={rIdx} className="hover:bg-white/[0.02] transition-colors">
-              <td className="py-4 px-6 font-medium text-zinc-300">
-                {row.feature}
-              </td>
-              {row.values.map((val, vIdx) => {
-                const isHighlight = vIdx === row.values.length - 1; // Last column is usually our target
-                return (
-                  <td
-                    key={vIdx}
-                    className={`py-4 px-6 ${
-                      isHighlight
-                        ? "text-[#C6FF3D] font-bold"
-                        : "text-zinc-400"
-                    }`}
-                  >
-                    {val}
-                  </td>
-                );
-              })}
+    <div>
+      <p className="mb-2 text-xs text-zinc-400 sm:hidden">Scroll the table to see all columns.</p>
+      <div role="region" aria-label="Side-by-side comparison" tabIndex={0} className="overflow-x-auto rounded-2xl border border-white/10 bg-[#09090C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C6FF3D]">
+        <table className="w-full min-w-[26rem] border-collapse text-left text-sm">
+          <thead>
+            <tr className="border-b border-white/10 bg-white/[0.05]">
+              {headers.map(header => <th key={header} scope="col" className="px-3 py-3 align-top font-semibold text-white sm:px-5">{header}</th>)}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-white/10">
+            {rows.map(row => (
+              <tr key={row.feature}>
+                <th scope="row" className="px-3 py-3 align-top font-medium text-white sm:px-5">{row.feature}</th>
+                {row.values.map((value, index) => <td key={headers[index + 1]} className="px-3 py-3 align-top text-zinc-300 sm:px-5">{value}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

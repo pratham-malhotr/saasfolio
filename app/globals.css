@@ -265,13 +265,34 @@ body {
 .hosting-primary { background: #c6ff3d; color: #080a0c; }
 .hosting-secondary { border: 1px solid rgb(255 255 255 / .2); color: #ededeb; }
 .hosting-provider-card { transition: border-color .25s, transform .25s, box-shadow .25s; }
-.hosting-orbit { pointer-events: none; position: absolute; top: -30%; right: -15%; width: 75%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(ellipse, rgb(198 255 61 / .06), transparent 65%); }
 @media (prefers-reduced-motion: no-preference) {
   .hosting-enter { animation: hosting-arrive .7s both; }
   .hosting-provider-card { animation: hosting-arrive .45s both; }
-  .hosting-orbit { animation: hosting-breathe 9s ease-in-out infinite alternate; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .hosting-provider-card:hover { transform: translateY(-4px); border-color: rgb(198 255 61 / .35); box-shadow: 0 15px 40px rgb(0 0 0 / .2); }
   .hosting-primary:hover, .hosting-secondary:hover { transform: translateY(-2px); }
 }
 @keyframes hosting-arrive { from { transform: translateY(12px); opacity: .65; } to { transform: translateY(0); opacity: 1; } }
-@keyframes hosting-breathe { from { transform: scale(.9); opacity: .5; } to { transform: scale(1.1); opacity: 1; } }
+
+.motion-card {
+  transition: border-color 220ms, background-color 220ms, box-shadow 220ms, transform 220ms var(--ease-luxury);
+}
+.motion-card:focus-within { border-color: #c6ff3d66; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .motion-card:hover { transform: translateY(-3px); border-color: #c6ff3d5e; box-shadow: 0 13px 27px #0003; }
+}
+@media (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  :is(a, button).motion-card:active { transform: scale(.98); border-color: #c6ff3d5e; }
+}
+
+@media (width < 768px) {
+  body:has([data-mobile-menu="open"]) { overflow-y: hidden; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-nav-link { animation: mobile-link-in 300ms var(--ease-luxury) calc(var(--menu-index, 0) * 27ms) both; }
+}
+@keyframes mobile-link-in {
+  from { opacity: .65; translate: 0 8px; }
+  to { opacity: 1; translate: 0 0; }
+}

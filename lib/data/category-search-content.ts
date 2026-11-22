@@ -32,7 +32,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
       { question: "Can I get an AI tool discount without a coupon code?", answer: "Some providers use annual billing or eligible education and startup routes instead. Open the brand guide for recorded options and compare the same model access and credit allowance. A free plan or trial is listed separately from a paid discount." },
       { question: "Do discounted AI subscriptions include unlimited generations?", answer: "Do not assume unlimited use. Check the plan’s credit accounting, fair-use rules, available models and output settings at the provider. Compare the capacity needed for your tasks before treating an advertised percentage as a lower total cost." },
     ],
-    articleSlugs: ["compare-saas-pricing-limits", "find-and-use-saas-coupon-codes"], collections: ["student-discounts", "coupon-codes"], updatedAt: "2026-10-28",
+    articleSlugs: ["evaluate-ai-software-free-trials", "compare-saas-pricing-limits", "find-and-use-saas-coupon-codes"], collections: ["student-discounts", "coupon-codes"], updatedAt: "2026-11-22",
   },
   marketing: {
     title: "Marketing Software Deals & Email Tool Discounts", heading: "Marketing software deals & discounts",
@@ -49,7 +49,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
       { question: "How should I compare email marketing software discounts?", answer: "Use equivalent contact counts, send volume, automations and billing periods. Check what happens when your list crosses a tier and whether imports or add-ons cost more. The source and brand guide distinguish an actual promotion from ordinary plan pricing." },
       { question: "Does an annual marketing plan mean the discount lasts forever?", answer: "No. Check the approved promotional period and the next renewal. An annual quote can require an upfront commitment even when it is advertised as a monthly equivalent; introductory or partner benefits may end sooner." },
     ],
-    articleSlugs: ["compare-saas-pricing-limits", "compare-saas-deal-membership-fees"], collections: ["startup-deals", "coupon-codes"], updatedAt: "2026-10-28",
+    articleSlugs: ["beehiiv-vs-kit-newsletter", "systeme-io-free-plan-limits", "taplio-pricing-starter-vs-growth-vs-pro", "taplio-vs-authoredup", "compare-saas-pricing-limits"], collections: ["startup-deals", "coupon-codes"], updatedAt: "2026-11-22",
   },
   "crm-sales": {
     title: "CRM Software Discounts & Sales Tool Deals", heading: "CRM software discounts & sales tool deals",
@@ -100,7 +100,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
       { question: "Are design software student discounts automatically applied?", answer: "Often there is a separate verification or application route. Check the current education page, account type and included products before paying through a standard checkout. Introductory pricing and annual commitment can still apply." },
       { question: "Does a creative tool discount include stock assets and commercial rights?", answer: "Only the provider’s terms can establish that. Check the asset subscription, export settings and permitted use separately from the editor price. Included creation features are not proof that every asset can be used in every project." },
     ],
-    articleSlugs: ["student-software-discounts-after-graduation", "lifetime-software-deal-checklist"], collections: ["student-discounts", "nonprofit-discounts"], updatedAt: "2026-10-28",
+    articleSlugs: ["streamyard-vs-riverside-video-podcast", "student-software-discounts-after-graduation", "lifetime-software-deal-checklist"], collections: ["student-discounts", "nonprofit-discounts"], updatedAt: "2026-11-22",
   },
   analytics: {
     title: "Analytics Software Deals & Tracking Tool Discounts", heading: "Analytics software deals & discounts",
@@ -134,7 +134,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
       { question: "Do hosting promo codes work on domain renewals?", answer: "Do not assume that they do. Codes can apply to a specific product, new registrations, transfers or an initial hosting term. Read the recorded source and checkout conditions for the purchase you intend to make." },
       { question: "Is the largest hosting discount the cheapest plan?", answer: "Compare the actual resource limits, commitment and renewal. A large reduction on a longer term can require more upfront spending or exclude a needed service. The payable total matters more than the headline percentage alone." },
     ],
-    articleSlugs: ["find-and-use-saas-coupon-codes", "saas-coupon-renewal-price-checklist"], collections: ["coupon-codes", "startup-deals"], updatedAt: "2026-10-28",
+    articleSlugs: ["hosting-introductory-discount-vs-renewal-cost", "hostinger-vps-vs-managed-wordpress-solo-blogger", "hetzner-vs-digitalocean-small-business-vps"], collections: ["coupon-codes", "startup-deals"], updatedAt: "2026-11-22",
   },
   finance: {
     title: "Billing & Invoicing Software Deals and Discounts", heading: "Billing & invoicing software deals",
