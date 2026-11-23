@@ -7,7 +7,6 @@ import { usePathname, useRouter } from "next/navigation";
 import type { PublicSearchCatalog } from "@/lib/search-catalog-types";
 import { Search, Menu, X, ArrowUpRight, Tag, Layers, FileText, User, LogOut, ShieldCheck, Scale } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
-import { MagneticButton } from "@/components/animations/MagneticButton";
 import { SearchLoading } from "@/components/modals/SearchLoading";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMediaQuery } from "@/lib/use-media-query";
@@ -30,8 +29,6 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
   const hydrated = useSyncExternalStore(subscribeToHydration, clientHydrationSnapshot, serverHydrationSnapshot);
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const lastScrollY = useRef(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -99,26 +96,14 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
   }, []);
 
   useEffect(() => {
+    let last = false;
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Detect if user has scrolled beyond top buffer
-      if (currentScrollY > 40) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      // Hide navbar when scrolling down, show when scrolling up
-      if (currentScrollY > lastScrollY.current && currentScrollY > 120) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-
-      lastScrollY.current = currentScrollY;
+      const scrolled = window.scrollY > 28;
+      if (last === scrolled) return;
+      last = scrolled;
+      setIsScrolled(scrolled);
     };
-
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -143,28 +128,20 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
   const navLinks = [
     { label: "Brands", href: "/brands", icon: Layers },
     { label: "Hosting", href: "/hosting", icon: Layers },
-    { label: "Discounts", href: "/discounts", icon: Tag, badge: "" },
+    { label: "Discounts", href: "/discounts", icon: Tag },
     { label: "Compare", href: "/compare", icon: Scale },
     { label: "Reviews & guides", href: "/articles", icon: FileText },
   ];
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-[transform,background-color,box-shadow] duration-300 ease-in-out",
-          !isVisible && "md:-translate-y-full md:focus-within:translate-y-0",
-          isScrolled || drawerOpen
-            ? "bg-[#050505]/85 backdrop-blur-xl border-b border-white/[0.08] py-3 shadow-[0_4px_30px_rgba(0,0,0,0.8)]"
-            : "bg-transparent py-5"
-        )}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <header className="site-header" data-scrolled={isScrolled || undefined} data-drawer={drawerOpen || undefined}>
+        <div className="site-header-bar">
           {/* Brand Logo */}
           <Logo size="md" />
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-[#0A0A0C]/80 border border-white/[0.08] px-3 py-1.5 rounded-full backdrop-blur-md">
+          <nav aria-label="Main navigation" className="site-header-nav hidden md:flex">
             {navLinks.map((link) => {
               const isActive = hydrated && (pathname === link.href || pathname.startsWith(`${link.href}/`));
               return (
@@ -173,42 +150,30 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                   href={link.href}
                   prefetch={false}
                   aria-current={isActive ? "page" : undefined}
-                  className={cn(
-                    "relative px-2 lg:px-2.5 xl:px-4 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1.5",
-                    isActive
-                      ? "text-[#C6FF3D] font-semibold"
-                      : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
-                  )}
+                  className="site-header-link"
                 >
                   <span>{link.label}</span>
-                  {link.badge && (
-                    <span className="font-mono text-[9px] px-1.5 py-0.2 rounded bg-[#C6FF3D]/15 text-[#C6FF3D] border border-[#C6FF3D]/30 font-bold">
-                      {link.badge}
-                    </span>
-                  )}
-                  {isActive && (
-                    <motion.div
-                      layoutId="navPill"
-                      className="absolute inset-0 rounded-full border border-[#C6FF3D]/40 bg-[#C6FF3D]/10 -z-10"
-                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                    />
-                  )}
+                  {isActive && <motion.span
+                    aria-hidden="true"
+                    className="site-nav-indicator"
+                    layoutId={reducedMotion ? undefined : "site-current-route"}
+                    transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 440, damping: 36 }}
+                  />}
                 </Link>
               );
             })}
           </nav>
 
           {/* Right Action Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="site-header-actions hidden md:flex">
             {/* Quick Search Trigger */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="flex items-center gap-2 px-3 py-2 rounded-full bg-white/[0.04] border border-white/10 hover:border-white/25 hover:bg-white/[0.08] transition-all text-xs text-zinc-400 hover:text-white"
+              className="site-header-control"
               aria-label="Search deals and tools"
             >
-              <Search className="w-3.5 h-3.5 text-zinc-400" />
-              <span className="font-sans pr-2">Search...</span>
-              <kbd className="font-mono text-[10px] bg-white/10 px-1.5 py-0.5 rounded text-zinc-300">
+              <Search size={17} aria-hidden="true" />
+              <kbd className="site-search-key hidden xl:inline">
                 ⌘K
               </kbd>
             </button>
@@ -277,26 +242,19 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
             ) : accountsAvailable ? (
               <Link
                 href="/login"
-                className="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-colors"
+                className="site-contact-link"
               >
                 Sign In
               </Link>
             ) : (
-              <Link href="/contact" className="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-colors">
+              <Link href="/contact" className="site-contact-link">
                 Contact
               </Link>
             )}
 
-            {/* Glowing CTA */}
-            <Link href="/submit">
-              <MagneticButton
-                variant="primary"
-                size="sm"
-                className="font-bold tracking-tight text-xs flex items-center gap-1"
-              >
-                <span>Add your brand</span>
-                <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
-              </MagneticButton>
+            <Link href="/submit" className="site-header-cta hidden lg:inline-flex">
+              <span>Add your brand</span>
+              <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
           </div>
 
@@ -304,7 +262,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={() => { setMobileMenuOpen(false); setSearchOpen(true); }}
-              className="grid h-11 w-11 place-items-center rounded-lg bg-white/5 border border-white/10 text-zinc-300"
+              className="site-header-control site-mobile-control"
               aria-label="Open search"
             >
               <Search className="w-4 h-4" />
@@ -312,7 +270,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
             <button
               ref={menuButtonRef}
               onClick={() => setMobileMenuOpen(open => !open)}
-              className="motion-card relative grid h-11 w-11 place-items-center rounded-lg border border-white/10 bg-white/5 text-white"
+              className="site-header-control site-mobile-control"
               aria-label="Toggle menu"
               aria-expanded={drawerOpen}
               aria-controls={drawerOpen ? "mobile-navigation" : undefined}
@@ -331,11 +289,11 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
             id="mobile-navigation"
             aria-label="Mobile navigation"
             data-mobile-menu="open"
-            initial={reducedMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: reducedMotion ? 0 : 0.2 }}
-            className="fixed inset-x-0 top-0 z-40 flex h-dvh flex-col gap-6 overflow-y-auto overscroll-contain bg-[#101819] px-5 pt-[5.5rem] pb-[max(1.5rem,env(safe-area-inset-bottom))] md:hidden"
+            initial={reducedMotion ? false : { opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: reducedMotion ? 0 : 0.26, ease: [0.22, 1, 0.36, 1] }}
+            className="site-mobile-drawer fixed inset-x-0 top-0 z-40 flex h-dvh flex-col gap-6 overflow-y-auto overscroll-contain px-5 pt-24 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:hidden"
           >
             <div className="space-y-4">
               <div className="flex flex-col">

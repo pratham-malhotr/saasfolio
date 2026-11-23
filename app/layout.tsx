@@ -5,8 +5,8 @@ import { siteSchema } from "@/lib/structured-data";
 import { pageMetadata, SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./shell.css";
 import { SmoothScroll } from "@/components/animations/SmoothScroll";
-import { CustomCursor } from "@/components/animations/CustomCursor";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
 import { getDiscountSearchEntries } from "@/lib/brand-discounts";
@@ -73,24 +73,14 @@ export default function RootLayout({
         <Suspense fallback={null}><ConsentAnalytics /></Suspense>
         <a href="#main-content" className="skip-link">Skip to content</a>
         <JsonLd data={siteSchema()} />
-        {/* Global Custom Follower Cursor */}
-        <CustomCursor />
-
-        {/* Lenis Smooth Scroll Engine */}
         <SmoothScroll>
           <div className="flex flex-col min-h-screen">
-            {/* Sticky Translucent Navbar */}
-            {/* The header is fixed; a flow-height fallback shifts the page on hydration. */}
             <Suspense fallback={null}>
               <Navbar discountBrands={getDiscountSearchEntries()} searchCatalog={getPublicSearchCatalog()} accountsAvailable={authConfigured()} />
             </Suspense>
-
-            {/* Main Content Area */}
             <main id="main-content" tabIndex={-1} className="flex-1">
               {children}
             </main>
-
-            {/* Editorial Closing Footer */}
             <Footer />
           </div>
         </SmoothScroll>
