@@ -202,7 +202,7 @@ try {
 
     const beforeDisclosure = mockedWrites.length;
     await navigate("/advertise", "/affiliate-disclosure");
-    assert.ok(await evaluate("document.querySelector('main').textContent.includes('does not serve display ads') && !document.querySelector('main form')"), "Retired advertising route explains affiliate funding without an ad sales form");
+    assert.ok(await evaluate("document.querySelector('main').textContent.includes('offers paid placement in the brand directory') && !document.querySelector('main form')"), "Retired advertising route shows the current funding disclosure");
     assert.equal(mockedWrites.length, beforeDisclosure, "Reading the disclosure does not send a partnership inquiry");
 
     await navigate("/savings-calculator");
