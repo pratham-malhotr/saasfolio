@@ -98,7 +98,7 @@ export function brandBestDiscountAnswer(tool: DetailedTool, catalogDeals = getAl
   const { guide, sourceNotesCurrent, coupons, savingsOptions } = getBrandDiscountData(tool, catalogDeals);
   if (coupons.length) return `Compare ${coupons.length === 1 ? "the sourced code" : "the sourced codes"} below with ${tool.name}'s direct billing options for the same package. ${coupons.map(offer => `${offer.code}: ${offer.terms}`).join(" ")} Choose by the final eligible invoice and continuing cost; the largest headline percentage is not automatically the best offer for your account.`;
   if (sourceNotesCurrent && guide?.bestDiscountAnswer) return guide.bestDiscountAnswer;
-  if (guide?.summary) return guide.summary;
+  if (guide?.summary) return `${guide.summary} Compare current plans for the same features and usage, including the cost at renewal.`;
   const options = coupons.length || savingsOptions.length ? "Compare the sourced options above" : "Check the provider's current options";
   return `${options} for the ${tool.name} package you need. Match the account, usage and billing period, include any access fee or add-ons, and compare the full payable and renewal amounts. The largest advertised percentage is not necessarily the lowest eligible total.`;
 }

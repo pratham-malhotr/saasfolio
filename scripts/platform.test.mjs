@@ -440,8 +440,8 @@ test("brand verification requires exact domain proof and qualifying website evid
       } },
     },
   };
-  process.env.BRAND_LISTINGS_ENABLED = "true";
-  process.env.BRAND_VERIFICATION_SECRET = "a".repeat(64);
+  const previousSecret = process.env.RATE_LIMIT_SECRET;
+  process.env.RATE_LIMIT_SECRET = "a".repeat(64);
   try {
     const app = platform(options);
     const route = app.load("app/api/brands/verify/route.ts");
@@ -468,8 +468,8 @@ test("brand verification requires exact domain proof and qualifying website evid
       listing_slug: "example-studio", reviewed_catalog_slug: null, method: "automatic",
     }]);
   } finally {
-    delete process.env.BRAND_LISTINGS_ENABLED;
-    delete process.env.BRAND_VERIFICATION_SECRET;
+    if (previousSecret === undefined) delete process.env.RATE_LIMIT_SECRET;
+    else process.env.RATE_LIMIT_SECRET = previousSecret;
   }
 });
 

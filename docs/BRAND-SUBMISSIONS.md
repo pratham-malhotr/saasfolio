@@ -87,10 +87,11 @@ generated SQL in Supabase SQL Editor before deploying the new app:
 node --input-type=module -e 'import { readFileSync } from "node:fs"; import { qualifyApplicationSql } from "./scripts/lib/database-schema.mjs"; const file = "supabase/migrations/202611230001_brand_listings_and_promotions.sql"; console.log("begin;\n" + qualifyApplicationSql(readFileSync(file, "utf8"), "saasfolio") + "\ncommit;");'
 ```
 
-Set `BRAND_LISTINGS_ENABLED=true` and a server-only
-`BRAND_VERIFICATION_SECRET` generated with `openssl rand -hex 32` in
-Hostinger, then deploy. Keep the secret stable so issued TXT values continue
-to work. The existing exposed schemas and private table grants are sufficient.
+Deploy the application with the existing Supabase and rate-limit secret
+configuration. DNS verification derives its own key from `RATE_LIMIT_SECRET`.
+To set a dedicated key, add a server-only `BRAND_VERIFICATION_SECRET` generated
+with `openssl rand -hex 32`. Keep the selected secret stable so issued TXT
+values continue to work. Set `BRAND_LISTINGS_ENABLED=false` to pause listings.
 
 ## Directory and content
 

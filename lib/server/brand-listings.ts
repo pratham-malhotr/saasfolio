@@ -13,11 +13,20 @@ import { plainText, robotsAllows } from "@/scripts/lib/offer-sources.mjs";
 
 export function brandListingsEnabled() {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  return process.env.BRAND_LISTINGS_ENABLED === "true" && isSupabaseConfigured() && Boolean(key && !key.includes("your-service"));
+  return process.env.BRAND_LISTINGS_ENABLED !== "false" && isSupabaseConfigured() && Boolean(key && !key.includes("your-service"));
+}
+
+function brandVerificationSecret() {
+  const dedicated = process.env.BRAND_VERIFICATION_SECRET;
+  if (dedicated) return /^[a-f0-9]{64}$/i.test(dedicated) ? dedicated : undefined;
+  const shared = process.env.RATE_LIMIT_SECRET;
+  return shared && shared.length >= 32 && !/replace-with|your-secret|example/i.test(shared)
+    ? createHmac("sha256", shared).update("saasfolio:brand-domain-verification:v1").digest()
+    : undefined;
 }
 
 export function brandVerificationEnabled() {
-  return brandListingsEnabled() && /^[a-f0-9]{64}$/i.test(process.env.BRAND_VERIFICATION_SECRET || "");
+  return brandListingsEnabled() && Boolean(brandVerificationSecret());
 }
 
 export function brandHost(website: string) {
@@ -25,7 +34,8 @@ export function brandHost(website: string) {
 }
 
 export async function brandClaim(data: Record<string, unknown>) {
-  if (!brandVerificationEnabled()) throw new HttpError(503, "Online brand verification is temporarily unavailable.");
+  const secret = brandVerificationSecret();
+  if (!brandListingsEnabled() || !secret) throw new HttpError(503, "Online brand verification is temporarily unavailable.");
   const receipt = text(data, "receipt", 36, 36).toLowerCase();
   const address = email(data);
   if (!/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(receipt)) throw new HttpError(400, "Enter the submission reference from your receipt.");
@@ -39,7 +49,7 @@ export async function brandClaim(data: Record<string, unknown>) {
     throw new HttpError(404, "No eligible submission matches that reference and email.");
   }
   const host = brandHost(website);
-  const token = createHmac("sha256", process.env.BRAND_VERIFICATION_SECRET!).update(`${receipt}:${host}:${address}`).digest("hex");
+  const token = createHmac("sha256", secret).update(`${receipt}:${host}:${address}`).digest("hex");
   return { db, inquiry, payload, receipt, website, host, dnsName: `_saasfolio.${host}`, dnsValue: `saasfolio=${token}` };
 }
 
