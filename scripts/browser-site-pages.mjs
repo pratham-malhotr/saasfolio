@@ -147,10 +147,10 @@ try {
       assert.ok(await evaluate("!document.querySelector('header a[href=\"/login\"]') && !!document.querySelector('header a[href=\"/contact\"]')"), "Unavailable accounts are replaced by a public contact link");
       if (viewport.mobile) {
         await click('button[aria-label="Toggle menu"]');
-        await until(() => evaluate("document.body.textContent.includes('DISCOVER SOFTWARE & DISCOUNTS')"), "Mobile navigation opens");
+        await until(() => evaluate("!!document.querySelector('#mobile-navigation') && document.querySelector('button[aria-controls=mobile-navigation]')?.getAttribute('aria-expanded') === 'true'"), "Mobile navigation opens");
         assert.ok(await evaluate("!document.querySelector('a[href=\"/login\"]') && !document.querySelector('a[href=\"/signup\"]') && !document.querySelector('a[href=\"/admin\"]')"), "The public mobile menu does not advertise unavailable accounts or staff access");
         await click('button[aria-label="Toggle menu"]');
-        await until(() => evaluate("!document.body.textContent.includes('DISCOVER SOFTWARE & DISCOUNTS')"), "Mobile navigation closes");
+        await until(() => evaluate("!document.querySelector('#mobile-navigation') && document.querySelector('button[aria-label=\"Toggle menu\"]')?.getAttribute('aria-expanded') === 'false'"), "Mobile navigation closes");
       }
     }
     const links = await evaluate("[...new Set([...document.querySelectorAll('footer a[href]')].map(link=>link.getAttribute('href')).filter(href=>href.startsWith('/')))]");
