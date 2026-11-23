@@ -18,6 +18,9 @@ async function navigate(path) {
   await page("Page.navigate", { url: origin + path });
   await until(() => evaluate(`location.href === ${JSON.stringify(origin + path)} && document.readyState === 'complete' && !!document.querySelector('.folio-frame')`), path);
   assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth"), `${path}: layout fits the viewport`);
+  if (new URL(path, origin).pathname === "/") {
+    await evaluate("document.querySelector('.folio-stage').scrollIntoView({block:'center',behavior:'instant'})");
+  }
 }
 
 try {
@@ -84,7 +87,7 @@ try {
   for (const dy of [15, 40, 72, 120]) await page("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: stage.x, y: stage.y - dy }] });
   await page("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
   await until(() => evaluate(`scrollY > ${stage.scroll + 22}`), "Vertical swipes on the scene scroll the page");
-  await evaluate(`document.querySelector('[aria-label="Reset 3D view"]').click(); scrollTo({ top: 2200, behavior: 'instant' })`);
+  await evaluate(`document.querySelector('[aria-label="Reset 3D view"]').click(); scrollTo({ top: 0, behavior: 'instant' })`);
   await pause(200);
   const offscreen = await evaluate("window.folioDraws");
   await pause(250);

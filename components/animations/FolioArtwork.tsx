@@ -10,7 +10,7 @@ import "./folio-artwork.css";
 
 type Drag = { id: number; x: number; y: number; active: boolean };
 
-export function FolioArtwork({ variant }: { variant: FolioVariant }) {
+export function FolioArtwork({ variant, loading = "eager" }: { variant: FolioVariant; loading?: "eager" | "lazy" }) {
   const artworkRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<ReturnType<typeof createFolioScene>>(undefined);
   const currentView = useRef(0);
@@ -202,7 +202,7 @@ export function FolioArtwork({ variant }: { variant: FolioVariant }) {
             sceneRef.current?.point(0, 0);
           }}
         >
-          <Image src={`/images/scenes/${variant}.webp`} alt="" fill unoptimized loading="eager" fetchPriority="low" className="folio-poster" />
+          <Image src={`/images/scenes/${variant}.webp`} alt="" fill unoptimized loading={loading} fetchPriority="low" className="folio-poster" />
         </div>
         {ready && <span className="folio-gesture" aria-hidden="true">Drag to orbit</span>}
       </div>
