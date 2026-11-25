@@ -8,7 +8,7 @@ import type { DetailedTool } from "@/lib/types";
 
 type Comparison = { slug: string; title: string; category: string; summary: string; toolA: string; toolB: string };
 
-export default function CompareHubPage({ tools, comparisons, illustration }: { tools: Pick<DetailedTool, "id" | "slug" | "name" | "category">[]; comparisons: Comparison[]; illustration?: React.ReactNode }) {
+export default function CompareHubPage({ tools, comparisons, feature }: { tools: Pick<DetailedTool, "id" | "slug" | "name" | "category">[]; comparisons: Comparison[]; feature?: React.ReactNode }) {
   const router = useRouter();
   const [toolASlug, setToolASlug] = useState(tools[0]?.slug || "");
   const [toolBSlug, setToolBSlug] = useState(tools[1]?.slug || "");
@@ -24,7 +24,7 @@ export default function CompareHubPage({ tools, comparisons, illustration }: { t
   };
 
   return (
-    <div className={`min-h-screen pb-24 pt-28 text-white ${illustration ? "bg-[#090c10] bg-[radial-gradient(ellipse_at_76%_12%,#273345,transparent_60%)]" : "bg-[#050505]"}`}>
+    <div className={`min-h-screen pb-24 pt-28 text-white ${feature ? "bg-[#090c10] bg-[radial-gradient(ellipse_at_76%_12%,#273345,transparent_60%)]" : "bg-[#050505]"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb */}
@@ -34,7 +34,7 @@ export default function CompareHubPage({ tools, comparisons, illustration }: { t
           <span className="text-zinc-300">Compare</span>
         </div>
 
-        <div className={illustration ? "mb-12 grid items-center gap-6 md:grid-cols-[1.08fr_.92fr] lg:mb-16 lg:gap-10" : "mb-16 max-w-4xl"}>
+        <div className={feature ? "mb-12 grid items-center gap-6 md:grid-cols-[1.08fr_.92fr] lg:mb-16 lg:gap-10" : "mb-16 max-w-4xl"}>
           <div>
             <h1 className="mb-5 font-display text-[clamp(2.3rem,4.55vw,4.8rem)] font-semibold leading-[.99] tracking-[-0.055em]">
               Compare SaaS tools<br /><span className="text-[#C6FF3D]">side by side.</span>
@@ -42,9 +42,9 @@ export default function CompareHubPage({ tools, comparisons, illustration }: { t
             <p className="max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
               Compare software features, pricing models and workflow limits for two SaaS tools. Check who owns the data, how teammates collaborate and what changes at renewal.
             </p>
-            {illustration && <a href="#pick-tools" className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl bg-[#C6FF3D] px-4 text-sm font-semibold text-black hover:bg-[#d8ff80]">Start a comparison</a>}
+            {feature && <a href="#pick-tools" className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl bg-[#C6FF3D] px-4 text-sm font-semibold text-black hover:bg-[#d8ff80]">Start a comparison</a>}
           </div>
-          {illustration}
+          {feature}
         </div>
 
         {/* Interactive Dual-Tool Generator */}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Layers } from "lucide-react";
 import { BrandDirectory } from "@/components/brands/BrandDirectory";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getBrandDirectory } from "@/lib/brand-directory";
@@ -28,23 +28,25 @@ export default async function BrandsPage({ searchParams }: { searchParams: Promi
   const { query, category } = getBrandFilters(await searchParams);
   const catalog = getBrandDirectory();
   const brands = await includeApprovedBrands(catalog);
-  return <article className="brand-page">
+  return <article className="market-page brand-page">
     <JsonLd data={collectionSchema(title, description, "/brands", catalog.map(brand => ({ name: brand.name, path: brand.hasGuide ? `/discounts/${brand.slug}` : `/tools/${brand.slug}` })))} />
-    <div className="brand-intro">
-      <div className="brand-shell brand-intro-grid">
-        <header>
+    <header className="market-intro">
+      <div className="market-shell market-intro-inner">
+        <div>
+          <p className="market-eyebrow"><Layers size={15} aria-hidden="true" /> Brand directory</p>
           <h1>Software brands <span>A–Z</span></h1>
-          <p>Search {brands.length} software brands by name or category. Explore product profiles, free plans, trials, and recorded coupons.</p>
-          <Link href="/tools" className="brand-text-link">Browse product profiles <ArrowUpRight size={16} aria-hidden="true" /></Link>
-        </header>
-        <aside aria-label="For software makers">
-          <Link href="/submit" className="brand-text-link">Add your brand <ArrowUpRight size={16} aria-hidden="true" /></Link>
-          <Link href="/brands/promote" className="brand-text-link">Promote your brand <ArrowUpRight size={16} aria-hidden="true" /></Link>
-        </aside>
+          <p>Search {brands.length} software brands by name or category. Explore SaaS product profiles, free plans, trials, and recorded coupons.</p>
+        </div>
+        <Link href="/discounts" className="market-button market-button-secondary">Discounts by brand <ArrowUpRight size={16} aria-hidden="true" /></Link>
       </div>
-    </div>
-    <div className="brand-shell brand-results">
+    </header>
+    <div className="market-shell brand-results">
       <BrandDirectory key={`${query}:${category}`} brands={brands} initialQuery={query} initialCategory={category} />
+      <nav aria-label="More directory options" className="mt-8 flex flex-wrap gap-3">
+        <Link href="/tools" className="market-button market-button-secondary">Browse product profiles <ArrowUpRight size={16} aria-hidden="true" /></Link>
+        <Link href="/submit" className="market-button market-button-secondary">Add your brand <ArrowUpRight size={16} aria-hidden="true" /></Link>
+        <Link href="/brands/promote" className="market-button market-button-secondary">Promote your brand <ArrowUpRight size={16} aria-hidden="true" /></Link>
+      </nav>
     </div>
   </article>;
 }

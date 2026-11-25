@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllDeals } from "@/lib/data/deals-data";
 import { getPublishedTools, getPublishedOffers } from "@/lib/published-catalog";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
+import { COMPARISON_GUIDES } from "@/lib/data/comparison-guides";
 import { COMPARISON_SLUGS } from "@/lib/data/comparisons-data";
 import { getCatalogCategories } from "@/lib/categories";
 import { absoluteUrl, isoDate } from "@/lib/seo";
@@ -100,6 +101,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Comparison Matrix Pages
   const comparisonRoutes: MetadataRoute.Sitemap = COMPARISON_SLUGS.map((slug) => ({
     url: absoluteUrl(`/compare/${slug}`),
+    lastModified: isoDate(COMPARISON_GUIDES[slug]?.reviewedAt),
     changeFrequency: "weekly",
     priority: 0.7,
   }));

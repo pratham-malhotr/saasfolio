@@ -1,12 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Calculator, Code2, Layers, Palette, Scale, Search, Server, Sparkles, TrendingUp } from "lucide-react";
-import { FolioArtwork } from "@/components/animations/FolioArtwork";
-import { HeroArtwork } from "@/components/animations/HeroArtwork";
+import {
+  ArrowRight, ArrowUpRight, BookOpen, Calculator, CalendarCheck, Code2, FileCheck2,
+  GraduationCap, HeartHandshake, Layers, Palette, Rocket, Scale, Search, Server,
+  Sparkles, Tag, TrendingUp,
+} from "lucide-react";
 import { ScrollMotion } from "@/components/animations/ScrollMotion";
+import { BrandAvatar } from "@/components/brand/BrandAvatar";
+import { OfferCard, OFFER_TYPES, offerValue } from "@/components/deals/OfferCard";
 import { BrandDiscountsSection } from "@/components/sections/BrandDiscountsSection";
 import { getPublishedTools, getPublishedOffers } from "@/lib/published-catalog";
-import { getCatalogCategories } from "@/lib/categories";
+import { getPublishedSavingsOffers } from "@/lib/savings-collections";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { collectionSchema } from "@/lib/structured-data";
@@ -16,8 +20,18 @@ import "./home.css";
 export const metadata = pageMetadata({ title: SITE_TITLE, description: SITE_DESCRIPTION, path: "/" });
 export const revalidate = 3600;
 
-const picks = ["notion", "beehiiv", "hostinger", "framer", "supabase", "predis-ai", "vercel", "semrush", "clickup", "canva", "cloudflare", "digitalocean", "obsidian", "plausible", "carrd", "bitwarden", "coolify", "linear"];
-const categoryPicks = [
+const spotlight = [
+  "hostinger-vps-introductory-offer",
+  "wpforms-official-new-license-code",
+  "zapier-annual-billing",
+  "intercom-early-stage-year-one",
+  "taplio-aware-transition",
+  "kinsta-three-month-introductory-offer",
+  "asana-nonprofit-program",
+  "coderabbit-annual-billing",
+  "notion-startup-program",
+];
+const categoryLinks = [
   { slug: "ai-tools", label: "AI tools", icon: Sparkles },
   { slug: "hosting", label: "Hosting & cloud", icon: Server },
   { slug: "marketing", label: "Marketing", icon: TrendingUp },
@@ -25,148 +39,179 @@ const categoryPicks = [
   { slug: "productivity", label: "Productivity", icon: Layers },
   { slug: "design", label: "Design & creative", icon: Palette },
 ];
-const researchPaths = [
-  { href: "/hosting", title: "Web hosting", detail: "Shortlist VPS and managed hosting plans.", icon: Server },
-  { href: "/compare", title: "Software comparisons", detail: "Compare features, pricing and trade-offs.", icon: Scale },
-  { href: "/articles", title: "Buying guides", detail: "Check plan limits before you commit.", icon: BookOpen },
+const collections = [
+  { href: "/coupon-codes", label: "Coupon codes", description: "Find reported codes and review checkout requirements.", icon: Tag },
+  { href: "/startup-deals", label: "Startup programs", description: "Find software credits and benefits for eligible teams.", icon: Rocket },
+  { href: "/student-discounts", label: "Student discounts", description: "Compare education pricing and proof requirements.", icon: GraduationCap },
+  { href: "/nonprofit-discounts", label: "Nonprofit discounts", description: "Find plans and programs for qualifying organizations.", icon: HeartHandshake },
 ];
-const hostingGuides = [
-  { title: "Hetzner vs DigitalOcean for a business site", detail: "CPU class, region, recovery and the cost of running it.", slug: "hetzner-vs-digitalocean-small-business-vps" },
-  { title: "Hostinger VPS or managed WordPress?", detail: "A solo publisher’s guide to control, time and renewal.", slug: "hostinger-vps-vs-managed-wordpress-solo-blogger" },
-  { title: "Find out what your hosting really costs", detail: "First-term discounts, prepaid amounts and later renewal.", slug: "hosting-introductory-discount-vs-renewal-cost" },
+const research = [
+  { href: "/compare", label: "Compare software", description: "Review plan limits and trade-offs side by side.", icon: Scale },
+  { href: "/savings-calculator", label: "Calculate annual savings", description: "Compare monthly and annual billing, including fees.", icon: Calculator },
+  { href: "/hosting", label: "Web hosting comparisons", description: "Shortlist VPS and managed hosting providers.", icon: Server },
+  { href: "/hosting-cost-calculator", label: "Check hosting renewal costs", description: "Compare the first invoice with the renewal price.", icon: CalendarCheck },
 ];
 
 export default function HomePage() {
   const tools = getPublishedTools();
-  const categories = getCatalogCategories();
-  const offers = getPublishedOffers();
-  const toolsBySlug = new Map(tools.map(tool => [tool.slug, tool]));
-  const featured = [...picks, ...tools.filter(tool => !picks.includes(tool.slug)).map(tool => tool.slug)]
-    .flatMap(slug => toolsBySlug.get(slug) || []).slice(0, 18);
+  const offers = getPublishedSavingsOffers(getPublishedOffers());
+  const featured = spotlight.flatMap(slug => offers.find(offer => offer.slug === slug) || []);
+  const featuredBrands = new Set(featured.map(offer => offer.toolSlug));
+  for (const offer of offers) {
+    if (featured.length >= 9) break;
+    if (featuredBrands.has(offer.toolSlug)) continue;
+    featured.push(offer);
+    featuredBrands.add(offer.toolSlug);
+  }
+  const moreOffers = featured.slice(3);
+  const letters = new Map(tools.map(tool => [tool.slug, tool.logoLetter]));
   const articles = [...DETAILED_ARTICLES].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0, 3);
 
   return (
-    <ScrollMotion className="directory-home">
-      <JsonLd data={collectionSchema(SITE_TITLE, SITE_DESCRIPTION, "/", featured.map(tool => ({ name: tool.name, path: `/tools/${tool.slug}` })))} />
-      <section className="home-opening" data-home-hero="">
-        <div className="home-shell">
+    <ScrollMotion className="market-page directory-home">
+      <JsonLd data={collectionSchema(SITE_TITLE, SITE_DESCRIPTION, "/", featured.map(offer => ({ name: offer.title, path: `/deals/${offer.slug}` })))} />
+      <section className="home-opening" data-home-hero="" aria-labelledby="home-title">
+        <div className="market-shell home-hero">
           <div className="home-hero-grid">
             <div className="home-hero-copy">
-              <p className="home-kicker">The SaaS research directory</p>
-              <h1 className="home-title">
-                <span className="home-title-line">Find the right{" "}</span>
-                <span className="home-title-line home-title-accent">software.</span>
+              <p className="market-eyebrow home-kicker"><Tag size={15} aria-hidden="true" /> SaaS deals and discounts</p>
+              <h1 id="home-title" className="home-title">
+                <span>Find the right software.</span>{" "}
+                <span>Pay less for it.</span>
               </h1>
-              <p className="home-intro">Compare tools, subscription prices, and sourced offers before you buy.</p>
-              <form action="/brands" method="get" role="search" className="home-search">
-                <Search size={21} aria-hidden="true" />
-                <label htmlFor="home-brand-search" className="sr-only">Search software brands</label>
-                <input id="home-brand-search" name="q" type="search" placeholder="Search brands" maxLength={100} />
-                <button type="submit">Search <ArrowRight size={16} aria-hidden="true" /></button>
+              <p className="home-intro">Find SaaS offers, coupon codes, and free trials. Check the source and eligibility before you buy.</p>
+              <form action="/deals" method="get" role="search" className="home-search">
+                <Search size={20} aria-hidden="true" />
+                <label htmlFor="home-brand-search" className="sr-only">Search software deals by brand or keyword</label>
+                <input id="home-brand-search" name="q" type="search" placeholder="Search brands or deals" maxLength={100} />
+                <button type="submit" className="market-button market-button-primary">Search <ArrowRight size={16} aria-hidden="true" /></button>
               </form>
               <div className="home-hero-links">
-                <a href="#explore" className="home-text-link">Explore the directory <ArrowDown size={16} aria-hidden="true" /></a>
-                <Link href="/editorial-policy" className="home-text-link">How we research <ArrowUpRight size={16} aria-hidden="true" /></Link>
+                <Link href="/deals" className="home-text-link">Browse all deals <ArrowRight size={16} aria-hidden="true" /></Link>
+                <Link href="/discounts" className="home-text-link">Discounts by brand <ArrowRight size={16} aria-hidden="true" /></Link>
               </div>
             </div>
-            <HeroArtwork>
-              <Image src="/images/home/glass-folio.webp" alt="" fill unoptimized loading="eager" fetchPriority="high" className="home-art-image" />
-              <Link href="/brands" className="home-art-link" prefetch={false}>
-                <span><strong>{tools.length} brands</strong><span>Browse A–Z</span></span>
-                <span className="home-art-arrow"><ArrowUpRight size={21} aria-hidden="true" /></span>
+
+            <aside className="home-spotlight" aria-labelledby="spotlight-title">
+              <div className="home-spotlight-heading">
+                <span className="home-spotlight-icon"><Tag size={20} aria-hidden="true" /></span>
+                <div>
+                  <h2 id="spotlight-title">{featured.length ? "Offer spotlight" : "Explore ways to save"}</h2>
+                  <p>{featured.length ? "Open an offer to check its terms" : "Find offers based on your eligibility"}</p>
+                </div>
+              </div>
+              {featured.length ? (
+                <ul>
+                  {featured.slice(0, 3).map(offer => (
+                    <li key={offer.slug}>
+                      <Link href={`/deals/${offer.slug}`} prefetch={false} className="home-spotlight-row">
+                        <BrandAvatar name={offer.toolName} category={offer.categorySlug} letters={letters.get(offer.toolSlug)} />
+                        <span className="home-spotlight-name"><strong>{offer.toolName}</strong><small>{OFFER_TYPES[offer.dealType]}</small></span>
+                        <span className="home-spotlight-value">{offerValue(offer)}</span>
+                        <ArrowUpRight size={16} aria-hidden="true" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul>
+                  {collections.slice(1).map(({ href, label, icon: Icon }) => (
+                    <li key={href}><Link href={href} className="home-spotlight-row"><Icon size={19} aria-hidden="true" /><strong>{label}</strong><ArrowUpRight size={16} aria-hidden="true" /></Link></li>
+                  ))}
+                </ul>
+              )}
+              <Link href={moreOffers.length ? "#featured-offers" : featured.length ? "/deals" : "/discounts"} className="home-spotlight-more">
+                {moreOffers.length ? "Explore featured offers" : featured.length ? "Browse all deals" : "Explore brand discounts"} <ArrowRight size={16} aria-hidden="true" />
               </Link>
-            </HeroArtwork>
+            </aside>
           </div>
 
-          <nav className="home-paths" aria-label="Start your software research">
-            {researchPaths.map(({ href, title, detail, icon: Icon }, index) => (
-              <Link key={href} href={href} className="home-path" data-motion={index} prefetch={false}>
-                <Icon size={21} aria-hidden="true" />
-                <span><strong>{title}</strong><small>{detail}</small></span>
-                <ArrowUpRight className="home-link-icon" size={19} aria-hidden="true" />
+          <div className="home-trust">
+            {offers.length > 0 && <Link href="/deals"><Tag size={18} aria-hidden="true" /><span><strong>{offers.length}</strong> sourced offers</span></Link>}
+            <Link href="/brands"><Layers size={18} aria-hidden="true" /><span><strong>{tools.length}</strong> software profiles</span></Link>
+            <Link href="/about#standards"><FileCheck2 size={18} aria-hidden="true" /><span>How we check sources</span><ArrowUpRight size={15} aria-hidden="true" /></Link>
+          </div>
+        </div>
+      </section>
+
+      {moreOffers.length > 0 && (
+        <section id="featured-offers" className="market-section home-featured" aria-labelledby="featured-title">
+          <div className="home-section-head" data-motion="">
+            <div><h2 id="featured-title" className="home-section-title">Featured offers</h2><p>Compare published savings and the terms that come with them.</p></div>
+            <Link href="/deals" className="market-button market-button-secondary">View all deals <ArrowRight size={17} aria-hidden="true" /></Link>
+          </div>
+          <div className="market-offer-grid">
+            {moreOffers.map((offer, index) => <OfferCard key={offer.slug} deal={offer} letters={letters.get(offer.toolSlug)} motionIndex={index % 3} />)}
+          </div>
+        </section>
+      )}
+
+      <section className="home-band" aria-labelledby="category-title">
+        <div className="market-section">
+          <div className="home-section-head" data-motion="">
+            <div><h2 id="category-title" className="home-section-title">Browse by category</h2></div>
+            <Link href="/brands" className="home-text-link">Software brands A–Z <ArrowRight size={17} aria-hidden="true" /></Link>
+          </div>
+          <nav aria-label="Popular software categories" className="home-category-grid">
+            {categoryLinks.map(({ slug, label, icon: Icon }, index) => {
+              const count = offers.filter(offer => offer.categorySlug === slug).length;
+              return (
+                <Link key={slug} href={`/deals/category/${slug}`} className="home-category motion-card" data-motion={index % 3} prefetch={false}>
+                  <span className="home-category-icon"><Icon size={21} aria-hidden="true" /></span>
+                  <strong>{label}</strong>
+                  <small>{count ? `${count} ${count === 1 ? "offer" : "offers"}` : "Explore options"}</small>
+                  <ArrowUpRight className="home-category-arrow" size={16} aria-hidden="true" />
+                </Link>
+              );
+            })}
+          </nav>
+          <nav aria-label="Ways to save" className="home-collection-grid">
+            {collections.map(({ href, label, description, icon: Icon }, index) => (
+              <Link key={href} href={href} className="home-collection motion-card" data-motion={index % 4} prefetch={false}>
+                <Icon size={20} aria-hidden="true" />
+                <strong>{label}</strong>
+                <span>{description}</span>
+                <ArrowUpRight className="home-category-arrow" size={16} aria-hidden="true" />
               </Link>
             ))}
           </nav>
         </div>
       </section>
 
-      <section id="explore" className="home-shell home-section">
-        <div className="home-section-head" data-motion="">
-          <div><p className="home-label">Software directory</p><h2 className="home-section-title">Explore by category.</h2></div>
-          <Link href="/brands" className="home-text-link">All {tools.length} brands <ArrowUpRight size={17} aria-hidden="true" /></Link>
-        </div>
-        <nav aria-label="Popular software categories" className="home-category-grid">
-          {categoryPicks.map(({ slug, label, icon: Icon }, index) => (
-            <Link key={slug} data-motion={index % 3} href={`/brands?category=${slug}`} className="home-category" prefetch={false}>
-              <Icon aria-hidden="true" size={18} />
-              <span>{label}<small>{categories.find(category => category.slug === slug)?.toolCount || 0} brands</small></span>
-            </Link>
-          ))}
-        </nav>
-        <ul className="home-brand-grid">
-          {featured.map((tool, index) => (
-            <li key={tool.slug} data-motion={index % 3}>
-              <Link href={`/tools/${tool.slug}`} className="home-brand-card" prefetch={false}>
-                <span className="home-monogram" data-tone={index % 4} aria-hidden="true">{tool.name.slice(0, 1).toUpperCase()}</span>
-                <span className="home-brand-name"><strong>{tool.name}</strong><small>{tool.category}</small></span>
-                <ArrowUpRight className="home-link-icon home-brand-arrow" size={17} aria-hidden="true" />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="home-compare-section">
-        <div className="home-shell home-section home-compare-grid">
-          <div data-motion="">
-            <p className="home-label">Side-by-side research</p>
-            <h2 className="home-section-title">Make a better shortlist.</h2>
-            <p className="home-feature-copy">Compare the features and billing terms that matter to your workflow, then check the offers for your finalists.</p>
-            <Link href="/compare" className="home-primary">Compare software <ArrowUpRight size={18} aria-hidden="true" /></Link>
-          </div>
-          <FolioArtwork variant="directory" loading="lazy" />
-        </div>
-      </section>
-
       <BrandDiscountsSection deals={offers} />
 
-      <section className="home-shell home-section home-hosting">
-        <div className="home-hosting-intro" data-motion="">
-          <p className="home-label">Hosting & infrastructure</p>
-          <h2 className="home-section-title">See what hosting really costs.</h2>
-          <p className="home-feature-copy">Compare VPS and managed plans, from the first invoice to the renewal price.</p>
-          <div className="home-hero-links">
-            <Link href="/hosting-cost-calculator" className="home-primary"><Calculator size={17} aria-hidden="true" />Calculate renewal cost</Link>
-            <Link href="/hosting" className="home-text-link">Explore hosting <ArrowUpRight size={17} aria-hidden="true" /></Link>
+      <section className="home-band" aria-labelledby="research-title">
+        <div className="market-section home-research">
+          <div className="home-research-intro" data-motion="">
+            <h2 id="research-title" className="home-section-title">Know what you’ll pay.</h2>
+            <p>Compare plans and model renewal costs before committing to a subscription.</p>
           </div>
-        </div>
-        <div className="home-guide-list" aria-label="Hosting buying guides">
-          {hostingGuides.map((item, index) => (
-            <Link key={item.slug} href={`/articles/${item.slug}`} data-motion={index} className="home-guide">
-              <span><strong>{item.title}</strong><small>{item.detail}</small></span>
-              <ArrowUpRight className="home-link-icon" size={20} aria-hidden="true" />
-            </Link>
-          ))}
+          <nav className="home-research-grid" aria-label="Software buying tools">
+            {research.map(({ href, label, description, icon: Icon }, index) => (
+              <Link key={href} className="home-research-link motion-card" data-motion={index % 2} href={href} prefetch={false}>
+                <Icon size={20} aria-hidden="true" /><span><strong>{label}</strong><small>{description}</small></span><ArrowUpRight size={16} aria-hidden="true" />
+              </Link>
+            ))}
+          </nav>
         </div>
       </section>
 
-      <section className="home-shell home-section home-editorial">
+      <section className="market-section" aria-labelledby="guides-title">
         <div className="home-section-head" data-motion="">
-          <div><p className="home-label">Buyer’s library</p><h2 className="home-section-title">Read before you commit.</h2></div>
-          <Link href="/articles" className="home-text-link">All reviews & guides <ArrowUpRight size={17} aria-hidden="true" /></Link>
+          <div><h2 id="guides-title" className="home-section-title">Latest buying guides</h2></div>
+          <Link href="/articles" className="home-text-link">All reviews & guides <ArrowRight size={17} aria-hidden="true" /></Link>
         </div>
         <div className="home-article-grid">
           {articles.map((article, index) => (
             <article key={article.slug} data-motion={index}>
-              <Link href={`/articles/${article.slug}`} className="home-article">
+              <Link href={`/articles/${article.slug}`} className="home-article motion-card" prefetch={false}>
                 <div className="home-cover" aria-hidden="true">
-                  {article.coverImage ? <Image src={article.coverImage.src} alt="" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover" /> : <BookOpen size={34} />}
+                  {article.coverImage ? <Image src={article.coverImage.src} alt="" fill sizes="(max-width: 639px) 94vw, (max-width: 959px) 45vw, 380px" className="object-cover" /> : <BookOpen size={31} />}
                 </div>
                 <div className="home-article-copy">
-                  <p>{article.tags[0]} · {article.readTime}</p>
+                  <p>{article.category} · {article.readTime}</p>
                   <h3>{article.title}</h3>
                   <p>{article.summary}</p>
-                  <span className="home-text-link">Read the guide <ArrowUpRight className="home-link-icon" size={17} aria-hidden="true" /></span>
                 </div>
               </Link>
             </article>
@@ -174,27 +219,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {offers.length > 0 && (
-        <section className="home-shell home-section home-offers">
-          <div className="home-section-head" data-motion=""><h2 className="home-section-title">Explore software savings.</h2><Link href="/deals" className="home-text-link">Browse offers <ArrowUpRight size={17} aria-hidden="true" /></Link></div>
-          <div className="home-offer-grid">
-            {offers.slice(0, 4).map((offer, index) => (
-              <Link key={offer.slug} data-motion={index} prefetch={false} href={`/deals/${offer.slug}`} className="home-offer">
-                <p className="home-label">{offer.code ? "Reported coupon" : offer.dealType === "free_plan" ? "Free plan" : offer.dealType === "free_trial" ? "Free trial" : "Sourced offer"}</p>
-                <h3>{offer.title}</h3>
-                <span>Source, terms & eligibility <ArrowUpRight className="home-link-icon" size={15} aria-hidden="true" /></span>
-              </Link>
-            ))}
-          </div>
-          <p className="home-offer-note">Check the provider’s current terms and verify any reported code at checkout.</p>
-        </section>
-      )}
-
-      <section className="home-shell home-section">
-        <div className="home-submit" data-motion="">
-          <div><h2 className="home-section-title">Get your software discovered.</h2><p>Submit your SaaS tool or hosting service to the SaaSFolio editorial team.</p></div>
-          <Link href="/submit" className="home-primary">Add your brand <ArrowUpRight size={18} aria-hidden="true" /></Link>
-        </div>
+      <section className="market-shell home-submit" data-motion="" aria-labelledby="home-submit-title">
+        <div><h2 id="home-submit-title">List your software</h2><p>Send your product or hosting service for editorial review.</p></div>
+        <Link href="/submit" className="market-button market-button-secondary">Add your brand <ArrowUpRight size={16} aria-hidden="true" /></Link>
       </section>
     </ScrollMotion>
   );

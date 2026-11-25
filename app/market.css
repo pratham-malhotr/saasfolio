@@ -1,0 +1,178 @@
+:root {
+  --market-bg: #0a0c0b;
+  --market-surface: #111412;
+  --market-raised: #161a17;
+  --market-line: #2b312c;
+  --market-line-strong: #3e4a3e;
+  --market-ink: #f2f5ef;
+  --market-muted: #a8b3aa;
+  --market-lime: #c6ff3d;
+}
+
+.market-page { background: var(--market-bg); color: var(--market-ink); }
+.market-shell, .market-section { width: min(76rem, calc(100% - clamp(2rem, 8vw, 7rem))); margin-inline: auto; }
+.market-section { padding-block: clamp(2.5rem, 5vw, 4.75rem); }
+
+.market-intro {
+  padding-block: clamp(6.6rem, 9vw, 8.25rem) clamp(1.85rem, 4vw, 3.25rem);
+  border-bottom: 1px solid var(--market-line);
+  background: radial-gradient(ellipse at 82% 12%, #23331d, transparent 58%), #0d110e;
+}
+.market-intro-inner { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 2rem; }
+.market-intro-inner > div { max-width: 48rem; }
+.market-intro h1 { margin: .7rem 0 .65rem; font: 700 clamp(2.5rem, 6vw, 4.45rem)/1.02 var(--font-display), sans-serif; letter-spacing: -.065em; }
+.market-intro h1 + p { max-width: 41rem; color: var(--market-muted); font-size: .98rem; line-height: 1.6; }
+
+.market-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  padding: .58rem .92rem;
+  border: 1px solid transparent;
+  border-radius: .55rem;
+  font-size: .84rem;
+  font-weight: 650;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: background-color 180ms, border-color 180ms, color 180ms;
+}
+.market-button svg { flex: none; }
+.market-button-primary { color: #101608; background: var(--market-lime); }
+.market-button-primary:hover { background: var(--accent-hover); }
+.market-button-secondary { border-color: var(--market-line-strong); background: var(--market-surface); color: var(--market-ink); }
+.market-button-secondary:hover { border-color: #818f79; background: var(--market-raised); }
+.market-button-quiet { color: var(--market-muted); }
+.market-button-quiet:hover { color: var(--market-ink); background: var(--market-raised); }
+
+.market-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  color: var(--market-lime);
+  font-size: .77rem;
+  font-weight: 650;
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
+.market-page :where(a, button, select, input):focus-visible { outline: 2px solid var(--market-lime); outline-offset: 3px; }
+.market-page .market-button-primary:focus-visible { outline-offset: 3px; }
+
+.brand-avatar {
+  --avatar-bg: #293627;
+  --avatar-fg: #def4c5;
+  display: inline-grid;
+  width: 2.65rem;
+  height: 2.65rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--avatar-fg) 22%, transparent);
+  border-radius: .6rem;
+  background: var(--avatar-bg);
+  color: var(--avatar-fg);
+  font: 700 .94rem/1 var(--font-display), sans-serif;
+  letter-spacing: -.035em;
+}
+.brand-avatar[data-category="hosting"] { --avatar-bg: #2b2541; --avatar-fg: #dbceff; }
+.brand-avatar[data-category="marketing"] { --avatar-bg: #3a2a1d; --avatar-fg: #ffd2a2; }
+.brand-avatar[data-category="ai-tools"] { --avatar-bg: #242e42; --avatar-fg: #c9daff; }
+.brand-avatar[data-category="design"] { --avatar-bg: #392537; --avatar-fg: #ffcfef; }
+.brand-avatar[data-category="productivity"] { --avatar-bg: #203733; --avatar-fg: #b5f1df; }
+.brand-avatar[data-category="dev-tools"] { --avatar-bg: #2d3320; --avatar-fg: #e3edaf; }
+.brand-avatar[data-category="crm-sales"] { --avatar-bg: #38282a; --avatar-fg: #ffd2d2; }
+
+.market-offer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.market-offer-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid var(--market-line);
+  border-radius: .9rem;
+  background: var(--market-surface);
+  overflow-wrap: anywhere;
+}
+.market-offer-card:hover, .market-offer-card:focus-within { border-color: var(--market-line-strong); }
+.market-offer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; min-height: 44px; }
+.market-offer-value {
+  padding: .36rem .56rem;
+  border: 1px solid #475d2c;
+  border-radius: .38rem;
+  background: #242e19;
+  color: #dcfbac;
+  font-size: .76rem;
+  font-weight: 680;
+  line-height: 1.25;
+}
+.market-offer-brand { margin: .95rem 0 .3rem; color: var(--market-muted); font-size: .75rem; font-weight: 550; }
+.market-offer-brand span { margin-inline: .16rem; }
+.market-offer-card h3 { margin: 0; font: 700 1.24rem/1.2 var(--font-display), sans-serif; letter-spacing: -.035em; }
+.market-offer-card h3 a:hover { color: var(--market-lime); }
+.market-offer-description { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; margin: .48rem 0 1.1rem; color: var(--market-muted); font-size: .86rem; line-height: 1.55; }
+.market-offer-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem .5rem; margin-bottom: .85rem; color: var(--market-muted); font-size: .79rem; }
+.market-offer-price strong { color: var(--market-ink); font-size: 1.22rem; }
+.market-offer-footer { margin-top: auto; padding-top: .8rem; border-top: 1px solid var(--market-line); }
+.market-offer-evidence { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; color: var(--market-muted); font-size: .76rem; }
+.market-offer-evidence svg { color: #b5d38e; }
+.market-offer-evidence time { margin-left: auto; white-space: nowrap; }
+.market-offer-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .72rem; }
+.market-offer-actions .market-button { flex: 1 1 auto; }
+.market-offer-details { display: inline-flex; min-height: 44px; align-items: center; gap: .45rem; color: var(--market-ink); font-size: .84rem; font-weight: 650; }
+.market-offer-details:hover { color: var(--market-lime); }
+
+@media (width < 59rem) { .market-offer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (width < 37rem) { .market-offer-grid { grid-template-columns: minmax(0, 1fr); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .market-page *, .market-page *::before, .market-page *::after { scroll-behavior: auto; }
+  .market-button, .market-offer-card { transition: none; }
+}
+
+@keyframes market-arrive {
+  from { opacity: var(--market-arrival-opacity, .82); translate: 0 var(--market-arrival-offset, 7px); }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes market-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes market-trace-line {
+  from { scale: 0 1; opacity: 0; }
+  to { scale: 1 1; opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .market-button {
+    transition: background-color 180ms, border-color 180ms, color 180ms, scale 180ms var(--ease-luxury);
+  }
+
+  .market-button:active:not(:disabled) { scale: .98; }
+
+  .market-intro-inner > div > :is(.market-eyebrow, h1 + p),
+  .market-intro-inner > .market-button { animation: market-arrive 430ms var(--ease-luxury) backwards; }
+  .market-intro-inner > .market-button { animation-delay: 80ms; }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :is(.market-button, .market-offer-details, .site-header-cta) > :is(.lucide-arrow-right, .lucide-arrow-up-right) {
+    transition: translate 240ms var(--ease-luxury);
+  }
+  :is(.market-button, .market-offer-details, .site-header-cta):is(:hover, :focus-visible) > .lucide-arrow-right { translate: 3px 0; }
+  :is(.market-button, .market-offer-details, .site-header-cta):is(:hover, :focus-visible) > .lucide-arrow-up-right { translate: 2px -2px; }
+}
+
+@keyframes market-confirm {
+  from { opacity: .45; scale: .68; }
+  70% { scale: 1.12; }
+  to { opacity: 1; scale: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .market-dialog-scrim { animation: market-fade-in 190ms ease-out; }
+  .market-dialog-panel { --market-arrival-opacity: .85; --market-arrival-offset: 9px; animation: market-arrive 310ms var(--ease-luxury); }
+  .market-copy-feedback { display: inline-block; animation: market-arrive 270ms var(--ease-luxury); }
+  .market-coupon-copy[data-copy-state="copied"] > svg { animation: market-confirm 330ms var(--ease-luxury); }
+}

@@ -54,6 +54,8 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
   const [commentText, setCommentText] = useState("");
   const [commentUpvotes, setCommentUpvotes] = useState<Record<string, boolean>>({});
   const [comments, setComments] = useState<ArticleComment[]>([]);
+  const quickAnswer = article.toolSlug && article.sections[0]?.id === "quick-answer" ? article.sections[0] : undefined;
+  const bodySections = quickAnswer ? article.sections.slice(1) : article.sections;
 
   // Load bookmark, persisted comments, and comment upvotes on mount
   React.useEffect(() => {
@@ -218,6 +220,13 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
           {article.subtitle}
         </p>
 
+        {quickAnswer && (
+          <section id={quickAnswer.id} className="mb-8 max-w-4xl scroll-mt-28 space-y-2 rounded-xl border border-white/15 bg-[#121910] p-5 sm:p-6">
+            <h2 className="font-display text-xl font-bold text-white">{quickAnswer.heading}</h2>
+            <p className="leading-relaxed text-zinc-200">{quickAnswer.content}</p>
+          </section>
+        )}
+
         {/* Author & Share Bar */}
         <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
@@ -296,7 +305,24 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
           </div>
         </div>
 
-        {article.coverImage && <figure className="mt-8 overflow-hidden rounded-2xl border border-white/10"><Image src={article.coverImage.src} alt={article.coverImage.alt} width={1440} height={810} priority sizes="(max-width: 1280px) 100vw, 1216px" className="aspect-video w-full object-cover" /><figcaption className="bg-[#101216] px-5 py-3 text-xs leading-6 text-zinc-500">Editorial illustration · {article.subtitle}</figcaption></figure>}
+        {article.coverImage && (
+          <figure className="mt-8 overflow-hidden rounded-2xl border border-white/10">
+            <Image
+              src={article.coverImage.src}
+              alt={article.coverImage.alt}
+              width={1440}
+              height={810}
+              preload
+              sizes="(max-width: 1280px) 100vw, 1216px"
+              className="aspect-video w-full object-cover"
+            />
+            <figcaption className="bg-[#101216] px-5 py-3 text-xs leading-6 text-zinc-400">
+              {article.coverImage.credit ? (
+                <>Reference photo by <a href={article.coverImage.credit.sourceUrl} className="text-zinc-200 underline underline-offset-4">{article.coverImage.credit.author}</a></>
+              ) : `Editorial illustration · ${article.subtitle}`}
+            </figcaption>
+          </figure>
+        )}
 
         {/* Audio Overview Player */}
         <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-[#09090C] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -355,20 +381,19 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Article Body Column (8 cols) */}
           <div className="min-w-0 space-y-12 lg:col-span-8">
-            {/* Executive Summary Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/10 relative">
+            {!quickAnswer && <div className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
               <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold block mb-2">
                 Executive Takeaway
               </span>
               <p className="text-zinc-300 leading-relaxed text-sm sm:text-base">
                 {article.summary}
               </p>
-            </div>
+            </div>}
 
             {hostingActions && <p className="text-xs leading-6 text-zinc-500">Affiliate disclosure: some provider links may earn SaaSFolio a commission. Recommendations follow the workload and operating criteria described below. <Link href="/affiliate-disclosure" className="text-[#C6FF3D] underline">Read the disclosure</Link>.</p>}
 
             {/* Render Each Article Section */}
-            {article.sections.map((section) => (
+            {bodySections.map((section) => (
               <React.Fragment key={section.id}>
                 <section id={section.id} className="scroll-mt-28">
                   <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mb-4">

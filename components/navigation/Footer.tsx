@@ -7,22 +7,22 @@ import { PrivacyPreferences } from "@/components/privacy/PrivacyPreferences";
 
 const groups = [
   {
-    title: "Explore software",
+    title: "Find software savings",
     links: [
-      { href: "/brands", label: "All brands A–Z" },
-      { href: "/tools", label: "Software profiles" },
-      { href: "/hosting", label: "Hosting research" },
-      { href: "/discounts", label: "Discounts by brand" },
       { href: "/deals", label: "Software deals" },
+      { href: "/discounts", label: "Discounts by brand" },
       { href: "/deals?type=lifetime", label: "Lifetime deals" },
       { href: "/deals?type=free_trial", label: "Free trials" },
       ...SAVINGS_COLLECTION_LINKS,
     ],
   },
   {
-    title: "Plan a purchase",
+    title: "Research and compare",
     links: [
+      { href: "/brands", label: "All brands A–Z" },
+      { href: "/tools", label: "Software profiles" },
       { href: "/compare", label: "Compare software" },
+      { href: "/hosting", label: "Hosting research" },
       { href: "/articles", label: "Buying guides" },
       { href: "/articles/build-a-saas-budget-before-buying", label: "Build a software budget" },
       { href: "/savings-calculator", label: "Annual savings calculator" },
@@ -40,7 +40,7 @@ export function Footer() {
         <div className="grid gap-x-9 gap-y-10 sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr_.85fr]">
           <div className="space-y-5">
             <Logo size="lg" />
-            <p className="max-w-xs text-sm leading-relaxed">Research the software you need, compare billing options, and check offer terms before you subscribe.</p>
+            <p className="max-w-xs text-sm leading-relaxed">Find software deals and check what they cover before you subscribe.</p>
             <Link href="/submit" prefetch={false} className="inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-accent">
               Add your brand <ArrowUpRight size={16} aria-hidden="true" />
             </Link>

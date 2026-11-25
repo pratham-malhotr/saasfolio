@@ -1,27 +1,10 @@
 .brand-page {
-  --brand-ink: var(--foreground);
-  --brand-lime: var(--accent);
-  --brand-muted: #aeb5a9;
-  --brand-line: #30352b;
-  --brand-panel: #101210;
-  background: var(--background);
-  color: var(--brand-ink);
+  --brand-ink: var(--market-ink);
+  --brand-lime: var(--market-lime);
+  --brand-muted: var(--market-muted);
+  --brand-line: var(--market-line);
+  --brand-panel: var(--market-surface);
 }
-
-.brand-shell { width: min(80rem, calc(100% - clamp(2rem, 8vw, 8rem))); margin-inline: auto; }
-.brand-intro {
-  padding-block: clamp(7rem, 11vw, 10rem) clamp(1.85rem, 4.35vw, 4rem);
-  border-bottom: 1px solid var(--brand-line);
-  background: radial-gradient(ellipse at 78% 23%, #1e2a14, transparent 62%), #090b08;
-}
-.brand-intro-grid { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.1rem 2.5rem; }
-.brand-intro h1 { max-width: 16ch; font: 700 clamp(2.85rem, 8vw, 6.25rem)/.95 var(--font-display), sans-serif; letter-spacing: -.07em; }
-.brand-intro h1 span { color: var(--brand-lime); }
-.brand-intro p { max-width: 37rem; margin-block: 1rem .45rem; color: var(--brand-muted); font-size: clamp(1rem, 1.5vw, 1.16rem); line-height: 1.6; }
-.brand-intro aside { display: flex; flex-wrap: wrap; gap: .25rem .95rem; }
-.brand-intro aside a:first-child { border-radius: .65rem; background: var(--brand-lime); color: var(--accent-foreground); padding-inline: .8rem; }
-.brand-intro aside a:first-child:hover { background: var(--accent-hover); }
-.brand-intro aside a:last-child { padding-inline: .3rem; }
 
 .brand-text-link { display: inline-flex; min-height: 44px; align-items: center; gap: .4rem; color: var(--brand-lime); font-size: .85rem; font-weight: 650; }
 .brand-text-link:hover, .brand-empty a { text-decoration: underline; text-underline-offset: .24em; }
@@ -104,7 +87,6 @@
 }
 .brand-card:hover, .brand-card:focus-within { border-color: #c6ff3d61; }
 .brand-card-top { display: flex; min-height: 2.65rem; align-items: start; justify-content: space-between; gap: .6rem; }
-.brand-monogram { display: grid; width: 2.65rem; aspect-ratio: 1; place-items: center; border: 1px solid #c6ff3d26; border-radius: .6rem; background: #1b2816; color: var(--brand-lime); font: 700 1.25rem/1 var(--font-display), sans-serif; }
 .brand-sponsor-label { padding: .24rem .5rem; border: 1px solid #c6ff3d40; border-radius: .35rem; background: #202b16; color: var(--brand-lime); font-size: .72rem; font-weight: 700; }
 .brand-card h3 { margin-top: .65rem; font: 700 1.38rem/1.15 var(--font-display), sans-serif; letter-spacing: -.04em; }
 .brand-card h3 > a { display: inline-flex; min-height: 36px; align-items: center; gap: .45rem; }

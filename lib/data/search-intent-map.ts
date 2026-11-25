@@ -1,4 +1,6 @@
 import { CATEGORY_SEARCH_CONTENT } from "./category-search-content";
+import { RESEARCH_COMPARISONS } from "./comparison-research";
+import { SOFTWARE_REVIEWS } from "./software-reviews";
 import { SAVINGS_COLLECTIONS } from "./savings-collections";
 
 export interface SearchLandingTarget {
@@ -43,6 +45,12 @@ export const SEARCH_LANDING_TARGETS: SearchLandingTarget[] = [
     "nonprofit-discounts": ["nonprofit SaaS programs", "software discounts for nonprofits"],
   }[collection.slug], intent: collection.answer })),
   ...Object.keys(CATEGORY_SEARCH_CONTENT).map(slug => ({ path: `/deals/category/${slug}`, primaryQuery: categoryQueries[slug].primary, relatedQueries: categoryQueries[slug].related, intent: CATEGORY_SEARCH_CONTENT[slug].answer })),
+  ...Object.entries(RESEARCH_COMPARISONS).map(([slug, guide]) => ({
+    path: `/compare/${slug}`, primaryQuery: `${guide.toolA} vs ${guide.toolB}`, relatedQueries: [], intent: guide.search.description,
+  })),
+  ...SOFTWARE_REVIEWS.map(review => ({
+    path: `/articles/${review.slug}`, primaryQuery: review.title, relatedQueries: [], intent: review.summary,
+  })),
   { path: "/articles/find-and-use-saas-coupon-codes", primaryQuery: "how to find SaaS coupon codes", relatedQueries: ["check a software promo code", "compare coupon savings"], intent: "Work through source, eligibility and checkout checks without assuming code acceptance" },
   { path: "/articles/startup-software-credits-and-renewal-costs", primaryQuery: "startup software credits", relatedQueries: ["startup credit expiry", "startup software renewal costs"], intent: "Value an approved benefit against covered usage and later paid costs" },
   { path: "/articles/student-software-discounts-after-graduation", primaryQuery: "student software discounts after graduation", relatedQueries: ["education account verification", "student software account ownership"], intent: "Plan verification, ownership and continued software access when student status changes" },

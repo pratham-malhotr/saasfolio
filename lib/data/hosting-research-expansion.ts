@@ -5,7 +5,7 @@ const research: ResearchGuide[] = [
     slug: "render-vs-railway-nodejs-side-project", title: "Render vs Railway for a Node.js side project",
     summary: "Compare Render and Railway for a Node.js app by deployment checks, persistent files, background jobs and the bill after a trial ends.",
     audience: "For a solo developer turning a Node.js prototype into a small service with real users and records.",
-    image: "application-deployment", imageAlt: "Conceptual illustration of application modules connected to a deployment foundation", category: "Comparisons",
+    image: "application-deployment", category: "Comparisons",
     tags: ["Hosting", "Render vs Railway", "Node.js hosting", "Side project deployment"], providers: ["render", "railway"],
     sections: [
       ["Choose the service shape before choosing the platform", "Shortlist Render when its explicit service and deployment controls fit the way you want to release a web process or worker. Shortlist Railway when its project model and resource-based billing suit the services you need to operate together. Neither is automatically the better home for every Node.js application. First write down whether your app is a request handler, a continuously running worker, a scheduler or a combination. A prototype that answers HTTP requests and writes a JSON file has a different production requirement from a stateless API with an external database. The useful comparison is the actual deployable system, including its state and operating budget."],
@@ -27,7 +27,7 @@ const research: ResearchGuide[] = [
     slug: "vercel-vs-vps-nextjs-saas", title: "Vercel vs a VPS for a Next.js SaaS application",
     summary: "Choose Vercel or a self-hosted VPS for Next.js by runtime needs, caching, background work, database connections and operating responsibility.",
     audience: "For a small SaaS team whose Next.js application includes accounts, a database and more than static marketing pages.",
-    image: "application-deployment", imageAlt: "Conceptual deployment modules above a server representing application hosting choices", category: "Comparisons",
+    image: "application-deployment", category: "Comparisons",
     tags: ["Hosting", "Vercel vs VPS", "Next.js SaaS hosting", "Self-hosting Next.js"], providers: ["vercel", "digitalocean", "hetzner"],
     sections: [
       ["My shortlist starts with the app's difficult route", "I would shortlist Vercel when its managed deployment workflow fits the application's runtime, data services and execution limits, and the team wants to avoid operating the underlying server. I would shortlist a VPS when specific process control or dependencies justify the work of running Next.js and its supporting infrastructure. These are conditional editorial recommendations. Start with the route that is hardest to host: an authenticated export, image operation, database-heavy request or long job. A static marketing page tells you little about those constraints. Deploying the difficult route early makes the comparison about your SaaS rather than a broad claim that one approach is best for all Next.js projects."],
@@ -49,7 +49,7 @@ const research: ResearchGuide[] = [
     slug: "cloudflare-pages-vs-netlify-affiliate-blog", title: "Cloudflare Pages vs Netlify for an affiliate blog",
     summary: "Compare Cloudflare Pages and Netlify for a static affiliate publication: content builds, redirects, working forms, runtime needs and usage costs.",
     audience: "For a publisher using a static site generator who wants reliable articles, tracking links and inquiries without maintaining a server.",
-    image: "publisher-workflow", imageAlt: "Conceptual publisher workspace with content cards connected to hosting infrastructure", category: "Comparisons",
+    image: "publisher-workflow", category: "Comparisons",
     tags: ["Hosting", "Cloudflare Pages vs Netlify", "Static blog hosting", "Affiliate website hosting"], providers: ["cloudflare", "netlify"],
     sections: [
       ["A static publication is a good fit only when editing works", "Cloudflare Pages and Netlify are candidates for publishing a site generated as static assets, with dynamic services added where needed. For an affiliate blog, begin with the editor's weekly work: revise a comparison, update a source, replace an expired offer and publish a correction. If every small edit requires help the publisher cannot obtain, a technically elegant static build may be a poor operating fit. Test the CMS or repository workflow alongside hosting. Choose the candidate that supports the actual editorial process and dynamic requirements within the continuing budget. This is an architectural comparison, not a claim that one provider delivers better rankings."],
@@ -71,7 +71,7 @@ const research: ResearchGuide[] = [
     slug: "kinsta-vs-siteground-freelance-wordpress-clients", title: "Kinsta vs SiteGround for freelance WordPress clients",
     summary: "Compare Kinsta and SiteGround for client WordPress sites by account ownership, staging, restore access, usage limits and renewal costs.",
     audience: "For a freelancer who will build, maintain and eventually hand over several client WordPress websites.",
-    image: "wordpress-store", imageAlt: "Conceptual website cards and storefront modules connected to hosting infrastructure", category: "Comparisons",
+    image: "wordpress-store", category: "Comparisons",
     tags: ["Hosting", "Kinsta vs SiteGround", "Freelance WordPress hosting", "Client website handover"], providers: ["kinsta", "siteground"],
     sections: [
       ["Choose around the client relationship", "Shortlist Kinsta when the selected managed WordPress workflow and operating limits support the sites you must maintain. Shortlist SiteGround when its selected product, account tools and renewal quote suit the client's requirements. The decisive question for a freelancer is often who owns the account, pays the bill and can recover the site after the engagement ends. Resolve that relationship before comparing plan names. A low introductory figure is less useful if the client cannot operate the final setup. This guide evaluates decision criteria from current documentation; it does not report firsthand support conversations, migration results or a provider performance contest."],
@@ -93,7 +93,7 @@ const research: ResearchGuide[] = [
     slug: "hetzner-arm-vs-x86-docker-vps", title: "Hetzner ARM vs x86 VPS: check Docker compatibility first",
     summary: "Compare ARM and x86 VPS hosting for Docker apps using image architecture, native dependencies, recovery constraints and the cost of a real migration.",
     audience: "For a developer attracted to an ARM cloud quote who already runs an application and supporting containers on x86.",
-    image: "application-deployment", imageAlt: "Conceptual modular application blocks illustrating a choice of deployment architecture", category: "Guides & Stacks",
+    image: "application-deployment", category: "Guides & Stacks",
     tags: ["Hosting", "Hetzner ARM vs x86", "Docker ARM compatibility", "ARM VPS migration"], providers: ["hetzner", "digitalocean"],
     sections: [
       ["An architecture choice can outweigh a small price difference", "An ARM VPS can be a reasonable candidate when the complete application stack supports it and the selected configuration meets the workload. Keep x86 on the shortlist when required images or native dependencies lack an appropriate ARM build, or the migration effort exceeds the expected benefit. Neither architecture is universally better for hosting a web application. The first question is whether the code, dependencies and recovery materials will run on the chosen machine. Compare the exact currently offered products and regions instead of treating a historical ARM price as an ongoing entitlement. This guide proposes a compatibility review, not an ARM-versus-x86 performance benchmark."],
@@ -115,7 +115,7 @@ const research: ResearchGuide[] = [
     slug: "postgres-on-vps-vs-managed-database", title: "Postgres on your VPS vs a managed database for a small SaaS",
     summary: "Decide whether to keep PostgreSQL beside your application or pay for a managed database by recovery needs, contention, connections and operator time.",
     audience: "For a small SaaS founder choosing a database arrangement before storing customer records and accepting paid accounts.",
-    image: "database-recovery", imageAlt: "Conceptual database cylinder separated from an independent recovery vault", category: "Comparisons",
+    image: "database-recovery", category: "Comparisons",
     tags: ["Hosting", "Postgres on VPS vs managed database", "Small SaaS database", "Database recovery"], providers: ["digitalocean", "railway", "render"],
     sections: [
       ["Choose who will operate the database, not only where it runs", "Keeping Postgres on an application VPS can simplify an early system and reduce the number of billed services. It also puts database maintenance, capacity and recovery alongside server operation. A managed database moves some infrastructure tasks into a service, but your schema, queries, access rules and application behavior remain your responsibility. I would choose a self-operated database only when an identified person can maintain and restore it. I would shortlist a managed service when its documented recovery and operating features remove tasks the team cannot reliably cover. Neither choice automatically creates high availability or makes customer data safe."],
@@ -137,7 +137,7 @@ const research: ResearchGuide[] = [
     slug: "vps-snapshots-vs-wordpress-backups", title: "VPS snapshots vs WordPress backups: what can you restore?",
     summary: "Understand machine snapshots, WordPress database and file backups, retention and independent copies before relying on a hosting recovery promise.",
     audience: "For a publisher who sees snapshots and backups in a hosting dashboard and needs to know which failure each one addresses.",
-    image: "database-recovery", imageAlt: "Conceptual database and separate backup vault connected by a recovery path", category: "Guides & Stacks",
+    image: "database-recovery", category: "Guides & Stacks",
     tags: ["Hosting", "VPS snapshots vs backups", "WordPress restore", "Website backup strategy"], providers: ["digitalocean", "hetzner", "siteground"],
     sections: [
       ["Start with the thing you need back", "A machine snapshot can help recreate a server's disk state, while a WordPress-aware backup can focus on the database and relevant files. The exact behavior depends on the selected product and backup method. Begin with the failure: an accidentally deleted post, a bad plugin update, a lost server or an inaccessible account. Those situations do not necessarily call for the same restore. Choose a recovery arrangement that addresses your actual records and operating risks. Do not treat a dashboard containing several backup labels as evidence that every failure is covered. This guide explains what to verify rather than certifying any provider's recovery outcome."],
@@ -159,7 +159,7 @@ const research: ResearchGuide[] = [
     slug: "n8n-vps-sizing-concurrency-backups", title: "How to size an n8n VPS by workflows and concurrency",
     summary: "Plan n8n self-hosting around concurrent executions, payload sizes, database growth, retries and recovery instead of choosing a VPS from workflow count alone.",
     audience: "For a technically experienced operator considering self-hosted n8n for business automations with real credentials and external side effects.",
-    image: "hosting-network", imageAlt: "Conceptual connected servers with data paths representing automation jobs and queues", category: "Guides & Stacks",
+    image: "hosting-network", category: "Guides & Stacks",
     tags: ["Hosting", "n8n VPS sizing", "Self-hosted automation", "n8n concurrency"], providers: ["hetzner", "digitalocean", "hostinger"],
     sections: [
       ["Count work in flight rather than workflow definitions", "Ten simple workflows scheduled at different times can need less capacity than one workflow that processes large files concurrently. Start with what executes, how often it overlaps and what each execution retains in memory or storage. n8n's self-hosting documentation expects server and container administration knowledge. If nobody can own updates, recovery and credential handling, consider its managed service rather than assuming a VPS makes automation cheap. This guide provides a sizing method, not a universal minimum plan or a promise that a named host can run unlimited workflows. The right configuration follows the workload and the operator's ability to maintain it."],
@@ -181,7 +181,7 @@ const research: ResearchGuide[] = [
     slug: "woocommerce-hosting-php-workers-vs-ram", title: "Slow WooCommerce checkout: PHP workers, RAM or the database?",
     summary: "Diagnose slow WooCommerce checkout before upgrading hosting. Separate PHP request capacity, memory pressure, database work and payment-service delays.",
     audience: "For a small store owner whose product pages look fast while cart, checkout or the WordPress administrator becomes slow.",
-    image: "wordpress-store", imageAlt: "Conceptual online storefront with separate checkout and server connections", category: "Guides & Stacks",
+    image: "wordpress-store", category: "Guides & Stacks",
     tags: ["Hosting", "WooCommerce hosting", "PHP workers vs RAM", "Slow WooCommerce checkout"], providers: ["kinsta", "cloudways", "siteground"],
     sections: [
       ["A fast product page does not prove checkout capacity", "Public product pages may benefit from caching while a cart, customer account or checkout performs user-specific work. Start with the path that is actually slow. Record what happens when a customer adds an item, updates the cart and reaches the payment step. Separate browser rendering, application processing and external payment communication. A host upgrade can help a constrained server, but it will not automatically fix a third-party delay or an expensive application query. I would first identify the limiting step, then shortlist a hosting change only when evidence connects it to the proposed resource or operating improvement."],
@@ -203,7 +203,7 @@ const research: ResearchGuide[] = [
     slug: "wordpress-hosting-email-vs-transactional-email", title: "Hosting email vs transactional email for WordPress forms",
     summary: "Separate a business mailbox from WordPress notification delivery. Test form storage, authenticated sending, failures and replies before choosing hosting.",
     audience: "For a publisher or small business that needs inquiries, password messages or store notifications to reach the right operator.",
-    image: "hosting-network", imageAlt: "Conceptual data paths between servers representing separate submission and message delivery services", category: "Guides & Stacks",
+    image: "hosting-network", category: "Guides & Stacks",
     tags: ["Hosting", "WordPress transactional email", "Contact form email delivery", "Hosting email"], providers: ["hostinger", "siteground", "dreamhost"],
     sections: [
       ["A mailbox and an application's sender are different purchases", "A hosting package may include email accounts for people to read and answer messages. WordPress also needs a way to send application messages such as form notifications and password resets. Those requirements can share a provider or use separate services, but they should be evaluated separately. Do not choose hosting solely because it advertises email and assume every application message is covered. List who receives the inquiry, which address sends notifications and where a copy of the submission is retained. The useful recommendation is the arrangement that supports those paths reliably enough for the business, with clear limits and a way to investigate failures."],
@@ -225,7 +225,7 @@ const research: ResearchGuide[] = [
     slug: "hosting-bandwidth-overage-cost-guide", title: "How to estimate hosting bandwidth and overage costs",
     summary: "Estimate transfer from page weight, requests and cache behavior, then compare hosting allowances, overage rates and network paths using the same units.",
     audience: "For a publisher or application owner comparing a generous transfer allowance with a smaller allowance on another hosting quote.",
-    image: "hosting-network", imageAlt: "Conceptual server network carrying data blocks across multiple hosting paths", category: "Guides & Stacks",
+    image: "hosting-network", category: "Guides & Stacks",
     tags: ["Hosting", "Hosting bandwidth costs", "VPS transfer allowance", "Bandwidth overage"], providers: ["digitalocean", "hetzner", "cloudflare"],
     sections: [
       ["Separate network capacity from transferred data", "A connection-speed figure describes a rate, while an included transfer allowance describes a quantity over a billing period. They answer different questions. Begin by identifying what your quote meters: outbound data, particular network paths, requests, image processing or another unit. Compare equivalent behavior rather than treating a large port-speed number as unlimited included traffic. I would choose a configuration only after the expected traffic paths and overage behavior fit the budget. This guide supplies a calculation method and illustrative inputs; it does not forecast your site's traffic or assert that a named provider is always cheaper."],
@@ -247,7 +247,7 @@ const research: ResearchGuide[] = [
     slug: "multiple-client-websites-one-vps-isolation", title: "Several client websites on one VPS: costs and isolation",
     summary: "Decide whether to consolidate client websites on one VPS by access boundaries, shared resources, per-site recovery, billing ownership and handover.",
     audience: "For a freelancer or small agency thinking about placing several independent client sites on the same server.",
-    image: "wordpress-store", imageAlt: "Conceptual separate website cards linked to a shared hosting foundation", category: "Guides & Stacks",
+    image: "wordpress-store", category: "Guides & Stacks",
     tags: ["Hosting", "Multiple websites one VPS", "Client site isolation", "Agency hosting costs"], providers: ["hetzner", "digitalocean", "cloudways", "siteground"],
     sections: [
       ["Consolidation saves infrastructure only if the arrangement fits", "One VPS can host several compatible websites, and a shared infrastructure invoice may look attractive to a freelancer. The trade-off is that the sites share some resources, operations and failure boundaries. Before choosing that arrangement, decide whether you are selling managed hosting as an ongoing service or only helping clients buy their own hosting. The obligations and handover requirements differ. I would consolidate only when the operator can explain isolation, resource limits and individual restoration, and the client agreement fits the shared setup. Otherwise, compare separate accounts or an appropriate managed multi-site product before optimizing the server invoice."],

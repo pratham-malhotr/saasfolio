@@ -8,10 +8,12 @@ import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks"
 import Link from "next/link";
 
 const title = "Software Buying Guides, Reviews & Comparisons";
-const description = "Read software buying guides for LinkedIn tools, newsletters, course sales, video podcasts and web hosting. Compare plan limits and renewal costs.";
+const description = "Read software reviews and buying guides for AI code review, monitoring, newsletters, WordPress and web hosting. Compare plan limits and trade-offs.";
 export const metadata = pageMetadata({ title, description, path: "/articles" });
 
 const readingTopics = [
+  { heading: "Software reviews for engineering teams", slugs: ["coderabbit-review-github-pull-requests", "checkly-review-api-playwright-monitoring", "supabase-review-multi-tenant-saas", "baserow-review-postgresql-operations"] },
+  { heading: "Software reviews for publishers and service teams", slugs: ["fireflies-ai-review-client-meetings", "buttondown-review-paid-newsletter", "fluent-forms-review-wordpress-leads"] },
   { heading: "LinkedIn tools and newsletter platforms", slugs: ["taplio-pricing-starter-vs-growth-vs-pro", "taplio-vs-authoredup", "beehiiv-vs-kit-newsletter"] },
   { heading: "Course launches and video podcasts", slugs: ["systeme-io-free-plan-limits", "streamyard-vs-riverside-video-podcast"] },
   { heading: "VPS, WordPress and hosting renewal costs", slugs: ["hetzner-vs-digitalocean-small-business-vps", "hostinger-vps-vs-managed-wordpress-solo-blogger", "hosting-introductory-discount-vs-renewal-cost"] },

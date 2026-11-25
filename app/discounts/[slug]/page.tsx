@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { BrandAvatar } from "@/components/brand/BrandAvatar";
+import "../discounts.css";
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
@@ -62,9 +65,10 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
     ...availableBrands.sort((a, b) => Number(b.categorySlug === tool.categorySlug) - Number(a.categorySlug === tool.categorySlug)),
   ].filter((other, index, all) => all.findIndex(brand => brand.slug === other.slug) === index).slice(0, 4);
   const pricingUrl = guide?.sourceUrl || tool.pricingUrl || tool.website;
+  const latestCheck = offers.flatMap(offer => offer.checkedAt || []).sort().at(-1);
 
   return (
-    <article className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 space-y-10">
+    <article className="market-page">
       <JsonLd data={{
         "@context": "https://schema.org",
         "@graph": [
@@ -96,51 +100,65 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
         ],
       }} />
 
-      <nav aria-label="Breadcrumb" className="flex flex-wrap gap-2 text-sm text-zinc-400">
-        <Link href="/" className="hover:text-white">Home</Link><span aria-hidden="true">/</span>
-        <Link href="/discounts" className="hover:text-white">Brand discounts</Link><span aria-hidden="true">/</span>
-        <span className="text-[#C6FF3D]">{tool.name}</span>
-      </nav>
+      <div className="market-intro discount-guide-intro">
+        <div className="market-shell">
+          <nav aria-label="Breadcrumb" className="discount-guide-breadcrumb">
+            <Link href="/">Home</Link><span aria-hidden="true">/</span>
+            <Link href="/discounts">Brand discounts</Link><span aria-hidden="true">/</span>
+            <span aria-current="page">{tool.name}</span>
+          </nav>
 
-      <header className="rounded-3xl border border-white/15 bg-[#09090C] p-6 sm:p-10 space-y-5">
-        <p className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D]">{tool.category} · Savings guide</p>
-        <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white">{title}</h1>
-        <div aria-label={`${tool.name} discount summary`} className="rounded-2xl border border-[#C6FF3D]/20 bg-[#C6FF3D]/[0.04] p-5 space-y-3">
-          <p className="font-mono text-xs uppercase tracking-wider text-[#C6FF3D]">The short answer</p>
-          <p id="discount-answer" className="max-w-3xl text-base leading-relaxed text-zinc-200">{brandDiscountAnswer(tool, offers)}</p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-zinc-400"><span>{couponOffers.length} recorded {couponOffers.length === 1 ? "code" : "codes"}</span><span>{freeOptions.length} free-access {freeOptions.length === 1 ? "listing" : "listings"}</span>{guide && <span>Guide review: <time dateTime={guide.reviewedAt}>{guide.reviewedAt}</time></span>}{offers.length > 0 && <span>Latest source check: <time dateTime={offers.map(offer => offer.checkedAt || "").sort().at(-1)}>{offers.map(offer => offer.checkedAt || "").sort().at(-1)?.slice(0, 10)}</time></span>}</div>
+          <header className="discount-guide-header">
+            <div className="discount-guide-title">
+              <div className="flex items-center gap-3">
+                <BrandAvatar name={tool.name} letters={tool.logoLetter} category={tool.categorySlug} />
+                <p className="market-eyebrow">{tool.category}</p>
+              </div>
+              <h1>{title}</h1>
+              <p>{guide?.intro || `Review ${tool.name} offer terms, eligible plans, and renewal costs before choosing an offer.`}</p>
+              <p className="discount-guide-byline">By <Link href="/about" className="underline underline-offset-4">SaaSFolio editorial</Link>
+                {guide && <> · Reviewed <time dateTime={guide.reviewedAt}>{guide.reviewedAt}</time></>}
+              </p>
+              <div className="discount-guide-actions">
+                <a href="#current-offers" className="market-button market-button-primary">Compare offers <ArrowRight size={16} aria-hidden="true" /></a>
+                <a href={pricingUrl} target="_blank" rel="nofollow noopener noreferrer" className="market-button market-button-secondary">Official pricing <ArrowUpRight size={16} aria-hidden="true" /></a>
+              </div>
+            </div>
+
+            <section aria-labelledby="discount-summary-heading" className="discount-guide-summary">
+              <h2 id="discount-summary-heading">Savings at a glance</h2>
+              <p id="discount-answer">{brandDiscountAnswer(tool, offers)}</p>
+              <dl>
+                <div><dt>Recorded codes</dt><dd>{couponOffers.length}</dd></div>
+                <div><dt>Free plans and trials</dt><dd>{freeOptions.length}</dd></div>
+                {latestCheck && <div><dt>Latest source check</dt><dd><time dateTime={latestCheck}>{latestCheck.slice(0, 10)}</time></dd></div>}
+              </dl>
+              <Link href={`/tools/${tool.slug}`} className="market-button market-button-secondary">Features & alternatives <ArrowUpRight size={16} aria-hidden="true" /></Link>
+            </section>
+          </header>
         </div>
-        <p className="text-zinc-300 text-lg leading-relaxed max-w-3xl">
-          {guide?.intro || `Compare sourced ${tool.name} coupons and offers for ${tool.bestFor.charAt(0).toLowerCase() + tool.bestFor.slice(1)}. Review the code requirements, eligible plans, and renewal terms before choosing an offer.`}
-        </p>
-        <p className="text-sm text-zinc-400">By <Link href="/about" className="text-white underline">SaaSFolio editorial</Link>
-          {guide && <> · Guide reviewed <time dateTime={guide.reviewedAt}>{guide.reviewedAt}</time></>}
-          . Source checks and checkout testing are different; the provider confirms the final price.</p>
-        <div className="flex flex-wrap gap-4 text-sm">
-          <a href="#current-offers" className="rounded-xl bg-[#C6FF3D] text-black px-5 py-3 font-bold">Compare discounts & offers</a>
-          <a href={pricingUrl} target="_blank" rel="nofollow noopener noreferrer" className="rounded-xl border border-white/15 px-5 py-3 text-white">Check official pricing ↗</a>
-          <Link href={`/tools/${tool.slug}`} className="px-2 py-3 text-zinc-300 underline">{tool.name} features & alternatives</Link>
-        </div>
-        <nav aria-label="On this page" className="flex flex-wrap gap-5 border-t border-white/10 pt-4 text-sm text-[#C6FF3D]">
+      </div>
+
+      <div className="market-shell discount-guide-content">
+        <nav aria-label="On this page" className="discount-category-nav">
           <a href="#current-offers">Offers & codes</a>{guide && <a href="#plan-fit">Choose your workflow</a>}<a href="#saving-guide">Ways to save</a>
           <a href="#offer-sources">Compare sources</a>{guide?.billingModel !== "usage" && <a href="#compare-costs">Compare annual costs</a>}
           {purchaseChecks && <a href="#eligibility">Eligibility</a>}
           <a href="#redemption">How to redeem</a>{purchaseChecks && <a href="#coupon-help">Code not working?</a>}<a href="#questions">Questions</a>
         </nav>
-      </header>
 
       <section id="current-offers" className="space-y-5 scroll-mt-28">
         <h2 className="font-display text-2xl font-bold text-white">Current {tool.name} discount codes & offers</h2>
         <dl id="discount-availability" aria-label={`${tool.name} discount availability`} className="grid gap-3 sm:grid-cols-3">
-          <div className="rounded-2xl border border-white/10 bg-[#09090C] p-5 space-y-2">
+          <div className="rounded-xl border border-[var(--market-line)] bg-[var(--market-surface)] p-5 space-y-2">
             <dt className="text-xs font-mono uppercase tracking-wide text-zinc-500">Coupon & promo codes</dt>
             <dd className="space-y-2"><p className="font-semibold text-white">{couponOffers.length ? `${couponOffers.length} sourced ${couponOffers.length === 1 ? "code" : "codes"}` : "No current code recorded"}</p><a href={couponOffers.length ? "#coupon-codes" : "#offer-sources"} className="inline-block text-sm text-[#C6FF3D] underline">{couponOffers.length ? "Read code terms" : "Where to check for codes"}</a></dd>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-[#09090C] p-5 space-y-2">
+          <div className="rounded-xl border border-[var(--market-line)] bg-[var(--market-surface)] p-5 space-y-2">
             <dt className="text-xs font-mono uppercase tracking-wide text-zinc-500">Provider savings</dt>
             <dd className="space-y-2"><p className="font-semibold text-white">{savingsOptions.length ? `${savingsOptions.length} reviewed ${savingsOptions.length === 1 ? "option" : "options"}` : "Check official pricing"}</p><a href={savingsOptions.length ? "#provider-savings" : pricingUrl} {...(savingsOptions.length ? {} : { target: "_blank", rel: "noopener noreferrer" })} className="inline-block text-sm text-[#C6FF3D] underline">{savingsOptions.length ? "Compare savings & eligibility" : "View provider plans ↗"}</a></dd>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-[#09090C] p-5 space-y-2">
+          <div className="rounded-xl border border-[var(--market-line)] bg-[var(--market-surface)] p-5 space-y-2">
             <dt className="text-xs font-mono uppercase tracking-wide text-zinc-500">Free plans & trials</dt>
             <dd className="space-y-2"><p className="font-semibold text-white">{freeOptions.length ? `${freeOptions.length} sourced ${freeOptions.length === 1 ? "option" : "options"}` : "No current listing"}</p><a href={freeOptions.length ? "#other-offers" : "#saving-guide"} className="inline-block text-sm text-[#C6FF3D] underline">{freeOptions.length ? "Review free access terms" : "Read the savings guide"}</a></dd>
           </div>
@@ -171,7 +189,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           {group.id === "other-offers" && <p className="max-w-3xl text-sm leading-relaxed text-zinc-400">These listings do not require a recorded coupon code. A free plan or trial has its own limits and any conversion to paid billing should be checked separately.</p>}
           <div className="grid gap-4 md:grid-cols-2">
           {group.offers.map(offer => (
-            <div key={offer.id} className="p-6 rounded-2xl border border-white/10 bg-[#09090C] space-y-4">
+            <div key={offer.id} className="p-6 rounded-xl border border-[var(--market-line)] bg-[var(--market-surface)] space-y-4">
               <span className="inline-block rounded-md bg-[#C6FF3D]/10 px-3 py-1 text-[#C6FF3D] text-xs font-mono">{offerLabel(offer)}</span>
               <h4 className="font-display text-xl font-bold text-white"><Link href={`/deals/${offer.slug}`} className="hover:text-[#C6FF3D]">{offer.title}</Link></h4>
               {offer.code && <div className="space-y-3 rounded-xl border border-white/10 bg-black/30 p-4">
@@ -197,7 +215,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
       {purchaseChecks && <section id="eligibility" className="space-y-5 scroll-mt-28">
         <h2 className="font-display text-2xl font-bold text-white">Who qualifies for {tool.name} discounts?</h2>
         <p className="max-w-3xl text-zinc-400">Check these details against the provider’s current terms before applying a promotion or changing your subscription.</p>
-        <dl className="grid gap-4 md:grid-cols-3">{purchaseChecks.eligibility.map(check => <div key={check.label} className="rounded-2xl border border-white/10 bg-[#09090C] p-6 space-y-3">
+        <dl className="grid gap-4 md:grid-cols-3">{purchaseChecks.eligibility.map(check => <div key={check.label} className="rounded-xl border border-[var(--market-line)] bg-[var(--market-surface)] p-6 space-y-3">
           <dt className="font-display text-lg font-bold text-white">{check.label}</dt>
           <dd className="text-sm text-zinc-400 leading-relaxed">{check.detail}</dd>
         </div>)}</dl>
@@ -263,7 +281,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
 
       <section id="questions" className="space-y-4 scroll-mt-28">
         <h2 className="font-display text-2xl font-bold text-white">{tool.name} discount questions</h2>
-        {faqs.map(faq => <details key={faq.question} className="rounded-2xl border border-white/10 bg-[#09090C] p-5">
+        {faqs.map(faq => <details key={faq.question} className="rounded-xl border border-[var(--market-line)] bg-[var(--market-surface)] p-5">
           <summary className="cursor-pointer text-white font-semibold">{faq.question}</summary>
           <p className="pt-4 text-sm leading-relaxed text-zinc-400">{faq.answer}</p>
         </details>)}
@@ -290,6 +308,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           <span className="block text-xs text-zinc-500">{other.category}</span>
         </Link>)}</div>
       </nav>}
+      </div>
     </article>
   );
 }

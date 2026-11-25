@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Search } from "lucide-react";
 import type { BrandDirectoryEntry } from "@/lib/brand-directory";
+import { BrandAvatar } from "@/components/brand/BrandAvatar";
 import { CATEGORIES } from "@/lib/catalog-categories";
 
 const alphabet = ["#", ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
@@ -15,9 +16,9 @@ function BrandCard({ brand }: { brand: BrandDirectoryEntry }) {
     : brand.hasFreeOption ? "Free plan or trial recorded · check terms"
       : brand.hasOffer ? "Sourced offer recorded · check eligibility" : "No current coupon recorded";
   return (
-    <li data-brand={brand.slug} data-sponsored={brand.sponsored || undefined} className="brand-card">
+    <li data-brand={brand.slug} data-sponsored={brand.sponsored || undefined} className="brand-card motion-card">
       <div className="brand-card-top">
-        <span className="brand-monogram" aria-hidden="true">{brand.name.slice(0, 1).toUpperCase()}</span>
+        <BrandAvatar name={brand.name} category={brand.categorySlug} />
         {brand.sponsored && <span className="brand-sponsor-label">Sponsored</span>}
       </div>
       <h3>

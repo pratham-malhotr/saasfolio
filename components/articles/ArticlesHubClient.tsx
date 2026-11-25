@@ -8,6 +8,7 @@ import type { ArticlePreview } from "@/lib/data/articles-data";
 
 const CATEGORIES = [
   "All",
+  "Software Reviews",
   "Hosting",
   "Guides & Stacks",
   "Comparisons",
@@ -68,6 +69,7 @@ export function ArticlesHubClient({ articles, savingsLinks }: { articles: Articl
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
+              aria-pressed={selectedCategory === cat}
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-xl font-mono text-xs uppercase tracking-wider transition-all ${
                 selectedCategory === cat

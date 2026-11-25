@@ -1,3 +1,5 @@
+import type { PhotoCredit } from "./research-photography";
+
 export interface ArticleSection {
   id: string;
   heading: string;
@@ -14,14 +16,15 @@ export interface ArticleSection {
 export type ArticlePreview = Pick<DetailedArticle, "id" | "slug" | "title" | "summary" | "category" | "readTime" | "author" | "tags" | "featured" | "coverImage">;
 
 export interface DetailedArticle {
-  coverImage?: { src: string; alt: string };
+  coverImage?: { src: string; alt: string; credit?: PhotoCredit };
   providerSlugs?: string[];
+  toolSlug?: string;
   id: string;
   title: string;
   slug: string;
   subtitle: string;
   summary: string;
-  category: "Guides & Stacks" | "Comparisons" | "Case Studies" | "Tool Roundups";
+  category: "Software Reviews" | "Guides & Stacks" | "Comparisons" | "Case Studies" | "Tool Roundups";
   readTime: string;
   publishedAt: string;
   updatedAt: string;

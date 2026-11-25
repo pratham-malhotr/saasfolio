@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useSyncExternalStore } from "react";
+import { useState, useEffect, useRef, useSyncExternalStore } from "react";
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
@@ -28,7 +29,6 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
   // initial link markup stable, then decorate the current route after hydration.
   const hydrated = useSyncExternalStore(subscribeToHydration, clientHydrationSnapshot, serverHydrationSnapshot);
   const router = useRouter();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -95,19 +95,6 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
     return () => { active = false; window.removeEventListener("saasfolio_auth_changed", loadUser); };
   }, []);
 
-  useEffect(() => {
-    let last = false;
-    const handleScroll = () => {
-      const scrolled = window.scrollY > 28;
-      if (last === scrolled) return;
-      last = scrolled;
-      setIsScrolled(scrolled);
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   // Close mobile menu on route change
   useEffect(() => {
     const frame = requestAnimationFrame(() => setMobileMenuOpen(false));
@@ -126,16 +113,17 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
   }, [drawerOpen, searchOpen]);
 
   const navLinks = [
+    { label: "Deals", href: "/deals", icon: Tag },
+    { label: "Discounts", href: "/discounts", icon: Tag },
     { label: "Brands", href: "/brands", icon: Layers },
     { label: "Hosting", href: "/hosting", icon: Layers },
-    { label: "Discounts", href: "/discounts", icon: Tag },
     { label: "Compare", href: "/compare", icon: Scale },
-    { label: "Reviews & guides", href: "/articles", icon: FileText },
+    { label: "Guides", href: "/articles", icon: FileText },
   ];
 
   return (
     <>
-      <header className="site-header" data-scrolled={isScrolled || undefined} data-drawer={drawerOpen || undefined}>
+      <header className="site-header">
         <div className="site-header-bar">
           {/* Brand Logo */}
           <Logo size="md" />
@@ -153,12 +141,9 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                   className="site-header-link"
                 >
                   <span>{link.label}</span>
-                  {isActive && <motion.span
-                    aria-hidden="true"
-                    className="site-nav-indicator"
-                    layoutId={reducedMotion ? undefined : "site-current-route"}
-                    transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 440, damping: 36 }}
-                  />}
+                  {isActive && <motion.span aria-hidden="true" className="site-nav-marker"
+                    initial={false} layoutId={reducedMotion ? undefined : "site-nav-marker"}
+                    transition={{ duration: .24, ease: [0.22, 1, 0.36, 1] }} />}
                 </Link>
               );
             })}
@@ -173,9 +158,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
               aria-label="Search deals and tools"
             >
               <Search size={17} aria-hidden="true" />
-              <kbd className="site-search-key hidden xl:inline">
-                ⌘K
-              </kbd>
+              <span className="hidden xl:inline">Search</span>
             </button>
 
             {/* User Profile / Auth Button */}
@@ -207,7 +190,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                       className="flex items-center gap-2 px-3 py-2 rounded-xl text-zinc-300 hover:text-[#C6FF3D] hover:bg-white/5 transition-colors"
                     >
                       <User className="w-3.5 h-3.5" />
-                      <span>Member Passport</span>
+                      <span>Your account</span>
                     </Link>
 
                     <Link
@@ -225,7 +208,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                       className="flex items-center gap-2 px-3 py-2 rounded-xl text-zinc-300 hover:text-[#C6FF3D] hover:bg-white/5 transition-colors"
                     >
                       <ShieldCheck className="w-3.5 h-3.5" />
-                      <span>Admin Control</span>
+                      <span>Admin dashboard</span>
                     </Link>}
 
                     <button
@@ -234,7 +217,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                       className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-rose-400 hover:bg-rose-500/10 transition-colors text-left"
                     >
                       <LogOut className="w-3.5 h-3.5" />
-                      <span>{signingOut ? "Signing out…" : "Sign Out"}</span>
+                      <span>{signingOut ? "Signing out…" : "Sign out"}</span>
                     </button>
                   </div>
                 )}
@@ -244,7 +227,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                 href="/login"
                 className="site-contact-link"
               >
-                Sign In
+                Sign in
               </Link>
             ) : (
               <Link href="/contact" className="site-contact-link">
@@ -305,19 +288,21 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
                       aria-current={pathname === link.href || pathname.startsWith(`${link.href}/`) ? "page" : undefined}
-                      style={{ "--menu-index": index } as React.CSSProperties}
+                      style={{ "--menu-index": index } as CSSProperties}
                       className="mobile-nav-link flex min-h-12 items-center justify-between border-b border-white/10 py-3 font-display text-xl font-semibold tracking-tight text-white transition-colors hover:text-[#C6FF3D] aria-[current=page]:text-[#C6FF3D]"
                     >
                       <div className="flex items-center gap-3">
                         <Icon className="w-5 h-5 text-[#C6FF3D]" />
                         <span>{link.label}</span>
                       </div>
+                      <ArrowUpRight size={16} aria-hidden="true" />
                     </Link>
                   );
                 })}
               </div>
 
-              <div className="pt-4 space-y-2 border-t border-white/10"><Link href="/submit" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between rounded-xl bg-[#C6FF3D] px-4 py-3 text-sm font-semibold text-black">Add your brand</Link>
+              <div className="space-y-2">
+                <Link href="/submit" onClick={() => setMobileMenuOpen(false)} className="market-button market-button-secondary w-full justify-between">Add your brand <ArrowUpRight size={16} aria-hidden="true" /></Link>
                 {currentUser ? (
                   <>
                     <Link
@@ -326,15 +311,15 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                       className="flex items-center justify-between min-h-11 py-2 text-sm text-[#C6FF3D]"
                     >
                       <span>Your account</span>
-                      <span className="font-mono text-xs">VIEW →</span>
+                      <ArrowUpRight size={16} aria-hidden="true" />
                     </Link>
                     <button
                       onClick={signOut}
                       disabled={signingOut}
                       className="w-full flex items-center justify-between min-h-11 py-2 text-sm text-rose-400 hover:text-rose-300 text-left"
                     >
-                      <span className="flex items-center gap-2"><LogOut className="w-3.5 h-3.5" /> {signingOut ? "Signing out…" : "Sign Out"}</span>
-                      <span className="font-mono text-xs">EXIT →</span>
+                      <span className="flex items-center gap-2"><LogOut className="w-3.5 h-3.5" /> {signingOut ? "Signing out…" : "Sign out"}</span>
+                      <ArrowUpRight size={16} aria-hidden="true" />
                     </button>
                   </>
                 ) : accountsAvailable ? (
@@ -344,8 +329,8 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                       onClick={() => setMobileMenuOpen(false)}
                       className="flex items-center justify-between min-h-11 py-2 text-sm text-zinc-300 hover:text-white"
                     >
-                      <span>Sign In to SaaSFolio</span>
-                      <span className="font-mono text-xs text-[#C6FF3D]">LOGIN →</span>
+                      <span>Sign in to SaaSFolio</span>
+                      <ArrowUpRight size={16} aria-hidden="true" />
                     </Link>
                     <Link
                       href="/signup"
@@ -353,7 +338,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                       className="flex items-center justify-between min-h-11 py-2 text-sm text-zinc-400 hover:text-white"
                     >
                       <span>Create Free Account</span>
-                      <span className="font-mono text-xs text-[#C6FF3D]">REGISTER →</span>
+                      <ArrowUpRight size={16} aria-hidden="true" />
                     </Link>
                   </>
                 ) : (
@@ -367,22 +352,13 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable }: { d
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-between min-h-11 py-2 text-sm text-zinc-400 hover:text-white"
                 >
-                  <span>Admin Mission Control</span>
-                  <span className="font-mono text-xs text-[#C6FF3D]">ADMIN →</span>
+                  <span>Admin dashboard</span>
+                  <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>}
               </div>
             </div>
 
-            <div className="space-y-4">
-              <Link
-                href="/deals"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-[#C6FF3D] text-black font-bold text-base shadow-[0_0_25px_rgba(198,255,61,0.4)]"
-              >
-                <span>Browse software offers</span>
-                <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
-              </Link>
-            </div>
+
           </motion.nav>
         )}
       </AnimatePresence>

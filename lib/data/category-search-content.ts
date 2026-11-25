@@ -21,7 +21,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
     title: "AI Tool Discounts, Deals & Free Trials", heading: "AI tool discounts & deals",
     description: "Compare AI tool discounts, sourced offers and free trials. Check generation credits, model access, commercial rights and renewal costs before subscribing.",
     answer: "Compare AI tool offers using the work you can complete: included generations, model access, output rights and paid overages. An attractive monthly equivalent is not a useful saving if the quoted plan excludes the model, resolution or volume your workflow requires.",
-    overview: "An AI writing assistant, research tool, coding assistant and video generator can price very different units of work. Write down one representative task and test it within the provider’s trial or free limits where available. For research, inspect citation quality and document limits; for generated media, check resolution, watermarks and commercial use. Keep the evaluation separate from the advertised discount percentage.",
+    overview: "An AI writing assistant, research tool, coding assistant and video generator can price very different units of work. When comparing free trials, run the same representative task and record what the provider includes or limits. For research, inspect citation quality and document limits; for generated media, check resolution, watermarks and commercial use. Keep the evaluation separate from the advertised discount percentage.",
     decisions: [
       { measure: "Usable output", compare: "The same generation length, model and export quality", risk: "A cheaper tier can spend more credits on retries or omit an essential model." },
       { measure: "Credit allowance", compare: "Reset period, rollover and overage or top-up rules", risk: "Unused credits may expire, while a busy month can require another purchase." },
@@ -32,7 +32,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
       { question: "Can I get an AI tool discount without a coupon code?", answer: "Some providers use annual billing or eligible education and startup routes instead. Open the brand guide for recorded options and compare the same model access and credit allowance. A free plan or trial is listed separately from a paid discount." },
       { question: "Do discounted AI subscriptions include unlimited generations?", answer: "Do not assume unlimited use. Check the plan’s credit accounting, fair-use rules, available models and output settings at the provider. Compare the capacity needed for your tasks before treating an advertised percentage as a lower total cost." },
     ],
-    articleSlugs: ["evaluate-ai-software-free-trials", "compare-saas-pricing-limits", "find-and-use-saas-coupon-codes"], collections: ["student-discounts", "coupon-codes"], updatedAt: "2026-11-22",
+    articleSlugs: ["evaluate-ai-software-free-trials", "coderabbit-review-github-pull-requests", "compare-saas-pricing-limits", "find-and-use-saas-coupon-codes"], collections: ["student-discounts", "coupon-codes"], updatedAt: "2026-11-25",
   },
   marketing: {
     title: "Marketing Software Deals & Email Tool Discounts", heading: "Marketing software deals & discounts",
@@ -49,7 +49,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
       { question: "How should I compare email marketing software discounts?", answer: "Use equivalent contact counts, send volume, automations and billing periods. Check what happens when your list crosses a tier and whether imports or add-ons cost more. The source and brand guide distinguish an actual promotion from ordinary plan pricing." },
       { question: "Does an annual marketing plan mean the discount lasts forever?", answer: "No. Check the approved promotional period and the next renewal. An annual quote can require an upfront commitment even when it is advertised as a monthly equivalent; introductory or partner benefits may end sooner." },
     ],
-    articleSlugs: ["beehiiv-vs-kit-newsletter", "systeme-io-free-plan-limits", "taplio-pricing-starter-vs-growth-vs-pro", "taplio-vs-authoredup", "compare-saas-pricing-limits"], collections: ["startup-deals", "coupon-codes"], updatedAt: "2026-11-22",
+    articleSlugs: ["beehiiv-vs-kit-newsletter", "buttondown-review-paid-newsletter", "systeme-io-free-plan-limits", "taplio-pricing-starter-vs-growth-vs-pro", "taplio-vs-authoredup", "compare-saas-pricing-limits"], collections: ["startup-deals", "coupon-codes"], updatedAt: "2026-11-25",
   },
   "crm-sales": {
     title: "CRM Software Discounts & Sales Tool Deals", heading: "CRM software discounts & sales tool deals",
@@ -106,7 +106,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
     title: "Analytics Software Deals & Tracking Tool Discounts", heading: "Analytics software deals & discounts",
     description: "Compare analytics software deals and tracking tool offers. Check event limits, retention, sites, integrations and the price of your expected traffic.",
     answer: "Compare analytics tool savings at the traffic and retention your team needs. Events, page views, tracked users, connected sites and data history can create different bills. A discount on a starting tier is not a quote for every workload or reporting requirement.",
-    overview: "Decide which questions the analytics setup must answer and what data is needed to answer them. A simple traffic dashboard and a product-event pipeline have different collection and storage requirements. Check integrations, export and reporting access before switching tools. Privacy-related marketing terms should also be checked against the provider’s actual data handling and the way you configure the service.",
+    overview: "Decide which questions the analytics setup must answer and what data is needed to answer them. A simple traffic dashboard and a product-event pipeline have different collection and storage requirements. During free trials, run the same report and confirm whether it can be exported before switching tools. Privacy-related marketing terms should also be checked against the provider’s actual data handling and the way you configure the service.",
     decisions: [
       { measure: "Collection volume", compare: "Page views, events or tracked-user definitions", risk: "The same traffic can consume different billable units across providers." },
       { measure: "History and access", compare: "Retention, exports, sites and report-sharing permissions", risk: "A required history window or additional site may change the eligible plan." },
@@ -117,7 +117,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
       { question: "How can I compare analytics discounts fairly?", answer: "Match the collection volume, event definition, retention and number of sites. Include the integrations and reporting access you need, then inspect overage and renewal terms for that exact setup." },
       { question: "Does a privacy-focused analytics offer need no review?", answer: "A marketing label is not a complete data-processing description. Read the provider’s terms and your configuration before sending data. A discount does not establish that a service fits a particular data or consent requirement." },
     ],
-    articleSlugs: ["verify-software-privacy-claims", "compare-saas-pricing-limits"], collections: ["startup-deals", "coupon-codes"], updatedAt: "2026-10-28",
+    articleSlugs: ["verify-software-privacy-claims", "compare-saas-pricing-limits"], collections: ["startup-deals", "coupon-codes"], updatedAt: "2026-11-25",
   },
   hosting: {
     title: "Web Hosting Deals, Discounts & Promo Codes", heading: "Web hosting deals, discounts & promo codes",
@@ -139,7 +139,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
   finance: {
     title: "Billing & Invoicing Software Deals and Discounts", heading: "Billing & invoicing software deals",
     description: "Compare billing and invoicing software deals. Check transaction charges, active customers, integrations and the subscription price after the offer.",
-    answer: "Compare billing and invoicing offers using both subscription charges and the activity they support. Transactions, active customers, currencies, integrations and paid features can affect the total. A free trial does not remove payment-processing fees or establish that the product supports every workflow.",
+    answer: "Compare billing and invoicing offers using both subscription charges and the activity they support. Transactions, active customers, currencies, integrations and paid features can affect the total. Free trials are useful for checking a sample invoice and how it appears in your accounting system. Verify payment-processing fees separately.",
     overview: "Start with the actual invoicing or subscription-billing process: who creates invoices, how payments are collected and what information must move into other systems. Check the provider’s supported features for your intended use. Keep setup and migration decisions separate from a short promotional period so that the software can remain useful after its normal price returns.",
     decisions: [
       { measure: "Billable activity", compare: "Transactions, active customers and recurring-subscription volume", risk: "The quoted base subscription can exclude activity-based charges." },
@@ -151,7 +151,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
       { question: "Does an invoicing software discount reduce transaction fees?", answer: "Only if those fees are explicitly included in the promotion. Compare the subscription, processing arrangement and any volume-based charges separately using the provider’s current terms." },
       { question: "Can I evaluate billing software through a free trial?", answer: "A trial can help inspect the workflow and integration, but its limits and account requirements still apply. Use an appropriate test setup, and verify the paid plan and renewal before moving a live process." },
     ],
-    articleSlugs: ["build-a-saas-budget-before-buying", "compare-saas-pricing-limits"], collections: ["startup-deals", "nonprofit-discounts"], updatedAt: "2026-10-28",
+    articleSlugs: ["build-a-saas-budget-before-buying", "compare-saas-pricing-limits"], collections: ["startup-deals", "nonprofit-discounts"], updatedAt: "2026-11-25",
   },
   productivity: {
     title: "Productivity Software Discounts & Workspace Deals", heading: "Productivity software discounts & workspace deals",
@@ -191,7 +191,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
     title: "Ecommerce Software Deals & Store Tool Discounts", heading: "Ecommerce software deals & store tool discounts",
     description: "Compare ecommerce software deals and checkout tool offers. Check transaction fees, store limits, integrations and the total cost after a trial.",
     answer: "Compare ecommerce software offers using the complete cost of running the store: subscription, transactions, required apps, payments and integrations. A short free period can help test a setup, but it is not a quote for ongoing sales volume or every feature needed to launch.",
-    overview: "Write down the product catalog, payment methods and order workflow you intend to support. Check which features belong to the base subscription and which need another app or plan. A smaller starting subscription is useful only if the store can take the required orders and move its data where it needs to go without unexpected extra charges.",
+    overview: "Use free trials to rehearse an order, a refund and an export with sample data. Write down the product catalog, payment methods and order workflow you intend to support. Check which features belong to the base subscription and which need another app or plan. A smaller starting subscription is useful only if the store can take the required orders and move its data where it needs to go without unexpected extra charges.",
     decisions: [
       { measure: "Orders and payments", compare: "Transaction charges and supported payment arrangements", risk: "Software pricing and payment processing can be separate costs." },
       { measure: "Store capacity", compare: "Products, sites, users and required checkout features", risk: "A needed store or checkout feature may require an upgrade." },
@@ -202,7 +202,7 @@ export const CATEGORY_SEARCH_CONTENT: Record<string, CategorySearchContent> = {
       { question: "Do ecommerce software deals include processing fees?", answer: "Check the specific promotion and payment arrangement. The store subscription, payment provider and optional apps may charge separately. Compare the full setup at your expected sales volume." },
       { question: "Is an ecommerce free trial an ongoing software discount?", answer: "No. A trial is temporary access with its own account and billing requirements. Check the paid plan needed for your catalog and integrations before keeping the store on that setup." },
     ],
-    articleSlugs: ["compare-saas-pricing-limits", "build-a-saas-budget-before-buying"], collections: ["startup-deals", "coupon-codes"], updatedAt: "2026-10-28",
+    articleSlugs: ["compare-saas-pricing-limits", "build-a-saas-budget-before-buying"], collections: ["startup-deals", "coupon-codes"], updatedAt: "2026-11-25",
   },
   "project-management": {
     title: "Project Management Software Discounts & Team Deals", heading: "Project management software discounts & team deals",

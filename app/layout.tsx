@@ -5,6 +5,7 @@ import { siteSchema } from "@/lib/structured-data";
 import { pageMetadata, SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./market.css";
 import "./shell.css";
 import { SmoothScroll } from "@/components/animations/SmoothScroll";
 import { Navbar } from "@/components/navigation/Navbar";
