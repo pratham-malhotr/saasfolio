@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { FIRECRAWL_CALCULATOR_PATH } from "@/lib/firecrawl-cost.mjs";
 import { getAllDeals } from "@/lib/data/deals-data";
 import { getPublishedTools, getPublishedOffers } from "@/lib/published-catalog";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
@@ -23,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/brands"), changeFrequency: "daily", priority: 0.8 },
     { url: absoluteUrl("/editorial-policy"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/hosting-cost-calculator"), lastModified: isoDate("2026-11-22") },
+    { url: absoluteUrl(FIRECRAWL_CALCULATOR_PATH), lastModified: isoDate("2026-11-25") },
     { url: absoluteUrl("/savings-calculator"), changeFrequency: "monthly", priority: 0.6 },
     {
       url: absoluteUrl("/"),

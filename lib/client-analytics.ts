@@ -10,7 +10,7 @@ export function analyticsEvent(name: string, fields: Record<string, string | num
   } catch { return; }
 }
 
-export function trackProductEvent(name: "search_results" | "coupon_copy" | "offer_report", fields: Record<string, unknown>) {
+export function trackProductEvent(name: "search_results" | "coupon_copy" | "offer_report" | "affiliate_outbound_click", fields: Record<string, unknown>) {
   const safe = productAnalyticsFields(name, fields);
   if (safe) analyticsEvent(name, safe);
 }
