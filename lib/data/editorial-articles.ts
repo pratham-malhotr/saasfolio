@@ -163,19 +163,23 @@ const highLevelVoiceGuide: DetailedArticle = {
       "title": "Six Voice AI calls to test before going live"
     },
     {
-      "id": "cost-per-resolved-call",
+      "id": "worked-example",
       "title": "Estimate the cost per call that reaches its goal"
     },
     {
-      "id": "pilot-launch",
-      "title": "Start with a phone number you can supervise"
+      "id": "decision-record",
+      "title": "Keep a decision record for one supervised pilot"
+    },
+    {
+      "id": "common-mistake",
+      "title": "A good transcript can hide a bad handoff"
     }
   ],
   "sections": [
     {
       "id": "web-call-vs-phone-call",
       "heading": "What can a GoHighLevel Web Call test prove?",
-      "content": "SaaSFolio may earn a commission if you subscribe through the HighLevel link in this article. This guide uses published documentation and example test calls.\n\nAn after-hours caller asks for your service area and gets the right answer. The next caller asks for a person, hears a transfer prompt, and ends up back in the greeting. A transcript can make both calls look successful. The receiving phone tells you whether the second one actually worked.\n\nHighLevel offers Web Call and Phone Call testing for Voice AI agents. Use Web Call to check the conversation and instructions. Use the phone test for routing and transfer. HighLevel documents that Web Call trials don’t support Call Transfer, so a correct response in your browser is only one part of the test."
+      "content": "The linked companion guide contains a HighLevel affiliate link. We may earn a commission if you subscribe through it. This guide uses published documentation and example test calls.\n\nAn after-hours caller asks for your service area and gets the right answer. The next caller asks for a person, hears a transfer prompt, and ends up back in the greeting. A transcript can make both calls look successful. The receiving phone tells you whether the second one actually worked.\n\nHighLevel offers Web Call and Phone Call testing for Voice AI agents. Use Web Call to check the conversation and instructions. Use the phone test for routing and transfer. HighLevel documents that Web Call trials don’t support Call Transfer, so a correct response in your browser is only one part of the test."
     },
     {
       "id": "limit-the-receptionists-role",
@@ -188,21 +192,25 @@ const highLevelVoiceGuide: DetailedArticle = {
       "content": "Use test numbers and sample customer details. Start with the caller’s goal, then change only one thing in each test: the ZIP code, the availability of the receiver, the time of day, or the information the caller gives. That makes it easier to isolate why a test failed.\n\nA configured booking or transfer action is only part of the result. Open the receiving phone’s history, the destination calendar, and the staff callback queue. Compare them with the voice agent’s test logs. When a caller changes a ZIP code or appointment time mid-call, verify which value made it into the final record."
     },
     {
-      "id": "cost-per-resolved-call",
+      "id": "worked-example",
       "heading": "Estimate the cost per call that reaches its goal",
       "content": "Track calls solved without a staff callback, calls handed off with usable details, and calls requiring rework. Decide whether a clean handoff counts as a successful outcome. An after-hours caller who needs an urgent response and a routine estimate request can reasonably have different success criteria.\n\nFor illustration, assume phone and voice usage costs $60 and staff review costs another $30. Thirty calls that reach the intended outcome put the variable cost at $3 per resolved call. Fifteen successful outcomes put it at $6, with the same spend. Both figures exclude fixed subscription costs. Record the actual phone, AI, and plan charges that apply to your account."
     },
     {
-      "id": "pilot-launch",
-      "heading": "Start with a phone number you can supervise",
-      "content": "Use one controlled number and keep an easy way to route calls back to the previous setup. Assign someone to check the phone, calendar, and callback queue each day. If a test call fails after a change to the phone routing, calendar, escalation rules, or service area, re-run the affected cases before widening the pilot.\n\nA useful pilot ends with a clear decision about what the receptionist can handle and what still needs a person. If you already use a shared pipeline and calendar, assess how the agent handles one real workflow before adding more locations.",
+      "id": "decision-record",
+      "heading": "Keep a decision record for one supervised pilot",
+      "content": "Use one controlled number and keep an easy way to route calls back to the previous setup. Assign someone to check the phone, calendar, and callback queue each day. If a test call fails after a change to the phone routing, calendar, escalation rules, or service area, re-run the affected cases before widening the pilot.\n\nA useful pilot ends with a clear decision about what the receptionist can handle and what still needs a person. If you already use a shared pipeline and calendar, assess how the agent handles one real workflow before adding more locations.\n\nWrite down the number and hours in scope, who handles failures, and the costs and outcomes you will compare at the end of the pilot. Keep one finished example of a clean booking and one example of a failed handoff. Use those two records when deciding whether to expand the pilot.",
       "links": [
         {
-          "label": "Explore GoHighLevel",
-          "href": "https://www.gohighlevel.com/?fp_ref=quick",
-          "affiliate": true
+          "label": "Read the companion GoHighLevel Voice AI checklist",
+          "href": "https://pratham-developer-notes.hashnode.dev/gohighlevel-voice-ai-receptionist-test"
         }
       ]
+    },
+    {
+      "id": "common-mistake",
+      "heading": "A good transcript can hide a bad handoff",
+      "content": "A caller can hear the right confirmation while the agent sends the action to the wrong location or no one answers the transfer. Compare the call transcript with the actual receiving phone, the destination calendar and the owner’s callback queue. If they disagree, treat that call as a failed outcome until the team can repeat it successfully."
     }
   ],
   "comparisonTable": {
@@ -279,6 +287,10 @@ const highLevelVoiceGuide: DetailedArticle = {
     {
       "title": "HighLevel: Pricing, wallets, usage and rebilling",
       "url": "https://help.gohighlevel.com/support/solutions/articles/155000001156-highlevel-pricing-guide"
+    },
+    {
+      "title": "Pratham’s Developer Notes: Voice AI receptionist test checklist",
+      "url": "https://pratham-developer-notes.hashnode.dev/gohighlevel-voice-ai-receptionist-test"
     }
   ],
   "relatedArticlesSlugs": [
