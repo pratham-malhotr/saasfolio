@@ -122,7 +122,173 @@ const additionalArticleArt: Record<string, [string, string]> = {
   "digitalocean-app-platform-review": ["application-deployment", "Conceptual application deployment with separate data and runtime components"],
 };
 
-export const EDITORIAL_ARTICLES: DetailedArticle[] = [...guides.map((guide, index): DetailedArticle => ({
+const highLevelVoiceGuide: DetailedArticle = {
+  "id": "art-gohighlevel-voice-ai-receptionist-test",
+  "slug": "gohighlevel-voice-ai-receptionist-test",
+  "title": "How to Test a GoHighLevel Voice AI Receptionist",
+  "subtitle": "A phone test for agencies and service businesses before routing real customer calls to Voice AI.",
+  "summary": "Test GoHighLevel Voice AI before routing customer calls. Check phone transfers, after-hours callbacks, calendar bookings, and cost per resolved call.",
+  "category": "Guides & Stacks",
+  "readTime": "5 min read",
+  "publishedAt": "2026-11-26",
+  "updatedAt": "2026-11-26",
+  "author": {
+    "name": "SaaSFolio editorial",
+    "role": "Software buying guides",
+    "avatarLetter": "S",
+    "bio": "Practical software buying guides based on verified documentation and clearly labeled test scenarios."
+  },
+  "coverAccent": "#C6FF3D",
+  "coverImage": {
+    "src": "/images/hosting/publisher-workflow.webp",
+    "alt": "Conceptual illustration of a documented workflow"
+  },
+  "tags": [
+    "GoHighLevel",
+    "Voice AI",
+    "Customer operations",
+    "CRM"
+  ],
+  "tableOfContents": [
+    {
+      "id": "web-call-vs-phone-call",
+      "title": "What can a GoHighLevel Web Call test prove?"
+    },
+    {
+      "id": "limit-the-receptionists-role",
+      "title": "Define the receptionist’s job"
+    },
+    {
+      "id": "test-calls",
+      "title": "Six Voice AI calls to test before going live"
+    },
+    {
+      "id": "cost-per-resolved-call",
+      "title": "Estimate the cost per call that reaches its goal"
+    },
+    {
+      "id": "pilot-launch",
+      "title": "Start with a phone number you can supervise"
+    }
+  ],
+  "sections": [
+    {
+      "id": "web-call-vs-phone-call",
+      "heading": "What can a GoHighLevel Web Call test prove?",
+      "content": "SaaSFolio may earn a commission if you subscribe through the HighLevel link in this article. This guide uses published documentation and example test calls.\n\nAn after-hours caller asks for your service area and gets the right answer. The next caller asks for a person, hears a transfer prompt, and ends up back in the greeting. A transcript can make both calls look successful. The receiving phone tells you whether the second one actually worked.\n\nHighLevel offers Web Call and Phone Call testing for Voice AI agents. Use Web Call to check the conversation and instructions. Use the phone test for routing and transfer. HighLevel documents that Web Call trials don’t support Call Transfer, so a correct response in your browser is only one part of the test."
+    },
+    {
+      "id": "limit-the-receptionists-role",
+      "heading": "Define the receptionist’s job",
+      "content": "Start with one business location and one purpose, such as answering estimate inquiries after hours. Write down which questions the agent can answer from approved material, what it can book, who can receive a transfer, and where unresolved calls should go. A home-services company might let the agent confirm ZIP-code coverage and offer estimate slots, while a person handles complaints or questions about an existing job.\n\nMake the fallback specific. If a caller needs a person and nobody answers, the caller should know when to expect a response. The assigned teammate should get a usable callback record with a phone number, reason, and owner. Agree on who checks that queue at opening time."
+    },
+    {
+      "id": "test-calls",
+      "heading": "Six Voice AI calls to test before going live",
+      "content": "Use test numbers and sample customer details. Start with the caller’s goal, then change only one thing in each test: the ZIP code, the availability of the receiver, the time of day, or the information the caller gives. That makes it easier to isolate why a test failed.\n\nA configured booking or transfer action is only part of the result. Open the receiving phone’s history, the destination calendar, and the staff callback queue. Compare them with the voice agent’s test logs. When a caller changes a ZIP code or appointment time mid-call, verify which value made it into the final record."
+    },
+    {
+      "id": "cost-per-resolved-call",
+      "heading": "Estimate the cost per call that reaches its goal",
+      "content": "Track calls solved without a staff callback, calls handed off with usable details, and calls requiring rework. Decide whether a clean handoff counts as a successful outcome. An after-hours caller who needs an urgent response and a routine estimate request can reasonably have different success criteria.\n\nFor illustration, assume phone and voice usage costs $60 and staff review costs another $30. Thirty calls that reach the intended outcome put the variable cost at $3 per resolved call. Fifteen successful outcomes put it at $6, with the same spend. Both figures exclude fixed subscription costs. Record the actual phone, AI, and plan charges that apply to your account."
+    },
+    {
+      "id": "pilot-launch",
+      "heading": "Start with a phone number you can supervise",
+      "content": "Use one controlled number and keep an easy way to route calls back to the previous setup. Assign someone to check the phone, calendar, and callback queue each day. If a test call fails after a change to the phone routing, calendar, escalation rules, or service area, re-run the affected cases before widening the pilot.\n\nA useful pilot ends with a clear decision about what the receptionist can handle and what still needs a person. If you already use a shared pipeline and calendar, assess how the agent handles one real workflow before adding more locations.",
+      "links": [
+        {
+          "label": "Explore GoHighLevel",
+          "href": "https://www.gohighlevel.com/?fp_ref=quick",
+          "affiliate": true
+        }
+      ]
+    }
+  ],
+  "comparisonTable": {
+    "afterSection": "test-calls",
+    "headers": [
+      "Test call",
+      "What should happen",
+      "Where to verify"
+    ],
+    "rows": [
+      {
+        "feature": "Caller gives a ZIP code you serve",
+        "values": [
+          "Agent confirms the correct service area.",
+          "Transcript and approved ZIP list"
+        ]
+      },
+      {
+        "feature": "Caller gives a ZIP code outside your area",
+        "values": [
+          "Agent follows your out-of-area policy.",
+          "Transcript and calendar"
+        ]
+      },
+      {
+        "feature": "Caller asks for a person during staffed hours",
+        "values": [
+          "The right team phone rings and receives the caller.",
+          "Both phones"
+        ]
+      },
+      {
+        "feature": "Caller asks for a person after hours",
+        "values": [
+          "Caller hears the fallback, and staff get a callback record if configured.",
+          "Call log and staff queue"
+        ]
+      },
+      {
+        "feature": "Caller books an estimate",
+        "values": [
+          "One appointment lands on the right calendar at the agreed local time.",
+          "Calendar and confirmation"
+        ]
+      },
+      {
+        "feature": "Caller corrects a detail mid-call",
+        "values": [
+          "Agent confirms the corrected value before acting.",
+          "Transcript and final record"
+        ]
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "question": "Does GoHighLevel Voice AI Call Transfer work during a Web Call test?",
+      "answer": "No. HighLevel documents that Web Call trials do not support Call Transfer. Use a Phone Call test and confirm that the configured receiving phone actually gets the caller."
+    },
+    {
+      "question": "What should I check after a GoHighLevel Voice AI booking?",
+      "answer": "Compare the transcript and recorded agent action with the appointment on the destination calendar and the confirmation sent to the customer. Check the local time, location, and count of booking records."
+    }
+  ],
+  "sources": [
+    {
+      "title": "HighLevel: How to test Voice AI agents",
+      "url": "https://help.gohighlevel.com/support/solutions/articles/155000004108"
+    },
+    {
+      "title": "HighLevel: Voice AI agent logs and call details",
+      "url": "https://help.gohighlevel.com/support/solutions/articles/155000007687-voice-ai-agent-logs-and-call-details"
+    },
+    {
+      "title": "HighLevel: Pricing, wallets, usage and rebilling",
+      "url": "https://help.gohighlevel.com/support/solutions/articles/155000001156-highlevel-pricing-guide"
+    }
+  ],
+  "relatedArticlesSlugs": [
+    "evaluate-ai-software-free-trials",
+    "compare-saas-pricing-limits",
+    "build-a-saas-budget-before-buying"
+  ]
+};
+
+export const EDITORIAL_ARTICLES: DetailedArticle[] = [highLevelVoiceGuide, ...guides.map((guide, index): DetailedArticle => ({
   id: `art-${index + 1}`, slug: guide.slug, title: guide.title, subtitle: guide.summary, summary: guide.summary,
   category: index === 1 || index === 4 || index === 6 ? "Comparisons" : "Guides & Stacks",
   readTime: `${Math.max(3, Math.ceil(guide.sections.reduce((total, [, text]) => total + text.split(/\s+/).length, 0) / 180))} min read`,
