@@ -107,3 +107,28 @@ presenting them as independent tested reviews.
 Search Console impressions and queries should guide future editorial work.
 Indexing and rankings depend on the search engines, content quality, site access,
 and external signals; metadata and a larger catalog cannot guarantee a position.
+
+## Software comparison and review release
+
+The November 25 research release uses narrow purchasing questions for each
+comparison. The public results sampled during research included broader
+feature roundups for several pairs. The editorial opportunity is to answer
+specific evaluation tasks such as which GitHub review rules apply, which
+PostgreSQL changes can be written back, or who receives a meeting recap.
+Those observations are qualitative. Keyword volume and competition remain
+unmeasured.
+
+The retained October 19–November 15 Search Console sample is scoped to
+articles and predates this release. Use it as historical context and keep
+the raw export private. After publication, use separate Performance filters
+for `/compare/` and `/articles/`. Compare equal complete reporting periods
+and review page-to-query results for the canonical URLs. Use URL Inspection
+for representative new pages and check the public sitemap against the
+released build. [Search Console Performance data](https://support.google.com/webmasters/answer/17011364)
+
+The research pages present direct answers and follow them with scenario
+tables, evaluation steps and links to primary documentation. The reviews
+describe documentation-based evaluations and proposed customer-side trials.
+Structured data reflects the visible content, publisher and subjects.
+[Google reviews guidance](https://developers.google.com/search/docs/specialty/ecommerce/write-high-quality-reviews),
+[Google AI search guidance](https://developers.google.com/search/docs/appearance/ai-features)

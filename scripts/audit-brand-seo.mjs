@@ -56,7 +56,7 @@ const { document: homepage } = await fetchPage("/");
 // React may stream a route's HTML outside <main> before moving the boundary
 // into place. Inspect the actual brand section rather than the loading shell.
 const homeBrands = nodes(homepage, node => attr(node, "aria-labelledby") === "brand-discounts-heading")[0];
-assert.match(contents(elements(homepage, "h1")[0]).replace(/\s+/g, " "), /Find SaaS tools/i, "Homepage heading describes the discovery experience");
+assert.match(contents(elements(homepage, "h1")[0]).replace(/\s+/g, " "), /Find the right\s*software/i, "Homepage heading describes the discovery experience");
 const homeTitle = contents(elements(homepage, "title")[0]);
 for (const intent of [/SaaS Tools/i, /Software Reviews/i, /Deals/i, /SaaSFolio/]) {
   assert.match(homeTitle, intent, "Homepage title describes its software discovery, reviews and savings content");

@@ -20,7 +20,7 @@ try {
   await page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
   for (const width of [390, 1440]) {
     await page("Emulation.setDeviceMetricsOverride", { width, height: 950, mobile: width === 390, deviceScaleFactor: 1 });
-    for (const path of ["/", "/brands", "/brands?category=hosting", "/brands?q=notion", "/submit", "/articles/hostinger-hosting-review", "/articles/cloudflare-pages-review", "/articles/digitalocean-app-platform-review"]) {
+    for (const path of ["/", "/brands", "/brands?category=hosting", "/brands?q=notion", "/brands/promote", "/submit", "/articles/hostinger-hosting-review", "/articles/cloudflare-pages-review", "/articles/digitalocean-app-platform-review"]) {
       await visit(path);
       const state = await evaluate(`({ h1: document.querySelector('main h1').textContent, headings: document.querySelectorAll('main h1').length, width: document.documentElement.scrollWidth, canonical: document.querySelector('link[rel=canonical]')?.href, broken: [...document.querySelectorAll('main a[href^="#"]')].map(a=>a.hash.slice(1)).filter(id=>id && !document.getElementById(decodeURIComponent(id))) })`);
       assert.equal(state.headings, 1, path);
@@ -31,6 +31,14 @@ try {
         assert.ok(await evaluate("document.querySelectorAll('[data-brand]').length > 0"));
       }
       if (path === "/brands?q=notion") assert.ok(await evaluate("!!document.querySelector('[data-brand=notion]')"));
+      if (path === "/brands/promote") {
+        const monthly = await evaluate("decodeURIComponent(document.querySelector('main a[href^=mailto]').getAttribute('href'))");
+        assert.match(monthly, /^mailto:prathammalhotracsai@gmail\.com\?subject=.*Monthly \(\$49 USD\)/);
+        await until(() => evaluate("Object.keys(document.querySelectorAll('input[name=plan]')[1]).some(key=>key.startsWith('__reactProps'))"), "promotion plan hydration");
+        await evaluate("document.querySelectorAll('input[name=plan]')[1].click()");
+        const annual = await evaluate("decodeURIComponent(document.querySelector('main a[href^=mailto]').getAttribute('href'))");
+        assert.match(annual, /^mailto:prathammalhotracsai@gmail\.com\?subject=.*Yearly \(\$349 USD\)/);
+      }
       visits.push({ path, width, ...state });
       if (["/", "/submit"].includes(path)) {
         const screenshot = await page("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });

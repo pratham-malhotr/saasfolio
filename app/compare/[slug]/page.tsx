@@ -2,6 +2,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { getPublishedTools, getPublishedTool } from "@/lib/published-catalog";
+import { getArticleBySlug } from "@/lib/data/articles-data";
 import { COMPARISON_GUIDES } from "@/lib/data/comparison-guides";
 import { ComparisonBuyingGuide } from "@/components/seo/ComparisonBuyingGuide";
 import CompareHubClient from "@/components/compare/CompareHubClient";
@@ -9,10 +10,10 @@ import { POPULAR_COMPARISONS } from "@/lib/data/comparisons-data";
 import { getDealsByTool } from "@/lib/data/deals-data";
 import { ComparisonView } from "@/components/compare/ComparisonView";
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { absoluteUrl, isoDate, pageMetadata } from "@/lib/seo";
 import { COMPARISON_SLUGS, comparisonCanonicalSlug, isCuratedComparison } from "@/lib/data/comparisons-data";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema, webPageSchema, softwareSchema } from "@/lib/structured-data";
+import { breadcrumbSchema, organizationId, webPageSchema, softwareSchema } from "@/lib/structured-data";
 import { getBrandDiscountData, hasBrandDiscountPage } from "@/lib/brand-discounts";
 import { RelatedDiscountGuides } from "@/components/seo/RelatedDiscountGuides";
 
@@ -26,7 +27,7 @@ const searchFocus: Record<string, { topic: string; description: string }> = {
 };
 
 function getSearchCopy(slug: string, first: string, second: string) {
-  const focus = searchFocus[slug];
+  const focus = COMPARISON_GUIDES[slug]?.search || searchFocus[slug];
   return {
     title: `${first} vs ${second}: ${focus?.topic || "Features & Pricing"}`,
     description: focus?.description || `Compare ${first} and ${second} by features, pricing, limitations and available alternatives.`,
@@ -86,7 +87,11 @@ export default async function ComparePage({
   const dealsB = getDealsByTool(toolB.slug);
   const allTools = getPublishedTools().map(({ id, slug, name }) => ({ id, slug, name }));
   const guide = COMPARISON_GUIDES[slug];
-  const { title, description } = getSearchCopy(slug, toolA.name, toolB.name);
+  const { title, description } = getSearchCopy(canonical, toolA.name, toolB.name);
+  const path = `/compare/${canonical}`;
+  const research = guide?.relatedArticles?.flatMap(articleSlug => getArticleBySlug(articleSlug) || []) ?? [];
+  const software = [softwareSchema(toolA), softwareSchema(toolB)];
+  const analysisId = absoluteUrl(`${path}#analysis`);
   const discountBrands = [toolA, toolB].filter(tool => hasBrandDiscountPage(tool.slug) && getBrandDiscountData(tool).indexable);
 
   return (
@@ -94,8 +99,25 @@ export default async function ComparePage({
       <JsonLd data={{
         "@context": "https://schema.org",
         "@graph": [
-          { ...webPageSchema(title, description, `/compare/${canonical}`), about: [softwareSchema(toolA), softwareSchema(toolB)] },
-          breadcrumbSchema([{ name: "Compare SaaS Tools", path: "/compare" }, { name: `${toolA.name} vs ${toolB.name}`, path: `/compare/${canonical}` }]),
+          {
+            ...webPageSchema(title, description, path),
+            about: software.map(tool => ({ "@id": tool["@id"] })),
+            ...(guide && { mainEntity: { "@id": analysisId } }),
+          },
+          ...(guide ? [{
+            "@type": "Article",
+            "@id": analysisId,
+            headline: title,
+            description,
+            mainEntityOfPage: { "@id": absoluteUrl(`${path}#webpage`) },
+            about: software.map(tool => ({ "@id": tool["@id"] })),
+            dateModified: isoDate(guide.reviewedAt),
+            author: { "@id": organizationId },
+            publisher: { "@id": organizationId },
+            citation: guide.sources.map(source => source.url),
+          }] : []),
+          ...software,
+          breadcrumbSchema([{ name: "Compare SaaS Tools", path: "/compare" }, { name: `${toolA.name} vs ${toolB.name}`, path }]),
         ],
       }} />
       <ComparisonView
@@ -106,7 +128,8 @@ export default async function ComparePage({
         dealsB={dealsB}
         allTools={allTools}
         discountGuides={<RelatedDiscountGuides brands={discountBrands} deals={[...dealsA, ...dealsB]} heading="Compare discounts before subscribing" />}
-        editorialGuide={guide ? <ComparisonBuyingGuide guide={guide} /> : undefined}
+        summary={guide?.summary}
+        editorialGuide={guide ? <ComparisonBuyingGuide guide={guide} relatedArticles={research} /> : undefined}
       />
     </div>
   );

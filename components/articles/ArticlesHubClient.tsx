@@ -8,6 +8,7 @@ import type { ArticlePreview } from "@/lib/data/articles-data";
 
 const CATEGORIES = [
   "All",
+  "Software Reviews",
   "Hosting",
   "Guides & Stacks",
   "Comparisons",
@@ -36,24 +37,19 @@ export function ArticlesHubClient({ articles, savingsLinks }: { articles: Articl
   );
 
   return (
-    <div className="min-h-screen bg-[#050505] pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-[#050605] pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header */}
       <div className="mb-12">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-[#C6FF3D] mb-6 transition-colors"
+          className="inline-flex items-center gap-2 text-xs text-zinc-400 hover:text-[#C6FF3D] mb-6 transition-colors"
         >
-          <ArrowLeft className="w-3.5 h-3.5" /> BACK TO DISCOVERY HOME
+          <ArrowLeft className="w-3.5 h-3.5" /> Home
         </Link>
-        <div className="flex items-center gap-2 mb-3">
-          <span className="p-1.5 rounded-lg bg-[#C6FF3D]/10 text-[#C6FF3D]">
-            <BookOpen className="w-4 h-4" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-            SOURCED SOFTWARE BUYING GUIDES
-          </span>
-        </div>
-        <h1 className="font-display font-black tracking-tighter uppercase text-4xl sm:text-6xl text-white mb-4">
+        <p className="market-eyebrow mb-4">
+          <BookOpen className="w-3.5 h-3.5" aria-hidden="true" /> Sourced buying guides
+        </p>
+        <h1 className="font-display font-bold tracking-[-0.055em] text-4xl sm:text-6xl text-white mb-4">
           Software buying guides
         </h1>
         <p className="text-zinc-400 max-w-2xl text-base">
@@ -68,11 +64,12 @@ export function ArticlesHubClient({ articles, savingsLinks }: { articles: Articl
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
+              aria-pressed={selectedCategory === cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl font-mono text-xs uppercase tracking-wider transition-all ${
+              className={`min-h-10 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 selectedCategory === cat
                   ? "bg-[#C6FF3D] text-black font-bold shadow-[0_0_15px_rgba(198,255,61,0.25)]"
-                  : "bg-[#09090C] text-zinc-400 hover:text-white border border-white/10 hover:border-white/20"
+                  : "bg-[#0b0d0b] text-zinc-400 hover:text-white border border-white/10 hover:border-[#C6FF3D]/40"
               }`}
             >
               {cat}

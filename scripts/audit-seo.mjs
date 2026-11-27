@@ -10,6 +10,7 @@ const { publicHttpsUrl } = loadCatalogModule("lib/offer-links.ts");
 const origin = (process.argv[2] || "http://localhost:3210").replace(/\/$/, "");
 const expectedOrigin = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://saasfolio.tech").origin;
 const headers = { "User-Agent": "Googlebot" };
+const promotionUtility = "/brands/promote";
 const decode = (value) => value.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 function attributes(tag) {
   return Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map(([, key, value]) => [key, decode(value)]));
@@ -35,7 +36,8 @@ assert.ok(urls.length > 0, "Sitemap must contain public URLs");
 assert.equal(new Set(urls).size, urls.length, "Sitemap must not repeat URLs");
 for (const url of urls) {
   assert.equal(new URL(url).origin, expectedOrigin, "Sitemap uses canonical production origin");
-  assert.ok(!/^\/(admin|profile|login|signup|submit|u|go)(\/|$)/.test(new URL(url).pathname), `Utility URL leaked into sitemap: ${url}`);
+  const path = new URL(url).pathname;
+  assert.ok(path !== promotionUtility && !/^\/(admin|profile|login|signup|submit|u|go)(\/|$)/.test(path), `Utility URL leaked into sitemap: ${url}`);
 }
 const { html: robots } = await response("/robots.txt");
 assert.ok(robots.includes(`Sitemap: ${expectedOrigin}/sitemap.xml`), "robots.txt advertises the canonical sitemap");
@@ -104,7 +106,7 @@ await Promise.all(Array.from({ length: 4 }, async () => {
   }
 }));
 const sitemapPaths = new Set(urls.map((url) => new URL(url).pathname));
-const extraPaths = [...internalPaths.keys()].filter((path) => !sitemapPaths.has(path) && !/^\/(login|signup|admin|profile|submit|u)(\/|$)/.test(path));
+const extraPaths = [...internalPaths.keys()].filter((path) => path !== promotionUtility && !sitemapPaths.has(path) && !/^\/(login|signup|admin|profile|submit|u)(\/|$)/.test(path));
 let linkCursor = 0;
 console.log(`Checking ${extraPaths.length} additional internal link destinations...`);
 await Promise.all(Array.from({ length: 4 }, async () => {
@@ -134,9 +136,10 @@ for (const path of imagePaths) {
     if (bytes.length < 1000) failures.push(`Empty sharing image: ${path}`);
   }
 }
-for (const path of ["/admin", "/profile", "/login", "/signup", "/submit", "/u/seo-audit"]) {
+for (const path of ["/admin", "/profile", "/login", "/signup", "/submit", "/u/seo-audit", promotionUtility]) {
   const { result, html } = await response(path);
   const meta = metaTags(html).find((tag) => tag.name === "robots")?.content;
+  if (path === promotionUtility && result.status !== 200) failures.push(`Promotion page unavailable: HTTP ${result.status}`);
   if (!meta?.includes("noindex") || !result.headers.get("x-robots-tag")?.includes("noindex")) failures.push(`Missing noindex HTML/header: ${path}`);
 }
 for (const path of ["/go/notion", "/go/hostinger-couponspage-code", "/go/deal-hostinger-couponspage-code", "/go/hostinger-cloud-79-off"]) {

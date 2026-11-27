@@ -19,6 +19,7 @@ interface ComparisonViewProps {
   dealsA: SaaSDeal[];
   dealsB: SaaSDeal[];
   allTools: Pick<DetailedTool, "id" | "slug" | "name">[];
+  summary?: string;
   editorialGuide?: React.ReactNode;
   discountGuides?: React.ReactNode;
 }
@@ -29,6 +30,7 @@ export function ComparisonView({
   dealsA,
   dealsB,
   allTools,
+  summary,
   editorialGuide,
   discountGuides,
 }: ComparisonViewProps) {
@@ -70,7 +72,7 @@ export function ComparisonView({
           {toolA.name} <span className="text-[#C6FF3D]">VS</span> {toolB.name}
         </h1>
         <p className="text-zinc-400 max-w-3xl text-sm sm:text-base leading-relaxed">
-          Compare catalog features and sourced offers for {toolA.name} and {toolB.name}. This is not a hands-on benchmark; confirm current features, prices and eligibility with each provider.
+          {summary || `Compare catalog features and sourced offers for ${toolA.name} and ${toolB.name}. Confirm current features, prices and eligibility with each provider.`}
         </p>
       </div>
 

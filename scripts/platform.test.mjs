@@ -42,7 +42,7 @@ function platform(options = {}) {
         eq(key, value) { operation.filters.push([key, value]); return query; },
         order() { return query; }, limit() { return query; }, gt() { return query; }, range() { return query; },
         async single() { return { data: options.writeFailure ? null : { id: "92aa27bf-1b80-4de7-a7dc-6fc50c3af820" }, error: options.writeFailure ? {} : null }; },
-        async maybeSingle() { return { data: options.row || null, error: null }; },
+        async maybeSingle() { return { data: options.selectedRows?.[table] ?? options.row ?? null, error: null }; },
         then(done, fail) { return Promise.resolve({ data: options.rows?.[table] || [], error: options.writeFailure ? {} : null }).then(done, fail); },
       };
       return query;
@@ -82,6 +82,7 @@ function platform(options = {}) {
     "@/lib/data/managed-content": { MANAGED_OFFERS: [], RETIRED_MANAGED_OFFERS: new Set() },
     "@/lib/data/articles-data": { getArticleBySlug: slug => slug === "valid-article" ? { slug, title: "Valid article" } : undefined },
     "@/lib/data/offer-snapshot.json": { lastRun: new Date().toISOString(), sources: {} },
+    ...options.overrides,
   };
   function load(filename) {
     const file = resolve(root, filename);
@@ -415,6 +416,62 @@ const brandSubmission = {
   keyFeatures: ["Shared editorial planning", "Project review assignments", "Exportable launch records"],
   contactName: "Example Founder", founderEmail: "founder@example.com", relationship: "Founder / owner", consent: true,
 };
+
+test("brand verification requires exact domain proof and qualifying website evidence", async () => {
+  const receipt = "92aa27bf-1b80-4de7-a7dc-6fc50c3af820";
+  const requestBrand = { receipt, email: brandSubmission.founderEmail };
+  const approvedId = "d35ea303-0fe5-4def-9d17-a992c83a7ba5";
+  let records = [], blockedSource = false;
+  const fetched = [];
+  const options = {
+    selectedRows: { inquiries: { status: "pending", updated_at: "2026-11-23T00:00:00Z", payload: brandSubmission } },
+    rpc: { approve_brand_listing: { data: approvedId, error: null } },
+    overrides: {
+      "node:dns/promises": { Resolver: class {
+        async resolveTxt(name) { assert.equal(name, "_saasfolio.example.com."); return records; }
+      } },
+      "@/lib/published-catalog": { getPublishedTools: () => [] },
+      "@/lib/server/source-fetch.mjs": { pinnedPublicPage: async url => {
+        fetched.push(url);
+        if (url.endsWith("/robots.txt")) return { status: blockedSource ? 403 : 404, url };
+        return { status: 200, url, html: url.endsWith("/pricing")
+          ? `<title>Example Studio pricing</title><p>${"Compare our plans and documentation for your project. ".repeat(8)}</p>`
+          : `<title>Example Studio workspace</title><p>${"Collaborate in the Example Studio workspace with your team. ".repeat(5)}</p>` };
+      } },
+    },
+  };
+  const previousSecret = process.env.RATE_LIMIT_SECRET;
+  process.env.RATE_LIMIT_SECRET = "a".repeat(64);
+  try {
+    const app = platform(options);
+    const route = app.load("app/api/brands/verify/route.ts");
+    const post = async action => {
+      const response = await route.POST(request("/api/brands/verify", { ...requestBrand, action }));
+      assert.equal(response.status, 200);
+      return response.json();
+    };
+    const instructions = await post("instructions");
+    assert.equal(instructions.dnsName, "_saasfolio.example.com");
+    assert.match(instructions.dnsValue, /^saasfolio=[a-f0-9]{64}$/);
+    assert.equal(instructions.approved, false);
+    records = [[instructions.dnsValue + "-invalid"]];
+    assert.equal((await post("verify")).status, "record_not_found");
+    assert.deepEqual(fetched, []);
+    records = [[instructions.dnsValue.slice(0, 12), instructions.dnsValue.slice(12)]];
+    blockedSource = true;
+    assert.equal((await post("verify")).approved, false);
+    assert.equal(app.rpcCalls.some(call => call.name === "approve_brand_listing"), false);
+    blockedSource = false;
+    assert.equal((await post("verify")).approved, true);
+    assert.deepEqual(app.rpcCalls.filter(call => call.name === "approve_brand_listing").map(call => call.args), [{
+      receipt, reviewed_at: options.selectedRows.inquiries.updated_at, listing_host: "example.com",
+      listing_slug: "example-studio", reviewed_catalog_slug: null, method: "automatic",
+    }]);
+  } finally {
+    if (previousSecret === undefined) delete process.env.RATE_LIMIT_SECRET;
+    else process.env.RATE_LIMIT_SECRET = previousSecret;
+  }
+});
 
 test("brand submission needs no account and persists an editorial intake, never a publication", async () => {
   const app = platform();

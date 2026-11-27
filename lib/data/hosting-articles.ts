@@ -1,10 +1,11 @@
 import type { DetailedArticle } from "./articles-data";
+import { hostingCoverPhotos, type HostingCoverPhoto } from "./research-photography";
 import { HOSTING_WORKBOOKS } from "./hosting-workbooks";
 import { HOSTING_RESEARCH_EXPANSION } from "./hosting-research-expansion";
 import { HOSTING_DECISION_GUIDES } from "./hosting-decision-guides";
 
 type HostingGuide = {
-  slug: string; title: string; summary: string; audience: string; image: string;
+  slug: string; title: string; summary: string; audience: string; image: HostingCoverPhoto;
   category: DetailedArticle["category"]; tags: string[]; providers: string[];
   sections: [string, string][]; headers: string[]; rows: [string, string, string][];
   faqs: [string, string][]; sources: [string, string][]; related: string[];
@@ -186,7 +187,7 @@ const FOUNDATION_HOSTING_ARTICLES: DetailedArticle[] = guides.map(guide => ({
   id: `hosting-${guide.slug}`, slug: guide.slug, title: guide.title, subtitle: guide.audience, summary: guide.summary,
   category: guide.category, publishedAt: "2026-11-17", updatedAt: "2026-11-17", featured: guide.slug === "hetzner-vs-digitalocean-small-business-vps",
   author: { name: "SaaSFolio editorial", role: "Hosting research & buying decisions", avatarLetter: "S", bio: "Documentation-based hosting analysis with explicit decision criteria, source references and illustrative calculations. We distinguish research, proposed tests and firsthand evidence." },
-  coverAccent: "#C6FF3D", coverImage: { src: `/images/hosting/${guide.image}.webp`, alt: ({ "vps-comparison": "Conceptual illustration of two server configurations connected by data paths", "publisher-workflow": "Conceptual illustration of a publisher workspace connected to hosting infrastructure", "hosting-migration": "Conceptual illustration of data moving between servers with a separate backup", "hosting-costs": "Conceptual illustration of server costs across a billing timeline" } as Record<string, string>)[guide.image] },
+  coverAccent: "#C6FF3D", coverImage: hostingCoverPhotos[guide.image],
   providerSlugs: guide.providers, tags: guide.tags,
   readTime: `${Math.ceil(guide.sections.reduce((total, [, text]) => total + text.split(/\s+/).length, 0) / 190)} min read`,
   tableOfContents: guide.sections.map(([title], i) => ({ id: `decision-${i + 1}`, title })),

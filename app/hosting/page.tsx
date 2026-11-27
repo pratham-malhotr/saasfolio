@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Server, Calculator, ShieldCheck } from "lucide-react";
-import { FolioArtwork } from "@/components/animations/FolioArtwork";
+import { ResearchPhotoPanel } from "@/components/research/ResearchPhotoPanel";
+import { hostingHeroPhoto } from "@/lib/data/research-photography";
 import { ScrollMotion } from "@/components/animations/ScrollMotion";
 import { HOSTING_PROVIDERS, HOSTING_REVIEWED_AT } from "@/lib/data/hosting-providers";
 import { HOSTING_ARTICLES } from "@/lib/data/hosting-articles";
@@ -17,6 +18,11 @@ const title = "Web Hosting Comparisons: VPS & Managed Hosting";
 const description = "Compare VPS, managed WordPress hosting and app platforms by workload, maintenance, backups and renewal costs. Build a shortlist for your website.";
 export const metadata = pageMetadata({ title, description, path: "/hosting", image: "/hosting/opengraph-image" });
 export const revalidate = 3600;
+const hostingLinks = [
+  { label: "Compare VPS providers", href: "/articles/hetzner-vs-digitalocean-small-business-vps" },
+  { label: "VPS vs managed WordPress", href: "/articles/hostinger-vps-vs-managed-wordpress-solo-blogger" },
+  { label: "Explore app platforms", href: "/articles/digitalocean-app-platform-review" },
+];
 export default function HostingPage() {
   const offers = getPublishedOffers().filter(offer => HOSTING_PROVIDERS.some(p => p.slug === offer.toolSlug)).sort((a, b) => b.discountPercentage - a.discountPercentage).slice(0, 4);
   return <ScrollMotion className="hosting-hub min-h-screen bg-[#080a0c] text-[#ededeb]">
@@ -30,7 +36,7 @@ export default function HostingPage() {
           <div className="mt-6 flex flex-wrap gap-3"><a href="#finder" className="hosting-primary">Find your fit</a><a href="#cost-calculator" className="hosting-secondary">Calculate renewal costs</a></div>
           <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-sm text-zinc-400"><span>{HOSTING_PROVIDERS.length} provider profiles</span><span>{HOSTING_ARTICLES.length} buying guides</span><Link href="/affiliate-disclosure" className="underline underline-offset-4 hover:text-[#C6FF3D]">Affiliate funded</Link></div>
         </div>
-        <div className="hosting-enter"><FolioArtwork variant="hosting" /></div>
+        <ResearchPhotoPanel photo={hostingHeroPhoto} heading="Explore hosting options" links={hostingLinks} />
       </div>
     </section>
     <div className="mx-auto max-w-7xl space-y-20 px-4 py-12 sm:px-6 lg:px-8">

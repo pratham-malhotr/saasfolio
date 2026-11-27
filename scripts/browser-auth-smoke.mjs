@@ -228,7 +228,7 @@ try {
     await navigate("/discounts/beehiiv?auth-ui=signout");
     await until(() => evaluate("!!document.querySelector('button[aria-label=\"Open account menu\"]')"), "Navbar recognizes the mocked signed-in user");
     await click(viewport.mobile ? 'button[aria-label="Toggle menu"]' : 'button[aria-label="Open account menu"]');
-    const signOutExpression = "[...document.querySelectorAll('button')].find(button => button.textContent.includes('Sign Out') && button.offsetParent !== null)";
+    const signOutExpression = "[...document.querySelectorAll('button')].find(button => /sign out/i.test(button.textContent) && button.offsetParent !== null)";
     const logoutBeforeFailure = authRequests.filter(request => request.path === "/api/auth/logout").length;
     await evaluate(`(() => { const button = ${signOutExpression}; button.click(); button.click(); })()`);
     await until(() => evaluate("document.querySelector('[role=alert]')?.textContent.includes('Sign-out could not be confirmed')"), "Sign-out failure is truthful and retryable");

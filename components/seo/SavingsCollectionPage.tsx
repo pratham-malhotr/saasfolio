@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowUpRight, Tag } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
 import { SavingsOfferCard } from "@/components/seo/SavingsOfferCard";
@@ -20,20 +21,25 @@ export function SavingsCollectionPage({ slug }: { slug: SavingsCollectionSlug })
   const articles = collection.articleSlugs.flatMap(articleSlug => { const article = getArticleBySlug(articleSlug); return article ? [article] : []; });
   const items = [...offers.map(deal => ({ name: deal.title, path: `/deals/${deal.slug}` })), ...programs.map(program => ({ name: program.name, path: program.path }))];
   const schema = collectionSchema(collection.title, collection.description, `/${slug}`, items);
-  return <article data-savings-collection={slug} className="mx-auto max-w-6xl space-y-10 px-4 pb-24 pt-32 sm:px-6 lg:px-8">
+  return <article data-savings-collection={slug} className="market-page">
     <JsonLd data={{ ...schema, "@graph": schema["@graph"].map((entry, index) => index === 0 ? { ...entry, dateModified: isoDate(collection.updatedAt) } : entry) }} />
-    <nav aria-label="Breadcrumb" className="flex flex-wrap gap-2 text-sm text-zinc-400"><Link href="/" className="hover:text-[#C6FF3D]">Home</Link><span aria-hidden="true">/</span><span>{collection.navLabel}</span></nav>
-    <header className="max-w-4xl space-y-5">
-      <p className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D]">SaaSFolio savings collections</p>
-      <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">{collection.heading}</h1>
-      <p data-collection-answer="" className="text-lg leading-relaxed text-zinc-300">{collection.answer}</p>
-      <p className="text-xs leading-relaxed text-zinc-500">By <Link href="/about#standards" className="underline">SaaSFolio editorial</Link> · Updated <time dateTime={isoDate(collection.updatedAt)}>{collection.updatedAt}</time></p>
+    <header className="market-intro">
+      <div className="market-shell market-intro-inner">
+        <div>
+          <p className="market-eyebrow"><Tag size={15} aria-hidden="true" /> Software savings</p>
+          <h1>{collection.heading}</h1>
+          <p data-collection-answer="">{collection.answer}</p>
+          <p className="mt-3 text-xs text-zinc-400">By <Link href="/about#standards" className="underline">SaaSFolio editorial</Link> · Updated <time dateTime={isoDate(collection.updatedAt)}>{collection.updatedAt}</time></p>
+        </div>
+        <Link href="/deals" className="market-button market-button-secondary">All software deals <ArrowUpRight size={16} aria-hidden="true" /></Link>
+      </div>
     </header>
+    <div className="market-shell space-y-10 pt-6 pb-16">
     <nav aria-label="On this page" className="flex flex-wrap gap-3 text-sm text-[#C6FF3D]">
-      <a href="#current-offers" className="rounded-full border border-white/15 px-4 py-2">Current records ({offers.length})</a>
-      {programs.length > 0 && <a href="#program-directory" className="rounded-full border border-white/15 px-4 py-2">Program routes ({programs.length})</a>}
-      <a href="#compare-options" className="rounded-full border border-white/15 px-4 py-2">Compare options</a>
-      <a href="#questions" className="rounded-full border border-white/15 px-4 py-2">Questions</a>
+      <a href="#current-offers" className="market-button market-button-secondary">Current records ({offers.length})</a>
+      {programs.length > 0 && <a href="#program-directory" className="market-button market-button-secondary">Program routes ({programs.length})</a>}
+      <a href="#compare-options" className="market-button market-button-secondary">Compare options</a>
+      <a href="#questions" className="market-button market-button-secondary">Questions</a>
     </nav>
     <section id="current-offers" className="scroll-mt-28 space-y-5">
       <h2 className="font-display text-2xl font-bold text-white">{slug === "coupon-codes" ? "Currently recorded software coupon codes" : "Current source-backed program records"}</h2>
@@ -81,5 +87,6 @@ export function SavingsCollectionPage({ slug }: { slug: SavingsCollectionSlug })
       <p>Records leave the current catalog when their source check becomes older than 14 days or a published expiry passes. Editorial guidance and program links do not substitute for an approved offer.</p>
       <p>Some provider links may earn SaaSFolio a commission. A referral does not itself create a discount. <Link href="/about#standards" className="underline">How we check sources</Link> · <Link href="/affiliate-disclosure" className="underline">Affiliate disclosure</Link> · <Link href="/contact" className="underline">Report an incorrect listing</Link></p>
     </aside>
+    </div>
   </article>;
 }

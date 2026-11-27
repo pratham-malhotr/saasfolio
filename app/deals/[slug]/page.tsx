@@ -86,7 +86,7 @@ export default async function DealDetailPage({
   const tool = getPublishedTool(deal.toolSlug);
   const allDeals = getPublishedOffers();
   const relatedDeals = allDeals.filter(
-    (d) => d.categorySlug === deal.categorySlug && d.id !== deal.id
+    (d) => d.categorySlug === deal.categorySlug && d.toolSlug !== deal.toolSlug
   );
   const siblingDeals = allDeals.filter(
     (d) => d.toolSlug === deal.toolSlug && d.id !== deal.id
@@ -94,7 +94,7 @@ export default async function DealDetailPage({
   const faqs = getDealFaqs(deal, tool);
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="market-page">
       <JsonLd
         data={{
           "@context": "https://schema.org",

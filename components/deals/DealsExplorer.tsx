@@ -1,57 +1,68 @@
 "use client";
 
-import { OfferAction } from "@/components/deals/OfferAction";
-import React, { useState, useMemo } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
+import type { ReactNode } from "react";
 import Link from "next/link";
-import { 
-  Search, 
-  ShieldCheck, 
-  Sparkles, 
-  X, 
-  SlidersHorizontal,
-  ArrowRight,
-  RotateCcw,
-  ExternalLink,
-  Tag
-} from "lucide-react";
-import { offerLabel } from "@/lib/offer-links";
-import { SaaSDeal } from "@/lib/types";
-import { CATEGORIES } from "@/lib/catalog-categories";
-import { TiltCard } from "@/components/animations/TiltCard";
+import { ArrowRight, ArrowUpRight, RotateCcw, Search, SlidersHorizontal, Tag, X } from "lucide-react";
+import { OfferAction } from "@/components/deals/OfferAction";
+import { OfferCard, OFFER_TYPES } from "@/components/deals/OfferCard";
 import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
+import { CATEGORIES } from "@/lib/catalog-categories";
+import { useMediaQuery } from "@/lib/use-media-query";
+import type { SaaSDeal } from "@/lib/types";
+import "./deals-explorer.css";
+
+const filterTypes = ["offer", "coupon", "lifetime", "free_trial", "free_plan"] as const;
 
 interface DealsExplorerProps {
   initialDeals: SaaSDeal[];
   initialCategory?: string;
   initialType?: string;
+  initialQuery?: string;
   heading?: string;
   description?: string;
-  discountGuides?: React.ReactNode;
-  afterResults?: React.ReactNode;
+  discountGuides?: ReactNode;
+  afterResults?: ReactNode;
 }
 
 export function DealsExplorer({
   initialDeals,
-  initialCategory,
-  initialType,
-  heading = "EXPLORE SAAS DEALS",
-  description = "Browse sourced offers, reported coupon codes, free plans, trials, and official pricing across 12 software categories.",
+  initialCategory = "all",
+  initialType = "all",
+  initialQuery = "",
+  heading = "SaaS deals & software offers",
+  description = "Browse sourced offers, reported coupon codes, free plans and trials.",
   discountGuides,
   afterResults,
 }: DealsExplorerProps) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory || "all");
-  const [selectedType, setSelectedType] = useState<string>(initialType || "all");
-  const [minDiscount, setMinDiscount] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(500);
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [selectedType, setSelectedType] = useState(initialType);
+  const [minDiscount, setMinDiscount] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(500);
   const [sortBy, setSortBy] = useState<"trending" | "newest" | "discount" | "expiring">("trending");
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
-
-  // Modal reveal state
   const [modalDeal, setModalDeal] = useState<SaaSDeal | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const filterToggle = useRef<HTMLButtonElement>(null);
+  const searchInput = useRef<HTMLInputElement>(null);
+  const resultsRef = useRef<HTMLElement>(null);
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)", true);
+  const filtersId = useId();
+  const priceId = useId();
+  const typeLabel = Object.hasOwn(OFFER_TYPES, selectedType) ? OFFER_TYPES[selectedType as SaaSDeal["dealType"]] : selectedType;
+  const categories = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const deal of initialDeals) counts.set(deal.categorySlug, (counts.get(deal.categorySlug) || 0) + 1);
+    return CATEGORIES.map(category => ({ ...category, count: counts.get(category.slug) || 0 }));
+  }, [initialDeals]);
+  const typeCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const deal of initialDeals) counts.set(deal.dealType, (counts.get(deal.dealType) || 0) + 1);
+    return counts;
+  }, [initialDeals]);
+  const categoryLabel = categories.find(category => category.slug === selectedCategory)?.name || selectedCategory;
 
-  // Filter & Sort logic
   const filteredDeals = useMemo(() => {
     return initialDeals
       .filter((deal) => {
@@ -106,11 +117,36 @@ export function DealsExplorer({
         if (sortBy === "trending") return (b.revealsCount || 0) - (a.revealsCount || 0);
         if (sortBy === "discount") return b.discountPercentage - a.discountPercentage;
         if (sortBy === "expiring") {
-          return new Date(a.expiryDate).getTime() - new Date(b.expiryDate).getTime();
+          return (Date.parse(a.expiryDate) || Infinity) - (Date.parse(b.expiryDate) || Infinity) || 0;
         }
-        return b.id.localeCompare(a.id);
+        return (Date.parse(b.checkedAt || "") || 0) - (Date.parse(a.checkedAt || "") || 0);
       });
   }, [initialDeals, searchQuery, selectedCategory, selectedType, minDiscount, maxPrice, sortBy]);
+
+  const previousResults = useRef(filteredDeals);
+  useEffect(() => {
+    const previous = previousResults.current;
+    previousResults.current = filteredDeals;
+    if (reducedMotion || !resultsRef.current || !Element.prototype.animate ||
+      (previous.length === filteredDeals.length && previous.every((deal, index) => deal.id === filteredDeals[index].id))) return;
+
+    const bounds = resultsRef.current.getBoundingClientRect();
+    if (bounds.bottom < 0 || bounds.top >= window.innerHeight) return;
+
+    const candidates = Array.from(resultsRef.current.querySelectorAll(".market-offer-grid > .market-offer-card, .deals-empty")).slice(0, 6);
+    const visible = candidates.filter(element => {
+      const rect = element.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0 && !element.contains(document.activeElement);
+    });
+    const animations = visible.map((element, index) => element.animate([{ opacity: .76 }, { opacity: 1 }], {
+      id: "deal-results-update",
+      duration: 240,
+      delay: index * 24,
+      easing: "ease-out",
+      fill: "backwards",
+    }));
+    return () => animations.forEach(animation => animation.cancel());
+  }, [filteredDeals, reducedMotion]);
 
   const resetFilters = () => {
     setSearchQuery("");
@@ -121,378 +157,141 @@ export function DealsExplorer({
     setSortBy("trending");
   };
 
-  const hasActiveFilters =
-    searchQuery !== "" ||
-    selectedCategory !== "all" ||
-    selectedType !== "all" ||
-    minDiscount > 0 ||
-    maxPrice < 500;
+  const activeFilters = [
+    ...(selectedCategory === "all" ? [] : [{ label: categoryLabel, clear: () => setSelectedCategory("all") }]),
+    ...(selectedType === "all" ? [] : [{ label: typeLabel, clear: () => setSelectedType("all") }]),
+    ...(minDiscount === 0 ? [] : [{ label: `${minDiscount}% off or more`, clear: () => setMinDiscount(0) }]),
+    ...(maxPrice === 500 ? [] : [{ label: `Up to $${maxPrice}`, clear: () => setMaxPrice(500) }]),
+  ];
+  const canReset = Boolean(activeFilters.length || searchQuery || sortBy !== "trending");
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
-      {/* Page Header */}
-      <div className="mb-12">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="w-2 h-2 rounded-full bg-[#C6FF3D] animate-ping" />
-          <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-            SOURCED SOFTWARE OFFERS // {filteredDeals.length} MATCHES
-          </span>
+    <div className="market-page deals-explorer">
+      <header className="market-intro market-intro-compact">
+        <div className="market-shell market-intro-inner">
+          <div>
+            <p className="market-eyebrow"><Tag size={14} aria-hidden="true" /> Software savings</p>
+            <h1>{heading}</h1>
+            <p>{description}</p>
+          </div>
+          <Link href="/discounts" className="market-button market-button-secondary">Discounts by brand <ArrowUpRight size={16} aria-hidden="true" /></Link>
         </div>
-        <h1 className="font-display font-black tracking-tighter uppercase text-4xl sm:text-6xl text-white mb-4">
-          {heading}
-        </h1>
-        <p className="text-zinc-400 max-w-2xl text-base leading-relaxed">
-          {description}
-        </p>
-      </div>
+      </header>
 
-      {discountGuides}
-
-      {/* Top Search & Filter Bar */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8 p-3 rounded-2xl bg-[#09090C] border border-white/10">
-        {/* Search Input */}
-        <div className="flex min-w-0 items-center gap-3 px-3 py-2 flex-1">
-          <Search className="w-4 h-4 text-[#C6FF3D]" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Filter by software, feature, or promo..."
-            className="w-full min-w-0 bg-transparent text-sm text-white placeholder-zinc-500 outline-none font-sans"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="text-zinc-500 hover:text-white"
-            >
-              <X className="w-4 h-4" />
+      <div className="market-shell deals-workspace">
+        <div className="deals-toolbar">
+          <div role="search" className="deals-search">
+            <Search size={19} aria-hidden="true" />
+            <input ref={searchInput} type="search" aria-label="Search software offers" value={searchQuery} maxLength={100}
+              onChange={event => setSearchQuery(event.target.value)} placeholder="Search offers by brand or keyword" />
+            {searchQuery && <button type="button" onClick={() => { setSearchQuery(""); searchInput.current?.focus(); }} aria-label="Clear search"><X size={18} aria-hidden="true" /></button>}
+          </div>
+          <div className="deals-toolbar-actions">
+            <button ref={filterToggle} type="button" className="market-button market-button-secondary deals-mobile-toggle"
+              aria-expanded={mobileFilterOpen} aria-controls={filtersId} onClick={() => setMobileFilterOpen(open => !open)}>
+              <SlidersHorizontal size={17} aria-hidden="true" /> Filters{activeFilters.length > 0 && ` (${activeFilters.length})`}
             </button>
-          )}
+            <label className="deals-sort">
+              <span>Sort by</span>
+              <select value={sortBy} onChange={event => setSortBy(event.target.value as typeof sortBy)}>
+                <option value="trending">Recommended</option>
+                <option value="discount">Biggest discount</option>
+                <option value="expiring">Expiring soon</option>
+                <option value="newest">Recently checked</option>
+              </select>
+            </label>
+          </div>
         </div>
 
-        {/* Controls: Sort & Mobile Filter Toggle */}
-        <div className="flex flex-wrap items-center gap-2 pt-2 md:pt-0 border-t md:border-t-0 border-white/5">
-          {/* Mobile Filter Sheet Button */}
-          <button
-            onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-            className="md:hidden flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-zinc-300"
-          >
-            <SlidersHorizontal className="w-3.5 h-3.5" />
-            <span>Filters</span>
-            {hasActiveFilters && (
-              <span className="w-2 h-2 rounded-full bg-[#C6FF3D]" />
+        <div className="deals-layout">
+          <aside id={filtersId} className="deals-filters" data-open={mobileFilterOpen || undefined} aria-label="Filter software offers">
+            <div className="deals-filter-heading"><h2><SlidersHorizontal size={17} aria-hidden="true" /> Filters</h2>
+              {canReset && <button type="button" onClick={resetFilters}>Reset</button>}
+            </div>
+            <fieldset>
+              <legend>Category</legend>
+              <div className="deals-category-filter">
+                <button type="button" aria-pressed={selectedCategory === "all"} onClick={() => setSelectedCategory("all")}>
+                  <span>All categories</span><small>{initialDeals.length}</small>
+                </button>
+                {categories.map(category => (
+                  <button key={category.slug} type="button" aria-pressed={selectedCategory === category.slug} onClick={() => setSelectedCategory(category.slug)}>
+                    <span>{category.name}</span><small>{category.count}</small>
+                  </button>
+                ))}
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Minimum discount</legend>
+              <div className="deals-minimum-discount">
+                {[0, 30, 50, 75].map(percent => (
+                  <button key={percent} type="button" aria-pressed={minDiscount === percent} onClick={() => setMinDiscount(percent)}>
+                    {percent === 0 ? "Any" : `${percent}%`}
+                  </button>
+                ))}
+              </div>
+            </fieldset>
+            <div className="deals-price">
+              <label htmlFor={priceId}>Maximum listed price <span>${maxPrice}</span></label>
+              <input id={priceId} type="range" min="0" max="500" step="25" value={maxPrice}
+                onChange={event => setMaxPrice(Number(event.target.value))} aria-valuetext={`$${maxPrice}`} />
+            </div>
+            <button type="button" className="market-button market-button-primary deals-apply-mobile"
+              onClick={() => { setMobileFilterOpen(false); filterToggle.current?.focus(); }}>
+              Show {filteredDeals.length} {filteredDeals.length === 1 ? "offer" : "offers"} <ArrowRight size={16} aria-hidden="true" />
+            </button>
+          </aside>
+
+          <section ref={resultsRef} aria-labelledby="deals-results-heading" className="deals-results">
+            <div className="deals-type-tabs" role="group" aria-label="Offer type">
+              {(["all", ...filterTypes] as const).map(value => {
+                const count = value === "all" ? initialDeals.length : typeCounts.get(value) || 0;
+                if (!count && selectedType !== value) return null;
+                return (
+                  <button key={value} type="button" aria-pressed={selectedType === value} onClick={() => setSelectedType(value)}>
+                    {value === "all" ? "All offers" : OFFER_TYPES[value]}
+                    <small>{count}</small>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="deals-results-head">
+              <h2 id="deals-results-heading" aria-live="polite"><span key={filteredDeals.length}>{filteredDeals.length} {filteredDeals.length === 1 ? "offer" : "offers"}</span></h2>
+              <Link href="/submit/offer">Submit an offer <ArrowUpRight size={16} aria-hidden="true" /></Link>
+            </div>
+            {activeFilters.length > 0 && (
+              <ul className="deals-active" aria-label="Active filters">
+                {activeFilters.map(({ label, clear }) => <li key={label}><button type="button" onClick={clear} aria-label={`Remove ${label} filter`}>{label}<X size={15} aria-hidden="true" /></button></li>)}
+              </ul>
             )}
-          </button>
-
-          {/* Sort Dropdown */}
-          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-zinc-300">
-            <span className="text-zinc-500 hidden sm:inline">SORT:</span>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-              className="bg-transparent text-white outline-none cursor-pointer"
-            >
-              <option value="trending" className="bg-[#0A0A0C]">Trending / Popular</option>
-              <option value="discount" className="bg-[#0A0A0C]">Biggest Discount %</option>
-              <option value="expiring" className="bg-[#0A0A0C]">Expiring Soon</option>
-              <option value="newest" className="bg-[#0A0A0C]">Newest Dropped</option>
-            </select>
-          </div>
-
-          {hasActiveFilters && (
-            <button
-              onClick={resetFilters}
-              className="flex items-center gap-1 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-mono text-zinc-400 hover:text-[#C6FF3D] transition-colors"
-              title="Reset all filters"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Reset</span>
-            </button>
-          )}
-
-          <Link
-            href="/submit"
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#C6FF3D]/10 hover:bg-[#C6FF3D]/20 border border-[#C6FF3D]/30 text-xs font-mono text-[#C6FF3D] font-bold transition-all shadow-[0_0_15px_rgba(198,255,61,0.15)] whitespace-nowrap"
-          >
-            <Tag className="w-3.5 h-3.5" />
-            <span>Submit a Code</span>
-          </Link>
+            {filteredDeals.length ? (
+              <div className="market-offer-grid">
+                {filteredDeals.map(deal => <OfferCard key={deal.id} deal={deal} action={
+                  <OfferAction deal={deal} onReveal={offer => { setModalDeal(offer); setModalOpen(true); }}
+                    className="market-button market-button-primary" icon={deal.code ? <Tag size={15} aria-hidden="true" /> : <ArrowUpRight size={16} aria-hidden="true" />} />
+                } />)}
+              </div>
+            ) : (
+              <div className="deals-empty">
+                <Search size={25} aria-hidden="true" />
+                <h3>{canReset ? "No matching offers" : "No offers currently listed"}</h3>
+                <p>{canReset ? "Try another keyword or clear your filters to see more offers." : "Browse brand guides for pricing, eligibility, and other ways to save."}</p>
+                <div>
+                  {canReset && <button type="button" onClick={resetFilters} className="market-button market-button-primary"><RotateCcw size={16} aria-hidden="true" /> Clear filters</button>}
+                  <Link href={searchQuery.trim() ? { pathname: "/brands", query: { q: searchQuery.trim() } } : "/discounts"} className="market-button market-button-secondary">
+                    {searchQuery.trim() ? "Search software brands" : "Browse brand discounts"} <ArrowRight size={16} aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            )}
+          </section>
         </div>
+
+        {discountGuides}
+        {afterResults}
       </div>
 
-      {/* Main Content Layout: Sidebar + Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        {/* Desktop Sidebar Filters (3 Cols) */}
-        <aside className={`md:col-span-3 space-y-6 ${mobileFilterOpen ? "block" : "hidden md:block"}`}>
-          {/* Deal Type Filter */}
-          <div className="p-5 rounded-2xl bg-[#08080A] border border-white/10 space-y-3">
-            <div className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold">
-              DEAL TYPE
-            </div>
-            <div className="space-y-1.5 text-xs font-mono">
-              {[
-                { label: "All Deal Formats", value: "all" },
-                { label: "Coupon Codes", value: "coupon" },
-                { label: "Lifetime Deals (LTD)", value: "lifetime" },
-                { label: "Extended Free Trials", value: "free_trial" },
-                { label: "Forever Free Tiers", value: "free_plan" },
-              ].map((t) => (
-                <button
-                  key={t.value}
-                  aria-pressed={selectedType === t.value}
-                  onClick={() => setSelectedType(t.value)}
-                  className={`w-full text-left px-3 py-2 rounded-xl transition-all flex items-center justify-between ${
-                    selectedType === t.value
-                      ? "bg-[#C6FF3D] text-black font-bold"
-                      : "text-zinc-400 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  <span>{t.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Category Filter */}
-          <div className="p-5 rounded-2xl bg-[#08080A] border border-white/10 space-y-3">
-            <div className="font-mono text-xs uppercase tracking-widest text-zinc-300 font-bold">
-              CATEGORIES
-            </div>
-            <div className="max-h-64 overflow-y-auto space-y-1 text-xs font-mono scrollbar-none pr-1">
-              <button
-                aria-pressed={selectedCategory === "all"}
-                onClick={() => setSelectedCategory("all")}
-                className={`w-full text-left px-3 py-1.5 rounded-xl transition-all flex items-center justify-between ${
-                  selectedCategory === "all"
-                    ? "bg-[#C6FF3D] text-black font-bold"
-                    : "text-zinc-400 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                <span>All Verticals</span>
-                <span>{initialDeals.length}</span>
-              </button>
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat.id}
-                  aria-pressed={selectedCategory === cat.slug}
-                  onClick={() => setSelectedCategory(cat.slug)}
-                  className={`w-full text-left px-3 py-1.5 rounded-xl transition-all flex items-center justify-between ${
-                    selectedCategory === cat.slug
-                      ? "bg-[#C6FF3D] text-black font-bold"
-                      : "text-zinc-400 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  <span>{cat.shortCode} - {cat.name.split(" ")[0]}</span>
-                  <span className="text-zinc-500 text-[10px]">{initialDeals.filter(deal => deal.categorySlug === cat.slug).length}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Minimum Discount Filter */}
-          <div className="p-5 rounded-2xl bg-[#08080A] border border-white/10 space-y-3">
-            <div className="flex items-center justify-between font-mono text-xs uppercase text-zinc-300 font-bold">
-              <span>MIN DISCOUNT</span>
-              <span className="text-[#C6FF3D]">{minDiscount > 0 ? `${minDiscount}%+` : "ANY"}</span>
-            </div>
-            <div className="grid grid-cols-4 gap-1 text-[11px] font-mono">
-              {[0, 30, 50, 75].map((pct) => (
-                <button
-                  key={pct}
-                  onClick={() => setMinDiscount(pct)}
-                  className={`py-1.5 rounded-lg border text-center transition-all ${
-                    minDiscount === pct
-                      ? "bg-[#C6FF3D] text-black font-bold border-[#C6FF3D]"
-                      : "bg-white/5 border-white/10 text-zinc-400 hover:text-white hover:bg-white/10"
-                  }`}
-                >
-                  {pct === 0 ? "All" : `${pct}%`}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Max Price Slider */}
-          <div className="p-5 rounded-2xl bg-[#08080A] border border-white/10 space-y-3">
-            <div className="flex items-center justify-between font-mono text-xs uppercase text-zinc-300 font-bold">
-              <span>MAX PRICE</span>
-              <span className="text-[#C6FF3D]">${maxPrice}</span>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="500"
-              step="25"
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(Number(e.target.value))}
-              className="w-full accent-[#C6FF3D] cursor-pointer"
-            />
-            <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500">
-              <span>$0 (Free)</span>
-              <span>$500</span>
-            </div>
-          </div>
-        </aside>
-
-        {/* Deals Grid (9 Cols) */}
-        <section aria-label="Matching software offers" className="md:col-span-9 space-y-6">
-          {/* Active Filter Badges */}
-          {hasActiveFilters && (
-            <div className="flex flex-wrap items-center gap-2 p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs font-mono">
-              <span className="text-zinc-500 uppercase text-[11px]">ACTIVE FILTERS:</span>
-              {selectedCategory !== "all" && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#C6FF3D]/10 text-[#C6FF3D] border border-[#C6FF3D]/30">
-                  Vertical: {selectedCategory}
-                  <X className="w-3 h-3 cursor-pointer" onClick={() => setSelectedCategory("all")} />
-                </span>
-              )}
-              {selectedType !== "all" && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#C6FF3D]/10 text-[#C6FF3D] border border-[#C6FF3D]/30">
-                  Type: {selectedType}
-                  <X className="w-3 h-3 cursor-pointer" onClick={() => setSelectedType("all")} />
-                </span>
-              )}
-              {minDiscount > 0 && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#C6FF3D]/10 text-[#C6FF3D] border border-[#C6FF3D]/30">
-                  ≥{minDiscount}% off
-                  <X className="w-3 h-3 cursor-pointer" onClick={() => setMinDiscount(0)} />
-                </span>
-              )}
-              {searchQuery && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#C6FF3D]/10 text-[#C6FF3D] border border-[#C6FF3D]/30">
-                  Query: &quot;{searchQuery}&quot;
-                  <X className="w-3 h-3 cursor-pointer" onClick={() => setSearchQuery("")} />
-                </span>
-              )}
-            </div>
-          )}
-
-          {/* Cards Grid */}
-          {filteredDeals.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredDeals.map((deal) => (
-                <TiltCard
-                  key={deal.id}
-                  cursorLabel="DEAL"
-                  className="flex flex-col justify-between p-6 bg-[#0B0B0E] border-white/10 hover:border-[#C6FF3D]/50 transition-all duration-300"
-                >
-                  <div>
-                    {/* Top Badges & Countdown */}
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="font-mono text-xs px-2.5 py-1 rounded bg-[#C6FF3D] text-black font-black uppercase tracking-wider">
-                        {offerLabel(deal)}
-                      </span>
-
-                      <span className="font-mono text-[10px] uppercase text-zinc-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">
-                        {deal.dealType.toUpperCase()}
-                      </span>
-                    </div>
-
-                    {/* Tool info & Category */}
-                    <div className="mb-3">
-                      <div className="font-mono text-[11px] uppercase text-zinc-500 mb-1 flex items-center gap-2">
-                        <span>{deal.category}</span>
-                      </div>
-                      <Link href={`/deals/${deal.slug}`} className="hover:underline">
-                        <h3 className="font-display font-bold text-xl text-white group-hover:text-[#C6FF3D] transition-colors leading-snug">
-                          {deal.toolName}
-                        </h3>
-                      </Link>
-                    </div>
-
-                    {/* Title & Description */}
-                    <Link href={`/deals/${deal.slug}`}>
-                      <h4 className="text-sm font-semibold text-zinc-200 mb-2 line-clamp-1 hover:text-[#C6FF3D] transition-colors">
-                        {deal.title}
-                      </h4>
-                    </Link>
-                    <p className="text-xs text-zinc-400 leading-relaxed line-clamp-2 mb-6">
-                      {deal.description}
-                    </p>
-
-                    {/* Pricing Comparison */}
-                    {deal.originalPrice !== undefined && deal.dealPrice !== undefined && (
-                      <div className="flex items-baseline gap-2 mb-4">
-                        <span className="font-mono text-2xl font-black text-[#C6FF3D]">
-                          ${deal.dealPrice}
-                        </span>
-                        {deal.originalPrice > 0 && (
-                          <span className="font-mono text-sm line-through text-zinc-500">
-                            ${deal.originalPrice}
-                          </span>
-                        )}
-                        <span className="text-[11px] text-zinc-400 font-mono">
-                          /{deal.billingPeriod || "month"}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Bottom Stats & Trigger */}
-                  <div className="pt-4 border-t border-white/10 space-y-3">
-                    <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
-                      <span className="flex items-center gap-1 text-[#C6FF3D]">
-                        <ShieldCheck className="w-3.5 h-3.5" />
-                        {deal.checkedAt ? "Source checked" : "View provider"}
-                      </span>
-                      <span>{deal.revealsCount} used</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <OfferAction deal={deal} onReveal={(deal) => { setModalDeal(deal); setModalOpen(true); }} className="flex-1 py-3 px-3 rounded-xl bg-white/5 border border-white/15 text-white font-bold text-xs uppercase tracking-wider hover:bg-[#C6FF3D] hover:text-black hover:border-[#C6FF3D] transition-all flex items-center justify-center gap-1.5 cursor-pointer" />
-
-                      <a
-                        href={`/go/${deal.slug}`}
-                        target="_blank"
-                        rel="sponsored nofollow noopener noreferrer"
-                        className="py-3 px-3.5 rounded-xl bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 text-[#C6FF3D] hover:bg-[#C6FF3D] hover:text-black transition-all font-mono text-xs font-bold flex items-center justify-center gap-1"
-                        title={`Visit ${deal.toolName} and review provider terms`}
-                      >
-                        <span>Visit</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-
-                      <Link
-                        href={`/deals/${deal.slug}`}
-                        className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-zinc-400 hover:text-white transition-colors"
-                        title="View Full Offer Details & Terms"
-                      >
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    </div>
-                  </div>
-                </TiltCard>
-              ))}
-            </div>
-          ) : (
-            /* Empty State */
-            <div className="py-24 text-center p-8 rounded-3xl bg-[#09090C] border border-white/10">
-              <Sparkles className="w-12 h-12 text-zinc-600 mx-auto mb-4" />
-              <h3 className="font-display font-bold text-2xl text-white mb-2">
-                NO MATCHING DEALS FOUND
-              </h3>
-              <p className="text-zinc-400 text-sm max-w-md mx-auto mb-6">
-                No active software discounts match your exact filter combination. Try clearing your filters or broadening your search criteria.
-              </p>
-              <button
-                onClick={resetFilters}
-                className="px-6 py-3 rounded-xl bg-[#C6FF3D] text-black font-bold text-xs uppercase tracking-wider"
-              >
-                Clear All Filters
-              </button>
-            </div>
-          )}
-        </section>
-      </div>
-
-      {afterResults}
-
-      {/* Coupon Reveal Modal */}
-      <CouponRevealModal
-        deal={modalDeal}
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-      />
+      <CouponRevealModal deal={modalDeal} isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

@@ -1,9 +1,12 @@
+import { SOFTWARE_REVIEWS } from "./software-reviews";
+import { comparisonHeroPhoto, hostingCoverPhotos, type ResearchPhoto } from "./research-photography";
 import type { DetailedArticle } from "./articles-data";
 import { SAVINGS_BUYING_GUIDES } from "./savings-buying-guides";
 import { getArticleWorkbook } from "./article-workbooks";
 import { HOSTING_REVIEWS } from "./hosting-reviews";
 import { HOSTING_ARTICLES } from "./hosting-articles";
 import { CREATOR_BUYING_GUIDES } from "./creator-buying-guides";
+import { FLAGSHIP_COMPARISONS } from "./flagship-comparisons";
 
 type Guide = { slug: string; title: string; summary: string; tags: string[]; sections: [string, string][]; sources: { title: string; url: string }[] };
 const guides: Guide[] = [
@@ -105,21 +108,40 @@ const guides: Guide[] = [
   },
 ];
 
-const additionalArticleArt: Record<string, [string, string]> = {
-  "build-a-saas-budget-before-buying": ["hosting-costs", "Conceptual server and calendar illustrating costs across a subscription period"],
-  "compare-saas-pricing-limits": ["cloud-location", "Conceptual service configurations on separate platforms connected by a data path"],
-  "saas-coupon-renewal-price-checklist": ["hosting-costs", "Conceptual billing timeline illustrating initial and continuing costs"],
-  "evaluate-ai-software-free-trials": ["application-deployment", "Conceptual application components prepared for a controlled evaluation"],
-  "compare-saas-team-seat-costs": ["hosting-costs", "Conceptual stepped timeline for comparing a recurring software budget"],
-  "lifetime-software-deal-checklist": ["hosting-reliability", "Conceptual software service, independent data vault and time indicator"],
-  "compare-saas-deal-membership-fees": ["hosting-costs", "Conceptual arrangement of service costs across a billing timeline"],
-  "verify-software-privacy-claims": ["hosting-reliability", "Conceptual service separated from a protected data vault"],
-  "find-and-use-saas-coupon-codes": ["hosting-costs", "Conceptual billing timeline for evaluating a software offer"],
-  "startup-software-credits-and-renewal-costs": ["hosting-costs", "Conceptual timeline for comparing introductory credits and continuing costs"],
-  "student-software-discounts-after-graduation": ["editorial-publishing", "Illustrative publishing desk with blank pages, a service and a membership card"],
-  "hostinger-hosting-review": ["vps-comparison", "Conceptual server configurations for evaluating a hosting product"],
-  "cloudflare-pages-review": ["hosting-network", "Conceptual network of application and content-delivery paths"],
-  "digitalocean-app-platform-review": ["application-deployment", "Conceptual application deployment with separate data and runtime components"],
+// Inbound links to the flagship comparisons from the closest existing guides.
+const relatedFlagshipGuides: Partial<Record<string, string>> = {
+  "n8n-vps-sizing-concurrency-backups": "zapier-vs-make-vs-n8n-pricing",
+  "compare-saas-pricing-limits": "zapier-vs-make-vs-n8n-pricing",
+  "build-a-saas-budget-before-buying": "asana-vs-monday-vs-clickup-pricing",
+  "compare-saas-team-seat-costs": "asana-vs-monday-vs-clickup-pricing",
+  "startup-software-credits-and-renewal-costs": "intercom-early-stage-vs-zendesk-for-startups",
+  "saas-coupon-renewal-price-checklist": "intercom-early-stage-vs-zendesk-for-startups",
+};
+
+const relatedSoftwareReviews: Partial<Record<string, string>> = {
+  "evaluate-ai-software-free-trials": "coderabbit-review-github-pull-requests",
+  "compare-saas-pricing-limits": "supabase-review-multi-tenant-saas",
+  "hosting-sla-vs-application-uptime-recovery": "checkly-review-api-playwright-monitoring",
+  "verify-software-privacy-claims": "fireflies-ai-review-client-meetings",
+  "wordpress-hosting-email-vs-transactional-email": "fluent-forms-review-wordpress-leads",
+  "ghost-self-hosted-vs-managed-publishing": "buttondown-review-paid-newsletter",
+};
+
+const editorialCoverPhotos: Partial<Record<string, ResearchPhoto>> = {
+  "build-a-saas-budget-before-buying": hostingCoverPhotos["hosting-costs"],
+  "compare-saas-pricing-limits": comparisonHeroPhoto,
+  "saas-coupon-renewal-price-checklist": hostingCoverPhotos["hosting-costs"],
+  "evaluate-ai-software-free-trials": hostingCoverPhotos["application-deployment"],
+  "compare-saas-team-seat-costs": hostingCoverPhotos["hosting-costs"],
+  "lifetime-software-deal-checklist": hostingCoverPhotos["hosting-reliability"],
+  "compare-saas-deal-membership-fees": hostingCoverPhotos["hosting-costs"],
+  "verify-software-privacy-claims": hostingCoverPhotos["hosting-reliability"],
+  "find-and-use-saas-coupon-codes": hostingCoverPhotos["hosting-costs"],
+  "startup-software-credits-and-renewal-costs": hostingCoverPhotos["hosting-costs"],
+  "student-software-discounts-after-graduation": hostingCoverPhotos["editorial-publishing"],
+  "hostinger-hosting-review": hostingCoverPhotos["vps-comparison"],
+  "cloudflare-pages-review": hostingCoverPhotos["hosting-network"],
+  "digitalocean-app-platform-review": hostingCoverPhotos["application-deployment"],
 };
 
 export const EDITORIAL_ARTICLES: DetailedArticle[] = [...guides.map((guide, index): DetailedArticle => ({
@@ -131,13 +153,14 @@ export const EDITORIAL_ARTICLES: DetailedArticle[] = [...guides.map((guide, inde
   tableOfContents: guide.sections.map(([title], sectionIndex) => ({ id: `check-${sectionIndex + 1}`, title })),
   sections: guide.sections.map(([heading, content], sectionIndex) => ({ id: `check-${sectionIndex + 1}`, heading, content })),
   sources: guide.sources, relatedArticlesSlugs: [guides[(index + 1) % guides.length].slug, guides[(index + 2) % guides.length].slug],
-})), ...SAVINGS_BUYING_GUIDES, ...HOSTING_REVIEWS, ...HOSTING_ARTICLES, ...CREATOR_BUYING_GUIDES].map(article => {
+})), ...SAVINGS_BUYING_GUIDES, ...HOSTING_REVIEWS, ...HOSTING_ARTICLES, ...CREATOR_BUYING_GUIDES, ...SOFTWARE_REVIEWS, ...FLAGSHIP_COMPARISONS].map(article => {
   const workbook = getArticleWorkbook(article.slug);
   const sections = [...article.sections, ...workbook];
-  const art = additionalArticleArt[article.slug];
+  const relatedReview = relatedSoftwareReviews[article.slug];
   return {
     ...article,
-    coverImage: article.coverImage || (art ? { src: `/images/hosting/${art[0]}.webp`, alt: art[1] } : undefined),
+    coverImage: article.coverImage || editorialCoverPhotos[article.slug],
+    relatedArticlesSlugs: [...new Set([relatedFlagshipGuides[article.slug], relatedReview, ...article.relatedArticlesSlugs].filter((slug): slug is string => Boolean(slug)))],
     sections,
     updatedAt: workbook.length && article.updatedAt < "2026-11-05" ? "2026-11-05" : article.updatedAt,
     readTime: `${Math.max(3, Math.ceil(sections.reduce((total, section) => total + section.content.split(/\s+/).length, 0) / 180))} min read`,
