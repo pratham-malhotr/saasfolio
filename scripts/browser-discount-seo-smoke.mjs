@@ -87,19 +87,22 @@ try {
     await evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({ block: 'center', behavior: 'instant' })`);
     // Hydration and browser scroll anchoring can move an inline link between
     // the first measurement and a native pointer event. Wait for a stable rect.
-    let previous, stable = 0;
+    // A transient overlay (an entrance animation or a late layout pass on a slow
+    // runner) can briefly cover the link, so require stable geometry and a
+    // successful hit test together; a permanently covered link still fails.
+    let previous, stable = 0, point;
     await until(async () => {
-      const rect = await evaluate(`(() => { const rect = document.querySelector(${JSON.stringify(selector)}).getClientRects()[0]; return [rect.x, rect.y, rect.width, rect.height]; })()`);
-      stable = JSON.stringify(rect) === JSON.stringify(previous) ? stable + 1 : 0;
-      previous = rect;
-      return stable >= 3;
-    }, `Stable link geometry: ${selector}`);
-    const point = await evaluate(`(() => {
-      const link = document.querySelector(${JSON.stringify(selector)});
-      const rect = link.getClientRects()[0];
-      return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 };
-    })()`);
-    assert.ok(await evaluate(`document.querySelector(${JSON.stringify(selector)}).contains(document.elementFromPoint(${point.x}, ${point.y}))`), `Link receives pointer input: ${selector}`);
+      const state = await evaluate(`(() => {
+        const link = document.querySelector(${JSON.stringify(selector)});
+        const rect = link.getClientRects()[0];
+        const x = rect.x + rect.width / 2, y = rect.y + rect.height / 2;
+        return { rect: [rect.x, rect.y, rect.width, rect.height], x, y, hit: link.contains(document.elementFromPoint(x, y)) };
+      })()`);
+      stable = JSON.stringify(state.rect) === JSON.stringify(previous) ? stable + 1 : 0;
+      previous = state.rect;
+      point = state;
+      return stable >= 3 && state.hit;
+    }, `Link receives pointer input: ${selector}`);
     await evaluate("window.smokeClickEvents = []; for (const type of ['pointerdown', 'mousedown', 'mouseup', 'click']) document.addEventListener(type, event => window.smokeClickEvents.push({ type, tag: event.target.tagName, href: event.target.closest('a')?.getAttribute('href'), x: event.clientX, y: event.clientY }), { capture: true, once: true })");
     await page("Input.dispatchMouseEvent", { type: "mouseMoved", ...point });
     await page("Input.dispatchMouseEvent", { type: "mousePressed", button: "left", clickCount: 1, ...point });
