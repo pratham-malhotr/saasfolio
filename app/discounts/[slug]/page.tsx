@@ -8,7 +8,7 @@ import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
 import { getPublishedTool } from "@/lib/published-catalog";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata, absoluteUrl } from "@/lib/seo";
-import { breadcrumbSchema, softwareSchema, webPageSchema, organizationId } from "@/lib/structured-data";
+import { breadcrumbSchema, faqSchema, softwareSchema, webPageSchema, organizationId } from "@/lib/structured-data";
 import { offerLabel } from "@/lib/offer-links";
 import { BrandBuyingGuides } from "@/components/articles/BrandBuyingGuides";
 import { BrandSourcePanel } from "@/components/seo/BrandSourcePanel";
@@ -19,7 +19,7 @@ import { OfferReportLink } from "@/components/deals/OfferReportLink";
 import { getBrandCollectionLinks } from "@/lib/savings-collections";
 import { CATEGORY_SEARCH_CONTENT } from "@/lib/data/category-search-content";
 import {
-  brandDiscountTitle, brandDiscountDescription, brandDiscountAnswer, brandBestDiscountAnswer, getBrandDiscountData,
+  brandDiscountTitle, brandSearchTitle, brandDiscountDescription, brandDiscountAnswer, brandBestDiscountAnswer, getBrandDiscountData,
   getBrandDiscountFaqs, getIndexableDiscountBrands, hasBrandDiscountPage,
 } from "@/lib/brand-discounts";
 
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { tool } = await resolveBrand(params);
   const { offers, indexable } = getBrandDiscountData(tool);
   return pageMetadata({
-    title: brandDiscountTitle(tool), description: brandDiscountDescription(tool, offers),
+    title: brandSearchTitle(tool), description: brandDiscountDescription(tool, offers),
     path: `/discounts/${tool.slug}`, image: `/discounts/${tool.slug}/opengraph-image`, noIndex: !indexable,
   });
 }
@@ -48,7 +48,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function BrandDiscountPage({ params }: { params: Promise<{ slug: string }> }) {
   const { tool, slug } = await resolveBrand(params);
   if (slug !== tool.slug) permanentRedirect(`/discounts/${tool.slug}`);
-  const { offers, savingsOptions, purchaseChecks, guide, modifiedAt, sourceNotesCurrent } = getBrandDiscountData(tool);
+  const { offers, savingsOptions, purchaseChecks, guide, modifiedAt, sourceNotesCurrent, sourceVerifiedAt } = getBrandDiscountData(tool);
+  const readableDate = (value: string) => new Intl.DateTimeFormat("en", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(Date.parse(value.length === 10 ? `${value}T00:00:00Z` : value));
   const couponOffers = offers.filter(offer => offer.code);
   const otherOffers = offers.filter(offer => !offer.code);
   const freeOptions = otherOffers.filter(offer => offer.dealType === "free_plan" || offer.dealType === "free_trial");
@@ -91,10 +92,20 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
             mainEntityOfPage: { "@id": absoluteUrl(`${path}#webpage`) },
             author: { "@id": organizationId }, publisher: { "@id": organizationId },
             about: { "@id": softwareSchema(tool)["@id"] },
-            dateModified: modifiedAt, inLanguage: "en",
+            datePublished: `${guide.reviewedAt}T00:00:00.000Z`, dateModified: modifiedAt, inLanguage: "en",
             image: absoluteUrl(`${path}/opengraph-image`),
             citation: [guide.sourceUrl, ...(guide.sources || []).map(source => source.url)],
+            ...(offers.length ? { hasPart: { "@id": absoluteUrl(`${path}#current-offers`) } } : {}),
           }] : []),
+          ...(guide && offers.length ? [{
+            "@type": "ItemList", "@id": absoluteUrl(`${path}#current-offers`),
+            name: `Current ${tool.name} offers`, numberOfItems: offers.length,
+            itemListElement: offers.map((offer, index) => ({
+              "@type": "ListItem", position: index + 1, name: offer.title, url: absoluteUrl(`/deals/${offer.slug}`),
+            })),
+          }] : []),
+          // Mirrors the questions and answers rendered in the page's FAQ section.
+          ...(faqs.length ? [{ ...faqSchema(faqs), "@id": absoluteUrl(`${path}#faq`) }] : []),
           softwareSchema(tool),
           breadcrumbSchema([{ name: "Brand discounts", path: "/discounts" }, { name: `${tool.name} discounts`, path }]),
         ],
@@ -117,7 +128,8 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
               <h1>{title}</h1>
               <p>{guide?.intro || `Review ${tool.name} offer terms, eligible plans, and renewal costs before choosing an offer.`}</p>
               <p className="discount-guide-byline">By <Link href="/about" className="underline underline-offset-4">SaaSFolio editorial</Link>
-                {guide && <> · Reviewed <time dateTime={guide.reviewedAt}>{guide.reviewedAt}</time></>}
+                {guide && <> · Reviewed <time dateTime={guide.reviewedAt}>{readableDate(guide.reviewedAt)}</time></>}
+                {sourceVerifiedAt && <> · Official sources re-checked <time dateTime={sourceVerifiedAt}>{readableDate(sourceVerifiedAt)}</time></>}
               </p>
               <div className="discount-guide-actions">
                 <a href="#current-offers" className="market-button market-button-primary">Compare offers <ArrowRight size={16} aria-hidden="true" /></a>
@@ -247,7 +259,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           </div>
         ))}
         {guide && <aside className="rounded-2xl p-6 border border-white/10 bg-white/[0.02] space-y-3 text-sm text-zinc-400">
-          <h3 className="text-white font-bold">Official pricing observations · {guide.reviewedAt}</h3>
+          <h3 className="text-white font-bold">Official pricing observations · {sourceNotesCurrent && sourceVerifiedAt ? `re-checked ${readableDate(sourceVerifiedAt)}` : readableDate(guide.reviewedAt)}</h3>
           {sourceNotesCurrent ? <ul className="list-disc pl-5 space-y-2">{guide.sourceNotes.map(note => <li key={note}>{note}</li>)}</ul>
             : <p>The previous pricing observations need a new review. Open the official source for current plan limits, trial conditions, and annual billing options.</p>}
           <a href={guide.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block text-[#C6FF3D] underline">Source: {tool.name} pricing ↗</a>

@@ -13,6 +13,8 @@
     "seo:audit:brands": "node scripts/audit-brand-seo.mjs",
     "seo:audit:queries": "node scripts/audit-brand-search-intents.mjs",
     "seo:audit:landings": "node scripts/audit-seo-landings.mjs",
+    "seo:indexnow": "node scripts/submit-indexnow.mjs",
+    "seo:verify-guides": "node scripts/verify-guide-sources.mjs",
     "test:seo:collections": "node --test scripts/seo-collections.test.mjs",
     "test:browser:seo": "node scripts/browser-seo-landings.mjs",
     "audit:links": "node scripts/audit-outbound-links.mjs",

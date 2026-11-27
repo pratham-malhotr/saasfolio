@@ -9,6 +9,26 @@ import type { DiscountSearchEntry } from "@/lib/discount-search";
 import { DISCOUNT_BRAND_ALIASES } from "@/lib/data/brand-discount-aliases.mjs";
 import { editorialGuideIssues } from "@/lib/editorial-quality.mjs";
 import { evergreenPurchaseChecks } from "@/lib/brand-purchase-guidance";
+import guideSourceChecks from "@/lib/data/guide-source-checks.json";
+import { GUIDE_FRESHNESS_DAYS, guideEvidenceDate } from "@/lib/guide-claims.mjs";
+
+type GuideSourceCheck = { status: string; verifiedAt?: string; method?: string };
+const sourceChecks = guideSourceChecks as Record<string, GuideSourceCheck>;
+
+// The latest date a guide's observations were established: its editorial review,
+// or a later automated check that found its stated figures on the official sources.
+export function guideEvidenceAt(slug: string): string | undefined {
+  const guide = BRAND_DISCOUNT_GUIDES[slug];
+  const date = guideEvidenceDate(guide, sourceChecks[slug], Date.now());
+  return Number.isFinite(date) ? new Date(date).toISOString() : undefined;
+}
+
+export function guideSourceVerifiedAt(slug: string): string | undefined {
+  const check = sourceChecks[slug];
+  const guide = BRAND_DISCOUNT_GUIDES[slug];
+  if (check?.status !== "verified" || !check.verifiedAt || !guide) return undefined;
+  return Date.parse(check.verifiedAt) > Date.parse(`${guide.reviewedAt}T00:00:00Z`) && Date.parse(check.verifiedAt) <= Date.now() ? check.verifiedAt : undefined;
+}
 
 const establishedBrands = new Set(snapshot.offers.filter(offer =>
   (offer.discountPercentage > 0 || ("code" in offer && offer.code)) && offer.sourceUrl && offer.evidence
@@ -25,16 +45,16 @@ export function getBrandDiscountData(tool: DetailedTool, catalogDeals = getAllDe
   const guide = BRAND_DISCOUNT_GUIDES[tool.slug];
   // A fetched code does not create a new editorial landing page by itself.
   const indexable = Boolean(guide && editorialGuideIssues(guide).length === 0);
-  const dates = [guide?.reviewedAt ? `${guide.reviewedAt}T00:00:00.000Z` : undefined,
-    ...offers.map(offer => offer.updatedAt || offer.checkedAt)].filter((date): date is string =>
+  const evidenceAt = guide ? guideEvidenceAt(tool.slug) : undefined;
+  const dates = [evidenceAt, ...offers.map(offer => offer.updatedAt || offer.checkedAt)].filter((date): date is string =>
     Boolean(date && Number.isFinite(Date.parse(date)) && Date.parse(date) <= Date.now()));
   const modifiedAt = dates.sort((a, b) => Date.parse(b) - Date.parse(a))[0];
-  const reviewAge = guide ? Date.now() - Date.parse(`${guide.reviewedAt}T00:00:00Z`) : NaN;
-  const sourceNotesCurrent = reviewAge >= 0 && reviewAge <= 30 * 86400000;
+  const reviewAge = evidenceAt ? Date.now() - Date.parse(evidenceAt) : NaN;
+  const sourceNotesCurrent = reviewAge >= 0 && reviewAge <= GUIDE_FRESHNESS_DAYS * 86400000;
   const savingsOptions = sourceNotesCurrent ? guide?.savingsOptions || [] : [];
   const purchaseChecks = sourceNotesCurrent && BRAND_PURCHASE_CHECKS[tool.slug]
     ? BRAND_PURCHASE_CHECKS[tool.slug] : guide ? evergreenPurchaseChecks(tool, guide) : undefined;
-  return { offers, coupons, savings, savingsOptions, purchaseChecks, guide, indexable, modifiedAt, sourceNotesCurrent };
+  return { offers, coupons, savings, savingsOptions, purchaseChecks, guide, indexable, modifiedAt, sourceNotesCurrent, evidenceAt, sourceVerifiedAt: guideSourceVerifiedAt(tool.slug) };
 }
 
 export function getIndexableDiscountBrands() {
@@ -70,7 +90,7 @@ export function getDiscountSearchEntries(): DiscountSearchEntry[] {
       offer.checkedAt ? Date.parse(offer.checkedAt) + 14 * 86400000 : NaN,
       offer.expiryDate ? Date.parse(offer.expiryDate) : NaN,
     ]).filter(Number.isFinite);
-    if (data.sourceNotesCurrent && data.guide) deadlines.push(Date.parse(`${data.guide.reviewedAt}T00:00:00Z`) + 30 * 86400000);
+    if (data.sourceNotesCurrent && data.evidenceAt) deadlines.push(Date.parse(data.evidenceAt) + GUIDE_FRESHNESS_DAYS * 86400000);
     return {
       slug: tool.slug, name: tool.name, category: tool.category,
       aliases: Object.entries(DISCOUNT_BRAND_ALIASES).filter(([, slug]) => slug === tool.slug).map(([alias]) => alias),
@@ -92,6 +112,56 @@ export function brandSavingsSummary(tool: DetailedTool, catalogDeals = getAllDea
 
 export function brandDiscountTitle(tool: DetailedTool): string {
   return BRAND_DISCOUNT_GUIDES[tool.slug]?.searchTitle || `${tool.name} Discounts & Coupon Codes`;
+}
+
+const SAVING_AUDIENCE: Record<string, string> = {
+  "Annual billing": "Annual Plans", "Education offer": "for Students", "Nonprofit discount": "for Nonprofits",
+  "Team discount": "for Teams", "Bundle discount": "Bundles", "Organization offer": "",
+};
+
+// Who a sourced offer is for, so a restricted saving is never shown as general.
+function offerAudience(offer: SaaSDeal): string {
+  const text = `${offer.slug} ${offer.title}`.toLowerCase();
+  if (/non-?profit|charit|community cloud/.test(text)) return "for Nonprofits";
+  if (/student|education|academic/.test(text)) return "for Students";
+  if (/startup|early[- ]stage/.test(text)) return "for Startups";
+  if (/annual|yearly|prepaid/.test(text)) return "Annual Plans";
+  if (/introductory|intro|first[- ](?:term|year|month)|new[- ]license/.test(text)) return "First Term";
+  return "";
+}
+
+// The strongest sourced saving, phrased the way people search for it.
+export function brandHeadlineSaving(tool: DetailedTool, catalogDeals = getAllDeals()): string | undefined {
+  const { offers, savingsOptions } = getBrandDiscountData(tool, catalogDeals);
+  const best = offers.filter(offer => offer.discountPercentage > 0).sort((a, b) => b.discountPercentage - a.discountPercentage)[0];
+  if (best) return `${best.discountKind === "up-to" ? "Up to " : ""}${best.discountPercentage}% Off ${offerAudience(best)}`.trim();
+  for (const option of savingsOptions) {
+    const percent = option.saving.match(/(up to\s+)?(\d+(?:\.\d+)?)\s?%/i);
+    if (percent) return `${percent[1] ? "Up to " : ""}${percent[2]}% Off ${SAVING_AUDIENCE[option.type] || ""}`.trim();
+    const months = option.saving.match(/\b(\w+) months? free\b/i);
+    if (months) return `${months[1][0].toUpperCase()}${months[1].slice(1)} Months Free ${option.type === "Annual billing" ? "on Annual Plans" : SAVING_AUDIENCE[option.type] || ""}`.trim();
+  }
+  return undefined;
+}
+
+// Search title: the sourced value first, then the month the evidence was last
+// confirmed. The date is shown only while that evidence is inside its window.
+export function brandSearchTitle(tool: DetailedTool, catalogDeals = getAllDeals(), now = Date.now()): string {
+  const { modifiedAt, coupons, sourceNotesCurrent, offers } = getBrandDiscountData(tool, catalogDeals);
+  const freshOffer = offers.some(offer => offer.checkedAt && now - Date.parse(offer.checkedAt) <= 14 * 86400000);
+  const dated = modifiedAt && (sourceNotesCurrent || freshOffer) && now - Date.parse(modifiedAt) <= 30 * 86400000
+    ? ` (${new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(Date.parse(modifiedAt))})` : "";
+  const saving = brandHeadlineSaving(tool, catalogDeals);
+  const kind = coupons.length ? "Discount Code" : "Discount";
+  const candidates = [
+    saving && `${tool.name} ${kind}: ${saving}${dated}`,
+    saving && `${tool.name} ${kind}: ${saving}`,
+    `${brandDiscountTitle(tool)}${dated}`,
+    `${tool.name} Discounts & Coupon Codes${dated}`,
+    brandDiscountTitle(tool),
+  ].filter((title): title is string => Boolean(title));
+  // Leave room for " | SaaSFolio" inside a typical result-title width.
+  return candidates.find(title => title.length <= 62) || candidates.at(-1)!;
 }
 
 export function brandBestDiscountAnswer(tool: DetailedTool, catalogDeals = getAllDeals()): string {

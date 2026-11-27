@@ -5,6 +5,7 @@ import fs from "node:fs";
 import ts from "typescript";
 import { normalizePublicHttpsUrl } from "../lib/public-url.mjs";
 import { editorialGuideIssues } from "../lib/editorial-quality.mjs";
+import * as guideClaims from "../lib/guide-claims.mjs";
 import { plainText, discoverVendorOffer, extractCouponCandidates, safePublicUrl, robotsAllows, fetchPublicPage } from "./lib/offer-sources.mjs";
 
 test("hidden payloads and unrelated percentage banners do not become offers", () => {
@@ -161,6 +162,7 @@ test("old coupons age out in a running process, with pricing fallback and legacy
 test("reviewed brand savings age out of summaries and FAQs without losing the guide", () => {
   const clock = { now: Date.parse("2026-10-23T12:00:00Z") };
   class TestDate extends Date { static now() { return clock.now; } }
+  const sourceChecks = {};
   const expansion = loadTs("lib/data/expansion-discount-guides.ts");
   const guides = loadTs("lib/data/brand-discount-guides.ts", {
     "@/lib/data/additional-discount-guides": loadTs("lib/data/additional-discount-guides.ts"),
@@ -183,6 +185,8 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
     "@/lib/seo": loadTs("lib/seo.ts"),
     "@/lib/data/brand-discount-aliases.mjs": { DISCOUNT_BRAND_ALIASES: {} },
     "@/lib/editorial-quality.mjs": { editorialGuideIssues: guide => editorialGuideIssues(guide, clock.now) },
+    "@/lib/data/guide-source-checks.json": sourceChecks,
+    "@/lib/guide-claims.mjs": guideClaims,
   }, TestDate);
   assert.equal(catalog.getBrandDiscountData(tool).savingsOptions.length, 1);
   assert.match(catalog.brandSavingsSummary(tool), /20%/);
@@ -208,6 +212,15 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
   assert.doesNotMatch(catalog.brandDiscountDescription(contentBrand, []), /3-day/, "Expired trial terms must leave search descriptions");
   assert.equal(catalog.getBrandDiscountData(addedBrand).purchaseChecks.troubleshooting.length, 2);
   assert.equal(catalog.getIndexableDiscountBrands()[0].slug, "beehiiv");
+  // A source check that found different figures cannot renew the guide...
+  sourceChecks.beehiiv = { status: "changed", verifiedAt: undefined };
+  assert.deepEqual(catalog.getBrandDiscountData(tool).savingsOptions, []);
+  // ...while one that re-found every stated figure restores the reviewed savings.
+  sourceChecks.beehiiv = { status: "verified", verifiedAt: new Date(clock.now - 86400000).toISOString() };
+  assert.equal(catalog.getBrandDiscountData(tool).savingsOptions.length, 1);
+  assert.match(catalog.brandSavingsSummary(tool), /20%/);
+  assert.match(catalog.brandSearchTitle(tool), /^Beehiiv Discount: Up to 20% Off Annual Plans \(\w{3} 2026\)$/);
+  delete sourceChecks.beehiiv;
   // Future-dated observations must never appear as reviewed savings.
   clock.now = Math.min(...reviewDates) - 86400000;
   assert.deepEqual(catalog.getBrandDiscountData(tool).savingsOptions, []);

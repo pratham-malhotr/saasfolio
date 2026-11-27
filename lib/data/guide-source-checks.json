@@ -1,0 +1,1661 @@
+{
+  "adobe-creative-cloud": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:07.194Z",
+    "tokens": [
+      "1year"
+    ],
+    "missing": [
+      "1year"
+    ],
+    "errors": [
+      "https://helpx.adobe.com/creative-cloud/faq/students-teachers.html: HTTP 403",
+      "https://helpx.adobe.com/account/individual/billing-and-payments/view-billing-and-invoices/understand-billing-charges.html: HTTP 403"
+    ]
+  },
+  "affine": {
+    "verifiedAt": "2026-11-27T15:28:39.766Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:39.766Z",
+    "tokens": [
+      "15%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://affine.pro/pricing"
+    ]
+  },
+  "ahrefs": {
+    "verifiedAt": "2026-11-27T15:28:46.719Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:46.719Z",
+    "tokens": [
+      "17%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://ahrefs.com/pricing/",
+      "https://help.ahrefs.com/en/articles/1406260-do-you-offer-any-discounts-or-free-trials"
+    ]
+  },
+  "aioseo": {
+    "verifiedAt": "2026-11-27T15:29:15.747Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:15.747Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://aioseo.com/pricing/"
+    ]
+  },
+  "airtable": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:10.075Z",
+    "tokens": [
+      "50%"
+    ],
+    "missing": [
+      "50%"
+    ],
+    "errors": [
+      "https://support.airtable.com/articles/4920135568-applying-for-non-profit-education-and-student-airtable-plans: Disallowed by robots.txt"
+    ]
+  },
+  "akiflow": {
+    "verifiedAt": "2026-11-27T15:28:42.861Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:42.861Z",
+    "tokens": [
+      "40%",
+      "44%",
+      "7day"
+    ],
+    "missing": [],
+    "sources": [
+      "https://akiflow.com/pricing",
+      "https://product.akiflow.com/help/articles/3951313-onboarding-your-team",
+      "https://product.akiflow.com/help/articles/8417992-your-account"
+    ]
+  },
+  "alitu": {
+    "status": "error",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:26.642Z",
+    "tokens": [
+      "2month",
+      "7day"
+    ],
+    "missing": [
+      "2month",
+      "7day"
+    ],
+    "errors": [
+      "https://alitu.com/pricing: HTTP 403"
+    ]
+  },
+  "anytrack": {
+    "verifiedAt": "2026-11-27T15:29:34.222Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:34.222Z",
+    "tokens": [
+      "2month"
+    ],
+    "missing": [],
+    "sources": [
+      "https://anytrack.io/pricing",
+      "https://readme.anytrack.io/docs/plan-comparison"
+    ]
+  },
+  "asana": {
+    "verifiedAt": "2026-11-27T15:29:10.073Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:10.073Z",
+    "tokens": [
+      "50%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://asana.com/pricing",
+      "https://asana.com/industry/nonprofit"
+    ]
+  },
+  "baremetrics": {
+    "verifiedAt": "2026-11-27T15:29:34.586Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:34.586Z",
+    "tokens": [
+      "35%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://baremetrics.com/pricing",
+      "https://baremetrics.com/accelerator"
+    ]
+  },
+  "baserow": {
+    "verifiedAt": "2026-11-27T15:28:52.515Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:52.515Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://baserow.io/pricing",
+      "https://baserow.io/faq",
+      "https://baserow.io/user-docs/subscriptions-overview"
+    ]
+  },
+  "beehiiv": {
+    "verifiedAt": "2026-11-27T15:29:30.509Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:30.509Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.beehiiv.com/pricing",
+      "https://www.beehiiv.com/support/article/23874462928663-plan-types-and-subscriber-plan-tier-pricing"
+    ]
+  },
+  "bigin": {
+    "verifiedAt": "2026-11-27T15:28:28.671Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:28:28.671Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.bigin.com/pricing.html"
+    ]
+  },
+  "box": {
+    "status": "error",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:29:03.454Z",
+    "tokens": [],
+    "missing": [],
+    "errors": [
+      "https://www.box.com/pricing: HTTP 403",
+      "https://www.box.com/industries/non-profit/: HTTP 403"
+    ]
+  },
+  "browserstack": {
+    "status": "error",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:02.086Z",
+    "tokens": [
+      "25%"
+    ],
+    "missing": [
+      "25%"
+    ],
+    "errors": [
+      "https://www.browserstack.com/pricing: Source exceeds 3 MB limit"
+    ]
+  },
+  "buttondown": {
+    "verifiedAt": "2026-11-27T15:28:22.322Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:22.322Z",
+    "tokens": [
+      "50%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://buttondown.com/pricing"
+    ]
+  },
+  "canva": {
+    "status": "error",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:29.092Z",
+    "tokens": [],
+    "missing": [],
+    "errors": [
+      "https://www.canva.com/pricing/: HTTP 403",
+      "https://www.canva.com/nonprofits/: HTTP 403",
+      "https://www.canva.com/help/about-canva-for-education/: HTTP 403"
+    ]
+  },
+  "castmagic": {
+    "verifiedAt": "2026-11-27T15:28:26.642Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:26.642Z",
+    "tokens": [
+      "30%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.castmagic.io/pricing"
+    ]
+  },
+  "checkly": {
+    "verifiedAt": "2026-11-27T15:28:59.973Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:59.973Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.checklyhq.com/pricing/"
+    ]
+  },
+  "clickup": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:30.320Z",
+    "tokens": [
+      "33%"
+    ],
+    "missing": [
+      "Organization offer"
+    ],
+    "errors": [
+      "https://help.clickup.com/hc/en-us/articles/7250693443607-Is-there-a-discount-for-non-profit-or-educational-companies: HTTP 403"
+    ]
+  },
+  "clueso": {
+    "verifiedAt": "2026-11-27T15:28:25.199Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:28:25.199Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.clueso.io/pricing"
+    ]
+  },
+  "coderabbit": {
+    "verifiedAt": "2026-11-27T15:28:59.071Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:59.071Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.coderabbit.ai/pricing"
+    ]
+  },
+  "colossyan": {
+    "verifiedAt": "2026-11-27T15:28:28.306Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:28.306Z",
+    "tokens": [
+      "34%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.colossyan.com/pricing/"
+    ]
+  },
+  "confluence": {
+    "verifiedAt": "2026-11-27T15:29:02.863Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:02.863Z",
+    "tokens": [
+      "50%",
+      "75%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.atlassian.com/software/confluence/pricing",
+      "https://www.atlassian.com/licensing/cloud",
+      "https://www.atlassian.com/software/views/social-impact-license-request"
+    ]
+  },
+  "consensus": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:52.237Z",
+    "tokens": [
+      "25%",
+      "40%"
+    ],
+    "missing": [
+      "25%",
+      "40%"
+    ],
+    "errors": [
+      "https://help.consensus.app/en/articles/10064359-how-to-get-a-student-or-clinician-discount: HTTP 403",
+      "https://help.consensus.app/en/articles/10087865-subscription-plans: HTTP 403"
+    ]
+  },
+  "convertkit": {
+    "verifiedAt": "2026-11-27T15:28:18.175Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:18.175Z",
+    "tokens": [
+      "2month"
+    ],
+    "missing": [],
+    "sources": [
+      "https://kit.com/pricing",
+      "https://help.kit.com/en/articles/2502679-billing-at-kit",
+      "https://help.kit.com/en/articles/4494683-creator-vs-pro-choose-the-right-plan"
+    ]
+  },
+  "creatify": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:27.819Z",
+    "tokens": [
+      "30%"
+    ],
+    "missing": [
+      "30%"
+    ]
+  },
+  "descript": {
+    "verifiedAt": "2026-11-27T15:28:39.474Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:39.474Z",
+    "tokens": [
+      "$8",
+      "35%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.descript.com/pricing",
+      "https://help.descript.com/billing-payments-plans/nfp-edu",
+      "https://help.descript.com/billing-payments-plans/promo",
+      "https://help.descript.com/billing-payments-plans/legacy-sunset"
+    ]
+  },
+  "dropbox": {
+    "verifiedAt": "2026-11-27T15:29:03.068Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:29:03.068Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.dropbox.com/plans",
+      "https://help.dropbox.com/billing/discounts"
+    ]
+  },
+  "dubble": {
+    "verifiedAt": "2026-11-27T15:28:24.787Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:24.787Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://dubble.so/pricing"
+    ]
+  },
+  "duplicator": {
+    "verifiedAt": "2026-11-27T15:29:18.987Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:18.987Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://duplicator.com/pricing/",
+      "https://duplicator.com/duplicator-coupon/"
+    ]
+  },
+  "elicit": {
+    "verifiedAt": "2026-11-27T15:28:51.586Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:51.586Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://elicit.com/pricing",
+      "https://support.elicit.com/en/articles/16631472-academic-and-nonprofit-pricing"
+    ]
+  },
+  "fabric": {
+    "verifiedAt": "2026-11-27T15:28:41.370Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:41.370Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://fabric.so/pricing-and-plans-for-individuals",
+      "https://fabric.so/guide/introduction"
+    ]
+  },
+  "famewall": {
+    "verifiedAt": "2026-11-27T15:28:23.786Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:23.786Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://famewall.io/pricing/"
+    ]
+  },
+  "fathom": {
+    "verifiedAt": "2026-11-27T15:28:32.610Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:32.610Z",
+    "tokens": [
+      "2year"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.fathom.ai/pricing",
+      "https://www.fathom.ai/qualified-portfolio-partners",
+      "https://help.fathom.video/en/articles/6049921"
+    ]
+  },
+  "fellow": {
+    "verifiedAt": "2026-11-27T15:28:21.348Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:21.348Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://fellow.ai/pricing"
+    ]
+  },
+  "fibery": {
+    "verifiedAt": "2026-11-27T15:28:54.514Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:54.514Z",
+    "tokens": [
+      "6month"
+    ],
+    "missing": [],
+    "sources": [
+      "https://fibery.com/pricing",
+      "https://fibery.com/startups"
+    ]
+  },
+  "figma": {
+    "verifiedAt": "2026-11-27T15:28:29.545Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:29.545Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.figma.com/pricing/",
+      "https://www.figma.com/education/"
+    ]
+  },
+  "fireflies-ai": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:36.034Z",
+    "tokens": [
+      "10%",
+      "44%"
+    ],
+    "missing": [
+      "10%"
+    ],
+    "errors": [
+      "https://guide.fireflies.ai/articles/8062778578-learn-about-discounts-on-the-fireflies-pricing-plan: Disallowed by robots.txt",
+      "https://guide.fireflies.ai/articles/9606045468-fireflies-billing-terms: Disallowed by robots.txt"
+    ]
+  },
+  "fluent-forms": {
+    "verifiedAt": "2026-11-27T15:29:23.524Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:23.524Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://fluentforms.com/pricing/"
+    ]
+  },
+  "fluentcrm": {
+    "verifiedAt": "2026-11-27T15:29:23.989Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:23.989Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://fluentcrm.com/pricing/"
+    ]
+  },
+  "flyingpress": {
+    "verifiedAt": "2026-11-27T15:29:27.023Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:27.023Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://flyingpress.com/pricing/"
+    ]
+  },
+  "formidable-forms": {
+    "verifiedAt": "2026-11-27T15:29:20.318Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:20.318Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://formidableforms.com/pricing/"
+    ]
+  },
+  "framer": {
+    "verifiedAt": "2026-11-27T15:28:18.175Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:18.175Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.framer.com/pricing",
+      "https://www.framer.com/education/students/"
+    ]
+  },
+  "google-workspace": {
+    "verifiedAt": "2026-11-27T15:29:05.723Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:05.723Z",
+    "tokens": [
+      "16%",
+      "1year"
+    ],
+    "missing": [],
+    "sources": [
+      "https://workspace.google.com/pricing.html",
+      "https://www.google.com/nonprofits/workspace/compare/",
+      "https://www.google.com/nonprofits/eligibility/"
+    ]
+  },
+  "granola": {
+    "verifiedAt": "2026-11-27T15:28:19.847Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:28:19.847Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.granola.ai/pricing"
+    ]
+  },
+  "gravity-forms": {
+    "verifiedAt": "2026-11-27T15:29:21.316Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:21.316Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.gravityforms.com/pricing/",
+      "https://www.gravityforms.com/nonprofit-license/"
+    ]
+  },
+  "guideflow": {
+    "verifiedAt": "2026-11-27T15:28:24.648Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:24.648Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.guideflow.com/pricing"
+    ]
+  },
+  "healthchecks-io": {
+    "verifiedAt": "2026-11-27T15:29:00.423Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:00.423Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://healthchecks.io/pricing/"
+    ]
+  },
+  "hedra": {
+    "verifiedAt": "2026-11-27T15:28:27.828Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:28:27.828Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.hedra.com/pricing"
+    ]
+  },
+  "hiver": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:22.300Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [
+      "20%"
+    ]
+  },
+  "hostinger": {
+    "verifiedAt": "2026-11-27T15:28:18.175Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:28:18.175Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.hostinger.com/coupons"
+    ]
+  },
+  "huly": {
+    "verifiedAt": "2026-11-27T15:28:41.193Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:28:41.193Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://huly.io/pricing",
+      "https://docs.huly.io/getting-started/self-host/",
+      "https://docs.huly.io/getting-started/workspace-setup/"
+    ]
+  },
+  "hyperping": {
+    "verifiedAt": "2026-11-27T15:29:00.277Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:00.277Z",
+    "tokens": [
+      "2month"
+    ],
+    "missing": [],
+    "sources": [
+      "https://hyperping.com/pricing"
+    ]
+  },
+  "imagify": {
+    "verifiedAt": "2026-11-27T15:29:26.579Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:26.579Z",
+    "tokens": [
+      "2month"
+    ],
+    "missing": [],
+    "sources": [
+      "https://imagify.io/pricing/"
+    ]
+  },
+  "incident-io": {
+    "verifiedAt": "2026-11-27T15:29:01.150Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:29:01.150Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://incident.io/pricing"
+    ]
+  },
+  "intercom": {
+    "verifiedAt": "2026-11-27T15:29:12.075Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:12.075Z",
+    "tokens": [
+      "25%",
+      "50%",
+      "93%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.intercom.com/pricing",
+      "https://www.intercom.com/early-stage"
+    ]
+  },
+  "jenni-ai": {
+    "verifiedAt": "2026-11-27T15:29:28.863Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:28.863Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://jenni.ai/pricing"
+    ]
+  },
+  "jira": {
+    "verifiedAt": "2026-11-27T15:29:02.105Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:02.105Z",
+    "tokens": [
+      "50%",
+      "75%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.atlassian.com/software/jira/pricing",
+      "https://www.atlassian.com/licensing/cloud",
+      "https://www.atlassian.com/software/views/social-impact-license-request"
+    ]
+  },
+  "linear": {
+    "verifiedAt": "2026-11-27T15:29:10.573Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:29:10.573Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://linear.app/pricing",
+      "https://linear.app/startups"
+    ]
+  },
+  "linguix": {
+    "verifiedAt": "2026-11-27T15:29:27.580Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:27.580Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://linguix.com/pricing"
+    ]
+  },
+  "loom": {
+    "verifiedAt": "2026-11-27T15:28:30.636Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:30.636Z",
+    "tokens": [
+      "17%",
+      "75%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.loom.com/pricing",
+      "https://support.atlassian.com/loom/docs/loom-education-discount-verification/"
+    ]
+  },
+  "mailerlite": {
+    "verifiedAt": "2026-11-27T15:28:18.174Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:18.174Z",
+    "tokens": [
+      "10%",
+      "30%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.mailerlite.com/pricing",
+      "https://www.mailerlite.com/legal/terms-for-nonprofit-discount",
+      "https://www.mailerlite.com/help/nonprofit-discount"
+    ]
+  },
+  "meetgeek": {
+    "verifiedAt": "2026-11-27T15:28:20.845Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:20.845Z",
+    "tokens": [
+      "30%",
+      "40%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://meetgeek.ai/pricing"
+    ]
+  },
+  "microsoft-365": {
+    "status": "error",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:29:07.137Z",
+    "tokens": [],
+    "missing": [],
+    "errors": [
+      "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing: fetch failed",
+      "https://www.microsoft.com/en-us/nonprofits/microsoft-365: fetch failed",
+      "https://www.microsoft.com/en-us/microsoft-365/enterprise/nonprofit-plans-and-pricing: fetch failed"
+    ]
+  },
+  "miro": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:32.393Z",
+    "tokens": [
+      "20%",
+      "30%",
+      "44%"
+    ],
+    "missing": [
+      "30%",
+      "44%"
+    ],
+    "errors": [
+      "https://help.miro.com/hc/en-us/articles/360026839633-Miro-for-non-profits: HTTP 403"
+    ]
+  },
+  "monday": {
+    "verifiedAt": "2026-11-27T15:29:10.124Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:10.124Z",
+    "tokens": [
+      "70%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://monday.com/pricing",
+      "https://monday.com/w/nonprofits"
+    ]
+  },
+  "monsterinsights": {
+    "verifiedAt": "2026-11-27T15:29:15.758Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:15.758Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.monsterinsights.com/pricing/",
+      "https://www.monsterinsights.com/monsterinsights-coupon-code/"
+    ]
+  },
+  "morgen-calendar": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:44.922Z",
+    "tokens": [
+      "15%",
+      "1year",
+      "25%",
+      "50%",
+      "60%"
+    ],
+    "missing": [
+      "15%",
+      "1year",
+      "60%"
+    ]
+  },
+  "motion-calendar": {
+    "verifiedAt": "2026-11-27T15:28:46.067Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:46.067Z",
+    "tokens": [
+      "33%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.usemotion.com/pricing",
+      "https://www.usemotion.com/help/motions-onboarding-process",
+      "https://www.usemotion.com/help/motion-support/cancel-your-plan",
+      "https://www.usemotion.com/help/getting-started/faq/account-and-login-faq"
+    ]
+  },
+  "mymind": {
+    "verifiedAt": "2026-11-27T15:28:41.196Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:41.196Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://mymind.com/pricing",
+      "https://mymind.helpscoutdocs.com/article/72-free-plan",
+      "https://mymind.helpscoutdocs.com/article/24-do-you-have-a-student-plan",
+      "https://mymind.helpscoutdocs.com/article/87-why-was-i-charged-a-higher-different-price-for-my-membership-on-apple"
+    ]
+  },
+  "namecheap": {
+    "status": "error",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:28:18.175Z",
+    "tokens": [],
+    "missing": [],
+    "errors": [
+      "https://www.namecheap.com/promos/coupons/: HTTP 403"
+    ]
+  },
+  "nifty": {
+    "verifiedAt": "2026-11-27T15:28:56.152Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:56.152Z",
+    "tokens": [
+      "50%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://niftypm.com/pricing/"
+    ]
+  },
+  "nocodb": {
+    "verifiedAt": "2026-11-27T15:28:52.954Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:52.954Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://nocodb.com/pricing"
+    ]
+  },
+  "notesnook": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:58.806Z",
+    "tokens": [
+      "$19.99",
+      "1year"
+    ],
+    "missing": [
+      "$19.99"
+    ]
+  },
+  "notion": {
+    "verifiedAt": "2026-11-27T15:28:18.175Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:18.175Z",
+    "tokens": [
+      "20%",
+      "50%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.notion.com/pricing",
+      "https://www.notion.com/help/notion-for-education",
+      "https://www.notion.com/help/notion-for-startups",
+      "https://www.notion.com/nonprofits"
+    ]
+  },
+  "notta": {
+    "verifiedAt": "2026-11-27T15:28:33.393Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:33.393Z",
+    "tokens": [
+      "40%",
+      "50%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.notta.ai/en/pricing",
+      "https://support.notta.ai/hc/en-us/articles/17418832708251-How-to-apply-for-Notta-educational-discount"
+    ]
+  },
+  "ocoya": {
+    "verifiedAt": "2026-11-27T15:29:31.246Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:31.246Z",
+    "tokens": [
+      "2month",
+      "7day"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.ocoya.com/pricing"
+    ]
+  },
+  "otter-ai": {
+    "status": "changed",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:36.069Z",
+    "tokens": [],
+    "missing": [
+      "Nonprofit discount"
+    ],
+    "errors": [
+      "https://help.otter.ai/hc/en-us/articles/4402467517847-Student-Teacher-discount-program-for-the-Pro-plan: HTTP 403",
+      "https://help.otter.ai/hc/en-us/articles/15871360236951-Otter-x-TechSoup-Nonprofit-discount: HTTP 403"
+    ]
+  },
+  "paperguide": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:49.769Z",
+    "tokens": [
+      "41%"
+    ],
+    "missing": [
+      "41%"
+    ]
+  },
+  "paperpal": {
+    "verifiedAt": "2026-11-27T15:29:28.086Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:28.086Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://paperpal.com/pricing"
+    ]
+  },
+  "perfmatters": {
+    "status": "error",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:25.750Z",
+    "tokens": [],
+    "missing": [],
+    "errors": [
+      "https://perfmatters.io/pricing/: HTTP 403"
+    ]
+  },
+  "photoroom": {
+    "verifiedAt": "2026-11-27T15:28:27.324Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:27.324Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.photoroom.com/pricing"
+    ]
+  },
+  "pixelcut": {
+    "verifiedAt": "2026-11-27T15:28:27.670Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:27.670Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.pixelcut.ai/pricing"
+    ]
+  },
+  "plutio": {
+    "verifiedAt": "2026-11-27T15:28:57.693Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:57.693Z",
+    "tokens": [
+      "2month"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.plutio.com/pricing"
+    ]
+  },
+  "predis-ai": {
+    "verifiedAt": "2026-11-27T15:29:30.385Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:30.385Z",
+    "tokens": [
+      "3day"
+    ],
+    "missing": [],
+    "sources": [
+      "https://predis.ai/pricing/",
+      "https://help.predis.ai/knowledgebase/en/article/why-was-i-charged-understanding-auto-renewal-on-predis"
+    ]
+  },
+  "ranktracker": {
+    "verifiedAt": "2026-11-27T15:28:47.447Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:47.447Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.ranktracker.com/pricing/"
+    ]
+  },
+  "reclaim-ai": {
+    "verifiedAt": "2026-11-27T15:28:21.925Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:21.925Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://reclaim.ai/pricing"
+    ]
+  },
+  "riverside-fm": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:39.199Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [
+      "Organization offer"
+    ],
+    "errors": [
+      "https://riverside.com/pricing: Source identifies its pricing as an outdated staging preview",
+      "https://support.riverside.com/hc/en-us/articles/11084604328221-Do-you-have-coupons-discounts-or-promotions: HTTP 403",
+      "https://support.riverside.com/hc/en-us/articles/7781140196381-Apply-a-discount-code: HTTP 403"
+    ]
+  },
+  "rootly": {
+    "verifiedAt": "2026-11-27T15:29:01.849Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:01.849Z",
+    "tokens": [
+      "50%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://rootly.com/pricing"
+    ]
+  },
+  "scholarcy": {
+    "status": "error",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:29.072Z",
+    "tokens": [],
+    "missing": [],
+    "errors": [
+      "https://www.scholarcy.com/pricing: HTTP 403"
+    ]
+  },
+  "scispace": {
+    "status": "error",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:47.607Z",
+    "tokens": [],
+    "missing": [],
+    "errors": [
+      "https://scispace.com/pricing: HTTP 403",
+      "https://scispace.com/help/en/articles/14686913-discounts-on-scispace-plans: HTTP 403",
+      "https://scispace.com/guides/credits-pricing-guide: HTTP 403",
+      "https://scispace.com/typeset-pricing/: HTTP 403"
+    ]
+  },
+  "seedprod": {
+    "verifiedAt": "2026-11-27T15:29:18.421Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:18.421Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.seedprod.com/pricing/",
+      "https://www.seedprod.com/seedprod-coupon-code/"
+    ]
+  },
+  "sembly-ai": {
+    "verifiedAt": "2026-11-27T15:28:34.872Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:34.872Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.sembly.ai/pricing/",
+      "https://help.sembly.ai/en/articles/204-understanding-subscription-terms-for-studio"
+    ]
+  },
+  "semrush": {
+    "verifiedAt": "2026-11-27T15:28:47.317Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:47.317Z",
+    "tokens": [
+      "17%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.semrush.com/pricing/seo-ai-search/",
+      "https://www.semrush.com/academy/semrush-for-education/",
+      "https://www.semrush.com/kb/1011-subscriptions"
+    ]
+  },
+  "sendible": {
+    "verifiedAt": "2026-11-27T15:29:29.955Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:29.955Z",
+    "tokens": [
+      "15%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.sendible.com/pricing"
+    ]
+  },
+  "sentry": {
+    "verifiedAt": "2026-11-27T15:29:12.035Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:12.035Z",
+    "tokens": [
+      "$5000",
+      "12month"
+    ],
+    "missing": [],
+    "sources": [
+      "https://sentry.io/pricing/",
+      "https://sentry.io/for/startups/apply/"
+    ]
+  },
+  "seopress": {
+    "verifiedAt": "2026-11-27T15:29:24.664Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:24.664Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.seopress.org/pricing/"
+    ]
+  },
+  "serpstat": {
+    "verifiedAt": "2026-11-27T15:28:47.107Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:47.107Z",
+    "tokens": [
+      "27%",
+      "7day"
+    ],
+    "missing": [],
+    "sources": [
+      "https://serpstat.com/page/pricing-plans/",
+      "https://serpstat.com/for-courses/",
+      "https://serpstat.com/site/help/"
+    ]
+  },
+  "shortpixel": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:25.771Z",
+    "tokens": [
+      "2month"
+    ],
+    "missing": [
+      "2month"
+    ]
+  },
+  "slack": {
+    "verifiedAt": "2026-11-27T15:28:30.384Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:30.384Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://slack.com/pricing",
+      "https://slack.com/help/articles/204368833-Apply-for-the-Slack-for-Nonprofits-discount"
+    ]
+  },
+  "smartlead": {
+    "verifiedAt": "2026-11-27T15:29:32.654Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:32.654Z",
+    "tokens": [
+      "17%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.smartlead.ai/pricing"
+    ]
+  },
+  "smartsuite": {
+    "verifiedAt": "2026-11-27T15:28:55.872Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:55.872Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://www.smartsuite.com/pricing",
+      "https://help.smartsuite.com/en/articles/7786139-nonprofit-education-discount-program"
+    ]
+  },
+  "snov-io": {
+    "verifiedAt": "2026-11-27T15:29:31.095Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:31.095Z",
+    "tokens": [
+      "25%",
+      "3month",
+      "5%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://snov.io/pricing"
+    ]
+  },
+  "socialpilot": {
+    "verifiedAt": "2026-11-27T15:29:29.909Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:29.909Z",
+    "tokens": [
+      "15%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.socialpilot.co/pricing"
+    ]
+  },
+  "sourcery": {
+    "verifiedAt": "2026-11-27T15:28:59.808Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:59.808Z",
+    "tokens": [
+      "14day",
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.sourcery.ai/pricing"
+    ]
+  },
+  "streamyard": {
+    "verifiedAt": "2026-11-27T15:29:33.968Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:33.968Z",
+    "tokens": [
+      "7day"
+    ],
+    "missing": [],
+    "sources": [
+      "https://streamyard.com/pricing"
+    ]
+  },
+  "sunsama": {
+    "verifiedAt": "2026-11-27T15:28:44.322Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:44.322Z",
+    "tokens": [
+      "14day"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.sunsama.com/pricing",
+      "https://help.sunsama.com/docs/billing/overview/"
+    ]
+  },
+  "superwhisper": {
+    "verifiedAt": "2026-11-27T15:28:26.274Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:26.274Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://superwhisper.com/#pricing"
+    ]
+  },
+  "systeme-io": {
+    "verifiedAt": "2026-11-27T15:29:32.527Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:32.527Z",
+    "tokens": [
+      "2month"
+    ],
+    "missing": [],
+    "sources": [
+      "https://systeme.io/pricing"
+    ]
+  },
+  "tactiq": {
+    "verifiedAt": "2026-11-27T15:28:20.232Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:20.232Z",
+    "tokens": [
+      "33%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://tactiq.io/buy"
+    ]
+  },
+  "taplio": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:31.384Z",
+    "tokens": [
+      "25%",
+      "7day"
+    ],
+    "missing": [
+      "Bundle discount"
+    ],
+    "errors": [
+      "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio: HTTP 404"
+    ]
+  },
+  "text-blaze": {
+    "verifiedAt": "2026-11-27T15:29:27.334Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:27.334Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://blaze.today/plans/"
+    ]
+  },
+  "tldv": {
+    "verifiedAt": "2026-11-27T15:28:32.874Z",
+    "status": "verified",
+    "method": "savings-terms",
+    "checkedAt": "2026-11-27T15:28:32.874Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://tldv.io/app/pricing/",
+      "https://intercom.help/tldv/en/articles/7262297-are-you-offering-discounts-for-non-profits-and-ngos",
+      "https://tldv.io/terms/",
+      "https://intercom.help/tldv/de/articles/6082483-wie-sieht-die-preisgestaltung-von-tl-dv-aus"
+    ]
+  },
+  "trello": {
+    "verifiedAt": "2026-11-27T15:29:02.995Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:02.995Z",
+    "tokens": [
+      "75%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://trello.com/pricing",
+      "https://trello.com/en/use-cases/nonprofits",
+      "https://support.atlassian.com/trello/docs/workspace-user-limit/"
+    ]
+  },
+  "trupeer": {
+    "verifiedAt": "2026-11-27T15:28:25.332Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:25.332Z",
+    "tokens": [
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.trupeer.ai/pricing"
+    ]
+  },
+  "trustmary": {
+    "verifiedAt": "2026-11-27T15:28:24.129Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:28:24.129Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://trustmary.com/pricing/"
+    ]
+  },
+  "typeform": {
+    "status": "changed",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:14.260Z",
+    "tokens": [
+      "25%",
+      "40%",
+      "50%",
+      "75%"
+    ],
+    "missing": [
+      "25%",
+      "40%",
+      "50%",
+      "75%"
+    ],
+    "errors": [
+      "https://help.typeform.com/hc/en-us/articles/360045878891-Startup-discount-at-Typeform: HTTP 403",
+      "https://help.typeform.com/hc/en-us/articles/360039728951-Non-profit-NGO-and-student-discounts-at-Typeform: HTTP 403",
+      "https://help.typeform.com/hc/en-us/articles/28720318186772-How-to-use-a-Typeform-discount-coupon: HTTP 403"
+    ]
+  },
+  "typingmind": {
+    "status": "error",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:29.274Z",
+    "tokens": [],
+    "missing": [],
+    "errors": [
+      "https://www.typingmind.com/: Insufficient visible source content"
+    ]
+  },
+  "wispr-flow": {
+    "verifiedAt": "2026-11-27T15:28:25.986Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:25.986Z",
+    "tokens": [
+      "50%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://wisprflow.ai/pricing"
+    ]
+  },
+  "wp-mail-smtp": {
+    "verifiedAt": "2026-11-27T15:29:20.316Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:20.316Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://wpmailsmtp.com/pricing/",
+      "https://wpmailsmtp.com/wp-mail-smtp-coupon/"
+    ]
+  },
+  "wp-rocket": {
+    "verifiedAt": "2026-11-27T15:29:25.344Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:25.344Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://wp-rocket.me/pricing/"
+    ]
+  },
+  "wpforms": {
+    "verifiedAt": "2026-11-27T15:29:14.305Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:29:14.305Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://wpforms.com/pricing/",
+      "https://wpforms.com/wpforms-coupon-code/"
+    ]
+  },
+  "xtiles": {
+    "verifiedAt": "2026-11-27T15:28:58.010Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:28:58.010Z",
+    "tokens": [
+      "1year",
+      "50%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://xtiles.app/en/pricing/",
+      "https://help.xtiles.app/en/articles/13398956-how-to-apply-a-promocode"
+    ]
+  },
+  "zapier": {
+    "verifiedAt": "2026-11-27T15:29:14.269Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:29:14.269Z",
+    "tokens": [
+      "15%",
+      "33%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://zapier.com/pricing",
+      "https://help.zapier.com/hc/en-us/articles/8496197165581-Discounts-for-Zapier-plans",
+      "https://help.zapier.com/hc/en-us/articles/8496277302157-Upgrade-or-downgrade-your-Zapier-plan"
+    ]
+  },
+  "zencastr": {
+    "verifiedAt": "2026-11-27T15:28:27.219Z",
+    "status": "verified",
+    "method": "source-available",
+    "checkedAt": "2026-11-27T15:28:27.219Z",
+    "tokens": [],
+    "missing": [],
+    "sources": [
+      "https://zencastr.com/pricing"
+    ]
+  }
+}
