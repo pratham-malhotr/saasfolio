@@ -27,10 +27,11 @@ export default function ArticlesPage() {
   return <>
     <JsonLd data={collectionSchema(title, description, "/articles", articles.map(article => ({ name: article.title, path: `/articles/${article.slug}` })))} />
     <ArticlesHubClient articles={articles} savingsLinks={<div className="space-y-8">
+      <h2 className="font-display text-2xl font-bold tracking-[-0.03em] text-white">Browse guides by topic</h2>
       <nav aria-label="Software buying guides by topic" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {readingTopics.map(topic => (
           <section key={topic.heading} className="rounded-2xl border border-white/10 bg-[#0b0d0b] p-5 transition-colors hover:border-[#C6FF3D]/30">
-            <h2 className="font-display text-lg font-semibold text-white">{topic.heading}</h2>
+            <h3 className="font-display text-lg font-semibold text-white">{topic.heading}</h3>
             <ul className="mt-3 space-y-2">
               {topic.slugs.map(slug => <li key={slug}><Link prefetch={false} href={`/articles/${slug}`} className="inline-block py-1.5 text-sm leading-relaxed text-[#C6FF3D] underline underline-offset-4">{articleTitles.get(slug)}</Link></li>)}
             </ul>
