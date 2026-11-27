@@ -25,6 +25,12 @@ for (const tool of tools) {
   assert.equal(tool.reviewCount, 0, "No invented reviews");
   assert.equal(tool.rating, 0, "No invented ratings");
 }
+// Evidence must be specific enough to identify the offer on its source page.
+// Checked on the reviewed definitions too, so a thin phrase fails in an ordinary PR
+// rather than first appearing when a scheduled refresh publishes the offer.
+for (const offer of read("reviewed-offers.json")) {
+  assert.ok(offer.evidence.join("; ").length >= 8 && offer.terms.length > 40, `${offer.slug}: reviewed evidence and eligibility`);
+}
 assert.equal(new Set(snapshot.offers.map(o => o.slug)).size, snapshot.offers.length, "Offer slugs are unique");
 for (const offer of snapshot.offers) {
   assert.ok(slugs.has(offer.toolSlug), `Unknown brand: ${offer.toolSlug}`);
