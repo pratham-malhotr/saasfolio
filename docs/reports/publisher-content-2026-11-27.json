@@ -1,0 +1,3750 @@
+{
+  "generatedAt": "2026-11-27T16:23:14.284Z",
+  "origin": "http://127.0.0.1:3238",
+  "scope": "Production-build HTTP and content checks; public GETs; no accounts, emails, ads or consent submissions; not an AdSense approval prediction",
+  "summary": {
+    "publishedTools": 159,
+    "excludedLegacyTools": 636,
+    "publishedOffers": 91,
+    "originalComparisons": 13,
+    "sitemapPages": 492,
+    "contentPages": 492,
+    "largestHtmlBytes": 693291,
+    "scriptAssets": 43,
+    "largestScriptBytes": 242567,
+    "indexingErrors": 0,
+    "errors": 0
+  },
+  "indexing": {
+    "summary": {
+      "sitemapUrls": 492,
+      "importedUrls": 0,
+      "auditedUrls": 492,
+      "skippedUrls": 0,
+      "pageStatusCounts": {
+        "200": 492
+      },
+      "publicStatusCounts": {
+        "200": 492
+      },
+      "expectedPrivateStatusCounts": {},
+      "classificationCounts": {
+        "200": 492
+      },
+      "documentStatusCounts": {
+        "200": 2
+      },
+      "errors": 0,
+      "warnings": 0,
+      "affectedPages": 0
+    },
+    "failures": []
+  },
+  "content": [
+    {
+      "path": "/hosting",
+      "htmlBytes": 605296,
+      "visibleWords": 2851,
+      "links": 181,
+      "findings": []
+    },
+    {
+      "path": "/editorial-policy",
+      "htmlBytes": 347895,
+      "visibleWords": 666,
+      "links": 6,
+      "findings": []
+    },
+    {
+      "path": "/brands",
+      "htmlBytes": 660146,
+      "visibleWords": 6723,
+      "links": 295,
+      "findings": []
+    },
+    {
+      "path": "/hosting-cost-calculator",
+      "htmlBytes": 349676,
+      "visibleWords": 542,
+      "links": 3,
+      "findings": []
+    },
+    {
+      "path": "/savings-calculator",
+      "htmlBytes": 343123,
+      "visibleWords": 297,
+      "links": 2,
+      "findings": []
+    },
+    {
+      "path": "/",
+      "htmlBytes": 452885,
+      "visibleWords": 865,
+      "links": 62,
+      "findings": []
+    },
+    {
+      "path": "/deals",
+      "htmlBytes": 664467,
+      "visibleWords": 3906,
+      "links": 284,
+      "findings": []
+    },
+    {
+      "path": "/discounts",
+      "htmlBytes": 693291,
+      "visibleWords": 6667,
+      "links": 301,
+      "findings": []
+    },
+    {
+      "path": "/tools",
+      "htmlBytes": 483583,
+      "visibleWords": 1013,
+      "links": 59,
+      "findings": []
+    },
+    {
+      "path": "/compare",
+      "htmlBytes": 419634,
+      "visibleWords": 2562,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/articles",
+      "htmlBytes": 657214,
+      "visibleWords": 3538,
+      "links": 91,
+      "findings": []
+    },
+    {
+      "path": "/about",
+      "htmlBytes": 349502,
+      "visibleWords": 509,
+      "links": 7,
+      "findings": []
+    },
+    {
+      "path": "/contact",
+      "htmlBytes": 344402,
+      "visibleWords": 301,
+      "links": 7,
+      "findings": []
+    },
+    {
+      "path": "/affiliate-disclosure",
+      "htmlBytes": 340848,
+      "visibleWords": 230,
+      "links": 2,
+      "findings": []
+    },
+    {
+      "path": "/privacy",
+      "htmlBytes": 354937,
+      "visibleWords": 762,
+      "links": 3,
+      "findings": []
+    },
+    {
+      "path": "/terms",
+      "htmlBytes": 348783,
+      "visibleWords": 436,
+      "links": 2,
+      "findings": []
+    },
+    {
+      "path": "/coupon-codes",
+      "htmlBytes": 423569,
+      "visibleWords": 1616,
+      "links": 46,
+      "findings": []
+    },
+    {
+      "path": "/student-discounts",
+      "htmlBytes": 382149,
+      "visibleWords": 1093,
+      "links": 27,
+      "findings": []
+    },
+    {
+      "path": "/startup-deals",
+      "htmlBytes": 425953,
+      "visibleWords": 1648,
+      "links": 56,
+      "findings": []
+    },
+    {
+      "path": "/nonprofit-discounts",
+      "htmlBytes": 452646,
+      "visibleWords": 2009,
+      "links": 73,
+      "findings": []
+    },
+    {
+      "path": "/discounts/adobe-creative-cloud",
+      "htmlBytes": 410243,
+      "visibleWords": 1665,
+      "links": 37,
+      "findings": []
+    },
+    {
+      "path": "/discounts/affine",
+      "htmlBytes": 403089,
+      "visibleWords": 1555,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/ahrefs",
+      "htmlBytes": 405511,
+      "visibleWords": 1622,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/discounts/airtable",
+      "htmlBytes": 406783,
+      "visibleWords": 1602,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/akiflow",
+      "htmlBytes": 417763,
+      "visibleWords": 1860,
+      "links": 42,
+      "findings": []
+    },
+    {
+      "path": "/discounts/alitu",
+      "htmlBytes": 394932,
+      "visibleWords": 1389,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/aioseo",
+      "htmlBytes": 406120,
+      "visibleWords": 1628,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/anytrack",
+      "htmlBytes": 410369,
+      "visibleWords": 1657,
+      "links": 40,
+      "findings": []
+    },
+    {
+      "path": "/discounts/asana",
+      "htmlBytes": 413045,
+      "visibleWords": 1682,
+      "links": 41,
+      "findings": []
+    },
+    {
+      "path": "/discounts/baremetrics",
+      "htmlBytes": 409461,
+      "visibleWords": 1693,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/baserow",
+      "htmlBytes": 419249,
+      "visibleWords": 1777,
+      "links": 47,
+      "findings": []
+    },
+    {
+      "path": "/discounts/beehiiv",
+      "htmlBytes": 428808,
+      "visibleWords": 2180,
+      "links": 43,
+      "findings": []
+    },
+    {
+      "path": "/discounts/bigin",
+      "htmlBytes": 400320,
+      "visibleWords": 1409,
+      "links": 37,
+      "findings": []
+    },
+    {
+      "path": "/discounts/box",
+      "htmlBytes": 397521,
+      "visibleWords": 1481,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/discounts/browserstack",
+      "htmlBytes": 397986,
+      "visibleWords": 1487,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/buttondown",
+      "htmlBytes": 402890,
+      "visibleWords": 1426,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/cal-com",
+      "htmlBytes": 406986,
+      "visibleWords": 1693,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/canva",
+      "htmlBytes": 398629,
+      "visibleWords": 1437,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/castmagic",
+      "htmlBytes": 400226,
+      "visibleWords": 1387,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/checkly",
+      "htmlBytes": 411755,
+      "visibleWords": 1655,
+      "links": 40,
+      "findings": []
+    },
+    {
+      "path": "/discounts/clickup",
+      "htmlBytes": 397892,
+      "visibleWords": 1408,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/clueso",
+      "htmlBytes": 393304,
+      "visibleWords": 1266,
+      "links": 32,
+      "findings": []
+    },
+    {
+      "path": "/discounts/coderabbit",
+      "htmlBytes": 417583,
+      "visibleWords": 1754,
+      "links": 45,
+      "findings": []
+    },
+    {
+      "path": "/discounts/colossyan",
+      "htmlBytes": 408754,
+      "visibleWords": 1549,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/confluence",
+      "htmlBytes": 408748,
+      "visibleWords": 1593,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/consensus",
+      "htmlBytes": 399561,
+      "visibleWords": 1523,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/creatify",
+      "htmlBytes": 402712,
+      "visibleWords": 1544,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/deadline-funnel",
+      "htmlBytes": 406744,
+      "visibleWords": 1666,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/descript",
+      "htmlBytes": 412597,
+      "visibleWords": 1803,
+      "links": 37,
+      "findings": []
+    },
+    {
+      "path": "/discounts/dropbox",
+      "htmlBytes": 412529,
+      "visibleWords": 1688,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/dubble",
+      "htmlBytes": 399659,
+      "visibleWords": 1379,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/duplicator",
+      "htmlBytes": 406270,
+      "visibleWords": 1534,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/elicit",
+      "htmlBytes": 408793,
+      "visibleWords": 1701,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/fabric",
+      "htmlBytes": 407563,
+      "visibleWords": 1663,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/famewall",
+      "htmlBytes": 400136,
+      "visibleWords": 1403,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/fathom",
+      "htmlBytes": 420894,
+      "visibleWords": 1953,
+      "links": 43,
+      "findings": []
+    },
+    {
+      "path": "/discounts/fellow",
+      "htmlBytes": 407447,
+      "visibleWords": 1582,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/fibery",
+      "htmlBytes": 415852,
+      "visibleWords": 1766,
+      "links": 45,
+      "findings": []
+    },
+    {
+      "path": "/discounts/figma",
+      "htmlBytes": 401871,
+      "visibleWords": 1427,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/firecrawl",
+      "htmlBytes": 405450,
+      "visibleWords": 1672,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/fireflies-ai",
+      "htmlBytes": 409414,
+      "visibleWords": 1714,
+      "links": 42,
+      "findings": []
+    },
+    {
+      "path": "/discounts/fluent-forms",
+      "htmlBytes": 397618,
+      "visibleWords": 1366,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/discounts/fluentcrm",
+      "htmlBytes": 395578,
+      "visibleWords": 1326,
+      "links": 32,
+      "findings": []
+    },
+    {
+      "path": "/discounts/flyingpress",
+      "htmlBytes": 403331,
+      "visibleWords": 1477,
+      "links": 37,
+      "findings": []
+    },
+    {
+      "path": "/discounts/formidable-forms",
+      "htmlBytes": 404084,
+      "visibleWords": 1461,
+      "links": 37,
+      "findings": []
+    },
+    {
+      "path": "/discounts/framer",
+      "htmlBytes": 410338,
+      "visibleWords": 1708,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/google-workspace",
+      "htmlBytes": 418452,
+      "visibleWords": 1817,
+      "links": 42,
+      "findings": []
+    },
+    {
+      "path": "/discounts/granola",
+      "htmlBytes": 393880,
+      "visibleWords": 1284,
+      "links": 32,
+      "findings": []
+    },
+    {
+      "path": "/discounts/gravity-forms",
+      "htmlBytes": 406905,
+      "visibleWords": 1546,
+      "links": 40,
+      "findings": []
+    },
+    {
+      "path": "/discounts/guideflow",
+      "htmlBytes": 400725,
+      "visibleWords": 1420,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/healthchecks-io",
+      "htmlBytes": 413031,
+      "visibleWords": 1668,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/hedra",
+      "htmlBytes": 390428,
+      "visibleWords": 1165,
+      "links": 31,
+      "findings": []
+    },
+    {
+      "path": "/discounts/hiver",
+      "htmlBytes": 403613,
+      "visibleWords": 1568,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/hostinger",
+      "htmlBytes": 429753,
+      "visibleWords": 1989,
+      "links": 54,
+      "findings": []
+    },
+    {
+      "path": "/discounts/huly",
+      "htmlBytes": 395194,
+      "visibleWords": 1295,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/hyperping",
+      "htmlBytes": 410781,
+      "visibleWords": 1654,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/imagify",
+      "htmlBytes": 409492,
+      "visibleWords": 1630,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/incident-io",
+      "htmlBytes": 410889,
+      "visibleWords": 1624,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/intercom",
+      "htmlBytes": 419420,
+      "visibleWords": 1856,
+      "links": 46,
+      "findings": []
+    },
+    {
+      "path": "/discounts/jenni-ai",
+      "htmlBytes": 396978,
+      "visibleWords": 1401,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/jira",
+      "htmlBytes": 417574,
+      "visibleWords": 1795,
+      "links": 43,
+      "findings": []
+    },
+    {
+      "path": "/discounts/julius-ai",
+      "htmlBytes": 404578,
+      "visibleWords": 1663,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/convertkit",
+      "htmlBytes": 408530,
+      "visibleWords": 1653,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/linear",
+      "htmlBytes": 414021,
+      "visibleWords": 1721,
+      "links": 41,
+      "findings": []
+    },
+    {
+      "path": "/discounts/linguix",
+      "htmlBytes": 404508,
+      "visibleWords": 1509,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/loom",
+      "htmlBytes": 412749,
+      "visibleWords": 1713,
+      "links": 40,
+      "findings": []
+    },
+    {
+      "path": "/discounts/mailerlite",
+      "htmlBytes": 409094,
+      "visibleWords": 1638,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/meetgeek",
+      "htmlBytes": 410274,
+      "visibleWords": 1613,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/microsoft-365",
+      "htmlBytes": 401980,
+      "visibleWords": 1544,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/miro",
+      "htmlBytes": 397120,
+      "visibleWords": 1402,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/monday",
+      "htmlBytes": 414157,
+      "visibleWords": 1722,
+      "links": 41,
+      "findings": []
+    },
+    {
+      "path": "/discounts/monsterinsights",
+      "htmlBytes": 406872,
+      "visibleWords": 1494,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/morgen-calendar",
+      "htmlBytes": 406598,
+      "visibleWords": 1713,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/motion-calendar",
+      "htmlBytes": 416930,
+      "visibleWords": 1794,
+      "links": 41,
+      "findings": []
+    },
+    {
+      "path": "/discounts/mymind",
+      "htmlBytes": 409158,
+      "visibleWords": 1634,
+      "links": 37,
+      "findings": []
+    },
+    {
+      "path": "/discounts/namecheap",
+      "htmlBytes": 395598,
+      "visibleWords": 1425,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/nifty",
+      "htmlBytes": 415908,
+      "visibleWords": 1783,
+      "links": 43,
+      "findings": []
+    },
+    {
+      "path": "/discounts/nocodb",
+      "htmlBytes": 411055,
+      "visibleWords": 1653,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/notesnook",
+      "htmlBytes": 410522,
+      "visibleWords": 1737,
+      "links": 44,
+      "findings": []
+    },
+    {
+      "path": "/discounts/notion",
+      "htmlBytes": 431045,
+      "visibleWords": 2196,
+      "links": 49,
+      "findings": []
+    },
+    {
+      "path": "/discounts/notta",
+      "htmlBytes": 410334,
+      "visibleWords": 1732,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/ocoya",
+      "htmlBytes": 405942,
+      "visibleWords": 1688,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/discounts/otter-ai",
+      "htmlBytes": 407237,
+      "visibleWords": 1697,
+      "links": 40,
+      "findings": []
+    },
+    {
+      "path": "/discounts/paperguide",
+      "htmlBytes": 397554,
+      "visibleWords": 1514,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/paperpal",
+      "htmlBytes": 405320,
+      "visibleWords": 1518,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/perfmatters",
+      "htmlBytes": 397559,
+      "visibleWords": 1498,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/photoroom",
+      "htmlBytes": 407967,
+      "visibleWords": 1575,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/pixelcut",
+      "htmlBytes": 399951,
+      "visibleWords": 1395,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/plutio",
+      "htmlBytes": 415725,
+      "visibleWords": 1778,
+      "links": 43,
+      "findings": []
+    },
+    {
+      "path": "/discounts/predis-ai",
+      "htmlBytes": 417326,
+      "visibleWords": 1951,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/ranktracker",
+      "htmlBytes": 405102,
+      "visibleWords": 1591,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/reclaim-ai",
+      "htmlBytes": 408303,
+      "visibleWords": 1575,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/riverside-fm",
+      "htmlBytes": 401840,
+      "visibleWords": 1555,
+      "links": 37,
+      "findings": []
+    },
+    {
+      "path": "/discounts/rootly",
+      "htmlBytes": 411270,
+      "visibleWords": 1698,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/scholarcy",
+      "htmlBytes": 396595,
+      "visibleWords": 1458,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/scispace",
+      "htmlBytes": 399582,
+      "visibleWords": 1533,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/scribe-mail",
+      "htmlBytes": 410446,
+      "visibleWords": 1781,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/seedprod",
+      "htmlBytes": 405482,
+      "visibleWords": 1517,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/sembly-ai",
+      "htmlBytes": 414811,
+      "visibleWords": 1830,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/semrush",
+      "htmlBytes": 416414,
+      "visibleWords": 1819,
+      "links": 41,
+      "findings": []
+    },
+    {
+      "path": "/discounts/sendible",
+      "htmlBytes": 414942,
+      "visibleWords": 1705,
+      "links": 43,
+      "findings": []
+    },
+    {
+      "path": "/discounts/sentry",
+      "htmlBytes": 408962,
+      "visibleWords": 1638,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/seopress",
+      "htmlBytes": 395635,
+      "visibleWords": 1337,
+      "links": 32,
+      "findings": []
+    },
+    {
+      "path": "/discounts/serpstat",
+      "htmlBytes": 418856,
+      "visibleWords": 1902,
+      "links": 42,
+      "findings": []
+    },
+    {
+      "path": "/discounts/shortpixel",
+      "htmlBytes": 396775,
+      "visibleWords": 1463,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/slack",
+      "htmlBytes": 409899,
+      "visibleWords": 1602,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/smartlead",
+      "htmlBytes": 409779,
+      "visibleWords": 1622,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/smartsuite",
+      "htmlBytes": 419070,
+      "visibleWords": 1743,
+      "links": 45,
+      "findings": []
+    },
+    {
+      "path": "/discounts/snov-io",
+      "htmlBytes": 408214,
+      "visibleWords": 1691,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/socialpilot",
+      "htmlBytes": 411957,
+      "visibleWords": 1658,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/sourcery",
+      "htmlBytes": 416483,
+      "visibleWords": 1760,
+      "links": 44,
+      "findings": []
+    },
+    {
+      "path": "/discounts/streamyard",
+      "htmlBytes": 415956,
+      "visibleWords": 1797,
+      "links": 40,
+      "findings": []
+    },
+    {
+      "path": "/discounts/sunsama",
+      "htmlBytes": 410064,
+      "visibleWords": 1674,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/superwhisper",
+      "htmlBytes": 401868,
+      "visibleWords": 1472,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/discounts/systeme-io",
+      "htmlBytes": 404098,
+      "visibleWords": 1563,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/tactiq",
+      "htmlBytes": 409597,
+      "visibleWords": 1635,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/taplio",
+      "htmlBytes": 439000,
+      "visibleWords": 2343,
+      "links": 54,
+      "findings": []
+    },
+    {
+      "path": "/discounts/text-blaze",
+      "htmlBytes": 402400,
+      "visibleWords": 1473,
+      "links": 37,
+      "findings": []
+    },
+    {
+      "path": "/discounts/tldv",
+      "htmlBytes": 408794,
+      "visibleWords": 1692,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/tradingview",
+      "htmlBytes": 407296,
+      "visibleWords": 1717,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/discounts/trello",
+      "htmlBytes": 415356,
+      "visibleWords": 1744,
+      "links": 42,
+      "findings": []
+    },
+    {
+      "path": "/discounts/trupeer",
+      "htmlBytes": 407970,
+      "visibleWords": 1542,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/trustmary",
+      "htmlBytes": 393986,
+      "visibleWords": 1271,
+      "links": 32,
+      "findings": []
+    },
+    {
+      "path": "/discounts/typeform",
+      "htmlBytes": 400660,
+      "visibleWords": 1527,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/discounts/typingmind",
+      "htmlBytes": 393783,
+      "visibleWords": 1358,
+      "links": 32,
+      "findings": []
+    },
+    {
+      "path": "/discounts/wispr-flow",
+      "htmlBytes": 410904,
+      "visibleWords": 1646,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/discounts/wp-mail-smtp",
+      "htmlBytes": 406369,
+      "visibleWords": 1575,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/wp-rocket",
+      "htmlBytes": 405881,
+      "visibleWords": 1602,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/discounts/wpforms",
+      "htmlBytes": 415755,
+      "visibleWords": 1739,
+      "links": 46,
+      "findings": []
+    },
+    {
+      "path": "/discounts/xtiles",
+      "htmlBytes": 413683,
+      "visibleWords": 1735,
+      "links": 40,
+      "findings": []
+    },
+    {
+      "path": "/discounts/zapier",
+      "htmlBytes": 417385,
+      "visibleWords": 1780,
+      "links": 42,
+      "findings": []
+    },
+    {
+      "path": "/discounts/zencastr",
+      "htmlBytes": 393816,
+      "visibleWords": 1263,
+      "links": 32,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/ai-tools",
+      "htmlBytes": 395171,
+      "visibleWords": 853,
+      "links": 31,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/marketing",
+      "htmlBytes": 433423,
+      "visibleWords": 1333,
+      "links": 69,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/crm-sales",
+      "htmlBytes": 396521,
+      "visibleWords": 825,
+      "links": 30,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/dev-tools",
+      "htmlBytes": 451214,
+      "visibleWords": 1571,
+      "links": 81,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/design",
+      "htmlBytes": 404213,
+      "visibleWords": 927,
+      "links": 39,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/analytics",
+      "htmlBytes": 386795,
+      "visibleWords": 693,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/hosting",
+      "htmlBytes": 403159,
+      "visibleWords": 891,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/finance",
+      "htmlBytes": 378137,
+      "visibleWords": 589,
+      "links": 11,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/productivity",
+      "htmlBytes": 478142,
+      "visibleWords": 1869,
+      "links": 115,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/security",
+      "htmlBytes": 377038,
+      "visibleWords": 549,
+      "links": 11,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/ecommerce",
+      "htmlBytes": 375247,
+      "visibleWords": 562,
+      "links": 9,
+      "findings": []
+    },
+    {
+      "path": "/deals/category/project-management",
+      "htmlBytes": 425133,
+      "visibleWords": 1194,
+      "links": 56,
+      "findings": []
+    },
+    {
+      "path": "/deals/duplicator-official-license-code",
+      "htmlBytes": 373093,
+      "visibleWords": 584,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/monsterinsights-official-intro-code",
+      "htmlBytes": 368554,
+      "visibleWords": 497,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/deals/seedprod-official-intro-code",
+      "htmlBytes": 370353,
+      "visibleWords": 548,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/wpforms-official-new-license-code",
+      "htmlBytes": 372487,
+      "visibleWords": 595,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/taplio-aware-transition",
+      "htmlBytes": 371959,
+      "visibleWords": 601,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/hostinger-couponspage-code",
+      "htmlBytes": 371931,
+      "visibleWords": 548,
+      "links": 21,
+      "findings": []
+    },
+    {
+      "path": "/deals/wp-mail-smtp-official-dollar-code",
+      "htmlBytes": 373128,
+      "visibleWords": 605,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/hostinger-techradar-reported-code",
+      "htmlBytes": 371956,
+      "visibleWords": 548,
+      "links": 21,
+      "findings": []
+    },
+    {
+      "path": "/deals/intercom-early-stage-year-one",
+      "htmlBytes": 370387,
+      "visibleWords": 526,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/siteground-startup-first-term-offer",
+      "htmlBytes": 369250,
+      "visibleWords": 521,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/deals/cloudways-two-month-introductory-offer",
+      "htmlBytes": 369209,
+      "visibleWords": 514,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/deals/jira-community-cloud",
+      "htmlBytes": 370670,
+      "visibleWords": 527,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/trello-nonprofit-program",
+      "htmlBytes": 370690,
+      "visibleWords": 523,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/hostinger-vps-introductory-offer",
+      "htmlBytes": 371712,
+      "visibleWords": 566,
+      "links": 21,
+      "findings": []
+    },
+    {
+      "path": "/deals/monday-nonprofit-additional-seats",
+      "htmlBytes": 371472,
+      "visibleWords": 542,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/asana-nonprofit-program",
+      "htmlBytes": 371037,
+      "visibleWords": 534,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/kinsta-three-month-introductory-offer",
+      "htmlBytes": 369040,
+      "visibleWords": 510,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/deals/nifty-nonprofit-education",
+      "htmlBytes": 371429,
+      "visibleWords": 544,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/rootly-startup-program",
+      "htmlBytes": 371534,
+      "visibleWords": 545,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/xtiles-education-year",
+      "htmlBytes": 371953,
+      "visibleWords": 533,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/zapier-annual-billing",
+      "htmlBytes": 371129,
+      "visibleWords": 530,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/checkly-annual-billing",
+      "htmlBytes": 371550,
+      "visibleWords": 539,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/coderabbit-annual-billing",
+      "htmlBytes": 372013,
+      "visibleWords": 538,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/healthchecks-io-annual-business",
+      "htmlBytes": 372199,
+      "visibleWords": 552,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/nocodb-annual-billing",
+      "htmlBytes": 371770,
+      "visibleWords": 527,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/sourcery-annual-billing",
+      "htmlBytes": 371800,
+      "visibleWords": 548,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/google-workspace-annual-commitment",
+      "htmlBytes": 373145,
+      "visibleWords": 549,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/sendible-yearly-plan-offer",
+      "htmlBytes": 371676,
+      "visibleWords": 555,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/socialpilot-annual-plan-offer",
+      "htmlBytes": 371286,
+      "visibleWords": 543,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/aioseo-first-year-published-offer",
+      "htmlBytes": 371486,
+      "visibleWords": 599,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/baserow-organization-program",
+      "htmlBytes": 372647,
+      "visibleWords": 539,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/digitalocean-hatch-startup-program",
+      "htmlBytes": 369269,
+      "visibleWords": 473,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/deals/dropbox-organization-program",
+      "htmlBytes": 372536,
+      "visibleWords": 537,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/fibery-startup-pro-access",
+      "htmlBytes": 370904,
+      "visibleWords": 529,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/formidable-forms-intro-license-offers",
+      "htmlBytes": 372588,
+      "visibleWords": 562,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/gravity-forms-nonprofit-license",
+      "htmlBytes": 372477,
+      "visibleWords": 578,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/hostinger-official-coupon",
+      "htmlBytes": 370631,
+      "visibleWords": 508,
+      "links": 21,
+      "findings": []
+    },
+    {
+      "path": "/deals/hyperping-yearly-billing",
+      "htmlBytes": 371575,
+      "visibleWords": 541,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/imagify-yearly-two-months",
+      "htmlBytes": 371734,
+      "visibleWords": 563,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/incident-io-annual-team",
+      "htmlBytes": 371784,
+      "visibleWords": 533,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/linear-partner-startup-business",
+      "htmlBytes": 371364,
+      "visibleWords": 546,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/linguix-annual-pro-offer",
+      "htmlBytes": 367411,
+      "visibleWords": 514,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/deals/notesnook-education-year",
+      "htmlBytes": 373125,
+      "visibleWords": 556,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/plutio-yearly-billing",
+      "htmlBytes": 371254,
+      "visibleWords": 539,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/sentry-startup-credits",
+      "htmlBytes": 371760,
+      "visibleWords": 559,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/smartsuite-organization-program",
+      "htmlBytes": 371828,
+      "visibleWords": 519,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/wpforms-nonprofit-application",
+      "htmlBytes": 371550,
+      "visibleWords": 565,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/akiflow-free-trial",
+      "htmlBytes": 372943,
+      "visibleWords": 595,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/anytrack-free-trial",
+      "htmlBytes": 367239,
+      "visibleWords": 541,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/deals/baserow-free-plan",
+      "htmlBytes": 373375,
+      "visibleWords": 590,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/beehiiv-free-plan",
+      "htmlBytes": 370888,
+      "visibleWords": 539,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/bigin-free-trial",
+      "htmlBytes": 369418,
+      "visibleWords": 567,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/bitwarden-free-trial",
+      "htmlBytes": 361180,
+      "visibleWords": 438,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/deals/coderabbit-free-trial",
+      "htmlBytes": 372853,
+      "visibleWords": 591,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/colossyan-free-plan",
+      "htmlBytes": 369775,
+      "visibleWords": 552,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/creatify-free-plan",
+      "htmlBytes": 370728,
+      "visibleWords": 592,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/fathom-free-trial",
+      "htmlBytes": 372777,
+      "visibleWords": 578,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/fellow-free-trial",
+      "htmlBytes": 372334,
+      "visibleWords": 609,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/fibery-free-trial",
+      "htmlBytes": 371690,
+      "visibleWords": 580,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/fireflies-ai-free-plan",
+      "htmlBytes": 367719,
+      "visibleWords": 512,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/deals/flyingpress-free-trial",
+      "htmlBytes": 372330,
+      "visibleWords": 576,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/hiver-free-trial",
+      "htmlBytes": 369370,
+      "visibleWords": 577,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/intercom-free-trial",
+      "htmlBytes": 370311,
+      "visibleWords": 555,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/loom-free-trial",
+      "htmlBytes": 372353,
+      "visibleWords": 584,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/meetgeek-free-trial",
+      "htmlBytes": 372487,
+      "visibleWords": 573,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/morgen-calendar-free-trial",
+      "htmlBytes": 373595,
+      "visibleWords": 611,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/motion-calendar-free-trial",
+      "htmlBytes": 373423,
+      "visibleWords": 595,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/nifty-free-trial",
+      "htmlBytes": 371725,
+      "visibleWords": 595,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/notesnook-free-trial",
+      "htmlBytes": 373499,
+      "visibleWords": 597,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/notion-startup-program",
+      "htmlBytes": 371603,
+      "visibleWords": 499,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/otter-ai-free-plan",
+      "htmlBytes": 372801,
+      "visibleWords": 568,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/paperpal-institutional-trial-enquiry",
+      "htmlBytes": 366839,
+      "visibleWords": 462,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/deals/photoroom-free-trial",
+      "htmlBytes": 369613,
+      "visibleWords": 563,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/plausible-analytics-free-trial",
+      "htmlBytes": 367449,
+      "visibleWords": 505,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/deals/plutio-free-trial",
+      "htmlBytes": 371789,
+      "visibleWords": 590,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/reclaim-ai-free-plan",
+      "htmlBytes": 372589,
+      "visibleWords": 584,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/sembly-ai-free-trial",
+      "htmlBytes": 372985,
+      "visibleWords": 580,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/semrush-free-trial",
+      "htmlBytes": 371199,
+      "visibleWords": 569,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/sendible-free-trial",
+      "htmlBytes": 371894,
+      "visibleWords": 580,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/serpstat-free-trial",
+      "htmlBytes": 371147,
+      "visibleWords": 577,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/slack-free-plan",
+      "htmlBytes": 372505,
+      "visibleWords": 566,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/smartlead-free-trial",
+      "htmlBytes": 369848,
+      "visibleWords": 581,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/smartsuite-free-trial",
+      "htmlBytes": 372283,
+      "visibleWords": 566,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/sourcery-free-trial",
+      "htmlBytes": 372551,
+      "visibleWords": 593,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/streamyard-free-trial",
+      "htmlBytes": 369968,
+      "visibleWords": 573,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/tactiq-free-plan",
+      "htmlBytes": 372153,
+      "visibleWords": 599,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/taplio-free-trial",
+      "htmlBytes": 371325,
+      "visibleWords": 614,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/deals/text-blaze-free-plan",
+      "htmlBytes": 373025,
+      "visibleWords": 596,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/trupeer-free-trial",
+      "htmlBytes": 369655,
+      "visibleWords": 572,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/wispr-flow-free-plan",
+      "htmlBytes": 372466,
+      "visibleWords": 595,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/deals/wp-rocket-free-trial",
+      "htmlBytes": 372286,
+      "visibleWords": 616,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/adobe-creative-cloud",
+      "htmlBytes": 364678,
+      "visibleWords": 531,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/affine",
+      "htmlBytes": 363324,
+      "visibleWords": 507,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/ahrefs",
+      "htmlBytes": 362933,
+      "visibleWords": 492,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/airtable",
+      "htmlBytes": 364830,
+      "visibleWords": 492,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/tools/akiflow",
+      "htmlBytes": 364762,
+      "visibleWords": 515,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/alitu",
+      "htmlBytes": 359537,
+      "visibleWords": 452,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/aioseo",
+      "htmlBytes": 364047,
+      "visibleWords": 562,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/anytrack",
+      "htmlBytes": 359397,
+      "visibleWords": 475,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/asana",
+      "htmlBytes": 365867,
+      "visibleWords": 516,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/tools/baremetrics",
+      "htmlBytes": 360635,
+      "visibleWords": 463,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/baserow",
+      "htmlBytes": 364964,
+      "visibleWords": 515,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/beehiiv",
+      "htmlBytes": 367691,
+      "visibleWords": 583,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/bigin",
+      "htmlBytes": 358904,
+      "visibleWords": 476,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/bitwarden",
+      "htmlBytes": 359107,
+      "visibleWords": 407,
+      "links": 11,
+      "findings": []
+    },
+    {
+      "path": "/tools/box",
+      "htmlBytes": 362778,
+      "visibleWords": 479,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/browserstack",
+      "htmlBytes": 363462,
+      "visibleWords": 486,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/buttondown",
+      "htmlBytes": 361771,
+      "visibleWords": 467,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/tools/cal-com",
+      "htmlBytes": 364530,
+      "visibleWords": 496,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/tools/canva",
+      "htmlBytes": 364689,
+      "visibleWords": 505,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/carrd",
+      "htmlBytes": 360962,
+      "visibleWords": 428,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/castmagic",
+      "htmlBytes": 360145,
+      "visibleWords": 454,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/checkly",
+      "htmlBytes": 364019,
+      "visibleWords": 514,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/tools/clickup",
+      "htmlBytes": 366916,
+      "visibleWords": 501,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/cloudflare",
+      "htmlBytes": 362502,
+      "visibleWords": 493,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/cloudways",
+      "htmlBytes": 358138,
+      "visibleWords": 407,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/clueso",
+      "htmlBytes": 359816,
+      "visibleWords": 468,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/coderabbit",
+      "htmlBytes": 365140,
+      "visibleWords": 515,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/colossyan",
+      "htmlBytes": 359549,
+      "visibleWords": 463,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/confluence",
+      "htmlBytes": 363503,
+      "visibleWords": 484,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/consensus",
+      "htmlBytes": 363162,
+      "visibleWords": 490,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/coolify",
+      "htmlBytes": 363182,
+      "visibleWords": 437,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/creatify",
+      "htmlBytes": 358836,
+      "visibleWords": 450,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/deadline-funnel",
+      "htmlBytes": 363433,
+      "visibleWords": 497,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/descript",
+      "htmlBytes": 363012,
+      "visibleWords": 518,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/digitalocean",
+      "htmlBytes": 362302,
+      "visibleWords": 499,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/dreamhost",
+      "htmlBytes": 358455,
+      "visibleWords": 387,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/dropbox",
+      "htmlBytes": 362384,
+      "visibleWords": 489,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/dubble",
+      "htmlBytes": 359796,
+      "visibleWords": 461,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/duplicator",
+      "htmlBytes": 362056,
+      "visibleWords": 469,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/elicit",
+      "htmlBytes": 363085,
+      "visibleWords": 492,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/fabric",
+      "htmlBytes": 363606,
+      "visibleWords": 533,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/famewall",
+      "htmlBytes": 360122,
+      "visibleWords": 470,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/fathom",
+      "htmlBytes": 363200,
+      "visibleWords": 520,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/fellow",
+      "htmlBytes": 359081,
+      "visibleWords": 471,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/fibery",
+      "htmlBytes": 362968,
+      "visibleWords": 495,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/figma",
+      "htmlBytes": 364853,
+      "visibleWords": 479,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/tools/firecrawl",
+      "htmlBytes": 362763,
+      "visibleWords": 489,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/fluent-forms",
+      "htmlBytes": 364851,
+      "visibleWords": 516,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/fireflies-ai",
+      "htmlBytes": 363973,
+      "visibleWords": 524,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/fluentcrm",
+      "htmlBytes": 362792,
+      "visibleWords": 461,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/fly-io",
+      "htmlBytes": 361436,
+      "visibleWords": 484,
+      "links": 12,
+      "findings": []
+    },
+    {
+      "path": "/tools/flyingpress",
+      "htmlBytes": 362282,
+      "visibleWords": 480,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/formidable-forms",
+      "htmlBytes": 362620,
+      "visibleWords": 479,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/framer",
+      "htmlBytes": 364350,
+      "visibleWords": 494,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/ghost",
+      "htmlBytes": 360151,
+      "visibleWords": 423,
+      "links": 11,
+      "findings": []
+    },
+    {
+      "path": "/tools/google-workspace",
+      "htmlBytes": 363272,
+      "visibleWords": 508,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/granola",
+      "htmlBytes": 359885,
+      "visibleWords": 454,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/gravity-forms",
+      "htmlBytes": 364541,
+      "visibleWords": 539,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/guideflow",
+      "htmlBytes": 360222,
+      "visibleWords": 465,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/healthchecks-io",
+      "htmlBytes": 364122,
+      "visibleWords": 516,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/hedra",
+      "htmlBytes": 359635,
+      "visibleWords": 453,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/hetzner",
+      "htmlBytes": 358521,
+      "visibleWords": 409,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/hiver",
+      "htmlBytes": 358801,
+      "visibleWords": 464,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/hostinger",
+      "htmlBytes": 368207,
+      "visibleWords": 601,
+      "links": 21,
+      "findings": []
+    },
+    {
+      "path": "/tools/huly",
+      "htmlBytes": 363121,
+      "visibleWords": 499,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/hyperping",
+      "htmlBytes": 362524,
+      "visibleWords": 503,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/imagify",
+      "htmlBytes": 362269,
+      "visibleWords": 488,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/incident-io",
+      "htmlBytes": 362688,
+      "visibleWords": 495,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/intercom",
+      "htmlBytes": 364447,
+      "visibleWords": 522,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/tools/jenni-ai",
+      "htmlBytes": 364651,
+      "visibleWords": 533,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/jira",
+      "htmlBytes": 363137,
+      "visibleWords": 498,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/julius-ai",
+      "htmlBytes": 362572,
+      "visibleWords": 504,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/kinsta",
+      "htmlBytes": 357642,
+      "visibleWords": 401,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/linear",
+      "htmlBytes": 364824,
+      "visibleWords": 495,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/convertkit",
+      "htmlBytes": 367782,
+      "visibleWords": 541,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/tools/linguix",
+      "htmlBytes": 363964,
+      "visibleWords": 523,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/linode",
+      "htmlBytes": 358551,
+      "visibleWords": 407,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/loom",
+      "htmlBytes": 362451,
+      "visibleWords": 483,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/mailerlite",
+      "htmlBytes": 365593,
+      "visibleWords": 503,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/tools/meetgeek",
+      "htmlBytes": 359236,
+      "visibleWords": 468,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/microsoft-365",
+      "htmlBytes": 364271,
+      "visibleWords": 497,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/miro",
+      "htmlBytes": 365418,
+      "visibleWords": 481,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/tools/monday",
+      "htmlBytes": 366090,
+      "visibleWords": 508,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/tools/monsterinsights",
+      "htmlBytes": 362340,
+      "visibleWords": 453,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/morgen-calendar",
+      "htmlBytes": 362813,
+      "visibleWords": 509,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/motion-calendar",
+      "htmlBytes": 362963,
+      "visibleWords": 512,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/mymind",
+      "htmlBytes": 363218,
+      "visibleWords": 519,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/namecheap",
+      "htmlBytes": 361364,
+      "visibleWords": 479,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/netlify",
+      "htmlBytes": 358182,
+      "visibleWords": 391,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/nifty",
+      "htmlBytes": 362887,
+      "visibleWords": 503,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/nocodb",
+      "htmlBytes": 363322,
+      "visibleWords": 501,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/notesnook",
+      "htmlBytes": 363156,
+      "visibleWords": 506,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/notion",
+      "htmlBytes": 367366,
+      "visibleWords": 548,
+      "links": 19,
+      "findings": []
+    },
+    {
+      "path": "/tools/notta",
+      "htmlBytes": 362732,
+      "visibleWords": 495,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/obsidian",
+      "htmlBytes": 361329,
+      "visibleWords": 423,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/ocoya",
+      "htmlBytes": 362572,
+      "visibleWords": 502,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/otter-ai",
+      "htmlBytes": 363473,
+      "visibleWords": 511,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/ovhcloud",
+      "htmlBytes": 358706,
+      "visibleWords": 419,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/paperguide",
+      "htmlBytes": 363340,
+      "visibleWords": 493,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/paperpal",
+      "htmlBytes": 364203,
+      "visibleWords": 524,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/perfmatters",
+      "htmlBytes": 363326,
+      "visibleWords": 478,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/photoroom",
+      "htmlBytes": 359169,
+      "visibleWords": 461,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/pixelcut",
+      "htmlBytes": 359963,
+      "visibleWords": 465,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/plausible",
+      "htmlBytes": 359250,
+      "visibleWords": 419,
+      "links": 11,
+      "findings": []
+    },
+    {
+      "path": "/tools/plutio",
+      "htmlBytes": 362997,
+      "visibleWords": 503,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/pocketbase",
+      "htmlBytes": 361917,
+      "visibleWords": 429,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/predis-ai",
+      "htmlBytes": 365756,
+      "visibleWords": 556,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/railway",
+      "htmlBytes": 358382,
+      "visibleWords": 395,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/ranktracker",
+      "htmlBytes": 366029,
+      "visibleWords": 506,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/reclaim-ai",
+      "htmlBytes": 359326,
+      "visibleWords": 460,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/render",
+      "htmlBytes": 362386,
+      "visibleWords": 494,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/riverside-fm",
+      "htmlBytes": 364168,
+      "visibleWords": 513,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/rootly",
+      "htmlBytes": 362283,
+      "visibleWords": 485,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/scaleway",
+      "htmlBytes": 358378,
+      "visibleWords": 381,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/scholarcy",
+      "htmlBytes": 362972,
+      "visibleWords": 470,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/scispace",
+      "htmlBytes": 362889,
+      "visibleWords": 484,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/scribe-mail",
+      "htmlBytes": 363265,
+      "visibleWords": 498,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/seedprod",
+      "htmlBytes": 361475,
+      "visibleWords": 453,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/sembly-ai",
+      "htmlBytes": 362427,
+      "visibleWords": 526,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/semrush",
+      "htmlBytes": 362461,
+      "visibleWords": 499,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/sendible",
+      "htmlBytes": 363138,
+      "visibleWords": 476,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/sentry",
+      "htmlBytes": 362301,
+      "visibleWords": 493,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/seopress",
+      "htmlBytes": 362827,
+      "visibleWords": 483,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/serpstat",
+      "htmlBytes": 362333,
+      "visibleWords": 499,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/shortpixel",
+      "htmlBytes": 362983,
+      "visibleWords": 473,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/slack",
+      "htmlBytes": 365084,
+      "visibleWords": 482,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/siteground",
+      "htmlBytes": 357956,
+      "visibleWords": 410,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/smartlead",
+      "htmlBytes": 359365,
+      "visibleWords": 459,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/smartsuite",
+      "htmlBytes": 363530,
+      "visibleWords": 486,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/snov-io",
+      "htmlBytes": 365279,
+      "visibleWords": 528,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/socialpilot",
+      "htmlBytes": 364654,
+      "visibleWords": 523,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/sourcery",
+      "htmlBytes": 364194,
+      "visibleWords": 509,
+      "links": 17,
+      "findings": []
+    },
+    {
+      "path": "/tools/streamyard",
+      "htmlBytes": 360663,
+      "visibleWords": 489,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/sunsama",
+      "htmlBytes": 363668,
+      "visibleWords": 505,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/supabase",
+      "htmlBytes": 360257,
+      "visibleWords": 411,
+      "links": 12,
+      "findings": []
+    },
+    {
+      "path": "/tools/superwhisper",
+      "htmlBytes": 360626,
+      "visibleWords": 478,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/systeme-io",
+      "htmlBytes": 361544,
+      "visibleWords": 498,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/tactiq",
+      "htmlBytes": 358995,
+      "visibleWords": 466,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/taplio",
+      "htmlBytes": 363426,
+      "visibleWords": 531,
+      "links": 18,
+      "findings": []
+    },
+    {
+      "path": "/tools/text-blaze",
+      "htmlBytes": 362120,
+      "visibleWords": 487,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/tldv",
+      "htmlBytes": 362756,
+      "visibleWords": 506,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/tradingview",
+      "htmlBytes": 363362,
+      "visibleWords": 498,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/trello",
+      "htmlBytes": 362030,
+      "visibleWords": 482,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/trupeer",
+      "htmlBytes": 359271,
+      "visibleWords": 467,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/trustmary",
+      "htmlBytes": 359949,
+      "visibleWords": 465,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/typeform",
+      "htmlBytes": 362895,
+      "visibleWords": 477,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/typingmind",
+      "htmlBytes": 363010,
+      "visibleWords": 484,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/tools/umami",
+      "htmlBytes": 361179,
+      "visibleWords": 425,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/upcloud",
+      "htmlBytes": 358771,
+      "visibleWords": 411,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/vaultwarden",
+      "htmlBytes": 362140,
+      "visibleWords": 420,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/vercel",
+      "htmlBytes": 359730,
+      "visibleWords": 423,
+      "links": 11,
+      "findings": []
+    },
+    {
+      "path": "/tools/vultr",
+      "htmlBytes": 358681,
+      "visibleWords": 415,
+      "links": 10,
+      "findings": []
+    },
+    {
+      "path": "/tools/wispr-flow",
+      "htmlBytes": 359305,
+      "visibleWords": 475,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/wp-mail-smtp",
+      "htmlBytes": 362096,
+      "visibleWords": 484,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/tools/wp-rocket",
+      "htmlBytes": 364242,
+      "visibleWords": 557,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/wpforms",
+      "htmlBytes": 365620,
+      "visibleWords": 528,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/xtiles",
+      "htmlBytes": 362189,
+      "visibleWords": 498,
+      "links": 15,
+      "findings": []
+    },
+    {
+      "path": "/tools/zapier",
+      "htmlBytes": 363396,
+      "visibleWords": 498,
+      "links": 16,
+      "findings": []
+    },
+    {
+      "path": "/tools/zencastr",
+      "htmlBytes": 359957,
+      "visibleWords": 468,
+      "links": 14,
+      "findings": []
+    },
+    {
+      "path": "/compare/coderabbit-vs-sourcery",
+      "htmlBytes": 410305,
+      "visibleWords": 1179,
+      "links": 12,
+      "findings": []
+    },
+    {
+      "path": "/compare/checkly-vs-healthchecks-io",
+      "htmlBytes": 409393,
+      "visibleWords": 1165,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/compare/baserow-vs-nocodb",
+      "htmlBytes": 408723,
+      "visibleWords": 1135,
+      "links": 12,
+      "findings": []
+    },
+    {
+      "path": "/compare/linear-vs-jira",
+      "htmlBytes": 407419,
+      "visibleWords": 1135,
+      "links": 11,
+      "findings": []
+    },
+    {
+      "path": "/compare/fireflies-ai-vs-fathom",
+      "htmlBytes": 409729,
+      "visibleWords": 1115,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/compare/buttondown-vs-ghost",
+      "htmlBytes": 410176,
+      "visibleWords": 1145,
+      "links": 12,
+      "findings": []
+    },
+    {
+      "path": "/compare/wpforms-vs-fluent-forms",
+      "htmlBytes": 410765,
+      "visibleWords": 1147,
+      "links": 13,
+      "findings": []
+    },
+    {
+      "path": "/compare/coolify-vs-vercel",
+      "htmlBytes": 402239,
+      "visibleWords": 975,
+      "links": 7,
+      "findings": []
+    },
+    {
+      "path": "/compare/carrd-vs-framer",
+      "htmlBytes": 403242,
+      "visibleWords": 1001,
+      "links": 8,
+      "findings": []
+    },
+    {
+      "path": "/compare/obsidian-vs-notion",
+      "htmlBytes": 403138,
+      "visibleWords": 990,
+      "links": 8,
+      "findings": []
+    },
+    {
+      "path": "/compare/pocketbase-vs-supabase",
+      "htmlBytes": 402750,
+      "visibleWords": 974,
+      "links": 7,
+      "findings": []
+    },
+    {
+      "path": "/compare/umami-vs-plausible",
+      "htmlBytes": 401282,
+      "visibleWords": 975,
+      "links": 7,
+      "findings": []
+    },
+    {
+      "path": "/compare/vaultwarden-vs-bitwarden",
+      "htmlBytes": 402317,
+      "visibleWords": 959,
+      "links": 7,
+      "findings": []
+    },
+    {
+      "path": "/articles/build-a-saas-budget-before-buying",
+      "htmlBytes": 384148,
+      "visibleWords": 1220,
+      "links": 24,
+      "findings": []
+    },
+    {
+      "path": "/articles/compare-saas-pricing-limits",
+      "htmlBytes": 385498,
+      "visibleWords": 1150,
+      "links": 26,
+      "findings": []
+    },
+    {
+      "path": "/articles/saas-coupon-renewal-price-checklist",
+      "htmlBytes": 383122,
+      "visibleWords": 1109,
+      "links": 24,
+      "findings": []
+    },
+    {
+      "path": "/articles/evaluate-ai-software-free-trials",
+      "htmlBytes": 382755,
+      "visibleWords": 1080,
+      "links": 24,
+      "findings": []
+    },
+    {
+      "path": "/articles/compare-saas-team-seat-costs",
+      "htmlBytes": 382267,
+      "visibleWords": 1058,
+      "links": 24,
+      "findings": []
+    },
+    {
+      "path": "/articles/lifetime-software-deal-checklist",
+      "htmlBytes": 380634,
+      "visibleWords": 1058,
+      "links": 22,
+      "findings": []
+    },
+    {
+      "path": "/articles/compare-saas-deal-membership-fees",
+      "htmlBytes": 381234,
+      "visibleWords": 1052,
+      "links": 23,
+      "findings": []
+    },
+    {
+      "path": "/articles/verify-software-privacy-claims",
+      "htmlBytes": 383155,
+      "visibleWords": 1067,
+      "links": 24,
+      "findings": []
+    },
+    {
+      "path": "/articles/find-and-use-saas-coupon-codes",
+      "htmlBytes": 386763,
+      "visibleWords": 1335,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/articles/startup-software-credits-and-renewal-costs",
+      "htmlBytes": 389581,
+      "visibleWords": 1362,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/student-software-discounts-after-graduation",
+      "htmlBytes": 388989,
+      "visibleWords": 1268,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/articles/hostinger-hosting-review",
+      "htmlBytes": 387481,
+      "visibleWords": 1361,
+      "links": 22,
+      "findings": []
+    },
+    {
+      "path": "/articles/cloudflare-pages-review",
+      "htmlBytes": 387620,
+      "visibleWords": 1302,
+      "links": 23,
+      "findings": []
+    },
+    {
+      "path": "/articles/digitalocean-app-platform-review",
+      "htmlBytes": 387651,
+      "visibleWords": 1282,
+      "links": 23,
+      "findings": []
+    },
+    {
+      "path": "/articles/hostinger-vs-siteground-wordpress-renewal",
+      "htmlBytes": 397353,
+      "visibleWords": 1543,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/hetzner-vs-ovhcloud-european-vps",
+      "htmlBytes": 396167,
+      "visibleWords": 1527,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/articles/scaleway-vs-hetzner-european-saas",
+      "htmlBytes": 397411,
+      "visibleWords": 1522,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/upcloud-vs-digitalocean-vps-application",
+      "htmlBytes": 397115,
+      "visibleWords": 1495,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/flyio-vs-render-stateful-docker-app",
+      "htmlBytes": 397645,
+      "visibleWords": 1597,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/articles/railway-vs-digitalocean-app-platform-storage",
+      "htmlBytes": 398933,
+      "visibleWords": 1602,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/cloudflare-workers-vs-vps-upload-api",
+      "htmlBytes": 399655,
+      "visibleWords": 1652,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/ghost-self-hosted-vs-managed-publishing",
+      "htmlBytes": 402132,
+      "visibleWords": 1678,
+      "links": 37,
+      "findings": []
+    },
+    {
+      "path": "/articles/wordpress-cache-vs-hosting-upgrade-ttfb",
+      "htmlBytes": 398451,
+      "visibleWords": 1570,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/object-storage-vs-vps-disk-uploads",
+      "htmlBytes": 398117,
+      "visibleWords": 1597,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/staging-noindex-production-launch-checklist",
+      "htmlBytes": 397835,
+      "visibleWords": 1529,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/change-web-host-without-domain-transfer",
+      "htmlBytes": 398407,
+      "visibleWords": 1588,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/hosting-sla-vs-application-uptime-recovery",
+      "htmlBytes": 400710,
+      "visibleWords": 1599,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/annual-vps-vs-hourly-cloud-staging",
+      "htmlBytes": 399424,
+      "visibleWords": 1601,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/render-vs-railway-nodejs-side-project",
+      "htmlBytes": 401722,
+      "visibleWords": 1699,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/articles/vercel-vs-vps-nextjs-saas",
+      "htmlBytes": 398460,
+      "visibleWords": 1607,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/cloudflare-pages-vs-netlify-affiliate-blog",
+      "htmlBytes": 402385,
+      "visibleWords": 1656,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/articles/kinsta-vs-siteground-freelance-wordpress-clients",
+      "htmlBytes": 398924,
+      "visibleWords": 1566,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/hetzner-arm-vs-x86-docker-vps",
+      "htmlBytes": 397695,
+      "visibleWords": 1573,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/articles/postgres-on-vps-vs-managed-database",
+      "htmlBytes": 399294,
+      "visibleWords": 1597,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/vps-snapshots-vs-wordpress-backups",
+      "htmlBytes": 403134,
+      "visibleWords": 1686,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/articles/n8n-vps-sizing-concurrency-backups",
+      "htmlBytes": 401692,
+      "visibleWords": 1642,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/articles/woocommerce-hosting-php-workers-vs-ram",
+      "htmlBytes": 401728,
+      "visibleWords": 1593,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/articles/wordpress-hosting-email-vs-transactional-email",
+      "htmlBytes": 401847,
+      "visibleWords": 1610,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/articles/hosting-bandwidth-overage-cost-guide",
+      "htmlBytes": 399538,
+      "visibleWords": 1590,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/articles/multiple-client-websites-one-vps-isolation",
+      "htmlBytes": 401942,
+      "visibleWords": 1608,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/articles/hetzner-vs-digitalocean-small-business-vps",
+      "htmlBytes": 401343,
+      "visibleWords": 1608,
+      "links": 36,
+      "findings": []
+    },
+    {
+      "path": "/articles/vultr-vs-linode-small-application",
+      "htmlBytes": 397210,
+      "visibleWords": 1557,
+      "links": 33,
+      "findings": []
+    },
+    {
+      "path": "/articles/hostinger-vps-vs-managed-wordpress-solo-blogger",
+      "htmlBytes": 402398,
+      "visibleWords": 1620,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/articles/cloudways-vs-digitalocean-wordpress-management",
+      "htmlBytes": 401034,
+      "visibleWords": 1560,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/shared-vcpu-vs-dedicated-vcpu-wordpress",
+      "htmlBytes": 399194,
+      "visibleWords": 1547,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/coolify-vs-managed-hosting-solo-developer",
+      "htmlBytes": 402524,
+      "visibleWords": 1608,
+      "links": 40,
+      "findings": []
+    },
+    {
+      "path": "/articles/vps-hosting-india-region-latency",
+      "htmlBytes": 403050,
+      "visibleWords": 1604,
+      "links": 40,
+      "findings": []
+    },
+    {
+      "path": "/articles/hosting-introductory-discount-vs-renewal-cost",
+      "htmlBytes": 403087,
+      "visibleWords": 1593,
+      "links": 40,
+      "findings": []
+    },
+    {
+      "path": "/articles/website-migration-seo-checklist",
+      "htmlBytes": 402035,
+      "visibleWords": 1614,
+      "links": 37,
+      "findings": []
+    },
+    {
+      "path": "/articles/solo-publisher-wordpress-operating-plan",
+      "htmlBytes": 402788,
+      "visibleWords": 1609,
+      "links": 38,
+      "findings": []
+    },
+    {
+      "path": "/articles/taplio-pricing-starter-vs-growth-vs-pro",
+      "htmlBytes": 397200,
+      "visibleWords": 1588,
+      "links": 30,
+      "findings": []
+    },
+    {
+      "path": "/articles/taplio-vs-authoredup",
+      "htmlBytes": 398184,
+      "visibleWords": 1556,
+      "links": 31,
+      "findings": []
+    },
+    {
+      "path": "/articles/beehiiv-vs-kit-newsletter",
+      "htmlBytes": 399637,
+      "visibleWords": 1559,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/systeme-io-free-plan-limits",
+      "htmlBytes": 398157,
+      "visibleWords": 1450,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/streamyard-vs-riverside-video-podcast",
+      "htmlBytes": 400501,
+      "visibleWords": 1516,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/coderabbit-review-github-pull-requests",
+      "htmlBytes": 389531,
+      "visibleWords": 1082,
+      "links": 26,
+      "findings": []
+    },
+    {
+      "path": "/articles/checkly-review-api-playwright-monitoring",
+      "htmlBytes": 389646,
+      "visibleWords": 1084,
+      "links": 27,
+      "findings": []
+    },
+    {
+      "path": "/articles/supabase-review-multi-tenant-saas",
+      "htmlBytes": 389143,
+      "visibleWords": 1068,
+      "links": 27,
+      "findings": []
+    },
+    {
+      "path": "/articles/baserow-review-postgresql-operations",
+      "htmlBytes": 389538,
+      "visibleWords": 1075,
+      "links": 27,
+      "findings": []
+    },
+    {
+      "path": "/articles/fireflies-ai-review-client-meetings",
+      "htmlBytes": 389844,
+      "visibleWords": 1047,
+      "links": 27,
+      "findings": []
+    },
+    {
+      "path": "/articles/buttondown-review-paid-newsletter",
+      "htmlBytes": 389342,
+      "visibleWords": 1069,
+      "links": 27,
+      "findings": []
+    },
+    {
+      "path": "/articles/fluent-forms-review-wordpress-leads",
+      "htmlBytes": 389850,
+      "visibleWords": 1074,
+      "links": 27,
+      "findings": []
+    },
+    {
+      "path": "/articles/zapier-vs-make-vs-n8n-pricing",
+      "htmlBytes": 428501,
+      "visibleWords": 2915,
+      "links": 35,
+      "findings": []
+    },
+    {
+      "path": "/articles/asana-vs-monday-vs-clickup-pricing",
+      "htmlBytes": 422295,
+      "visibleWords": 2299,
+      "links": 34,
+      "findings": []
+    },
+    {
+      "path": "/articles/intercom-early-stage-vs-zendesk-for-startups",
+      "htmlBytes": 418658,
+      "visibleWords": 2373,
+      "links": 31,
+      "findings": []
+    }
+  ],
+  "probes": [
+    {
+      "path": "/tools/cogniflow-ai",
+      "status": 200,
+      "noindex": true,
+      "findings": []
+    },
+    {
+      "path": "/tools/claude-ai",
+      "status": 200,
+      "noindex": true,
+      "findings": []
+    },
+    {
+      "path": "/tools/metricpulse",
+      "status": 200,
+      "noindex": true,
+      "findings": []
+    },
+    {
+      "path": "/tools?page=2",
+      "status": 200,
+      "noindex": false,
+      "findings": []
+    },
+    {
+      "path": "/tools?page=9999",
+      "status": 404,
+      "noindex": true,
+      "findings": []
+    },
+    {
+      "path": "/tools/publisher-nonexistent",
+      "status": 404,
+      "noindex": true,
+      "findings": []
+    },
+    {
+      "path": "/editorial-policy",
+      "status": 200,
+      "noindex": false,
+      "findings": []
+    }
+  ],
+  "scripts": [
+    {
+      "path": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+      "status": 200,
+      "bytes": 203722
+    },
+    {
+      "path": "/_next/static/chunks/3794-929ddf93564bd8a1.js",
+      "status": 200,
+      "bytes": 242567
+    },
+    {
+      "path": "/_next/static/chunks/main-app-4963a011db58ea55.js",
+      "status": 200,
+      "bytes": 472
+    },
+    {
+      "path": "/_next/static/chunks/8500-107859ed31978aa3.js",
+      "status": 200,
+      "bytes": 7643
+    },
+    {
+      "path": "/_next/static/chunks/8416-c32c2fd144db4426.js",
+      "status": 200,
+      "bytes": 191448
+    },
+    {
+      "path": "/_next/static/chunks/app/layout-2b03dc2fa54b6b62.js",
+      "status": 200,
+      "bytes": 25438
+    },
+    {
+      "path": "/_next/static/chunks/app/global-error-7a5ef4770b6e3247.js",
+      "status": 200,
+      "bytes": 2729
+    },
+    {
+      "path": "/_next/static/chunks/app/error-187070f1e509c4a2.js",
+      "status": 200,
+      "bytes": 2968
+    },
+    {
+      "path": "/_next/static/chunks/8437-f247c3c76d03ac75.js",
+      "status": 200,
+      "bytes": 14384
+    },
+    {
+      "path": "/_next/static/chunks/app/hosting/page-bccd7b37508360da.js",
+      "status": 200,
+      "bytes": 22443
+    },
+    {
+      "path": "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "status": 200,
+      "bytes": 112594
+    },
+    {
+      "path": "/_next/static/chunks/webpack-4adce9ac4ae5c51e.js",
+      "status": 200,
+      "bytes": 3497
+    },
+    {
+      "path": "/_next/static/chunks/app/editorial-policy/page-d68a8af7a4da7065.js",
+      "status": 200,
+      "bytes": 203
+    },
+    {
+      "path": "/_next/static/chunks/app/page-99330490858d7f58.js",
+      "status": 200,
+      "bytes": 4168
+    },
+    {
+      "path": "/_next/static/chunks/app/brands/page-a0a79b3b3c105e60.js",
+      "status": 200,
+      "bytes": 12610
+    },
+    {
+      "path": "/_next/static/chunks/app/hosting-cost-calculator/page-4887bc394b6db561.js",
+      "status": 200,
+      "bytes": 5924
+    },
+    {
+      "path": "/_next/static/chunks/app/savings-calculator/page-56a7f09c756d36ab.js",
+      "status": 200,
+      "bytes": 4580
+    },
+    {
+      "path": "/_next/static/chunks/4487-c2d1bcce3caaef6e.js",
+      "status": 200,
+      "bytes": 6362
+    },
+    {
+      "path": "/_next/static/chunks/3172-2589bf83e42bd95f.js",
+      "status": 200,
+      "bytes": 10619
+    },
+    {
+      "path": "/_next/static/chunks/4130-31307fe7bf66024b.js",
+      "status": 200,
+      "bytes": 18287
+    },
+    {
+      "path": "/_next/static/chunks/app/deals/page-3423f0fcae7fb6f5.js",
+      "status": 200,
+      "bytes": 149
+    },
+    {
+      "path": "/_next/static/chunks/app/discounts/page-4ed5b7bb0af5a25e.js",
+      "status": 200,
+      "bytes": 2683
+    },
+    {
+      "path": "/_next/static/chunks/app/tools/page-d845cba9066582ae.js",
+      "status": 200,
+      "bytes": 13328
+    },
+    {
+      "path": "/_next/static/chunks/2477-1436b2f3d2c66d21.js",
+      "status": 200,
+      "bytes": 9608
+    },
+    {
+      "path": "/_next/static/chunks/app/compare/page-55cc2875dd4eae2c.js",
+      "status": 200,
+      "bytes": 1814
+    },
+    {
+      "path": "/_next/static/chunks/app/articles/page-19529565b3523d2c.js",
+      "status": 200,
+      "bytes": 12261
+    },
+    {
+      "path": "/_next/static/chunks/app/about/page-d68a8af7a4da7065.js",
+      "status": 200,
+      "bytes": 203
+    },
+    {
+      "path": "/_next/static/chunks/app/contact/page-ff19d1dca2613e82.js",
+      "status": 200,
+      "bytes": 19448
+    },
+    {
+      "path": "/_next/static/chunks/app/affiliate-disclosure/page-4c59645895c5d3b8.js",
+      "status": 200,
+      "bytes": 2635
+    },
+    {
+      "path": "/_next/static/chunks/app/privacy/page-4c59645895c5d3b8.js",
+      "status": 200,
+      "bytes": 2635
+    },
+    {
+      "path": "/_next/static/chunks/app/terms/page-4c59645895c5d3b8.js",
+      "status": 200,
+      "bytes": 2635
+    },
+    {
+      "path": "/_next/static/chunks/app/coupon-codes/page-c72dea92aee9520d.js",
+      "status": 200,
+      "bytes": 6834
+    },
+    {
+      "path": "/_next/static/chunks/app/student-discounts/page-c72dea92aee9520d.js",
+      "status": 200,
+      "bytes": 6834
+    },
+    {
+      "path": "/_next/static/chunks/app/startup-deals/page-c72dea92aee9520d.js",
+      "status": 200,
+      "bytes": 6834
+    },
+    {
+      "path": "/_next/static/chunks/app/nonprofit-discounts/page-c72dea92aee9520d.js",
+      "status": 200,
+      "bytes": 6834
+    },
+    {
+      "path": "/_next/static/chunks/app/discounts/%5Bslug%5D/page-afe96aefdc06c6e2.js",
+      "status": 200,
+      "bytes": 11734
+    },
+    {
+      "path": "/_next/static/chunks/app/deals/category/%5Bslug%5D/page-52a583c481ce3a64.js",
+      "status": 200,
+      "bytes": 148
+    },
+    {
+      "path": "/_next/static/chunks/5102-03bab4f049278638.js",
+      "status": 200,
+      "bytes": 7619
+    },
+    {
+      "path": "/_next/static/chunks/app/deals/%5Bslug%5D/page-0a4e3e68d11df306.js",
+      "status": 200,
+      "bytes": 22147
+    },
+    {
+      "path": "/_next/static/chunks/app/tools/%5Bslug%5D/page-4ef2026251f92ded.js",
+      "status": 200,
+      "bytes": 20827
+    },
+    {
+      "path": "/_next/static/chunks/app/compare/%5Bslug%5D/page-babcfcd1793cb59f.js",
+      "status": 200,
+      "bytes": 14324
+    },
+    {
+      "path": "/_next/static/chunks/9479-d806d42b5d221757.js",
+      "status": 200,
+      "bytes": 8951
+    },
+    {
+      "path": "/_next/static/chunks/app/articles/%5Bslug%5D/page-4106aead5d8bdd08.js",
+      "status": 200,
+      "bytes": 32832
+    }
+  ]
+}
