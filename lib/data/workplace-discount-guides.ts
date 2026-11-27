@@ -1,6 +1,6 @@
 import type { DiscountGuideEntry } from "@/lib/data/discount-guide-builder";
 
-const entries: Omit<DiscountGuideEntry, "reviewedAt">[] = [
+const entries: (Omit<DiscountGuideEntry, "reviewedAt"> & { reviewedAt?: string })[] = [
   {
     slug: "jira", name: "Jira", url: "https://www.atlassian.com/software/jira/pricing",
     searchTitle: "Jira Discounts & Nonprofit Cloud Eligibility",
@@ -170,6 +170,8 @@ const entries: Omit<DiscountGuideEntry, "reviewedAt">[] = [
     faqs: [["Does every Microsoft 365 nonprofit user receive a free license?", "No. Check the current grant, permitted-user rules and approved edition; discounted licenses are a separate route."], ["Is a historical Microsoft 365 grant still valid for a new purchase?", "Use current official approval and plan guidance instead of assuming an older offer remains available."], ["Should Copilot be included in the base license comparison?", "Inspect the selected plan and any separate add-on quote rather than assuming every AI capability is included."]],
   },
   {
+    // Re-reviewed manually against the official page on 2026-11-27.
+    reviewedAt: "2026-11-27",
     slug: "adobe-creative-cloud", name: "Adobe Creative Cloud", url: "https://www.adobe.com/creativecloud/plans.html",
     searchTitle: "Adobe Creative Cloud Discounts & Student Terms",
     meta: "Find Adobe Creative Cloud discounts for students and teachers. Check education eligibility, annual commitments, renewal pricing and plan scope.",

@@ -10,6 +10,7 @@ import { CouponRevealModal } from "@/components/modals/CouponRevealModal";
 import { CATEGORIES } from "@/lib/catalog-categories";
 import { useMediaQuery } from "@/lib/use-media-query";
 import type { SaaSDeal } from "@/lib/types";
+import { isPartnerBrand } from "@/lib/data/affiliate-links";
 import "./deals-explorer.css";
 
 const filterTypes = ["offer", "coupon", "lifetime", "free_trial", "free_plan"] as const;
@@ -114,7 +115,8 @@ export function DealsExplorer({
             if (!aIsCoupon && bIsCoupon) return 1;
           }
         }
-        if (sortBy === "trending") return (b.revealsCount || 0) - (a.revealsCount || 0);
+        // "Recommended" features SaaSFolio partners first; each partner card is labelled.
+        if (sortBy === "trending") return Number(isPartnerBrand(b.toolSlug)) - Number(isPartnerBrand(a.toolSlug)) || (b.revealsCount || 0) - (a.revealsCount || 0);
         if (sortBy === "discount") return b.discountPercentage - a.discountPercentage;
         if (sortBy === "expiring") {
           return (Date.parse(a.expiryDate) || Infinity) - (Date.parse(b.expiryDate) || Infinity) || 0;

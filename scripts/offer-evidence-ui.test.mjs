@@ -50,3 +50,9 @@ test("an unattributed recorded source is not relabeled as an official provider",
   assert.doesNotMatch(html, /Provider source|Coupon publisher|Vendor source checked/);
   assert.match(html, /Recorded source check; not checkout tested/);
 });
+
+test("evidence for a partner brand still links to the exact recorded source", () => {
+  const html = render({ toolSlug: "beehiiv", sourceUrl: "https://www.beehiiv.com/pricing", checkedAt: "2026-10-26T08:30:00.000Z" });
+  assert.match(html, /href="https:\/\/www\.beehiiv\.com\/pricing"/);
+  assert.doesNotMatch(html, /via=quickreads|sponsored/);
+});

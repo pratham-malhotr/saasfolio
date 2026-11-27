@@ -116,6 +116,8 @@
 .market-badge svg { flex: none; }
 .market-badge-verified { border-color: #c6ff3d33; background: #c6ff3d0d; color: #d9f7a8; }
 .market-badge-verified svg { color: var(--market-lime); }
+.market-badge-partner { border-color: var(--market-lime); background: var(--market-lime); color: var(--market-lime-ink); }
+.market-badge-partner svg { color: var(--market-lime-ink); }
 
 .market-page :where(a, button, select, input):focus-visible { outline: 2px solid var(--market-lime); outline-offset: 3px; }
 .market-page .market-button-primary:focus-visible { outline-offset: 3px; }
@@ -140,6 +142,12 @@
   font: 700 .92rem/1 var(--font-display), sans-serif;
   letter-spacing: -.035em;
 }
+.brand-avatar-sm { width: 2.25rem; height: 2.25rem; border-radius: .55rem; font-size: .75rem; }
+.brand-avatar-md { width: 3.5rem; height: 3.5rem; border-radius: .9rem; font-size: 1.15rem; }
+.brand-avatar-lg { width: 4.5rem; height: 4.5rem; border-radius: 1.1rem; font-size: 1.5rem; }
+@media (width >= 40rem) { .brand-avatar-lg { width: 5rem; height: 5rem; } }
+.brand-avatar-logo { padding: .3rem; border-color: #ffffff26; background: #fff; box-shadow: 0 1px 0 #ffffff14 inset, 0 4px 14px -6px #000; }
+.brand-avatar-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .brand-avatar[data-category="hosting"] { --avatar-bg: #221d38; --avatar-fg: #d6c9ff; }
 .brand-avatar[data-category="marketing"] { --avatar-bg: #33241a; --avatar-fg: #ffd0a0; }
 .brand-avatar[data-category="ai-tools"] { --avatar-bg: #1c2540; --avatar-fg: #c6d8ff; }
@@ -216,8 +224,8 @@
 .market-offer-value { white-space: nowrap; }
 .market-offer-kind { min-width: 0; }
 @container (width < 21rem) {
-  .market-badge-verified { padding: .3rem; }
-  .market-badge-verified .market-badge-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  :is(.market-badge-verified, .market-badge-partner) { padding: .3rem; }
+  :is(.market-badge-verified, .market-badge-partner) .market-badge-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .market-offer-value { font-size: 1.3rem; }
   .market-offer-kind { font-size: .66rem; }
 }

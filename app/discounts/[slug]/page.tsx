@@ -7,8 +7,9 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { getAllTools, getToolBySlug } from "@/lib/data/tools-data";
 import { getPublishedTool } from "@/lib/published-catalog";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getAffiliateProgram, isPartnerBrand } from "@/lib/data/affiliate-links";
 import { pageMetadata, absoluteUrl } from "@/lib/seo";
-import { breadcrumbSchema, softwareSchema, webPageSchema, organizationId } from "@/lib/structured-data";
+import { breadcrumbSchema, faqSchema, softwareSchema, webPageSchema, organizationId } from "@/lib/structured-data";
 import { offerLabel } from "@/lib/offer-links";
 import { BrandBuyingGuides } from "@/components/articles/BrandBuyingGuides";
 import { BrandSourcePanel } from "@/components/seo/BrandSourcePanel";
@@ -19,7 +20,7 @@ import { OfferReportLink } from "@/components/deals/OfferReportLink";
 import { getBrandCollectionLinks } from "@/lib/savings-collections";
 import { CATEGORY_SEARCH_CONTENT } from "@/lib/data/category-search-content";
 import {
-  brandDiscountTitle, brandDiscountDescription, brandDiscountAnswer, brandBestDiscountAnswer, getBrandDiscountData,
+  brandDiscountTitle, brandSearchTitle, brandDiscountDescription, brandDiscountAnswer, brandBestDiscountAnswer, getBrandDiscountData,
   getBrandDiscountFaqs, getIndexableDiscountBrands, hasBrandDiscountPage,
 } from "@/lib/brand-discounts";
 
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { tool } = await resolveBrand(params);
   const { offers, indexable } = getBrandDiscountData(tool);
   return pageMetadata({
-    title: brandDiscountTitle(tool), description: brandDiscountDescription(tool, offers),
+    title: brandSearchTitle(tool), description: brandDiscountDescription(tool, offers),
     path: `/discounts/${tool.slug}`, image: `/discounts/${tool.slug}/opengraph-image`, noIndex: !indexable,
   });
 }
@@ -48,7 +49,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function BrandDiscountPage({ params }: { params: Promise<{ slug: string }> }) {
   const { tool, slug } = await resolveBrand(params);
   if (slug !== tool.slug) permanentRedirect(`/discounts/${tool.slug}`);
-  const { offers, savingsOptions, purchaseChecks, guide, modifiedAt, sourceNotesCurrent } = getBrandDiscountData(tool);
+  const { offers, savingsOptions, purchaseChecks, guide, modifiedAt, sourceNotesCurrent, sourceVerifiedAt } = getBrandDiscountData(tool);
+  const readableDate = (value: string) => new Intl.DateTimeFormat("en", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(Date.parse(value.length === 10 ? `${value}T00:00:00Z` : value));
   const couponOffers = offers.filter(offer => offer.code);
   const otherOffers = offers.filter(offer => !offer.code);
   const freeOptions = otherOffers.filter(offer => offer.dealType === "free_plan" || offer.dealType === "free_trial");
@@ -62,9 +64,16 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
   const availableBrands = getIndexableDiscountBrands().filter(other => other.slug !== tool.slug);
   const related = [
     ...(guide?.relatedSlugs || []).flatMap(slug => availableBrands.filter(other => other.slug === slug)),
-    ...availableBrands.sort((a, b) => Number(b.categorySlug === tool.categorySlug) - Number(a.categorySlug === tool.categorySlug)),
+    // Same-category brands first, partner brands ahead of others within that order.
+    ...availableBrands.sort((a, b) => Number(b.categorySlug === tool.categorySlug) - Number(a.categorySlug === tool.categorySlug) || Number(isPartnerBrand(b.slug)) - Number(isPartnerBrand(a.slug))),
   ].filter((other, index, all) => all.findIndex(brand => brand.slug === other.slug) === index).slice(0, 4);
   const pricingUrl = guide?.sourceUrl || tool.pricingUrl || tool.website;
+  // Partner brands: action buttons go through the attributed redirect; evidence
+  // and citation links keep the exact URL that was reviewed.
+  const partner = isPartnerBrand(tool.slug);
+  const partnerCode = getAffiliateProgram(tool.slug)?.code;
+  const pricingHref = partner ? `/go/${tool.slug}` : pricingUrl;
+  const pricingRel = partner ? "sponsored nofollow noopener noreferrer" : "nofollow noopener noreferrer";
   const latestCheck = offers.flatMap(offer => offer.checkedAt || []).sort().at(-1);
 
   return (
@@ -91,10 +100,20 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
             mainEntityOfPage: { "@id": absoluteUrl(`${path}#webpage`) },
             author: { "@id": organizationId }, publisher: { "@id": organizationId },
             about: { "@id": softwareSchema(tool)["@id"] },
-            dateModified: modifiedAt, inLanguage: "en",
+            datePublished: `${guide.reviewedAt}T00:00:00.000Z`, dateModified: modifiedAt, inLanguage: "en",
             image: absoluteUrl(`${path}/opengraph-image`),
             citation: [guide.sourceUrl, ...(guide.sources || []).map(source => source.url)],
+            ...(offers.length ? { hasPart: { "@id": absoluteUrl(`${path}#current-offers`) } } : {}),
           }] : []),
+          ...(guide && offers.length ? [{
+            "@type": "ItemList", "@id": absoluteUrl(`${path}#current-offers`),
+            name: `Current ${tool.name} offers`, numberOfItems: offers.length,
+            itemListElement: offers.map((offer, index) => ({
+              "@type": "ListItem", position: index + 1, name: offer.title, url: absoluteUrl(`/deals/${offer.slug}`),
+            })),
+          }] : []),
+          // Mirrors the questions and answers rendered in the page's FAQ section.
+          ...(faqs.length ? [{ ...faqSchema(faqs), "@id": absoluteUrl(`${path}#faq`) }] : []),
           softwareSchema(tool),
           breadcrumbSchema([{ name: "Brand discounts", path: "/discounts" }, { name: `${tool.name} discounts`, path }]),
         ],
@@ -111,18 +130,29 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           <header className="discount-guide-header">
             <div className="discount-guide-title">
               <div className="flex items-center gap-3">
-                <BrandAvatar name={tool.name} letters={tool.logoLetter} category={tool.categorySlug} />
+                <BrandAvatar name={tool.name} slug={tool.slug} letters={tool.logoLetter} category={tool.categorySlug} />
                 <p className="market-eyebrow">{tool.category}</p>
               </div>
               <h1>{title}</h1>
               <p>{guide?.intro || `Review ${tool.name} offer terms, eligible plans, and renewal costs before choosing an offer.`}</p>
               <p className="discount-guide-byline">By <Link href="/about" className="underline underline-offset-4">SaaSFolio editorial</Link>
-                {guide && <> · Reviewed <time dateTime={guide.reviewedAt}>{guide.reviewedAt}</time></>}
+                {guide && <> · Reviewed <time dateTime={guide.reviewedAt}>{readableDate(guide.reviewedAt)}</time></>}
+                {sourceVerifiedAt && <> · Official sources re-checked <time dateTime={sourceVerifiedAt}>{readableDate(sourceVerifiedAt)}</time></>}
               </p>
-              <div className="discount-guide-actions">
+              {partner ? <>
+                {partnerCode && <div className="discount-partner-code" data-partner-code="">
+                  <p>SaaSFolio partner code for {tool.name}</p>
+                  <CouponCode code={partnerCode} note={`Partner code supplied through ${tool.name}'s affiliate program. Enter it at ${tool.name} checkout; the provider confirms the discount before you pay.`} />
+                </div>}
+                <div className="discount-guide-actions">
+                  <a href={pricingHref} target="_blank" rel={pricingRel} className="market-button market-button-primary" data-partner-link="">Get {tool.name} via our partner link <ArrowUpRight size={16} aria-hidden="true" /></a>
+                  <a href="#current-offers" className="market-button market-button-secondary">Compare offers <ArrowRight size={16} aria-hidden="true" /></a>
+                </div>
+                <p className="discount-partner-note"><span className="market-badge market-badge-verified">Partner</span> SaaSFolio earns a commission if you subscribe through this link, at no extra cost to you. <Link href="/affiliate-disclosure" className="underline underline-offset-4">How partners are featured</Link></p>
+              </> : <div className="discount-guide-actions">
                 <a href="#current-offers" className="market-button market-button-primary">Compare offers <ArrowRight size={16} aria-hidden="true" /></a>
-                <a href={pricingUrl} target="_blank" rel="nofollow noopener noreferrer" className="market-button market-button-secondary">Official pricing <ArrowUpRight size={16} aria-hidden="true" /></a>
-              </div>
+                <a href={pricingHref} target="_blank" rel={pricingRel} className="market-button market-button-secondary">Official pricing <ArrowUpRight size={16} aria-hidden="true" /></a>
+              </div>}
             </div>
 
             <section aria-labelledby="discount-summary-heading" className="discount-guide-summary">
@@ -156,14 +186,14 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           </div>
           <div className="rounded-xl border border-[var(--market-line)] bg-[var(--market-surface)] p-5 space-y-2">
             <dt className="text-xs font-mono uppercase tracking-wide text-zinc-500">Provider savings</dt>
-            <dd className="space-y-2"><p className="font-semibold text-white">{savingsOptions.length ? `${savingsOptions.length} reviewed ${savingsOptions.length === 1 ? "option" : "options"}` : "Check official pricing"}</p><a href={savingsOptions.length ? "#provider-savings" : pricingUrl} {...(savingsOptions.length ? {} : { target: "_blank", rel: "noopener noreferrer" })} className="inline-block text-sm text-[#C6FF3D] underline">{savingsOptions.length ? "Compare savings & eligibility" : "View provider plans ↗"}</a></dd>
+            <dd className="space-y-2"><p className="font-semibold text-white">{savingsOptions.length ? `${savingsOptions.length} reviewed ${savingsOptions.length === 1 ? "option" : "options"}` : "Check official pricing"}</p><a href={savingsOptions.length ? "#provider-savings" : pricingHref} {...(savingsOptions.length ? {} : { target: "_blank", rel: pricingRel })} className="inline-block text-sm text-[#C6FF3D] underline">{savingsOptions.length ? "Compare savings & eligibility" : "View provider plans ↗"}</a></dd>
           </div>
           <div className="rounded-xl border border-[var(--market-line)] bg-[var(--market-surface)] p-5 space-y-2">
             <dt className="text-xs font-mono uppercase tracking-wide text-zinc-500">Free plans & trials</dt>
             <dd className="space-y-2"><p className="font-semibold text-white">{freeOptions.length ? `${freeOptions.length} sourced ${freeOptions.length === 1 ? "option" : "options"}` : "No current listing"}</p><a href={freeOptions.length ? "#other-offers" : "#saving-guide"} className="inline-block text-sm text-[#C6FF3D] underline">{freeOptions.length ? "Review free access terms" : "Read the savings guide"}</a></dd>
           </div>
         </dl>
-        {guide && !sourceNotesCurrent && <p className="max-w-3xl rounded-xl border border-amber-300/20 bg-amber-300/5 p-4 text-sm leading-relaxed text-zinc-300">The provider savings review dated <time dateTime={guide.reviewedAt}>{guide.reviewedAt}</time> needs an update, so previous savings amounts are hidden. <a href={pricingUrl} target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">Check current {tool.name} pricing ↗</a>. Any current sourced offers below have their own check dates.</p>}
+        {guide && !sourceNotesCurrent && <p className="max-w-3xl rounded-xl border border-amber-300/20 bg-amber-300/5 p-4 text-sm leading-relaxed text-zinc-300">The provider savings review dated <time dateTime={guide.reviewedAt}>{guide.reviewedAt}</time> needs an update, so previous savings amounts are hidden. <a href={pricingHref} target="_blank" rel={pricingRel} className="text-[#C6FF3D] underline">Check current {tool.name} pricing ↗</a>. Any current sourced offers below have their own check dates.</p>}
         <div id="best-discount" className="max-w-3xl space-y-2">
           <h3 className="font-display text-xl font-semibold text-white">How to choose the best {tool.name} discount</h3>
           <p className="text-sm leading-relaxed text-zinc-400">{brandBestDiscountAnswer(tool, offers)}</p>
@@ -219,7 +249,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           <dt className="font-display text-lg font-bold text-white">{check.label}</dt>
           <dd className="text-sm text-zinc-400 leading-relaxed">{check.detail}</dd>
         </div>)}</dl>
-        <p className="text-xs text-zinc-500">{sourceNotesCurrent ? "Guide reviewed" : "Earlier guide reviewed"} <time dateTime={guide!.reviewedAt}>{guide!.reviewedAt}</time>. {!sourceNotesCurrent && "These are questions to resolve with the provider, not current eligibility claims. "}<a href={pricingUrl} target="_blank" rel="noopener noreferrer" className="text-[#C6FF3D] underline">Check {tool.name}’s official terms ↗</a></p>
+        <p className="text-xs text-zinc-500">{sourceNotesCurrent ? "Guide reviewed" : "Earlier guide reviewed"} <time dateTime={guide!.reviewedAt}>{guide!.reviewedAt}</time>. {!sourceNotesCurrent && "These are questions to resolve with the provider, not current eligibility claims. "}<a href={pricingHref} target="_blank" rel={pricingRel} className="text-[#C6FF3D] underline">Check {tool.name}’s official terms ↗</a></p>
       </section>}
 
       {guide && <section id="plan-fit" className="space-y-5 scroll-mt-28">
@@ -247,7 +277,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           </div>
         ))}
         {guide && <aside className="rounded-2xl p-6 border border-white/10 bg-white/[0.02] space-y-3 text-sm text-zinc-400">
-          <h3 className="text-white font-bold">Official pricing observations · {guide.reviewedAt}</h3>
+          <h3 className="text-white font-bold">Official pricing observations · {sourceNotesCurrent && sourceVerifiedAt ? `re-checked ${readableDate(sourceVerifiedAt)}` : readableDate(guide.reviewedAt)}</h3>
           {sourceNotesCurrent ? <ul className="list-disc pl-5 space-y-2">{guide.sourceNotes.map(note => <li key={note}>{note}</li>)}</ul>
             : <p>The previous pricing observations need a new review. Open the official source for current plan limits, trial conditions, and annual billing options.</p>}
           <a href={guide.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block text-[#C6FF3D] underline">Source: {tool.name} pricing ↗</a>

@@ -9,7 +9,7 @@ export function BrandDiscountCard({ tool, deals }: { tool: DetailedTool; deals: 
   return (
     <Link href={`/discounts/${tool.slug}`} prefetch={false} className="discount-card motion-card">
       <div className="discount-card-top">
-        <BrandAvatar name={tool.name} letters={tool.logoLetter} category={tool.categorySlug} />
+        <BrandAvatar name={tool.name} slug={tool.slug} letters={tool.logoLetter} category={tool.categorySlug} />
         <span>{tool.category}</span>
         <ArrowUpRight size={17} aria-hidden="true" />
       </div>

@@ -12,6 +12,7 @@ import { BrandDiscountsSection } from "@/components/sections/BrandDiscountsSecti
 import { getPublishedTools, getPublishedOffers } from "@/lib/published-catalog";
 import { getCatalogCategories } from "@/lib/categories";
 import { getFeaturedDiscountBrands } from "@/lib/brand-discounts";
+import { isPartnerBrand } from "@/lib/data/affiliate-links";
 import { getPublishedSavingsOffers } from "@/lib/savings-collections";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -70,6 +71,8 @@ export default function HomePage() {
     featured.push(offer);
     featuredBrands.add(offer.toolSlug);
   }
+  // Partner offers lead the spotlight; their cards carry a Partner label.
+  featured.sort((a, b) => Number(isPartnerBrand(b.toolSlug)) - Number(isPartnerBrand(a.toolSlug)));
   const moreOffers = featured.slice(3);
   const letters = new Map(tools.map(tool => [tool.slug, tool.logoLetter]));
   const articles = [...DETAILED_ARTICLES].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0, 3);
@@ -126,7 +129,7 @@ export default function HomePage() {
                   {featured.slice(0, 3).map(offer => (
                     <li key={offer.slug}>
                       <Link href={`/deals/${offer.slug}`} prefetch={false} className="home-spotlight-row">
-                        <BrandAvatar name={offer.toolName} category={offer.categorySlug} letters={letters.get(offer.toolSlug)} />
+                        <BrandAvatar name={offer.toolName} slug={offer.toolSlug} category={offer.categorySlug} letters={letters.get(offer.toolSlug)} />
                         <span className="home-spotlight-name"><strong>{offer.toolName}</strong><small>{OFFER_TYPES[offer.dealType]}</small></span>
                         <span className="home-spotlight-value">{offerValue(offer)}</span>
                         <ArrowUpRight size={16} aria-hidden="true" />

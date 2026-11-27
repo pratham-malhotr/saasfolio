@@ -210,7 +210,7 @@ test("outbound redirects for deleted known codes use current provider pricing an
     "@/lib/data/deals-data": catalog,
     "@/lib/data/tools-data": { getToolBySlug },
     "@/lib/server/hosting-affiliates": { getHostingAffiliateUrl: () => undefined },
-    "@/lib/data/affiliate-links": { getCustomAffiliateUrl: () => "https://example.com/?ref=saasfolio" },
+    "@/lib/data/affiliate-links": { affiliateUrlFor: () => undefined },
     "@/lib/offer-links": { publicHttpsUrl: url => url?.startsWith("https://") ? url : undefined },
   });
   const visit = id => route.GET(new Request(`https://saasfolio.tech/go/${id}`), { params: Promise.resolve({ id }) });

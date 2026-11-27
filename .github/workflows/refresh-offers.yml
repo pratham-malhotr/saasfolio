@@ -6,6 +6,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 concurrency:
   group: refresh-offers
   cancel-in-progress: false
@@ -33,6 +34,8 @@ jobs:
           node scripts/catalog-release-pr.mjs --prepare
       - run: npm run test:unit
       - run: npm run catalog:refresh -- --discovery
+      # Re-establish brand guides whose stated figures are still on the official pages.
+      - run: npm run seo:verify-guides
       - run: npm run validate:catalog
       - run: npm run validate:publisher
       - run: npm run build

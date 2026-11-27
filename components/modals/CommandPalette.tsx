@@ -1,5 +1,6 @@
 "use client";
 import { useDialog } from "@/components/modals/useDialog";
+import { BrandAvatar } from "@/components/brand/BrandAvatar";
 
 import React, { useState, useMemo, useEffect } from "react";
 import { trackProductEvent } from "@/lib/client-analytics";
@@ -271,9 +272,7 @@ export function CommandPalette({ isOpen, onClose, discountBrands, searchCatalog 
                       className="group flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.07] hover:border-[#C6FF3D]/40 transition-all"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-black border border-white/10 flex items-center justify-center font-bold text-xs text-[#C6FF3D] group-hover:border-[#C6FF3D]/50">
-                          {tool.logoLetter}
-                        </div>
+                        <BrandAvatar name={tool.name} slug={tool.slug} letters={tool.logoLetter} className="brand-avatar-sm" />
                         <div>
                           <div className="text-sm font-semibold text-white group-hover:text-[#C6FF3D] transition-colors flex items-center gap-2">
                             <span>{tool.name}</span>

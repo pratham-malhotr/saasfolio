@@ -35,7 +35,7 @@ export default function AffiliateDisclosurePage() {
 
         <h2 className="text-xl font-bold text-white pt-4">How We Fund Our Platform</h2>
         <p>
-          SaaSFolio earns referral commissions from some outbound vendor links and offers paid placement in the brand directory. Paid placements appear above matching alphabetical results with a Sponsored label. Editorial reviews and comparisons follow our <Link href="/editorial-policy" className="underline">editorial policy</Link>.
+          SaaSFolio earns referral commissions from some outbound vendor links and offers paid placement in the brand directory. Paid placements appear above matching alphabetical results with a Sponsored label. Brands in our partner program carry a “Partner” label. They are listed first in recommended orderings and featured on the homepage, their outbound links carry our referral tracking, and a partner-supplied code is labelled as such. Partner status never changes the offer terms, prices, sources or eligibility we report. Editorial reviews and comparisons follow our <Link href="/editorial-policy" className="underline">editorial policy</Link>.
         </p>
 
         <h2 className="text-xl font-bold text-white pt-4">What This Means For You</h2>

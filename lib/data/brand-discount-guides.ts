@@ -277,11 +277,11 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     ],
   },
   streamyard: {
-    reviewedAt: "2026-10-23",
+    reviewedAt: "2026-11-27",
     sourceUrl: "https://streamyard.com/pricing",
-    searchTitle: "StreamYard Discounts & Coupon Codes",
-    metaDescription: "Compare StreamYard discounts, yearly billing and coupon status. Check individual or business eligibility, destinations and recording needs before paying.",
-    intro: "Looking for a StreamYard discount? Match the plan to your live show first: who is using it, how many destinations it must reach, and what recordings you need afterwards. Plan eligibility matters alongside the subscription price.",
+    searchTitle: "StreamYard Discount: 22% Off Yearly Plans",
+    metaDescription: "StreamYard discount: 22% off yearly billing on Essential, Core and Advanced, a 7-day free trial and a free plan. Check individual vs business eligibility.",
+    intro: "StreamYard takes 22% off its individual plans when you pay yearly: Essential drops from $18.99 to $14.99 a month, Core from $44.99 to $35.99 and Advanced from $88.99 to $68.99. Every paid individual plan starts with a 7-day free trial, and a free plan is available.",
     summary: "For an occasional event, compare the months of access you actually need with a yearly commitment. For a regular show, test a full rehearsal and confirm the required recording, guest and destination features before choosing an annual offer.",
     decisionRows: [
       { option: "Occasional individual streaming", bestFor: "A creator validating a show format", check: "Branding, streaming limits and usable recordings" },
@@ -291,7 +291,7 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
     redemptionSteps: ["Review the StreamYard plan usage rules and select the eligible individual or business offering.", "Compare billing periods for the plan with your required destinations and recording features.", "Rehearse with your actual guest, audio, screen-sharing and destination setup.", "Check any sourced code's conditions and the final invoice, including renewal, before subscribing."],
     relatedSlugs: ["ocoya", "predis-ai", "beehiiv"],
     savingsOptions: [
-      { type: "Annual billing", saving: "Yearly savings on eligible streaming plans", terms: "Compare the yearly and monthly totals for your required streaming and recording features. Confirm individual or business eligibility before choosing a plan or applying a promotion.", sourceUrl: "https://streamyard.com/pricing" },
+      { type: "Annual billing", saving: "22% off yearly billing on individual plans", terms: "StreamYard's pricing page shows 22% off yearly billing for its individual plans (Essential, Core and Advanced). Those plans are for individual use only; companies and organizations use Business plans. Compare the yearly invoice with the months you will actually stream.", sourceUrl: "https://streamyard.com/pricing" },
     ],
     sections: [
       { heading: "Choose eligibility before comparing the lowest price", text: "Establish whether the broadcast is personal or operated for a business or organization. Use the provider's current plan rules when selecting the account. Ask for clarification before paying if the intended use falls between categories; the cheapest displayed individual option should not be assumed to cover a company production." },
@@ -299,8 +299,11 @@ const REPOSITORY_DISCOUNT_GUIDES: Record<string, BrandDiscountGuide> = {
       { heading: "Compare an event season with a yearly commitment", text: "Map your upcoming broadcasts onto a calendar. If the requirement is a short event series, compare the months you need with a year of access. For an ongoing show, include the value of keeping the same production setup. Review cancellation and recording access before assuming a pause between events has no effect." },
       { heading: "Test the replay and repurposing workflow", text: "After a rehearsal, download the files and attempt the edit, captioning or clips you intend to publish. Check audio separation and storage needs where relevant. Savings on the studio subscription are less useful if the resulting workflow adds repeated manual work after every broadcast." },
     ],
-    sourceNotes: ["The official page advertised yearly savings and seven-day trials on individual paid plans. It identified Essential, Core and Advanced as individual-use plans and directed companies and organizations to Business plans."],
+    bestDiscountAnswer: "The best StreamYard discount is yearly billing, which takes 22% off the individual Essential, Core and Advanced plans: Essential becomes $14.99 a month instead of $18.99, Core $35.99 instead of $44.99. Start with the 7-day free trial to rehearse your real show, and choose yearly only once your streaming schedule is steady. Businesses and organizations need StreamYard's Business plans instead.",
+    sourceNotes: ["The pricing page shows 22% off yearly billing, for individuals only, on the Essential, Core and Advanced plans.", "Essential, Core and Advanced are for individual use only and each starts with a 7-day free trial; the Free plan includes local recordings and the StreamYard logo."],
     faqs: [
+      { question: "Does StreamYard have a discount?", answer: "Yes. StreamYard takes 22% off its individual Essential, Core and Advanced plans with yearly billing, for example Core at $35.99 a month instead of $44.99. There is no public coupon code." },
+      { question: "Does StreamYard have a free trial?", answer: "Yes. Essential, Core and Advanced each start with a 7-day free trial, and StreamYard also has a Free plan with 2 hours a month of local recordings and its logo on streams." },
       { question: "Can my business use a discounted individual StreamYard plan?", answer: "Check StreamYard's current usage policy before subscribing. Its pricing page distinguishes individual plans from business offerings; ask the provider which category covers your organization and intended broadcast." },
       { question: "Is yearly StreamYard billing better for a one-off event?", answer: "Compare the total payments needed for your event schedule with the yearly invoice. Include rehearsal time and post-event recording access, then choose the commitment that fits the production rather than the largest displayed percentage reduction." },
     ],

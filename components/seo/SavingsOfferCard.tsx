@@ -12,7 +12,7 @@ export function SavingsOfferCard({ deal }: { deal: SaaSDeal }) {
   const kind = OFFER_TYPES[deal.dealType];
   return <article data-collection-offer={deal.slug} className="market-offer-card motion-card">
     <div className="market-offer-top">
-      <BrandAvatar name={deal.toolName} category={deal.categorySlug} />
+      <BrandAvatar name={deal.toolName} slug={deal.toolSlug} category={deal.categorySlug} />
       <p className="market-offer-brand"><strong>{deal.toolName}</strong><small>{deal.category}</small></p>
     </div>
     <div className="market-offer-deal">
