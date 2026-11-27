@@ -12,7 +12,7 @@ const description = "Software reviews, pricing comparisons and buying guides: Za
 export const metadata = pageMetadata({ title, description, path: "/articles" });
 
 const readingTopics = [
-  { heading: "Software comparisons with real cost math", slugs: ["zapier-vs-make-vs-n8n-pricing", "asana-vs-monday-vs-clickup-pricing", "intercom-early-stage-vs-zendesk-for-startups"] },
+  { heading: "Software comparisons with real cost math", slugs: ["zapier-vs-make-vs-n8n-pricing", "smartlead-vs-snov-io", "cal-com-vs-calendly", "asana-vs-monday-vs-clickup-pricing", "intercom-early-stage-vs-zendesk-for-startups"] },
   { heading: "Software reviews for engineering teams", slugs: ["coderabbit-review-github-pull-requests", "checkly-review-api-playwright-monitoring", "supabase-review-multi-tenant-saas", "baserow-review-postgresql-operations"] },
   { heading: "Software reviews for publishers and service teams", slugs: ["fireflies-ai-review-client-meetings", "buttondown-review-paid-newsletter", "fluent-forms-review-wordpress-leads"] },
   { heading: "LinkedIn tools and newsletter platforms", slugs: ["taplio-pricing-starter-vs-growth-vs-pro", "taplio-vs-authoredup", "beehiiv-vs-kit-newsletter"] },

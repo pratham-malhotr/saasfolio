@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-27T16:39:59.649Z",
+  "generatedAt": "2026-11-27T20:56:09.090Z",
   "scoreVersion": "saasfolio-article-checklist-v1",
   "scope": "Local production preview: rendered HTTP responses and sharing images at http://127.0.0.1:3238; local cover files checked against this checkout.",
   "methodology": "Twenty equally weighted, reproducible on-page checks; five points per passing check. This custom checklist is not a Google score and does not measure keyword difficulty, performance, backlinks, editorial originality or ranking probability. A transport failure remains unscored rather than receiving a fabricated zero.",
   "summary": {
-    "articles": 65,
-    "scored": 65,
+    "articles": 67,
+    "scored": 67,
     "unavailable": 0,
     "averageScore": 100,
     "minimumScore": 100,
@@ -14179,6 +14179,445 @@
             "/articles/startup-software-credits-and-renewal-costs",
             "/articles/saas-coupon-renewal-price-checklist",
             "/articles/compare-saas-team-seat-costs"
+          ]
+        },
+        {
+          "id": "discovery",
+          "label": "Sitemap and breadcrumb discovery",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "inSitemap": true
+          }
+        }
+      ],
+      "findings": [],
+      "publishedAt": "2026-11-27",
+      "visibility": {
+        "searchTermVisibilityScore": null,
+        "status": "search_console_not_supplied",
+        "metrics": null
+      }
+    },
+    {
+      "slug": "smartlead-vs-snov-io",
+      "title": "Smartlead vs Snov.io: Which Cold Email Tool Should You Pay For?",
+      "url": "https://saasfolio.tech/articles/smartlead-vs-snov-io",
+      "score": 100,
+      "scoreVersion": "saasfolio-article-checklist-v1",
+      "bodyWords": 931,
+      "topicTerms": [
+        "Smartlead",
+        "Snov.io",
+        "Cold email",
+        "Sales prospecting",
+        "SaaS pricing"
+      ],
+      "signals": {
+        "title": "Smartlead vs Snov.io: Which Cold Email Tool Should You Pay For? | SaaSFolio",
+        "description": "Compare Smartlead and Snov.io pricing, credits, sending limits and mailboxes. See which fits 2,000 prospects a month, and when teams use both together.",
+        "sharingImage": "https://saasfolio.tech/articles/smartlead-vs-snov-io/opengraph-image"
+      },
+      "checks": [
+        {
+          "id": "http",
+          "label": "Successful public response",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "HTTP 200"
+        },
+        {
+          "id": "canonical",
+          "label": "One matching canonical URL",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": [
+            "https://saasfolio.tech/articles/smartlead-vs-snov-io"
+          ]
+        },
+        {
+          "id": "indexable",
+          "label": "No blocking indexing directive",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "index, follow,index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        },
+        {
+          "id": "title",
+          "label": "Descriptive title with a practical display length",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "title": "Smartlead vs Snov.io: Which Cold Email Tool Should You Pay For? | SaaSFolio",
+            "characters": 75
+          }
+        },
+        {
+          "id": "unique-title",
+          "label": "Unique article title",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "Smartlead vs Snov.io: Which Cold Email Tool Should You Pay For? | SaaSFolio"
+        },
+        {
+          "id": "description",
+          "label": "Useful concise meta description",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "description": "Compare Smartlead and Snov.io pricing, credits, sending limits and mailboxes. See which fits 2,000 prospects a month, and when teams use both together.",
+            "characters": 151
+          }
+        },
+        {
+          "id": "unique-description",
+          "label": "Unique article description",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "Compare Smartlead and Snov.io pricing, credits, sending limits and mailboxes. See which fits 2,000 prospects a month, and when teams use both together."
+        },
+        {
+          "id": "h1",
+          "label": "One matching visible primary heading",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": [
+            "Smartlead vs Snov.io: Which Cold Email Tool Should You Pay For?"
+          ]
+        },
+        {
+          "id": "sections",
+          "label": "Crawlable sections and unique anchors",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "expectedSections": 7
+          }
+        },
+        {
+          "id": "rendered-content",
+          "label": "Substantive article text exists before JavaScript",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "bodyWords": 931
+          }
+        },
+        {
+          "id": "cover",
+          "label": "Valid cover, descriptive alt and explicit dimensions",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "path": "/images/comparisons/smartlead-vs-snov-io.webp",
+            "alt": "Two cold email pipelines compared, one finding and verifying prospects and one sending sequences across many mailboxes"
+          }
+        },
+        {
+          "id": "sharing-image",
+          "label": "Working sharing image",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "https://saasfolio.tech/articles/smartlead-vs-snov-io/opengraph-image"
+        },
+        {
+          "id": "open-graph",
+          "label": "Matching social title, description and URL",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "https://saasfolio.tech/articles/smartlead-vs-snov-io"
+        },
+        {
+          "id": "twitter",
+          "label": "Complete large-image sharing card",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "summary_large_image"
+        },
+        {
+          "id": "article-schema",
+          "label": "Valid matching Article structured data",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "articles": 1,
+            "malformedSchema": false
+          }
+        },
+        {
+          "id": "dates",
+          "label": "Valid honest publication and update dates",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": [
+            "2026-11-27T00:00:00.000Z",
+            "2026-11-27T00:00:00.000Z"
+          ]
+        },
+        {
+          "id": "attribution",
+          "label": "Visible author and structured publisher",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "SaaSFolio editorial"
+        },
+        {
+          "id": "references",
+          "label": "Visible HTTPS source references match citations",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "references": 2
+          }
+        },
+        {
+          "id": "related-links",
+          "label": "Contextual crawlable related reading",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": [
+            "/articles/build-a-saas-budget-before-buying",
+            "/articles/compare-saas-pricing-limits",
+            "/articles/compare-saas-team-seat-costs"
+          ]
+        },
+        {
+          "id": "discovery",
+          "label": "Sitemap and breadcrumb discovery",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "inSitemap": true
+          }
+        }
+      ],
+      "findings": [],
+      "publishedAt": "2026-11-27",
+      "visibility": {
+        "searchTermVisibilityScore": null,
+        "status": "search_console_not_supplied",
+        "metrics": null
+      }
+    },
+    {
+      "slug": "cal-com-vs-calendly",
+      "title": "Cal.com vs Calendly: Pricing for Solo Users and Teams",
+      "url": "https://saasfolio.tech/articles/cal-com-vs-calendly",
+      "score": 100,
+      "scoreVersion": "saasfolio-article-checklist-v1",
+      "bodyWords": 755,
+      "topicTerms": [
+        "Cal.com",
+        "Calendly",
+        "Scheduling software",
+        "SaaS pricing"
+      ],
+      "signals": {
+        "title": "Cal.com vs Calendly: Pricing for Solo Users and Teams | SaaSFolio",
+        "description": "Compare Cal.com and Calendly free plans, paid seat prices, round-robin and SSO. See the yearly cost for a solo consultant, a 5-person team and a 20-person…",
+        "sharingImage": "https://saasfolio.tech/articles/cal-com-vs-calendly/opengraph-image"
+      },
+      "checks": [
+        {
+          "id": "http",
+          "label": "Successful public response",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "HTTP 200"
+        },
+        {
+          "id": "canonical",
+          "label": "One matching canonical URL",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": [
+            "https://saasfolio.tech/articles/cal-com-vs-calendly"
+          ]
+        },
+        {
+          "id": "indexable",
+          "label": "No blocking indexing directive",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "index, follow,index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        },
+        {
+          "id": "title",
+          "label": "Descriptive title with a practical display length",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "title": "Cal.com vs Calendly: Pricing for Solo Users and Teams | SaaSFolio",
+            "characters": 65
+          }
+        },
+        {
+          "id": "unique-title",
+          "label": "Unique article title",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "Cal.com vs Calendly: Pricing for Solo Users and Teams | SaaSFolio"
+        },
+        {
+          "id": "description",
+          "label": "Useful concise meta description",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "description": "Compare Cal.com and Calendly free plans, paid seat prices, round-robin and SSO. See the yearly cost for a solo consultant, a 5-person team and a 20-person…",
+            "characters": 155
+          }
+        },
+        {
+          "id": "unique-description",
+          "label": "Unique article description",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "Compare Cal.com and Calendly free plans, paid seat prices, round-robin and SSO. See the yearly cost for a solo consultant, a 5-person team and a 20-person…"
+        },
+        {
+          "id": "h1",
+          "label": "One matching visible primary heading",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": [
+            "Cal.com vs Calendly: Pricing for Solo Users and Teams"
+          ]
+        },
+        {
+          "id": "sections",
+          "label": "Crawlable sections and unique anchors",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "expectedSections": 7
+          }
+        },
+        {
+          "id": "rendered-content",
+          "label": "Substantive article text exists before JavaScript",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "bodyWords": 755
+          }
+        },
+        {
+          "id": "cover",
+          "label": "Valid cover, descriptive alt and explicit dimensions",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "path": "/images/comparisons/cal-com-vs-calendly.webp",
+            "alt": "Two scheduling calendars compared with yearly cost totals for a solo user and a five-person team"
+          }
+        },
+        {
+          "id": "sharing-image",
+          "label": "Working sharing image",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "https://saasfolio.tech/articles/cal-com-vs-calendly/opengraph-image"
+        },
+        {
+          "id": "open-graph",
+          "label": "Matching social title, description and URL",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "https://saasfolio.tech/articles/cal-com-vs-calendly"
+        },
+        {
+          "id": "twitter",
+          "label": "Complete large-image sharing card",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "summary_large_image"
+        },
+        {
+          "id": "article-schema",
+          "label": "Valid matching Article structured data",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "articles": 1,
+            "malformedSchema": false
+          }
+        },
+        {
+          "id": "dates",
+          "label": "Valid honest publication and update dates",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": [
+            "2026-11-27T00:00:00.000Z",
+            "2026-11-27T00:00:00.000Z"
+          ]
+        },
+        {
+          "id": "attribution",
+          "label": "Visible author and structured publisher",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": "SaaSFolio editorial"
+        },
+        {
+          "id": "references",
+          "label": "Visible HTTPS source references match citations",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": {
+            "references": 2
+          }
+        },
+        {
+          "id": "related-links",
+          "label": "Contextual crawlable related reading",
+          "passed": true,
+          "points": 5,
+          "possiblePoints": 5,
+          "evidence": [
+            "/articles/build-a-saas-budget-before-buying",
+            "/articles/compare-saas-team-seat-costs",
+            "/articles/asana-vs-monday-vs-clickup-pricing"
           ]
         },
         {

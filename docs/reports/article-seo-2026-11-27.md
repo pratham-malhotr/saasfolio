@@ -4,7 +4,7 @@ Local production preview: rendered HTTP responses and sharing images at http://1
 
 Twenty equally weighted, reproducible on-page checks; five points per passing check. This custom checklist is not a Google score and does not measure keyword difficulty, performance, backlinks, editorial originality or ranking probability. A transport failure remains unscored rather than receiving a fabricated zero.
 
-65 articles; average 100/100, minimum 100/100.
+67 articles; average 100/100, minimum 100/100.
 
 Search visibility was not supplied; no search-ranking score has been invented.
 
@@ -75,3 +75,5 @@ Search visibility was not supplied; no search-ranking score has been invented.
 | zapier-vs-make-vs-n8n-pricing | 100 | search_console_not_supplied | Unmeasured | Unmeasured | None |
 | asana-vs-monday-vs-clickup-pricing | 100 | search_console_not_supplied | Unmeasured | Unmeasured | None |
 | intercom-early-stage-vs-zendesk-for-startups | 100 | search_console_not_supplied | Unmeasured | Unmeasured | None |
+| smartlead-vs-snov-io | 100 | search_console_not_supplied | Unmeasured | Unmeasured | None |
+| cal-com-vs-calendly | 100 | search_console_not_supplied | Unmeasured | Unmeasured | None |
