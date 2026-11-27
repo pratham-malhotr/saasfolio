@@ -6,6 +6,7 @@ import { getArticleWorkbook } from "./article-workbooks";
 import { HOSTING_REVIEWS } from "./hosting-reviews";
 import { HOSTING_ARTICLES } from "./hosting-articles";
 import { CREATOR_BUYING_GUIDES } from "./creator-buying-guides";
+import { FLAGSHIP_COMPARISONS } from "./flagship-comparisons";
 
 type Guide = { slug: string; title: string; summary: string; tags: string[]; sections: [string, string][]; sources: { title: string; url: string }[] };
 const guides: Guide[] = [
@@ -107,6 +108,16 @@ const guides: Guide[] = [
   },
 ];
 
+// Inbound links to the flagship comparisons from the closest existing guides.
+const relatedFlagshipGuides: Partial<Record<string, string>> = {
+  "n8n-vps-sizing-concurrency-backups": "zapier-vs-make-vs-n8n-pricing",
+  "compare-saas-pricing-limits": "zapier-vs-make-vs-n8n-pricing",
+  "build-a-saas-budget-before-buying": "asana-vs-monday-vs-clickup-pricing",
+  "compare-saas-team-seat-costs": "asana-vs-monday-vs-clickup-pricing",
+  "startup-software-credits-and-renewal-costs": "intercom-early-stage-vs-zendesk-for-startups",
+  "saas-coupon-renewal-price-checklist": "intercom-early-stage-vs-zendesk-for-startups",
+};
+
 const relatedSoftwareReviews: Partial<Record<string, string>> = {
   "evaluate-ai-software-free-trials": "coderabbit-review-github-pull-requests",
   "compare-saas-pricing-limits": "supabase-review-multi-tenant-saas",
@@ -142,14 +153,14 @@ export const EDITORIAL_ARTICLES: DetailedArticle[] = [...guides.map((guide, inde
   tableOfContents: guide.sections.map(([title], sectionIndex) => ({ id: `check-${sectionIndex + 1}`, title })),
   sections: guide.sections.map(([heading, content], sectionIndex) => ({ id: `check-${sectionIndex + 1}`, heading, content })),
   sources: guide.sources, relatedArticlesSlugs: [guides[(index + 1) % guides.length].slug, guides[(index + 2) % guides.length].slug],
-})), ...SAVINGS_BUYING_GUIDES, ...HOSTING_REVIEWS, ...HOSTING_ARTICLES, ...CREATOR_BUYING_GUIDES, ...SOFTWARE_REVIEWS].map(article => {
+})), ...SAVINGS_BUYING_GUIDES, ...HOSTING_REVIEWS, ...HOSTING_ARTICLES, ...CREATOR_BUYING_GUIDES, ...SOFTWARE_REVIEWS, ...FLAGSHIP_COMPARISONS].map(article => {
   const workbook = getArticleWorkbook(article.slug);
   const sections = [...article.sections, ...workbook];
   const relatedReview = relatedSoftwareReviews[article.slug];
   return {
     ...article,
     coverImage: article.coverImage || editorialCoverPhotos[article.slug],
-    relatedArticlesSlugs: relatedReview ? [relatedReview, ...article.relatedArticlesSlugs] : article.relatedArticlesSlugs,
+    relatedArticlesSlugs: [...new Set([relatedFlagshipGuides[article.slug], relatedReview, ...article.relatedArticlesSlugs].filter((slug): slug is string => Boolean(slug)))],
     sections,
     updatedAt: workbook.length && article.updatedAt < "2026-11-05" ? "2026-11-05" : article.updatedAt,
     readTime: `${Math.max(3, Math.ceil(sections.reduce((total, section) => total + section.content.split(/\s+/).length, 0) / 180))} min read`,

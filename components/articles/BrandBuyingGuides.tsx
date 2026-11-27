@@ -2,9 +2,10 @@ import Link from "next/link";
 import { getToolComparisons } from "@/lib/data/comparisons-data";
 import { SOFTWARE_REVIEWS } from "@/lib/data/software-reviews";
 import { getCreatorGuidesForBrand } from "@/lib/data/creator-buying-guides";
+import { getFlagshipGuidesForBrand } from "@/lib/data/flagship-comparisons";
 
 export function BrandBuyingGuides({ slug }: { slug: string }) {
-  const guides = [...getCreatorGuidesForBrand(slug), ...SOFTWARE_REVIEWS.filter(review => review.toolSlug === slug)];
+  const guides = [...getFlagshipGuidesForBrand(slug), ...getCreatorGuidesForBrand(slug), ...SOFTWARE_REVIEWS.filter(review => review.toolSlug === slug)];
   const comparisons = getToolComparisons(slug);
   const links = [
     ...guides.map(guide => ({ href: `/articles/${guide.slug}`, title: guide.title })),

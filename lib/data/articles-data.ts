@@ -24,6 +24,8 @@ export interface DetailedArticle {
   slug: string;
   subtitle: string;
   summary: string;
+  /** Answer-first, quotable facts shown above the body (AEO/GEO). Each item should stand alone. */
+  keyTakeaways?: string[];
   category: "Software Reviews" | "Guides & Stacks" | "Comparisons" | "Case Studies" | "Tool Roundups";
   readTime: string;
   publishedAt: string;

@@ -381,14 +381,26 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Article Body Column (8 cols) */}
           <div className="min-w-0 space-y-12 lg:col-span-8">
-            {!quickAnswer && <div className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold block mb-2">
-                Executive Takeaway
+            {!quickAnswer && (article.keyTakeaways?.length ? (
+              <section id="key-takeaways" aria-labelledby="key-takeaways-heading" className="relative overflow-hidden rounded-2xl border border-[#C6FF3D]/30 bg-[radial-gradient(120%_90%_at_100%_0%,#c6ff3d14,transparent_60%),#0b0d0b] p-6 sm:p-8 shadow-[0_0_70px_-40px_#c6ff3d]">
+                <h2 id="key-takeaways-heading" className="market-kicker mb-4">Key takeaways</h2>
+                <ul className="space-y-3">
+                  {article.keyTakeaways.map(point => (
+                    <li key={point} className="flex gap-3 text-sm leading-relaxed text-zinc-200 sm:text-base">
+                      <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#C6FF3D] shadow-[0_0_8px_#c6ff3d]" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : <div className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+              <span className="market-kicker block mb-2">
+                Key takeaway
               </span>
               <p className="text-zinc-300 leading-relaxed text-sm sm:text-base">
                 {article.summary}
               </p>
-            </div>}
+            </div>)}
 
             {hostingActions && <p className="text-xs leading-6 text-zinc-500">Affiliate disclosure: some provider links may earn SaaSFolio a commission. Recommendations follow the workload and operating criteria described below. <Link href="/affiliate-disclosure" className="text-[#C6FF3D] underline">Read the disclosure</Link>.</p>}
 
@@ -405,11 +417,23 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
                       isReadingMode ? "text-base sm:text-lg" : "text-sm sm:text-base"
                     }`}
                   >
-                    {section.content.split("\n\n").map((para, pIdx) => (
-                      <p key={pIdx} className="leading-relaxed">
-                        {para}
-                      </p>
-                    ))}
+                    {section.content.split("\n\n").map((para, pIdx) => {
+                      const lines = para.split("\n");
+                      return lines.length > 1 && lines.every(line => line.startsWith("- ")) ? (
+                        <ul key={pIdx} className="space-y-2 pl-1">
+                          {lines.map(line => (
+                            <li key={line} className="flex gap-3 leading-relaxed">
+                              <span aria-hidden="true" className="mt-[.6em] h-1.5 w-1.5 flex-none rounded-full bg-[#C6FF3D]" />
+                              <span>{line.slice(2)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p key={pIdx} className="leading-relaxed">
+                          {para}
+                        </p>
+                      );
+                    })}
                   </div>
 
                   {section.links?.length ? <ul className="mt-5 space-y-3 text-sm text-[#C6FF3D]">{section.links.map(link => (
@@ -484,12 +508,12 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
 
             {/* Optional FAQ Section */}
             {article.faqs && article.faqs.length > 0 && (
-              <div className="pt-8 border-t border-white/10">
-                <h3 className="font-display font-bold text-xl sm:text-2xl text-white mb-4">
-                  Frequently Asked Questions
-                </h3>
+              <section id="faq" aria-labelledby="faq-heading" className="pt-8 border-t border-white/10 scroll-mt-28">
+                <h2 id="faq-heading" className="font-display font-bold text-xl sm:text-2xl text-white mb-4">
+                  Frequently asked questions
+                </h2>
                 <FaqAccordion faqs={article.faqs} />
-              </div>
+              </section>
             )}
 
             {/* Author Bio Box */}

@@ -8,10 +8,11 @@ import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks"
 import Link from "next/link";
 
 const title = "Software Buying Guides, Reviews & Comparisons";
-const description = "Read software reviews and buying guides for AI code review, monitoring, newsletters, WordPress and web hosting. Compare plan limits and trade-offs.";
+const description = "Software reviews, pricing comparisons and buying guides: Zapier vs Make vs n8n, Asana vs monday.com vs ClickUp, newsletters, monitoring and web hosting.";
 export const metadata = pageMetadata({ title, description, path: "/articles" });
 
 const readingTopics = [
+  { heading: "Software comparisons with real cost math", slugs: ["zapier-vs-make-vs-n8n-pricing", "asana-vs-monday-vs-clickup-pricing", "intercom-early-stage-vs-zendesk-for-startups"] },
   { heading: "Software reviews for engineering teams", slugs: ["coderabbit-review-github-pull-requests", "checkly-review-api-playwright-monitoring", "supabase-review-multi-tenant-saas", "baserow-review-postgresql-operations"] },
   { heading: "Software reviews for publishers and service teams", slugs: ["fireflies-ai-review-client-meetings", "buttondown-review-paid-newsletter", "fluent-forms-review-wordpress-leads"] },
   { heading: "LinkedIn tools and newsletter platforms", slugs: ["taplio-pricing-starter-vs-growth-vs-pro", "taplio-vs-authoredup", "beehiiv-vs-kit-newsletter"] },
@@ -28,7 +29,7 @@ export default function ArticlesPage() {
     <ArticlesHubClient articles={articles} savingsLinks={<div className="space-y-8">
       <nav aria-label="Software buying guides by topic" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {readingTopics.map(topic => (
-          <section key={topic.heading} className="rounded-2xl border border-white/10 bg-[#101416] p-5">
+          <section key={topic.heading} className="rounded-2xl border border-white/10 bg-[#0b0d0b] p-5 transition-colors hover:border-[#C6FF3D]/30">
             <h2 className="font-display text-lg font-semibold text-white">{topic.heading}</h2>
             <ul className="mt-3 space-y-2">
               {topic.slugs.map(slug => <li key={slug}><Link prefetch={false} href={`/articles/${slug}`} className="inline-block py-1.5 text-sm leading-relaxed text-[#C6FF3D] underline underline-offset-4">{articleTitles.get(slug)}</Link></li>)}

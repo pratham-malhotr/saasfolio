@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { absoluteUrl, pageMetadata, isoDate } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema, organizationId, softwareSchema, webPageSchema } from "@/lib/structured-data";
+import { breadcrumbSchema, faqSchema, organizationId, softwareSchema, webPageSchema } from "@/lib/structured-data";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { ArticleDetailClient } from "@/components/articles/ArticleDetailClient";
 import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
@@ -84,11 +84,13 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         } : absoluteUrl(`${path}/opengraph-image`),
         wordCount: article.sections.reduce((total, section) => total + section.content.split(/\s+/).length, 0),
         about: reviewedSoftware ? [{ "@id": reviewedSoftware["@id"] }] : article.tags.map(name => ({ "@type": "Thing", name })),
+        ...(article.keyTakeaways?.length && { abstract: article.keyTakeaways.join(" ") }),
         articleSection: article.category,
         keywords: article.tags,
         inLanguage: "en",
       },
       ...(reviewedSoftware ? [reviewedSoftware] : []),
+      ...(article.faqs?.length ? [{ ...faqSchema(article.faqs), "@id": absoluteUrl(`${path}#faq`) }] : []),
       breadcrumbSchema([{ name: "SaaS Articles", path: "/articles" }, { name: article.title, path }]),
     ],
   };
