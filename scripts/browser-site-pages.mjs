@@ -85,6 +85,10 @@ try {
   const cpuRate = Number(process.env.BROWSER_CPU_RATE || 1);
   assert.ok(Number.isFinite(cpuRate) && cpuRate >= 1 && cpuRate <= 8, "BROWSER_CPU_RATE must be between 1 and 8");
   await page("Emulation.setCPUThrottlingRate", { rate: cpuRate });
+  // Start as a visitor who already declined analytics. The consent notice
+  // appears after hydration and can cover a target between the hit test and
+  // the click; browser-privacy-smoke.mjs covers the notice itself.
+  await page("Page.addScriptToEvaluateOnNewDocument", { source: "try{localStorage.setItem('saasfolio.analytics-consent.v1',JSON.stringify({version:1,allowed:false,at:Date.now()}))}catch{}" });
   await page("Page.addScriptToEvaluateOnNewDocument", { source: "window.auditClicks=[]; for(const type of ['mousedown','mouseup','click']) document.addEventListener(type,event=>auditClicks.push({type,href:event.target.closest('a')?.getAttribute('href'),y:event.clientY,scrollY}),true);" });
   await page("Fetch.enable", { patterns: [{ urlPattern: `${origin}/api/*` }, { urlPattern: "https://*" }] });
   await page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
@@ -184,7 +188,7 @@ try {
     await navigate("/");
     await enter("#home-brand-search", "unmatched-software-query");
     await evaluate("document.querySelector('#home-brand-search').form.requestSubmit()");
-    await until(() => evaluate("location.pathname === '/deals' && location.search === '?q=unmatched-software-query' && document.querySelector('main').textContent.includes('No matching offers')"), "Homepage search opens filtered deal results");
+    await until(() => evaluate("location.pathname === '/deals' && location.search === '?q=unmatched-software-query' && !!document.querySelector('main')?.textContent.includes('No matching offers')"), "Homepage search opens filtered deal results");
     assert.equal(await evaluate("document.querySelector('input[aria-label=\"Search software offers\"]').value"), "unmatched-software-query");
     await click('[aria-label="Clear search"]');
     await until(() => evaluate("document.querySelector('input[aria-label=\"Search software offers\"]').value === '' && !document.querySelector('main').textContent.includes('No matching offers')"), "Clearing search restores the deal catalog");

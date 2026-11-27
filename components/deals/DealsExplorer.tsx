@@ -56,6 +56,11 @@ export function DealsExplorer({
     for (const deal of initialDeals) counts.set(deal.categorySlug, (counts.get(deal.categorySlug) || 0) + 1);
     return CATEGORIES.map(category => ({ ...category, count: counts.get(category.slug) || 0 }));
   }, [initialDeals]);
+  const typeCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const deal of initialDeals) counts.set(deal.dealType, (counts.get(deal.dealType) || 0) + 1);
+    return counts;
+  }, [initialDeals]);
   const categoryLabel = categories.find(category => category.slug === selectedCategory)?.name || selectedCategory;
 
   const filteredDeals = useMemo(() => {
@@ -162,10 +167,10 @@ export function DealsExplorer({
 
   return (
     <div className="market-page deals-explorer">
-      <header className="market-intro">
+      <header className="market-intro market-intro-compact">
         <div className="market-shell market-intro-inner">
           <div>
-            <p className="market-eyebrow"><Tag size={15} aria-hidden="true" /> Software savings</p>
+            <p className="market-eyebrow"><Tag size={14} aria-hidden="true" /> Software savings</p>
             <h1>{heading}</h1>
             <p>{description}</p>
           </div>
@@ -204,13 +209,6 @@ export function DealsExplorer({
               {canReset && <button type="button" onClick={resetFilters}>Reset</button>}
             </div>
             <fieldset>
-              <legend>Offer type</legend>
-              <button type="button" aria-pressed={selectedType === "all"} onClick={() => setSelectedType("all")}>All offer types</button>
-              {filterTypes.map(value => (
-                <button key={value} type="button" aria-pressed={selectedType === value} onClick={() => setSelectedType(value)}>{OFFER_TYPES[value]}</button>
-              ))}
-            </fieldset>
-            <fieldset>
               <legend>Category</legend>
               <div className="deals-category-filter">
                 <button type="button" aria-pressed={selectedCategory === "all"} onClick={() => setSelectedCategory("all")}>
@@ -245,6 +243,18 @@ export function DealsExplorer({
           </aside>
 
           <section ref={resultsRef} aria-labelledby="deals-results-heading" className="deals-results">
+            <div className="deals-type-tabs" role="group" aria-label="Offer type">
+              {(["all", ...filterTypes] as const).map(value => {
+                const count = value === "all" ? initialDeals.length : typeCounts.get(value) || 0;
+                if (!count && selectedType !== value) return null;
+                return (
+                  <button key={value} type="button" aria-pressed={selectedType === value} onClick={() => setSelectedType(value)}>
+                    {value === "all" ? "All offers" : OFFER_TYPES[value]}
+                    <small>{count}</small>
+                  </button>
+                );
+              })}
+            </div>
             <div className="deals-results-head">
               <h2 id="deals-results-heading" aria-live="polite"><span key={filteredDeals.length}>{filteredDeals.length} {filteredDeals.length === 1 ? "offer" : "offers"}</span></h2>
               <Link href="/submit/offer">Submit an offer <ArrowUpRight size={16} aria-hidden="true" /></Link>

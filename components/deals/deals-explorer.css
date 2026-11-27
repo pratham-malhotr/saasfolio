@@ -103,3 +103,24 @@
 @media (width < 49rem) and (prefers-reduced-motion: no-preference) {
   .deals-filters[data-open] { animation: market-arrive 300ms var(--ease-luxury) backwards; }
 }
+
+/* ---------- Enterprise listing refinements ---------- */
+.market-intro-compact { padding-block: clamp(6.6rem, 8.5vw, 7.6rem) clamp(1.5rem, 3vw, 2.25rem); }
+.market-intro-compact h1 { font-size: clamp(2rem, 4vw, 3rem); }
+.deals-toolbar { background: var(--market-surface); box-shadow: var(--market-shadow); }
+.deals-search { background: var(--market-bg-deep); }
+.deals-search:focus-within { outline: none; border-color: var(--market-lime-line); box-shadow: 0 0 0 4px #c6ff3d14; }
+.deals-filters { position: sticky; top: 5.6rem; max-height: calc(100dvh - 6.6rem); overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--market-line-strong) transparent; }
+.deals-filters fieldset button[aria-pressed="true"] { border-color: var(--market-lime-line); background: var(--market-lime-soft); color: var(--market-lime); }
+.deals-filters .deals-category-filter { max-height: none; }
+.deals-active button { border-color: var(--market-lime-line); background: var(--market-lime-soft); color: var(--market-ink); }
+.deals-active button:hover { border-color: var(--market-lime); }
+
+.deals-type-tabs { display: flex; gap: .35rem; overflow-x: auto; padding: .3rem; margin-bottom: .9rem; border: 1px solid var(--market-line); border-radius: .75rem; background: var(--market-surface); scrollbar-width: none; }
+.deals-type-tabs::-webkit-scrollbar { display: none; }
+.deals-type-tabs button { display: inline-flex; min-height: 40px; flex: 1 0 auto; align-items: center; justify-content: center; gap: .45rem; padding: 0 .85rem; border-radius: .5rem; color: var(--market-muted); font-size: .82rem; font-weight: 600; white-space: nowrap; cursor: pointer; transition: background-color 170ms, color 170ms, box-shadow 200ms; }
+.deals-type-tabs button small { padding: .05rem .4rem; border-radius: 999px; background: var(--market-raised); color: var(--market-faint); font-size: .7rem; font-variant-numeric: tabular-nums; }
+.deals-type-tabs button:hover { color: var(--market-ink); background: #ffffff08; }
+.deals-type-tabs button[aria-pressed="true"] { background: var(--market-lime); color: var(--market-lime-ink); box-shadow: 0 6px 20px -10px #c6ff3d; }
+.deals-type-tabs button[aria-pressed="true"] small { background: #0b110226; color: var(--market-lime-ink); }
+@media (width < 49rem) { .deals-filters { position: static; max-height: none; } }

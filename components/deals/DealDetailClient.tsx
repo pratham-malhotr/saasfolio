@@ -3,10 +3,10 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, BookOpen, ChevronDown, FileCheck2, Share2, ThumbsDown, ThumbsUp } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BookOpen, CalendarCheck, ChevronDown, FileCheck2, Info, Share2, Tag, ThumbsDown, ThumbsUp } from "lucide-react";
 import { BrandAvatar } from "@/components/brand/BrandAvatar";
 import { CouponCode } from "@/components/deals/CouponCode";
-import { OfferCard, OFFER_TYPES, offerValue } from "@/components/deals/OfferCard";
+import { OfferCard, OFFER_TYPES, offerSourceLabel, offerValue } from "@/components/deals/OfferCard";
 import { OfferEvidenceDetails } from "@/components/deals/OfferEvidenceDetails";
 import { OfferReportLink } from "@/components/deals/OfferReportLink";
 import { SaveItemButton } from "@/components/profile/SaveItemButton";
@@ -39,6 +39,8 @@ export function DealDetailClient({
   const [shareStatus, setShareStatus] = useState("");
   const categoryHref = `/deals/category/${deal.categorySlug}`;
   const description = deal.description.replace(`${deal.title}. `, "");
+  const checkedAt = Date.parse(deal.checkedAt || "");
+  const checkedLabel = Number.isFinite(checkedAt) ? new Intl.DateTimeFormat("en", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(checkedAt) : "";
 
   function addNote(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -90,11 +92,18 @@ export function DealDetailClient({
               </div>
             </header>
             <section className="deal-panel deal-claim" aria-labelledby="deal-claim-heading">
+              <p className="deal-claim-label">{deal.toolName} offer</p>
               <h2 id="deal-claim-heading">{offerValue(deal)}</h2>
               {deal.code && <div className="deal-claim-code"><p>Reported coupon code</p><CouponCode key={deal.code} code={deal.code} /></div>}
               <a href={getOfferHref(deal)} rel="sponsored nofollow noopener noreferrer" className="market-button market-button-primary">
                 {offerActionLabel(deal)} <ArrowUpRight size={18} aria-hidden="true" />
               </a>
+              <dl className="deal-claim-facts">
+                <div><dt><Tag size={14} aria-hidden="true" /> Offer type</dt><dd>{OFFER_TYPES[deal.dealType]}</dd></div>
+                <div><dt><FileCheck2 size={14} aria-hidden="true" /> Evidence</dt><dd>{offerSourceLabel(deal)}</dd></div>
+                {checkedLabel && <div><dt><CalendarCheck size={14} aria-hidden="true" /> Source checked</dt><dd><time dateTime={deal.checkedAt}>{checkedLabel}</time></dd></div>}
+              </dl>
+              <p className="deal-claim-note"><Info size={14} aria-hidden="true" /> Source-checked, not tested at checkout. Confirm the final price with {deal.toolName}.</p>
               <a href="#offer-terms" className="deal-detail-link">See source and eligibility <ArrowUpRight size={15} aria-hidden="true" /></a>
             </section>
           </div>

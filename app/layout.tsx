@@ -14,6 +14,7 @@ import { getDiscountSearchEntries } from "@/lib/brand-discounts";
 import { getPublicSearchCatalog } from "@/lib/published-catalog";
 import { ConsentAnalytics } from "@/components/privacy/ConsentAnalytics";
 import { authConfigured } from "@/lib/server/supabase";
+import { getCatalogCategories } from "@/lib/categories";
 
 const spaceGrotesk = localFont({
   src: "./fonts/space-grotesk-latin.woff2",
@@ -70,14 +71,15 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} dark`}
     >
-      <body className="min-h-screen bg-[#050505] text-[#EDEDED] antialiased selection:bg-[#C6FF3D] selection:text-black font-body overflow-x-hidden">
+      <body className="min-h-screen bg-[#050605] text-[#F4F7F1] antialiased selection:bg-[#C6FF3D] selection:text-black font-body overflow-x-hidden">
         <Suspense fallback={null}><ConsentAnalytics /></Suspense>
         <a href="#main-content" className="skip-link">Skip to content</a>
         <JsonLd data={siteSchema()} />
         <SmoothScroll>
           <div className="flex flex-col min-h-screen">
             <Suspense fallback={null}>
-              <Navbar discountBrands={getDiscountSearchEntries()} searchCatalog={getPublicSearchCatalog()} accountsAvailable={authConfigured()} />
+              <Navbar discountBrands={getDiscountSearchEntries()} searchCatalog={getPublicSearchCatalog()} accountsAvailable={authConfigured()}
+                categories={getCatalogCategories().map(({ slug, name, dealCount }) => ({ slug, name, dealCount }))} />
             </Suspense>
             <main id="main-content" tabIndex={-1} className="flex-1">
               {children}

@@ -11,6 +11,7 @@ export function BrandDiscountsSection({ deals }: { deals: SaaSDeal[] }) {
     <section aria-labelledby="brand-discounts-heading" className="market-section">
       <div className="home-section-head" data-motion="">
         <div>
+          <p className="market-kicker">Brand guides</p>
           <h2 id="brand-discounts-heading" className="home-section-title">SaaS discounts by brand</h2>
           <p>Check coupon availability, annual billing options, and program eligibility.</p>
         </div>

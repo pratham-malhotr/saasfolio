@@ -24,11 +24,11 @@ export default function CompareHubPage({ tools, comparisons, feature }: { tools:
   };
 
   return (
-    <div className={`min-h-screen pb-24 pt-28 text-white ${feature ? "bg-[#090c10] bg-[radial-gradient(ellipse_at_76%_12%,#273345,transparent_60%)]" : "bg-[#050505]"}`}>
+    <div className={`min-h-screen pb-24 pt-28 text-white ${feature ? "bg-[#050605] bg-[radial-gradient(60rem_24rem_at_80%_0%,#c6ff3d1a,transparent_70%)]" : "bg-[#050505]"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 font-mono text-xs text-zinc-500 uppercase tracking-widest mb-6">
+        <div className="flex items-center gap-2 text-xs text-zinc-500 mb-6">
           <Link href="/" className="hover:text-[#C6FF3D] transition-colors">Home</Link>
           <span>/</span>
           <span className="text-zinc-300">Compare</span>
@@ -42,25 +42,25 @@ export default function CompareHubPage({ tools, comparisons, feature }: { tools:
             <p className="max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
               Compare software features, pricing models and workflow limits for two SaaS tools. Check who owns the data, how teammates collaborate and what changes at renewal.
             </p>
-            {feature && <a href="#pick-tools" className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl bg-[#C6FF3D] px-4 text-sm font-semibold text-black hover:bg-[#d8ff80]">Start a comparison</a>}
+            {feature && <a href="#pick-tools" className="market-button market-button-primary mt-5">Start a comparison</a>}
           </div>
           {feature}
         </div>
 
         {/* Interactive Dual-Tool Generator */}
-        <div id="pick-tools" data-motion="" className="scroll-mt-28 p-8 sm:p-12 rounded-3xl bg-[#09090C] border border-[#C6FF3D]/40 mb-20 shadow-[0_0_35px_rgba(198,255,61,0.08)]">
+        <div id="pick-tools" data-motion="" className="scroll-mt-28 p-8 sm:p-12 rounded-2xl bg-[#0b0d0b] border border-[#C6FF3D]/30 mb-20 shadow-[0_0_70px_-30px_rgba(198,255,61,0.6)]">
           <div className="max-w-3xl mb-8">
-            <span className="font-mono text-xs text-[#C6FF3D] uppercase tracking-widest font-bold">
-              INTERACTIVE SELECTOR
+            <span className="market-kicker">
+              Head-to-head
             </span>
-            <h2 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-white mt-1">
-              PICK TWO TOOLS TO COMPARE
+            <h2 className="font-display font-bold text-2xl sm:text-3xl tracking-[-0.04em] text-white mt-2">
+              Pick two tools to compare
             </h2>
           </div>
 
           <form onSubmit={handleCompare} className="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
             <div className="md:col-span-2">
-              <label htmlFor="compare-tool-a" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+              <label htmlFor="compare-tool-a" className="block text-sm font-semibold text-zinc-300 mb-2">
                 First Software Tool (A)
               </label>
               <select
@@ -69,7 +69,7 @@ export default function CompareHubPage({ tools, comparisons, feature }: { tools:
                 aria-invalid={Boolean(error)}
                 value={toolASlug}
                 onChange={(e) => { setToolASlug(e.target.value); setError(""); }}
-                className="w-full px-4 py-3.5 rounded-xl bg-[#050505] border border-white/15 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                className="w-full px-4 py-3.5 rounded-xl bg-[#020302] border border-white/15 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
               >
                 {tools.map((t) => (
                   <option key={t.id} value={t.slug}>
@@ -86,7 +86,7 @@ export default function CompareHubPage({ tools, comparisons, feature }: { tools:
             </div>
 
             <div className="md:col-span-2">
-              <label htmlFor="compare-tool-b" className="block font-mono text-xs uppercase text-zinc-400 mb-2">
+              <label htmlFor="compare-tool-b" className="block text-sm font-semibold text-zinc-300 mb-2">
                 Second Software Tool (B)
               </label>
               <select
@@ -95,7 +95,7 @@ export default function CompareHubPage({ tools, comparisons, feature }: { tools:
                 aria-invalid={Boolean(error)}
                 value={toolBSlug}
                 onChange={(e) => { setToolBSlug(e.target.value); setError(""); }}
-                className="w-full px-4 py-3.5 rounded-xl bg-[#050505] border border-white/15 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
+                className="w-full px-4 py-3.5 rounded-xl bg-[#020302] border border-white/15 text-white focus:outline-none focus:border-[#C6FF3D] transition-colors font-sans text-sm"
               >
                 {tools.map((t) => (
                   <option key={t.id} value={t.slug}>
@@ -109,9 +109,9 @@ export default function CompareHubPage({ tools, comparisons, feature }: { tools:
               {error && <p id="comparison-error" role="alert" className="mb-4 text-sm text-rose-300">{error}</p>}
               <button
                 type="submit"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#C6FF3D] text-black font-bold font-mono text-xs uppercase tracking-wider hover:bg-[#D6FF66] transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(198,255,61,0.25)]"
+                className="market-button market-button-primary w-full sm:w-auto px-7"
               >
-                <span>Launch Head-to-Head Comparison</span>
+                <span>Compare these tools</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -122,10 +122,10 @@ export default function CompareHubPage({ tools, comparisons, feature }: { tools:
         <div>
           <div className="flex items-center justify-between mb-8">
             <div>
-              <span className="font-mono text-xs text-[#C6FF3D] uppercase tracking-widest font-bold">
-                POPULAR MATCH-UPS
+              <span className="market-kicker">
+                Popular match-ups
               </span>
-              <h2 className="font-display font-black text-3xl uppercase tracking-tight text-white mt-1">
+              <h2 className="font-display font-bold text-3xl tracking-[-0.045em] text-white mt-2">
                 Software comparisons by workflow
               </h2>
             </div>
@@ -138,11 +138,11 @@ export default function CompareHubPage({ tools, comparisons, feature }: { tools:
                 data-motion={index % 3}
                 href={`/compare/${comp.slug}`}
                 prefetch={false}
-                className="motion-card group p-6 rounded-2xl bg-[#09090C] border border-white/10 hover:border-[#C6FF3D]/50 hover:bg-[#0E0E12] transition-all flex flex-col justify-between"
+                className="motion-card group p-6 rounded-2xl bg-[#0b0d0b] border border-white/10 hover:border-[#C6FF3D]/40 hover:bg-[#111411] transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-[11px] px-2.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400 group-hover:text-[#C6FF3D] transition-colors">
+                    <span className="market-badge group-hover:text-[#C6FF3D] transition-colors">
                       {comp.category}
                     </span>
                     <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-[#C6FF3D] group-hover:translate-x-1 transition-all" />
@@ -155,7 +155,7 @@ export default function CompareHubPage({ tools, comparisons, feature }: { tools:
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-zinc-400">
+                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-zinc-300">
                   <span>{comp.toolA}</span>
                   <span className="text-zinc-600">vs</span>
                   <span>{comp.toolB}</span>
