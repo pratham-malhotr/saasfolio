@@ -6,11 +6,11 @@ import type { DiscountGuideEntry } from "@/lib/data/discount-guide-builder";
 const entries: DiscountGuideEntry[] = [
   {
     slug: "julius-ai", name: "Julius AI", url: "https://julius.ai/pricing", reviewedAt: "2026-11-27",
-    searchTitle: "Julius AI Discount Code & Plan Pricing",
-    meta: "Julius AI discount code PRATHAM50OFFYJ and plan pricing: Free, Plus, Pro and Business tiers, credit-based usage and what to check before you pay.",
-    intro: "SaaSFolio's Julius AI partner code is PRATHAM50OFFYJ. Julius lists Free, Plus, Pro and Business tiers, and usage is now metered in monthly credits rather than message counts.",
+    searchTitle: "Julius AI Discount Code: 50% Off First Year",
+    meta: "Julius AI discount code PRATHAM50OFFYJ: 50% off your first year via our partner link. Compare Free, Plus, Pro and Business plans and credit-based usage.",
+    intro: "SaaSFolio's Julius AI partner code PRATHAM50OFFYJ gives 50% off your first year, according to Julius AI's partner program. Julius lists Free, Plus, Pro and Business tiers, and usage is now metered in monthly credits rather than message counts.",
     summary: "Pick the tier by how much analysis you will run each month, not by the headline price. Julius moved from message limits to credits, and the credits a request uses depend on the model and tools it calls.",
-    best: "The lowest Julius AI price available through SaaSFolio is the partner code PRATHAM50OFFYJ, entered at Julius checkout through the partner link; Julius shows the discount it applies before you pay. Start on the Free tier to measure how many credits your real analyses use, then choose the paid tier that covers a busy month.",
+    best: "The lowest Julius AI price available through SaaSFolio is the partner code PRATHAM50OFFYJ, which gives 50% off the first year according to Julius AI's partner program. Enter it at Julius checkout through the partner link; Julius shows the discount before you pay; check the renewal price for year two on the checkout summary. Start on the Free tier to measure how many credits your real analyses use, then choose the paid tier that covers a busy month.",
     related: ["typingmind", "consensus", "airtable"],
     profile: { isNew: true, categorySlug: "ai-tools", pricingModel: "Freemium", description: "Julius AI analyzes spreadsheets, CSV files and databases through chat, turning questions into charts, statistics and shareable reports.", features: ["AI data analysis", "Charts and visualizations", "Spreadsheet and CSV analysis", "Database connections", "Reports and notebooks"], longDescription: "Julius AI lets you ask questions of your data in plain language. Upload a spreadsheet or connect a data source, ask for a chart, a statistical test or a summary, and Julius writes and runs the analysis for you. Evaluate it on a dataset you already understand, so you can check its output before relying on it for decisions." },
     options: [
@@ -44,7 +44,8 @@ const entries: DiscountGuideEntry[] = [
       "Julius moved usage from message counts to monthly credits; its own pages state different credit allowances for some tiers, so confirm the live allowance at checkout.",
     ],
     faqs: [
-      ["What is the Julius AI discount code?", "SaaSFolio's Julius AI partner code is PRATHAM50OFFYJ. Enter it at Julius checkout after opening Julius through the partner link; Julius shows the discount it applies before payment."],
+      ["What is the Julius AI discount code?", "SaaSFolio's Julius AI partner code is PRATHAM50OFFYJ, which gives 50% off the first year according to Julius AI's partner program. Enter it at Julius checkout after opening Julius through the partner link; Julius shows the discount before payment."],
+      ["Does the Julius AI discount apply after the first year?", "The partner code discount covers the first year. Check the renewal price for the second year on the Julius checkout summary before you pay."],
       ["Is Julius AI free?", "Julius has a Free tier with a limited monthly credit allowance. Paid Plus, Pro and Business tiers add more credits, models and team features."],
       ["How much does Julius AI cost?", "Julius lists Plus at $20 a month, Pro at $45 a month and Business at $450 a month. Check the live pricing page for current credit allowances before you buy."],
       ["Does Julius AI still limit messages?", "Julius moved from message limits to usage credits. How many credits a request uses depends on the model and the tools the analysis runs."],

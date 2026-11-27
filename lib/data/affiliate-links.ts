@@ -14,6 +14,8 @@ export interface AffiliateProgram {
   mode: "params" | "link";
   /** Partner-supplied code, shown with its own label; not a source-checked coupon. */
   code?: string;
+  /** What the code gives, as stated by the partner program (title case, for headings). */
+  codeSaving?: string;
 }
 
 export const AFFILIATE_PROGRAMS: Record<string, AffiliateProgram> = {
@@ -30,7 +32,7 @@ export const AFFILIATE_PROGRAMS: Record<string, AffiliateProgram> = {
   "deadline-funnel": { url: "https://www.deadlinefunnel.com/?via=quick", mode: "params" },
   ocoya: { url: "https://www.ocoya.com/?via=quickreads", mode: "params" },
   tradingview: { url: "https://www.tradingview.com/?utm_source=partner_link&aff_id=168129", mode: "params" },
-  "julius-ai": { url: "https://julius.dub.link/pratham-malhotra", mode: "link", code: "PRATHAM50OFFYJ" },
+  "julius-ai": { url: "https://julius.dub.link/pratham-malhotra", mode: "link", code: "PRATHAM50OFFYJ", codeSaving: "50% Off First Year" },
   "cal-com": { url: "https://refer.cal.com/pratham-malhotra-zxey", mode: "link" },
   firecrawl: { url: "https://firecrawl.link/pratham-malhotra", mode: "link" },
   fabric: { url: "https://refer.fabric.so/pratham-malhotra", mode: "link" },

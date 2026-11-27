@@ -140,6 +140,8 @@ export function brandHeadlineSaving(tool: DetailedTool, catalogDeals = getAllDea
   const { offers, savingsOptions } = getBrandDiscountData(tool, catalogDeals);
   const best = offers.filter(offer => offer.discountPercentage > 0).sort((a, b) => b.discountPercentage - a.discountPercentage)[0];
   if (best) return `${best.discountKind === "up-to" ? "Up to " : ""}${best.discountPercentage}% Off ${offerAudience(best)}`.trim();
+  const partnerSaving = getAffiliateProgram(tool.slug)?.codeSaving;
+  if (partnerSaving) return partnerSaving;
   for (const option of savingsOptions) {
     const percent = option.saving.match(/(up to\s+)?(\d+(?:\.\d+)?)\s?%/i);
     if (percent) return `${percent[1] ? "Up to " : ""}${percent[2]}% Off ${SAVING_AUDIENCE[option.type] || ""}`.trim();
@@ -182,7 +184,7 @@ export function brandDiscountAnswer(tool: DetailedTool, catalogDeals = getAllDea
   const { coupons, savingsOptions, offers } = getBrandDiscountData(tool, catalogDeals);
   if (coupons.length) return `${coupons.length} sourced ${tool.name} ${coupons.length === 1 ? "coupon code is" : "coupon codes are"} listed below. Match each code to the eligible product, account and billing period. Acceptance has not been tested at checkout.`;
   const partnerCode = getAffiliateProgram(tool.slug)?.code;
-  if (partnerCode) return `SaaSFolio's ${tool.name} partner code is ${partnerCode}. Open ${tool.name} through the partner link and enter the code at checkout; ${tool.name} shows the discount it applies before you pay. No separate public ${tool.name} coupon is recorded in our sourced catalog. ${savingsOptions.length ? `Published savings options also include: ${savingsOptions.map(option => option.saving).join("; ")}.` : ""}`.trim();
+  if (partnerCode) return `SaaSFolio's ${tool.name} partner code is ${partnerCode}${getAffiliateProgram(tool.slug)?.codeSaving ? `, which gives ${getAffiliateProgram(tool.slug)!.codeSaving!.toLowerCase()} according to ${tool.name}'s partner program` : ""}. Open ${tool.name} through the partner link and enter the code at checkout; ${tool.name} shows the discount it applies before you pay. No separate public ${tool.name} coupon is recorded in our sourced catalog. ${savingsOptions.length ? `Published savings options also include: ${savingsOptions.map(option => option.saving).join("; ")}.` : ""}`.trim();
   if (savingsOptions.length) return `${tool.name} savings options published by the provider include: ${savingsOptions.map(option => option.saving).join("; ")}. No separate public coupon code is recorded in our current catalog. Review eligibility and the full renewal cost before paying.`;
   return `No current ${tool.name} coupon code is recorded. ${offers.length ? "Any sourced free plans or trials below are separate from a discount on a paid subscription." : "Check official pricing for current plans and available promotions."} A referral link alone does not establish a saving.`;
 }
@@ -201,7 +203,7 @@ export function getBrandDiscountFaqs(tool: DetailedTool, offers: SaaSDeal[]) {
   const { guide, savingsOptions, sourceNotesCurrent } = getBrandDiscountData(tool, offers);
   return [
     { question: `Is there a ${tool.name} discount code available?`, answer: !codes.length && getAffiliateProgram(tool.slug)?.code
-      ? `Yes. SaaSFolio's ${tool.name} partner code is ${getAffiliateProgram(tool.slug)!.code}, supplied through ${tool.name}'s affiliate program. Enter it at ${tool.name} checkout; the provider confirms the discount before payment. It has not been checkout tested by SaaSFolio.`
+      ? `Yes. SaaSFolio's ${tool.name} partner code is ${getAffiliateProgram(tool.slug)!.code}${getAffiliateProgram(tool.slug)?.codeSaving ? ` (${getAffiliateProgram(tool.slug)!.codeSaving!.toLowerCase()})` : ""}, supplied through ${tool.name}'s affiliate program. Enter it at ${tool.name} checkout; the provider confirms the discount before payment. It has not been checkout tested by SaaSFolio.`
       : codes.length
       ? `${codes.length} sourced ${codes.length === 1 ? "code is" : "codes are"} recorded above. Each listing identifies the publisher, source check date, and terms. Acceptance has not been tested at checkout; the provider determines eligibility.`
       : `No current ${tool.name} coupon code is recorded in our catalog. ${offers.length ? "The offers above are separately labeled, including any free plans or trials." : "Check the official provider for current pricing and promotions."} A referral link alone does not guarantee a discount.` },
