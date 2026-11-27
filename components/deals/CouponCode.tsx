@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { trackProductEvent } from "@/lib/client-analytics";
 
-export function CouponCode({ code }: { code: string }) {
+export function CouponCode({ code, note = "This code is source-reported; acceptance has not been tested at checkout." }: { code: string; note?: string }) {
   const [status, setStatus] = useState<"idle" | "copied" | "manual">("idle");
   async function copy() {
     try {
@@ -21,6 +21,6 @@ export function CouponCode({ code }: { code: string }) {
         {status === "copied" ? "Copied" : "Copy code"}
       </button>
     </div>
-    <p role="status" className="text-sm text-zinc-400"><span key={status} className={status === "idle" ? undefined : "market-copy-feedback"}>{status === "copied" ? "Code copied. Paste it at the provider’s checkout and confirm the final price." : status === "manual" ? "Clipboard access is unavailable. Select the code above and copy it manually." : "This code is source-reported; acceptance has not been tested at checkout."}</span></p>
+    <p role="status" className="text-sm text-zinc-400"><span key={status} className={status === "idle" ? undefined : "market-copy-feedback"}>{status === "copied" ? "Code copied. Paste it at the provider’s checkout and confirm the final price." : status === "manual" ? "Clipboard access is unavailable. Select the code above and copy it manually." : note}</span></p>
   </div>;
 }

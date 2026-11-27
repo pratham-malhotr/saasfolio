@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, BadgeCheck, FileCheck2 } from "lucide-react";
 import { BrandAvatar } from "@/components/brand/BrandAvatar";
 import type { SaaSDeal } from "@/lib/types";
+import { isPartnerBrand } from "@/lib/data/affiliate-links";
 
 export const OFFER_TYPES: Record<SaaSDeal["dealType"], string> = {
   coupon: "Coupon code",
@@ -46,7 +47,8 @@ export function OfferCard({ deal, letters, action, motionIndex }: {
       <header className="market-offer-top">
         <BrandAvatar name={deal.toolName} category={deal.categorySlug} letters={letters} />
         <p className="market-offer-brand"><strong>{deal.toolName}</strong><small>{deal.category}</small></p>
-        {deal.sourceKind === "vendor" && <span className="market-badge market-badge-verified" title="Official provider source"><BadgeCheck size={13} aria-hidden="true" /><span className="market-badge-text">Official source</span></span>}
+        {isPartnerBrand(deal.toolSlug) ? <span className="market-badge market-badge-partner" title="SaaSFolio partner: we may earn a commission"><BadgeCheck size={13} aria-hidden="true" /><span className="market-badge-text">Partner</span></span>
+          : deal.sourceKind === "vendor" && <span className="market-badge market-badge-verified" title="Official provider source"><BadgeCheck size={13} aria-hidden="true" /><span className="market-badge-text">Official source</span></span>}
       </header>
       <div className="market-offer-deal">
         <span className="market-offer-value">{value}</span>

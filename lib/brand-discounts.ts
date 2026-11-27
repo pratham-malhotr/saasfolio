@@ -10,6 +10,7 @@ import { DISCOUNT_BRAND_ALIASES } from "@/lib/data/brand-discount-aliases.mjs";
 import { editorialGuideIssues } from "@/lib/editorial-quality.mjs";
 import { evergreenPurchaseChecks } from "@/lib/brand-purchase-guidance";
 import guideSourceChecks from "@/lib/data/guide-source-checks.json";
+import { getAffiliateProgram } from "@/lib/data/affiliate-links";
 import { GUIDE_FRESHNESS_DAYS, guideEvidenceDate } from "@/lib/guide-claims.mjs";
 
 type GuideSourceCheck = { status: string; verifiedAt?: string; method?: string };
@@ -66,8 +67,11 @@ export function getIndexableDiscountBrands() {
 export function getFeaturedDiscountBrands(limit = 12) {
   const brands = getIndexableDiscountBrands();
   // Keep the established editorial priorities discoverable from the homepage.
-  // Fill the remaining places across categories, independent of commissions.
-  const featured = ["beehiiv", "predis-ai", "taplio", "baremetrics", "notion", "canva", "slack", "hostinger"]
+  // Fill the remaining places across categories.
+  // Partner brands lead the list (labelled on their pages), then editorial priorities.
+  const partners = brands.filter(tool => getAffiliateProgram(tool.slug)).map(tool => tool.slug);
+  const priority = ["beehiiv", "predis-ai", "taplio", "baremetrics"];
+  const featured = [...priority, ...partners.filter(slug => !priority.includes(slug)), ...["notion", "canva", "slack", "hostinger"]]
     .flatMap(slug => brands.filter(tool => tool.slug === slug));
   const remaining = brands.filter(tool => !featured.includes(tool));
   const seen = new Set(featured.map(tool => tool.categorySlug));
@@ -103,6 +107,7 @@ export function getDiscountSearchEntries(): DiscountSearchEntry[] {
 export function brandSavingsSummary(tool: DetailedTool, catalogDeals = getAllDeals()): string {
   const { coupons, savings, savingsOptions, offers } = getBrandDiscountData(tool, catalogDeals);
   if (coupons.length) return `${coupons.length} sourced coupon ${coupons.length === 1 ? "code" : "codes"}; check eligibility`;
+  if (getAffiliateProgram(tool.slug)?.code) return "SaaSFolio partner code available";
   if (savings.length) return "Sourced discounts available; compare offer terms";
   if (savingsOptions.length) return savingsOptions[0].saving;
   if (offers.some(offer => offer.dealType === "free_trial")) return "Free trial listed; compare paid billing options";
@@ -152,7 +157,7 @@ export function brandSearchTitle(tool: DetailedTool, catalogDeals = getAllDeals(
   const dated = modifiedAt && (sourceNotesCurrent || freshOffer) && now - Date.parse(modifiedAt) <= 30 * 86400000
     ? ` (${new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(Date.parse(modifiedAt))})` : "";
   const saving = brandHeadlineSaving(tool, catalogDeals);
-  const kind = coupons.length ? "Discount Code" : "Discount";
+  const kind = coupons.length || getAffiliateProgram(tool.slug)?.code ? "Discount Code" : "Discount";
   const candidates = [
     saving && `${tool.name} ${kind}: ${saving}${dated}`,
     saving && `${tool.name} ${kind}: ${saving}`,
@@ -176,6 +181,8 @@ export function brandBestDiscountAnswer(tool: DetailedTool, catalogDeals = getAl
 export function brandDiscountAnswer(tool: DetailedTool, catalogDeals = getAllDeals()): string {
   const { coupons, savingsOptions, offers } = getBrandDiscountData(tool, catalogDeals);
   if (coupons.length) return `${coupons.length} sourced ${tool.name} ${coupons.length === 1 ? "coupon code is" : "coupon codes are"} listed below. Match each code to the eligible product, account and billing period. Acceptance has not been tested at checkout.`;
+  const partnerCode = getAffiliateProgram(tool.slug)?.code;
+  if (partnerCode) return `SaaSFolio's ${tool.name} partner code is ${partnerCode}. Open ${tool.name} through the partner link and enter the code at checkout; ${tool.name} shows the discount it applies before you pay. No separate public ${tool.name} coupon is recorded in our sourced catalog. ${savingsOptions.length ? `Published savings options also include: ${savingsOptions.map(option => option.saving).join("; ")}.` : ""}`.trim();
   if (savingsOptions.length) return `${tool.name} savings options published by the provider include: ${savingsOptions.map(option => option.saving).join("; ")}. No separate public coupon code is recorded in our current catalog. Review eligibility and the full renewal cost before paying.`;
   return `No current ${tool.name} coupon code is recorded. ${offers.length ? "Any sourced free plans or trials below are separate from a discount on a paid subscription." : "Check official pricing for current plans and available promotions."} A referral link alone does not establish a saving.`;
 }
@@ -193,7 +200,9 @@ export function getBrandDiscountFaqs(tool: DetailedTool, offers: SaaSDeal[]) {
   const codes = offers.filter(offer => offer.code);
   const { guide, savingsOptions, sourceNotesCurrent } = getBrandDiscountData(tool, offers);
   return [
-    { question: `Is there a ${tool.name} discount code available?`, answer: codes.length
+    { question: `Is there a ${tool.name} discount code available?`, answer: !codes.length && getAffiliateProgram(tool.slug)?.code
+      ? `Yes. SaaSFolio's ${tool.name} partner code is ${getAffiliateProgram(tool.slug)!.code}, supplied through ${tool.name}'s affiliate program. Enter it at ${tool.name} checkout; the provider confirms the discount before payment. It has not been checkout tested by SaaSFolio.`
+      : codes.length
       ? `${codes.length} sourced ${codes.length === 1 ? "code is" : "codes are"} recorded above. Each listing identifies the publisher, source check date, and terms. Acceptance has not been tested at checkout; the provider determines eligibility.`
       : `No current ${tool.name} coupon code is recorded in our catalog. ${offers.length ? "The offers above are separately labeled, including any free plans or trials." : "Check the official provider for current pricing and promotions."} A referral link alone does not guarantee a discount.` },
     ...(savingsOptions.length ? [{

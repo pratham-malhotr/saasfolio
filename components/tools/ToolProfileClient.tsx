@@ -260,7 +260,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {!tool.pricingPlans.length && tool.providerStatus !== "unavailable" && <a href={tool.pricingUrl || tool.website} target="_blank" rel="noopener noreferrer" className="text-sm text-[#C6FF3D] hover:underline">View current {tool.name} plans and billing terms on the official website ↗</a>}
+              {!tool.pricingPlans.length && tool.providerStatus !== "unavailable" && <a href={`/go/${tool.slug}`} target="_blank" rel="sponsored nofollow noopener noreferrer" className="text-sm text-[#C6FF3D] hover:underline">View current {tool.name} plans and billing terms on the official website ↗</a>}
               {tool.pricingPlans.map((plan) => {
                 const price = billingCycle === "yearly" ? plan.priceYearly : plan.priceMonthly;
                 return (

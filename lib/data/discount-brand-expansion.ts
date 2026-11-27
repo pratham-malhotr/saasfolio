@@ -11,6 +11,7 @@ import { WORDPRESS_BUSINESS_DISCOUNT_ENTRIES } from "@/lib/data/wordpress-busine
 import { WORDPRESS_WORKFLOW_DISCOUNT_ENTRIES } from "@/lib/data/wordpress-workflow-discount-guides";
 import { PERFORMANCE_WRITING_DISCOUNT_ENTRIES } from "@/lib/data/performance-writing-discount-guides";
 import { RESEARCH_SOCIAL_DISCOUNT_ENTRIES } from "@/lib/data/research-social-discount-guides";
+import { PARTNER_DISCOUNT_ENTRIES } from "@/lib/data/partner-discount-guides";
 
 export const DISCOUNT_EXPANSION_ENTRIES = [
   ...MEETING_DISCOUNT_ENTRIES,
@@ -24,6 +25,7 @@ export const DISCOUNT_EXPANSION_ENTRIES = [
   ...WORDPRESS_WORKFLOW_DISCOUNT_ENTRIES,
   ...PERFORMANCE_WRITING_DISCOUNT_ENTRIES,
   ...RESEARCH_SOCIAL_DISCOUNT_ENTRIES,
+  ...PARTNER_DISCOUNT_ENTRIES,
 ];
 
 export const NEW_DISCOUNT_BRAND_SLUGS = DISCOUNT_EXPANSION_ENTRIES.filter(entry => entry.profile.isNew).map(entry => entry.slug);

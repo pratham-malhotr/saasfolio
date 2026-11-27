@@ -116,6 +116,8 @@
 .market-badge svg { flex: none; }
 .market-badge-verified { border-color: #c6ff3d33; background: #c6ff3d0d; color: #d9f7a8; }
 .market-badge-verified svg { color: var(--market-lime); }
+.market-badge-partner { border-color: var(--market-lime); background: var(--market-lime); color: var(--market-lime-ink); }
+.market-badge-partner svg { color: var(--market-lime-ink); }
 
 .market-page :where(a, button, select, input):focus-visible { outline: 2px solid var(--market-lime); outline-offset: 3px; }
 .market-page .market-button-primary:focus-visible { outline-offset: 3px; }
@@ -216,8 +218,8 @@
 .market-offer-value { white-space: nowrap; }
 .market-offer-kind { min-width: 0; }
 @container (width < 21rem) {
-  .market-badge-verified { padding: .3rem; }
-  .market-badge-verified .market-badge-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  :is(.market-badge-verified, .market-badge-partner) { padding: .3rem; }
+  :is(.market-badge-verified, .market-badge-partner) .market-badge-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .market-offer-value { font-size: 1.3rem; }
   .market-offer-kind { font-size: .66rem; }
 }

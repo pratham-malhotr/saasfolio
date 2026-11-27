@@ -115,22 +115,30 @@ test("server redirects retain campaign queries, expire safely and reject unavail
   const unavailable = { slug: "gone", providerStatus: "unavailable" };
   const coupon = { slug: "example-code", id: "deal-example-code", toolSlug: "example", destinationUrl: "https://example.com/campaign?coupon=SAVE&plan=annual#apply" };
   const { publicHttpsUrl } = loadTs("lib/offer-links.ts");
+  const affiliates = loadTs("lib/data/affiliate-links.ts");
+  affiliates.AFFILIATE_PROGRAMS.example = { url: "https://example.com/?ref=saasfolio", mode: "params" };
   const { GET } = loadTs("app/go/[id]/route.ts", {
     "@/lib/data/deals-data": { getDealBySlug: id => [coupon.slug, coupon.id, "old-code"].includes(id) ? coupon : undefined, getHistoricOfferToolSlug: id => ["expired-code", "old-code"].includes(id) ? "example" : undefined },
     "@/lib/data/tools-data": { getToolBySlug: slug => slug === "example" ? available : slug === "gone" ? unavailable : undefined },
     "@/lib/server/hosting-affiliates": { getHostingAffiliateUrl: () => undefined },
-    "@/lib/data/affiliate-links": { getCustomAffiliateUrl: () => "https://example.com/?ref=saasfolio" },
+    "@/lib/data/affiliate-links": affiliates,
     "@/lib/offer-links": { publicHttpsUrl },
   });
   const visit = id => GET(new Request(`https://saasfolio.tech/go/${id}`), { params: Promise.resolve({ id }) });
+  // A partner's campaign keeps its exact page, query and fragment and gains the partner parameter.
   for (const id of [coupon.slug, coupon.id]) {
     const result = await visit(id);
     assert.equal(result.status, 302);
-    assert.equal(result.headers.get("location"), coupon.destinationUrl);
+    assert.equal(result.headers.get("location"), "https://example.com/campaign?coupon=SAVE&plan=annual&ref=saasfolio#apply");
     assert.match(result.headers.get("cache-control"), /no-store/);
   }
-  for (const id of ["old-code", "expired-code"]) assert.equal((await visit(id)).headers.get("location"), available.pricingUrl);
-  assert.equal((await visit("example")).headers.get("location"), "https://example.com/?ref=saasfolio");
+  for (const id of ["old-code", "expired-code"]) assert.equal((await visit(id)).headers.get("location"), "https://example.com/pricing?ref=saasfolio");
+  assert.equal((await visit("example")).headers.get("location"), "https://example.com/pricing?ref=saasfolio");
+  // A link-mode partner always uses its hosted partner link; non-partners are untouched.
+  affiliates.AFFILIATE_PROGRAMS.example = { url: "https://partner.example/saasfolio", mode: "link" };
+  assert.equal((await visit(coupon.slug)).headers.get("location"), "https://partner.example/saasfolio");
+  delete affiliates.AFFILIATE_PROGRAMS.example;
+  assert.equal((await visit(coupon.slug)).headers.get("location"), coupon.destinationUrl);
   assert.equal((await visit("gone")).status, 410);
   for (const id of ["unknown", "https://evil.example", "__proto__"]) {
     const result = await visit(id);
@@ -186,6 +194,7 @@ test("reviewed brand savings age out of summaries and FAQs without losing the gu
     "@/lib/data/brand-discount-aliases.mjs": { DISCOUNT_BRAND_ALIASES: {} },
     "@/lib/editorial-quality.mjs": { editorialGuideIssues: guide => editorialGuideIssues(guide, clock.now) },
     "@/lib/data/guide-source-checks.json": sourceChecks,
+    "@/lib/data/affiliate-links": { getAffiliateProgram: () => undefined },
     "@/lib/guide-claims.mjs": guideClaims,
   }, TestDate);
   assert.equal(catalog.getBrandDiscountData(tool).savingsOptions.length, 1);

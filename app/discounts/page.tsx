@@ -3,7 +3,9 @@ import { ArrowUpRight, Tag } from "lucide-react";
 import "./discounts.css";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { BrandDiscountCard } from "@/components/seo/BrandDiscountCard";
-import { getIndexableDiscountBrands } from "@/lib/brand-discounts";
+import { brandHeadlineSaving, getIndexableDiscountBrands } from "@/lib/brand-discounts";
+import { isPartnerBrand } from "@/lib/data/affiliate-links";
+import { BrandAvatar } from "@/components/brand/BrandAvatar";
 import { getAllDeals } from "@/lib/data/deals-data";
 import { collectionSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
@@ -17,6 +19,7 @@ export const revalidate = 3600;
 export default function BrandDiscountsPage() {
   const brands = getIndexableDiscountBrands();
   const deals = getAllDeals();
+  const partners = brands.filter(tool => isPartnerBrand(tool.slug));
   const categories = [...new Set(brands.map(tool => tool.categorySlug))].map(slug => ({
     slug,
     name: brands.find(tool => tool.categorySlug === slug)!.category,
@@ -35,6 +38,19 @@ export default function BrandDiscountsPage() {
       </div>
     </header>
     <div className="market-shell discount-workspace">
+      {partners.length > 0 && <section aria-labelledby="partner-discounts-heading" className="discount-partners">
+        <div className="discount-partners-head">
+          <h2 id="partner-discounts-heading">Featured partner discounts</h2>
+          <p>SaaSFolio partners. We may earn a commission when you subscribe through these links; offer terms are reported the same way as every other brand. <Link href="/affiliate-disclosure" className="underline underline-offset-4">Disclosure</Link></p>
+        </div>
+        <ul className="discount-partner-grid">{partners.map(tool => (
+          <li key={tool.slug}><Link prefetch={false} href={`/discounts/${tool.slug}`} className="discount-partner-card">
+            <BrandAvatar name={tool.name} letters={tool.logoLetter} category={tool.categorySlug} />
+            <span><strong>{tool.name} discount</strong><small>{brandHeadlineSaving(tool, deals) || "Partner link and current offers"}</small></span>
+            <ArrowUpRight size={15} aria-hidden="true" />
+          </Link></li>
+        ))}</ul>
+      </section>}
       <nav aria-label="Discount categories" className="discount-category-nav">
         {categories.map(category => <a key={category.slug} href={`#${category.slug}`}>{category.name}</a>)}
       </nav>

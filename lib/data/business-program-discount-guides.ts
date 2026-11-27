@@ -1,6 +1,6 @@
 import type { DiscountGuideEntry } from "@/lib/data/discount-guide-builder";
 
-const entries: Omit<DiscountGuideEntry, "reviewedAt">[] = [
+const entries: (Omit<DiscountGuideEntry, "reviewedAt"> & { reviewedAt?: string })[] = [
   {
     slug: "asana", name: "Asana", url: "https://asana.com/pricing",
     searchTitle: "Asana Discounts & Nonprofit Plan Requirements",
@@ -26,6 +26,8 @@ const entries: Omit<DiscountGuideEntry, "reviewedAt">[] = [
     faqs: [["Which Asana plans receive the published nonprofit benefit?", "The reviewed program names Starter and Advanced for approved eligible organizations."], ["Does every charity project automatically qualify?", "No. Complete organization verification and confirm the subscription covered by approval."], ["Can I apply the same percentage to Asana Enterprise?", "Request an Enterprise quote rather than extending the published Starter or Advanced benefit."]],
   },
   {
+    // Re-reviewed manually against the official page on 2026-11-27.
+    reviewedAt: "2026-11-27",
     slug: "airtable", name: "Airtable", url: "https://airtable.com/pricing",
     searchTitle: "Airtable Discounts & Nonprofit Team Plan Terms",
     meta: "Compare Airtable discounts: nonprofit Team eligibility, the 50% monthly-rate basis, no annual stacking, workspace users and renewal rules.",
@@ -46,7 +48,7 @@ const entries: Omit<DiscountGuideEntry, "reviewedAt">[] = [
     redeem: ["Identify the Airtable workspace, Team capabilities and paid collaborators required for the workflow.", "Read the official nonprofit or education instructions and apply with the correct registration evidence and workspace.", "After approval, inspect the single discounted Team invoice based on the documented monthly rate.", "Confirm renewal and reactivation conditions; do not apply the ordinary annual discount again to an approved nonprofit rate."],
     eligibility: [["Organization", "Nonprofit or institutional status requires the provider's current verification evidence."], ["Plan", "The self-serve nonprofit reduction is for Team, with higher tiers handled separately."], ["Stacking", "The nonprofit Team price does not also receive the ordinary annual discount."]],
     troubleshooting: [["The annual percentage is not added", "This is the documented rule: nonprofit-discounted Team workspaces do not receive the ordinary annual reduction."], ["The benefit disappears after returning to Free", "Check reactivation with Airtable support before upgrading the previously approved workspace again."]],
-    notes: ["Official discount help explicitly states the monthly Team basis and no annual stacking.", "It separates self-serve Team approval from higher-tier institutional purchases and describes reactivation after a downgrade."],
+    notes: ["Official help prices approved nonprofit Team workspaces at $12 per user per month ($144 per user per year), 50% of the $24 monthly Team rate; discounted Team plans are paid by card.", "Official discount help explicitly states the monthly Team basis and no annual stacking.", "It separates self-serve Team approval from higher-tier institutional purchases and describes reactivation after a downgrade."],
     faqs: [["Can Airtable nonprofit and annual discounts be combined?", "Official help explicitly says the annual discount does not apply to nonprofit-discounted workspaces."], ["Does the Airtable nonprofit discount cover Business?", "The self-serve benefit is for Team; discuss higher-tier agreements with Airtable."], ["Is an approved Airtable benefit automatically restored after a downgrade?", "Contact support about reactivation before a later upgrade; do not assume every new purchase inherits it."]],
   },
   {

@@ -5,7 +5,7 @@ import { brandSavingsSummary, getFeaturedDiscountBrands } from "@/lib/brand-disc
 import type { SaaSDeal } from "@/lib/types";
 
 export function BrandDiscountsSection({ deals }: { deals: SaaSDeal[] }) {
-  const brands = getFeaturedDiscountBrands(8);
+  const brands = getFeaturedDiscountBrands(12);
 
   return (
     <section aria-labelledby="brand-discounts-heading" className="market-section">

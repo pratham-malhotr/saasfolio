@@ -2,7 +2,7 @@
   "adobe-creative-cloud": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T15:29:07.194Z",
+    "checkedAt": "2026-11-27T15:54:33.863Z",
     "tokens": [
       "1year"
     ],
@@ -55,11 +55,17 @@
   "airtable": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T15:29:10.075Z",
+    "checkedAt": "2026-11-27T15:54:33.863Z",
     "tokens": [
+      "$12",
+      "$144",
+      "$24",
       "50%"
     ],
     "missing": [
+      "$12",
+      "$144",
+      "$24",
       "50%"
     ],
     "errors": [
@@ -217,6 +223,21 @@
       "https://buttondown.com/pricing"
     ]
   },
+  "cal-com": {
+    "verifiedAt": "2026-11-27T15:55:11.360Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:55:11.360Z",
+    "tokens": [
+      "$12",
+      "$28",
+      "14day"
+    ],
+    "missing": [],
+    "sources": [
+      "https://cal.com/pricing"
+    ]
+  },
   "canva": {
     "status": "error",
     "method": "savings-terms",
@@ -365,6 +386,29 @@
       "30%"
     ]
   },
+  "deadline-funnel": {
+    "verifiedAt": "2026-11-27T15:54:35.261Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:54:35.261Z",
+    "tokens": [
+      "$119",
+      "$149",
+      "$159",
+      "$199",
+      "$39",
+      "$49",
+      "$79",
+      "$99",
+      "14day",
+      "20%",
+      "30day"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.deadlinefunnel.com/pricing"
+    ]
+  },
   "descript": {
     "verifiedAt": "2026-11-27T15:28:39.474Z",
     "status": "verified",
@@ -506,6 +550,28 @@
     "sources": [
       "https://www.figma.com/pricing/",
       "https://www.figma.com/education/"
+    ]
+  },
+  "firecrawl": {
+    "verifiedAt": "2026-11-27T15:55:11.361Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:55:11.361Z",
+    "tokens": [
+      "$16",
+      "$19",
+      "$333",
+      "$399",
+      "$599",
+      "$749",
+      "$83",
+      "$99",
+      "16.7%",
+      "20%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.firecrawl.dev/pricing"
     ]
   },
   "fireflies-ai": {
@@ -767,6 +833,26 @@
       "https://www.atlassian.com/software/jira/pricing",
       "https://www.atlassian.com/licensing/cloud",
       "https://www.atlassian.com/software/views/social-impact-license-request"
+    ]
+  },
+  "julius-ai": {
+    "status": "error",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:54:33.863Z",
+    "tokens": [
+      "$20",
+      "$45",
+      "$450"
+    ],
+    "missing": [
+      "$20",
+      "$45",
+      "$450"
+    ],
+    "errors": [
+      "https://julius.ai/pricing: fetch failed",
+      "https://julius.ai/content/billing-update-messages-to-usage-credits: fetch failed",
+      "https://julius.ai/docs/billing/credits-overview: fetch failed"
     ]
   },
   "linear": {
@@ -1209,6 +1295,21 @@
       "https://scispace.com/typeset-pricing/: HTTP 403"
     ]
   },
+  "scribe-mail": {
+    "verifiedAt": "2026-11-27T15:54:35.413Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:54:35.413Z",
+    "tokens": [
+      "14day",
+      "20%",
+      "30%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.scribe-mail.com/pricing"
+    ]
+  },
   "seedprod": {
     "verifiedAt": "2026-11-27T15:29:18.421Z",
     "status": "verified",
@@ -1394,11 +1495,12 @@
     ]
   },
   "streamyard": {
-    "verifiedAt": "2026-11-27T15:29:33.968Z",
+    "verifiedAt": "2026-11-27T15:55:11.361Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T15:29:33.968Z",
+    "checkedAt": "2026-11-27T15:55:11.361Z",
     "tokens": [
+      "22%",
       "7day"
     ],
     "missing": [],
@@ -1495,6 +1597,19 @@
       "https://intercom.help/tldv/en/articles/7262297-are-you-offering-discounts-for-non-profits-and-ngos",
       "https://tldv.io/terms/",
       "https://intercom.help/tldv/de/articles/6082483-wie-sieht-die-preisgestaltung-von-tl-dv-aus"
+    ]
+  },
+  "tradingview": {
+    "verifiedAt": "2026-11-27T15:54:33.864Z",
+    "status": "verified",
+    "method": "figures",
+    "checkedAt": "2026-11-27T15:54:33.864Z",
+    "tokens": [
+      "17%"
+    ],
+    "missing": [],
+    "sources": [
+      "https://www.tradingview.com/pricing/"
     ]
   },
   "trello": {
