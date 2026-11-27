@@ -188,6 +188,12 @@
 }
 
 /* ---------- Mobile drawer ---------- */
+@keyframes site-drawer-in { from { opacity: 0; translate: 0 -8px; } to { opacity: 1; translate: 0 0; } }
+@keyframes site-marker-in { from { opacity: 0; scale: .4 1; } to { opacity: 1; scale: 1 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  .site-mobile-drawer { animation: site-drawer-in 260ms var(--ease-luxury) both; }
+  .site-nav-marker { animation: site-marker-in 240ms var(--ease-luxury) both; }
+}
 .site-mobile-drawer { background: radial-gradient(ellipse at top right, #c6ff3d1a, transparent 55%), #050605; }
 .site-mobile-drawer .mobile-nav-link { color: var(--market-ink); }
 .site-mobile-drawer .mobile-nav-link svg { color: var(--market-lime); }

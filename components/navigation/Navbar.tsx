@@ -9,7 +9,6 @@ import type { PublicSearchCatalog } from "@/lib/search-catalog-types";
 import { Search, Menu, X, ArrowUpRight, ArrowRight, Tag, Layers, FileText, User, LogOut, ShieldCheck, Scale, Server, ChevronDown, Rocket, GraduationCap, HeartHandshake, Ticket, Clock, Infinity as InfinityIcon } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { SearchLoading } from "@/components/modals/SearchLoading";
-import { motion, AnimatePresence } from "framer-motion";
 import { useMediaQuery } from "@/lib/use-media-query";
 import { cn } from "@/lib/utils";
 import { apiRequest } from "@/lib/api-client";
@@ -44,7 +43,6 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable, categ
   const [searchOpen, setSearchOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const compact = useMediaQuery("(width < 768px)");
-  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)", true);
   const drawerOpen = mobileMenuOpen && compact;
   const [currentUser, setCurrentUser] = useState<{ name: string; email: string; avatarLetter: string; isAdmin: boolean } | null>(null);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
@@ -182,9 +180,7 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable, categ
                   className="site-header-link"
                 >
                   <span>{link.label}</span>
-                  {isActive && <motion.span aria-hidden="true" className="site-nav-marker"
-                    initial={false} layoutId={reducedMotion ? undefined : "site-nav-marker"}
-                    transition={{ duration: .24, ease: [0.22, 1, 0.36, 1] }} />}
+                  {isActive && <span aria-hidden="true" className="site-nav-marker" />}
                 </Link>
               );
             })}
@@ -303,16 +299,11 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable, categ
       )}
 
       {/* Mobile Drawer Menu */}
-      <AnimatePresence>
-        {drawerOpen && (
-          <motion.nav
+      {drawerOpen && (
+          <nav
             id="mobile-navigation"
             aria-label="Mobile navigation"
             data-mobile-menu="open"
-            initial={reducedMotion ? false : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: reducedMotion ? 0 : 0.26, ease: [0.22, 1, 0.36, 1] }}
             className="site-mobile-drawer fixed inset-x-0 top-0 z-40 flex h-dvh flex-col gap-6 overflow-y-auto overscroll-contain px-5 pt-24 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:hidden"
           >
             <div className="space-y-4">
@@ -405,9 +396,8 @@ export function Navbar({ discountBrands, searchCatalog, accountsAvailable, categ
             </div>
 
 
-          </motion.nav>
+          </nav>
         )}
-      </AnimatePresence>
 
       {/* Global Command Palette */}
       {signOutError && <div role="alert" className="fixed bottom-5 left-4 right-4 z-[100] mx-auto flex max-w-xl items-start gap-3 rounded-2xl border border-rose-500/30 bg-[#140b0d] p-4 text-sm text-rose-200 shadow-xl">
