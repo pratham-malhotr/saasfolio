@@ -129,7 +129,7 @@ export default function HomePage() {
                   {featured.slice(0, 3).map(offer => (
                     <li key={offer.slug}>
                       <Link href={`/deals/${offer.slug}`} prefetch={false} className="home-spotlight-row">
-                        <BrandAvatar name={offer.toolName} category={offer.categorySlug} letters={letters.get(offer.toolSlug)} />
+                        <BrandAvatar name={offer.toolName} slug={offer.toolSlug} category={offer.categorySlug} letters={letters.get(offer.toolSlug)} />
                         <span className="home-spotlight-name"><strong>{offer.toolName}</strong><small>{OFFER_TYPES[offer.dealType]}</small></span>
                         <span className="home-spotlight-value">{offerValue(offer)}</span>
                         <ArrowUpRight size={16} aria-hidden="true" />

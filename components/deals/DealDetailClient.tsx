@@ -76,7 +76,7 @@ export function DealDetailClient({
           <div className="deal-detail-grid">
             <header className="deal-detail-summary">
               <div className="deal-detail-brand">
-                <BrandAvatar name={deal.toolName} category={deal.categorySlug} letters={tool?.logoLetter} />
+                <BrandAvatar name={deal.toolName} slug={deal.toolSlug} category={deal.categorySlug} letters={tool?.logoLetter} />
                 <div>
                   <Link href={tool ? `/tools/${tool.slug}` : "/tools"}>{deal.toolName}</Link>
                   <span>{OFFER_TYPES[deal.dealType]}</span>

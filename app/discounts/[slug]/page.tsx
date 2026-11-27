@@ -130,7 +130,7 @@ export default async function BrandDiscountPage({ params }: { params: Promise<{ 
           <header className="discount-guide-header">
             <div className="discount-guide-title">
               <div className="flex items-center gap-3">
-                <BrandAvatar name={tool.name} letters={tool.logoLetter} category={tool.categorySlug} />
+                <BrandAvatar name={tool.name} slug={tool.slug} letters={tool.logoLetter} category={tool.categorySlug} />
                 <p className="market-eyebrow">{tool.category}</p>
               </div>
               <h1>{title}</h1>

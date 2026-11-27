@@ -1,6 +1,7 @@
 "use client";
 
 import { OfferAction } from "@/components/deals/OfferAction";
+import { BrandAvatar } from "@/components/brand/BrandAvatar";
 import React, { useState } from "react";
 import Link from "next/link";
 import { 
@@ -47,9 +48,7 @@ export function ToolProfileClient({ tool, deals, comparisonLinks, discountSummar
       <div className="p-8 sm:p-12 rounded-3xl bg-[#09090C] border border-white/15 mb-12 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-white/10">
           <div className="flex items-start sm:items-center gap-5">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-black border border-white/20 flex items-center justify-center font-display font-black text-2xl text-[#C6FF3D] shadow-[0_0_20px_rgba(198,255,61,0.2)] shrink-0">
-              {tool.logoLetter}
-            </div>
+            <BrandAvatar name={tool.name} slug={tool.slug} letters={tool.logoLetter} category={tool.categorySlug} className="brand-avatar-lg" />
             <div>
               <div className="flex flex-wrap items-center gap-2.5 mb-2">
                 <span className="font-mono text-xs text-[#C6FF3D] uppercase font-bold">

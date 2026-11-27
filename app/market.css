@@ -142,6 +142,12 @@
   font: 700 .92rem/1 var(--font-display), sans-serif;
   letter-spacing: -.035em;
 }
+.brand-avatar-sm { width: 2.25rem; height: 2.25rem; border-radius: .55rem; font-size: .75rem; }
+.brand-avatar-md { width: 3.5rem; height: 3.5rem; border-radius: .9rem; font-size: 1.15rem; }
+.brand-avatar-lg { width: 4.5rem; height: 4.5rem; border-radius: 1.1rem; font-size: 1.5rem; }
+@media (width >= 40rem) { .brand-avatar-lg { width: 5rem; height: 5rem; } }
+.brand-avatar-logo { padding: .3rem; border-color: #ffffff26; background: #fff; box-shadow: 0 1px 0 #ffffff14 inset, 0 4px 14px -6px #000; }
+.brand-avatar-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .brand-avatar[data-category="hosting"] { --avatar-bg: #221d38; --avatar-fg: #d6c9ff; }
 .brand-avatar[data-category="marketing"] { --avatar-bg: #33241a; --avatar-fg: #ffd0a0; }
 .brand-avatar[data-category="ai-tools"] { --avatar-bg: #1c2540; --avatar-fg: #c6d8ff; }

@@ -18,7 +18,7 @@ function BrandCard({ brand }: { brand: BrandDirectoryEntry }) {
   return (
     <li data-brand={brand.slug} data-sponsored={brand.sponsored || undefined} className="brand-card motion-card">
       <div className="brand-card-top">
-        <BrandAvatar name={brand.name} category={brand.categorySlug} />
+        <BrandAvatar name={brand.name} slug={brand.slug} category={brand.categorySlug} />
         {brand.sponsored && <span className="brand-sponsor-label">Sponsored</span>}
       </div>
       <h3>

@@ -45,7 +45,7 @@ export function OfferCard({ deal, letters, action, motionIndex }: {
   return (
     <article className="market-offer-card motion-card" data-motion={motionIndex}>
       <header className="market-offer-top">
-        <BrandAvatar name={deal.toolName} category={deal.categorySlug} letters={letters} />
+        <BrandAvatar name={deal.toolName} slug={deal.toolSlug} category={deal.categorySlug} letters={letters} />
         <p className="market-offer-brand"><strong>{deal.toolName}</strong><small>{deal.category}</small></p>
         {isPartnerBrand(deal.toolSlug) ? <span className="market-badge market-badge-partner" title="SaaSFolio partner: we may earn a commission"><BadgeCheck size={13} aria-hidden="true" /><span className="market-badge-text">Partner</span></span>
           : deal.sourceKind === "vendor" && <span className="market-badge market-badge-verified" title="Official provider source"><BadgeCheck size={13} aria-hidden="true" /><span className="market-badge-text">Official source</span></span>}

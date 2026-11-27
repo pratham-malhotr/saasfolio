@@ -20,7 +20,7 @@ export function BrandDiscountsSection({ deals }: { deals: SaaSDeal[] }) {
       <div className="home-brand-grid" data-home-brands="">
         {brands.map((tool, index) => (
           <Link key={tool.slug} href={`/discounts/${tool.slug}`} prefetch={false} className="home-brand-link motion-card" data-motion={index % 4}>
-            <BrandAvatar name={tool.name} letters={tool.logoLetter} category={tool.categorySlug} />
+            <BrandAvatar name={tool.name} slug={tool.slug} letters={tool.logoLetter} category={tool.categorySlug} />
             <span><strong>{tool.name}</strong><small>{brandSavingsSummary(tool, deals)}</small></span>
             <ArrowUpRight size={16} aria-hidden="true" />
           </Link>

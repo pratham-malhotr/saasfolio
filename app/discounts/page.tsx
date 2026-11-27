@@ -45,7 +45,7 @@ export default function BrandDiscountsPage() {
         </div>
         <ul className="discount-partner-grid">{partners.map(tool => (
           <li key={tool.slug}><Link prefetch={false} href={`/discounts/${tool.slug}`} className="discount-partner-card">
-            <BrandAvatar name={tool.name} letters={tool.logoLetter} category={tool.categorySlug} />
+            <BrandAvatar name={tool.name} slug={tool.slug} letters={tool.logoLetter} category={tool.categorySlug} />
             <span><strong>{tool.name} discount</strong><small>{brandHeadlineSaving(tool, deals) || "Partner link and current offers"}</small></span>
             <ArrowUpRight size={15} aria-hidden="true" />
           </Link></li>

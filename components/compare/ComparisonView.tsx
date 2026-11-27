@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { BrandAvatar } from "@/components/brand/BrandAvatar";
 import Link from "next/link";
 import { offerLabel } from "@/lib/offer-links";
 import { useRouter } from "next/navigation";
@@ -139,9 +140,7 @@ export function ComparisonView({
         <div className="p-8 rounded-3xl bg-[#09090C] border border-white/15 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 rounded-2xl bg-black border border-white/20 flex items-center justify-center font-display font-black text-xl text-[#C6FF3D]">
-                {toolA.logoLetter}
-              </div>
+              <BrandAvatar name={toolA.name} slug={toolA.slug} letters={toolA.logoLetter} category={toolA.categorySlug} className="brand-avatar-md" />
               <div className="flex items-center gap-1 font-mono text-xs text-[#C6FF3D] font-bold">
                 <Star className="w-4 h-4 fill-[#C6FF3D]" />
                 <span>{toolA.reviewCount ? `${toolA.rating} / 5.0` : "Unrated"}</span>
@@ -170,9 +169,7 @@ export function ComparisonView({
         <div className="p-8 rounded-3xl bg-[#09090C] border border-white/15 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 rounded-2xl bg-black border border-white/20 flex items-center justify-center font-display font-black text-xl text-[#C6FF3D]">
-                {toolB.logoLetter}
-              </div>
+              <BrandAvatar name={toolB.name} slug={toolB.slug} letters={toolB.logoLetter} category={toolB.categorySlug} className="brand-avatar-md" />
               <div className="flex items-center gap-1 font-mono text-xs text-[#C6FF3D] font-bold">
                 <Star className="w-4 h-4 fill-[#C6FF3D]" />
                 <span>{toolB.reviewCount ? `${toolB.rating} / 5.0` : "Unrated"}</span>
