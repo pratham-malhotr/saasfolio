@@ -3,7 +3,7 @@ import type { DetailedArticle } from "./articles-data";
 /*
  * Flagship comparison guides.
  * Every price and limit below was read from the provider's own page on
- * 2026-11-27 (see `sources`). Where a provider page conflicts with itself or
+ * 2026-11-27, or on the guide's `publishedOn` date (see `sources`). Where a provider page conflicts with itself or
  * does not publish a figure, the article says so instead of filling the gap.
  */
 
@@ -16,7 +16,7 @@ const editorial = {
   bio: "We compare official plan terms and build worked cost examples so buyers can test their own workflow. Examples use stated assumptions; they are not hands-on benchmarks, customer results or checkout tests.",
 };
 
-type FlagshipGuide = Omit<DetailedArticle, "id" | "author" | "publishedAt" | "updatedAt" | "readTime" | "tableOfContents"> & { brandSlugs: string[] };
+type FlagshipGuide = Omit<DetailedArticle, "id" | "author" | "publishedAt" | "updatedAt" | "readTime" | "tableOfContents"> & { brandSlugs: string[]; publishedOn?: string };
 
 const guides: FlagshipGuide[] = [
   {
@@ -463,18 +463,103 @@ const guides: FlagshipGuide[] = [
     ],
     relatedArticlesSlugs: ["asana-vs-monday-vs-clickup-pricing", "compare-saas-team-seat-costs", "build-a-saas-budget-before-buying"],
   },
+  {
+    slug: "beehiiv-vs-kit-vs-substack",
+    publishedOn: "2026-11-28",
+    title: "beehiiv vs Kit vs Substack: What a Newsletter Really Costs",
+    summary: "Compare beehiiv, Kit (ConvertKit) and Substack at 1,000 to 100,000 subscribers. See subscription prices, the cut each takes from paid newsletters and the yearly total for two real newsletters.",
+    subtitle: "Substack is free until you charge readers; beehiiv and Kit charge by list size. Which is cheaper depends on how you earn.",
+    keyTakeaways: [
+      "Substack costs nothing to publish and keeps 10% of paid-subscription revenue plus card fees. beehiiv and Kit charge a monthly price that rises with your subscriber count.",
+      "beehiiv's Free plan covers up to 2,500 subscribers and Kit's Free plan up to 10,000; Substack has no subscriber limit.",
+      "At 5,000 subscribers, beehiiv Lite costs $95 a month billed yearly ($109 monthly) and Kit Creator $75 a month billed yearly ($89 monthly).",
+      "beehiiv takes 0% of paid subscriptions on Lite and Pro, but Stripe's 2.9% + 30¢ still applies. Kit charges 3.5% + 30¢ per sale with card processing included, so Kit's own share is 0.6%. Substack keeps 10% plus card fees.",
+      "For a 5,000-subscriber newsletter earning $19,200 a year from 200 paid readers, all-in yearly costs are about $1,392 on Kit Free, $2,292 on Kit Creator, $2,417 on beehiiv Lite and $3,197 on Substack, card fees included.",
+    ],
+    category: "Comparisons",
+    tags: ["beehiiv", "Kit", "ConvertKit", "Substack", "Newsletter platforms", "SaaS pricing"],
+    brandSlugs: ["beehiiv", "convertkit"],
+    featured: true,
+    coverAccent: "#C6FF3D",
+    coverImage: { src: "/images/comparisons/beehiiv-vs-kit-vs-substack.webp", alt: "Three newsletter platforms compared by monthly price at 5,000 subscribers and the share each takes from paid subscriptions" },
+    sections: [
+      {
+        id: "quick-answer",
+        heading: "Which is cheapest: beehiiv, Kit or Substack?",
+        content: `If your newsletter is free and stays free, Substack is the cheapest: publishing costs nothing at any list size. Its cost appears only when you charge readers, because Substack keeps 10% of paid-subscription revenue plus credit card fees.\n\nIf you charge readers, compare all-in costs, because card processing applies on every platform and is easy to leave out. Kit is often cheapest for paid newsletters: its 3.5% + 30¢ per sale already includes card processing, so Kit's own share is only 0.6%, and its Free plan covers up to 10,000 subscribers. beehiiv takes 0% of paid subscriptions on Lite and Pro but charges a monthly price by list size, and Stripe's 2.9% + 30¢ applies on top. Substack takes 10% plus card fees, so it becomes the most expensive of the three as paid revenue grows.\n\nThe deciding numbers are your subscriber count, how many readers pay and whether you need automations such as a welcome sequence. The worked example below runs one newsletter through all three.`,
+      },
+      {
+        id: "pricing-models",
+        heading: "Three pricing models: list size, revenue share and per-sale fees",
+        content: `beehiiv and Kit both price by subscriber count. You choose a plan for its features, and the plan's price is set by how many subscribers you have. beehiiv counts active subscribers across every publication in your workspace, so two publications with 3,000 and 2,000 readers are billed as 5,000.\n\nSubstack does not charge a subscription. It is free to publish, and writers keep 90% of their paid-subscription revenue minus credit card fees.\n\nPaid newsletters add a second cost on beehiiv and Kit. beehiiv's Lite and Pro plans list a 0% take rate on paid subscriptions; its Free plan does not include paid subscriptions. beehiiv's pricing FAQ adds that you keep what you earn minus Stripe's standard processing fee of 2.9% + $0.30 per transaction. Kit lets every plan, including Free, sell digital products and subscriptions for 3.5% + 30¢ per transaction, which Kit says is inclusive of credit card processing, so Kit itself takes 0.6%. Substack's page says writers keep 90% minus credit card fees but does not state the card rate.`,
+      },
+      {
+        id: "plan-prices",
+        heading: "beehiiv and Kit prices from 1,000 to 100,000 subscribers",
+        content: `beehiiv has Free, Lite, Pro and Enterprise plans. Free covers up to 2,500 subscribers with one team seat. Lite goes up to 100,000 subscribers with two seats and adds paid subscriptions, automations, polls and A/B testing. Pro goes up to 250,000 subscribers with ten seats and removes beehiiv branding. Billed yearly, Lite costs $49 a month at 1,000 subscribers, $95 at 5,000, $119 at 10,000, $169 at 25,000, $249 at 50,000 and $399 at 100,000. Billed monthly, the same tiers cost $59, $109, $139, $199, $299 and $469. Pro costs $95, $169, $199, $299, $399 and $599 a month billed yearly at those tiers, or $109, $199, $239, $349, $469 and $699 billed monthly. Every account can trial Pro for 14 days without a card.\n\nKit has Free, Creator and Pro plans. Free covers up to 10,000 subscribers with unlimited broadcasts, landing pages, forms and tagging. Creator adds unlimited visual automations and email sequences, RSS campaigns and removes Kit branding; Pro adds engagement scoring, deliverability reporting, unlimited users and a newsletter referral system. Billed monthly, Creator costs $39 a month at 1,000 subscribers, $89 at 5,000, $139 at 10,000 and $199 at 25,000; Pro costs $79, $139, $189 and $279. Paying yearly saves 17%: Creator becomes $33, $75, $116 and $166 a month, and Pro $66, $116, $158 and $233.`,
+        dealCalloutSlug: "beehiiv-free-plan",
+      },
+      {
+        id: "worked-example",
+        heading: "Worked example: the yearly cost of two real newsletters",
+        content: `Two newsletters, priced at each platform's published rates. All figures are yearly and include card processing.\n\nNewsletter A: 5,000 subscribers, 200 of whom pay $8 a month. That is $1,600 a month or $19,200 a year in subscription revenue, from 2,400 card charges. At Stripe's standard 2.9% + 30¢, card processing on those charges is $556.80 + $720 = $1,276.80.\n\n- Kit Free: $0 a month. Kit's 3.5% + 30¢ fee is $672 + $720 = $1,392, card processing included. Kit Creator, needed for a welcome sequence, adds 12 × $75 = $900, for $2,292.\n- beehiiv Lite at 5,000 subscribers, billed yearly: 12 × $95 = $1,140, with a 0% take rate. Adding Stripe's $1,276.80 gives $2,416.80.\n- Substack: $0 to publish. Its 10% share is $1,920. Substack does not state its card rate; at the same standard 2.9% + 30¢, card fees add $1,276.80, for about $3,196.80.\n\nNewsletter B: 25,000 free subscribers, no paid tier, and a welcome sequence for new readers.\n\n- Substack: $0.\n- beehiiv Lite at 25,000 subscribers, billed yearly: 12 × $169 = $2,028.\n- Kit Creator at 25,000 subscribers, billed yearly: 12 × $166 = $1,992. Kit Free stops at 10,000 subscribers, so it does not fit.\n\nThe pattern: with no paid readers, Substack is free and the paid platforms cost about $2,000 a year at 25,000 subscribers. With paid readers, card processing costs roughly the same everywhere, so compare what each platform adds on top. Substack adds 10% of revenue. beehiiv adds its plan price. Kit adds 0.6% of revenue plus its plan price. At 5,000 subscribers, Substack's 10% passes beehiiv Lite's $1,140 once yearly paid revenue exceeds $11,400, and Kit Creator stays cheaper than beehiiv Lite until yearly paid revenue reaches $40,000.`,
+      },
+      {
+        id: "common-mistake",
+        heading: "The common mistake: comparing prices at 1,000 subscribers",
+        content: `Pricing pages open at 1,000 subscribers, where every paid plan looks affordable. The price that matters is the one at the list size you expect in a year. beehiiv Lite rises from $49 a month at 1,000 subscribers to $169 at 25,000, billed yearly; Kit Creator rises from $33 to $166. Set each pricing slider to your expected list size before comparing.\n\nThe second mistake is ignoring per-sale fees on cheap subscriptions. Kit's 30¢ fixed fee is 6% of a $5 monthly charge, so Kit's total sales fee at that price is 9.5%, close to Substack's 10%. On a $20 monthly charge the same fee is 5%. If you plan a low price, add the fixed part of every fee to your estimate.`,
+      },
+      {
+        id: "choose",
+        heading: "Which newsletter platform should you choose?",
+        content: `Choose Substack if you want to publish without any fixed cost, especially while you test whether readers will pay. You give up a 10% share of paid revenue and keep less control over branding and data integrations.\n\nChoose beehiiv if you expect meaningful paid revenue or advertising income. Its Lite plan takes no share of paid subscriptions, includes automations and gives two team seats, and its Pro plan scales to 250,000 subscribers.\n\nChoose Kit if email marketing is central to a creator business that sells products as well as a newsletter. Its Free plan carries up to 10,000 subscribers and can sell subscriptions, and Creator adds unlimited automations and sequences.`,
+        links: [{ label: "See beehiiv discounts and pricing", href: "/discounts/beehiiv" }, { label: "See Kit (ConvertKit) pricing", href: "/tools/convertkit" }],
+      },
+      {
+        id: "decision-record",
+        heading: "Decision record: what to confirm before you move your list",
+        content: `Write these down before migrating subscribers.\n\n- Your active subscriber count today and in twelve months, counted across every publication.\n- How many readers pay, at what price, and how many card charges that creates each year.\n- Whether you need automations, sequences, a referral program or more than one team seat.\n- The plan and tier you would pay for at your twelve-month list size, monthly and yearly.\n- The platform's fee on paid subscriptions, and whether card processing is included or extra.\n- How you would export subscribers and paid members if you switch again.`,
+      },
+    ],
+    comparisonTable: {
+      afterSection: "pricing-models",
+      headers: ["What matters", "beehiiv", "Kit", "Substack"],
+      rows: [
+        { feature: "Free plan", values: ["Up to 2,500 subscribers", "Up to 10,000 subscribers", "Free at any size"] },
+        { feature: "Price at 5,000 subscribers", values: ["Lite $95/mo yearly, $109 monthly", "Creator $75/mo yearly, $89 monthly", "$0"] },
+        { feature: "Cut of paid subscriptions", values: ["0% on Lite and Pro, plus Stripe 2.9% + 30¢", "3.5% + 30¢ per sale, card fees included", "10% plus card fees"] },
+        { feature: "Automations", values: ["From Lite", "From Creator", "Not listed on its pricing page"] },
+        { feature: "Team seats", values: ["1 Free, 2 Lite, 10 Pro", "Unlimited users on Pro", "Not listed on its pricing page"] },
+        { feature: "Yearly billing saving", values: ["Up to 20%, says beehiiv (13 to 17% at the tiers above)", "17%", "No subscription"] },
+      ],
+    },
+    faqs: [
+      { question: "Is beehiiv cheaper than Substack?", answer: "For a free newsletter, no: Substack costs nothing to publish. For a paid newsletter, beehiiv becomes cheaper once Substack's 10% share exceeds beehiiv's plan price, because beehiiv takes 0% on Lite and Pro and both pay card processing. At 5,000 subscribers, beehiiv Lite costs $1,140 a year billed yearly, so beehiiv is cheaper above $11,400 in yearly paid revenue." },
+      { question: "Is Kit (ConvertKit) free?", answer: "Kit's Free plan covers up to 10,000 subscribers with unlimited broadcasts, landing pages and forms, and can sell subscriptions for 3.5% + 30¢ per sale. Automations and email sequences need the Creator plan, from $39 a month or $33 billed yearly at 1,000 subscribers." },
+      { question: "How much does beehiiv cost per month?", answer: "beehiiv's Free plan covers up to 2,500 subscribers. Lite costs $49 a month billed yearly at 1,000 subscribers and $95 at 5,000; Pro costs $95 and $169. Monthly billing costs more: $59 and $109 for Lite at those tiers." },
+      { question: "What percentage does Substack take?", answer: "Substack keeps 10% of paid-subscription revenue, and writers also pay credit card fees. Publishing a free newsletter on Substack costs nothing." },
+      { question: "Does beehiiv take a cut of paid subscriptions?", answer: "beehiiv lists a 0% take rate on paid subscriptions on its Lite and Pro plans; you pay only Stripe's standard processing fee of 2.9% + $0.30 per transaction. Paid subscriptions are not part of the Free plan." },
+    ],
+    sources: [
+      { title: "beehiiv pricing (plan tiers read at each subscriber level, yearly and monthly)", url: "https://www.beehiiv.com/pricing" },
+      { title: "beehiiv: plan types and subscriber plan tier pricing", url: "https://www.beehiiv.com/support/article/23874462928663-plan-types-and-subscriber-plan-tier-pricing" },
+      { title: "Kit pricing and plan features", url: "https://kit.com/pricing" },
+      { title: "Substack: going paid", url: "https://substack.com/going-paid" },
+    ],
+    relatedArticlesSlugs: ["cal-com-vs-calendly", "smartlead-vs-snov-io", "build-a-saas-budget-before-buying"],
+  },
 ];
 
 const PUBLISHED = "2026-11-27";
 
-const publishedGuides = guides.map(({ brandSlugs, ...guide }) => ({
+const publishedGuides = guides.map(({ brandSlugs, publishedOn = PUBLISHED, ...guide }) => ({
   brandSlugs,
   article: {
     ...guide,
     id: `flagship-${guide.slug}`,
     author: editorial,
-    publishedAt: PUBLISHED,
-    updatedAt: PUBLISHED,
+    publishedAt: publishedOn,
+    updatedAt: publishedOn,
     readTime: `${Math.ceil(guide.sections.reduce((total, section) => total + section.content.split(/\s+/).length, 0) / 200)} min read`,
     tableOfContents: guide.sections.map(section => ({ id: section.id, title: section.heading })),
   } satisfies DetailedArticle,
