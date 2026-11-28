@@ -8,6 +8,17 @@ updates:
     groups:
       development:
         dependency-type: development
+    ignore:
+      # TypeScript 7 (native compiler) has no JavaScript API yet; the unit-test
+      # harnesses call ts.transpileModule, and typescript-eslint needs < 6.1.
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+      # ESLint 10 is blocked by the same typescript-eslint peer range.
+      - dependency-name: eslint
+        update-types: ["version-update:semver-major"]
+      # Keep Node types on the runtime major (.nvmrc), not the newest Node.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
