@@ -33,10 +33,10 @@ export default function FirecrawlPricingCalculatorPage() {
     </section>
     <section className="max-w-3xl space-y-3 rounded-2xl border border-white/10 p-5 leading-relaxed text-zinc-300">
       <h2 className="font-display text-xl font-semibold text-white">First-purchase savings</h2>
-      <p>Eligible new Firecrawl users can get 10% off their first purchase. Use the standard price in your ongoing budget and check the amount due before paying.</p>
+      <p>Firecrawl&apos;s partner program gives new users 10% off their first purchase when they sign up through a partner link. It applies once, so budget renewals at the standard price and check the amount due before paying.</p>
       <p>Affiliate disclosure. SaaSFolio may earn a commission if you buy through this link.</p>
       <p><FirecrawlPartnerLink /></p>
     </section>
-    <p className="text-sm text-zinc-400">Pricing checked <time dateTime="2026-11-25">November 25, 2026</time>. Read the <a href={FIRECRAWL_PRICING} className="text-[#C6FF3D] underline">Firecrawl pricing page</a> and the <a href="https://partners.dub.co/firecrawl" className="text-[#C6FF3D] underline">first-purchase offer terms</a>.</p>
+    <p className="text-sm text-zinc-400">Pricing checked <time dateTime="2026-11-28">November 28, 2026</time>. Read the <a href={FIRECRAWL_PRICING} className="text-[#C6FF3D] underline">Firecrawl pricing page</a> and Firecrawl&apos;s <a href="https://partners.dub.co/firecrawl" className="text-[#C6FF3D] underline">partner program terms</a>.</p>
   </article>;
 }

@@ -396,7 +396,7 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
     "name": "Firecrawl",
     "website": "https://www.firecrawl.dev",
     "pricingUrl": "https://www.firecrawl.dev/pricing",
-    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "updatedAt": "2026-11-28T00:00:00.000Z",
     "pricingModel": "Freemium",
     "tagline": "Firecrawl is a hosted API that turns websites into clean, LLM-ready data through scraping, crawling, search and browser automation.",
     "description": "Firecrawl is a hosted API that turns websites into clean, LLM-ready data through scraping, crawling, search and browser automation.",

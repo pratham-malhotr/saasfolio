@@ -50,6 +50,9 @@ export function FirecrawlCalculator() {
 }
 
 export function FirecrawlPartnerLink() {
-  return <a href="https://firecrawl.link/pratham-malhotra" rel="sponsored nofollow" className="text-[#C6FF3D] underline underline-offset-4"
-    onClick={() => trackProductEvent("affiliate_outbound_click", { partner: "firecrawl" })}>See the first-purchase offer on Firecrawl</a>;
+  // Through /go/ like every partner CTA, so the click is attributed and counted.
+  // /go/ is a redirect route handler, not a page, so a plain anchor is correct.
+  // eslint-disable-next-line @next/next/no-html-link-for-pages
+  return <a href="/go/firecrawl" rel="sponsored nofollow" className="text-[#C6FF3D] underline underline-offset-4"
+    onClick={() => trackProductEvent("affiliate_outbound_click", { partner: "firecrawl" })}>Get 10% off your first Firecrawl purchase via our partner link</a>;
 }
