@@ -2,7 +2,7 @@
   "adobe-creative-cloud": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:00.412Z",
+    "checkedAt": "2026-11-28T00:08:03.065Z",
     "tokens": [
       "1year"
     ],
@@ -15,10 +15,10 @@
     ]
   },
   "affine": {
-    "verifiedAt": "2026-11-27T20:12:39.086Z",
+    "verifiedAt": "2026-11-28T00:07:42.140Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:39.086Z",
+    "checkedAt": "2026-11-28T00:07:42.140Z",
     "tokens": [
       "15%"
     ],
@@ -28,10 +28,10 @@
     ]
   },
   "ahrefs": {
-    "verifiedAt": "2026-11-27T20:12:44.327Z",
+    "verifiedAt": "2026-11-28T00:07:47.184Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:44.327Z",
+    "checkedAt": "2026-11-28T00:07:47.184Z",
     "tokens": [
       "17%"
     ],
@@ -42,10 +42,10 @@
     ]
   },
   "aioseo": {
-    "verifiedAt": "2026-11-27T20:13:06.903Z",
+    "verifiedAt": "2026-11-28T00:08:09.332Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:06.903Z",
+    "checkedAt": "2026-11-28T00:08:09.332Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -55,7 +55,7 @@
   "airtable": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:02.685Z",
+    "checkedAt": "2026-11-28T00:08:05.442Z",
     "tokens": [
       "$12",
       "$144",
@@ -73,10 +73,10 @@
     ]
   },
   "akiflow": {
-    "verifiedAt": "2026-11-27T20:12:41.632Z",
+    "verifiedAt": "2026-11-28T00:07:45.272Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:41.632Z",
+    "checkedAt": "2026-11-28T00:07:45.272Z",
     "tokens": [
       "40%",
       "44%",
@@ -92,7 +92,7 @@
   "alitu": {
     "status": "error",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:30.502Z",
+    "checkedAt": "2026-11-28T00:07:33.542Z",
     "tokens": [
       "2month",
       "7day"
@@ -106,10 +106,10 @@
     ]
   },
   "anytrack": {
-    "verifiedAt": "2026-11-27T20:13:22.660Z",
+    "verifiedAt": "2026-11-28T00:08:24.482Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:22.660Z",
+    "checkedAt": "2026-11-28T00:08:24.482Z",
     "tokens": [
       "2month"
     ],
@@ -120,10 +120,10 @@
     ]
   },
   "asana": {
-    "verifiedAt": "2026-11-27T20:13:01.505Z",
+    "verifiedAt": "2026-11-28T00:08:03.563Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:01.505Z",
+    "checkedAt": "2026-11-28T00:08:03.563Z",
     "tokens": [
       "50%"
     ],
@@ -134,10 +134,10 @@
     ]
   },
   "baremetrics": {
-    "verifiedAt": "2026-11-27T20:13:22.752Z",
+    "verifiedAt": "2026-11-28T00:08:24.808Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:22.752Z",
+    "checkedAt": "2026-11-28T00:08:24.808Z",
     "tokens": [
       "35%"
     ],
@@ -148,10 +148,10 @@
     ]
   },
   "baserow": {
-    "verifiedAt": "2026-11-27T20:12:49.773Z",
+    "verifiedAt": "2026-11-28T00:07:52.327Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:49.773Z",
+    "checkedAt": "2026-11-28T00:07:52.327Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -161,10 +161,10 @@
     ]
   },
   "beehiiv": {
-    "verifiedAt": "2026-11-27T20:13:19.530Z",
+    "verifiedAt": "2026-11-28T00:08:21.165Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:19.530Z",
+    "checkedAt": "2026-11-28T00:08:21.165Z",
     "tokens": [
       "20%"
     ],
@@ -175,10 +175,10 @@
     ]
   },
   "bigin": {
-    "verifiedAt": "2026-11-27T20:12:32.057Z",
+    "verifiedAt": "2026-11-28T00:07:34.970Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:12:32.057Z",
+    "checkedAt": "2026-11-28T00:07:34.970Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -188,7 +188,7 @@
   "box": {
     "status": "error",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:57.653Z",
+    "checkedAt": "2026-11-28T00:07:59.705Z",
     "tokens": [],
     "missing": [],
     "errors": [
@@ -199,7 +199,7 @@
   "browserstack": {
     "status": "error",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:56.247Z",
+    "checkedAt": "2026-11-28T00:07:58.704Z",
     "tokens": [
       "25%"
     ],
@@ -211,10 +211,10 @@
     ]
   },
   "buttondown": {
-    "verifiedAt": "2026-11-27T20:12:27.550Z",
+    "verifiedAt": "2026-11-28T00:07:30.797Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:27.550Z",
+    "checkedAt": "2026-11-28T00:07:30.797Z",
     "tokens": [
       "50%"
     ],
@@ -224,10 +224,10 @@
     ]
   },
   "cal-com": {
-    "verifiedAt": "2026-11-27T20:13:17.122Z",
+    "verifiedAt": "2026-11-28T00:08:19.404Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:17.122Z",
+    "checkedAt": "2026-11-28T00:08:19.404Z",
     "tokens": [
       "$12",
       "$28",
@@ -241,7 +241,7 @@
   "canva": {
     "status": "error",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:32.239Z",
+    "checkedAt": "2026-11-28T00:07:35.289Z",
     "tokens": [],
     "missing": [],
     "errors": [
@@ -251,10 +251,10 @@
     ]
   },
   "castmagic": {
-    "verifiedAt": "2026-11-27T20:12:30.424Z",
+    "verifiedAt": "2026-11-28T00:07:33.492Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:30.424Z",
+    "checkedAt": "2026-11-28T00:07:33.492Z",
     "tokens": [
       "30%"
     ],
@@ -264,10 +264,10 @@
     ]
   },
   "checkly": {
-    "verifiedAt": "2026-11-27T20:12:54.371Z",
+    "verifiedAt": "2026-11-28T00:07:57.511Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:54.371Z",
+    "checkedAt": "2026-11-28T00:07:57.511Z",
     "tokens": [
       "20%"
     ],
@@ -279,7 +279,7 @@
   "clickup": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:32.711Z",
+    "checkedAt": "2026-11-28T00:07:35.740Z",
     "tokens": [
       "33%"
     ],
@@ -291,10 +291,10 @@
     ]
   },
   "clueso": {
-    "verifiedAt": "2026-11-27T20:12:29.146Z",
+    "verifiedAt": "2026-11-28T00:07:32.434Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:12:29.146Z",
+    "checkedAt": "2026-11-28T00:07:32.434Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -302,10 +302,10 @@
     ]
   },
   "coderabbit": {
-    "verifiedAt": "2026-11-27T20:12:53.570Z",
+    "verifiedAt": "2026-11-28T00:07:56.408Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:53.570Z",
+    "checkedAt": "2026-11-28T00:07:56.408Z",
     "tokens": [
       "20%"
     ],
@@ -315,10 +315,10 @@
     ]
   },
   "colossyan": {
-    "verifiedAt": "2026-11-27T20:12:31.668Z",
+    "verifiedAt": "2026-11-28T00:07:34.702Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:31.668Z",
+    "checkedAt": "2026-11-28T00:07:34.702Z",
     "tokens": [
       "34%"
     ],
@@ -329,24 +329,25 @@
   },
   "confluence": {
     "verifiedAt": "2026-11-27T20:12:56.748Z",
-    "status": "verified",
+    "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:56.748Z",
+    "checkedAt": "2026-11-28T00:07:58.960Z",
     "tokens": [
       "50%",
       "75%"
     ],
-    "missing": [],
-    "sources": [
-      "https://www.atlassian.com/software/confluence/pricing",
-      "https://www.atlassian.com/licensing/cloud",
-      "https://www.atlassian.com/software/views/social-impact-license-request"
+    "missing": [
+      "50%",
+      "75%"
+    ],
+    "errors": [
+      "https://www.atlassian.com/software/confluence/pricing: Insufficient visible source content"
     ]
   },
   "consensus": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:48.848Z",
+    "checkedAt": "2026-11-28T00:07:51.522Z",
     "tokens": [
       "25%",
       "40%"
@@ -356,15 +357,14 @@
       "40%"
     ],
     "errors": [
-      "https://help.consensus.app/en/articles/10064359-how-to-get-a-student-or-clinician-discount: HTTP 403",
-      "https://help.consensus.app/en/articles/10087865-subscription-plans: HTTP 403"
+      "https://help.consensus.app/en/articles/10064359-how-to-get-a-student-or-clinician-discount: HTTP 403"
     ]
   },
   "convertkit": {
     "verifiedAt": "2026-11-27T15:28:18.175Z",
     "status": "error",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:24.082Z",
+    "checkedAt": "2026-11-28T00:07:26.831Z",
     "tokens": [
       "2month"
     ],
@@ -380,7 +380,7 @@
   "creatify": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:31.454Z",
+    "checkedAt": "2026-11-28T00:07:34.595Z",
     "tokens": [
       "30%"
     ],
@@ -389,10 +389,10 @@
     ]
   },
   "deadline-funnel": {
-    "verifiedAt": "2026-11-27T20:13:18.307Z",
+    "verifiedAt": "2026-11-28T00:08:20.029Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:18.307Z",
+    "checkedAt": "2026-11-28T00:08:20.029Z",
     "tokens": [
       "$119",
       "$149",
@@ -412,10 +412,10 @@
     ]
   },
   "descript": {
-    "verifiedAt": "2026-11-27T20:12:38.542Z",
+    "verifiedAt": "2026-11-28T00:07:41.941Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:38.542Z",
+    "checkedAt": "2026-11-28T00:07:41.941Z",
     "tokens": [
       "$8",
       "35%"
@@ -429,10 +429,10 @@
     ]
   },
   "dropbox": {
-    "verifiedAt": "2026-11-27T20:12:57.458Z",
+    "verifiedAt": "2026-11-28T00:07:59.362Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:57.458Z",
+    "checkedAt": "2026-11-28T00:07:59.362Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -441,10 +441,10 @@
     ]
   },
   "dubble": {
-    "verifiedAt": "2026-11-27T20:12:28.854Z",
+    "verifiedAt": "2026-11-28T00:07:32.171Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:28.854Z",
+    "checkedAt": "2026-11-28T00:07:32.171Z",
     "tokens": [
       "20%"
     ],
@@ -454,10 +454,10 @@
     ]
   },
   "duplicator": {
-    "verifiedAt": "2026-11-27T20:13:09.647Z",
+    "verifiedAt": "2026-11-28T00:08:12.127Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:09.647Z",
+    "checkedAt": "2026-11-28T00:08:12.127Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -466,10 +466,10 @@
     ]
   },
   "elicit": {
-    "verifiedAt": "2026-11-27T20:12:47.963Z",
+    "verifiedAt": "2026-11-28T00:07:50.270Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:47.963Z",
+    "checkedAt": "2026-11-28T00:07:50.270Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -478,10 +478,10 @@
     ]
   },
   "fabric": {
-    "verifiedAt": "2026-11-27T20:12:41.529Z",
+    "verifiedAt": "2026-11-28T00:07:43.587Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:41.529Z",
+    "checkedAt": "2026-11-28T00:07:43.587Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -490,10 +490,10 @@
     ]
   },
   "famewall": {
-    "verifiedAt": "2026-11-27T20:12:27.936Z",
+    "verifiedAt": "2026-11-28T00:07:31.062Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:27.936Z",
+    "checkedAt": "2026-11-28T00:07:31.062Z",
     "tokens": [
       "20%"
     ],
@@ -503,10 +503,10 @@
     ]
   },
   "fathom": {
-    "verifiedAt": "2026-11-27T20:12:35.028Z",
+    "verifiedAt": "2026-11-28T00:07:38.201Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:35.028Z",
+    "checkedAt": "2026-11-28T00:07:38.201Z",
     "tokens": [
       "2year"
     ],
@@ -518,10 +518,10 @@
     ]
   },
   "fellow": {
-    "verifiedAt": "2026-11-27T20:12:26.828Z",
+    "verifiedAt": "2026-11-28T00:07:29.607Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:26.828Z",
+    "checkedAt": "2026-11-28T00:07:29.607Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -529,10 +529,10 @@
     ]
   },
   "fibery": {
-    "verifiedAt": "2026-11-27T20:12:50.439Z",
+    "verifiedAt": "2026-11-28T00:07:54.227Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:50.439Z",
+    "checkedAt": "2026-11-28T00:07:54.227Z",
     "tokens": [
       "6month"
     ],
@@ -543,10 +543,10 @@
     ]
   },
   "figma": {
-    "verifiedAt": "2026-11-27T20:12:32.532Z",
+    "verifiedAt": "2026-11-28T00:07:35.420Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:32.532Z",
+    "checkedAt": "2026-11-28T00:07:35.420Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -555,10 +555,10 @@
     ]
   },
   "firecrawl": {
-    "verifiedAt": "2026-11-27T20:13:17.473Z",
+    "verifiedAt": "2026-11-28T00:08:19.500Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:17.473Z",
+    "checkedAt": "2026-11-28T00:08:19.500Z",
     "tokens": [
       "$16",
       "$19",
@@ -579,7 +579,7 @@
   "fireflies-ai": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:37.612Z",
+    "checkedAt": "2026-11-28T00:07:39.734Z",
     "tokens": [
       "10%",
       "44%"
@@ -593,10 +593,10 @@
     ]
   },
   "fluent-forms": {
-    "verifiedAt": "2026-11-27T20:13:10.704Z",
+    "verifiedAt": "2026-11-28T00:08:13.304Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:10.704Z",
+    "checkedAt": "2026-11-28T00:08:13.304Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -604,10 +604,10 @@
     ]
   },
   "fluentcrm": {
-    "verifiedAt": "2026-11-27T20:13:12.034Z",
+    "verifiedAt": "2026-11-28T00:08:14.382Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:12.034Z",
+    "checkedAt": "2026-11-28T00:08:14.382Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -615,10 +615,10 @@
     ]
   },
   "flyingpress": {
-    "verifiedAt": "2026-11-27T20:13:14.362Z",
+    "verifiedAt": "2026-11-28T00:08:16.654Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:14.362Z",
+    "checkedAt": "2026-11-28T00:08:16.654Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -626,10 +626,10 @@
     ]
   },
   "formidable-forms": {
-    "verifiedAt": "2026-11-27T20:13:09.986Z",
+    "verifiedAt": "2026-11-28T00:08:12.956Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:09.986Z",
+    "checkedAt": "2026-11-28T00:08:12.956Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -637,10 +637,10 @@
     ]
   },
   "framer": {
-    "verifiedAt": "2026-11-27T20:12:24.082Z",
+    "verifiedAt": "2026-11-28T00:07:26.831Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:24.082Z",
+    "checkedAt": "2026-11-28T00:07:26.831Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -649,10 +649,10 @@
     ]
   },
   "google-workspace": {
-    "verifiedAt": "2026-11-27T20:12:59.353Z",
+    "verifiedAt": "2026-11-28T00:08:01.837Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:59.353Z",
+    "checkedAt": "2026-11-28T00:08:01.837Z",
     "tokens": [
       "16%",
       "1year"
@@ -665,10 +665,10 @@
     ]
   },
   "granola": {
-    "verifiedAt": "2026-11-27T20:12:25.475Z",
+    "verifiedAt": "2026-11-28T00:07:28.220Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:12:25.475Z",
+    "checkedAt": "2026-11-28T00:07:28.220Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -676,10 +676,10 @@
     ]
   },
   "gravity-forms": {
-    "verifiedAt": "2026-11-27T20:13:10.541Z",
+    "verifiedAt": "2026-11-28T00:08:13.018Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:10.541Z",
+    "checkedAt": "2026-11-28T00:08:13.018Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -688,10 +688,10 @@
     ]
   },
   "guideflow": {
-    "verifiedAt": "2026-11-27T20:12:28.550Z",
+    "verifiedAt": "2026-11-28T00:07:32.087Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:28.550Z",
+    "checkedAt": "2026-11-28T00:07:32.087Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -699,10 +699,10 @@
     ]
   },
   "healthchecks-io": {
-    "verifiedAt": "2026-11-27T20:12:55.180Z",
+    "verifiedAt": "2026-11-28T00:07:57.729Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:55.180Z",
+    "checkedAt": "2026-11-28T00:07:57.729Z",
     "tokens": [
       "20%"
     ],
@@ -712,10 +712,10 @@
     ]
   },
   "hedra": {
-    "verifiedAt": "2026-11-27T20:12:31.617Z",
+    "verifiedAt": "2026-11-28T00:07:34.673Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:12:31.617Z",
+    "checkedAt": "2026-11-28T00:07:34.673Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -725,7 +725,7 @@
   "hiver": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:27.324Z",
+    "checkedAt": "2026-11-28T00:07:30.063Z",
     "tokens": [
       "20%"
     ],
@@ -734,10 +734,10 @@
     ]
   },
   "hostinger": {
-    "verifiedAt": "2026-11-27T20:12:24.082Z",
+    "verifiedAt": "2026-11-28T00:07:26.831Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:12:24.082Z",
+    "checkedAt": "2026-11-28T00:07:26.831Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -745,10 +745,10 @@
     ]
   },
   "huly": {
-    "verifiedAt": "2026-11-27T20:12:40.341Z",
+    "verifiedAt": "2026-11-28T00:07:43.300Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:12:40.341Z",
+    "checkedAt": "2026-11-28T00:07:43.300Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -758,10 +758,10 @@
     ]
   },
   "hyperping": {
-    "verifiedAt": "2026-11-27T20:12:54.961Z",
+    "verifiedAt": "2026-11-28T00:07:57.707Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:54.961Z",
+    "checkedAt": "2026-11-28T00:07:57.707Z",
     "tokens": [
       "2month"
     ],
@@ -771,10 +771,10 @@
     ]
   },
   "imagify": {
-    "verifiedAt": "2026-11-27T20:13:13.612Z",
+    "verifiedAt": "2026-11-28T00:08:15.865Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:13.612Z",
+    "checkedAt": "2026-11-28T00:08:15.865Z",
     "tokens": [
       "2month"
     ],
@@ -784,10 +784,10 @@
     ]
   },
   "incident-io": {
-    "verifiedAt": "2026-11-27T20:12:55.853Z",
+    "verifiedAt": "2026-11-28T00:07:58.043Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:55.853Z",
+    "checkedAt": "2026-11-28T00:07:58.043Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -795,10 +795,10 @@
     ]
   },
   "intercom": {
-    "verifiedAt": "2026-11-27T20:13:04.878Z",
+    "verifiedAt": "2026-11-28T00:08:07.522Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:04.878Z",
+    "checkedAt": "2026-11-28T00:08:07.522Z",
     "tokens": [
       "25%",
       "50%",
@@ -811,10 +811,10 @@
     ]
   },
   "jenni-ai": {
-    "verifiedAt": "2026-11-27T20:13:15.701Z",
+    "verifiedAt": "2026-11-28T00:08:17.906Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:15.701Z",
+    "checkedAt": "2026-11-28T00:08:17.906Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -823,45 +823,43 @@
   },
   "jira": {
     "verifiedAt": "2026-11-27T20:12:56.589Z",
-    "status": "verified",
+    "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:56.589Z",
+    "checkedAt": "2026-11-28T00:07:58.919Z",
     "tokens": [
       "50%",
       "75%"
     ],
-    "missing": [],
-    "sources": [
-      "https://www.atlassian.com/software/jira/pricing",
-      "https://www.atlassian.com/licensing/cloud",
-      "https://www.atlassian.com/software/views/social-impact-license-request"
+    "missing": [
+      "50%",
+      "75%"
+    ],
+    "errors": [
+      "https://www.atlassian.com/software/jira/pricing: Insufficient visible source content"
     ]
   },
   "julius-ai": {
-    "status": "error",
+    "verifiedAt": "2026-11-28T00:08:19.306Z",
+    "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-28T06:54:15.153Z",
+    "checkedAt": "2026-11-28T00:08:19.306Z",
     "tokens": [
       "$20",
       "$45",
       "$450"
     ],
-    "missing": [
-      "$20",
-      "$45",
-      "$450"
-    ],
-    "errors": [
-      "https://julius.ai/pricing: HTTP 403",
-      "https://julius.ai/content/billing-update-messages-to-usage-credits: HTTP 403",
-      "https://julius.ai/docs/billing/credits-overview: HTTP 403"
+    "missing": [],
+    "sources": [
+      "https://julius.ai/pricing",
+      "https://julius.ai/content/billing-update-messages-to-usage-credits",
+      "https://julius.ai/docs/billing/credits-overview"
     ]
   },
   "linear": {
-    "verifiedAt": "2026-11-27T20:13:03.028Z",
+    "verifiedAt": "2026-11-28T00:08:05.719Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:13:03.028Z",
+    "checkedAt": "2026-11-28T00:08:05.719Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -870,10 +868,10 @@
     ]
   },
   "linguix": {
-    "verifiedAt": "2026-11-27T20:13:15.170Z",
+    "verifiedAt": "2026-11-28T00:08:17.359Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:15.170Z",
+    "checkedAt": "2026-11-28T00:08:17.359Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -881,10 +879,10 @@
     ]
   },
   "loom": {
-    "verifiedAt": "2026-11-27T20:12:33.385Z",
+    "verifiedAt": "2026-11-28T00:07:36.009Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:33.385Z",
+    "checkedAt": "2026-11-28T00:07:36.009Z",
     "tokens": [
       "17%",
       "75%"
@@ -896,10 +894,10 @@
     ]
   },
   "mailerlite": {
-    "verifiedAt": "2026-11-27T20:12:24.081Z",
+    "verifiedAt": "2026-11-28T00:07:26.830Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:24.081Z",
+    "checkedAt": "2026-11-28T00:07:26.830Z",
     "tokens": [
       "10%",
       "30%"
@@ -912,10 +910,10 @@
     ]
   },
   "meetgeek": {
-    "verifiedAt": "2026-11-27T20:12:26.706Z",
+    "verifiedAt": "2026-11-28T00:07:29.556Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:26.706Z",
+    "checkedAt": "2026-11-28T00:07:29.556Z",
     "tokens": [
       "30%",
       "40%"
@@ -928,7 +926,7 @@
   "microsoft-365": {
     "status": "error",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:59.792Z",
+    "checkedAt": "2026-11-28T00:08:01.908Z",
     "tokens": [],
     "missing": [],
     "errors": [
@@ -940,7 +938,7 @@
   "miro": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:33.701Z",
+    "checkedAt": "2026-11-28T00:07:36.989Z",
     "tokens": [
       "20%",
       "30%",
@@ -955,10 +953,10 @@
     ]
   },
   "monday": {
-    "verifiedAt": "2026-11-27T20:13:02.686Z",
+    "verifiedAt": "2026-11-28T00:08:05.719Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:02.686Z",
+    "checkedAt": "2026-11-28T00:08:05.719Z",
     "tokens": [
       "70%"
     ],
@@ -969,10 +967,10 @@
     ]
   },
   "monsterinsights": {
-    "verifiedAt": "2026-11-27T20:13:08.358Z",
+    "verifiedAt": "2026-11-28T00:08:10.714Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:08.358Z",
+    "checkedAt": "2026-11-28T00:08:10.714Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -983,7 +981,7 @@
   "morgen-calendar": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:43.821Z",
+    "checkedAt": "2026-11-28T00:07:45.980Z",
     "tokens": [
       "15%",
       "1year",
@@ -998,10 +996,10 @@
     ]
   },
   "motion-calendar": {
-    "verifiedAt": "2026-11-27T20:12:44.054Z",
+    "verifiedAt": "2026-11-28T00:07:46.809Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:44.054Z",
+    "checkedAt": "2026-11-28T00:07:46.809Z",
     "tokens": [
       "33%"
     ],
@@ -1014,10 +1012,10 @@
     ]
   },
   "mymind": {
-    "verifiedAt": "2026-11-27T20:12:41.268Z",
+    "verifiedAt": "2026-11-28T00:07:43.374Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:41.268Z",
+    "checkedAt": "2026-11-28T00:07:43.374Z",
     "tokens": [
       "20%"
     ],
@@ -1032,7 +1030,7 @@
   "namecheap": {
     "status": "error",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:12:24.082Z",
+    "checkedAt": "2026-11-28T00:07:26.831Z",
     "tokens": [],
     "missing": [],
     "errors": [
@@ -1040,10 +1038,10 @@
     ]
   },
   "nifty": {
-    "verifiedAt": "2026-11-27T20:12:51.826Z",
+    "verifiedAt": "2026-11-28T00:07:54.509Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:51.826Z",
+    "checkedAt": "2026-11-28T00:07:54.509Z",
     "tokens": [
       "50%"
     ],
@@ -1053,10 +1051,10 @@
     ]
   },
   "nocodb": {
-    "verifiedAt": "2026-11-27T20:12:49.976Z",
+    "verifiedAt": "2026-11-28T00:07:53.026Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:49.976Z",
+    "checkedAt": "2026-11-28T00:07:53.026Z",
     "tokens": [
       "20%"
     ],
@@ -1066,10 +1064,10 @@
     ]
   },
   "notesnook": {
-    "verifiedAt": "2026-11-27T20:12:53.511Z",
+    "verifiedAt": "2026-11-28T00:07:55.782Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:53.511Z",
+    "checkedAt": "2026-11-28T00:07:55.782Z",
     "tokens": [
       "$19.99",
       "1year"
@@ -1081,10 +1079,10 @@
     ]
   },
   "notion": {
-    "verifiedAt": "2026-11-27T20:12:24.082Z",
+    "verifiedAt": "2026-11-28T00:07:26.831Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:24.082Z",
+    "checkedAt": "2026-11-28T00:07:26.831Z",
     "tokens": [
       "20%",
       "50%"
@@ -1098,10 +1096,10 @@
     ]
   },
   "notta": {
-    "verifiedAt": "2026-11-27T20:12:35.830Z",
+    "verifiedAt": "2026-11-28T00:07:38.734Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:35.830Z",
+    "checkedAt": "2026-11-28T00:07:38.734Z",
     "tokens": [
       "40%",
       "50%"
@@ -1113,10 +1111,10 @@
     ]
   },
   "ocoya": {
-    "verifiedAt": "2026-11-27T20:13:19.970Z",
+    "verifiedAt": "2026-11-28T00:08:22.659Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:19.970Z",
+    "checkedAt": "2026-11-28T00:08:22.659Z",
     "tokens": [
       "2month",
       "7day"
@@ -1129,7 +1127,7 @@
   "otter-ai": {
     "status": "changed",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:37.780Z",
+    "checkedAt": "2026-11-28T00:07:41.171Z",
     "tokens": [],
     "missing": [
       "Nonprofit discount"
@@ -1142,7 +1140,7 @@
   "paperguide": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:47.419Z",
+    "checkedAt": "2026-11-28T00:07:50.236Z",
     "tokens": [
       "41%"
     ],
@@ -1151,10 +1149,10 @@
     ]
   },
   "paperpal": {
-    "verifiedAt": "2026-11-27T20:13:15.668Z",
+    "verifiedAt": "2026-11-28T00:08:17.367Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:15.668Z",
+    "checkedAt": "2026-11-28T00:08:17.367Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1162,10 +1160,10 @@
     ]
   },
   "perfmatters": {
-    "verifiedAt": "2026-11-27T20:13:13.332Z",
+    "verifiedAt": "2026-11-28T00:08:15.802Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:13.332Z",
+    "checkedAt": "2026-11-28T00:08:15.802Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1173,10 +1171,10 @@
     ]
   },
   "photoroom": {
-    "verifiedAt": "2026-11-27T20:12:31.027Z",
+    "verifiedAt": "2026-11-28T00:07:34.068Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:31.027Z",
+    "checkedAt": "2026-11-28T00:07:34.068Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1184,10 +1182,10 @@
     ]
   },
   "pixelcut": {
-    "verifiedAt": "2026-11-27T20:12:31.356Z",
+    "verifiedAt": "2026-11-28T00:07:34.289Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:31.356Z",
+    "checkedAt": "2026-11-28T00:07:34.289Z",
     "tokens": [
       "20%"
     ],
@@ -1197,10 +1195,10 @@
     ]
   },
   "plutio": {
-    "verifiedAt": "2026-11-27T20:12:52.244Z",
+    "verifiedAt": "2026-11-28T00:07:55.003Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:52.244Z",
+    "checkedAt": "2026-11-28T00:07:55.003Z",
     "tokens": [
       "2month"
     ],
@@ -1210,10 +1208,10 @@
     ]
   },
   "predis-ai": {
-    "verifiedAt": "2026-11-27T20:13:19.170Z",
+    "verifiedAt": "2026-11-28T00:08:20.874Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:19.170Z",
+    "checkedAt": "2026-11-28T00:08:20.874Z",
     "tokens": [
       "3day"
     ],
@@ -1224,10 +1222,10 @@
     ]
   },
   "ranktracker": {
-    "verifiedAt": "2026-11-27T20:12:46.136Z",
+    "verifiedAt": "2026-11-28T00:07:48.823Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:46.136Z",
+    "checkedAt": "2026-11-28T00:07:48.823Z",
     "tokens": [
       "20%"
     ],
@@ -1237,10 +1235,10 @@
     ]
   },
   "reclaim-ai": {
-    "verifiedAt": "2026-11-27T20:12:27.113Z",
+    "verifiedAt": "2026-11-28T00:07:30.062Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:27.113Z",
+    "checkedAt": "2026-11-28T00:07:30.062Z",
     "tokens": [
       "20%"
     ],
@@ -1252,7 +1250,7 @@
   "riverside-fm": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:38.176Z",
+    "checkedAt": "2026-11-28T00:07:41.327Z",
     "tokens": [
       "20%"
     ],
@@ -1266,10 +1264,10 @@
     ]
   },
   "rootly": {
-    "verifiedAt": "2026-11-27T20:12:56.224Z",
+    "verifiedAt": "2026-11-28T00:07:58.144Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:56.224Z",
+    "checkedAt": "2026-11-28T00:07:58.144Z",
     "tokens": [
       "50%"
     ],
@@ -1281,7 +1279,7 @@
   "scholarcy": {
     "status": "error",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:15.795Z",
+    "checkedAt": "2026-11-28T00:08:18.191Z",
     "tokens": [],
     "missing": [],
     "errors": [
@@ -1291,7 +1289,7 @@
   "scispace": {
     "status": "error",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:46.261Z",
+    "checkedAt": "2026-11-28T00:07:49.978Z",
     "tokens": [],
     "missing": [],
     "errors": [
@@ -1302,10 +1300,10 @@
     ]
   },
   "scribe-mail": {
-    "verifiedAt": "2026-11-27T20:13:18.672Z",
+    "verifiedAt": "2026-11-28T00:08:20.715Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:18.672Z",
+    "checkedAt": "2026-11-28T00:08:20.715Z",
     "tokens": [
       "14day",
       "20%",
@@ -1317,10 +1315,10 @@
     ]
   },
   "seedprod": {
-    "verifiedAt": "2026-11-27T20:13:08.507Z",
+    "verifiedAt": "2026-11-28T00:08:10.813Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:08.507Z",
+    "checkedAt": "2026-11-28T00:08:10.813Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1329,10 +1327,10 @@
     ]
   },
   "sembly-ai": {
-    "verifiedAt": "2026-11-27T20:12:35.841Z",
+    "verifiedAt": "2026-11-28T00:07:39.298Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:35.841Z",
+    "checkedAt": "2026-11-28T00:07:39.298Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1341,10 +1339,10 @@
     ]
   },
   "semrush": {
-    "verifiedAt": "2026-11-27T20:12:45.970Z",
+    "verifiedAt": "2026-11-28T00:07:48.685Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:45.970Z",
+    "checkedAt": "2026-11-28T00:07:48.685Z",
     "tokens": [
       "17%"
     ],
@@ -1356,10 +1354,10 @@
     ]
   },
   "sendible": {
-    "verifiedAt": "2026-11-27T20:13:16.973Z",
+    "verifiedAt": "2026-11-28T00:08:18.671Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:16.973Z",
+    "checkedAt": "2026-11-28T00:08:18.671Z",
     "tokens": [
       "15%"
     ],
@@ -1369,10 +1367,10 @@
     ]
   },
   "sentry": {
-    "verifiedAt": "2026-11-27T20:13:04.212Z",
+    "verifiedAt": "2026-11-28T00:08:06.298Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:04.212Z",
+    "checkedAt": "2026-11-28T00:08:06.298Z",
     "tokens": [
       "$5000",
       "12month"
@@ -1384,10 +1382,10 @@
     ]
   },
   "seopress": {
-    "verifiedAt": "2026-11-27T20:13:12.288Z",
+    "verifiedAt": "2026-11-28T00:08:14.802Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:12.288Z",
+    "checkedAt": "2026-11-28T00:08:14.802Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1395,10 +1393,10 @@
     ]
   },
   "serpstat": {
-    "verifiedAt": "2026-11-27T20:12:45.404Z",
+    "verifiedAt": "2026-11-28T00:07:48.006Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:45.404Z",
+    "checkedAt": "2026-11-28T00:07:48.006Z",
     "tokens": [
       "27%",
       "7day"
@@ -1413,7 +1411,7 @@
   "shortpixel": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:13.402Z",
+    "checkedAt": "2026-11-28T00:08:15.847Z",
     "tokens": [
       "2month"
     ],
@@ -1422,10 +1420,10 @@
     ]
   },
   "slack": {
-    "verifiedAt": "2026-11-27T20:12:32.892Z",
+    "verifiedAt": "2026-11-28T00:07:36.008Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:32.892Z",
+    "checkedAt": "2026-11-28T00:07:36.008Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1434,10 +1432,10 @@
     ]
   },
   "smartlead": {
-    "verifiedAt": "2026-11-27T20:13:21.548Z",
+    "verifiedAt": "2026-11-28T00:08:23.869Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:21.548Z",
+    "checkedAt": "2026-11-28T00:08:23.869Z",
     "tokens": [
       "17%"
     ],
@@ -1447,10 +1445,10 @@
     ]
   },
   "smartsuite": {
-    "verifiedAt": "2026-11-27T20:12:51.598Z",
+    "verifiedAt": "2026-11-28T00:07:54.251Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:51.598Z",
+    "checkedAt": "2026-11-28T00:07:54.251Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1459,10 +1457,10 @@
     ]
   },
   "snov-io": {
-    "verifiedAt": "2026-11-27T20:13:19.671Z",
+    "verifiedAt": "2026-11-28T00:08:21.398Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:19.671Z",
+    "checkedAt": "2026-11-28T00:08:21.398Z",
     "tokens": [
       "25%",
       "3month",
@@ -1474,10 +1472,10 @@
     ]
   },
   "socialpilot": {
-    "verifiedAt": "2026-11-27T20:13:16.457Z",
+    "verifiedAt": "2026-11-28T00:08:18.500Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:16.457Z",
+    "checkedAt": "2026-11-28T00:08:18.500Z",
     "tokens": [
       "15%"
     ],
@@ -1487,10 +1485,10 @@
     ]
   },
   "sourcery": {
-    "verifiedAt": "2026-11-27T20:12:53.960Z",
+    "verifiedAt": "2026-11-28T00:07:56.822Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:53.960Z",
+    "checkedAt": "2026-11-28T00:07:56.822Z",
     "tokens": [
       "14day",
       "20%"
@@ -1501,10 +1499,10 @@
     ]
   },
   "streamyard": {
-    "verifiedAt": "2026-11-27T20:13:22.445Z",
+    "verifiedAt": "2026-11-28T00:08:24.084Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:22.445Z",
+    "checkedAt": "2026-11-28T00:08:24.084Z",
     "tokens": [
       "22%",
       "7day"
@@ -1515,10 +1513,10 @@
     ]
   },
   "sunsama": {
-    "verifiedAt": "2026-11-27T20:12:43.017Z",
+    "verifiedAt": "2026-11-28T00:07:45.958Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:43.017Z",
+    "checkedAt": "2026-11-28T00:07:45.958Z",
     "tokens": [
       "14day"
     ],
@@ -1529,10 +1527,10 @@
     ]
   },
   "superwhisper": {
-    "verifiedAt": "2026-11-27T20:12:30.028Z",
+    "verifiedAt": "2026-11-28T00:07:33.429Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:30.028Z",
+    "checkedAt": "2026-11-28T00:07:33.429Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1540,10 +1538,10 @@
     ]
   },
   "systeme-io": {
-    "verifiedAt": "2026-11-27T20:13:21.351Z",
+    "verifiedAt": "2026-11-28T00:08:23.265Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:21.351Z",
+    "checkedAt": "2026-11-28T00:08:23.265Z",
     "tokens": [
       "2month"
     ],
@@ -1553,10 +1551,10 @@
     ]
   },
   "tactiq": {
-    "verifiedAt": "2026-11-27T20:12:25.533Z",
+    "verifiedAt": "2026-11-28T00:07:28.331Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:25.533Z",
+    "checkedAt": "2026-11-28T00:07:28.331Z",
     "tokens": [
       "33%"
     ],
@@ -1566,10 +1564,10 @@
     ]
   },
   "taplio": {
-    "verifiedAt": "2026-11-28T06:54:28.581Z",
+    "verifiedAt": "2026-11-28T07:01:25.158Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-28T06:54:28.581Z",
+    "checkedAt": "2026-11-28T07:01:25.158Z",
     "tokens": [
       "$149",
       "$199",
@@ -1591,10 +1589,10 @@
     ]
   },
   "text-blaze": {
-    "verifiedAt": "2026-11-27T20:13:14.599Z",
+    "verifiedAt": "2026-11-28T00:08:16.967Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:14.599Z",
+    "checkedAt": "2026-11-28T00:08:16.967Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1602,10 +1600,10 @@
     ]
   },
   "tldv": {
-    "verifiedAt": "2026-11-27T20:12:35.828Z",
+    "verifiedAt": "2026-11-28T00:07:38.298Z",
     "status": "verified",
     "method": "savings-terms",
-    "checkedAt": "2026-11-27T20:12:35.828Z",
+    "checkedAt": "2026-11-28T00:07:38.298Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1616,10 +1614,10 @@
     ]
   },
   "tradingview": {
-    "verifiedAt": "2026-11-27T20:13:18.303Z",
+    "verifiedAt": "2026-11-28T00:08:20.026Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:18.303Z",
+    "checkedAt": "2026-11-28T00:08:20.026Z",
     "tokens": [
       "17%"
     ],
@@ -1629,10 +1627,10 @@
     ]
   },
   "trello": {
-    "verifiedAt": "2026-11-27T20:12:56.757Z",
+    "verifiedAt": "2026-11-28T00:07:59.164Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:56.757Z",
+    "checkedAt": "2026-11-28T00:07:59.164Z",
     "tokens": [
       "75%"
     ],
@@ -1644,10 +1642,10 @@
     ]
   },
   "trupeer": {
-    "verifiedAt": "2026-11-27T20:12:29.853Z",
+    "verifiedAt": "2026-11-28T00:07:32.541Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:29.853Z",
+    "checkedAt": "2026-11-28T00:07:32.541Z",
     "tokens": [
       "20%"
     ],
@@ -1657,10 +1655,10 @@
     ]
   },
   "trustmary": {
-    "verifiedAt": "2026-11-27T20:12:28.323Z",
+    "verifiedAt": "2026-11-28T00:07:31.304Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:12:28.323Z",
+    "checkedAt": "2026-11-28T00:07:31.304Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1670,7 +1668,7 @@
   "typeform": {
     "status": "changed",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:05.132Z",
+    "checkedAt": "2026-11-28T00:08:07.968Z",
     "tokens": [
       "25%",
       "40%",
@@ -1692,7 +1690,7 @@
   "typingmind": {
     "status": "error",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:16.235Z",
+    "checkedAt": "2026-11-28T00:08:18.337Z",
     "tokens": [],
     "missing": [],
     "errors": [
@@ -1700,10 +1698,10 @@
     ]
   },
   "wispr-flow": {
-    "verifiedAt": "2026-11-27T20:12:29.892Z",
+    "verifiedAt": "2026-11-28T00:07:33.106Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:29.892Z",
+    "checkedAt": "2026-11-28T00:07:33.106Z",
     "tokens": [
       "50%"
     ],
@@ -1713,10 +1711,10 @@
     ]
   },
   "wp-mail-smtp": {
-    "verifiedAt": "2026-11-27T20:13:09.927Z",
+    "verifiedAt": "2026-11-28T00:08:12.262Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:09.927Z",
+    "checkedAt": "2026-11-28T00:08:12.262Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1725,10 +1723,10 @@
     ]
   },
   "wp-rocket": {
-    "verifiedAt": "2026-11-27T20:13:12.611Z",
+    "verifiedAt": "2026-11-28T00:08:15.383Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:12.611Z",
+    "checkedAt": "2026-11-28T00:08:15.383Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1736,10 +1734,10 @@
     ]
   },
   "wpforms": {
-    "verifiedAt": "2026-11-27T20:13:06.016Z",
+    "verifiedAt": "2026-11-28T00:08:08.893Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:13:06.016Z",
+    "checkedAt": "2026-11-28T00:08:08.893Z",
     "tokens": [],
     "missing": [],
     "sources": [
@@ -1748,10 +1746,10 @@
     ]
   },
   "xtiles": {
-    "verifiedAt": "2026-11-27T20:12:52.569Z",
+    "verifiedAt": "2026-11-28T00:07:55.152Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:12:52.569Z",
+    "checkedAt": "2026-11-28T00:07:55.152Z",
     "tokens": [
       "1year",
       "50%"
@@ -1763,10 +1761,10 @@
     ]
   },
   "zapier": {
-    "verifiedAt": "2026-11-27T20:13:05.782Z",
+    "verifiedAt": "2026-11-28T00:08:08.300Z",
     "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:05.782Z",
+    "checkedAt": "2026-11-28T00:08:08.300Z",
     "tokens": [
       "15%",
       "33%"
@@ -1779,10 +1777,10 @@
     ]
   },
   "zencastr": {
-    "verifiedAt": "2026-11-27T20:12:30.508Z",
+    "verifiedAt": "2026-11-28T00:07:33.744Z",
     "status": "verified",
     "method": "source-available",
-    "checkedAt": "2026-11-27T20:12:30.508Z",
+    "checkedAt": "2026-11-28T00:07:33.744Z",
     "tokens": [],
     "missing": [],
     "sources": [
