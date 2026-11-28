@@ -838,9 +838,9 @@
     ]
   },
   "julius-ai": {
-    "status": "changed",
+    "status": "error",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:17.041Z",
+    "checkedAt": "2026-11-28T06:54:15.153Z",
     "tokens": [
       "$20",
       "$45",
@@ -853,7 +853,8 @@
     ],
     "errors": [
       "https://julius.ai/pricing: HTTP 403",
-      "https://julius.ai/content/billing-update-messages-to-usage-credits: HTTP 403"
+      "https://julius.ai/content/billing-update-messages-to-usage-credits: HTTP 403",
+      "https://julius.ai/docs/billing/credits-overview: HTTP 403"
     ]
   },
   "linear": {
@@ -1565,18 +1566,28 @@
     ]
   },
   "taplio": {
-    "status": "changed",
+    "verifiedAt": "2026-11-28T06:54:28.581Z",
+    "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-27T20:13:20.566Z",
+    "checkedAt": "2026-11-28T06:54:28.581Z",
     "tokens": [
-      "25%",
-      "7day"
+      "$149",
+      "$199",
+      "$32",
+      "$39",
+      "$49",
+      "$69",
+      "10%",
+      "15%",
+      "20%",
+      "25%"
     ],
-    "missing": [
-      "Bundle discount"
-    ],
-    "errors": [
-      "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio: HTTP 404"
+    "missing": [],
+    "sources": [
+      "https://taplio.com/pricing",
+      "https://intercom.help/taplio/en/articles/17749433-discounts-and-coupon-codes-on-taplio",
+      "https://intercom.help/taplio/en/articles/17749403-understanding-team-billing-and-discounts",
+      "https://taplio.com/taplio-vs-aware"
     ]
   },
   "text-blaze": {

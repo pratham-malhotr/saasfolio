@@ -33,6 +33,9 @@ interface AuthUser {
 
 export function SubmitWizardClient() {
   const { available: serviceAvailable } = useServiceAvailability("formsConfigured");
+  // Accounts can be switched off in production; offers then go through the stored contact form.
+  const { status: accountStatus } = useServiceAvailability("accountsConfigured");
+  const accountsOff = accountStatus === "unavailable";
 
   // User Authentication State
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
@@ -255,13 +258,15 @@ export function SubmitWizardClient() {
 
           <div className="max-w-xl mx-auto space-y-2">
             <span className="px-3 py-1 rounded-full bg-[#C6FF3D]/10 border border-[#C6FF3D]/30 font-mono text-[11px] text-[#C6FF3D] font-bold uppercase tracking-wider">
-              AUTHENTICATION REQUIRED
+              {accountsOff ? "EDITORIAL REVIEW" : "AUTHENTICATION REQUIRED"}
             </span>
             <h2 className="font-display font-black text-2xl sm:text-3xl text-white">
-              Sign In To Submit Promo & Referral Codes
+              {accountsOff ? "Send Your Offer or Code for Review" : "Sign In To Submit Promo & Referral Codes"}
             </h2>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Sign in to attach your submission to your account and send its source and conditions for review. Account access does not establish that a code works.
+              {accountsOff
+                ? "Contributor accounts are not open right now. Send the code or offer, its official source and its conditions through our partnerships form. It is saved for editorial review; sending it does not establish that a code works."
+                : "Sign in to attach your submission to your account and send its source and conditions for review. Account access does not establish that a code works."}
             </p>
           </div>
 
@@ -282,6 +287,20 @@ export function SubmitWizardClient() {
           </div>
 
           {/* Action CTAs */}
+          {accountsOff ? (
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 border-t border-white/10">
+            <Link
+              href="/contact?topic=offer#contact-form"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-[#C6FF3D] hover:bg-[#D6FF66] text-black font-display font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(198,255,61,0.3)] flex items-center justify-center gap-2"
+            >
+              <span>Send Offer for Review</span>
+              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+            </Link>
+            <Link href="/submit" className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 text-white text-xs uppercase tracking-wider transition-colors border border-white/10 text-center">
+              Add Your Brand Instead
+            </Link>
+          </div>
+          ) : (
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 border-t border-white/10">
             <Link
               href="/login?redirect=/submit"
@@ -297,6 +316,7 @@ export function SubmitWizardClient() {
               Create Free Account
             </Link>
           </div>
+          )}
         </div>
       ) : isSubmitted ? (
         /* Success Screen */

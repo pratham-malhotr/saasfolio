@@ -38,10 +38,32 @@ const request = cookie => new NextRequest("https://saasfolio.tech/admin", {
   headers: { ...(cookie ? { cookie } : {}), authorization: "Bearer incoming-browser-value", "x-request-context": "preserve-upstream-only" },
 });
 
-test("the refresh proxy matches only actual admin Server Component routes", () => {
+test("the proxy matches admin routes plus the account and community pages it can redirect", () => {
   const { config } = app();
-  for (const url of ["/admin", "/admin/review"]) assert.equal(doesProxyMatch({ config, nextConfig: {}, url }), true);
-  for (const url of ["/", "/discounts/semrush", "/login", "/api/auth/session", "/api/admin/inquiries", "/_next/static/test.js"]) assert.equal(doesProxyMatch({ config, nextConfig: {}, url }), false);
+  for (const url of ["/admin", "/admin/review", "/login", "/signup", "/reset-password", "/profile", "/u/someone", "/community", "/community/a-thread"]) assert.equal(doesProxyMatch({ config, nextConfig: {}, url }), true, url);
+  for (const url of ["/", "/discounts/semrush", "/contact", "/submit", "/api/auth/session", "/api/admin/inquiries", "/_next/static/test.js"]) assert.equal(doesProxyMatch({ config, nextConfig: {}, url }), false, url);
+});
+
+test("with accounts switched off, account pages go home and community previews go to guides", async () => {
+  const previous = process.env.SUPABASE_AUTH_ENABLED;
+  try {
+    process.env.SUPABASE_AUTH_ENABLED = "false";
+    const { proxy, calls } = app();
+    for (const [path, target] of [["/login", "/"], ["/signup", "/"], ["/reset-password", "/"], ["/profile", "/"], ["/u/someone", "/"], ["/community", "/articles"], ["/community/a-thread", "/articles"]]) {
+      const response = await proxy(new NextRequest(`https://saasfolio.tech${path}?redirect=%2Fdeals`));
+      assert.equal(response.status, 307, path);
+      assert.equal(response.headers.get("location"), `https://saasfolio.tech${target}`, path);
+      assert.equal(response.headers.get("cache-control"), "private, no-store", path);
+    }
+    const admin = await proxy(new NextRequest("https://saasfolio.tech/admin"));
+    assert.equal(admin.headers.get("location"), null, "admin keeps its own unavailable state");
+    assert.equal(calls.length, 0, "no Auth call when accounts are off");
+    delete process.env.SUPABASE_AUTH_ENABLED;
+    const enabled = await app({ unconfigured: true }).proxy(new NextRequest("https://saasfolio.tech/login"));
+    assert.equal(enabled.headers.get("location"), null, "account pages render normally unless accounts are explicitly off");
+  } finally {
+    if (previous === undefined) delete process.env.SUPABASE_AUTH_ENABLED; else process.env.SUPABASE_AUTH_ENABLED = previous;
+  }
 });
 
 test("anonymous, local-only, verifier-only and unconfigured requests do not contact Auth", async () => {
