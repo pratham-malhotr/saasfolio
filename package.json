@@ -83,7 +83,7 @@
     "@types/three": "0.185.3",
     "eslint": "^9",
     "eslint-config-next": "^16.4.5",
-    "parse5": "8.0.1",
+    "parse5": "8.1.1",
     "sharp": "0.35.5",
     "typescript": "^5"
   },
