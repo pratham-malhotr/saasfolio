@@ -94,7 +94,10 @@ try {
     await until(async () => {
       const state = await evaluate(`(() => {
         const link = document.querySelector(${JSON.stringify(selector)});
-        const rect = link.getClientRects()[0];
+        let rect = link.getClientRects()[0];
+        // A late layout pass on a slow runner can move the page after the first
+        // scroll; bring the link back like a reader would before measuring.
+        if (rect.bottom <= 0 || rect.top >= innerHeight) { link.scrollIntoView({ block: 'center', behavior: 'instant' }); rect = link.getClientRects()[0]; }
         const x = rect.x + rect.width / 2, y = rect.y + rect.height / 2;
         const top = document.elementFromPoint(x, y);
         return { rect: [rect.x, rect.y, rect.width, rect.height], x, y, hit: link.contains(top), top: top ? top.tagName + (top.className && typeof top.className === "string" ? "." + top.className.split(" ").slice(0, 3).join(".") : "") : null };

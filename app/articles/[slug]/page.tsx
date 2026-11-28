@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqSchema, organizationId, softwareSchema, webPageSchema } from "@/lib/structured-data";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
 import { ArticleDetailClient } from "@/components/articles/ArticleDetailClient";
+import { authConfigured } from "@/lib/server/supabase";
 import { SavingsCollectionLinks } from "@/components/seo/SavingsCollectionLinks";
 import { getPublishedOffers, getPublishedTool } from "@/lib/published-catalog";
 import { HostingArticleActions } from "@/components/hosting/HostingArticleActions";
@@ -98,7 +99,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <ArticleDetailClient article={article} relatedArticles={relatedArticles} sectionDeals={sectionDeals} hostingActions={article.providerSlugs ? <HostingArticleActions slugs={article.providerSlugs} /> : undefined} savingsLinks={article.providerSlugs ? undefined : <SavingsCollectionLinks heading="Find current offers for this buying decision" />} />
+      <ArticleDetailClient accountsAvailable={authConfigured()} article={article} relatedArticles={relatedArticles} sectionDeals={sectionDeals} hostingActions={article.providerSlugs ? <HostingArticleActions slugs={article.providerSlugs} /> : undefined} savingsLinks={article.providerSlugs ? undefined : <SavingsCollectionLinks heading="Find current offers for this buying decision" />} />
     </>
   );
 }
