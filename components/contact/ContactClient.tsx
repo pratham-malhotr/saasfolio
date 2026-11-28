@@ -61,13 +61,13 @@ const FAQS = [
   },
 ];
 
-export default function ContactPage({ initialReport }: { initialReport?: { subject: string; message: string; offerSlug?: string; brandSlug?: string } }) {
+export default function ContactPage({ initialReport }: { initialReport?: { subject: string; message: string; offerSlug?: string; brandSlug?: string; department?: string } }) {
   const { available: serviceAvailable } = useServiceAvailability("formsConfigured");
   const contactEmailHref = `${SUPPORT_EMAIL_HREF}?subject=${encodeURIComponent(initialReport?.subject || "SaaSFolio support")}&body=${encodeURIComponent(initialReport?.message || "")}`;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    department: "support",
+    department: initialReport?.department || "support",
     subject: initialReport?.subject || "",
     message: initialReport?.message || "",
   });

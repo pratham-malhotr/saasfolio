@@ -8,10 +8,13 @@ const origin = (process.argv[2] || "http://127.0.0.1:3238").replace(/\/$/, "");
 const browser = await browserSession(); const external = [], errors = [], interceptionErrors = [];
 browser.on("Runtime.exceptionThrown", error => errors.push(error.exceptionDetails.exception?.description || error.exceptionDetails.text));
 browser.on("Fetch.requestPaused", event => { void intercept(event).catch(error => interceptionErrors.push(error.message)); });
-async function intercept({ requestId, request }) {
+// Record which document issued each external request, so a failure names its source.
+const frames = {};
+browser.on("Page.frameNavigated", ({ frame }) => { frames[frame.id] = frame.url; });
+async function intercept({ requestId, request, frameId, resourceType }) {
   const url = new URL(request.url);
   if (url.origin === origin) return browser.page("Fetch.continueRequest", { requestId });
-  external.push(url.href);
+  external.push(`${url.href} [${resourceType} from ${frames[frameId] || "unknown document"}]`);
   if (url.hostname === "www.googletagmanager.com") return browser.page("Fetch.fulfillRequest", { requestId, responseCode: 200, responseHeaders: [{ name: "Content-Type", value: "text/javascript" }], body: Buffer.from("window.__privacyAuditTagLoaded = true;").toString("base64") });
   return browser.page("Fetch.failRequest", { requestId, errorReason: "BlockedByClient" });
 }
@@ -33,7 +36,7 @@ try {
   await until(() => browser.evaluate("window.dataLayer?.some(item=>item[0]==='event' && item[1]==='page_view')"), "manual public page event");
   const data = await browser.evaluate("JSON.stringify(window.dataLayer.map(item=>Array.from(item)))");
   assert.ok(!data.includes("never-send-this"), "Analytics events must omit URL queries");
-  const measurementId = new URL(external.find(url => url.includes("googletagmanager.com/gtag/js"))).searchParams.get("id");
+  const measurementId = new URL(external.find(url => url.includes("googletagmanager.com/gtag/js")).split(" ")[0]).searchParams.get("id");
   await until(() => browser.evaluate("!!document.querySelector('button[aria-label=\"Open search\"]')"), "search trigger");
   await browser.evaluate("document.querySelector('button[aria-label=\"Open search\"]').focus();document.activeElement.click()");
   await until(() => browser.evaluate("!!document.querySelector('[role=dialog] input')"), "lazy search dialog");
@@ -72,11 +75,11 @@ try {
   assert.equal(await browser.evaluate(`window[${JSON.stringify(`ga-disable-${measurementId}`)}]`), true);
   const beforeReload = external.length; await navigate("/discounts");
   await until(() => browser.evaluate("localStorage.getItem('saasfolio.analytics-consent.v1')?.includes('false')"), "persisted decline");
-  assert.equal(external.length, beforeReload, "Declining must persist across navigations");
+  assert.equal(external.length, beforeReload, `Declining must persist across navigations; unexpected: ${JSON.stringify(external.slice(beforeReload))}`);
   await browser.evaluate("localStorage.setItem('saasfolio.analytics-consent.v1',JSON.stringify({version:1,allowed:true,at:Date.now()}))");
   await browser.page("Page.addScriptToEvaluateOnNewDocument", { source: "Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>true});" });
   await navigate("/about"); await until(() => browser.evaluate("navigator.globalPrivacyControl===true"), "browser privacy signal");
-  assert.equal(external.length, beforeReload, "Global Privacy Control must override saved consent");
+  assert.equal(external.length, beforeReload, `Global Privacy Control must override saved consent; unexpected: ${JSON.stringify(external.slice(beforeReload))}`);
   assert.deepEqual(interceptionErrors, []); assert.deepEqual(errors, []);
   console.log("Mobile privacy checks passed: default-off, opt-in, sanitized failed-search and copy events, search focus restoration, query omission, private-route exclusion, keyboard preferences, revocation, persistence and GPC. Google requests were intercepted; no analytics event was delivered.");
 } finally { await browser.close(); }

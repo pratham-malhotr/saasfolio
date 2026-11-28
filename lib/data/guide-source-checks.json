@@ -1564,18 +1564,28 @@
     ]
   },
   "taplio": {
-    "status": "changed",
+    "verifiedAt": "2026-11-28T07:01:25.158Z",
+    "status": "verified",
     "method": "figures",
-    "checkedAt": "2026-11-28T00:08:22.869Z",
+    "checkedAt": "2026-11-28T07:01:25.158Z",
     "tokens": [
-      "25%",
-      "7day"
+      "$149",
+      "$199",
+      "$32",
+      "$39",
+      "$49",
+      "$69",
+      "10%",
+      "15%",
+      "20%",
+      "25%"
     ],
-    "missing": [
-      "Bundle discount"
-    ],
-    "errors": [
-      "https://intercom.help/taplio/en/articles/17357648-discounts-and-coupon-codes-on-taplio: HTTP 404"
+    "missing": [],
+    "sources": [
+      "https://taplio.com/pricing",
+      "https://intercom.help/taplio/en/articles/17749433-discounts-and-coupon-codes-on-taplio",
+      "https://intercom.help/taplio/en/articles/17749403-understanding-team-billing-and-discounts",
+      "https://taplio.com/taplio-vs-aware"
     ]
   },
   "text-blaze": {

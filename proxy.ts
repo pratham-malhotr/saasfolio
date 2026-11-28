@@ -15,7 +15,19 @@ function privateResponse(response: NextResponse) {
 // The admin page is the only current Server Component that reads an account.
 // Refresh here, where cookies can reach both the browser and the render request.
 // This does not grant access: the page and its APIs perform authorization.
+// With accounts deliberately switched off, account pages cannot work and the
+// community preview only stores drafts in the visitor's own browser. Send those
+// visitors somewhere useful. 307 keeps this reversible when accounts return.
+const ACCOUNT_PAGES = /^\/(?:login|signup|reset-password|profile|u\/[^/]+)\/?$/;
+const COMMUNITY_PAGES = /^\/community(?:\/[^/]+)?\/?$/;
+
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  if (process.env.SUPABASE_AUTH_ENABLED === "false" && (ACCOUNT_PAGES.test(pathname) || COMMUNITY_PAGES.test(pathname))) {
+    const target = new URL(COMMUNITY_PAGES.test(pathname) ? "/articles" : "/", request.url);
+    return privateResponse(NextResponse.redirect(target, 307));
+  }
+  if (!pathname.startsWith("/admin")) return NextResponse.next();
   if (process.env.SUPABASE_AUTH_ENABLED === "false") return privateResponse(NextResponse.next());
   const config = supabasePublicConfig();
   if (!config) return privateResponse(NextResponse.next());
@@ -61,4 +73,4 @@ export async function proxy(request: NextRequest) {
   return response;
 }
 
-export const config = { matcher: ["/admin/:path*"] };
+export const config = { matcher: ["/admin/:path*", "/login", "/signup", "/reset-password", "/profile", "/u/:path*", "/community", "/community/:path*"] };
