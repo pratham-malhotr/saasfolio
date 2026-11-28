@@ -108,12 +108,12 @@ const entries: DiscountGuideEntry[] = [
     sources: [{ label: "Cal.com pricing", url: "https://cal.com/pricing" }],
   },
   {
-    slug: "firecrawl", name: "Firecrawl", url: "https://www.firecrawl.dev/pricing", reviewedAt: "2026-11-27",
+    slug: "firecrawl", name: "Firecrawl", url: "https://www.firecrawl.dev/pricing", reviewedAt: "2026-11-28",
     searchTitle: "Firecrawl Discounts, Free Credits & Pricing",
     meta: "Firecrawl pricing and discounts: 1,000 free credits a month, Hobby to Scale plans, up to 20% off annual billing and how scraping credits are counted.",
     intro: "Firecrawl gives every account 1,000 free credits a month with no card. Paid plans run from Hobby at $19 a month to Scale at $749, and annual billing saves up to 20%.",
     summary: "Estimate the pages you will scrape or crawl each month and the formats you need, because JSON extraction costs extra credits per page. Then pick the smallest plan that covers a busy month and compare monthly with annual billing.",
-    best: "Start on Firecrawl's free 1,000 monthly credits to measure real usage. For paid use, annual billing is the published discount: 16.7% on Hobby, Standard and Growth, and 20% on Scale. Size the plan by credits per page — 1 for a basic scrape, 5 with JSON extraction — and use pay-as-you-go top-ups for occasional spikes instead of jumping a tier.",
+    best: "Start on Firecrawl's free 1,000 monthly credits to measure real usage. New users who sign up through a partner link, such as SaaSFolio's, get 10% off their first purchase under Firecrawl's partner program. After that, annual billing is the published discount: 16.7% on Hobby, Standard and Growth, and 20% on Scale. Size the plan by credits per page — 1 for a basic scrape, 5 with JSON extraction — and use pay-as-you-go top-ups for occasional spikes instead of jumping a tier.",
     related: ["zapier", "checkly", "sentry"],
     profile: { isNew: false, categorySlug: "dev-tools", pricingModel: "Freemium", description: "Firecrawl is a hosted API that turns websites into clean, LLM-ready data through scraping, crawling, search and browser automation.", features: ["Scrape and crawl API", "Markdown and JSON extraction", "Web search with scraping", "Site mapping", "Browser interaction"], longDescription: "Firecrawl handles the work of fetching web pages, rendering them and converting them into clean Markdown or structured JSON for AI applications and data pipelines. Evaluate it on the sites you need, check how it handles pages that block bots or require JavaScript, and measure credits per page before choosing a plan." },
     savings: [
@@ -128,17 +128,19 @@ const entries: DiscountGuideEntry[] = [
       ["How Firecrawl credits are counted", "A basic scrape or crawl costs 1 credit per page, and PDF parsing costs 1 credit per PDF page. Asking for JSON output adds 4 credits per page, so a structured extraction costs 5. Search costs 2 credits per 10 results, and mapping a site costs 1 credit per call. A request that returns no result is not charged, but an error page such as a 403 or 404 still costs a credit. Count the pages and formats in your real job, not just the URLs you start from, because a crawl can discover many more pages than you expect."],
       ["Pick the plan by monthly pages", "Hobby costs $19 a month for 5,000 credits; Standard $99 for 100,000; Growth $399 for 500,000; and Scale $749 for 1,000,000. Concurrency rises with each plan, from 5 requests on Hobby to 100 on Scale, which matters for how fast large crawls finish. If a crawl of 3,000 pages needs JSON output, it uses about 15,000 credits, which is more than Hobby includes. Model a busy month before buying."],
       ["Annual billing is the discount", "Firecrawl does not publish a public coupon code. Its saving is annual billing: Hobby drops to $16 a month, Standard to $83, Growth to $333 and Scale to $599. That is 16.7% off on the first three plans and 20% on Scale. Annual billing makes sense once your monthly volume is stable; credits still reset each month on most plans, so a yearly plan does not let you bank unused credits."],
+      ["10% off your first purchase through a partner link", "Firecrawl runs a partner program in which new users who sign up through a partner's link get 10% off their first purchase. SaaSFolio is a Firecrawl partner, so opening Firecrawl through our partner link qualifies a new account. The discount applies once, to the first purchase, so it is most valuable when that purchase is an annual plan: the partner discount and the annual price are both reflected in the amount shown at checkout. Budget renewals at the standard annual or monthly price."],
       ["Handle spikes with top-ups", "Paid plans can add pay-as-you-go credits in $5 increments up to a monthly limit you set. Each $5 buys 1,000 credits on Hobby, 2,000 on Standard, 2,500 on Growth and 5,000 on Scale. For an occasional large job, a top-up is usually cheaper than moving permanently to a larger plan. Set the spending limit so a runaway crawl cannot exceed your budget."],
     ],
     redeem: [
       "Open Firecrawl through SaaSFolio's partner link and create a free account with 1,000 monthly credits.",
       "Run a representative scrape or crawl and check the credits it used.",
       "Choose the plan that covers a busy month at the formats you need.",
-      "Select annual billing for the discount and confirm the yearly total, top-up limit, renewal date and how to cancel before paying.",
+      "Select annual billing and confirm at checkout that the 10% first-purchase partner discount is applied, then check the yearly total, top-up limit, renewal date and how to cancel before paying.",
     ],
     eligibility: [
       ["Free credits", "Every account gets 1,000 credits a month on the Free plan; no card is required."],
       ["Annual discount", "16.7% applies to Hobby, Standard and Growth, and 20% to Scale, on annual billing."],
+      ["Partner discount", "10% off the first purchase for new users who sign up through a Firecrawl partner link; it applies once."],
       ["Rollover", "Unused credits do not roll over on Hobby, Standard or Growth; Scale carries them for one month."],
     ],
     troubleshooting: [
@@ -151,11 +153,11 @@ const entries: DiscountGuideEntry[] = [
     ],
     faqs: [
       ["Is Firecrawl free?", "Yes. Firecrawl's Free plan includes 1,000 credits every month, about 1,000 pages, with no card required."],
-      ["Does Firecrawl have a discount code?", "Firecrawl does not publish a public coupon code. The published saving is annual billing: 16.7% off Hobby, Standard and Growth, and 20% off Scale."],
+      ["Does Firecrawl have a discount code?", "Firecrawl does not publish a public coupon code. New users who sign up through a Firecrawl partner link, including SaaSFolio's, get 10% off their first purchase. The ongoing published saving is annual billing: 16.7% off Hobby, Standard and Growth, and 20% off Scale."],
       ["How much does Firecrawl cost?", "Hobby is $19 a month, Standard $99, Growth $399 and Scale $749, or $16, $83, $333 and $599 a month on annual billing."],
       ["How many credits does a Firecrawl scrape use?", "A basic scrape or crawl uses 1 credit per page. JSON extraction adds 4 credits per page, and search costs 2 credits per 10 results."],
     ],
-    sources: [{ label: "Firecrawl pricing and credit costs", url: "https://www.firecrawl.dev/pricing" }],
+    sources: [{ label: "Firecrawl pricing and credit costs", url: "https://www.firecrawl.dev/pricing" }, { label: "Firecrawl partner program terms (10% off a new user's first purchase)", url: "https://partners.dub.co/firecrawl" }],
   },
   {
     slug: "tradingview", name: "TradingView", url: "https://www.tradingview.com/pricing/", reviewedAt: "2026-11-27",

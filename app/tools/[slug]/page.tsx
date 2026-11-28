@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { getPublishedTools, getPublishedTool, hasPublishedToolProfile } from "@/lib/published-catalog";
@@ -88,7 +89,7 @@ export default async function ToolDetailPage({
         tool={tool}
         deals={deals}
         discountSummary={<BrandDiscountSummary tool={tool} deals={deals} />}
-        buyingNotes={hasPublishedToolProfile(tool.slug) ? <><ToolBuyingNotes tool={tool} /><BrandBuyingGuides slug={tool.slug} /></> : undefined}
+        buyingNotes={hasPublishedToolProfile(tool.slug) ? <><ToolBuyingNotes tool={tool} /><BrandBuyingGuides slug={tool.slug} />{tool.slug === "firecrawl" && <p className="text-zinc-300">Planning regular crawls? <Link href="/firecrawl-pricing-calculator" className="text-[#C6FF3D] underline">Calculate Firecrawl credits and monthly plan costs</Link>.</p>}</> : undefined}
         comparisonLinks={Object.fromEntries(
           tool.alternatives.map((alternative) => [
             alternative.slug,
