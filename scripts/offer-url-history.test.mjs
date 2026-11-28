@@ -147,6 +147,7 @@ function loadDealPage(catalog, getToolBySlug, guide) {
     "@/lib/data/tools-data": { getToolBySlug },
     "@/lib/published-catalog": { getPublishedOffers: () => catalog.getAllDeals().filter(deal => deal.dealType !== "pricing"), hasPublishedToolProfile: () => true },
     "@/components/deals/DealDetailClient": {},
+    "@/lib/server/supabase": { authConfigured: () => false },
     "@/lib/seo": {
       pageMetadata: value => value, dealSearchTitle: deal => deal.title, dealMetaDescription: () => "Current offer terms",
       toolSearchTitle: name => `${name} Pricing`, toolMetaDescription: name => `${name} provider pricing`,
