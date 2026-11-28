@@ -72,16 +72,23 @@ export function isoDate(value?: string): string | undefined {
   return Number.isNaN(date.getTime()) ? undefined : date.toISOString();
 }
 
+// Offer titles lead with the saving and carry the month of the offer's last
+// source check (offers older than 14 days are not published at all).
 export function dealSearchTitle(deal: SaaSDeal): string {
   if (deal.dealType === "pricing") return `${deal.toolName} Pricing & Current Offers`;
-  if (deal.code) return `${deal.toolName} Coupon Code: ${deal.code}`;
-  if (deal.dealType === "free_plan") return `${deal.toolName} Free Plan: Limits & Eligibility`;
-  if (deal.dealType === "free_trial") return `${deal.toolName} Free Trial: Terms & How to Start`;
-  return deal.title.toLowerCase().includes(deal.toolName.toLowerCase()) ? deal.title : `${deal.toolName}: ${deal.title}`;
+  const checked = Date.parse(deal.checkedAt || "");
+  const month = Number.isFinite(checked) ? ` (${new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(checked)})` : "";
+  const dated = (title: string) => (title + month).length <= 62 ? title + month : title;
+  const value = deal.discountPercentage > 0 ? `${deal.discountKind === "up-to" ? "Up to " : ""}${deal.discountPercentage}% Off` : "";
+  if (deal.code) return dated(value ? `${deal.toolName} Coupon Code ${deal.code}: ${value}` : `${deal.toolName} Coupon Code: ${deal.code}`);
+  if (deal.dealType === "free_plan") return dated(`${deal.toolName} Free Plan: Limits & Eligibility`);
+  if (deal.dealType === "free_trial") return dated(`${deal.toolName} Free Trial: Terms & How to Start`);
+  return dated(deal.title.toLowerCase().includes(deal.toolName.toLowerCase()) ? deal.title : `${deal.toolName}: ${deal.title}`);
 }
 
 export function dealMetaDescription(deal: SaaSDeal): string {
-  const type = deal.code ? `Reported ${deal.toolName} coupon code ${deal.code}.` : `${deal.title}.`;
+  const value = deal.discountPercentage > 0 ? ` for ${deal.discountKind === "up-to" ? "up to " : ""}${deal.discountPercentage}% off` : "";
+  const type = deal.code ? `Reported ${deal.toolName} coupon code ${deal.code}${value}.` : `${deal.title}.`;
   return summarize(`${type} Check eligibility, redemption steps and source details. ${deal.terms}`, 155);
 }
 

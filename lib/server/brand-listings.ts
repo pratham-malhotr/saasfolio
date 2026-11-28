@@ -1,5 +1,4 @@
 import "server-only";
-import { createHmac } from "node:crypto";
 import { Resolver } from "node:dns/promises";
 import { CATEGORIES } from "@/lib/catalog-categories";
 import { BRAND_PRICING_MODELS, brandDraftFromSubmission } from "@/lib/brand-submission";
@@ -8,29 +7,22 @@ import { getPublishedTools } from "@/lib/published-catalog";
 import { normalizePublicHttpsUrl } from "@/lib/public-url.mjs";
 import { HttpError, email, text } from "@/lib/server/http";
 import { pinnedPublicPage } from "@/lib/server/source-fetch.mjs";
-import { isSupabaseConfigured, serviceClient } from "@/lib/server/supabase";
+import { serviceClient } from "@/lib/server/supabase";
+import { brandHost, brandListingsEnabled, brandVerificationSecret, claimToken } from "@/lib/server/brand-verification";
+export { brandHost, brandListingsEnabled, brandVerificationEnabled } from "@/lib/server/brand-verification";
+import { brandApprovedEmail, sendTransactionalEmail } from "@/lib/server/transactional-email";
 import { plainText, robotsAllows } from "@/scripts/lib/offer-sources.mjs";
 
-export function brandListingsEnabled() {
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  return process.env.BRAND_LISTINGS_ENABLED !== "false" && isSupabaseConfigured() && Boolean(key && !key.includes("your-service"));
-}
+// Untyped jsonb from Supabase, as the claim code always received it; fields are validated where used.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Inquiry = { updated_at: string; status: string; payload: Record<string, any> | null };
+type Database = ReturnType<typeof serviceClient>;
 
-function brandVerificationSecret() {
-  const dedicated = process.env.BRAND_VERIFICATION_SECRET;
-  if (dedicated) return /^[a-f0-9]{64}$/i.test(dedicated) ? dedicated : undefined;
-  const shared = process.env.RATE_LIMIT_SECRET;
-  return shared && shared.length >= 32 && !/replace-with|your-secret|example/i.test(shared)
-    ? createHmac("sha256", shared).update("saasfolio:brand-domain-verification:v1").digest()
-    : undefined;
-}
-
-export function brandVerificationEnabled() {
-  return brandListingsEnabled() && Boolean(brandVerificationSecret());
-}
-
-export function brandHost(website: string) {
-  return new URL(website).hostname.replace(/^www\./, "");
+function claimFor(db: Database, secret: string | Buffer, receipt: string, address: string, inquiry: Inquiry | null) {
+  const payload = inquiry?.payload;
+  const website = normalizePublicHttpsUrl(payload?.websiteUrl);
+  if (!inquiry || !payload || payload.submissionType !== "brand" || payload.redacted || !website || inquiry.status === "rejected") return null;
+  return { db, inquiry, payload, receipt, address, website, ...claimToken(secret, receipt, address, website) };
 }
 
 export async function brandClaim(data: Record<string, unknown>) {
@@ -43,14 +35,9 @@ export async function brandClaim(data: Record<string, unknown>) {
   const { data: inquiry, error } = await db.from("inquiries").select("updated_at,status,payload")
     .eq("id", receipt).eq("kind", "submission").eq("email", address).maybeSingle();
   if (error) throw new HttpError(503, "Brand verification is temporarily unavailable.");
-  const payload = inquiry?.payload;
-  const website = normalizePublicHttpsUrl(payload?.websiteUrl);
-  if (!inquiry || payload?.submissionType !== "brand" || payload.redacted || !website || inquiry.status === "rejected") {
-    throw new HttpError(404, "No eligible submission matches that reference and email.");
-  }
-  const host = brandHost(website);
-  const token = createHmac("sha256", secret).update(`${receipt}:${host}:${address}`).digest("hex");
-  return { db, inquiry, payload, receipt, website, host, dnsName: `_saasfolio.${host}`, dnsValue: `saasfolio=${token}` };
+  const claim = claimFor(db, secret, receipt, address, inquiry);
+  if (!claim) throw new HttpError(404, "No eligible submission matches that reference and email.");
+  return claim;
 }
 
 type Claim = Awaited<ReturnType<typeof brandClaim>>;
@@ -117,6 +104,45 @@ export async function approveVerifiedBrand(claim: Claim) {
   });
   if (error) throw new HttpError(503, "Approval could not be confirmed. Please try again.");
   return typeof data === "string";
+}
+
+/** Approve a domain-verified claim and email the submitter once it is listed. */
+export async function approveAndNotify(claim: Claim) {
+  const approved = await approveVerifiedBrand(claim);
+  if (approved) await sendTransactionalEmail(brandApprovedEmail({ to: claim.address, brand: String(claim.payload.toolName), receipt: claim.receipt }));
+  return approved;
+}
+
+export type BrandReviewSummary = { checked: number; approved: number; awaitingDns: number; needsEditor: number };
+
+/**
+ * Automated review of pending brand submissions. A submission is approved only
+ * when the brand's domain carries the submission's DNS TXT proof AND the
+ * homepage and pricing/docs pages pass the identity and content checks in
+ * approveVerifiedBrand. Everything else stays pending for an editor: nothing
+ * is ever rejected or published on weaker evidence.
+ */
+export async function reviewPendingBrandSubmissions({ maxAgeDays = 45, limit = 40 } = {}): Promise<BrandReviewSummary> {
+  const summary: BrandReviewSummary = { checked: 0, approved: 0, awaitingDns: 0, needsEditor: 0 };
+  const secret = brandVerificationSecret();
+  if (!brandListingsEnabled() || !secret) return summary;
+  const db = serviceClient();
+  const since = new Date(Date.now() - maxAgeDays * 86_400_000).toISOString();
+  const { data, error } = await db.from("inquiries").select("id,email,updated_at,status,payload")
+    .eq("kind", "submission").in("status", ["pending", "reviewing"]).contains("payload", { submissionType: "brand" })
+    .gt("created_at", since).order("created_at", { ascending: true }).limit(limit);
+  if (error || !Array.isArray(data)) return summary;
+  for (const row of data) {
+    const claim = claimFor(db, secret, String(row.id).toLowerCase(), String(row.email), row);
+    if (!claim) continue;
+    summary.checked += 1;
+    try {
+      if (await getClaimListing(claim)) continue;
+      if (!await ownsBrandDomain(claim)) { summary.awaitingDns += 1; continue; }
+      if (await approveAndNotify(claim)) summary.approved += 1; else summary.needsEditor += 1;
+    } catch { summary.needsEditor += 1; }
+  }
+  return summary;
 }
 
 export async function includeApprovedBrands(catalog: BrandDirectoryEntry[]) {

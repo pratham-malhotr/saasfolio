@@ -50,13 +50,13 @@ function send(method, params = {}, sessionId) {
     chrome.stdio[3].write(`${JSON.stringify({ id, method, params, sessionId })}\0`);
   });
 }
-async function until(check, description) {
-  for (let attempt = 0; attempt < 100; attempt++) {
+async function until(check, description, attempts = 100, detail = () => "") {
+  for (let attempt = 0; attempt < attempts; attempt++) {
     const value = await check();
     if (value) return value;
     await new Promise(resolve => setTimeout(resolve, 100));
   }
-  throw new Error(`Browser condition failed: ${description}`);
+  throw new Error(`Browser condition failed: ${description}${detail()}`);
 }
 try {
   await send("Browser.getVersion");
@@ -94,15 +94,19 @@ try {
     await until(async () => {
       const state = await evaluate(`(() => {
         const link = document.querySelector(${JSON.stringify(selector)});
-        const rect = link.getClientRects()[0];
+        let rect = link.getClientRects()[0];
+        // A late layout pass on a slow runner can move the page after the first
+        // scroll; bring the link back like a reader would before measuring.
+        if (rect.bottom <= 0 || rect.top >= innerHeight) { link.scrollIntoView({ block: 'center', behavior: 'instant' }); rect = link.getClientRects()[0]; }
         const x = rect.x + rect.width / 2, y = rect.y + rect.height / 2;
-        return { rect: [rect.x, rect.y, rect.width, rect.height], x, y, hit: link.contains(document.elementFromPoint(x, y)) };
+        const top = document.elementFromPoint(x, y);
+        return { rect: [rect.x, rect.y, rect.width, rect.height], x, y, hit: link.contains(top), top: top ? top.tagName + (top.className && typeof top.className === "string" ? "." + top.className.split(" ").slice(0, 3).join(".") : "") : null };
       })()`);
       stable = JSON.stringify(state.rect) === JSON.stringify(previous) ? stable + 1 : 0;
       previous = state.rect;
       point = state;
       return stable >= 3 && state.hit;
-    }, `Link receives pointer input: ${selector}`);
+    }, `Link receives pointer input: ${selector}`, 300, () => `; last=${JSON.stringify(point)}`);
     await evaluate("window.smokeClickEvents = []; for (const type of ['pointerdown', 'mousedown', 'mouseup', 'click']) document.addEventListener(type, event => window.smokeClickEvents.push({ type, tag: event.target.tagName, href: event.target.closest('a')?.getAttribute('href'), x: event.clientX, y: event.clientY }), { capture: true, once: true })");
     await page("Input.dispatchMouseEvent", { type: "mouseMoved", ...point });
     await page("Input.dispatchMouseEvent", { type: "mousePressed", button: "left", clickCount: 1, ...point });

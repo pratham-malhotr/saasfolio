@@ -33,6 +33,7 @@ interface ArticleDetailClientProps {
   savingsLinks?: React.ReactNode;
   hostingActions?: React.ReactNode;
   sectionDeals?: Record<string, SaaSDeal>;
+  accountsAvailable?: boolean;
 }
 
 interface ArticleComment {
@@ -45,7 +46,7 @@ interface ArticleComment {
   upvotes: number;
 }
 
-export function ArticleDetailClient({ article, relatedArticles, savingsLinks, hostingActions, sectionDeals = {} }: ArticleDetailClientProps) {
+export function ArticleDetailClient({ article, relatedArticles, savingsLinks, hostingActions, sectionDeals = {}, accountsAvailable = false }: ArticleDetailClientProps) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
@@ -245,7 +246,7 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
 
           {/* Social share & utilities */}
           <div className="flex flex-wrap items-center gap-2">
-            <SaveItemButton kind="article" slug={article.slug} />
+            {accountsAvailable && <SaveItemButton kind="article" slug={article.slug} />}
 
             <button
               onClick={() => setIsReadingMode(!isReadingMode)}

@@ -63,15 +63,8 @@
 .deal-faqs summary:hover { color: var(--market-lime); }
 .deal-faqs summary:focus-visible { outline: 2px solid var(--market-lime); outline-offset: 2px; }
 .deal-faqs p { padding-bottom: .75rem; color: var(--market-muted); font-size: .86rem; line-height: 1.6; }
-.deal-profile-links, .deal-session-vote { display: flex; flex-wrap: wrap; gap: .4rem .8rem; }
-.deal-session form { display: grid; justify-items: start; gap: .45rem; margin-top: .85rem; }
-.deal-session form label { color: var(--market-muted); font-size: .8rem; }
-.deal-session textarea { width: 100%; min-height: 58px; padding: .6rem; border: 1px solid var(--market-line-strong); border-radius: .5rem; background: #0b0e0c; color: var(--market-ink); font-size: .88rem; }
-.deal-session textarea:focus-visible { outline: 2px solid var(--market-lime); outline-offset: 2px; }
-.deal-session button[aria-pressed="true"] { border-color: var(--market-lime-line); background: var(--market-lime-soft); color: var(--market-lime); }
-.deal-session button:disabled { opacity: .55; cursor: default; }
-.deal-session ul { display: grid; gap: .45rem; margin-top: .8rem; }
-.deal-session li { padding: .55rem .7rem; border: 1px solid var(--market-line); border-radius: .45rem; color: var(--market-muted); font-size: .86rem; }
+.deal-profile-links { display: flex; flex-wrap: wrap; gap: .4rem .8rem; }
+.deal-session .market-button { margin-top: .85rem; }
 .deal-disclosure { padding-inline: .18rem; color: var(--market-muted); font-size: .79rem; line-height: 1.55; }
 .deal-disclosure a { text-decoration: underline; text-underline-offset: .18em; }
 .deal-related { margin-top: clamp(2rem, 6vw, 4rem); }
@@ -89,5 +82,4 @@
   .deal-claim { animation: market-arrive 480ms var(--ease-luxury) backwards; }
   .deal-faqs summary svg { transition: rotate 240ms var(--ease-luxury); }
   .deal-faqs details[open] p { --market-arrival-offset: 4px; animation: market-arrive 260ms var(--ease-luxury) backwards; }
-  .deal-session li:first-child { animation: market-arrive 270ms var(--ease-luxury) backwards; }
 }

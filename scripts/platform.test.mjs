@@ -41,6 +41,7 @@ function platform(options = {}) {
         select() { return query; },
         eq(key, value) { operation.filters.push([key, value]); return query; },
         order() { return query; }, limit() { return query; }, gt() { return query; }, range() { return query; },
+        in(key, value) { operation.filters.push([key, value]); return query; }, contains(key, value) { operation.filters.push([key, value]); return query; },
         async single() { return { data: options.writeFailure ? null : { id: "92aa27bf-1b80-4de7-a7dc-6fc50c3af820" }, error: options.writeFailure ? {} : null }; },
         async maybeSingle() { return { data: options.selectedRows?.[table] ?? options.row ?? null, error: null }; },
         then(done, fail) { return Promise.resolve({ data: options.rows?.[table] || [], error: options.writeFailure ? {} : null }).then(done, fail); },
@@ -471,6 +472,78 @@ test("brand verification requires exact domain proof and qualifying website evid
     if (previousSecret === undefined) delete process.env.RATE_LIMIT_SECRET;
     else process.env.RATE_LIMIT_SECRET = previousSecret;
   }
+});
+
+async function withResend(run) {
+  const sent = [], previous = { fetch: globalThis.fetch, key: process.env.RESEND_API_KEY, from: process.env.TRANSACTIONAL_FROM_EMAIL, secret: process.env.RATE_LIMIT_SECRET };
+  process.env.RESEND_API_KEY = "re_test_key"; process.env.TRANSACTIONAL_FROM_EMAIL = "SaaSFolio <brands@saasfolio.tech>"; process.env.RATE_LIMIT_SECRET = "a".repeat(64);
+  globalThis.fetch = async (url, init) => { sent.push({ url, headers: init.headers, body: JSON.parse(init.body) }); return new Response("{}", { status: 200 }); };
+  try { await run(sent); } finally {
+    globalThis.fetch = previous.fetch;
+    for (const [name, value] of [["RESEND_API_KEY", previous.key], ["TRANSACTIONAL_FROM_EMAIL", previous.from], ["RATE_LIMIT_SECRET", previous.secret]]) {
+      if (value === undefined) delete process.env[name]; else process.env[name] = value;
+    }
+  }
+}
+
+test("a saved brand submission emails the submitter its DNS verification record once", async () => {
+  await withResend(async sent => {
+    const id = "92aa27bf-1b80-4de7-a7dc-6fc50c3af820";
+    const app = platform({ rpc: { save_brand_submission: { data: id, error: null } } });
+    const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...brandSubmission, submissionKey: "6d69cf02-f8c1-4b43-a2ad-1322f266499c" }));
+    assert.equal(response.status, 201);
+    assert.equal(sent.length, 1);
+    assert.equal(sent[0].url, "https://api.resend.com/emails");
+    assert.deepEqual(sent[0].body.to, [brandSubmission.founderEmail]);
+    assert.equal(sent[0].headers["Idempotency-Key"], `brand-received:${id}`);
+    assert.match(sent[0].body.text, /_saasfolio\.example\.com/);
+    assert.match(sent[0].body.text, /saasfolio=[a-f0-9]{64}/);
+    assert.doesNotMatch(sent[0].body.html, /<script/i);
+  });
+});
+
+test("a failed email never turns a saved brand submission into an error", async () => {
+  await withResend(async () => {
+    globalThis.fetch = async () => { throw new Error("network down"); };
+    const app = platform({ rpc: { save_brand_submission: { data: "92aa27bf-1b80-4de7-a7dc-6fc50c3af820", error: null } } });
+    const response = await app.load("app/api/inquiries/route.ts").POST(request("/api/inquiries", { ...brandSubmission, submissionKey: "6d69cf02-f8c1-4b43-a2ad-1322f266499c" }));
+    assert.equal(response.status, 201);
+  });
+});
+
+test("automated brand review approves only DNS-proven, content-checked brands and emails them", async () => {
+  await withResend(async sent => {
+    const verified = "92aa27bf-1b80-4de7-a7dc-6fc50c3af820", unproven = "0f4c7a51-2c3e-4f5b-9a8d-1b2c3d4e5f60";
+    const other = { ...brandSubmission, toolName: "Other Tool", websiteUrl: "https://other.example.org", pricingUrl: "https://other.example.org/pricing" };
+    let dnsValue;
+    const app = platform({
+      rows: { inquiries: [
+        { id: verified, email: brandSubmission.founderEmail, status: "pending", updated_at: "2026-11-23T00:00:00Z", payload: brandSubmission },
+        { id: unproven, email: "someone@example.org", status: "pending", updated_at: "2026-11-23T00:00:00Z", payload: other },
+        { id: "11111111-2222-4333-8444-555555555555", email: "x@example.net", status: "pending", updated_at: "2026-11-23T00:00:00Z", payload: { ...brandSubmission, redacted: true } },
+      ] },
+      selectedRows: { brand_listings: null },
+      rpc: { approve_brand_listing: { data: "d35ea303-0fe5-4def-9d17-a992c83a7ba5", error: null } },
+      overrides: {
+        "node:dns/promises": { Resolver: class { async resolveTxt(name) { return name === "_saasfolio.example.com." ? [[dnsValue]] : []; } } },
+        "@/lib/published-catalog": { getPublishedTools: () => [] },
+        "@/lib/server/source-fetch.mjs": { pinnedPublicPage: async url => url.endsWith("/robots.txt") ? { status: 404, url } : { status: 200, url, html: url.endsWith("/pricing")
+          ? `<title>Example Studio pricing</title><p>${"Compare our plans and documentation for your project. ".repeat(8)}</p>`
+          : `<title>Example Studio workspace</title><p>${"Collaborate in the Example Studio workspace with your team. ".repeat(5)}</p>` } },
+      },
+    });
+    dnsValue = app.load("lib/server/brand-verification.ts").brandDnsInstructions(verified, brandSubmission.founderEmail, brandSubmission).dnsValue;
+    const summary = await app.load("lib/server/brand-listings.ts").reviewPendingBrandSubmissions();
+    assert.deepEqual(summary, { checked: 2, approved: 1, awaitingDns: 1, needsEditor: 0 });
+    const approvals = app.rpcCalls.filter(call => call.name === "approve_brand_listing");
+    assert.equal(approvals.length, 1);
+    assert.equal(approvals[0].args.receipt, verified);
+    assert.equal(approvals[0].args.method, "automatic");
+    assert.equal(sent.length, 1);
+    assert.deepEqual(sent[0].body.to, [brandSubmission.founderEmail]);
+    assert.match(sent[0].body.subject, /Example Studio is now listed/);
+    assert.equal(sent[0].headers["Idempotency-Key"], `brand-approved:${verified}`);
+  });
 });
 
 test("brand submission needs no account and persists an editorial intake, never a publication", async () => {
