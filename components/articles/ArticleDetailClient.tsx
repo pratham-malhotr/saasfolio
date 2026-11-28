@@ -33,6 +33,7 @@ interface ArticleDetailClientProps {
   savingsLinks?: React.ReactNode;
   hostingActions?: React.ReactNode;
   sectionDeals?: Record<string, SaaSDeal>;
+  accountsAvailable?: boolean;
 }
 
 interface ArticleComment {
@@ -45,7 +46,7 @@ interface ArticleComment {
   upvotes: number;
 }
 
-export function ArticleDetailClient({ article, relatedArticles, savingsLinks, hostingActions, sectionDeals = {} }: ArticleDetailClientProps) {
+export function ArticleDetailClient({ article, relatedArticles, savingsLinks, hostingActions, sectionDeals = {}, accountsAvailable = false }: ArticleDetailClientProps) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
@@ -54,6 +55,8 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
   const [commentText, setCommentText] = useState("");
   const [commentUpvotes, setCommentUpvotes] = useState<Record<string, boolean>>({});
   const [comments, setComments] = useState<ArticleComment[]>([]);
+  const quickAnswer = article.toolSlug && article.sections[0]?.id === "quick-answer" ? article.sections[0] : undefined;
+  const bodySections = quickAnswer ? article.sections.slice(1) : article.sections;
 
   // Load bookmark, persisted comments, and comment upvotes on mount
   React.useEffect(() => {
@@ -218,6 +221,13 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
           {article.subtitle}
         </p>
 
+        {quickAnswer && (
+          <section id={quickAnswer.id} className="mb-8 max-w-4xl scroll-mt-28 space-y-2 rounded-xl border border-white/15 bg-[#121910] p-5 sm:p-6">
+            <h2 className="font-display text-xl font-bold text-white">{quickAnswer.heading}</h2>
+            <p className="leading-relaxed text-zinc-200">{quickAnswer.content}</p>
+          </section>
+        )}
+
         {/* Author & Share Bar */}
         <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
@@ -236,7 +246,7 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
 
           {/* Social share & utilities */}
           <div className="flex flex-wrap items-center gap-2">
-            <SaveItemButton kind="article" slug={article.slug} />
+            {accountsAvailable && <SaveItemButton kind="article" slug={article.slug} />}
 
             <button
               onClick={() => setIsReadingMode(!isReadingMode)}
@@ -296,7 +306,24 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
           </div>
         </div>
 
-        {article.coverImage && <figure className="mt-8 overflow-hidden rounded-2xl border border-white/10"><Image src={article.coverImage.src} alt={article.coverImage.alt} width={1440} height={810} priority sizes="(max-width: 1280px) 100vw, 1216px" className="aspect-video w-full object-cover" /><figcaption className="bg-[#101216] px-5 py-3 text-xs leading-6 text-zinc-500">Editorial illustration · {article.subtitle}</figcaption></figure>}
+        {article.coverImage && (
+          <figure className="mt-8 overflow-hidden rounded-2xl border border-white/10">
+            <Image
+              src={article.coverImage.src}
+              alt={article.coverImage.alt}
+              width={1440}
+              height={810}
+              preload
+              sizes="(max-width: 1280px) 100vw, 1216px"
+              className="aspect-video w-full object-cover"
+            />
+            <figcaption className="bg-[#101216] px-5 py-3 text-xs leading-6 text-zinc-400">
+              {article.coverImage.credit ? (
+                <>Reference photo by <a href={article.coverImage.credit.sourceUrl} className="text-zinc-200 underline underline-offset-4">{article.coverImage.credit.author}</a></>
+              ) : `Editorial illustration · ${article.subtitle}`}
+            </figcaption>
+          </figure>
+        )}
 
         {/* Audio Overview Player */}
         <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-[#09090C] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -355,20 +382,31 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Article Body Column (8 cols) */}
           <div className="min-w-0 space-y-12 lg:col-span-8">
-            {/* Executive Summary Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/10 relative">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#C6FF3D] font-bold block mb-2">
-                Executive Takeaway
+            {!quickAnswer && (article.keyTakeaways?.length ? (
+              <section id="key-takeaways" aria-labelledby="key-takeaways-heading" className="relative overflow-hidden rounded-2xl border border-[#C6FF3D]/30 bg-[radial-gradient(120%_90%_at_100%_0%,#c6ff3d14,transparent_60%),#0b0d0b] p-6 sm:p-8 shadow-[0_0_70px_-40px_#c6ff3d]">
+                <h2 id="key-takeaways-heading" className="market-kicker mb-4">Key takeaways</h2>
+                <ul className="space-y-3">
+                  {article.keyTakeaways.map(point => (
+                    <li key={point} className="flex gap-3 text-sm leading-relaxed text-zinc-200 sm:text-base">
+                      <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#C6FF3D] shadow-[0_0_8px_#c6ff3d]" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : <div className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+              <span className="market-kicker block mb-2">
+                Key takeaway
               </span>
               <p className="text-zinc-300 leading-relaxed text-sm sm:text-base">
                 {article.summary}
               </p>
-            </div>
+            </div>)}
 
             {hostingActions && <p className="text-xs leading-6 text-zinc-500">Affiliate disclosure: some provider links may earn SaaSFolio a commission. Recommendations follow the workload and operating criteria described below. <Link href="/affiliate-disclosure" className="text-[#C6FF3D] underline">Read the disclosure</Link>.</p>}
 
             {/* Render Each Article Section */}
-            {article.sections.map((section) => (
+            {bodySections.map((section) => (
               <React.Fragment key={section.id}>
                 <section id={section.id} className="scroll-mt-28">
                   <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mb-4">
@@ -380,11 +418,23 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
                       isReadingMode ? "text-base sm:text-lg" : "text-sm sm:text-base"
                     }`}
                   >
-                    {section.content.split("\n\n").map((para, pIdx) => (
-                      <p key={pIdx} className="leading-relaxed">
-                        {para}
-                      </p>
-                    ))}
+                    {section.content.split("\n\n").map((para, pIdx) => {
+                      const lines = para.split("\n");
+                      return lines.length > 1 && lines.every(line => line.startsWith("- ")) ? (
+                        <ul key={pIdx} className="space-y-2 pl-1">
+                          {lines.map(line => (
+                            <li key={line} className="flex gap-3 leading-relaxed">
+                              <span aria-hidden="true" className="mt-[.6em] h-1.5 w-1.5 flex-none rounded-full bg-[#C6FF3D]" />
+                              <span>{line.slice(2)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p key={pIdx} className="leading-relaxed">
+                          {para}
+                        </p>
+                      );
+                    })}
                   </div>
 
                   {section.links?.length ? <ul className="mt-5 space-y-3 text-sm text-[#C6FF3D]">{section.links.map(link => (
@@ -459,12 +509,12 @@ export function ArticleDetailClient({ article, relatedArticles, savingsLinks, ho
 
             {/* Optional FAQ Section */}
             {article.faqs && article.faqs.length > 0 && (
-              <div className="pt-8 border-t border-white/10">
-                <h3 className="font-display font-bold text-xl sm:text-2xl text-white mb-4">
-                  Frequently Asked Questions
-                </h3>
+              <section id="faq" aria-labelledby="faq-heading" className="pt-8 border-t border-white/10 scroll-mt-28">
+                <h2 id="faq-heading" className="font-display font-bold text-xl sm:text-2xl text-white mb-4">
+                  Frequently asked questions
+                </h2>
                 <FaqAccordion faqs={article.faqs} />
-              </div>
+              </section>
             )}
 
             {/* Author Bio Box */}

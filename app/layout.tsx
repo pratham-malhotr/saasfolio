@@ -5,14 +5,16 @@ import { siteSchema } from "@/lib/structured-data";
 import { pageMetadata, SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./market.css";
+import "./shell.css";
 import { SmoothScroll } from "@/components/animations/SmoothScroll";
-import { CustomCursor } from "@/components/animations/CustomCursor";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
 import { getDiscountSearchEntries } from "@/lib/brand-discounts";
 import { getPublicSearchCatalog } from "@/lib/published-catalog";
 import { ConsentAnalytics } from "@/components/privacy/ConsentAnalytics";
 import { authConfigured } from "@/lib/server/supabase";
+import { getCatalogCategories } from "@/lib/categories";
 
 const spaceGrotesk = localFont({
   src: "./fonts/space-grotesk-latin.woff2",
@@ -69,28 +71,19 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} dark`}
     >
-      <body className="min-h-screen bg-[#050505] text-[#EDEDED] antialiased selection:bg-[#C6FF3D] selection:text-black font-body overflow-x-hidden">
+      <body className="min-h-screen bg-[#050605] text-[#F4F7F1] antialiased selection:bg-[#C6FF3D] selection:text-black font-body overflow-x-hidden">
         <Suspense fallback={null}><ConsentAnalytics /></Suspense>
         <a href="#main-content" className="skip-link">Skip to content</a>
         <JsonLd data={siteSchema()} />
-        {/* Global Custom Follower Cursor */}
-        <CustomCursor />
-
-        {/* Lenis Smooth Scroll Engine */}
         <SmoothScroll>
           <div className="flex flex-col min-h-screen">
-            {/* Sticky Translucent Navbar */}
-            {/* The header is fixed; a flow-height fallback shifts the page on hydration. */}
             <Suspense fallback={null}>
-              <Navbar discountBrands={getDiscountSearchEntries()} searchCatalog={getPublicSearchCatalog()} accountsAvailable={authConfigured()} />
+              <Navbar discountBrands={getDiscountSearchEntries()} searchCatalog={getPublicSearchCatalog()} accountsAvailable={authConfigured()}
+                categories={getCatalogCategories().map(({ slug, name, dealCount }) => ({ slug, name, dealCount }))} />
             </Suspense>
-
-            {/* Main Content Area */}
             <main id="main-content" tabIndex={-1} className="flex-1">
               {children}
             </main>
-
-            {/* Editorial Closing Footer */}
             <Footer />
           </div>
         </SmoothScroll>

@@ -18,15 +18,19 @@ if (process.argv.includes("--prepare")) {
   console.log(`Prepared ${branch}. Existing release conflicts require review; branches are never force-pushed.`);
 } else {
   const managed = branch.endsWith("managed-catalog");
-  const files = managed ? ["lib/data/managed-catalog.json", "lib/data/managed-public-index.json"] : ["lib/data/offer-snapshot.json", "lib/data/offer-url-history.json"];
+  const files = managed ? ["lib/data/managed-catalog.json", "lib/data/managed-public-index.json"] : ["lib/data/offer-snapshot.json", "lib/data/offer-url-history.json", "lib/data/guide-source-checks.json"];
   await run("git", ["add", "--", ...files]);
   let changed = false;
   try { await run("git", ["diff", "--cached", "--quiet"]); } catch (error) { if (error.code === 1) changed = true; else throw error; }
-  if (changed) await run("git", ["commit", "-m", managed ? "Release approved editorial catalog" : "Refresh source-backed SaaS offers"]);
+  if (changed) await run("git", ["commit", "-m", managed ? "Release approved editorial catalog" : "Refresh source-backed SaaS offers and guide source checks"]);
   let releaseChanges = false;
   try { await run("git", ["diff", "--quiet", "origin/main", "HEAD"]); } catch (error) { if (error.code === 1) releaseChanges = true; else throw error; }
   if (!releaseChanges) { console.log("No release changes."); process.exit(0); }
   await run("git", ["push", "--set-upstream", "origin", branch]);
+  // Pull requests opened with the workflow token do not trigger other workflows,
+  // so start the required Website checks explicitly; otherwise the release can
+  // never satisfy branch protection and offers age out of the live site.
+  await run("gh", ["workflow", "run", "ci.yml", "--ref", branch]);
   const existing = JSON.parse(await run("gh", ["pr", "list", "--base", "main", "--head", branch, "--state", "open", "--json", "url"]));
   if (existing.length) console.log(existing[0].url);
   else {

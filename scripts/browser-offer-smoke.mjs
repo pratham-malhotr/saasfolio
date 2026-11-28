@@ -222,7 +222,7 @@ try {
     assert.ok(await evaluate("(!document.querySelector('main form') || !document.querySelector('main form').checkVisibility({checkVisibilityCSS:true})) && document.documentElement.scrollWidth <= innerWidth"), `${path}: native email route is usable without JavaScript and fits mobile`);
   }
   await navigate("/advertise", "/affiliate-disclosure");
-  assert.ok(await evaluate("document.querySelector('main').textContent.includes('does not serve display ads') && !document.querySelector('main form')"), "Legacy advertising links reach the affiliate disclosure without JavaScript");
+  assert.ok(await evaluate("document.querySelector('main').textContent.includes('offers paid placement in the brand directory') && !document.querySelector('main form')"), "Legacy advertising links reach the current funding disclosure without JavaScript");
   await page("Emulation.setScriptExecutionDisabled", { value: false });
   const health = await (await fetch(`${origin}/api/health`)).json();
   for (const [path, flag] of [["/contact", "formsConfigured"], ["/login", "accountsConfigured"]]) {

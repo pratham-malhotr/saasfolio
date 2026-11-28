@@ -185,7 +185,7 @@ try {
     await screenshot(`saasfolio-simplycodes-coupon-evidence-${label}.png`);
     await press("Escape", "Escape", 27);
 
-    await navigate("/submit");
+    await navigate("/submit/offer");
     const submissionCopy = await evaluate("document.querySelector('main').textContent");
     assert.match(submissionCopy, /does not verify that it works at checkout/);
     assert.doesNotMatch(submissionCopy, /automated verification system tests|audits checkout endpoints|\d+%\s*Confidence/i);

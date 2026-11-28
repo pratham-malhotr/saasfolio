@@ -3,6 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { getDealBySlug, getRetiredOfferToolSlug } from "@/lib/data/deals-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { DealDetailClient } from "@/components/deals/DealDetailClient";
+import { authConfigured } from "@/lib/server/supabase";
 import type { Metadata } from "next";
 import { pageMetadata, dealSearchTitle, dealMetaDescription, toolSearchTitle, toolMetaDescription } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -86,7 +87,7 @@ export default async function DealDetailPage({
   const tool = getPublishedTool(deal.toolSlug);
   const allDeals = getPublishedOffers();
   const relatedDeals = allDeals.filter(
-    (d) => d.categorySlug === deal.categorySlug && d.id !== deal.id
+    (d) => d.categorySlug === deal.categorySlug && d.toolSlug !== deal.toolSlug
   );
   const siblingDeals = allDeals.filter(
     (d) => d.toolSlug === deal.toolSlug && d.id !== deal.id
@@ -94,7 +95,7 @@ export default async function DealDetailPage({
   const faqs = getDealFaqs(deal, tool);
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="market-page">
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -119,6 +120,7 @@ export default async function DealDetailPage({
       />
       <DealDetailClient
         deal={deal}
+        accountsAvailable={authConfigured()}
         discountHref={tool && getBrandDiscountData(tool).indexable ? `/discounts/${deal.toolSlug}` : undefined}
         tool={tool}
         faqs={faqs}

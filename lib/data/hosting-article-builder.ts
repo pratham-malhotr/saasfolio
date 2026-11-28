@@ -1,8 +1,9 @@
 import type { DetailedArticle } from "./articles-data";
+import { hostingCoverPhotos, type HostingCoverPhoto } from "./research-photography";
 
 export type ResearchGuide = {
   slug: string; title: string; summary: string; audience: string;
-  image: string; imageAlt: string; category: DetailedArticle["category"];
+  image: HostingCoverPhoto; category: DetailedArticle["category"];
   tags: string[]; providers: string[]; sections: [string, string][];
   headers: string[]; rows: [string, string, string][];
   faqs: [string, string][]; sources: [string, string][]; related: string[];
@@ -18,7 +19,7 @@ export function buildHostingArticles(research: ResearchGuide[]): DetailedArticle
       id: `hosting-${guide.slug}`, slug: guide.slug, title: guide.title, subtitle: guide.audience, summary: guide.summary,
       category: guide.category, publishedAt: "2026-11-17", updatedAt: "2026-11-17", featured: index === 0,
       author: { name: "SaaSFolio editorial", role: "Hosting research & application operations", avatarLetter: "S", bio: "Original documentation-based buying guidance with explicit reader profiles, decision criteria, proposed acceptance tests and linked primary sources. Examples are illustrative rather than reported customer results." },
-      coverAccent: "#C6FF3D", coverImage: { src: `/images/hosting/${guide.image}.webp`, alt: guide.imageAlt },
+      coverAccent: "#C6FF3D", coverImage: hostingCoverPhotos[guide.image],
       providerSlugs: guide.providers, tags: guide.tags, sections,
       readTime: `${Math.ceil(sections.reduce((total, section) => total + section.content.split(/\s+/).length, 0) / 190)} min read`,
       tableOfContents: sections.map(section => ({ id: section.id, title: section.heading })),

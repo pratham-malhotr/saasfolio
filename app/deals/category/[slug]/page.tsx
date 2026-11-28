@@ -35,7 +35,7 @@ export default async function CategoryDealsPage({ params }: { params: Promise<{ 
   const categoryDeals = deals.filter(deal => deal.categorySlug === slug);
   const content = CATEGORY_SEARCH_CONTENT[slug];
   const discountBrands = getIndexableDiscountBrands().filter(tool => tool.categorySlug === slug);
-  return <div className="min-h-screen bg-[#050505]">
+  return <div className="market-page">
     <JsonLd data={collectionSchema(content?.heading || `${category.name} Software Offers`, content?.description || category.description, `/deals/category/${slug}`,
       categoryDeals.filter(deal => (deal.dealPrice ?? 0) <= 500).map(deal => ({ name: deal.title, path: `/deals/${deal.slug}` })))} />
     <DealsExplorer key={slug} initialDeals={deals} initialCategory={slug} heading={content?.heading || `${category.name} Offers`} description={content?.answer || category.description}

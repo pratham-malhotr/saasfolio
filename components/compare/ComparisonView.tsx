@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { BrandAvatar } from "@/components/brand/BrandAvatar";
 import Link from "next/link";
 import { offerLabel } from "@/lib/offer-links";
 import { useRouter } from "next/navigation";
@@ -19,6 +20,7 @@ interface ComparisonViewProps {
   dealsA: SaaSDeal[];
   dealsB: SaaSDeal[];
   allTools: Pick<DetailedTool, "id" | "slug" | "name">[];
+  summary?: string;
   editorialGuide?: React.ReactNode;
   discountGuides?: React.ReactNode;
 }
@@ -29,6 +31,7 @@ export function ComparisonView({
   dealsA,
   dealsB,
   allTools,
+  summary,
   editorialGuide,
   discountGuides,
 }: ComparisonViewProps) {
@@ -70,7 +73,7 @@ export function ComparisonView({
           {toolA.name} <span className="text-[#C6FF3D]">VS</span> {toolB.name}
         </h1>
         <p className="text-zinc-400 max-w-3xl text-sm sm:text-base leading-relaxed">
-          Compare catalog features and sourced offers for {toolA.name} and {toolB.name}. This is not a hands-on benchmark; confirm current features, prices and eligibility with each provider.
+          {summary || `Compare catalog features and sourced offers for ${toolA.name} and ${toolB.name}. Confirm current features, prices and eligibility with each provider.`}
         </p>
       </div>
 
@@ -137,9 +140,7 @@ export function ComparisonView({
         <div className="p-8 rounded-3xl bg-[#09090C] border border-white/15 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 rounded-2xl bg-black border border-white/20 flex items-center justify-center font-display font-black text-xl text-[#C6FF3D]">
-                {toolA.logoLetter}
-              </div>
+              <BrandAvatar name={toolA.name} slug={toolA.slug} letters={toolA.logoLetter} category={toolA.categorySlug} className="brand-avatar-md" />
               <div className="flex items-center gap-1 font-mono text-xs text-[#C6FF3D] font-bold">
                 <Star className="w-4 h-4 fill-[#C6FF3D]" />
                 <span>{toolA.reviewCount ? `${toolA.rating} / 5.0` : "Unrated"}</span>
@@ -168,9 +169,7 @@ export function ComparisonView({
         <div className="p-8 rounded-3xl bg-[#09090C] border border-white/15 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 rounded-2xl bg-black border border-white/20 flex items-center justify-center font-display font-black text-xl text-[#C6FF3D]">
-                {toolB.logoLetter}
-              </div>
+              <BrandAvatar name={toolB.name} slug={toolB.slug} letters={toolB.logoLetter} category={toolB.categorySlug} className="brand-avatar-md" />
               <div className="flex items-center gap-1 font-mono text-xs text-[#C6FF3D] font-bold">
                 <Star className="w-4 h-4 fill-[#C6FF3D]" />
                 <span>{toolB.reviewCount ? `${toolB.rating} / 5.0` : "Unrated"}</span>

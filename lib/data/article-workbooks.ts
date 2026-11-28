@@ -3,6 +3,41 @@ import type { ArticleSection } from "./articles-data";
 // Original worked examples and decision records. Every amount is hypothetical;
 // these calculations do not establish a named provider's current prices.
 const workbooks: Record<string, { example: string; record: string; trap: string }> = {
+  "coderabbit-review-github-pull-requests": {
+    example: "In a fictional pilot, eight pull requests generate 20 comments. Six identify a correct issue that is worth fixing, four repeat CI, and ten are incorrect or too vague to act on. The useful fraction is 6 out of 20, or 30%. Run another matched batch after narrowing one noisy rule and record whether the important findings are still detected. The numbers illustrate a decision method and are not a CodeRabbit result.",
+    record: "Record the repository, configuration format, sampled changes, expected findings, observed comments and minutes spent resolving them. Ask a reviewer who did not design the sample to verify the classifications. Approve broader access only for repositories where the evidence and permission review support it.",
+    trap: "A long list of comments looks active but can make the next real finding harder to see. Separate genuinely useful feedback from corrections your existing CI already reports.",
+  },
+  "checkly-review-api-playwright-monitoring": {
+    example: "Suppose an API probe runs every five minutes and a browser checkout rehearsal runs once an hour. At one location, that is 288 API runs and 24 browser runs a day. If a second location runs both on the same schedule, the illustrative totals are 576 and 48 before retries. Use separate entries for API and browser runs in the quote because they can have different billing rules.",
+    record: "Write down the check name, failure signal, run interval, locations, safe test identity, current allowance, alert recipient and first runbook step. Capture one successful and one failed run, and test that the recipient can distinguish the two without opening every log.",
+    trap: "Do not infer that a green browser check verifies nightly exports. Give internal jobs a completion signal when they can fail independently of the route exercised by the browser.",
+  },
+  "supabase-review-multi-tenant-saas": {
+    example: "In a disposable project, tenant North owns document N and tenant West owns document W. An editor in North must be able to update N, receive no access to W, and fail to open W’s file through a stored URL. Repeat the exercise after adding the same editor as a viewer in West. Record the new read and write expectations separately for tables and file objects.",
+    record: "Build a matrix of test identities, roles, tenant membership, data operations and expected results. Attach policy migrations and identify who can change backend credentials. Rehearse recovery with an isolated database and object copy, then confirm that files still resolve for the right accounts.",
+    trap: "A client interface hiding a row provides no proof that the data API enforces the same boundary. Exercise authorization at the actual table and storage access layers.",
+  },
+  "baserow-review-postgresql-operations": {
+    example: "Imagine an operations group tracking 100 orders in PostgreSQL. Most staff only need to see whether an order is ready. Start with an isolated read-only sync of sample order identifiers and status, then test whether late updates become visible before the daily cutoff. If one specialist needs to correct the pickup status, pilot that specific write with an approved account and verify the source record afterward.",
+    record: "Record synced table names, freshness requirements, accountable field owners, approved roles, rejected test writes and operating cost. Document who can disable write-back and how you would recover a wrong change. Verify the procedure using the same role a future operator will have.",
+    trap: "Enabling database-wide writes for a single status change creates unnecessary blast radius. Limit the pilot to the tables and operations the workflow actually needs.",
+  },
+  "fireflies-ai-review-client-meetings": {
+    example: "Use three fictitious meetings with approved participants. A recurring team meeting should produce a team recap, a client briefing should remain restricted until approved, and a sensitive appointment should not be recorded. Give the guest accounts the messages they actually receive and check whether the links grant exactly the intended access. Include one forwarded link to test the difference between recipient and viewer controls.",
+    record: "Capture the meeting type, calendar owner, recording rule, participant notice, intended and observed recipients, actual access and correction owner. Include an explicit decision for an external guest joining a recurring internal event.",
+    trap: "Testing only inside the organizer’s signed-in account hides guest access problems. Inspect the result from the recipient’s actual account or a clean browser session.",
+  },
+  "buttondown-review-paid-newsletter": {
+    example: "A hypothetical publication has 900 free subscribers and 100 paid readers. Before importing the full list, rehearse one issue with a free test subscriber, an active paid test subscriber and a canceled subscription. Confirm what each can read in email and on the archive. Preserve the current billing workflow until those access checks and the support process are understood.",
+    record: "Track the signup domain, public archive URL, list size, paid tier, billing owner, subscriber export, issue export and rollback date. Budget ordinary website costs alongside newsletter and payment processing costs, using dated quotes for each part.",
+    trap: "A successful list import describes who can receive mail. It does not establish who is entitled to gated content or which renewal account owns their payment history.",
+  },
+  "fluent-forms-review-wordpress-leads": {
+    example: "On staging, send one request for sales, another for support, a mixed request and a request with the category left blank. Decide the expected recipient before clicking submit. Repeat the sales case while a controlled mail route rejects delivery and inspect whether a stored lead remains available to a person with the right role.",
+    record: "Keep a route sheet with sample field values, intended recipient, actual result, copy sent to the visitor, entry location and fallback owner. Note the plugin edition and mail setup. Repeat the cases after an editor changes a category label or after a mail service update.",
+    trap: "An on-page success message tells you the submission path accepted the request. Follow the notification through to the inbox before treating it as a delivered lead.",
+  },
   "hostinger-hosting-review": {
     example: "Suppose a publisher is comparing two fictional quotes for the same website. Option A costs $96 for the first year and $144 for the second. Option B costs $12 per month throughout. Over two years, the base totals are $240 and $288. The $48 difference is meaningful only if both quotes include the same required configuration. If Option A also needs an illustrative $36 export or recovery service, the gap becomes $12. These are made-up quotes, not current Hostinger prices. Write down both the upfront payment and the renewal payment so that the more affordable option stays affordable after launch.",
     record: "Record the hosting product, supported publishing workflow, full first-term charge, renewal quote, taxes to confirm, domain and email costs, recovery owner and cancellation route. Attach a dated copy of the actual quote. Add the result of a disposable-site rehearsal: publish one page, save one form message and restore one deleted item. If any step depends on another provider, name that provider and the person who owns the account. Choose only after the intended site fits both the launch and renewal budgets.",

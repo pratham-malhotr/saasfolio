@@ -25,7 +25,100 @@ The repository has no usable production database credentials. The previous live-
 2. A confirmed owner with MFA opens `/admin` → **inquiries**. **Prepare brand draft** opens the catalog editor with public product fields. It excludes the contact name/email and leaves the review date empty. Replacing unsaved work asks the editor first.
 3. Check the official sources, revise submitted claims, confirm the canonical slug and fill the actual review date. For an existing brand, open and edit the existing catalog entry rather than creating a second identity. Save the draft and submit it for review.
 4. Follow the existing separate-account review and owner release workflow. An inquiry marked resolved does not publish a brand. Export and deploy the approved managed catalog using `docs/ENTERPRISE-OPERATIONS.md` and `docs/CATALOG-AND-OFFERS.md`.
-5. Published managed brands now qualify for public profiles, directory/search results and the sitemap without needing a second hard-coded guide. Retired brands remain excluded. Raw visitor submissions never publish themselves.
+5. Published managed brands now qualify for public profiles, directory/search results and the sitemap without needing a second hard-coded guide. Retired brands remain excluded. The directory also accepts approved owner submissions via the process below.
+
+## Approve a directory listing
+
+The production shared Supabase project runs SaaSFolio without account services.
+To review an application, open Supabase **Table Editor**, select **saasfolio**,
+and open **inquiries**. Filter to kind `submission` and inspect the rows
+whose payload has `submissionType: brand`. Review the official website,
+pricing or documentation, original description, and the submitter's authority.
+In the case of a full editorial profile, follow the catalog publication process
+above from an account-enabled deployment.
+
+For a directory card, use the Supabase SQL Editor. Copy the row's receipt ID
+and its exact `updated_at`. Set the hostname without `www.` and choose a
+unique lowercase, hyphenated slug. For an already reviewed profile, use its
+existing slug in both slug arguments. For a new brand, pass `null` as shown.
+
+```sql
+select saasfolio.approve_brand_listing(
+  '<receipt-uuid>'::uuid, '<updated_at>'::timestamptz,
+  'brand.example.com', 'brand-name', null, 'manual'
+);
+```
+
+A returned UUID confirms approval. A null result means the row changed,
+the submission was ineligible, or the domain or slug is already listed.
+The approval records the public directory fields and resolves the inquiry in
+one transaction. To remove a submitted listing or a sponsorship, set
+`hidden_at` on its row in `saasfolio.brand_listings`.
+
+### Automatic directory approval
+
+After saving a brand, owners can open **Verify your brand**, enter their
+receipt and submission email, and publish the generated DNS TXT record.
+**Check domain and approve** checks the record, the submitted homepage, and
+a distinct same-domain pricing or documentation page. The check looks for
+matching brand identity and readable product content. Ambiguous submissions,
+duplicates and sources that cannot be checked stay available for manual review.
+A new approved card links to the official site and labels the copy as
+brand-submitted information.
+
+### Fully automated listing (November 28, 2026)
+
+1. **Submit.** The brand is saved to the Supabase `inquiries` table. The receipt
+   screen shows the brand's DNS TXT record right away, and a "We received your
+   brand" email repeats it with the submission reference.
+2. **Verify.** The owner adds the TXT record. They can click **Check my domain
+   now**, or wait: the server reviews pending brand submissions from the last
+   45 days every hour (`lib/server/brand-review-scheduler.ts`, started from
+   `instrumentation.ts`).
+3. **Genuineness checks.** A submission is approved only when all of these hold:
+   the TXT proof is on the brand's own domain; the submitter is the founder,
+   owner or a team member (not a community recommendation); the pricing or
+   docs URL is on the same domain; the homepage and that page are reachable,
+   allowed by robots.txt, not parked, not "coming soon" and not a bot
+   challenge; the homepage title contains the brand name; both pages contain
+   real product and pricing/docs text; the domain and slug are not already
+   listed.
+4. **Listed and notified.** `approve_brand_listing` publishes the directory
+   card and resolves the inquiry in one transaction, then a "your brand is now
+   listed" email is sent.
+
+Anything that fails a check stays pending for an editor. The automation never
+rejects or deletes. Emails are best effort and idempotent per submission; they
+need `RESEND_API_KEY` and `TRANSACTIONAL_FROM_EMAIL` (or `NEWSLETTER_FROM_EMAIL`)
+on a domain verified in Resend. Without them, the flow works and simply
+sends no email. Set `BRAND_AUTO_REVIEW=false` to stop the hourly job.
+
+### Sponsored placement
+
+**Promote your brand** on `/brands` offers $49 USD for one month and $349 USD
+for one year. It opens an email draft to `prathammalhotracsai@gmail.com` with
+the selected period. Arrange payment and dates directly by email.
+
+After confirmation, find the approved row in `saasfolio.brand_listings`.
+Set both `sponsored_from` and `sponsored_until` to the agreed dates. The
+brand appears above matching search and category results during that
+period, with a Sponsored label. The listing returns to alphabetical
+order when the period ends. To end a promotion early, clear both dates.
+
+### Production setup for an existing shared project
+
+Render the additive migration for the existing `saasfolio` schema. Run the
+generated SQL in Supabase SQL Editor before deploying the new app:
+
+```sh
+node --input-type=module -e 'import { readFileSync } from "node:fs"; import { qualifyApplicationSql } from "./scripts/lib/database-schema.mjs"; const file = "supabase/migrations/202611230001_brand_listings_and_promotions.sql"; console.log("begin;\n" + qualifyApplicationSql(readFileSync(file, "utf8"), "saasfolio") + "\ncommit;");'
+```
+
+Deploy the application with the existing Supabase and rate-limit secret
+configuration. DNS verification derives its own key from `RATE_LIMIT_SECRET`.
+To set a dedicated key, add a server-only `BRAND_VERIFICATION_SECRET` generated
+with `openssl rand -hex 32`. Keep the selected secret stable so issued TXT
+values continue to work. Set `BRAND_LISTINGS_ENABLED=false` to pause listings.
 
 ## Directory and content
 

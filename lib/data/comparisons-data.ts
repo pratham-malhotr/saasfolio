@@ -1,8 +1,12 @@
 import { getToolBySlug } from "@/lib/data/tools-data";
+import { RESEARCH_COMPARISONS } from "@/lib/data/comparison-research";
 import { COMPARISON_GUIDES } from "@/lib/data/comparison-guides";
 import { CURATED_COMPARISON_SLUGS } from "@/lib/data/curated-comparison-slugs.mjs";
 
 export const POPULAR_COMPARISONS = [
+  ...Object.entries(RESEARCH_COMPARISONS).map(([slug, { toolA, toolB, category, summary }]) => ({
+    slug, toolA, toolB, category, summary, title: `${toolA} vs ${toolB}`,
+  })),
   {
     slug: "coolify-vs-vercel",
     title: "Coolify vs Vercel",
@@ -122,4 +126,11 @@ export function comparisonCanonicalSlug(slug: string): string {
 // are search landing pages; unreviewed combinations should not inflate indexing.
 export function isCuratedComparison(slug: string): boolean {
   return COMPARISON_SLUGS.includes(comparisonCanonicalSlug(slug));
+}
+
+
+export function getToolComparisons(toolSlug: string) {
+  return POPULAR_COMPARISONS.filter(({ slug }) =>
+    COMPARISON_SLUGS.includes(slug) && slug.split("-vs-").includes(toolSlug)
+  );
 }

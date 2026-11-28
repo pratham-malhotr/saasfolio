@@ -5,6 +5,16 @@ import { saveLocalInquiry } from "@/lib/server/local-auth";
 import { getDealBySlug, getHistoricOfferToolSlug } from "@/lib/data/deals-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { readBrandSubmission } from "@/lib/server/brand-submission";
+import { brandDnsInstructions } from "@/lib/server/brand-verification";
+import { brandReceivedEmail, sendTransactionalEmail } from "@/lib/server/transactional-email";
+
+// Best effort: the saved submission stands even if the email cannot be sent.
+async function notifyBrandReceived(receipt: string, address: string, payload: Record<string, unknown>) {
+  try {
+    const dns = brandDnsInstructions(receipt, address, payload);
+    if (dns) await sendTransactionalEmail(brandReceivedEmail({ to: address, brand: String(payload.toolName), receipt: receipt.toLowerCase(), ...dns }));
+  } catch { /* email is optional */ }
+}
 import { createHash } from "node:crypto";
 
 export async function POST(request: Request) {
@@ -182,6 +192,7 @@ export async function POST(request: Request) {
         const { data: savedId, error } = await service.rpc("save_brand_submission", { request_key: submissionKey, request_email: address, request_payload: payload, request_fingerprint: fingerprint });
         if (error?.code === "23505") throw new HttpError(409, "This submission reference was already used for different details. Reload the form before submitting a different product.");
         if (error || typeof savedId !== "string" || !/^[a-f0-9-]{36}$/i.test(savedId)) throw new HttpError(503, "Your submission could not be confirmed. Retry with the same details or download a copy and contact us.");
+        if (payload.submissionType === "brand") await notifyBrandReceived(savedId, address, payload);
         return json({ id: savedId, message: "Your submission has been saved for review." }, 201);
       }
       const { data: record, error } = await service

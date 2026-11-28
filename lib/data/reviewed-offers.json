@@ -18,17 +18,18 @@
   {
     "slug": "hubspot-startup-program",
     "toolSlug": "hubspot",
-    "title": "Explore HubSpot's startup discounts",
+    "title": "HubSpot for Startups: up to 90% off year one for eligible startups",
     "dealType": "offer",
-    "discountPercentage": 0,
+    "discountPercentage": 90,
     "sourceKind": "vendor",
     "sourceUrl": "https://www.hubspot.com/startups",
     "destinationUrl": "https://www.hubspot.com/startups",
     "evidence": [
-      "startup",
-      "discount"
+      "90% off",
+      "Series A"
     ],
-    "terms": "Application, funding, and partner eligibility determine the discount and its duration. Review the program's current terms directly with HubSpot."
+    "terms": "HubSpot for Startups lists up to 90% off in year one, then 50% in year two and 25% in year three, for startups that raised pre-seed, seed or Series A funding (not Series B or later) and are affiliated with an approved partner or have verified venture funding. A second tier through approved entrepreneurial organizations lists 30% off year one. Apply and confirm the tier, products and renewal price. Source reviewed; checkout has not been tested.",
+    "discountKind": "up-to"
   },
   {
     "slug": "digitalocean-hatch-startup-program",
@@ -48,7 +49,7 @@
   {
     "slug": "github-student-developer-pack",
     "toolSlug": "github",
-    "title": "GitHub Student Developer Pack benefits",
+    "title": "GitHub Student Developer Pack: free GitHub Pro and Copilot for verified students",
     "dealType": "offer",
     "discountPercentage": 0,
     "sourceKind": "vendor",
@@ -56,9 +57,10 @@
     "destinationUrl": "https://education.github.com/pack",
     "evidence": [
       "Student Developer Pack",
-      "student"
+      "GitHub Pro",
+      "Copilot"
     ],
-    "terms": "Verified student status is required. Partner benefits, limits, and availability differ by provider and may change."
+    "terms": "GitHub Education gives verified students a free GitHub Pro account and free GitHub Copilot access, plus partner offers in the Student Developer Pack. Applicants must be at least 13, enrolled in a degree- or diploma-granting program, own a GitHub account and provide dated proof of enrollment or an academic email. Partner offers have their own terms. Source reviewed."
   },
   {
     "slug": "hostinger-official-coupon",
@@ -1129,5 +1131,101 @@
       "renews at $35"
     ],
     "terms": "Observed promotion on selected monthly WordPress configurations; the source described three discounted paid months after a separate introductory first month. Annual billing has a different offer. Confirm plan, account eligibility, usage limits, extras, currency and the post-promotion price. This is not a lifetime or full-year 50% reduction; not checkout tested."
+  },
+  {
+    "slug": "firecrawl-annual-billing",
+    "toolSlug": "firecrawl",
+    "title": "Firecrawl: up to 20% off with annual billing",
+    "dealType": "offer",
+    "discountPercentage": 20,
+    "discountKind": "up-to",
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.firecrawl.dev/pricing",
+    "destinationUrl": "https://www.firecrawl.dev/pricing",
+    "evidence": [
+      "16.7%",
+      "20%",
+      "credits"
+    ],
+    "terms": "Firecrawl's pricing lists 16.7% off annual billing on Hobby, Standard and Growth and 20% off on Scale. Credits reset monthly except Scale, which carries them one month. The Free plan includes 1,000 credits a month. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "deadline-funnel-yearly-billing",
+    "toolSlug": "deadline-funnel",
+    "title": "Deadline Funnel: 20% off with yearly billing",
+    "dealType": "offer",
+    "discountPercentage": 20,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.deadlinefunnel.com/pricing",
+    "destinationUrl": "https://www.deadlinefunnel.com/pricing",
+    "evidence": [
+      "Save 20%",
+      "14 days"
+    ],
+    "terms": "Deadline Funnel's pricing shows 20% off every plan when you pay yearly, a 14-day free trial and a 30-day money-back guarantee. Leads are counted per campaign entered. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "scribe-mail-nonprofit-education",
+    "toolSlug": "scribe-mail",
+    "title": "Scribe Mail: 30% lifetime discount for nonprofits, education and open source",
+    "dealType": "offer",
+    "discountPercentage": 30,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.scribe-mail.com/pricing",
+    "destinationUrl": "https://www.scribe-mail.com/pricing",
+    "evidence": [
+      "30% lifetime discount",
+      "Non-profit"
+    ],
+    "terms": "Scribe Mail offers a 30% lifetime discount to nonprofit organizations, public education institutions and open-source projects. Organizations with a .org domain receive it automatically at checkout; others request a code via chat. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "tradingview-annual-billing",
+    "toolSlug": "tradingview",
+    "title": "TradingView: save up to 17% with annual billing",
+    "dealType": "offer",
+    "discountPercentage": 17,
+    "discountKind": "up-to",
+    "sourceKind": "vendor",
+    "sourceUrl": "https://www.tradingview.com/pricing/",
+    "destinationUrl": "https://www.tradingview.com/pricing/",
+    "evidence": [
+      "Save up to 17%",
+      "billed annually"
+    ],
+    "terms": "TradingView's pricing page advertises savings of up to 17% on annual plans compared with monthly billing. Prices are shown in local currency; annual plans are refundable only within 14 calendar days of payment. Real-time exchange data is sold separately. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "streamyard-yearly-individual",
+    "toolSlug": "streamyard",
+    "title": "StreamYard: 22% off yearly billing on individual plans",
+    "dealType": "offer",
+    "discountPercentage": 22,
+    "sourceKind": "vendor",
+    "sourceUrl": "https://streamyard.com/pricing",
+    "destinationUrl": "https://streamyard.com/pricing",
+    "evidence": [
+      "22% Off",
+      "For individuals only"
+    ],
+    "terms": "StreamYard's pricing shows 22% off yearly billing for its individual Essential, Core and Advanced plans, each with a 7-day free trial. Individual plans are for personal use; organizations use Business plans. Source reviewed; checkout has not been tested."
+  },
+  {
+    "slug": "snov-io-blackfriday-code",
+    "toolSlug": "snov-io",
+    "title": "Snov.io coupon code BLACKFRIDAY: 50% off annual plans",
+    "dealType": "coupon",
+    "discountPercentage": 50,
+    "code": "BLACKFRIDAY",
+    "sourceKind": "vendor",
+    "sourceUrl": "https://snov.io/pricing",
+    "destinationUrl": "https://snov.io/pricing",
+    "expiryDate": "2026-12-04T23:59:59.000Z",
+    "evidence": [
+      "BLACKFRIDAY",
+      "50% off",
+      "December 4"
+    ],
+    "terms": "Snov.io's pricing page lists the code BLACKFRIDAY for 50% off during its Black Friday sale, which it says ends December 4. Apply it at checkout on an eligible plan and billing period and confirm the discounted total and renewal price. Source reviewed; checkout has not been tested."
   }
 ]

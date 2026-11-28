@@ -1,7 +1,11 @@
 import Link from "next/link";
+import { ArrowUpRight, Tag } from "lucide-react";
+import "./discounts.css";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { BrandDiscountCard } from "@/components/seo/BrandDiscountCard";
-import { getIndexableDiscountBrands } from "@/lib/brand-discounts";
+import { brandHeadlineSaving, getIndexableDiscountBrands } from "@/lib/brand-discounts";
+import { isPartnerBrand } from "@/lib/data/affiliate-links";
+import { BrandAvatar } from "@/components/brand/BrandAvatar";
 import { getAllDeals } from "@/lib/data/deals-data";
 import { collectionSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
@@ -15,30 +19,52 @@ export const revalidate = 3600;
 export default function BrandDiscountsPage() {
   const brands = getIndexableDiscountBrands();
   const deals = getAllDeals();
+  const partners = brands.filter(tool => isPartnerBrand(tool.slug));
   const categories = [...new Set(brands.map(tool => tool.categorySlug))].map(slug => ({
     slug,
     name: brands.find(tool => tool.categorySlug === slug)!.category,
     brands: brands.filter(tool => tool.categorySlug === slug),
   }));
-  return <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 space-y-8">
+  return <div className="market-page discount-directory">
     <JsonLd data={collectionSchema(title, description, "/discounts", brands.map(tool => ({ name: `${tool.name} discounts`, path: `/discounts/${tool.slug}` })))} />
-    <header className="max-w-3xl space-y-4">
-      <p className="text-[#C6FF3D] font-mono text-xs uppercase tracking-widest">Brand savings guides</p>
-      <h1 className="font-display text-4xl sm:text-5xl font-bold text-white">Software discounts by brand</h1>
-      <p className="text-lg text-zinc-400 leading-relaxed">Find your software brand, compare the eligible ways to save, and check the full cost before subscribing.</p>
-      <p className="text-sm text-zinc-400 leading-relaxed">Browse {brands.length} brand guides below. Each explains the available ways to save, links to its sources, and separates paid discounts from free plans and trials.</p>
-      <p className="text-sm text-zinc-400">Looking for another tool? <Link href="/brands" className="text-[#C6FF3D] underline">Search all software brands A–Z</Link>. Comparing a yearly commitment? <Link href="/savings-calculator" className="text-[#C6FF3D] underline">Calculate the full annual cost</Link>.</p>
+    <header className="market-intro">
+      <div className="market-shell market-intro-inner">
+        <div>
+          <p className="market-eyebrow"><Tag size={15} aria-hidden="true" /> Brand savings guides</p>
+          <h1>Software discounts by brand</h1>
+          <p>Explore {brands.length} guides to software discounts. Compare coupon availability, program eligibility, and renewal costs before subscribing.</p>
+        </div>
+        <Link href="/brands" className="market-button market-button-secondary">Search brands A–Z <ArrowUpRight size={16} aria-hidden="true" /></Link>
+      </div>
     </header>
-    <SavingsCollectionLinks heading="Choose a code or an eligibility route" />
-    <nav aria-label="Discount categories" className="flex flex-wrap gap-3">{categories.map(category => <a key={category.slug} href={`#${category.slug}`} className="rounded-full border border-white/15 px-4 py-2 text-sm text-[#C6FF3D] hover:border-[#C6FF3D]/50">{category.name}</a>)}</nav>
-    <nav aria-label="Find a brand discount" className="rounded-2xl border border-white/10 bg-[#09090C] p-5 space-y-3">
-      <h2 className="font-display text-xl font-bold text-white">Find your brand, A–Z</h2>
-      <ul className="flex flex-wrap gap-x-5 gap-y-3 text-sm">{brands.map(tool => <li key={tool.slug}><Link href={`/discounts/${tool.slug}`} className="text-[#C6FF3D] underline underline-offset-4">{tool.name} discounts</Link></li>)}</ul>
-    </nav>
-    {categories.map(category => <section key={category.slug} id={category.slug} className="scroll-mt-28 space-y-4 pt-4">
-      <h2 className="font-display text-2xl font-bold text-white">{category.name} discounts</h2>
-      <div className="grid gap-4 sm:grid-cols-2">{category.brands.map(tool => <BrandDiscountCard key={tool.slug} tool={tool} deals={deals} />)}</div>
-    </section>)}
+    <div className="market-shell discount-workspace">
+      {partners.length > 0 && <section aria-labelledby="partner-discounts-heading" className="discount-partners">
+        <div className="discount-partners-head">
+          <h2 id="partner-discounts-heading">Featured partner discounts</h2>
+          <p>SaaSFolio partners. We may earn a commission when you subscribe through these links; offer terms are reported the same way as every other brand. <Link href="/affiliate-disclosure" className="underline underline-offset-4">Disclosure</Link></p>
+        </div>
+        <ul className="discount-partner-grid">{partners.map(tool => (
+          <li key={tool.slug}><Link prefetch={false} href={`/discounts/${tool.slug}`} className="discount-partner-card">
+            <BrandAvatar name={tool.name} slug={tool.slug} letters={tool.logoLetter} category={tool.categorySlug} />
+            <span><strong>{tool.name} discount</strong><small>{brandHeadlineSaving(tool, deals) || "Partner link and current offers"}</small></span>
+            <ArrowUpRight size={15} aria-hidden="true" />
+          </Link></li>
+        ))}</ul>
+      </section>}
+      <nav aria-label="Discount categories" className="discount-category-nav">
+        {categories.map(category => <a key={category.slug} href={`#${category.slug}`}>{category.name}</a>)}
+      </nav>
+      <nav aria-label="Find a brand discount" className="discount-index">
+        <h2>Find your brand, A–Z</h2>
+        <ul tabIndex={0} aria-label="Browse brand guides">{brands.map(tool => (
+          <li key={tool.slug}><Link prefetch={false} href={`/discounts/${tool.slug}`}>{tool.name} discounts</Link></li>
+        ))}</ul>
+      </nav>
+      {categories.map(category => <section key={category.slug} id={category.slug} className="discount-group">
+        <h2>{category.name} discounts</h2>
+        <div className="discount-grid">{category.brands.map(tool => <BrandDiscountCard key={tool.slug} tool={tool} deals={deals} />)}</div>
+      </section>)}
+      <SavingsCollectionLinks heading="Coupon codes and eligibility programs" />
     <section className="space-y-5 border-t border-white/10 pt-8 max-w-3xl">
       <h2 className="font-display text-2xl font-bold text-white">How to find a SaaS discount that fits your business</h2>
       <ol className="list-decimal space-y-4 pl-5 text-zinc-400 leading-relaxed">
@@ -59,6 +85,7 @@ export default function BrandDiscountsPage() {
         <p className="pt-4 text-sm leading-relaxed text-zinc-400">{faq.answer}</p>
       </details>)}
     </section>
-    <p className="text-sm text-zinc-400">More software: <Link href="/deals" className="text-[#C6FF3D] underline">Browse all offers</Link> · <Link href="/tools" className="text-[#C6FF3D] underline">Explore the software directory</Link></p>
+    <p className="text-sm text-zinc-400">More software savings <Link href="/deals" className="text-[#C6FF3D] underline">Browse all offers</Link> · <Link href="/tools" className="text-[#C6FF3D] underline">Explore the software directory</Link></p>
+    </div>
   </div>;
 }

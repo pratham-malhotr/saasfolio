@@ -3,6 +3,7 @@ import { FIRECRAWL_CALCULATOR_PATH } from "@/lib/firecrawl-cost.mjs";
 import { getAllDeals } from "@/lib/data/deals-data";
 import { getPublishedTools, getPublishedOffers } from "@/lib/published-catalog";
 import { DETAILED_ARTICLES } from "@/lib/data/articles-data";
+import { COMPARISON_GUIDES } from "@/lib/data/comparison-guides";
 import { COMPARISON_SLUGS } from "@/lib/data/comparisons-data";
 import { getCatalogCategories } from "@/lib/categories";
 import { absoluteUrl, isoDate } from "@/lib/seo";
@@ -17,6 +18,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const catalogDeals = getAllDeals();
   const discountBrands = getIndexableDiscountBrands();
+  // Hubs change when the content they list changes, not every time a source is re-checked.
+  const latest = (dates: (string | undefined)[]) => dates.filter((date): date is string => Boolean(date && Number.isFinite(Date.parse(date)) && Date.parse(date) <= Date.now()))
+    .sort((a, b) => Date.parse(b) - Date.parse(a))[0];
+  const offersChangedAt = latest(getPublishedOffers(catalogDeals).map(deal => deal.updatedAt || deal.checkedAt));
+  const discountsChangedAt = latest(discountBrands.map(tool => getBrandDiscountData(tool, catalogDeals).modifiedAt));
+  const articlesChangedAt = latest(DETAILED_ARTICLES.map(article => isoDate(article.updatedAt || article.publishedAt)));
 
   // Core navigation pages
   const coreRoutes: MetadataRoute.Sitemap = [
@@ -28,16 +35,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/savings-calculator"), changeFrequency: "monthly", priority: 0.6 },
     {
       url: absoluteUrl("/"),
+      lastModified: latest([offersChangedAt, discountsChangedAt, articlesChangedAt]),
       changeFrequency: "daily",
       priority: 1.0,
     },
     {
       url: absoluteUrl("/deals"),
+      lastModified: offersChangedAt,
       changeFrequency: "daily",
       priority: 0.9,
     },
     {
       url: absoluteUrl("/discounts"),
+      lastModified: discountsChangedAt,
       changeFrequency: "daily",
       priority: 0.9,
     },
@@ -53,6 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: absoluteUrl("/articles"),
+      lastModified: articlesChangedAt,
       changeFrequency: "daily",
       priority: 0.8,
     },
@@ -102,6 +113,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Comparison Matrix Pages
   const comparisonRoutes: MetadataRoute.Sitemap = COMPARISON_SLUGS.map((slug) => ({
     url: absoluteUrl(`/compare/${slug}`),
+    lastModified: isoDate(COMPARISON_GUIDES[slug]?.reviewedAt),
     changeFrequency: "weekly",
     priority: 0.7,
   }));

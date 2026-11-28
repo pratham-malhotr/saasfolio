@@ -9,7 +9,7 @@ export function ScrollMotion({ children, className }: { children: ReactNode; cla
     const root = ref.current;
     if (!root || !("IntersectionObserver" in window) || !Element.prototype.animate) return;
     const motion = window.matchMedia("(prefers-reduced-motion: no-preference)");
-    const animations = new Set<Animation>();
+    const animations = new Map<Element, Animation>();
     const seen = new WeakSet<Element>();
     const observer = new IntersectionObserver(entries => {
       const compact = window.matchMedia("(max-width: 760px), (pointer: coarse)").matches;
@@ -24,13 +24,14 @@ export function ScrollMotion({ children, className }: { children: ReactNode; cla
           { opacity: 0.7, translate: `0 ${compact ? 8 : 14}px` },
           { opacity: 1, translate: "0 0" },
         ], {
+          id: "scroll-reveal",
           duration: compact ? 360 : 500,
           delay: compact ? 0 : Math.min(index, 4) * 38,
           easing: "cubic-bezier(0.22, 1, 0.36, 1)",
           fill: "backwards",
         });
-        animations.add(animation);
-        animation.onfinish = animation.oncancel = () => animations.delete(animation);
+        animations.set(element, animation);
+        animation.onfinish = animation.oncancel = () => animations.delete(element);
       }
     }, { threshold: 0.12 });
 
@@ -46,11 +47,20 @@ export function ScrollMotion({ children, className }: { children: ReactNode; cla
       }
     }
 
+    function keepTargetStill(event: Event) {
+      if (!(event.target instanceof Element)) return;
+      for (const [element, animation] of animations) {
+        if (element.contains(event.target)) animation.cancel();
+      }
+    }
+
     syncMotion();
+    root.addEventListener("focusin", keepTargetStill);
     motion.addEventListener("change", syncMotion);
     return () => {
       observer.disconnect();
       animations.forEach(animation => animation.cancel());
+      root.removeEventListener("focusin", keepTargetStill);
       motion.removeEventListener("change", syncMotion);
     };
   }, []);

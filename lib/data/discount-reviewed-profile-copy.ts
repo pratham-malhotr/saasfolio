@@ -7,7 +7,7 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
     "name": "Adobe Creative Cloud",
     "website": "https://www.adobe.com",
     "pricingUrl": "https://www.adobe.com/creativecloud/plans.html",
-    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
     "pricingModel": "Free Trial",
     "tagline": "Adobe Creative Cloud offers subscriptions to creative applications for image editing, design, illustration, video and related production workflows.",
     "description": "Adobe Creative Cloud offers subscriptions to creative applications for image editing, design, illustration, video and related production workflows.",
@@ -75,7 +75,7 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
     "name": "Airtable",
     "website": "https://airtable.com",
     "pricingUrl": "https://airtable.com/pricing",
-    "updatedAt": "2026-10-27T00:00:00.000Z",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
     "pricingModel": "Freemium",
     "tagline": "Airtable connects structured data, interfaces and automations for teams building shared operational workflows and internal applications.",
     "description": "Airtable connects structured data, interfaces and automations for teams building shared operational workflows and internal applications.",
@@ -173,6 +173,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Accessibility testing products"
     ]
   },
+  "cal-com": {
+    "name": "Cal.com",
+    "website": "https://cal.com",
+    "pricingUrl": "https://cal.com/pricing",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Cal.com is scheduling software: share a booking link and it checks your connected calendars to prevent double bookings, with reminders, payments and video calls built in.",
+    "description": "Cal.com is scheduling software: share a booking link and it checks your connected calendars to prevent double bookings, with reminders, payments and video calls built in.",
+    "longDescription": "Cal.com turns your calendar availability into booking links that clients and colleagues can use without back-and-forth email. Individuals get unlimited event types and calendars for free; paid plans add team scheduling, routing and administration. Evaluate it with the calendars, video tools and payment provider you already use.",
+    "keyFeatures": [
+      "Booking links and event types",
+      "Calendar sync and availability",
+      "Round-robin and collective scheduling",
+      "Routing forms",
+      "Payments and reminders"
+    ]
+  },
   "checkly": {
     "name": "Checkly",
     "website": "https://www.checklyhq.com",
@@ -239,6 +256,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Deep reviews",
       "Study Snapshots",
       "Team subscriptions"
+    ]
+  },
+  "deadline-funnel": {
+    "name": "Deadline Funnel",
+    "website": "https://www.deadlinefunnel.com",
+    "pricingUrl": "https://www.deadlinefunnel.com/pricing",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "pricingModel": "Free Trial",
+    "tagline": "Deadline Funnel gives each lead a personal countdown deadline across email, landing and checkout pages for evergreen, launch and flash-sale campaigns.",
+    "description": "Deadline Funnel gives each lead a personal countdown deadline across email, landing and checkout pages for evergreen, launch and flash-sale campaigns.",
+    "longDescription": "Deadline Funnel tracks each lead individually, so an evergreen offer can expire a set time after that person joins, with the same deadline shown in emails, on landing pages and at checkout. It integrates with common email and checkout platforms. Evaluate it with your own funnel and email provider during the free trial.",
+    "keyFeatures": [
+      "Evergreen countdown timers",
+      "Email countdown timers",
+      "Landing and checkout page deadlines",
+      "Campaign automation",
+      "Lead tracking"
     ]
   },
   "descript": {
@@ -358,6 +392,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Customer feedback organization"
     ]
   },
+  "firecrawl": {
+    "name": "Firecrawl",
+    "website": "https://www.firecrawl.dev",
+    "pricingUrl": "https://www.firecrawl.dev/pricing",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Firecrawl is a hosted API that turns websites into clean, LLM-ready data through scraping, crawling, search and browser automation.",
+    "description": "Firecrawl is a hosted API that turns websites into clean, LLM-ready data through scraping, crawling, search and browser automation.",
+    "longDescription": "Firecrawl handles the work of fetching web pages, rendering them and converting them into clean Markdown or structured JSON for AI applications and data pipelines. Evaluate it on the sites you need, check how it handles pages that block bots or require JavaScript, and measure credits per page before choosing a plan.",
+    "keyFeatures": [
+      "Scrape and crawl API",
+      "Markdown and JSON extraction",
+      "Web search with scraping",
+      "Site mapping",
+      "Browser interaction"
+    ]
+  },
   "fireflies-ai": {
     "name": "Fireflies.ai",
     "website": "https://fireflies.ai",
@@ -442,6 +493,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Workflow actions"
     ]
   },
+  "github": {
+    "name": "GitHub",
+    "website": "https://github.com",
+    "pricingUrl": "https://github.com/pricing",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "GitHub hosts code repositories with pull requests, Actions CI/CD, Codespaces, packages and GitHub Copilot AI assistance for individuals and teams.",
+    "description": "GitHub hosts code repositories with pull requests, Actions CI/CD, Codespaces, packages and GitHub Copilot AI assistance for individuals and teams.",
+    "longDescription": "GitHub is where most open-source and commercial software teams store code, review changes and run automated builds. Plans add private collaboration features, Actions minutes, Codespaces hours and storage. Students and teachers can get paid features free through GitHub Education.",
+    "keyFeatures": [
+      "Git repositories and pull requests",
+      "GitHub Actions CI/CD",
+      "Codespaces cloud dev environments",
+      "GitHub Copilot AI assistant",
+      "Packages and Pages"
+    ]
+  },
   "google-workspace": {
     "name": "Google Workspace",
     "website": "https://workspace.google.com",
@@ -491,6 +559,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Failure notifications",
       "Check history",
       "Hosted and self-hosted choices"
+    ]
+  },
+  "hubspot": {
+    "name": "HubSpot",
+    "website": "https://www.hubspot.com",
+    "pricingUrl": "https://www.hubspot.com/pricing",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "HubSpot is a CRM platform with marketing, sales, customer service, content and operations hubs, AI agents and free tools.",
+    "description": "HubSpot is a CRM platform with marketing, sales, customer service, content and operations hubs, AI agents and free tools.",
+    "longDescription": "HubSpot connects a shared CRM with hubs for marketing, sales, service, content and operations, so teams work from the same customer records. Paid editions add automation, reporting and seats, and the price rises with contacts and editions. Eligible startups can get large first-year discounts through HubSpot for Startups.",
+    "keyFeatures": [
+      "CRM and contact management",
+      "Marketing automation",
+      "Sales pipeline and sequences",
+      "Customer service help desk",
+      "AI agents and reporting"
     ]
   },
   "huly": {
@@ -610,6 +695,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Configurable workflows",
       "Team reporting",
       "Marketplace integrations"
+    ]
+  },
+  "julius-ai": {
+    "name": "Julius AI",
+    "website": "https://julius.ai",
+    "pricingUrl": "https://julius.ai/pricing",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Julius AI analyzes spreadsheets, CSV files and databases through chat, turning questions into charts, statistics and shareable reports.",
+    "description": "Julius AI analyzes spreadsheets, CSV files and databases through chat, turning questions into charts, statistics and shareable reports.",
+    "longDescription": "Julius AI lets you ask questions of your data in plain language. Upload a spreadsheet or connect a data source, ask for a chart, a statistical test or a summary, and Julius writes and runs the analysis for you. Evaluate it on a dataset you already understand, so you can check its output before relying on it for decisions.",
+    "keyFeatures": [
+      "AI data analysis",
+      "Charts and visualizations",
+      "Spreadsheet and CSV analysis",
+      "Database connections",
+      "Reports and notebooks"
     ]
   },
   "linear": {
@@ -983,6 +1085,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Research writing tools"
     ]
   },
+  "scribe-mail": {
+    "name": "Scribe Mail",
+    "website": "https://www.scribe-mail.com",
+    "pricingUrl": "https://www.scribe-mail.com/pricing",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "Scribe Mail manages company email signatures centrally, with signature banner campaigns, click tracking and an API for deploying signatures to every employee.",
+    "description": "Scribe Mail manages company email signatures centrally, with signature banner campaigns, click tracking and an API for deploying signatures to every employee.",
+    "longDescription": "Scribe Mail lets IT connect the company email provider once while marketing designs consistent signatures and deploys them to every employee. Signature banners can promote campaigns, with click tracking to measure results. Scribe Mail is a separate product from Scribe (scribehow.com), the process-documentation tool.",
+    "keyFeatures": [
+      "Email signature management",
+      "Signature banner campaigns",
+      "Click and revenue tracking",
+      "Google Workspace and Microsoft 365 sync",
+      "API and webhooks"
+    ]
+  },
   "seedprod": {
     "name": "SeedProd",
     "website": "https://www.seedprod.com",
@@ -1217,6 +1336,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "AI notes and summaries",
       "Searchable meeting conversations",
       "CRM and collaboration workflows"
+    ]
+  },
+  "tradingview": {
+    "name": "TradingView",
+    "website": "https://www.tradingview.com",
+    "pricingUrl": "https://www.tradingview.com/pricing/",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "TradingView is a charting and market-analysis platform with screeners, alerts, broker trading and global market data on web, desktop and mobile.",
+    "description": "TradingView is a charting and market-analysis platform with screeners, alerts, broker trading and global market data on web, desktop and mobile.",
+    "longDescription": "TradingView combines interactive charts, indicators, screeners and alerts across stocks, crypto, forex and other markets, with a large community sharing ideas and scripts. The free Basic plan covers casual charting; paid plans raise the number of charts, indicators, alerts and historical data you can use. Real-time exchange data is a separate add-on.",
+    "keyFeatures": [
+      "Advanced charting",
+      "Technical indicators",
+      "Price and technical alerts",
+      "Stock and crypto screeners",
+      "Broker trading integration"
     ]
   },
   "trello": {

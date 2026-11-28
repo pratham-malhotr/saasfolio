@@ -1,6 +1,3 @@
-"use client";
-
-import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 interface FaqAccordionProps {
@@ -10,46 +7,30 @@ interface FaqAccordionProps {
   }[];
 }
 
+// Native disclosure keeps every answer in the server HTML, so search engines,
+// answer engines and readers without JavaScript all receive the full text.
 export function FaqAccordion({ faqs }: FaqAccordionProps) {
-  const [openIdx, setOpenIdx] = useState<number | null>(0); // First open by default
-
-  const toggle = (idx: number) => {
-    setOpenIdx(openIdx === idx ? null : idx);
-  };
-
   return (
     <div className="my-8 space-y-3">
-      {faqs.map((faq, idx) => {
-        const isOpen = openIdx === idx;
-        return (
-          <div
-            key={idx}
-            className="rounded-2xl border border-white/10 bg-[#09090C] overflow-hidden transition-colors hover:border-white/20"
-          >
-            <button
-              onClick={() => toggle(idx)}
-              className="w-full py-4 px-6 text-left flex items-center justify-between gap-4 transition-colors"
-            >
-              <span className="font-display font-bold text-sm sm:text-base text-white">
-                {faq.question}
-              </span>
-              <span
-                className={`p-1.5 rounded-lg bg-white/5 text-zinc-400 transition-transform duration-200 ${
-                  isOpen ? "rotate-180 text-[#C6FF3D]" : ""
-                }`}
-              >
-                <ChevronDown className="w-4 h-4" />
-              </span>
-            </button>
-
-            {isOpen && (
-              <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-zinc-400 leading-relaxed border-t border-white/5">
-                {faq.answer}
-              </div>
-            )}
-          </div>
-        );
-      })}
+      {faqs.map((faq, idx) => (
+        <details
+          key={faq.question}
+          open={idx === 0}
+          className="group rounded-2xl border border-white/10 bg-[#0b0d0b] overflow-hidden transition-colors hover:border-white/20 open:border-[#C6FF3D]/30"
+        >
+          <summary className="flex min-h-11 w-full cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left [&::-webkit-details-marker]:hidden">
+            <h3 className="font-display font-bold text-sm sm:text-base text-white group-open:text-[#C6FF3D]">
+              {faq.question}
+            </h3>
+            <span className="rounded-lg bg-white/5 p-1.5 text-zinc-400 transition-transform duration-200 group-open:rotate-180 group-open:text-[#C6FF3D]">
+              <ChevronDown className="h-4 w-4" aria-hidden="true" />
+            </span>
+          </summary>
+          <p className="border-t border-white/5 px-6 pb-5 pt-3 text-sm leading-relaxed text-zinc-300">
+            {faq.answer}
+          </p>
+        </details>
+      ))}
     </div>
   );
 }

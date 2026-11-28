@@ -9,6 +9,7 @@ import { loadCatalogModule } from "./lib/load-catalog.mjs";
 // email, account, inquiry or newsletter record is created by this browser test.
 const origin = (process.argv[2] || "http://127.0.0.1:3227").replace(/\/$/, "");
 const reportPath = process.argv.find(value => value.startsWith("--report="))?.slice(9) || `docs/reports/browser-site-pages-${new Date().toISOString().slice(0, 10)}.json`;
+const typeLabels = { lifetime: "Lifetime deal", free_trial: "Free trial" };
 const { SUPPORT_EMAIL } = loadCatalogModule("lib/site-contact.ts");
 const deployedServices = (await (await fetch(`${origin}/api/health`)).json()).checks;
 const profile = await mkdtemp(join(tmpdir(), "saasfolio-site-pages-"));
@@ -84,6 +85,10 @@ try {
   const cpuRate = Number(process.env.BROWSER_CPU_RATE || 1);
   assert.ok(Number.isFinite(cpuRate) && cpuRate >= 1 && cpuRate <= 8, "BROWSER_CPU_RATE must be between 1 and 8");
   await page("Emulation.setCPUThrottlingRate", { rate: cpuRate });
+  // Start as a visitor who already declined analytics. The consent notice
+  // appears after hydration and can cover a target between the hit test and
+  // the click; browser-privacy-smoke.mjs covers the notice itself.
+  await page("Page.addScriptToEvaluateOnNewDocument", { source: "try{localStorage.setItem('saasfolio.analytics-consent.v1',JSON.stringify({version:1,allowed:false,at:Date.now()}))}catch{}" });
   await page("Page.addScriptToEvaluateOnNewDocument", { source: "window.auditClicks=[]; for(const type of ['mousedown','mouseup','click']) document.addEventListener(type,event=>auditClicks.push({type,href:event.target.closest('a')?.getAttribute('href'),y:event.clientY,scrollY}),true);" });
   await page("Fetch.enable", { patterns: [{ urlPattern: `${origin}/api/*` }, { urlPattern: "https://*" }] });
   await page("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
@@ -147,10 +152,10 @@ try {
       assert.ok(await evaluate("!document.querySelector('header a[href=\"/login\"]') && !!document.querySelector('header a[href=\"/contact\"]')"), "Unavailable accounts are replaced by a public contact link");
       if (viewport.mobile) {
         await click('button[aria-label="Toggle menu"]');
-        await until(() => evaluate("document.body.textContent.includes('DISCOVER SOFTWARE & DISCOUNTS')"), "Mobile navigation opens");
+        await until(() => evaluate("!!document.querySelector('#mobile-navigation') && document.querySelector('button[aria-controls=mobile-navigation]')?.getAttribute('aria-expanded') === 'true'"), "Mobile navigation opens");
         assert.ok(await evaluate("!document.querySelector('a[href=\"/login\"]') && !document.querySelector('a[href=\"/signup\"]') && !document.querySelector('a[href=\"/admin\"]')"), "The public mobile menu does not advertise unavailable accounts or staff access");
         await click('button[aria-label="Toggle menu"]');
-        await until(() => evaluate("!document.body.textContent.includes('DISCOVER SOFTWARE & DISCOUNTS')"), "Mobile navigation closes");
+        await until(() => evaluate("!document.querySelector('#mobile-navigation') && document.querySelector('button[aria-label=\"Toggle menu\"]')?.getAttribute('aria-expanded') === 'false'"), "Mobile navigation closes");
       }
     }
     const links = await evaluate("[...new Set([...document.querySelectorAll('footer a[href]')].map(link=>link.getAttribute('href')).filter(href=>href.startsWith('/')))]");
@@ -171,13 +176,22 @@ try {
       const expectedNav = navDestinations.find(path => destination.pathname === path || destination.pathname.startsWith(`${path}/`));
       if (expectedNav) await until(() => evaluate(`document.querySelector('header nav a[aria-current="page"]')?.getAttribute('href') === ${JSON.stringify(expectedNav)}`), `${href}: active navigation updates after hydration`);
       if (destination.hash) assert.ok(await evaluate(`(() => {const target=document.getElementById(${JSON.stringify(decodeURIComponent(destination.hash.slice(1)))});return !!target&&target.getBoundingClientRect().top>=0&&target.getBoundingClientRect().top<innerHeight;})()`), `${href}: anchor scrolls into view`);
-      if (destination.searchParams.has("type")) assert.ok(await evaluate(`document.querySelector('main').textContent.includes(${JSON.stringify(`Type: ${destination.searchParams.get("type")}`)})`), `${href}: requested filter is active`);
+      const typeLabel = typeLabels[destination.searchParams.get("type")];
+      if (typeLabel) assert.ok(await evaluate(`!!document.querySelector('[aria-label="Remove ${typeLabel} filter"]')`), `${href}: requested filter is active`);
       results.push({ width: viewport.width, href, heading });
     }
     // A second footer click on /deals must replace the existing local filter.
     await navigate("/deals?type=lifetime");
     await click('footer a[href="/deals?type=free_trial"]');
-    await until(() => evaluate("location.search==='?type=free_trial' && document.querySelector('main').textContent.includes('Type: free_trial') && !document.querySelector('main').textContent.includes('Type: lifetime')"), "Same-page footer filter navigation");
+    await until(() => evaluate(`location.search === '?type=free_trial' && !!document.querySelector('[aria-label="Remove Free trial filter"]') && !document.querySelector('[aria-label="Remove Lifetime deal filter"]')`), "Same-page footer filter navigation");
+
+    await navigate("/");
+    await enter("#home-brand-search", "unmatched-software-query");
+    await evaluate("document.querySelector('#home-brand-search').form.requestSubmit()");
+    await until(() => evaluate("location.pathname === '/deals' && location.search === '?q=unmatched-software-query' && !!document.querySelector('main')?.textContent.includes('No matching offers')"), "Homepage search opens filtered deal results");
+    assert.equal(await evaluate("document.querySelector('input[aria-label=\"Search software offers\"]').value"), "unmatched-software-query");
+    await click('[aria-label="Clear search"]');
+    await until(() => evaluate("document.querySelector('input[aria-label=\"Search software offers\"]').value === '' && !document.querySelector('main').textContent.includes('No matching offers')"), "Clearing search restores the deal catalog");
 
     await navigate("/contact");
     await until(() => evaluate("document.querySelector('#contact-form fieldset')?.disabled === false"), "Available contact form");
@@ -202,7 +216,7 @@ try {
 
     const beforeDisclosure = mockedWrites.length;
     await navigate("/advertise", "/affiliate-disclosure");
-    assert.ok(await evaluate("document.querySelector('main').textContent.includes('does not serve display ads') && !document.querySelector('main form')"), "Retired advertising route explains affiliate funding without an ad sales form");
+    assert.ok(await evaluate("document.querySelector('main').textContent.includes('offers paid placement in the brand directory') && !document.querySelector('main form')"), "Retired advertising route shows the current funding disclosure");
     assert.equal(mockedWrites.length, beforeDisclosure, "Reading the disclosure does not send a partnership inquiry");
 
     await navigate("/savings-calculator");

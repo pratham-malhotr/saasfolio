@@ -1,3 +1,5 @@
+import { COMPARISON_RESEARCH_DATE, RESEARCH_COMPARISONS } from "./comparison-research";
+
 export interface ComparisonGuide {
   reviewedAt: string;
   summary: string;
@@ -6,11 +8,17 @@ export interface ComparisonGuide {
   sections: { heading: string; text: string }[];
   exercise: string[];
   sources: { label: string; url: string }[];
+  search?: { topic: string; description: string };
+  questions?: { question: string; answer: string }[];
+  relatedArticles?: string[];
 }
 
 // Original editorial analysis of the linked documentation, not benchmark results.
 // A pair enters the published comparison collection only with a complete guide.
 export const COMPARISON_GUIDES: Record<string, ComparisonGuide> = {
+  ...Object.fromEntries(Object.entries(RESEARCH_COMPARISONS).map(([slug, guide]) => [
+    slug, { ...guide, reviewedAt: COMPARISON_RESEARCH_DATE },
+  ])),
   "coolify-vs-vercel": {
     reviewedAt: "2026-11-05",
     summary: "The important difference is who operates the application infrastructure. Compare the work you will own with self-hosted Coolify against the deployment services and platform constraints of Vercel.",

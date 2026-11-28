@@ -7,7 +7,7 @@ import snapshot from "../lib/data/offer-snapshot.json" with { type: "json" };
 const origin = (process.argv[2] || "http://127.0.0.1:3210").replace(/\/$/, "");
 const { TOOLS_DATA, getToolBySlug } = loadCatalogModule("lib/data/tools-data.ts");
 const { getAllDeals, getDealBySlug, getHistoricOfferToolSlug } = loadCatalogModule("lib/data/deals-data.ts");
-const { getCustomAffiliateUrl } = loadCatalogModule("lib/data/affiliate-links.ts");
+const { affiliateUrlFor } = loadCatalogModule("lib/data/affiliate-links.ts");
 const { publicHttpsUrl } = loadCatalogModule("lib/offer-links.ts");
 const ids = [...new Set([...TOOLS_DATA.map(tool => tool.slug), ...getAllDeals().flatMap(deal => [deal.slug, deal.id]), ...Object.keys(aliases), ...snapshot.offers.flatMap(offer => [offer.slug, `deal-${offer.slug}`]), "unknown-brand", "https://evil.example", "__proto__"])];
 const counts = { redirects: 0, unavailable: 0, unknown: 0 };
@@ -27,9 +27,11 @@ await Promise.all(Array.from({ length: 6 }, async () => {
       counts.unavailable++;
     } else {
       const exact = deal && [deal.slug, deal.id].includes(id);
-      const destination = exact ? publicHttpsUrl(deal.destinationUrl) || publicHttpsUrl(deal.affiliateUrl)
-        : tool ? publicHttpsUrl(getCustomAffiliateUrl(tool.slug)) || publicHttpsUrl(tool.pricingUrl) || publicHttpsUrl(tool.website)
+      const direct = exact ? publicHttpsUrl(deal.destinationUrl) || publicHttpsUrl(deal.affiliateUrl)
         : publicHttpsUrl(provider?.pricingUrl) || publicHttpsUrl(provider?.website);
+      // Partner brands: the same destination with the partner's attribution
+      // (or the hosted partner link for link-based programs).
+      const destination = publicHttpsUrl(affiliateUrlFor(provider?.slug, direct)) || direct;
       assert.equal(response.status, destination ? 302 : 404, id);
       assert.equal(response.headers.get("location"), destination || null, `${id}: preserve the intended destination`);
       counts[destination ? "redirects" : "unknown"]++;

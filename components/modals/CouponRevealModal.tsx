@@ -12,9 +12,9 @@ import { OfferEvidenceDetails } from "@/components/deals/OfferEvidenceDetails";
 export function CouponRevealModal({ deal, isOpen, onClose }: { deal: SaaSDeal | null; isOpen: boolean; onClose: () => void }) {
   const dialogRef = useDialog(isOpen && Boolean(deal), onClose);
   if (!isOpen || !deal) return null;
-  return <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md">
-    <div className="absolute inset-0" onClick={onClose} aria-hidden="true" />
-    <div ref={dialogRef} role="dialog" aria-modal="true" aria-label={`${deal.toolName} offer details`} tabIndex={-1} className="relative z-10 max-h-[90dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/20 bg-[#0C0C0E] p-6 shadow-2xl sm:p-8 space-y-5">
+  return <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4">
+    <div className="market-dialog-scrim absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} aria-hidden="true" />
+    <div ref={dialogRef} role="dialog" aria-modal="true" aria-label={`${deal.toolName} offer details`} tabIndex={-1} className="market-dialog-panel relative z-10 max-h-[90dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/20 bg-[#0C0C0E] p-6 shadow-2xl sm:p-8 space-y-5">
       <button type="button" onClick={onClose} aria-label="Close offer details" className="absolute right-4 top-4 rounded-lg bg-white/5 p-2 text-zinc-300 hover:text-white"><X className="h-5 w-5" /></button>
       <div className="pr-9 space-y-3">
         <span className="inline-block rounded-lg bg-[#C6FF3D]/10 px-3 py-1 font-mono text-xs text-[#C6FF3D]">{offerLabel(deal)}</span>

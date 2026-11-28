@@ -1,0 +1,63 @@
+.guides-stats { display: flex; gap: .6rem; }
+.guides-stats > div { min-width: 5.5rem; padding: .7rem .9rem; border: 1px solid var(--market-line); border-radius: .75rem; background: var(--market-surface); }
+.guides-stats dt { color: var(--market-muted); font-size: .72rem; }
+.guides-stats dd { margin-top: .15rem; color: var(--market-ink); font: 700 1.5rem/1 var(--font-display), sans-serif; letter-spacing: -.04em; }
+
+.guides-body { padding-block: clamp(1.5rem, 3vw, 2.25rem) clamp(3rem, 6vw, 5rem); }
+
+.guides-cover { position: relative; display: grid; overflow: hidden; aspect-ratio: 16 / 9; place-items: center; background: #10160c; color: var(--market-lime); }
+.guides-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .8rem; color: var(--market-muted); font-size: .76rem; }
+.guides-meta > span { display: inline-flex; align-items: center; gap: .3rem; }
+.guides-meta > span:first-child:not(.market-badge), .guides-meta > .market-badge + span { color: var(--market-lime); font-weight: 600; }
+.guides-read { display: inline-flex; align-items: center; gap: .4rem; margin-top: auto; padding-top: .9rem; color: var(--market-lime); font-size: .84rem; font-weight: 650; }
+
+/* Featured + latest */
+.guides-top { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.guides-featured { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--market-lime-line); border-radius: 1rem; background: var(--market-surface); box-shadow: 0 30px 70px -45px #c6ff3d; transition: border-color 180ms; }
+.guides-featured:hover { border-color: var(--market-lime); }
+.guides-featured .guides-cover { aspect-ratio: 2.2 / 1; }
+.guides-featured-copy { display: flex; flex: 1; flex-direction: column; gap: .7rem; padding: 1.3rem 1.4rem 1.4rem; }
+.guides-featured-copy h3 { font: 700 clamp(1.4rem, 2.6vw, 1.9rem)/1.15 var(--font-display), sans-serif; letter-spacing: -.035em; }
+.guides-featured-copy > p:not(.guides-meta) { color: var(--market-ink-soft); font-size: .92rem; line-height: 1.6; }
+.guides-latest { display: flex; flex-direction: column; gap: .7rem; padding: 1.1rem; border: 1px solid var(--market-line); border-radius: 1rem; background: var(--market-surface); }
+.guides-latest ul { display: grid; gap: .3rem; }
+.guides-latest a { display: flex; gap: .8rem; align-items: center; padding: .55rem; border-radius: .7rem; transition: background-color 180ms; }
+.guides-latest a:hover { background: #ffffff08; }
+.guides-latest a:hover strong { color: var(--market-lime); }
+.guides-latest-cover { flex: none; width: 6.5rem; overflow: hidden; border-radius: .55rem; }
+.guides-latest small { display: block; color: var(--market-muted); font-size: .72rem; }
+.guides-latest strong { display: block; margin-top: .2rem; font-size: .9rem; font-weight: 650; line-height: 1.35; transition: color 160ms; }
+
+/* Toolbar */
+.guides-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem; padding: .5rem; margin-bottom: 1.2rem; border: 1px solid var(--market-line); border-radius: .85rem; background: var(--market-surface); }
+.guides-tabs { display: flex; flex-wrap: wrap; gap: .3rem; }
+.guides-tabs button { display: inline-flex; min-height: 40px; align-items: center; gap: .45rem; padding: 0 .85rem; border-radius: .55rem; color: var(--market-muted); font-size: .82rem; font-weight: 600; cursor: pointer; transition: background-color 170ms, color 170ms; }
+.guides-tabs button small { padding: .05rem .4rem; border-radius: 999px; background: var(--market-raised); color: var(--market-faint); font-size: .7rem; font-variant-numeric: tabular-nums; }
+.guides-tabs button:hover { background: #ffffff08; color: var(--market-ink); }
+.guides-tabs button[aria-pressed="true"] { background: var(--market-lime); color: var(--market-lime-ink); }
+.guides-tabs button[aria-pressed="true"] small { background: #0b110226; color: var(--market-lime-ink); }
+.guides-search { display: flex; min-width: min(100%, 18rem); min-height: 42px; flex: 0 1 18rem; align-items: center; gap: .5rem; padding: 0 .4rem 0 .75rem; border: 1px solid var(--market-line-strong); border-radius: .6rem; background: var(--market-bg-deep); color: var(--market-muted); }
+.guides-search:focus-within { border-color: var(--market-lime-line); box-shadow: 0 0 0 4px #c6ff3d14; }
+.guides-search input { width: 0; min-height: 40px; flex: 1; color: var(--market-ink); font-size: .86rem; }
+.guides-search input:focus-visible { outline: none; }
+.guides-search input::-webkit-search-cancel-button { display: none; }
+.guides-search button { display: grid; width: 36px; min-height: 36px; place-items: center; color: var(--market-muted); cursor: pointer; }
+
+/* Grid */
+.guides-list-heading { margin-bottom: .9rem; font: 700 1.3rem/1.2 var(--font-display), sans-serif; letter-spacing: -.03em; }
+.guides-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.guides-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--market-line); border-radius: var(--market-radius); background: var(--market-surface); box-shadow: var(--market-shadow); }
+.guides-card:hover { border-color: var(--market-lime-line); }
+.guides-card-copy { display: flex; flex: 1; flex-direction: column; gap: .5rem; padding: 1rem 1.1rem 1.15rem; }
+.guides-card h3 { font: 650 1.08rem/1.32 var(--font-display), sans-serif; letter-spacing: -.02em; transition: color 160ms; }
+.guides-card:hover h3 { color: var(--market-lime); }
+.guides-card-copy > p:not(.guides-meta) { display: -webkit-box; overflow: hidden; color: var(--market-muted); font-size: .84rem; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+.guides-empty { display: grid; justify-items: center; gap: .6rem; padding: 3rem 1.5rem; border: 1px dashed var(--market-line-strong); border-radius: 1rem; background: var(--market-surface); text-align: center; }
+.guides-empty > svg { color: var(--market-lime); }
+.guides-empty h3 { font: 700 1.25rem/1.2 var(--font-display), sans-serif; }
+.guides-empty p { color: var(--market-muted); font-size: .88rem; }
+.guides-more { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+
+@media (width < 64rem) { .guides-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (width < 52rem) { .guides-top { grid-template-columns: minmax(0, 1fr); } .market-intro-inner .guides-stats { width: 100%; } .guides-stats > div { flex: 1; } }
+@media (width < 38rem) { .guides-grid { grid-template-columns: minmax(0, 1fr); } .guides-search { flex-basis: 100%; } }

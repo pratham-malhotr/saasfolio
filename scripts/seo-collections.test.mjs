@@ -14,7 +14,10 @@ const { publicHttpsUrl } = loadCatalogModule("lib/offer-links.ts");
 const { getIndexableDiscountBrands } = loadCatalogModule("lib/brand-discounts.ts");
 const { getCatalogCategories } = loadCatalogModule("lib/categories.ts");
 const { DETAILED_ARTICLES } = loadCatalogModule("lib/data/articles-data.ts");
-const { isCuratedComparison } = loadCatalogModule("lib/data/comparisons-data.ts");
+const { getPublishedTools } = loadCatalogModule("lib/published-catalog.ts");
+const { RESEARCH_COMPARISONS } = loadCatalogModule("lib/data/comparison-research.ts");
+const { SOFTWARE_REVIEWS } = loadCatalogModule("lib/data/software-reviews.ts");
+const { COMPARISON_SLUGS, comparisonCanonicalSlug, getToolComparisons, isCuratedComparison } = loadCatalogModule("lib/data/comparisons-data.ts");
 const now = Date.parse("2026-10-28T12:00:00Z");
 const day = 86400000;
 const offer = overrides => ({ slug: "notion-startup-program", toolSlug: "notion", dealType: "free_trial", sourceKind: "vendor", checkedAt: new Date(now - day).toISOString(), sourceUrl: "https://www.notion.com/startups", destinationUrl: "https://www.notion.com/startups", expiryDate: "", ...overrides });
@@ -54,7 +57,9 @@ test("program directory entries resolve to available brand guidance without requ
 
 test("category and article links form complete, distinct buying paths", () => {
   const articleSlugs = new Set(DETAILED_ARTICLES.map(article => article.slug));
-  const knownPaths = new Set(["/", "/deals", "/discounts", "/contact", "/savings-calculator", "/hosting", "/hosting-cost-calculator", ...SAVINGS_COLLECTIONS.map(collection => `/${collection.slug}`), ...getCatalogCategories().map(category => `/deals/category/${category.slug}`), ...DETAILED_ARTICLES.map(article => `/articles/${article.slug}`), ...getIndexableDiscountBrands().map(tool => `/discounts/${tool.slug}`)]);
+  const knownPaths = new Set(["/", "/deals",
+    ...COMPARISON_SLUGS.map(slug => `/compare/${slug}`),
+    ...getPublishedTools().map(tool => `/tools/${tool.slug}`), "/discounts", "/contact", "/savings-calculator", "/hosting", "/hosting-cost-calculator", ...SAVINGS_COLLECTIONS.map(collection => `/${collection.slug}`), ...getCatalogCategories().map(category => `/deals/category/${category.slug}`), ...DETAILED_ARTICLES.map(article => `/articles/${article.slug}`), ...getIndexableDiscountBrands().map(tool => `/discounts/${tool.slug}`)]);
   assert.deepEqual(Object.keys(CATEGORY_SEARCH_CONTENT).sort(), getCatalogCategories().map(category => category.slug).sort());
   for (const content of [...Object.values(CATEGORY_SEARCH_CONTENT), ...SAVINGS_COLLECTIONS]) for (const slug of content.articleSlugs) assert.ok(articleSlugs.has(slug), `Missing article: ${slug}`);
   for (const article of DETAILED_ARTICLES) for (const section of article.sections) for (const link of section.links || []) {
@@ -90,4 +95,31 @@ test("curated comparison indexing includes reverse aliases and excludes arbitrar
   assert.equal(isCuratedComparison("vercel-vs-coolify"), true);
   assert.equal(isCuratedComparison("notion-vs-linear"), false);
   assert.equal(isCuratedComparison("notion-vs-notion"), false);
+});
+
+
+test("new research has canonical comparison URLs, published products and reciprocal discovery", () => {
+  const tools = new Set(getPublishedTools().map(tool => tool.slug));
+  const articles = new Map(DETAILED_ARTICLES.map(article => [article.slug, article]));
+
+  for (const [slug, guide] of Object.entries(RESEARCH_COMPARISONS)) {
+    const pair = slug.split("-vs-");
+    assert.ok(isCuratedComparison(slug), slug);
+    assert.equal(comparisonCanonicalSlug(pair.toReversed().join("-vs-")), slug);
+    assert.ok(guide.questions.length >= 2);
+    for (const tool of pair) {
+      assert.ok(tools.has(tool), tool);
+      assert.ok(getToolComparisons(tool).some(comparison => comparison.slug === slug));
+    }
+    for (const related of guide.relatedArticles) assert.ok(articles.has(related), related);
+  }
+
+  for (const review of SOFTWARE_REVIEWS) {
+    assert.ok(tools.has(review.toolSlug), review.slug);
+    assert.ok(articles.has(review.slug));
+    assert.ok(existsSync(`public${review.coverImage.src}`));
+    assert.ok(review.relatedArticlesSlugs.length >= 2 && review.relatedArticlesSlugs.every(slug => articles.has(slug)));
+    const comparison = review.sections.flatMap(section => section.links || []).find(link => link.href.startsWith("/compare/"));
+    assert.ok(comparison && getToolComparisons(review.toolSlug).some(pair => `/compare/${pair.slug}` === comparison.href));
+  }
 });
