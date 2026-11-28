@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import { BrandVerifySteps } from "@/components/submit/BrandVerifySteps";
 import { ArrowRight, CheckCircle2, Copy, ExternalLink, Globe2, Loader2 } from "lucide-react";
 import { apiRequest } from "@/lib/api-client";
 import { CATEGORIES } from "@/lib/catalog-categories";
@@ -73,10 +74,11 @@ export function AddBrandForm({ available, existingBrands }: { available: boolean
 
   if (receipt) return <section aria-labelledby="submission-received" className="mx-auto max-w-2xl rounded-3xl border border-[#C6FF3D]/25 bg-[#10130b] p-8 sm:p-12">
     <CheckCircle2 className="mb-6 h-12 w-12 text-[#C6FF3D]" />
-    <h2 id="submission-received" className="font-display text-3xl font-bold text-white" role="status">{receipt.name} is in the review queue.</h2>
-    <p className="mt-4 leading-relaxed text-zinc-400">Your submission has been saved. Keep this reference if you need to contact us about it. Your listing will appear after editorial acceptance and publication.</p>
+    <h2 id="submission-received" className="font-display text-3xl font-bold text-white" role="status">{receipt.name} has been submitted.</h2>
+    <p className="mt-4 leading-relaxed text-zinc-400">Your submission is saved. Verify your domain below to be listed automatically, usually within an hour. Without verification, it stays in the editorial review queue. Keep this reference if you contact us about it.</p>
     <div className="mt-6 rounded-xl border border-white/15 bg-black/30 p-4"><p className="text-xs text-zinc-400">Submission reference</p><p className="mt-2 break-all font-mono text-sm text-white">{receipt.id}</p><button type="button" onClick={async () => { try { await navigator.clipboard.writeText(receipt.id); setCopied(true); } catch { setError("Copy the reference above manually."); } }} className="mt-3 inline-flex items-center gap-2 text-sm text-[#C6FF3D]"><Copy className="h-4 w-4" />{copied ? "Copied" : "Copy reference"}</button></div>
     {error && <p role="alert" className="mt-4 text-sm text-rose-300">{error}</p>}
+    {typeof receipt.details.founderEmail === "string" && <BrandVerifySteps receipt={receipt.id} email={receipt.details.founderEmail} />}
     <div className="mt-7 flex flex-wrap gap-5 text-sm text-[#C6FF3D]"><button type="button" onClick={() => { try { downloadJson("saasfolio-brand-submission-receipt.json", { id: receipt.id, status: "pending-editorial-review", details: receipt.details }); } catch { setError("Your browser could not download the receipt. Keep the reference above."); } }}>Download submission and receipt</button><Link href="/brands/promote#verify">Verify your brand →</Link><Link href="/brands">Explore the directory →</Link><Link href="/contact">Contact the editorial team</Link></div>
   </section>;
 
