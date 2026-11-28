@@ -1,20 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import type { FormEvent } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, BookOpen, CalendarCheck, ChevronDown, FileCheck2, Info, Share2, Tag, ThumbsDown, ThumbsUp } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BookOpen, CalendarCheck, ChevronDown, FileCheck2, Info, Share2, Tag, ThumbsDown } from "lucide-react";
 import { BrandAvatar } from "@/components/brand/BrandAvatar";
 import { CouponCode } from "@/components/deals/CouponCode";
 import { OfferCard, OFFER_TYPES, offerSourceLabel, offerValue } from "@/components/deals/OfferCard";
 import { OfferEvidenceDetails } from "@/components/deals/OfferEvidenceDetails";
 import { OfferReportLink } from "@/components/deals/OfferReportLink";
+import { offerReportHref } from "@/lib/offer-report-links";
+import { trackProductEvent } from "@/lib/client-analytics";
 import { SaveItemButton } from "@/components/profile/SaveItemButton";
 import { getOfferHref, offerActionLabel } from "@/lib/offer-links";
 import type { DetailedTool, SaaSDeal } from "@/lib/types";
 import "./deal-detail.css";
 
 interface DealDetailClientProps {
+  accountsAvailable?: boolean;
   deal: SaaSDeal;
   discountHref?: string;
   tool?: DetailedTool;
@@ -32,22 +34,13 @@ export function DealDetailClient({
   siblingDeals = [],
   relatedDeals,
   comparisonHref,
+  accountsAvailable = false,
 }: DealDetailClientProps) {
-  const [voted, setVoted] = useState<"up" | "down" | null>(null);
-  const [notes, setNotes] = useState<string[]>([]);
-  const [note, setNote] = useState("");
   const [shareStatus, setShareStatus] = useState("");
   const categoryHref = `/deals/category/${deal.categorySlug}`;
   const description = deal.description.replace(`${deal.title}. `, "");
   const checkedAt = Date.parse(deal.checkedAt || "");
   const checkedLabel = Number.isFinite(checkedAt) ? new Intl.DateTimeFormat("en", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(checkedAt) : "";
-
-  function addNote(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!note.trim()) return;
-    setNotes(current => [note.trim(), ...current]);
-    setNote("");
-  }
 
   async function shareOffer() {
     setShareStatus("");
@@ -86,7 +79,7 @@ export function DealDetailClient({
               {description && <p>{description}</p>}
               {discountHref && <Link className="deal-detail-link" href={discountHref}>Compare all {deal.toolName} discounts <ArrowUpRight size={16} aria-hidden="true" /></Link>}
               <div className="deal-detail-share">
-                <SaveItemButton kind="deal" slug={deal.slug} />
+                {accountsAvailable && <SaveItemButton kind="deal" slug={deal.slug} />}
                 <button type="button" onClick={shareOffer} className="market-button market-button-secondary"><Share2 size={16} aria-hidden="true" /> Share</button>
                 {shareStatus && <p role="status">{shareStatus}</p>}
               </div>
@@ -175,18 +168,9 @@ export function DealDetailClient({
             )}
 
             <section className="deal-panel deal-session">
-              <h2>Session notes</h2>
-              <p className="deal-panel-copy">Keep track of this offer while you’re on this page.</p>
-              <div className="deal-session-vote" role="group" aria-label="Did this offer work for you?">
-                <button type="button" className="market-button market-button-secondary" aria-pressed={voted === "up"} onClick={() => setVoted("up")}><ThumbsUp size={16} aria-hidden="true" /> Worked</button>
-                <button type="button" className="market-button market-button-secondary" aria-pressed={voted === "down"} onClick={() => setVoted("down")}><ThumbsDown size={16} aria-hidden="true" /> Didn’t work</button>
-              </div>
-              <form onSubmit={addNote}>
-                <label htmlFor="deal-session-note">Note for this session</label>
-                <textarea id="deal-session-note" rows={2} value={note} onChange={event => setNote(event.target.value)} />
-                <button type="submit" className="market-button market-button-secondary" disabled={!note.trim()}>Add note</button>
-              </form>
-              {notes.length > 0 && <ul aria-live="polite">{notes.map((text, index) => <li key={notes.length - index}>{text}</li>)}</ul>}
+              <h2>Did this offer work?</h2>
+              <p className="deal-panel-copy">If the code was rejected, the price differs or the terms changed, tell us. Reports go to the editorial team and are checked against the provider&apos;s current terms.</p>
+              <Link href={offerReportHref(deal.slug)} onClick={() => trackProductEvent("offer_report", { offerSlug: deal.slug })} className="market-button market-button-secondary"><ThumbsDown size={16} aria-hidden="true" /> Report a problem with this offer</Link>
             </section>
 
             <p className="deal-disclosure">SaaSFolio may earn a commission through provider links. <Link href="/affiliate-disclosure">Affiliate disclosure</Link></p>

@@ -3,6 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { getDealBySlug, getRetiredOfferToolSlug } from "@/lib/data/deals-data";
 import { getToolBySlug } from "@/lib/data/tools-data";
 import { DealDetailClient } from "@/components/deals/DealDetailClient";
+import { authConfigured } from "@/lib/server/supabase";
 import type { Metadata } from "next";
 import { pageMetadata, dealSearchTitle, dealMetaDescription, toolSearchTitle, toolMetaDescription } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -119,6 +120,7 @@ export default async function DealDetailPage({
       />
       <DealDetailClient
         deal={deal}
+        accountsAvailable={authConfigured()}
         discountHref={tool && getBrandDiscountData(tool).indexable ? `/discounts/${deal.toolSlug}` : undefined}
         tool={tool}
         faqs={faqs}

@@ -66,6 +66,33 @@ duplicates and sources that cannot be checked stay available for manual review.
 A new approved card links to the official site and labels the copy as
 brand-submitted information.
 
+### Fully automated listing (November 28, 2026)
+
+1. **Submit.** The brand is saved to the Supabase `inquiries` table. The receipt
+   screen shows the brand's DNS TXT record right away, and a "We received your
+   brand" email repeats it with the submission reference.
+2. **Verify.** The owner adds the TXT record. They can click **Check my domain
+   now**, or wait: the server reviews pending brand submissions from the last
+   45 days every hour (`lib/server/brand-review-scheduler.ts`, started from
+   `instrumentation.ts`).
+3. **Genuineness checks.** A submission is approved only when all of these hold:
+   the TXT proof is on the brand's own domain; the submitter is the founder,
+   owner or a team member (not a community recommendation); the pricing or
+   docs URL is on the same domain; the homepage and that page are reachable,
+   allowed by robots.txt, not parked, not "coming soon" and not a bot
+   challenge; the homepage title contains the brand name; both pages contain
+   real product and pricing/docs text; the domain and slug are not already
+   listed.
+4. **Listed and notified.** `approve_brand_listing` publishes the directory
+   card and resolves the inquiry in one transaction, then a "your brand is now
+   listed" email is sent.
+
+Anything that fails a check stays pending for an editor. The automation never
+rejects or deletes. Emails are best effort and idempotent per submission; they
+need `RESEND_API_KEY` and `TRANSACTIONAL_FROM_EMAIL` (or `NEWSLETTER_FROM_EMAIL`)
+on a domain verified in Resend. Without them, the flow works and simply
+sends no email. Set `BRAND_AUTO_REVIEW=false` to stop the hourly job.
+
 ### Sponsored placement
 
 **Promote your brand** on `/brands` offers $49 USD for one month and $349 USD

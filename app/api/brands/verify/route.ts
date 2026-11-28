@@ -1,4 +1,4 @@
-import { approveVerifiedBrand, brandClaim, getClaimListing, ownsBrandDomain } from "@/lib/server/brand-listings";
+import { approveAndNotify, brandClaim, getClaimListing, ownsBrandDomain } from "@/lib/server/brand-listings";
 import { failure, HttpError, json, readBody } from "@/lib/server/http";
 import { enforceLimit } from "@/lib/server/supabase";
 
@@ -12,6 +12,6 @@ export async function POST(request: Request) {
     const instructions = { dnsName: claim.dnsName, dnsValue: claim.dnsValue, approved };
     if (body.action === "instructions" || approved) return json(instructions);
     if (!await ownsBrandDomain(claim)) return json({ ...instructions, status: "record_not_found" });
-    return json({ ...instructions, approved: await approveVerifiedBrand(claim), status: "checked" });
+    return json({ ...instructions, approved: await approveAndNotify(claim), status: "checked" });
   } catch (error) { return failure(error); }
 }

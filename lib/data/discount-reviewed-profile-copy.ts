@@ -493,6 +493,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Workflow actions"
     ]
   },
+  "github": {
+    "name": "GitHub",
+    "website": "https://github.com",
+    "pricingUrl": "https://github.com/pricing",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "GitHub hosts code repositories with pull requests, Actions CI/CD, Codespaces, packages and GitHub Copilot AI assistance for individuals and teams.",
+    "description": "GitHub hosts code repositories with pull requests, Actions CI/CD, Codespaces, packages and GitHub Copilot AI assistance for individuals and teams.",
+    "longDescription": "GitHub is where most open-source and commercial software teams store code, review changes and run automated builds. Plans add private collaboration features, Actions minutes, Codespaces hours and storage. Students and teachers can get paid features free through GitHub Education.",
+    "keyFeatures": [
+      "Git repositories and pull requests",
+      "GitHub Actions CI/CD",
+      "Codespaces cloud dev environments",
+      "GitHub Copilot AI assistant",
+      "Packages and Pages"
+    ]
+  },
   "google-workspace": {
     "name": "Google Workspace",
     "website": "https://workspace.google.com",
@@ -542,6 +559,23 @@ export const DISCOUNT_REVIEWED_PROFILE_COPY = {
       "Failure notifications",
       "Check history",
       "Hosted and self-hosted choices"
+    ]
+  },
+  "hubspot": {
+    "name": "HubSpot",
+    "website": "https://www.hubspot.com",
+    "pricingUrl": "https://www.hubspot.com/pricing",
+    "updatedAt": "2026-11-27T00:00:00.000Z",
+    "pricingModel": "Freemium",
+    "tagline": "HubSpot is a CRM platform with marketing, sales, customer service, content and operations hubs, AI agents and free tools.",
+    "description": "HubSpot is a CRM platform with marketing, sales, customer service, content and operations hubs, AI agents and free tools.",
+    "longDescription": "HubSpot connects a shared CRM with hubs for marketing, sales, service, content and operations, so teams work from the same customer records. Paid editions add automation, reporting and seats, and the price rises with contacts and editions. Eligible startups can get large first-year discounts through HubSpot for Startups.",
+    "keyFeatures": [
+      "CRM and contact management",
+      "Marketing automation",
+      "Sales pipeline and sequences",
+      "Customer service help desk",
+      "AI agents and reporting"
     ]
   },
   "huly": {
