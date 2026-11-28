@@ -1,0 +1,744 @@
+{
+  "generatedAt": "2026-11-06T04:24:26.784Z",
+  "origin": "https://saasfolio.tech",
+  "scope": "Live Chrome public browsing, mobile/desktop and no JavaScript; external requests and non-read requests blocked except automatic Hostinger challenge verification; no form submissions or provider checkout",
+  "visits": [
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/",
+      "title": "SaaS Discounts & Software Deals | SaaSFolio",
+      "heading": "SaaS discounts\n& software deals.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 600,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/tools",
+      "title": "Software Buying Guides & Product Profiles | SaaSFolio",
+      "heading": "Choose software around the work you need to do.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 964,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/tools",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/tools?page=2",
+      "title": "Software Buying Guides & Product Profiles: Page 2 | SaaSFolio",
+      "heading": "Choose software around the work you need to do.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 923,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/tools?page=2",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/tools/notion",
+      "title": "Notion Pricing, Features & Alternatives | SaaSFolio",
+      "heading": "Notion",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 535,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/tools/notion",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/discounts/beehiiv",
+      "title": "Beehiiv Discounts & Promo Codes | SaaSFolio",
+      "heading": "Beehiiv Discounts & Promo Codes",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 1710,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/discounts/beehiiv",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/deals",
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "heading": "SAAS DEALS & SOFTWARE OFFERS",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 3838,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/deals",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/articles",
+      "title": "SaaS Buying Guides: Coupons, Pricing & Renewal Costs | SaaSFolio",
+      "heading": "SAAS EDITORIAL MAGAZINE",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 620,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/articles",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/articles/build-a-saas-budget-before-buying",
+      "title": "Build a SaaS budget before choosing discounts | SaaSFolio",
+      "heading": "Build a SaaS budget before choosing discounts",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 1173,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/articles/build-a-saas-budget-before-buying",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/compare/obsidian-vs-notion",
+      "title": "Obsidian vs Notion: Pricing, Features & Deals | SaaSFolio",
+      "heading": "OBSIDIAN VS NOTION",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 965,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/compare/obsidian-vs-notion",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/editorial-policy",
+      "title": "Editorial Method, Sources & Corrections | SaaSFolio",
+      "heading": "How our software buying guidance is made",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 671,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/editorial-policy",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/about",
+      "title": "About SaaSFolio: Offer Sources & Editorial Standards",
+      "heading": "SaaS discounts with sources you can check.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 508,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/about",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/privacy",
+      "title": "Privacy Policy | SaaSFolio",
+      "heading": "SAASFOLIO PRIVACY POLICY",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 866,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/privacy",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/contact",
+      "title": "Contact SaaSFolio",
+      "heading": "WE'RE HERE TO HELP\nSCALE YOUR SOFTWARE STACK.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 195,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/contact",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/login",
+      "title": "Sign In | SaaSFolio",
+      "heading": "Welcome back",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 74,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "noindex, follow",
+      "canonical": "https://saasfolio.tech/login",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/newsletter",
+      "title": "Newsletter signup confirmation | SaaSFolio",
+      "heading": "Newsletter confirmation",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 41,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "noindex, follow",
+      "canonical": "https://saasfolio.tech/newsletter",
+      "adScripts": []
+    },
+    {
+      "width": 390,
+      "javascript": true,
+      "path": "/tools/cogniflow-ai",
+      "title": "CogniFlow AI: Directory Reference | SaaSFolio",
+      "heading": "CogniFlow AI",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "words": 200,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "noindex, follow",
+      "canonical": "https://saasfolio.tech/tools/cogniflow-ai",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/",
+      "title": "SaaS Discounts & Software Deals | SaaSFolio",
+      "heading": "SaaS discounts\n& software deals.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 603,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/tools",
+      "title": "Software Buying Guides & Product Profiles | SaaSFolio",
+      "heading": "Choose software around the work you need to do.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 964,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/tools",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/tools?page=2",
+      "title": "Software Buying Guides & Product Profiles: Page 2 | SaaSFolio",
+      "heading": "Choose software around the work you need to do.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 923,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/tools?page=2",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/tools/notion",
+      "title": "Notion Pricing, Features & Alternatives | SaaSFolio",
+      "heading": "Notion",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 535,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/tools/notion",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/discounts/beehiiv",
+      "title": "Beehiiv Discounts & Promo Codes | SaaSFolio",
+      "heading": "Beehiiv Discounts & Promo Codes",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 1710,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/discounts/beehiiv",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/deals",
+      "title": "SaaS Deals: Software Offers, Free Plans & Trials | SaaSFolio",
+      "heading": "SAAS DEALS & SOFTWARE OFFERS",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 3919,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/deals",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/articles",
+      "title": "SaaS Buying Guides: Coupons, Pricing & Renewal Costs | SaaSFolio",
+      "heading": "SAAS EDITORIAL MAGAZINE",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 620,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/articles",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/articles/build-a-saas-budget-before-buying",
+      "title": "Build a SaaS budget before choosing discounts | SaaSFolio",
+      "heading": "Build a SaaS budget before choosing discounts",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 1173,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/articles/build-a-saas-budget-before-buying",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/about",
+      "title": "About SaaSFolio: Offer Sources & Editorial Standards",
+      "heading": "SaaS discounts with sources you can check.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 508,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/about",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/login",
+      "title": "Sign In | SaaSFolio",
+      "heading": "Welcome back",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 196,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "noindex, follow",
+      "canonical": "https://saasfolio.tech/login",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/newsletter",
+      "title": "Newsletter signup confirmation | SaaSFolio",
+      "heading": "Newsletter confirmation",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 41,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "noindex, follow",
+      "canonical": "https://saasfolio.tech/newsletter",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": true,
+      "path": "/tools/cogniflow-ai",
+      "title": "CogniFlow AI: Directory Reference | SaaSFolio",
+      "heading": "CogniFlow AI",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 200,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "noindex, follow",
+      "canonical": "https://saasfolio.tech/tools/cogniflow-ai",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": false,
+      "path": "/",
+      "title": "SaaS Discounts & Software Deals | SaaSFolio",
+      "heading": "SaaS discounts\n& software deals.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 603,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": false,
+      "path": "/tools?page=2",
+      "title": "Software Buying Guides & Product Profiles: Page 2 | SaaSFolio",
+      "heading": "Choose software around the work you need to do.",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 923,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/tools?page=2",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": false,
+      "path": "/editorial-policy",
+      "title": "Editorial Method, Sources & Corrections | SaaSFolio",
+      "heading": "How our software buying guidance is made",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 671,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/editorial-policy",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": false,
+      "path": "/compare/pocketbase-vs-supabase",
+      "title": "PocketBase vs Supabase: Pricing, Features & Deals | SaaSFolio",
+      "heading": "POCKETBASE VS SUPABASE",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 949,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/compare/pocketbase-vs-supabase",
+      "adScripts": []
+    },
+    {
+      "width": 1440,
+      "javascript": false,
+      "path": "/articles/saas-coupon-renewal-price-checklist",
+      "title": "Check SaaS renewal prices before redeeming a coupon | SaaSFolio",
+      "heading": "Check SaaS renewal prices before redeeming a coupon",
+      "headingVisible": true,
+      "h1Count": 1,
+      "scrollWidth": 1434,
+      "innerWidth": 1440,
+      "words": 1061,
+      "brokenImages": [],
+      "brokenFragments": [],
+      "robots": "index, follow",
+      "canonical": "https://saasfolio.tech/articles/saas-coupon-renewal-price-checklist",
+      "adScripts": []
+    }
+  ],
+  "interactions": [
+    {
+      "name": "Live service availability",
+      "path": "/contact",
+      "width": 390,
+      "state": {
+        "notice": [
+          "This online service is temporarily unavailable. You can contact SaaSFolio by email. Browsing software and discount guides does not require an account."
+        ],
+        "disabledFieldsets": [
+          true
+        ],
+        "enabledSubmitButtons": 0,
+        "emailLinks": [
+          "mailto:support@saasfolio.tech",
+          "mailto:partners@saasfolio.tech",
+          "mailto:editorial@saasfolio.tech",
+          "mailto:security@saasfolio.tech",
+          "mailto:support@saasfolio.tech?subject=SaaSFolio%20support&body="
+        ]
+      }
+    },
+    {
+      "name": "Live service availability",
+      "path": "/login",
+      "width": 390,
+      "state": {
+        "notice": [
+          "Google and Apple sign-in are not available on this site yet.",
+          "This online service is temporarily unavailable. You can contact SaaSFolio by email. Browsing software and discount guides does not require an account."
+        ],
+        "disabledFieldsets": [
+          true
+        ],
+        "enabledSubmitButtons": 0,
+        "emailLinks": [
+          "mailto:support@saasfolio.tech"
+        ]
+      }
+    },
+    {
+      "name": "Live service availability",
+      "path": "/newsletter",
+      "width": 390,
+      "state": {
+        "notice": [],
+        "disabledFieldsets": [],
+        "enabledSubmitButtons": 0,
+        "emailLinks": []
+      }
+    },
+    {
+      "name": "Software search across all directory pages",
+      "width": 390,
+      "passed": true,
+      "status": "Showing 1–1 of 1 software profiles."
+    },
+    {
+      "name": "Contact FAQ opens and closes",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "name": "Native footer navigation updates active navigation",
+      "width": 390,
+      "passed": true,
+      "title": "SaaS Buying Guides: Coupons, Pricing & Renewal Costs | SaaSFolio"
+    },
+    {
+      "name": "Live service availability",
+      "path": "/login",
+      "width": 1440,
+      "state": {
+        "notice": [
+          "Google and Apple sign-in are not available on this site yet.",
+          "This online service is temporarily unavailable. You can contact SaaSFolio by email. Browsing software and discount guides does not require an account."
+        ],
+        "disabledFieldsets": [
+          true
+        ],
+        "enabledSubmitButtons": 0,
+        "emailLinks": [
+          "mailto:support@saasfolio.tech"
+        ]
+      }
+    },
+    {
+      "name": "Live service availability",
+      "path": "/newsletter",
+      "width": 1440,
+      "state": {
+        "notice": [],
+        "disabledFieldsets": [],
+        "enabledSubmitButtons": 0,
+        "emailLinks": []
+      }
+    },
+    {
+      "name": "Software search across all directory pages",
+      "width": 1440,
+      "passed": true,
+      "status": "Showing 1–1 of 1 software profiles."
+    },
+    {
+      "name": "Savings calculator",
+      "width": 1440,
+      "passed": true,
+      "result": "12 monthly payments\n$240.00\nAnnual payment + access fee\n$210.00\nAnnual effective monthly cost\n$17.50\n\nAnnual billing saves $30.00 (12.5%) over 12 months after the access fee."
+    },
+    {
+      "name": "Contact FAQ opens and closes",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "name": "Native footer navigation updates active navigation",
+      "width": 1440,
+      "passed": true,
+      "title": "SaaS Buying Guides: Coupons, Pricing & Renewal Costs | SaaSFolio"
+    }
+  ],
+  "runtimeErrors": [],
+  "failedAssets": [],
+  "blockedExternal": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&display=swap",
+      "method": "GET"
+    }
+  ],
+  "blockedWrites": [],
+  "hostingChallenges": [
+    {
+      "path": "/",
+      "url": "https://saasfolio.tech/",
+      "status": 403
+    }
+  ],
+  "hostingValidationRequests": [
+    {
+      "url": "https://saasfolio.tech/hcdn-cgi/jschallenge-validate",
+      "method": "POST"
+    }
+  ],
+  "checksFailed": [
+    {
+      "name": "Savings calculator",
+      "path": "/savings-calculator",
+      "width": 390,
+      "message": "Browser condition failed: /savings-calculator"
+    },
+    {
+      "path": "/compare/obsidian-vs-notion",
+      "width": 1440,
+      "message": "Browser condition failed: /compare/obsidian-vs-notion"
+    },
+    {
+      "path": "/editorial-policy",
+      "width": 1440,
+      "message": "Browser condition failed: /editorial-policy"
+    },
+    {
+      "path": "/privacy",
+      "width": 1440,
+      "message": "Browser condition failed: /privacy"
+    },
+    {
+      "path": "/contact",
+      "width": 1440,
+      "message": "Browser condition failed: /contact"
+    }
+  ],
+  "interceptionErrors": [
+    "Invalid InterceptionId.",
+    "Invalid InterceptionId."
+  ],
+  "completedAt": "2026-11-06T04:30:04.086Z"
+}
