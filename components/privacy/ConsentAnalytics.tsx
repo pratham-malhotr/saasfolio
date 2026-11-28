@@ -35,7 +35,9 @@ export function ConsentAnalytics() {
     sync(); window.addEventListener("storage", sync); window.addEventListener("saasfolio:privacy-settings", open);
     return () => { window.removeEventListener("storage", sync); window.removeEventListener("saasfolio:privacy-settings", open); };
   }, []);
-  const enabled = validId && choice === true && Boolean(publicAnalyticsPath(path));
+  // Re-check the browser's privacy signal at render time as well as in sync():
+  // Global Privacy Control and Do Not Track always override a stored "allow".
+  const enabled = validId && initialized && choice === true && !privacySignal() && Boolean(publicAnalyticsPath(path));
   useEffect(() => {
     const target = window as TagWindow;
     target[`ga-disable-${measurementId}`] = !enabled;
